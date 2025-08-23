@@ -1,0 +1,42 @@
+name: Build docs.txt from n8n-io/n8n-docs
+
+on:
+  workflow_dispatch:        # run manually
+  schedule:
+    - cron: "17 2 * * *"    # daily at 02:17 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download n8n docs (zip)
+        run: |
+          curl -L https://codeload.github.com/n8n-io/n8n-docs/zip/refs/heads/main -o docs.zip
+          unzip -q docs.zip
+          rm docs.zip
+
+      # Build a plain-text docs.txt at repo root (so Pages serves /docs.txt)
+      - name: Build docs.txt
+        shell: bash
+        run: |
+          : > docs.txt
+          while IFS= read -r -d '' f; do
+            rel="${f#n8n-docs-main/}"
+            url="https://docs.n8n.io/${rel%.md}/"
+            echo "=== ${url}" >> docs.txt
+            awk 'BEGIN{front=0} /^---$/{front=!front; next} !front{print}' "$f" >> docs.txt
+            echo "" >> docs.txt
+          done < <(find n8n-docs-main -type f -name '*.md' -print0)
+
+      - name: Commit docs.txt
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs.txt
+          git commit -m "chore: refresh docs.txt from n8n-io/n8n-docs" || echo "No changes to commit"
+          git push
