@@ -1,0 +1,24 @@
+name: Build n8n Docs Index
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *" # every day at 2am UTC
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: |
+          git clone --depth=1 https://github.com/n8n-io/n8n-docs docs
+          mkdir -p public
+          find docs -name "*.md" -print0 | xargs -0 cat > public/docs.txt
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: n8n-docs
+          path: public/docs.txt
