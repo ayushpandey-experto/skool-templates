@@ -5663,11 +5663,11 @@ Your work is now in GitHub. If you're using a multi-branch setup, it's on the de
 
     1. In GitHub, create a pull request to merge development into production.
     1. Merge the pull request.
-    1. In your production instance, select **Pull** <span class="inline-image">![Pull icon](/_images/source-control-environments/pull-icon.png){.off-glb}</span> in the main menu.
+    1. In your production instance, select **Pull** <span class="n8n-inline-image">![Pull icon](/_images/source-control-environments/pull-icon.png){.off-glb}</span> in the main menu.
 
 === "Single-branch"
 
-    In your production instance, select **Pull** <span class="inline-image">![Pull icon](/_images/source-control-environments/pull-icon.png){.off-glb}</span> in the main menu.
+    In your production instance, select **Pull** <span class="n8n-inline-image">![Pull icon](/_images/source-control-environments/pull-icon.png){.off-glb}</span> in the main menu.
 
 --8<-- "_snippets/source-control-environments/push-pull-menu-state.md"
 
@@ -5745,7 +5745,7 @@ This document assumes some familiarity with Git concepts and terminology. Refer 
 You must be an instance owner or instance admin to pull changes from git.
 ///
 
-To pull work from Git, select **Pull** <span class="inline-image">![Pull icon](/_images/source-control-environments/pull-icon.png){.off-glb}</span> in the main menu.
+To pull work from Git, select **Pull** <span class="n8n-inline-image">![Pull icon](/_images/source-control-environments/pull-icon.png){.off-glb}</span> in the main menu.
 
 --8<-- "_snippets/source-control-environments/push-pull-menu-state.md"
 
@@ -6213,7 +6213,7 @@ You can filter the executions list.
 If your workflow execution fails, you can retry the execution. To retry a failed workflow:
 
 1. Open the **Executions** list.
-2. For the workflow execution you want to retry, select **Refresh** <span class="inline-image">![Refresh icon](/_images/common-icons/refresh.png){.off-glb}</span>.
+2. For the workflow execution you want to retry, select **Refresh** <span class="n8n-inline-image">![Refresh icon](/_images/common-icons/refresh.png){.off-glb}</span>.
 --8<-- "_snippets/workflows/executions/retry-options.md"
 
 === https://docs.n8n.io/docs/workflows/executions/manual-partial-and-production-executions/
@@ -6365,7 +6365,7 @@ You can filter the executions list:
 If your workflow execution fails, you can retry the execution. To retry a failed workflow:
 
 1. Select the **Executions** tab from within either the **Overview** page or a specific **project** to open the list. 
-2. On the execution you want to retry, select **Retry execution** <span class="inline-image">![Options menu icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span>.
+2. On the execution you want to retry, select **Retry execution** <span class="n8n-inline-image">![Options menu icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span>.
 --8<-- "_snippets/workflows/executions/retry-options.md"
 
 ## Load data from previous executions into your current workflow
@@ -6511,13 +6511,13 @@ Workflow history is previous versions of the workflow: for example, a version wi
 To view a workflow's history:
 
 1. Open the workflow.
-1. Select **Workflow history** <span class="inline-image">![Workflow history icon](/_images/common-icons/workflow-history.png){.off-glb}</span>. n8n opens a menu showing the saved workflow versions, and a canvas with a preview of the selected version.
+1. Select **Workflow history** <span class="n8n-inline-image">![Workflow history icon](/_images/common-icons/workflow-history.png){.off-glb}</span>. n8n opens a menu showing the saved workflow versions, and a canvas with a preview of the selected version.
 
 ## Restore or copy previous versions
 
 You can restore a previous workflow version, or make a copy of it:
 
-1. On the version you want to restore or copy, select **Options** <span class="inline-image">![Options icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span>.
+1. On the version you want to restore or copy, select **Options** <span class="n8n-inline-image">![Options icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span>.
 1. Choose what you want to do:
 	* **Restore this version**: replace your current workflow with the selected version.
 	* **Clone to new workflow**: create a new workflow based on the selected version.
@@ -6589,13 +6589,13 @@ A [workflow](/glossary.md#workflow-n8n) is a collection of nodes connected toget
 
 ## Create a workflow
 
-1. Select the <span class="inline-image">![universal create resource icon](/_images/common-icons/universal-resource-button.png){.off-glb}</span> **button** in the upper-left corner of the side menu. Select workflow.
+1. Select the <span class="n8n-inline-image">![universal create resource icon](/_images/common-icons/universal-resource-button.png){.off-glb}</span> **button** in the upper-left corner of the side menu. Select workflow.
 2. If your n8n instance supports projects, you'll also need to choose whether to create the workflow inside your **personal space** or a specific **project** you have access to. If you're using the community version, you'll always create workflows inside your personal space.
 3. Get started by adding a trigger node: select **Add first step...**
 
 Or:
 
-1. Select the  <span class="inline-image">![universal create resource icon](/_images/common-icons/universal-resource-button.png){.off-glb}</span> **create** button in the upper-right corner from either the **Overview** page or a specific **project**. Select workflow.
+1. Select the  <span class="n8n-inline-image">![universal create resource icon](/_images/common-icons/universal-resource-button.png){.off-glb}</span> **create** button in the upper-right corner from either the **Overview** page or a specific **project**. Select workflow.
 2. If you're doing this from the **Overview** page, you'll create the workflow inside your personal space. If you're doing this from inside a project, you'll create the workflow inside that specific project.
 3. Get started by adding a trigger node: select **Add first step...**
 
@@ -6659,7 +6659,7 @@ You can customize workflow behavior for individual workflows using workflow sett
 To open the settings:
 
 1. Open your workflow.
-1. Select the **three dots icon** <span class="inline-image">![three dots icon](/_images/common-icons/three-dots-horizontal.png){.off-glb}</span> in the upper-right corner.
+1. Select the **three dots icon** <span class="n8n-inline-image">![three dots icon](/_images/common-icons/three-dots-horizontal.png){.off-glb}</span> in the upper-right corner.
 3. Select **Settings**. n8n opens the **Workflow settings** modal.
 
 ## Available settings
@@ -6754,7 +6754,7 @@ Sticky Notes are a core node. To add a new Sticky Note:
 To change the Sticky Note color:
 
 1. Hover over the Sticky Note
-1. Select **Change color** <span class="inline-image">![Change Sticky Note color icon](/_images/common-icons/change-color.png){.off-glb}</span>
+1. Select **Change color** <span class="n8n-inline-image">![Change Sticky Note color icon](/_images/common-icons/change-color.png){.off-glb}</span>
 
 ## Sticky Note positioning
 
@@ -6763,7 +6763,7 @@ You can:
 * Drag a Sticky Note anywhere on the canvas.
 * Drag Sticky Notes behind nodes. You can use this to visually group nodes.
 * Resize Sticky Notes by hovering over the edge of the note and dragging to resize.
-* Change the color: select **Options** <span class="inline-image">![Options icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> to open the color selector.
+* Change the color: select **Options** <span class="n8n-inline-image">![Options icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> to open the color selector.
 
 ## Writing in Markdown
 
@@ -6849,7 +6849,7 @@ n8n provides a collection of built-in nodes, as well as the ability to create yo
 
 ### Add a node to an existing workflow
 
-Select the **Add node** <span class="inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector. n8n opens the nodes panel, where you can search or browse all nodes.
+Select the **Add node** <span class="n8n-inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector. n8n opens the nodes panel, where you can search or browse all nodes.
 
 --8<-- "_snippets/integrations/builtin/node-operations.md"
 
@@ -6857,10 +6857,10 @@ Select the **Add node** <span class="inline-image">![Add node icon](/_images/try
 
 To view node controls, hover over the node on the canvas:
 
-* **Execute step** <span class="inline-image">![Execute step icon](/_images/common-icons/play-node.png){.off-glb}</span>: Run the node.
-* **Deactivate** <span class="inline-image">![Deactivate node icon](/_images/common-icons/power-off.png){.off-glb}</span>: Deactivate the node.
-* **Delete** <span class="inline-image">![Delete node icon](/_images/common-icons/delete-node.png){.off-glb}</span>: Delete the node.
-* **Node context menu** <span class="inline-image">![Node context menu icon](/_images/common-icons/node-context-menu.png){.off-glb}</span>: Select node actions. Available actions:
+* **Execute step** <span class="n8n-inline-image">![Execute step icon](/_images/common-icons/play-node.png){.off-glb}</span>: Run the node.
+* **Deactivate** <span class="n8n-inline-image">![Deactivate node icon](/_images/common-icons/power-off.png){.off-glb}</span>: Deactivate the node.
+* **Delete** <span class="n8n-inline-image">![Delete node icon](/_images/common-icons/delete-node.png){.off-glb}</span>: Delete the node.
+* **Node context menu** <span class="n8n-inline-image">![Node context menu icon](/_images/common-icons/node-context-menu.png){.off-glb}</span>: Select node actions. Available actions:
 	* Open node
 	* Execute step
 	* Rename node
@@ -6906,11 +6906,11 @@ A connection establishes a link between nodes to route data through the workflow
 
 ## Create a connection
 
-To create a connection between two nodes, select the grey dot or **Add node** <span class="inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> on the right side of a node and slide the arrow to the grey rectangle on the left side of the following node.
+To create a connection between two nodes, select the grey dot or **Add node** <span class="n8n-inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> on the right side of a node and slide the arrow to the grey rectangle on the left side of the following node.
 
 ## Delete a connection
 
-Hover over the connection, then select **Delete** <span class="inline-image">![Delete connector icon](/_images/common-icons/delete-connector.png){.off-glb}</span>.
+Hover over the connection, then select **Delete** <span class="n8n-inline-image">![Delete connector icon](/_images/common-icons/delete-connector.png){.off-glb}</span>.
 
 
 
@@ -6938,7 +6938,7 @@ Templates provide:
 
 ## Access templates
 
-Select <span class="inline-image">![View templates icon](/_images/common-icons/templates.png){.off-glb}</span> **Templates** to view the templates library.
+Select <span class="n8n-inline-image">![View templates icon](/_images/common-icons/templates.png){.off-glb}</span> **Templates** to view the templates library.
 
 If you use n8n's template library, this takes you to browse [Workflows on the n8n website](https://n8n.io/workflows/). If you use a custom library provided by your organization, you'll be able to search and browse the templates within the app.
 
@@ -6983,7 +6983,7 @@ You can edit existing tags. Instance owners can delete tags.
 
 1. Select **Manage tags**. This is available from **Filters** > **Tags** on the **Workflows** page, or in the **+ Add tag** modal in your workflow.
 2. Hover over the tag you want to change.
-3. Select **Edit** <span class="inline-image">![Add node icon](/_images/common-icons/edit.png){.off-glb}</span> to rename it, or **Delete** <span class="inline-image">![Add node icon](/_images/common-icons/delete.png){.off-glb}</span> to delete it.
+3. Select **Edit** <span class="n8n-inline-image">![Add node icon](/_images/common-icons/edit.png){.off-glb}</span> to rename it, or **Delete** <span class="n8n-inline-image">![Add node icon](/_images/common-icons/delete.png){.off-glb}</span> to delete it.
 
 /// warning | Global tags
 Tags are global. If you edit or delete a tag, this affects all users of your n8n instance.
@@ -7336,7 +7336,7 @@ In the admin dashboard:
 
 In your workflow settings:
 
-1. Select the **Options** <span class="inline-image">![Options menu](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> menu.
+1. Select the **Options** <span class="n8n-inline-image">![Options menu](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> menu.
 1. Select **Settings**. n8n opens the **Workflow settings** modal.
 1. Change **Save successful production executions** to **Do not save**.
 
@@ -20283,7 +20283,7 @@ To edit output data:
 
 1. Run the node to load data.
 2. In the **OUTPUT** view, select **JSON** to switch to JSON view.
-3. Select **Edit** <span class="inline-image">![Edit data icon](/_images/data/data-pinning/edit-data.png){.off-glb}</span>.
+3. Select **Edit** <span class="n8n-inline-image">![Edit data icon](/_images/data/data-pinning/edit-data.png){.off-glb}</span>.
 4. Edit your data.
 5. Select **Save**. n8n saves your data changes and pins your data.
 
@@ -20294,14 +20294,14 @@ You can copy data from nodes in previous workflow executions:
 1. Open the left menu.
 2. Select **Executions**.
 3. Browse the workflow executions list to find the one with the data you want to copy.
-4. Select **Open Past Execution** <span class="inline-image">![Open past execution icon](/_images/data/data-pinning/open-execution.png){.off-glb}</span>.
+4. Select **Open Past Execution** <span class="n8n-inline-image">![Open past execution icon](/_images/data/data-pinning/open-execution.png){.off-glb}</span>.
 5. Double click the node whose data you want to copy.
 6. If it's table layout, select **JSON** to switch to JSON view.
 7. There are two ways to copy the JSON:
   1. Select the JSON you want by highlighting it, like selecting text. Then use `ctrl` + `c` to copy it.
   2. Select the JSON you want to copy by clicking on a parameter. Then:
-    1. Hover over the JSON. n8n displays the **Copy** <span class="inline-image">![Copy data icon](/_images/data/data-pinning/copy-data.png){.off-glb}</span> button.
-    2. Select **Copy** <span class="inline-image">![Copy data icon](/_images/data/data-pinning/copy-data.png){.off-glb}</span>.
+    1. Hover over the JSON. n8n displays the **Copy** <span class="n8n-inline-image">![Copy data icon](/_images/data/data-pinning/copy-data.png){.off-glb}</span> button.
+    2. Select **Copy** <span class="n8n-inline-image">![Copy data icon](/_images/data/data-pinning/copy-data.png){.off-glb}</span>.
     3. You can choose what to copy:
         * **Copy Item Path** and **Copy Parameter Path** gives you expressions that access parts of the JSON.
         * **Copy Value**: copies the entire selected JSON.
@@ -20313,7 +20313,7 @@ You can copy data from nodes in previous workflow executions:
 9. Open the node where you want to use the copied data.
 10. If there is no data, run the node to load data.
 11. In the **OUTPUT** view, select **JSON** to switch to JSON view. 
-12. Select **Edit** <span class="inline-image">![Edit data icon](/_images/data/data-pinning/edit-data.png){.off-glb}</span>.
+12. Select **Edit** <span class="n8n-inline-image">![Edit data icon](/_images/data/data-pinning/edit-data.png){.off-glb}</span>.
 15. Paste in the data from the previous execution.
 16. Select **Save**. n8n saves your data changes and pins your data.
 
@@ -20736,7 +20736,7 @@ Search and filter data in the node **INPUT** and **OUTPUT** panels. Use this to 
 
 To search:
 
-1. In a node, select **Search** <span class="inline-image">![Search icon](/_images/common-icons/search.png){.off-glb}</span> in the **INPUT** or **OUTPUT** panel.
+1. In a node, select **Search** <span class="n8n-inline-image">![Search icon](/_images/common-icons/search.png){.off-glb}</span> in the **INPUT** or **OUTPUT** panel.
 1. Enter your search term.
 
 n8n filters as you type your search, displaying the objects or rows containing the term.
@@ -31442,7 +31442,7 @@ If you're [self hosting](/hosting/index.md), set your global timezone using the 
 To set the timezone for an individual workflow:
 
 1. Open the workflow on the canvas.
-1. Select the <span class="inline-image">![three dots menu](/_images/common-icons/three-dots-horizontal.png)</span> **Three dots icon** in the upper-right corner.
+1. Select the <span class="n8n-inline-image">![three dots menu](/_images/common-icons/three-dots-horizontal.png)</span> **Three dots icon** in the upper-right corner.
 1. Select **Settings**.
 1. Change the **Timezone** setting.
 1. Select **Save**.
@@ -66932,7 +66932,7 @@ To use community nodes, you first need to [install](/integrations/community-node
 
 ## Adding community nodes to your workflow
 
-After installing a community node, you can use it like any other node. n8n displays the node in search results in the **Nodes** panel. n8n marks community nodes with a **Package** <span class="inline-image">![Package icon](/_images/common-icons/package.png){.off-glb}</span> icon in the nodes panel.
+After installing a community node, you can use it like any other node. n8n displays the node in search results in the **Nodes** panel. n8n marks community nodes with a **Package** <span class="n8n-inline-image">![Package icon](/_images/common-icons/package.png){.off-glb}</span> icon in the nodes panel.
 
 ## Community nodes with duplicate names
 
@@ -67055,7 +67055,7 @@ Some users may not want to show verified community nodes in the nodes panel of t
 To uninstall a community node:
 
 1. Go to **Settings** > **Community nodes**.
-2. On the node you want to install, select **Options** <span class="inline-image">![Three dots options menu](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span>.
+2. On the node you want to install, select **Options** <span class="n8n-inline-image">![Three dots options menu](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span>.
 3. Select **Uninstall package**.
 4. Select **Uninstall Package** in the confirmation modal.
 
@@ -67096,7 +67096,7 @@ n8n maintains a blocklist of community nodes that it prevents you from installin
 To uninstall a community node:
 
 1. Go to **Settings** > **Community nodes**.
-2. On the node you want to install, select **Options** <span class="inline-image">![Three dots options menu](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span>.
+2. On the node you want to install, select **Options** <span class="n8n-inline-image">![Three dots options menu](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span>.
 3. Select **Uninstall package**.
 4. Select **Uninstall Package** in the confirmation modal.
 
@@ -68520,7 +68520,7 @@ Instance owners and instance admins can create projects.
 
 To create a project:
 
-1. Select <span class="inline-image">![Plus icon](/_images/common-icons/plus.png)</span> **Add project**.
+1. Select <span class="n8n-inline-image">![Plus icon](/_images/common-icons/plus.png)</span> **Add project**.
 1. Fill out the project settings.
 1. Select **Save**.
 
@@ -68563,7 +68563,7 @@ Workflow and credential owners can move workflows or credentials (changing owner
 Moving workflows or credentials removes all existing sharing. Be aware that this could impact other workflows currently sharing these resources.
 ///
 
-1. Select **Workflow menu** <span class="inline-image">![Workflow menu icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> or **Credential menu** <span class="inline-image">![Workflow menu icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> > **Move**.
+1. Select **Workflow menu** <span class="n8n-inline-image">![Workflow menu icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> or **Credential menu** <span class="n8n-inline-image">![Workflow menu icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> > **Move**.
 
 	/// info | Moving workflows with credentials
 	When moving a workflow with credentials you have permission to share, you can choose to share the credentials as well. This ensures that the workflow continues to have access to the credentials it needs to execute. n8n will note any credentials that can't be moved (credentials you don't have permission to share).
@@ -68845,7 +68845,7 @@ LDAP allows users to sign in to n8n with their organization credentials, instead
 ## Enable LDAP
 
 1. Log in to n8n as the instance owner.
-2. Select **Settings** <span class="inline-image">![Settings icon](/_images/common-icons/settings.png){.off-glb}</span> > **LDAP**.
+2. Select **Settings** <span class="n8n-inline-image">![Settings icon](/_images/common-icons/settings.png){.off-glb}</span> > **LDAP**.
 3. Toggle on **Enable LDAP Login**.
 4. Complete the fields with details from your LDAP server.
 5. Select **Test connection** to check your connection setup, or **Save connection** to create the connection.
@@ -68872,7 +68872,7 @@ If you remove a user from your LDAP server, they lose n8n access on the next syn
 To turn LDAP off:
 
 1. Log in to n8n as the instance owner.
-2. Select **Settings** <span class="inline-image">![Settings icon](/_images/common-icons/settings.png){.off-glb}</span> > **LDAP**.
+2. Select **Settings** <span class="n8n-inline-image">![Settings icon](/_images/common-icons/settings.png){.off-glb}</span> > **LDAP**.
 3. Toggle off **Enable LDAP Login**.
 
 If you turn LDAP off, n8n converts existing LDAP users to email users on their next login. The users must reset their password.
@@ -70478,7 +70478,7 @@ To use an expression to set a parameter value:
 
 1. Hover over the parameter where you want to use an expression.
 2. Select **Expressions** in the **Fixed/Expression** toggle.
-3. Write your expression in the parameter, or select **Open expression editor** <span class="inline-image">![Open expressions editor icon](/_images/common-icons/open-expression-editor.png){.off-glb}</span> to open the expressions editor. If you use the expressions editor, you can browse the available data in the **Variable selector**. All expressions have the format `{{ your expression here }}`.
+3. Write your expression in the parameter, or select **Open expression editor** <span class="n8n-inline-image">![Open expressions editor icon](/_images/common-icons/open-expression-editor.png){.off-glb}</span> to open the expressions editor. If you use the expressions editor, you can browse the available data in the **Variable selector**. All expressions have the format `{{ your expression here }}`.
 
 
 ### Example: Get data from webhook body
@@ -71947,7 +71947,7 @@ Every workflow needs somewhere to start. In n8n these are called ['trigger nodes
 
 The AI Agent node is the core of adding AI to your workflows.
 
- 1. Select the **Add node** <span class="inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector on the trigger node to bring up the node search.
+ 1. Select the **Add node** <span class="n8n-inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector on the trigger node to bring up the node search.
 
  1. Start typing "AI" and choose the **AI agent** node to add it.
 
@@ -71961,7 +71961,7 @@ The AI Agent node is the core of adding AI to your workflows.
   
 AI agents require a chat model to be attached to process the incoming prompts.
 
-1. Add a chat model by clicking the plus <span class="inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> button underneath the **Chat Model** connection on the **AI Agent** node (it's the first connection along the bottom of the node).
+1. Add a chat model by clicking the plus <span class="n8n-inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> button underneath the **Chat Model** connection on the **AI Agent** node (it's the first connection along the bottom of the node).
 
 1. The search dialog will appear, filtered on 'Language Models'. These are the models with built-in support in n8n. For this tutorial we will use **OpenAI Chat Model**.
 
@@ -72021,7 +72021,7 @@ The chat model is now giving us useful output, but there is something wrong with
 1. Wait for the response, then type the message "What's my name?". The AI will not be able to tell you, however apologetic it may seem. The reason for this is we are not saving the context. The AI Agent has no [memory](/glossary.md#ai-memory).
    ![image showing a conversation illustrating the above](/_images/advanced-ai/ai-intro-memory.png)
 
-1. In order to remember what has happened in the conversation, the AI Agent needs to preserve context. We can do this by adding memory to the **AI Agent** node. On the canvas click on the <span class="inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> on the bottom of the **AI Agent** node labeled "Memory".
+1. In order to remember what has happened in the conversation, the AI Agent needs to preserve context. We can do this by adding memory to the **AI Agent** node. On the canvas click on the <span class="n8n-inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> on the bottom of the **AI Agent** node labeled "Memory".
 
 1. From the panel which appears, select "Simple Memory". This will use the memory from the instance running n8n, and is usually sufficient for simple usage. The default value of 5 interactions should be sufficient here, but remember where this option is if you may want to change it later.
 
@@ -72471,7 +72471,7 @@ To register a new community edition instance, select the option during your init
 
 To register an existing community edition instance:
 
-1. Select the **three dots icon** <span class="inline-image">![three dots icon](/_images/common-icons/three-dots-horizontal.png){.off-glb}</span> in the lower-left corner.
+1. Select the **three dots icon** <span class="n8n-inline-image">![three dots icon](/_images/common-icons/three-dots-horizontal.png){.off-glb}</span> in the lower-left corner.
 1. Select **Settings** and then **Usage and plan**.
 1. Select **Unlock** to enter your email and then select **Send me a free license key**.
 1. Check your email for the account you entered.
@@ -76527,13 +76527,13 @@ Credentials are securely stored authentication information used to connect n8n w
 
 ## Create a credential
 
-1. Select the <span class="inline-image">![universal create resource icon](/_images/common-icons/universal-resource-button.png){.off-glb}</span> **button** in the upper-left corner of the side menu. Select credential. 
+1. Select the <span class="n8n-inline-image">![universal create resource icon](/_images/common-icons/universal-resource-button.png){.off-glb}</span> **Create** button in the upper-left corner of the side menu. Select credential. 
 2. If your n8n instance supports [projects](/glossary.md#project-n8n), you'll also need to choose whether to create the credential inside your personal space or a specific project you have access to. If you're using the community version, you'll create the credential inside your personal space.
 3. Select the app or service you wish to connect to.
 
 Or:
 
-1. Using the <span class="inline-image">![universal create resource icon](/_images/common-icons/universal-resource-button.png){.off-glb}</span> **Create** button in the upper-right corner from either the **Overview** page or a specific project. Select Credential.
+1. Using the <span class="n8n-inline-image">![universal create resource icon](/_images/common-icons/universal-resource-button.png){.off-glb}</span> **Create** button in the upper-right corner from either the **Overview** page or a specific project. Select Credential.
 2.  If you're doing this from the **Overview** page, you'll create the credential inside your personal space. If you're doing this from inside a project, you'll create the credential inside that specific project.
 3. Select the app or service you wish to connect to.
 
@@ -76601,7 +76601,7 @@ To unshare a credential:
 2. Select **Credentials** to see a list of your credentials.
 3. Select the credential you want to unshare.
 4. Select **Sharing**.
-5. Select **trash icon**<span class="inline-image">![Trash icon](/_images/common-icons/delete-node.png){.off-glb}</span> on the user or project you want to remove from the list of shared users and projects.
+5. Select **trash icon**<span class="n8n-inline-image">![Trash icon](/_images/common-icons/delete-node.png){.off-glb}</span> on the user or project you want to remove from the list of shared users and projects.
 6. Select **Save** to apply the changes.
 
 === https://docs.n8n.io/docs/credentials/index/
@@ -76978,7 +76978,7 @@ The [NASA node](/integrations/builtin/app-nodes/n8n-nodes-base.nasa.md) interact
 ??? explanation "Credentials"
     Credentials are private pieces of information issued by apps and services to authenticate you as a user and allow you to connect and share information between the app or service and the n8n node. The type of information required varies depending on the app/service concerned. You should be careful about sharing or revealing the credentials outside of n8n.
 
-1. Select the **Add node** <span class="inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector on the Schedule Trigger node.
+1. Select the **Add node** <span class="n8n-inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector on the Schedule Trigger node.
 1. Search for **NASA**. n8n shows a list of nodes that match the search.
 1. Select **NASA** to view a list of operations.
 1. Search for and select **Get a DONKI solar flare**. This operation returns a report about recent solar flares. When you select the operation, n8n adds the node to the canvas and opens it.
@@ -76993,7 +76993,7 @@ The [NASA node](/integrations/builtin/app-nodes/n8n-nodes-base.nasa.md) interact
 1. By default, DONKI Solar Flare provides data for the past 30 days. To limit it to just the last week, use **Additional Fields**:
     1. Select **Add field**.
     1. Select **Start date**.
-    1. To get a report starting from a week ago, you can use an expression: next to **Start date**, select the **Expression** tab, then select the expand button <span class="inline-image">![Add node icon](/_images/common-icons/open-expression-editor.png){.off-glb}</span> to open the full expressions editor.
+    1. To get a report starting from a week ago, you can use an expression: next to **Start date**, select the **Expression** tab, then select the expand button <span class="n8n-inline-image">![Add node icon](/_images/common-icons/open-expression-editor.png){.off-glb}</span> to open the full expressions editor.
     1. In the **Expression** field, enter the following expression:
     ```js
     {{ $today.minus(7, 'days') }}
@@ -77015,7 +77015,7 @@ n8n supports complex logic in workflows. In this tutorial we will use the [If no
 
 Add the If node:
 
-1. Select the **Add node** <span class="inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector on the NASA node.
+1. Select the **Add node** <span class="n8n-inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector on the NASA node.
 1. Search for **If**. n8n shows a list of nodes that match the search.
 1. Select **If** to add the node to the canvas. n8n opens the node.
 1. You need to check the value of the `classType` property in the NASA data. To do this:
@@ -77039,14 +77039,14 @@ Add the If node:
 
 The last step of the workflow is to send the two reports about solar flares. For this example, you'll send data to [Postbin](https://www.toptal.com/developers/postbin/). Postbin is a service that receives data and displays it on a temporary web page.
 
-1. On the If node, select the **Add node** <span class="inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector labeled **true**.
+1. On the If node, select the **Add node** <span class="n8n-inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector labeled **true**.
 1. Search for **PostBin**. n8n shows a list of nodes that match the search.
 1. Select **PostBin**.
 1. Select **Send a request**. n8n adds the node to the canvas and opens it.
 1. Go to [Postbin](https://www.toptal.com/developers/postbin/) and select **Create Bin**. Leave the tab open so you can come back to it when testing the workflow.
 1. Copy the bin ID. It looks similar to `1651063625300-2016451240051`.
 1. In n8n, paste your Postbin ID into **Bin ID**.
-1. Now, configure the data to send to Postbin. Next to **Bin Content**, select the **Expression** tab (you will need to mouse-over the **Bin Content** for the tab to appear), then select the expand button <span class="inline-image">![Add node icon](/_images/common-icons/open-expression-editor.png){.off-glb}</span> to open the full expressions editor.
+1. Now, configure the data to send to Postbin. Next to **Bin Content**, select the **Expression** tab (you will need to mouse-over the **Bin Content** for the tab to appear), then select the expand button <span class="n8n-inline-image">![Add node icon](/_images/common-icons/open-expression-editor.png){.off-glb}</span> to open the full expressions editor.
 1. You can now click and drag the correct field from the If Node output into the expressions editor to automatically create a reference for this label. In this case the input we want is 'classType'.
 1. Once dropped into the expressions editor it will transform into this reference: `{{$json["classType"]}}`. Add a message to it, so that the full expression is:
 
@@ -77059,7 +77059,7 @@ The last step of the workflow is to send the two reports about solar flares. For
 1. Close the expressions editor to return to the node.
 1. Close the Postbin node to return to the canvas.
 1. Add another Postbin node, to handle the **false** output path from the If node:
-    1. Hover over the Postbin node, then select **Node context menu** <span class="inline-image">![Node context menu icon](/_images/common-icons/node-context-menu.png){.off-glb}</span> > **Duplicate node** to duplicate the first Postbin node.
+    1. Hover over the Postbin node, then select **Node context menu** <span class="n8n-inline-image">![Node context menu icon](/_images/common-icons/node-context-menu.png){.off-glb}</span> > **Duplicate node** to duplicate the first Postbin node.
     1. Drag the **false** connector from the If node to the left side of the new Postbin node.
 
 ## Step six: Test the workflow
@@ -77132,13 +77132,13 @@ Select **Execute Workflow**. This runs the workflow, loading the data from the C
 
 Add a third node to message each customer and tell them their description. Use the Customer Messenger node to send a message to fake recipients.
 
-1. Select the **Add node** <span class="inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector on the Edit Fields node.
+1. Select the **Add node** <span class="n8n-inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span> connector on the Edit Fields node.
 2. Search for **Customer Messenger**. n8n shows a list of nodes that match the search.
 3. Select **Customer Messenger (n8n training)** to add the node to the [canvas](/glossary.md#canvas-n8n). n8n opens the node automatically.
 4. Use [expressions](/code/expressions.md) to map in the **Customer ID** and create the **Message**:
 	1. In the **INPUT** panel select the **Schema** tab.
 	2. Drag **Edit Fields1** > **customer_id** into the **Customer ID** field in the node settings.
-    2. Hover over **Message**. Select the **Expression** tab, then select the expand button <span class="inline-image">![Add node icon](/_images/common-icons/open-expression-editor.png){.off-glb}</span> to open the full expressions editor.
+    2. Hover over **Message**. Select the **Expression** tab, then select the expand button <span class="n8n-inline-image">![Add node icon](/_images/common-icons/open-expression-editor.png){.off-glb}</span> to open the full expressions editor.
     3. Copy this expression into the editor:
         ```
         Hi {{ $json.customer_name }}. Your description is: {{ $json.customer_description }}
@@ -77915,7 +77915,7 @@ This is some danger box contents.
 
 ### Inline images
 
-Inline images like this should **not** expand on click: <span class="inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span>
+Inline images like this should **not** expand on click: <span class="n8n-inline-image">![Add node icon](/_images/try-it-out/add-node-small.png){.off-glb}</span>
 
 If it expands on click, first check that the `off-glb` class has been applied. Refer to [MkDocs GLightbox | Disable by image](https://blueswen.github.io/mkdocs-glightbox/disable/image/) for more information.
 
@@ -78352,7 +78352,7 @@ The disadvantage is more manual steps to copy work between environments.
 === https://docs.n8n.io/_snippets/source-control-environments/push/
 To push work to Git:
 
-1. Select **Push** <span class="inline-image">![Push icon](/_images/source-control-environments/push-icon.png){.off-glb}</span> in the main menu.
+1. Select **Push** <span class="n8n-inline-image">![Push icon](/_images/source-control-environments/push-icon.png){.off-glb}</span> in the main menu.
 
 	--8<-- "_snippets/source-control-environments/push-pull-menu-state.md"
 
@@ -78760,7 +78760,7 @@ To load the template into your n8n instance:
 
 1. Download the workflow JSON file.
 1. Open a new workflow in your n8n instance.
-1. Copy in the JSON, or select **Workflow menu** <span class="inline-image">![Workflow menu icon](/_images/common-icons/three-dots-horizontal.png){.off-glb}</span> > **Import from file...**.
+1. Copy in the JSON, or select **Workflow menu** <span class="n8n-inline-image">![Workflow menu icon](/_images/common-icons/three-dots-horizontal.png){.off-glb}</span> > **Import from file...**.
 
 The example workflows use Sticky Notes to guide you:
 
@@ -78781,7 +78781,7 @@ If you self-host n8n, you are responsible for deleting user data. If you need to
 To pin data in a node:
 
 1. Run the node to load data.
-2. In the **OUTPUT** view, select **Pin data** <span class="inline-image">![Pin data icon](/_images/data/data-pinning/data-pinning-button.png){.off-glb}</span>. When data pinning is active, the button is disabled and a "This data is pinned" banner is displayed in the **OUTPUT** view.
+2. In the **OUTPUT** view, select **Pin data** <span class="n8n-inline-image">![Pin data icon](/_images/data/data-pinning/data-pinning-button.png){.off-glb}</span>. When data pinning is active, the button is disabled and a "This data is pinned" banner is displayed in the **OUTPUT** view.
 
 /// note | Nodes that output binary data
 You can't pin data if the output data includes binary data.
@@ -79671,7 +79671,7 @@ When you add a node to a workflow, n8n displays a list of available operations. 
 
 There are two types of operation:
 
-* Triggers start a workflow in response to specific events or conditions in your services. When you select a Trigger, n8n adds a trigger node to your workflow, with the Trigger operation you chose pre-selected. When you search for a node in n8n, Trigger operations have a bolt icon <span class="inline-image">![Trigger icon](/_images/common-icons/trigger.png){.off-glb}</span>.
+* Triggers start a workflow in response to specific events or conditions in your services. When you select a Trigger, n8n adds a trigger node to your workflow, with the Trigger operation you chose pre-selected. When you search for a node in n8n, Trigger operations have a bolt icon <span class="n8n-inline-image">![Trigger icon](/_images/common-icons/trigger.png){.off-glb}</span>.
 * Actions are operations that represent specific tasks within a workflow, which you can use to manipulate data, perform operations on external systems, and trigger events in other systems as part of your workflows. When you select an Action, n8n adds a node to your workflow, with the Action operation you chose pre-selected.
 
 === https://docs.n8n.io/_snippets/integrations/builtin/credentials/microsoft-need-admin-approval/
@@ -80017,7 +80017,7 @@ As an example, imagine you have an Execute Sub-workflow node in **Workflow A**. 
 2. Give the workflow a name, for example `Error Handler`. 
 3. Select **Save**.
 4. In the workflow where you want to use this error workflow:
-	1. Select **Options** <span class="inline-image">![Options menu icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> > **Settings**.
+	1. Select **Options** <span class="n8n-inline-image">![Options menu icon](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> > **Settings**.
 	2. In **Error workflow**, select the workflow you just created. For example, if you used the name Error Handler, select **Error handler**.
 	3. Select **Save**.
 	Now, when this workflow errors, the related error workflow runs.
@@ -80053,7 +80053,7 @@ For example, this input will create two cards. One named `test1` the other one n
     ///
 
 1. **Optional**: configure which workflows can call the sub-workflow:
-	1. Select the **Options** <span class="inline-image">![Options menu](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> menu > **Settings**. n8n opens the **Workflow settings** modal.
+	1. Select the **Options** <span class="n8n-inline-image">![Options menu](/_images/common-icons/three-dot-options-menu.png){.off-glb}</span> menu > **Settings**. n8n opens the **Workflow settings** modal.
 	1. Change the **This workflow can be called by** setting.	Refer to [Workflow settings](/workflows/settings.md) for more information on configuring your workflows.
 1. Add the **Execute Sub-workflow** trigger node (if you are searching under trigger nodes, this is also titled **When Executed by Another Workflow**).
 1. Set the **Input data mode** to choose how you will define the sub-workflow's input data:
@@ -80252,7 +80252,7 @@ The steps to update your n8n depend on which n8n platform you use. Refer to the 
 When you open n8n, you'll see either:
 
 * An empty workflow: if you have no workflows and you're logging in for the first time. Use this workflow.
-* The **Workflows** list on the **Overview** page. Select the <span class="inline-image">![universal create resource icon](/_images/common-icons/universal-resource-button.png){.off-glb}</span> **button** to create a new workflow.
+* The **Workflows** list on the **Overview** page. Select the <span class="n8n-inline-image">![universal create resource icon](/_images/common-icons/universal-resource-button.png){.off-glb}</span> **button** to create a new workflow.
 
 === https://docs.n8n.io/CONTRIBUTING/
 # Contributing
