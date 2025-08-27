@@ -2349,14 +2349,14 @@ On the left side of the **Editor UI**, there is a panel which contains the core 
 The panel contains the following sections:
 
 - **Overview**: Contains all the workflows and credentials you have access to. During this course, create new workflows here.
-- **Projects**: (Not available on Community edition) Projects group workflows and credentials. You can assign [roles](/user-management/rbac/role-types.md) to users in a project to control what they can do in a project. A **Personal** project is available by default.
+
+- **Projects**:  Projects group workflows and credentials. You can assign [roles](/user-management/rbac/role-types.md) to users in a project to control what they can do in a project. A **Personal** project is available by default. Projects aren't available on the Community edition.
 - **Admin Panel**: n8n Cloud only. Access your n8n instance usage, billing, and version settings.
 - **Templates**: A collection of pre-made workflows. Great place to get started with common use cases.
 - **Variables**: Used to store and access fixed data across your workflows. This feature is available on the Pro and Enterprise Plans.
-- **All executions**: Contains information about your workflow executions.
+- **Insights**: Provides analytics and insights about your workflows. 
 - **Help**: Contains resources around n8n product and community.
-- **Update**: (When updates are available) Indicator for any recent product updates.
-- **Settings**: Under the ellipsis (`...`) menu by your username. Manage users and access settings for a variety of features.
+- **What’s New**: Shows the latest product updates and features.  
 
 <figure style="text-align: center;"><img src="/_images/courses/level-one/chapter-one/l1-c1-side-panel.png" alt="Editor UI left-side menu" style="height: 600px;"><figcaption align = "center"><i>Editor UI left-side menu</i></figcaption></figure>
 
@@ -2377,10 +2377,11 @@ The top bar of the **Editor UI** contains the following information:
 
 The **canvas** is the gray dotted grid background in the Editor UI. It displays several icons and a node with different functionalities:
 
-- Buttons to zoom the canvas to fit the screen, zoom in or out of the canvas, and tidy up the nodes on screen.
+- Buttons to zoom the canvas to fit the screen, zoom in or out of the canvas, reset zoom, and tidy up the nodes on screen.
 - A button to **Execute workflow** once you add your first node. When you click on it, n8n executes all nodes on the canvas in sequence.
 - A button with a **+** sign inside. This button opens the nodes panel.
 - A button with a note icon inside. This button adds a [sticky note](/workflows/components/sticky-notes.md) to the canvas (visible when hovering on the top right + icon).
+- A button labeled **Ask Assistant** appears on the right side of the canvas. You can ask the AI Assistant for help with building workflows.
 - A dotted square with the text "Add first step." This is where you add your first node.
 
 <figure><img src="/_images/courses/level-one/chapter-one/l1-c1-canvas.png" alt="Workflow canvas" style="width:100%"><figcaption align = "center"><i>Workflow canvas</i></figcaption></figure>
@@ -14255,14 +14256,33 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.109.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.108.0...n8n@1.109.0) for this version.<br />
+**Release date:** 2025-08-25
+
+/// note | Next version
+This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains core updates, editor improvements, node updates, performance improvements, and bug fixes.
+
+### Contributors
+
+[naXa777](https://github.com/naXa777)  
+[prettycode2022](https://github.com/prettycode2022)  
+[oppai](https://github.com/oppai)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.107.4
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.107.3...n8n@1.107.4) for this version.<br />
 **Release date:** 2025-08-20
 
-/// note | Latest version
-This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains a bug fix.
 
@@ -14273,9 +14293,11 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.108.0...n8n@1.108.1) for this version.<br />
 **Release date:** 2025-08-20
 
-/// note | Next version
-This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+/// note | Latest version
+This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 ///
+
+
 
 This release contains a bug fix.
 
@@ -29355,6 +29377,15 @@ If you receive a message that the path and method you chose are already in use, 
 * Deactivate the workflow with the conflicting webhook.
 * Change the webhook path and/or method for one of the conflicting webhooks.
 
+## Timeouts on n8n Cloud
+
+n8n Cloud uses Cloudflare to protect against malicious traffic. If your webhook doesn't respond within 100 seconds, the incoming request will fail with a [524 status code](https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-524/).
+
+Because of this, for long-running processes that might exceed this limit, you may need to introduce polling logic by configuring two separate webhooks:
+
+* One webhook to start the long-running process and send an immediate response.
+* A second webhook that you can call at intervals to query the status of the process and retrieve the result once it's complete.
+
 === https://docs.n8n.io/docs/integrations/builtin/core-nodes/n8n-nodes-base.webhook/index/
 
 # Webhook node
@@ -41286,6 +41317,14 @@ The following video demonstrates the steps described above.
 
 ### Service Account can't access Google Drive files
 
+<!-- vale from-microsoft.FirstPerson = NO -->
+/// danger | No access to my drive
+Google no longer allows Service Accounts created after April 15, 2025 to access `my drive`. Service Accounts now only have access to shared drives.
+
+While not recommended, if you need to use a Service Account to access `my drive`, you can do so by [enabling domain-wide delegation](#enable-domain-wide-delegation). You can learn more in [this post in the community](https://community.n8n.io/t/please-please-help-upload-file-google-drive-node-with-service-account-not-working/147750/15).
+///
+<!-- vale from-microsoft.FirstPerson = YES -->
+
 A Service Account can't access Google Drive files and folders that weren't shared with its associated user email.
 
 1. Access your [Google Cloud Console](https://console.cloud.google.com) and copy your Service Account email.
@@ -46293,7 +46332,7 @@ To configure the webhook for your TheHive instance:
 		{
 			name: TESTING_WEBHOOK_NAME
 			url: TESTING_WEBHOOK_URL
-			version: 0
+			version: 1
 			wsConfig: {}
 			includedTheHiveOrganisations: ["ORGANIZATION_NAME"]
 			excludedTheHiveOrganisations: []
@@ -46301,7 +46340,7 @@ To configure the webhook for your TheHive instance:
 		{
 			name: PRODUCTION_WEBHOOK_NAME
 			url: PRODUCTION_WEBHOOK_URL
-			version: 0
+			version: 1
 			wsConfig: {}
 			includedTheHiveOrganisations: ["ORGANIZATION_NAME"]
 			excludedTheHiveOrganisations: []
@@ -73458,10 +73497,11 @@ docker exec --user 0 n8n chown -R 1000:1000 /opt/custom-certificates
 
 # Configure n8n webhooks with reverse proxy
 
-n8n creates the webhook URL by combining `N8N_PROTOCOL`, `N8N_HOST` and `N8N_PORT`. If n8n runs behind a reverse proxy, that won't work. That's because n8n runs internally on port 5678 but the reverse proxy exposes it to the web on port 443. In that case, it's important to set the webhook URL manually so that n8n can display it in the Editor UI and register the correct webhook URLs with external services.
+n8n creates the webhook URL by combining `N8N_PROTOCOL`, `N8N_HOST` and `N8N_PORT`. If n8n runs behind a reverse proxy, that won't work. That's because n8n runs internally on port 5678 but the reverse proxy exposes it to the web on port 443. In that case, it's important to set the webhook URL manually so that n8n can display it in the Editor UI and register the correct webhook URLs with external services. You also should set `N8N_PROXY_HOPS=1` when running n8n behind a reverse proxy.
 
 ```bash
 export WEBHOOK_URL=https://n8n.example.com/
+export N8N_PROXY_HOPS=1
 ```
 Refer to [Environment variables reference](/hosting/configuration/environment-variables/endpoints.md) for more information on this variable.
 
@@ -80195,8 +80235,8 @@ docker compose up -d
 /// note | Latest and Next versions
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `latest`: 1.107.4  
-Current `next`: 1.108.1
+Current `latest`: 1.108.1  
+Current `next`: 1.109.0
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/tunnel/
