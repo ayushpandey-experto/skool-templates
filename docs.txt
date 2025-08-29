@@ -15765,6 +15765,8 @@ The Execute Command node runs shell commands on the host machine that runs n8n.
 This node executes the command in the default shell of the host machine. For example, `cmd` on Windows and `zsh` on macOS.
 
 If you run n8n with Docker, your command will run in the n8n container and not the Docker host.
+
+If you're using [queue mode](/hosting/scaling/queue-mode.md), the command runs on the worker that's executing the task in production mode. When running manual executions, it runs on the main instance, unless you set `OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS` to `true`.
 ///
 
 /// note | Not available on Cloud
@@ -64013,6 +64015,10 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.109.0...n8n@1.109.1) for this version.<br />
 **Release date:** 2025-08-27
 
+/// note | Next version
+This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
 This release contains a bug fix.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
@@ -64028,6 +64034,8 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.108.1...n8n@1.108
 This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 ///
 
+
+
 This release contains a bug fix.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
@@ -64039,9 +64047,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.108.0...n8n@1.109.0) for this version.<br />
 **Release date:** 2025-08-25
 
-/// note | Next version
-This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 
 
@@ -74636,6 +74642,7 @@ You can run n8n in different modes depending on your needs. Queue mode provides 
 
 | Variable | Type  | Default  | Description |
 | :------- | :---- | :------- | :---------- |
+| `OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS` | Boolean | `false` | Set to `true` if you want manual executions to run on the worker rather than on main. |
 | `QUEUE_BULL_PREFIX` | String | - | Prefix to use for all queue keys. |
 | `QUEUE_BULL_REDIS_DB` | Number | `0` | The Redis database used. |
 | `QUEUE_BULL_REDIS_HOST` | String | `localhost` | The Redis host. |
@@ -77572,7 +77579,7 @@ Binary data pruning operates on the active binary data mode. For example, if you
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
 Current `latest`: 1.108.2  
-Current `next`: 1.109.0
+Current `next`: 1.109.1
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/server-setups-next-steps/
