@@ -1861,15 +1861,17 @@ On the left side of the **Editor UI**, there is a panel which contains the core 
 
 The panel contains the following sections:
 
-- **Overview**: Contains all the workflows and credentials you have access to. During this course, create new workflows here.
 
-- **Projects**:  Projects group workflows and credentials. You can assign [roles](/user-management/rbac/role-types.md) to users in a project to control what they can do in a project. A **Personal** project is available by default. Projects aren't available on the Community edition.
-- **Admin Panel**: n8n Cloud only. Access your n8n instance usage, billing, and version settings.
-- **Templates**: A collection of pre-made workflows. Great place to get started with common use cases.
-- **Variables**: Used to store and access fixed data across your workflows. This feature is available on the Pro and Enterprise Plans.
-- **Insights**: Provides analytics and insights about your workflows. 
-- **Help**: Contains resources around n8n product and community.
-- **What’s New**: Shows the latest product updates and features.  
+-   **Overview**: Contains all the workflows, credentials, and executions you have access to. During this course, create new workflows here.
+-   **Personal**: Every user gets a default personal project. If you don’t create a custom project, your workflows and credentials are stored here.
+-   **Projects**: Projects let you group workflows and credentials together. You can assign [roles](/user-management/rbac/role-types.md) to users in a project to control what they can do. Projects aren’t available on the Community edition.
+-   **Admin Panel**: n8n Cloud only. Access your n8n instance usage, billing, and version settings.
+-   **Templates**: A collection of pre-made workflows. Great place to get started with common use cases.
+-   **Variables**: Used to store and access fixed data across your workflows. This feature is available on the Pro and Enterprise Plans.
+-   **Insights**: Provides analytics and insights about your workflows.
+-   **Help**: Contains resources around n8n product and community.
+-   **What’s New**: Shows the latest product updates and features.
+
 
 <figure style="text-align: center;"><img src="/_images/courses/level-one/chapter-one/l1-c1-side-panel.png" alt="Editor UI left-side menu" style="height: 600px;"><figcaption align = "center"><i>Editor UI left-side menu</i></figcaption></figure>
 
@@ -64104,6 +64106,33 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.107.0...n8n@1.108
 **Release date:** 2025-08-18
 
 This release contains a new CLI tool, editor improvements, node updates, performance improvements, and bug fixes.
+### Workflow Diff
+
+For teams working across different environments, deployments often involve multiple people making changes at different times. Without a clear view of those changes, it’s easy to miss something important.
+
+[Workflow Diff](/source-control-environments/using/compare-changes.md) gives you an easy and visual way to review workflow changes before you deploy them between environments.
+
+With it, you can:
+
+- Quickly see what’s been added, changed, or deleted, with clear colour highlights.
+- Easily see important settings changes on a workflow.
+- Check changes inside each node, and spot connector updates, with a side-by-side view of its settings.
+- Get a quick count of all changes to understand the size of a deployment.
+
+<br> 
+<figure markdown="span">
+    ![Workflow diffs](/_images/release-notes/Diffs2.png)
+    <figcaption></figcaption>
+</figure>
+<br> 
+<figure markdown="span">
+    ![](/_images/release-notes/Diffs1.png)
+    <figcaption>Workflow Diff</figcaption>
+</figure>
+<br>
+Workflow Diff eases the review and approval of changes before deployment, enabling teams to collaborate on workflows without breaking existing automations or disrupting production. It’s one step further in integrating DevOps best practices in n8n. 
+
+Now available for Enterprise customers using Environments.
 
 ### Contributors
 
@@ -77646,15 +77675,38 @@ You can add `_FILE` to individual variables to provide their configuration in a 
 
 If you want to contribute to this repository - thank you! Before you start, have a look at the existing documentation to get an idea of the structure and writing conventions n8n uses. In writing your documentation, please follow the guidelines described below, to ensure quality and consistency with n8n styles.
 
-## Before you start
+## No course contributions
 
-### Style
+We are working on replacing the course. We are not accepting reports or changes to the current course.
+
+## Docs issues only
+
+This repo is for the documentation site.
+
+- Need help? [Ask on the forum](https://community.n8n.io/c/questions/12).
+- Got a feature request or product idea? [Propose it on the forum](https://community.n8n.io/c/feature-requests/5).
+- Found a bug in the product? [Product repo](https://github.com/n8n-io/n8n)
+
+
+## Why we might reject your contribution
+
+Due to an increase in spam and poor quality contributions, we've introduced new criteria and processes. We will close issues and PRs that are low-effort and poor quality.
+
+| Label | Action | Notes |
+| ----- | ------ | ----- |
+| `spam` | Close PR/issue; account blocked | This label is applied to things like empty issues. |
+| `ai-slop` |	Close PR/issue; account blocked | This label is applied when content is bad, wrong, and looks like it's probably the result of using AI. n8n isn't banning use of AI in contributions, so long as the contributions are high quality. |
+| `low-effort-bad` |	Close PR/issue; comment with contribution guidance; a second `low-effort-bad` leads to a block. | To avoid this, test your work to make sure it's accurate; follow the [style guide](https://github.com/n8n-io/n8n-docs/wiki/Styles); write meaningful titles and descriptions on your PR/issue. |
+| `duplicate` |	Close PR/issue; comment with contribution guidance; a second `duplicate` leads to a block. | To avoid this, check existing issues and PRs |
+
+
+## Style
 
 n8n uses the [Microsoft Writing Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/).
 
 Refer to [Styles](https://github.com/n8n-io/n8n-docs/wiki/Styles/) for a quickstart, and guidance on style linting.
 
-### n8n's license
+## n8n's license
 
 Be aware that n8n is fair code licensed. For more information, refer to the [License](https://docs.n8n.io/reference/license/) documentation.
 
@@ -77675,21 +77727,7 @@ You need Git installed, and a GitHub account.
 
 [Fork the documentation repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
 
-Then clone your fork:
-
-```
-git clone https://github.com/<your-username>/n8n-docs.git
-cd n8n-docs
-git checkout -b <branch-name>
-```
-
-Make your changes. Push your branch:
-
-```
-git add *
-git commit -m "<short summary of changes>"
-git push --set-upstream origin <branch-name>
-```
+Then follow the instructions for external contributors in the [README](https://github.com/n8n-io/n8n-docs?tab=readme-ov-file#steps).
 
 In GitHub, [create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) to merge the work from your fork to `main` in the docs repository.
 
@@ -77707,13 +77745,14 @@ You can build the docs locally to preview them, or submit a pull request. All pu
 
 For instructions on previewing the docs locally, refer to the [README](https://github.com/n8n-io/n8n-docs/blob/main/README.md).
 
-### General checklist
+## General checklist
 
 Before submitting a PR, make sure your contribution ticks all these boxes:
 
 - [ ] All necessary files and images are included.
+- [ ] All formatting follows the [style guide](https://github.com/n8n-io/n8n-docs/wiki/Styles).
+- [ ] All images are optimized.
 - [ ] All links are working and direct to the right location.
-- [ ] All documentation files end with an empty newline.
 - [ ] The commit message describes the changes you made.
 - [ ] The PR explains the changes you made and why they're necessary.
 - [ ] You have read and accepted the [code of conduct](https://github.com/n8n-io/n8n-docs/blob/master/CODE_OF_CONDUCT.md) and [contributor license agreement](https://github.com/n8n-io/n8n-docs/blob/master/CONTRIBUTOR_LICENSE_AGREEMENT.md).
@@ -77744,33 +77783,37 @@ In the credentials doc:
 
 === https://docs.n8n.io/.github/ISSUE_TEMPLATE/new-docs-request/
 
+> **NOTE**: This is for the _documentation_ of n8n. For product ideas, or to get help, [use the forum](https://community.n8n.io/).
+
 Thanks for helping us improve docs! Please give us as much information as you can about the changes you'd like to see.
 
-**What information is missing?**
+## What information is missing?
 
 
-**Describe the page/pages you'd like**
+## Describe the page/pages you'd like
 
 
-**Additional context**
+## Additional context
+
 Add any other context or screenshots about the feature request here.
 
 === https://docs.n8n.io/.github/ISSUE_TEMPLATE/bug_report/
 
-**NOTE!**
+> **NOTE**: This is for issues with _documentation_ of n8n. If the problem is actually a bug in the software, [file a bug here instead](https://github.com/n8n-io/n8n/issues). If you need help, [ask on the forum](https://community.n8n.io/c/questions/12).
 
-This is for issues with _documentation_ of **n8n**. If the problem you are having is actually a bug in the software, please [file a bug here instead](https://github.com/n8n-io/n8n/issues).
+## Where is the bug/mistake?
 
-**Where is the bug/mistake?**
 Please help us by pasting in the URL of the page or telling us the title.
 
-**What problem did you find?**
-A clear and concise description of what is wrong.
+## What problem did you find?
+A clear and concise description of what's wrong.
 
-**Can you suggest a fix?**
+## Can you suggest a fix?
+
 For some issues, like a broken link, it will help us resolve them faster if you can indicate what you think the correct information would be.
 
-**Additional context**
+## Additional context
+
 Add any other context about the problem here.
 
 === https://docs.n8n.io/styles/from-write-good/README/
