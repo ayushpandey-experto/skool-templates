@@ -46135,7 +46135,7 @@ You can use these credentials to authenticate the following nodes:
 
 ## Prerequisites
 
-Create a [Travis CI](https://travis-ci.org/) account.
+Create a [Travis CI](https://travis-ci.com/) account.
 
 ## Supported authentication methods
 
@@ -46929,12 +46929,12 @@ You can use these credentials to authenticate the following nodes:
 - OAuth2: Use with the [HubSpot](/integrations/builtin/app-nodes/n8n-nodes-base.hubspot.md) node.
 
 /// warning | API key deprecated
-HubSpot deprecated the regular **API Key** authentication method. The option still appears in n8n, but you should use the authentication methods listed above instead. If you have existing integrations using this API key method, refer to HubSpot's [Migrate an API key integration to a private app](https://developers.hubspot.com/docs/api/migrate-an-api-key-integration-to-a-private-app) guide and set up an app token.
+HubSpot deprecated the regular **API Key** authentication method. The option still appears in n8n, but you should use the authentication methods listed above instead. If you have existing integrations using this API key method, refer to HubSpot's [Migrate an API key integration to a private app](https://web.archive.org/web/20240106022147/https://developers.hubspot.com/docs/api/migrate-an-api-key-integration-to-a-private-app) guide and set up an app token.
 ///
 
 ## Related resources
 
-Refer to [HubSpot's API documentation](https://developers.hubspot.com/docs/api/overview) for more information about the service. The [HubSpot Trigger](/integrations/builtin/trigger-nodes/n8n-nodes-base.hubspottrigger.md) node uses the Webhooks API; refer to [HubSpot's Webhooks API documentation](https://developers.hubspot.com/docs/api/webhooks) for more information about that service.
+Refer to [HubSpot's API documentation](https://developers.hubspot.com/docs/api/overview) for more information about the service. The [HubSpot Trigger](/integrations/builtin/trigger-nodes/n8n-nodes-base.hubspottrigger.md) node uses the Webhooks API; refer to [HubSpot's Webhooks API documentation](https://developers.hubspot.com/docs/api-reference/webhooks-webhooks-v3/guide) for more information about that service.
 
 ## Using App token
 
@@ -46956,7 +46956,7 @@ To generate an app token, create a private app in HubSpot:
 10. Once your app's created, open the **Access token card** and select **Show token** to reveal the token.
 11. Copy this token and enter it in your n8n credential.
 
-Refer to the [HubSpot Private Apps documentation](https://developers.hubspot.com/docs/api/private-apps) for more information.
+Refer to the [HubSpot Private Apps documentation](https://developers.hubspot.com/docs/apps/legacy-apps/private-apps/overview) for more information.
 
 ## Using Developer API key
 
@@ -46985,7 +46985,7 @@ To create the public app and set up the credential:
 11. Copy the n8n **OAuth Redirect URL** and enter it as the **Redirect URL** in your HubSpot app.
 12. Select **Create app** to finish creating the HubSpot app.
 
- Refer to the [HubSpot Public Apps documentation](https://developers.hubspot.com/docs/api/creating-an-app) for more detailed instructions.
+ Refer to the [HubSpot Public Apps documentation](https://developers.hubspot.com/docs/apps/legacy-apps/public-apps/overview) for more detailed instructions.
 
 ### Required scopes for HubSpot Trigger node
 
@@ -47025,7 +47025,7 @@ If you're [self-hosting](/hosting/index.md) n8n, you'll need to configure OAuth2
 11. Copy the n8n **OAuth Redirect URL** and enter it as the **Redirect URL** in your HubSpot app.
 12. Select **Create app** to finish creating the HubSpot app.
 
-Refer to the [HubSpot Public Apps documentation](https://developers.hubspot.com/docs/api/creating-an-app) for more detailed instructions. If you need more detail on what's happening in the OAuth web flow, refer to the [HubSpot Working with OAuth documentation](https://developers.hubspot.com/docs/api/working-with-oauth).
+Refer to the [HubSpot Public Apps documentation](https://developers.hubspot.com/docs/apps/legacy-apps/public-apps/overview) for more detailed instructions. If you need more detail on what's happening in the OAuth web flow, refer to the [HubSpot Working with OAuth documentation](https://developers.hubspot.com/docs/apps/legacy-apps/authentication/working-with-oauth).
 
 ## Required scopes for HubSpot node
 
@@ -50450,11 +50450,11 @@ Refer to [MSG91's API documentation](https://docs.msg91.com/overview) for more i
 
 To configure this credential, you'll need:
 
-- An **Authentication Key**: To get your Authentication Key, go to the user menu and select **Authkey**. Refer to MSG91's [Where can I find my authentication key? documentation](https://msg91.com/help/where-can-i-find-my-authentication-key) for more information.
+- An **Authentication Key**: To get your Authentication Key, go to the user menu and select **Authkey**. Refer to MSG91's [Where can I find my authentication key? documentation](https://msg91.com/help/api/where-can-i-find-my-authentication-ke) for more information.
 
 ## IP Security
 
-MSG91 enables [IP Security](https://msg91.com/help/what-do-you-mean-by-api-security) by default for authkeys.
+MSG91 enables [IP Security](https://msg91.com/help/api/what-do-you-mean-by-api-security) by default for authkeys.
 
 For the n8n credentials to function with this setting enabled, add all the [n8n IP addresses](/manage-cloud/cloud-ip.md) as whitelisted IPs in MSG91. You can add them in one of two places, depending on your desired security level:
 
@@ -63513,6 +63513,125 @@ To turn LDAP off:
 
 If you turn LDAP off, n8n converts existing LDAP users to email users on their next login. The users must reset their password.
 
+=== https://docs.n8n.io/docs/user-management/oidc/index/
+
+# OpenID Connect (OIDC)
+
+--8<-- "_snippets/user-management/sso-oidc-availability.md"
+
+<!-- vale from-microsoft.Contractions = NO -->
+This section covers how to enable and manage OpenID Connect (OIDC) for single sign-on (SSO). You can learn more about how OIDC works by visiting [what is OpenID Connect](https://openid.net/developers/how-connect-works/) by the OpenID Foundation.
+<!-- vale from-microsoft.Contractions = NO -->
+
+* [Set up OIDC](/user-management/oidc/setup.md): a general guide to setting up OpenID Connect (OIDC) SSO in n8n.
+* [Troubleshooting](/user-management/oidc/troubleshooting.md): a list of things to check if you encounter issues with OIDC.
+
+
+=== https://docs.n8n.io/docs/user-management/oidc/troubleshooting/
+
+# Troubleshooting OIDC SSO
+
+## Known issues
+
+### State parameter not supported
+
+When using OIDC providers that enforce the use of the `state` CSRF token parameter, authentication fails with the error:
+
+```json
+{"code":0,"message":"authorization response from the server is an error"}
+```
+
+n8n's current OIDC implementation doesn't handle the `state` parameter that some OIDC providers send as a security measure against CSRF attacks.
+
+For now, the only work around is to configure your OIDC provider to disable the `state` parameter if possible.
+
+n8n is working on adding full support for the OIDC `state` parameter in a future release.
+
+### PKCE not supported
+
+OIDC providers that require PKCE (Proof Key for Code Exchange) may fail authentication or reject n8n's authorization requests. n8n's current OIDC implementation doesn't support PKCE.
+
+The only work around is to configure your OIDC provider to not require PKCE for the n8n client if this option is available in your providers settings. 
+
+n8n plans on adding PKCE support in a future release
+
+=== https://docs.n8n.io/docs/user-management/oidc/setup/
+
+# Set up OIDC
+
+--8<-- "_snippets/user-management/sso-oidc-availability.md"
+
+## Setting up and enabling OIDC
+
+
+1. In n8n, go to **Settings** > **SSO**.
+1. Under **Select Authentication Protocol**, choose **OIDC** from the dropdown.
+1. Copy the **redirect URL** shown (for example, `https://yourworkspace.app.n8n.cloud/rest/sso/oidc/callback`).
+
+	/// note | Extra configuration for load balancers or proxies
+	If you are running n8n behind a load balancer, make sure you set the [`N8N_EDITOR_BASE_URL` environment variable](/hosting/configuration/environment-variables/deployment.md).
+	///
+
+1. Set up OIDC with your identity provider (IdP). You'll need to:
+	- Create a new OIDC client/application in your IdP.
+	- Configure the redirect URL from the previous step.
+	- Note down the **Client ID** and **Client Secret** provided by your IdP.
+1. In your IdP, locate the **Discovery Endpoint** (also called the well-known configuration endpoint). It typically has the following format:
+	```
+	https://your-idp-domain/.well-known/openid-configuration
+	```
+1. In n8n, complete the OIDC configuration:
+	- **Discovery Endpoint**: Enter the discovery endpoint URL from your IdP.
+	- **Client ID**: Enter the client ID you received when registering your application with your IdP.
+	- **Client Secret**: Enter the client secret you received when registering your application with your IdP.
+1. Select **Save settings**.
+1. Set OIDC to **Activated**.
+
+## Provider-specific OIDC setup
+
+### Auth0
+
+1. **Create an application in Auth0**:
+	- Log in to your Auth0 Dashboard.
+	- Go to **Applications** > **Applications**.
+	- Click **Create Application**.
+	- Enter a name (for example, "n8n SSO") and select **Regular Web Applications**.
+	- Click **Create**.
+1. **Configure the application**:
+	- Go to the **Settings** tab of your new application.
+	- **Allowed Callback URLs**: Add your n8n redirect URL from **Settings** > **SSO** > **OIDC**.
+	- **Allowed Web Origins**: Add your n8n base URL (for example, `https://yourworkspace.app.n8n.cloud`).
+	- Click **Save Changes**.
+1. **Get your credentials**:
+	- **Client ID**: Found in the **Settings** tab.
+	- **Client Secret**: Found in the **Settings** tab.
+	- **Discovery Endpoint**: `https://{your-auth0-domain}.auth0.com/.well-known/openid-configuration`.
+1. **In n8n, complete the OIDC configuration:**
+	- **Discovery Endpoint**: Enter the discovery endpoint URL from Auth0.
+	- **Client ID**: Enter the client ID you found in your Auth0 settings.
+	- **Client Secret**: Enter the client secret you found in your Auth0 settings.
+1. Select **Save settings**.
+1. Set OIDC to **Activated**.
+
+## Discovery endpoints reference
+
+- **Google discovery endpoint example**:
+```
+https://accounts.google.com/.well-known/openid-configuration
+```
+- **Microsoft Azure AD discovery endpoint example**:
+```
+https://login.microsoftonline.com/{tenant-id}/v2.0/.well-known/openid-configuration
+```
+- **Auth0 discovery endpoint example**:
+```
+https://{your-domain}.auth0.com/.well-known/openid-configuration
+```
+- **Okta discovery endpoint example**:
+```
+https://{your-domain}.okta.com/.well-known/openid-configuration
+```
+
 === https://docs.n8n.io/docs/user-management/account-types/
 
 # Account types
@@ -63722,7 +63841,15 @@ To use [external secrets](/external-secrets.md) in a project, you must have an [
 
 # Security Assertion Markup Language (SAML)
 
---8<-- "_snippets/user-management/saml-overview.md"
+--8<-- "_snippets/user-management/sso-saml-availability.md"
+
+This section tells you how to enable SAML SSO (single sign-on) in n8n. It assumes you're familiar with SAML. If you're not, [SAML Explained in Plain English](https://www.onelogin.com/learn/saml) can help you understand how SAML works, and its benefits.
+
+* [Set up SAML](/user-management/saml/setup.md): a general guide to setting up SAML in n8n, and links to resources for common IdPs.
+* [Okta Workforce Identity SAML setup](/user-management/saml/okta.md): step-by-step guidance to configuring Okta.
+* [Troubleshooting](/user-management/saml/troubleshooting.md): a list of things to check if you encounter issues.
+* [Managing users with SAML](/user-management/saml/managing.md): performing user management tasks with SAML enabled.
+
 
 === https://docs.n8n.io/docs/user-management/saml/okta/
 
@@ -63780,6 +63907,8 @@ Read the [Set up SAML](/user-management/saml/setup.md) guide first.
 
 # Manage users with SAML
 
+--8<-- "_snippets/user-management/sso-saml-availability.md"
+
 There are some user management tasks that are affected by SAML.
 
 ## Exempt users from SAML
@@ -63810,14 +63939,7 @@ For more support, use the [forum](https://community.n8n.io/), or contact your su
 
 # Set up SAML
 
-/// info | Feature availability
-* Available on Enterprise plans.
-* You need access to the n8n instance owner account to enable and configure SAML
-
-Available from version 0.225.0.
-///	
-
-This page tells you how to enable SAML SSO (single sign-on) in n8n. It assumes you're familiar with SAML. If you're not, [SAML Explained in Plain English](https://www.onelogin.com/learn/saml) can help you understand how SAML works, and its benefits.
+--8<-- "_snippets/user-management/sso-saml-availability.md"
 
 ## Enable SAML
 
@@ -64012,14 +64134,35 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.110.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.109.0...n8n@1.110.0) for this version.<br />
+**Release date:** 2025-09-01
+
+/// note | Next version
+This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains core updates, editor improvements, node updates, performance improvements, and bug fixes.
+
+### Contributors
+
+[heyxmirko](https://github.com/heyxmirko)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.109.1
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.109.0...n8n@1.109.1) for this version.<br />
 **Release date:** 2025-08-27
 
-/// note | Next version
-This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+/// note | Latest version
+This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 ///
+
+
 
 This release contains a bug fix.
 
@@ -64032,9 +64175,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.108.1...n8n@1.108.2) for this version.<br />
 **Release date:** 2025-08-27
 
-/// note | Latest version
-This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 
 
@@ -75192,9 +75333,18 @@ To increase the isolation between the core n8n process and code in the Code node
 
 === https://docs.n8n.io/docs/hosting/securing/set-up-sso/
 
-# Set up SAML Single Sign-On (SSO)
+# Set up Single Sign-On (SSO)
 
---8<-- "_snippets/user-management/saml-overview.md"
+/// info | Feature availability
+* Available on Enterprise plans.
+* You need to be an instance owner or admin to enable and configure SAML or OIDC.
+///	
+
+n8n supports the SAML and OIDC authentication protocols for single sign-on (SSO). See [OIDC vs SAML](https://www.onelogin.com/learn/oidc-vs-saml) for more general information on the two protocols, the differences between them, and their respective benefits.
+
+* [Set up SAML](/user-management/saml/setup.md): a general guide to setting up SAML in n8n, and links to resources for common identity providers (IdPs).
+* [Set up OIDC](/user-management/oidc/setup.md): a general guide to setting up OpenID Connect (OIDC) SSO in n8n.
+
 
 === https://docs.n8n.io/docs/hosting/securing/overview/
 
@@ -77541,21 +77691,18 @@ The steps to update your n8n depend on which n8n platform you use. Refer to the 
 [Object: {"fruit":"apple","vegetable":"carrot"}]
 ```
 
-=== https://docs.n8n.io/_snippets/user-management/saml-overview/
+=== https://docs.n8n.io/_snippets/user-management/sso-oidc-availability/
 /// info | Feature availability
 * Available on Enterprise plans.
-* You need access to the n8n instance owner account to enable and configure SAML
-
-Available from version 0.225.0.
+* You need to be an instance owner or admin to enable and configure OIDC.
 ///	
 
 
-This section provides guidance on using SAML SSO (single sign-on) with n8n. It assumes you're familiar with SAML. If you're not, [SAML Explained in Plain English](https://www.onelogin.com/learn/saml) can help you understand how SAML works, and its benefits.
-
-* [Set up SAML](/user-management/saml/setup.md): a general guide to setting up SAML in n8n, and links to resources for common IdPs. Start here.
-* [Okta Workforce Identity SAML setup](/user-management/saml/okta.md): step-by-step guidance to configuring Okta.
-* [Troubleshooting](/user-management/saml/troubleshooting.md): a list of things to check if you encounter issues.
-* [Managing users with SAML](/user-management/saml/managing.md): performing user management tasks with SAML enabled.
+=== https://docs.n8n.io/_snippets/user-management/sso-saml-availability/
+/// info | Feature availability
+* Available on Enterprise plans.
+* You need to be an instance owner or admin to enable and configure SAML.
+///	
 
 === https://docs.n8n.io/_snippets/user-management/in-app-setup/
 When you set up user management for the first time, you create an owner account.
@@ -77607,8 +77754,8 @@ Binary data pruning operates on the active binary data mode. For example, if you
 /// note | Latest and Next versions
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `latest`: 1.108.2  
-Current `next`: 1.109.1
+Current `latest`: 1.109.1  
+Current `next`: 1.110.0
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/server-setups-next-steps/
