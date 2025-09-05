@@ -5455,6 +5455,41 @@ n8n (pronounced n-eight-n) helps you to connect any app with an API with any oth
 * Convenient: use the npm or Docker to try out n8n, or the Cloud hosting option if you want us to handle the infrastructure.
 * Privacy-focused: self-host n8n for privacy and security.
 
+=== https://docs.n8n.io/docs/workflows/streaming/
+
+# Streaming responses
+
+/// info | Feature availability
+Available on all plans from [version 1.105.2](/release-notes.md#n8n11052).
+///
+
+Streaming responses let you send data back to users as an AI Agent node generates it. This is useful for chatbots, where you want to show the user the answer as it's generated to provide a better user experience.
+
+You can enable streaming using either:
+
+- The [Chat Trigger](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md) 
+- The [Webhook node](/integrations/builtin/core-nodes/n8n-nodes-base.webhook/index.md)
+
+In both cases, set the node's **Response Mode** to **Streaming**.
+
+
+## Configure nodes for streaming
+
+To stream data, you need to add nodes to the workflow that support streaming output. Not all nodes support this feature.
+
+1. Choose a node that supports streaming, such as:
+	- [AI agent](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/index.md)
+	- [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md)
+2. You can disable streaming in the options of these nodes. By default, they stream data whenever the executed trigger has its `Response Mode` set to `Streaming response`.
+
+
+## Important information
+
+Keep in mind the following details when configuring streaming responses:
+
+- **Trigger**: Your trigger node must support streaming and have streaming configured. Without this, the workflow behaves according to your response mode settings.
+- **Node configuration**: Even with streaming enabled on the trigger, you need at least one node configured to stream data. Otherwise, your workflow will send no data.
+
 === https://docs.n8n.io/docs/workflows/index/
 
 # Workflows
@@ -10622,6 +10657,7 @@ Refer to [Webhook credentials](/integrations/builtin/credentials/webhook.md) for
 * **Immediately**: The Webhook node returns the response code and the message **Workflow got started**.
 * **When Last Node Finishes**: The Webhook node returns the response code and the data output from the last node executed in the workflow.
 * **Using 'Respond to Webhook' Node**: The Webhook node responds as defined in the [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md) node.
+* **Streaming response**: Enables real-time data streaming back to the user as the workflow processes. Requires nodes with streaming support in the workflow (for example, the [AI agent](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/index.md) node).
 
 ### Response Code
 
@@ -13558,6 +13594,7 @@ Use this option when building a workflow with steps after the agent or chain tha
 /// note | Using Response Nodes
 This mode replaces the 'Using Respond to Webhook Node' mode from version 1.2 of the Chat Trigger node.
 ///
+* **Streaming response**: Enables real-time data streaming back to the user as the workflow processes. Requires nodes with streaming support in the workflow (for example, the [AI agent](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/index.md) node).
 
 #### Require Button Click to Start Chat
 
@@ -13594,6 +13631,7 @@ Use this option when building a workflow with steps after the agent or chain tha
 /// note | Using Response Nodes
 This mode replaces the 'Using Respond to Webhook Node' mode from version 1.2 of the Chat Trigger node.
 ///
+* **Streaming response**: Enables real-time data streaming back to the user as the workflow processes. Requires nodes with streaming support enabled.
 
 ## Templates and examples
 
@@ -15930,6 +15968,7 @@ Select **Add Option** to view and set the options.
 - **Response Code**: Set the [response code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) to use.
 - **Response Headers**: Define the response headers to send.
 - **Put Response in Field**: Available when you respond with **All Incoming Items** or **First Incoming Item**. Set the field name for the field containing the response data.
+- **Enable Streaming**: When enabled, sends the data back to the user using streaming. Requires a trigger configured with the **Response mode** **Streaming**.
 
 ## How n8n secures HTML responses
 
@@ -17107,6 +17146,14 @@ Refine the Tools Agent node's behavior using these options:
 <!-- vale on -->
 
 --8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/binary-images.md"
+
+### Enable Streaming
+
+When enabled, the AI Agent sends data back to the user in real-time as it generates the answer. This is useful for long-running generations. This is enabled by default.
+
+/// info | Streaming requirements
+For streaming to work, your workflow must use a trigger that supports streaming responses, such as the [Chat Trigger](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md) or [Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.webhook/index.md) node with **Response Mode** set to **Streaming**.
+///
 
 ## Templates and examples
 
@@ -74161,11 +74208,11 @@ Refer to [Environment variables reference](/hosting/configuration/environment-va
 
 You can add your own certificate authority (CA) or self-signed certificate to n8n. This means you are able to trust a certain SSL certificate instead of trusting all invalid certificates, which is a potential security risk.
 
-/// note | Available in version 1.42.0
-This feature is only available in version 1.42.0+.
+/// note | Added in version 1.42.0
+This feature is available in version 1.42.0 and above.
 ///
 
-To use this feature you need to place your certificates in a folder and mount the folder to `/opt/custom-certificates` in the container.
+To use this feature you need to place your certificates in a folder and mount the folder to `/opt/custom-certificates` in the container. The external path that you map to `/opt/custom-certificates` must be writable by the container. 
 
 ## Docker
 
@@ -74201,6 +74248,36 @@ You should also give the right permissions to the imported certs. You can do thi
 ```bash
 docker exec --user 0 n8n chown -R 1000:1000 /opt/custom-certificates
 ```
+
+## Certificate requirements for Custom Trust Store
+
+Supported certificate types:
+
+- Root CA Certificates: these are certificates from Certificate Authorities that sign other certificates. Trust these to accept all certificates signed by that CA.
+- Self-Signed Certificates: certificates that servers create and sign themselves. Trust these to accept connections to that specific server only.
+
+You must use PEM format:
+
+- Text-based format with BEGIN/END markers
+- Supported file extensions: `.pem`, `.crt`, `.cer`
+- Contains the public certificate (no private key needed)
+
+For example:
+
+```
+-----BEGIN CERTIFICATE-----
+MIIDXTCCAkWgAwIBAgIJAKoK/heBjcOuMA0GCSqGSIb3DQEBBQUAMEUxCzAJBgNV
+[base64 encoded data]
+-----END CERTIFICATE-----
+```
+
+The system doesn't accept:
+
+- DER/binary format files
+- PKCS#7 (.p7b) files
+- PKCS#12 (.pfx, .p12) files
+- Private key files
+- Convert these formats to PEM before use.
 
 === https://docs.n8n.io/docs/hosting/configuration/configuration-examples/encryption-key/
 
