@@ -11583,12 +11583,14 @@ Create the question fields for your form. Select **Add Form Element** to add a n
 Every field has the following settings:
 
 - **Field Label**: Enter the label that appears above the input field. 
-- **Element Type**: Choose from **Custom HTML**, **Date**, **Dropdown List**, **Email**, **File**, **Hidden Field**, **Number**, **Password**, **Text**, or **Textarea**.
+- **Element Type**: Choose from **Checkboxes**, **Custom HTML**, **Date**, **Dropdown**, **Email**, **File**, **Hidden Field**, **Number**, **Password**, **Radio Buttons**, **Text**, or **Textarea**.
+	- Select **Checkboxes** to include checkbox elements in the form. By default, there is no limit on how many checboxes a form user can select. You can set the limit by specifying a value for the **Limit Selection** option as **Exact Number**, **Range**, or **Unlimited**.
 	- Select **Custom HTML** to insert arbitrary HTML.
 		- You can include elements like links, images, video, and more. You can't include `<script>`, `<style>`, or `<input>` elements.
 		- By default, Custom HTML fields aren't included in the node output. To include the Custom HTML content in the output, fill out the associated **Element Name** field.
     - Select **Date** to include a date picker in the form. Refer to [Date and time with Luxon](/code/cookbook/luxon.md) for more information on formatting dates.
-	- Select **Dropdown List** > **Add Field Option** to add multiple options. By default, the dropdown is single-choice. To make it multiple-choice, turn on **Multiple Choice**. 
+	- Select **Dropdown List** > **Add Field Option** to add multiple options. By default, the dropdown is single-choice. To make it multiple-choice, turn on **Multiple Choice**.
+	- Select **Radio Buttons** to include radio button elements in the form.
 	- Select **Hidden Field** to include a form element without displaying it on the form. You can set a default value using the **Field Value** parameter or pass values for the field using [query parameters](#set-default-selections-with-query-parameters).
 - **Required Field**: Turn on to require users to complete this field on the form. 
 
@@ -15602,10 +15604,12 @@ When serving the form, you can pass values for hidden fields using [query parame
 Use **Define Form** > **Using JSON** to define the fields of your form with a [JSON array of objects](/data/data-structure.md). Each object defines a single field by using a combination of these keys:
 
 - `fieldLabel`: The label that appears above the input field. 
-- `fieldType`: Choose from `date`, `dropdown`, `email`, `file`, `number`, `password`, `text`, or `textarea`.
+- `fieldType`: Choose from `checkbox`, `date`, `dropdown`, `email`, `file`, `hiddenField`, `html`, `number`, `password`, `radio`, `text`, or `textarea`.
     - Use `date` to include a date picker in the form. Refer to [Date and time with Luxon](/code/cookbook/luxon.md) for more information on formatting dates.
-	- When using `dropdown`, set the choices with `fieldOptions` (reference the example below). By default, the dropdown is single-choice. To make it multiple-choice, set `multiselect` to `true`.
+	- When using `dropdown`, set the choices with `fieldOptions` (reference the example below). By default, the dropdown is single-choice. To make it multiple-choice, set `multiselect` to `true`. As an alternative, you can use `checkbox` or `radio` together with `fieldOptions` too.
 	- When using `file`, set `multipleFiles` to `true` to allow users to select more than one file. To define the file types to allow, set `acceptFileTypes` to a string containing a comma-separated list of file extensions (reference the example below).
+	- Use `hiddenField` to add a hidden field to your form. Refer to [Including hidden fields](#including-hidden-fields) for more information.
+	- Use `html` to display custom HTML on your form. Refer to [Displaying custom HTML](#displaying-custom-html) for more information.
 - `placeholder`: Specify placeholder data for the field. You can use this for every `fieldType` except `dropdown`, `date`, and `file`.
 - `requiredField`: Require users to complete this field on the form.
 
@@ -15617,69 +15621,107 @@ An example JSON that shows the general format required and the keys available:
 //     except 'dropdown', 'date' and 'file'
 
 [
-	{
-		"fieldLabel": "Date Field",
-		"fieldType": "date",
-		"formatDate": "mm/dd/yyyy", // how to format received date in n8n
-		"requiredField": true
-	},
-	{
-		"fieldLabel": "Dropdown Options",
-		"fieldType": "dropdown",
-		"fieldOptions": {
-			"values": [
-				{
-					"option": "option 1"
-				},
-				{
-					"option": "option 2"
-				}
-			]
-		},
-		"requiredField": true
-	},
-	{
-		"fieldLabel": "Multiselect",
-		"fieldType": "dropdown",
-		"fieldOptions": {
-			"values": [
-				{
-					"option": "option 1"
-				},
-				{
-					"option": "option 2"
-				}
-			]
-		},
-		"multiselect": true // setting to true allows multi-select
-	},
-	{
-		"fieldLabel": "Email",
-		"fieldType": "email",
-		"placeholder": "me@mail.con"
-	},
-	{
-		"fieldLabel": "File",
-		"fieldType": "file",
-		"multipleFiles": true, // setting to true allows multiple files selection
-		"acceptFileTypes": ".jpg, .png" // allowed file types
-	},
-	{
-		"fieldLabel": "Number",
-		"fieldType": "number"
-	},
-	{
-		"fieldLabel": "Password",
-		"fieldType": "password"
-	},
-	{
-		// "fieldType": "text" can be omitted since it's the default type
-		"fieldLabel": "Text"
-	},
-	{
-		"fieldLabel": "Textarea",
-		"fieldType": "textarea"
-	}
+  {
+    "fieldLabel": "Date Field",
+    "fieldType": "date",
+    "formatDate": "mm/dd/yyyy", // how to format received date in n8n
+    "requiredField": true
+  },
+  {
+    "fieldLabel": "Dropdown Options",
+    "fieldType": "dropdown",
+    "fieldOptions": {
+      "values": [
+        {
+          "option": "option 1"
+        },
+        {
+          "option": "option 2"
+        }
+      ]
+    },
+    "requiredField": true
+  },
+  {
+    "fieldLabel": "Multiselect",
+    "fieldType": "dropdown",
+    "fieldOptions": {
+      "values": [
+        {
+          "option": "option 1"
+        },
+        {
+          "option": "option 2"
+        }
+      ]
+    },
+    "multiselect": true // setting to true allows multi-select
+  },
+  {
+    "fieldLabel": "Email",
+    "fieldType": "email",
+    "placeholder": "me@mail.con"
+  },
+  {
+    "fieldLabel": "File",
+    "fieldType": "file",
+    "multipleFiles": true, // setting to true allows multiple files selection
+    "acceptFileTypes": ".jpg, .png" // allowed file types
+  },
+  {
+    "fieldLabel": "Number",
+    "fieldType": "number"
+  },
+  {
+    "fieldLabel": "Password",
+    "fieldType": "password"
+  },
+  {
+    // "fieldType": "text" can be omitted since it's the default type
+    "fieldLabel": "Text"
+  },
+  {
+    "fieldLabel": "Textarea",
+    "fieldType": "textarea"
+  },
+  {
+    "fieldType": "html",
+    "elementName": "content", // Optional field. It can be used to include the html in the output.
+    "html": "<div>Custom element</div>"
+  },
+  {
+    "fieldLabel": "Checkboxes",
+    "fieldType": "checkbox",
+    "fieldOptions": {
+      "values": [
+        {
+          "option": "option 1"
+        },
+        {
+          "option": "option 2"
+        }
+      ]
+    }
+  },
+  {
+    "fieldLabel": "Radio",
+    "fieldType": "radio",
+    "fieldOptions": {
+      "values": [
+        {
+          "option": "option 1"
+        },
+        {
+          "option": "option 2"
+        }
+      ]
+    }
+  },
+  {
+    "fieldLabel": "hidden label",
+    "fieldType": "hiddenField",
+    "fieldValue": "extra form data"
+  }
 ]
 ```
 
@@ -64178,6 +64220,23 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n [here](/release-notes/0-x.md)
 ///
+
+
+
+## n8n@1.111.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.110.0...n8n@1.111.0) for this version.<br />
+**Release date:** 2025-09-08
+
+This release contains core updates, API improvements, node updates, and bug fixes.
+
+### Contributors
+
+[abellion](https://github.com/abellion)  
+[cesars-gh](https://github.com/cesars-gh)  
+[durran](https://github.com/durran)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
