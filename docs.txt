@@ -9141,7 +9141,7 @@ For example, the expression in this JSON includes a trailing period, which resul
 
 ```
 
-To resolve this error, check your [expression syntax](https://www.notion.so/code/expressions/) to make sure they follow the expected format.
+To resolve this error, check your [expression syntax](/code/expressions.md) to make sure they follow the expected format.
 
 === https://docs.n8n.io/docs/code/cookbook/expressions/index/
 
@@ -21038,7 +21038,7 @@ This temporarily disables your production workflow for testing. Your workflow wi
 
 # SeaTable Trigger node
 
-[SeaTable](https://seatable.io/en) is a collaborative database application with a spreadsheet interface.
+[SeaTable](https://seatable.com/) is a collaborative database application with a spreadsheet interface.
 
 /// note | Credentials
 You can find authentication information for this node [here](/integrations/builtin/credentials/seatable.md).
@@ -21970,7 +21970,7 @@ For usage examples and templates to help you get started, refer to n8n's [Notion
 
 n8n provides an app node for Notion. You can find the node docs [here](/integrations/builtin/app-nodes/n8n-nodes-base.notion/index.md).
 
-View [example workflows and related content](https://n8n.io/integrations/notion-trigger/) on n8n's website.
+View [example workflows and related content](https://n8n.io/integrations/notion-trigger-beta/) on n8n's website.
 
 Refer to [Notion's documentation](https://developers.notion.com/) for details about their API.
 
@@ -23154,7 +23154,7 @@ n8n provides an app node for ClickUp. You can find the node docs [here](/integra
 
 View [example workflows and related content](https://n8n.io/integrations/clickup-trigger/) on n8n's website.
 
-Refer to [ClickUp's documentation](https://developer.clickup.com/docs/index) for details about their API.
+Refer to [ClickUp's documentation](https://developer.clickup.com/docs/authentication) for details about their API.
 
 === https://docs.n8n.io/docs/integrations/builtin/trigger-nodes/n8n-nodes-base.typeformtrigger/
 
@@ -24374,38 +24374,6 @@ Refer to [SendGrid credentials](/integrations/builtin/credentials/sendgrid.md) f
 [[ templatesWidget(page.title, 'sendgrid') ]]
 
 --8<-- "_snippets/integrations/builtin/app-nodes/operation-not-supported.md"
-
-=== https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.automizy/
-
-# Automizy node
-
-Use the Automizy node to automate work in Automizy, and integrate Automizy with other applications. n8n has built-in support for a wide range of Automizy features, including creating, reading, listing, updating, deleting contacts, and lists.
-
-On this page, you'll find a list of operations the Automizy node supports and links to more resources.
-
-/// note | Credentials
-Refer to [Automizy credentials](/integrations/builtin/credentials/automizy.md) for guidance on setting up authentication. 
-///
-
-## Operations
-
-* Contact
-    * Create a contact
-    * Delete a contact
-    * Get a contact
-    * Get all contacts
-    * Update a contact
-* List
-    * Create a list
-    * Delete a list
-    * Get a list
-    * Get all lists
-    * Update a list
-
-## Templates and examples
-
-<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->
-[[ templatesWidget(page.title, 'automizy') ]]
 
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.cloudflare/
 
@@ -27414,8 +27382,6 @@ You can find authentication information for this node [here](/integrations/built
 ## Related resources
 
 n8n provides a trigger node for crowd.dev. You can find the trigger node docs [here](/integrations/builtin/trigger-nodes/n8n-nodes-base.crowddevtrigger.md).
-
-Refer to [crowd.dev's documentation](https://docs.crowd.dev/reference/getting-started-with-crowd-dev-api) for more information about the service.
 
 --8<-- "_snippets/integrations/builtin/app-nodes/operation-not-supported.md"
 
@@ -31694,28 +31660,6 @@ Refer to [npm credentials](/integrations/builtin/credentials/npm.md) for guidanc
 Refer to [npm's documentation](https://docs.npmjs.com/) for more information about the service.
 
 --8<-- "_snippets/integrations/builtin/app-nodes/operation-not-supported.md"
-
-=== https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.spontit/
-
-# Spontit node
-
-Use the Spontit node to automate work in Spontit, and integrate Spontit with other applications. n8n supports creating push notifications with Spontit. 
-
-On this page, you'll find a list of operations the Spontit node supports and links to more resources.
-
-/// note | Credentials
-Refer to [Spontit credentials](/integrations/builtin/credentials/spontit.md) for guidance on setting up authentication. 
-///
-
-## Operations
-
-* Push
-    * Create a push notification
-
-## Templates and examples
-
-<!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->
-[[ templatesWidget(page.title, 'spontit') ]]
 
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.hunter/
 
@@ -38653,14 +38597,14 @@ Create a [Mailjet](https://www.mailjet.com/) account.
 
 ## Related resources
 
-Refer to [Mailjet's Email API documentation](https://dev.mailjet.com/email/guides/) and [Mailjet's SMS API documentation](https://dev.mailjet.com/sms/guides/) for more information about each service.
+Refer to [Mailjet's Email API documentation](https://dev.mailjet.com/email/guides/) and [Mailjet's SMS API documentation](https://dev.mailjet.com/sms/reference/send-message/) for more information about each service.
 
 ## Using Email API key
 
 To configure this credential, you'll need:
 
-- An **API Key**: View and generate API keys in your Mailjet [API Key Management](https://app.mailjet.com/account/api_keys) page.
-- A **Secret Key**: View your API Secret Keys in your Mailjet [API Key Management](https://app.mailjet.com/account/api_keys) page.
+- An **API Key**: View and generate API keys in your Mailjet [API Key Management](https://app.mailjet.com/signin) page.
+- A **Secret Key**: View your API Secret Keys in your Mailjet [API Key Management](https://app.mailjet.com/signin) page.
 - _Optional:_ Select whether to use **Sandbox Mode** for calls made using this credential. When turned on, all API calls use Sandbox mode: the API will still validate the payloads but won't deliver the actual messages. This can be useful to troubleshoot any payload error messages without actually sending messages. Refer to Mailjet's [Sandbox Mode documentation](https://dev.mailjet.com/email/guides/send-api-v31/#sandbox-mode) for more information.
 
 For this credential, you can use either:
@@ -38674,7 +38618,7 @@ Refer to Mailjet's [How to create a subaccount (or additional API key) documenta
 
 To configure this credential, you'll need:
 
-- An access **Token**: Generate a new token from Mailjet's [SMS Dashboard](https://app.mailjet.com/sms). Refer to the [SMS API Getting Started guide](https://dev.mailjet.com/sms/guides/getting-started/) for more detailed instructions.
+- An access **Token**: Generate a new token from Mailjet's [SMS Dashboard](https://app.mailjet.com/sms).
 
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/aws/
@@ -40863,7 +40807,7 @@ You can use these credentials to authenticate the following node:
 
 ## Prerequisites
 
-- Create a [Magento](https://magento.com/) account.
+- Create a [Magento (Adobe Commerce)](https://business.adobe.com/products/commerce.html) account.
 - Set your store to **Allow OAuth Access Tokens to be used as standalone Bearer tokens**.
     - Go to **Admin > Stores > Configuration > Services > OAuth > Consumer Settings**.
     - Set the **Allow OAuth Access Tokens to be used as standalone Bearer tokens** option to **Yes**.
@@ -40881,7 +40825,7 @@ This step is necessary until n8n updates the Magento 2 credentials to use OAuth.
 
 ## Related resources
 
-Refer to [Magento's API documentation](https://devdocs.magento.com/redoc/2.3/) for more information about the service.
+Refer to [Magento's API documentation](https://developer.adobe.com/commerce/docs/) for more information about the service.
 
 ## Using API access token
 
@@ -41217,7 +41161,7 @@ You can use these credentials to authenticate the following nodes:
 
 ## Related resources
 
-Refer to [Zep's Cloud SDK documentation](https://help.getzep.com/sdks) and [Open Source SDK documentation](https://docs.getzep.com/sdk/) for more information about the service. Refer to [Zep's REST API documentation](https://getzep.github.io/zep/) for information about the API.
+Refer to [Zep's Cloud SDK documentation](https://help.getzep.com/install-sdks) for more information about the service. Refer to [Zep's REST API documentation](https://getzep.github.io/zep/) for information about the API.
 
 --8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md"
 
@@ -41234,7 +41178,7 @@ Setup depends on whether you're using Zep Cloud or self-hosted Zep Open Source.
 
 Follow these instructions if you're using [Zep Cloud](https://app.getzep.com):
 
-1. In Zep, open the [**Project Settings**](https://app.getzep.com/projects).
+1. In Zep, open the **Project Settings**.
 2. In the **Project Keys** section, select **Add Key**.
 3. Enter a **Key Name**, like `n8n integration`.
 4. Select **Create**.
@@ -41243,10 +41187,13 @@ Follow these instructions if you're using [Zep Cloud](https://app.getzep.com):
 
 ### Self-hosted Zep Open Source setup
 
-Follow these instructions if you're self-hosting [Zep Open Source](https://docs.getzep.com/deployment/quickstart/):
+/// warning | Deprecated
+The Zep team [deprecated the open source Zep Community Edition](https://blog.getzep.com/announcing-a-new-direction-for-zeps-open-source-strategy/) in April, 2025. These instructions may not work in the future.
+///
+
+Follow these instructions if you're self-hosting Zep Open Source:
 
 1. Enter the JWT token for your Zep server as the **API Key** in n8n.
-    - If you haven't generated a JWT token for your Zep server before, refer to Zep's [Configuring Authentication](https://docs.getzep.com/deployment/auth/) for instructions.
 2. Make sure the **Cloud** toggle is off.
 3. Enter the URL for your Zep server as the **API URL**.
 
@@ -41485,33 +41432,6 @@ To configure this credential, you'll need to:
     - If the **Private Key** doesn't use a passphrase, leave this field blank.
 
 Review your FTP server provider's documentation for instructions on getting the information you need.
-
-=== https://docs.n8n.io/docs/integrations/builtin/credentials/automizy/
-
-# Automizy credentials
-
-You can use these credentials to authenticate the following nodes:
-
-- [Automizy](/integrations/builtin/app-nodes/n8n-nodes-base.automizy.md)
-
-## Prerequisites
-
-Create an [Automizy](https://automizy.com/) account.
-
-## Supported authentication methods
-
-- API token
-
-## Related resources
-
-Refer to [Automizy's API documentation](https://developers.automizy.com/automizyrestapi/) for more information about the service.
-
-## Using API token
-
-To configure this credential, you'll need:
-
-- An **API Token**: Create new or access existing API tokens from your [**Automizy dashboard**](https://app.automizy.com/dashboard) **> Settings > API Token**.
-
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/thehive5/
 
@@ -41883,7 +41803,7 @@ n8n provides two nodes for TheHive. Use these credentials with TheHive node for 
 
 ## Prerequisites
 
-Install [TheHive](https://github.com/TheHive-Project/TheHiveDocs/blob/master/installation/install-guide.md) on your server.
+Install [TheHive](https://docs.strangebee.com/thehive/installation/installation-methods/) on your server.
 
 ## Supported authentication methods
 
@@ -43665,7 +43585,7 @@ You can use these credentials to authenticate the following nodes:
 ## Prerequisites
 
 - Create a [Contentful](https://www.contentful.com/) account.
-- Create a [Contentful space](https://www.contentful.com/help/contentful-101/#step-2-create-a-space).
+- Create a [Contentful space](https://www.contentful.com/help/getting-started/contentful-101/#step-2-create-a-space).
 
 ## Supported authentication methods
 
@@ -43679,11 +43599,11 @@ Refer to [Contentful's API documentation](https://www.contentful.com/developers/
 
 To configure this credential, you'll need:
 
-- Your Contentful **Space ID**: The Space ID displays as you generate the tokens;  You can also refer to the [Contentful Find space ID documentation](https://www.contentful.com/help/find-space-id/) to view the Space ID.
+- Your Contentful **Space ID**: The Space ID displays as you generate the tokens;  You can also refer to the [Contentful Find space ID documentation](https://www.contentful.com/help/spaces/find-space-id/) to view the Space ID.
 - A **Content Delivery API Access Token**: Required if you want to use the [Content Delivery API](https://www.contentful.com/developers/docs/references/content-delivery-api/). Leave blank if you don't intend to use this API.
 - A **Content Preview API Access Token**: Required if you want to use the [Content Preview API](https://www.contentful.com/developers/docs/references/content-preview-api/). Leave blank if you don't intend to use this API.
 
-View and generate access tokens in Contentful in **Settings > API keys**. Contentful generates tokens for both Content Delivery API and Content Preview API as part of a single key. Refer to [Contentful Creating and managing API keys](https://training.contentful.com/student/activity/1050378-creating-and-managing-api-keys) for detailed instructions.
+View and generate access tokens in Contentful in **Settings > API keys**. Contentful generates tokens for both Content Delivery API and Content Preview API as part of a single key. Refer to the [Contentful API authentication documentation](https://www.contentful.com/developers/docs/references/authentication/) for detailed instructions.
 
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/zendesk/
@@ -43891,7 +43811,7 @@ Refer to [Webflow's API documentation](https://developers.webflow.com/data/refer
 
 To configure this credential, you'll need:
 
-- A Site **Access Token**: Access tokens are site-specific. Go to your site's **Site Settings > Apps & integrations > API access** and select **Generate API token**. Refer to [Get a Site Token](https://developers.webflow.com/data/docs/get-a-site-token) for more information.
+- A Site **Access Token**: Access tokens are site-specific. Go to your site's **Site Settings > Apps & integrations > API access** and select **Generate API token**. Refer to [Get a Site Token](https://developers.webflow.com/data/v1.0.0/docs/get-a-site-token) for more information.
 
 ## Using OAuth2
 
@@ -44861,7 +44781,7 @@ To configure this credential, you'll need:
 - An **API Key**: Called an **API token** in SyncroMSP. To create an API token, go to your **user menu > Profile/Password > API Tokens** and select the option to **Create New Token**. Select **Custom Permissions** to enter a name for your token and adjust the permissions to match your requirements.
 - Your **Subdomain**: Enter your SyncroMSP subdomain. This is visible in the URL of your SyncroMSP, located between `https://` and `.syncromsp.com`. If your full URL is `https://n8n-instance.syncromsp.com`, you'd enter `n8n-instance` as the subdomain.
 
-Refer to [API Tokens](https://community.syncromsp.com/t/api-tokens/2297) for more information on creating new tokens.
+Refer to [API Tokens](https://docs.syncromsp.com/imported/api-tokens) for more information on creating new tokens.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/rocketchat/
 
@@ -45814,10 +45734,8 @@ With the Google project and credentials fully configured, finish the n8n credent
 
 ## Video
 
-The following video demonstrates the steps described above.
-
 <div class="video-container">
-<iframe width="840" height="472.5" src="https://www.youtube.com/embed/ArXVlpo3y1k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="840" height="472.5" src="https://www.youtube.com/embed/FzQzGODb5Gk?si=YR9vDaTet8vsj-y2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ## Troubleshooting
@@ -46993,13 +46911,13 @@ Create a [Stackby](https://stackby.com/) account.
 
 ## Related resources
 
-Refer to [Stackby's API documentation](https://documenter.getpostman.com/view/27762116/2s9YBxXvCa) for more information about the service.
+Refer to [Stackby's API documentation](https://www.postman.com/lively-equinox-180638/stackby-s-public-workspace/overview) for more information about the service.
 
 ## Using API key
 
 To configure this credential, you'll need:
 
-- An **API Key**: Go to your [**Account Settings > API**](https://www.stackby.com/account) to create an API Key. Refer to [API Key](https://help.stackby.com/en/article/95-api-key) for more information.
+- An **API Key**: Go to your [**Account Settings > API**](https://www.stackby.com/account) to create an API Key. Refer to [API Key](https://help.stackby.com/en/articles/124-how-to-get-your-api-key-in-stackby) for more information.
 
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/hubspot/
@@ -47310,34 +47228,6 @@ To create an API key:
 
 Refer to [Create API Keys](https://www.twilio.com/docs/sendgrid/api-reference/api-keys/create-api-keys) for more information.
 
-=== https://docs.n8n.io/docs/integrations/builtin/credentials/spontit/
-
-# Spontit credentials
-
-You can use these credentials to authenticate the following nodes:
-
-- [Spontit](/integrations/builtin/app-nodes/n8n-nodes-base.spontit.md)
-
-## Prerequisites
-
-Create a [Spontit](https://www.spontit.com/) account.
-
-## Supported authentication methods
-
-- API key
-
-## Related resources
-
-Refer to [Spontit's API documentation](https://api.spontit.com/) for more information about the service.
-
-## Using API key
-
-To configure this credential, you'll need:
-
-- An **API Key**: Go to **API** to get a new secret key. Enter that key as your **API Key**.
-- A **Username**: Enter your Spontit username. If you're unsure how to format it, open your **Profile** and copy the username from there.
-
-
 === https://docs.n8n.io/docs/integrations/builtin/credentials/googleai/
 
 # Google Gemini(PaLM) credentials
@@ -47401,7 +47291,7 @@ Create an [Affinity](https://www.affinity.co/) account at the Scale, Advanced, o
 
 ## Related resources
 
-Refer to [Affinity's API documentation](https://support.affinity.co/hc/en-us/sections/360010294532-External-API) for more information about working with the service.
+Refer to [Affinity's API documentation](https://support.affinity.co/s/article/Getting-started-with-the-Affinity-API-FAQs) for more information about working with the service.
 
 ## Using API key
 
@@ -47779,7 +47669,7 @@ Refer to [Wufoo's API documentation](https://wufoo.github.io/docs/) for more inf
 To configure this credential, you'll need:
 
 - An **API Key**: Get your API key from the [Wufoo Form Manager](https://app.wufoo.com/#/form-manager). To the right of a form, select **More > API Information**. Refer to [Using API Information and Webhooks](https://help.surveymonkey.com/en/wufoo/integrations/wufoo-api/) for more information.
-- A **Subdomain**: Your subdomain is the part of your Wufoo URL that comes after `https://` and before `wufoo.com`. So if the full domain is `https://n8n.wufoo.com`, the subdomain is `n8n`. Admins can view the subdomain in the [**Account Manager**](https://help.surveymonkey.com/en/wufoo/account-manager). Refer to [Your Subdomain](https://help.surveymonkey.com/en/wufoo/account/your-subdomain/) for more information.
+- A **Subdomain**: Your subdomain is the part of your Wufoo URL that comes after `https://` and before `wufoo.com`. So if the full domain is `https://n8n.wufoo.com`, the subdomain is `n8n`. Admins can view the subdomain in the [**Account Manager**](https://help.surveymonkey.com/en/wufoo/account/account-manager/). Refer to [Your Subdomain](https://help.surveymonkey.com/en/wufoo/account/your-subdomain/) for more information.
 
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/drift/
@@ -48337,7 +48227,7 @@ To configure this credential, you'll need:
 - A **Vendor ID**: Displayed when you generate an API key.
 - **Use Sandbox Environment API**: When turned on, nodes using this credential will hit the Sandbox API endpoint instead of the live API endpoint.
 
-To generate an auth code and view your Vendor ID, go to **Paddle > Developer Tools > Authentication > Generate Auth Code**. Select **Reveal Auth Code** to display the Auth Code. Refer to [API Authentication](https://developer.paddle.com/classic/api-reference/zg9joji1mzuzotg5-api-authentication) for more information.
+To generate an auth code and view your Vendor ID, go to **Paddle > Developer Tools > Authentication > Generate Auth Code**. Select **Reveal Auth Code** to display the Auth Code. Refer to [API Authentication](https://developer.paddle.com/api-reference/about/authentication) for more information.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/timescaledb/
 
@@ -48394,7 +48284,7 @@ Create a [HaloPSA](https://halopsa.com/) account.
 
 ## Related resources
 
-Refer to [HaloPSA's API documentation](https://halopsa.com/apidoc/info) for more information about the service.
+Refer to [HaloPSA's API documentation](https://usehalo.com/halopsa/guides/1823/) for more information about the service.
 
 ## Using API key
 
@@ -48405,7 +48295,7 @@ To configure this credential, you'll need:
     - **Hosted Solution Of Halo**: Choose this option if your application is hosted by Halo. If this option is selected, you'll need to provide your **Tenant**.
 - The **HaloPSA Authorisation Server URL**: Your Authorisation Server URL is displayed within HaloPSA in **Configuration > Integrations > Halo API** in [API Details](https://halopsa.com/guides/article/?kbid=1737).
 - The **Resource Server** URL: Your Resource Server is displayed within HaloPSA in **Configuration > Integrations > Halo API** in [API Details](https://halopsa.com/guides/article/?kbid=1737).
-- A **Client ID**: Obtained by registering the application in the Halo API settings. Refer to [HaloPSA's Authorisation documentation](https://halopsa.com/apidoc/authorisation) for detailed instructions. n8n recommends using these settings:
+- A **Client ID**: Obtained by registering the application in the Halo API settings. Refer to [HaloPSA's Authorisation documentation](https://usehalo.com/halopsa/guides/1823/) for detailed instructions. n8n recommends using these settings:
     - Choose `Client Credentials` as your **Authentication Method**.
     - Use the `all` permission.
 - A **Client Secret**: Obtained by registering the application in the Halo API settings.
@@ -48490,7 +48380,7 @@ To set it up, you'll need to create an app:
     - Select **Live** for an app that you've [deployed](https://manual.bubble.io/help-guides/getting-started/navigating-the-bubble-editor/deploying-your-app), accessed at `https://appname.bubbleapps.io` or `https://www.mydomain.com`.
 1. In n8n, select your **Hosting**:
     - If you haven't set up a custom domain, select **Bubble Hosting**.
-    - If you've set up a [custom domain](https://manual.bubble.io/help-guides/getting-started/navigating-the-bubble-editor/tabs-and-sections/settings-tab/custom-domain-and-dns), select **Self Hosted** and enter your custom **Domain**.
+    - If you've set up a [custom domain](https://manual.bubble.io/help-guides/getting-started/navigating-the-bubble-editor/tabs-and-sections/settings-tab/web-app/custom-domain-and-dns), select **Self Hosted** and enter your custom **Domain**.
 
 Refer to Bubble's [Creating and managing apps](https://manual.bubble.io/help-guides/getting-started/creating-and-managing-apps) documentation for more information.
 
@@ -48661,15 +48551,15 @@ You can use these credentials to authenticate the following nodes:
 
 ## Related resources
 
-Refer to [Mailgun's API documentation](https://documentation.mailgun.com/docs/mailgun/api-reference/intro/) for more information about the service.
+Refer to [Mailgun's API documentation](https://documentation.mailgun.com/docs/mailgun/api-reference/api-overview) for more information about the service.
 
 ## Using API key
 
 To configure this credential, you'll need:
 
-- An **API Domain**: If your Mailgun account is based in Europe, select **api.eu.mailgun.net**; otherwise, select **api.mailgun.net**. Refer to [Mailgun Base URLs](https://documentation.mailgun.com/docs/mailgun/api-reference/intro/#base-url) for more information.
+- An **API Domain**: If your Mailgun account is based in Europe, select **api.eu.mailgun.net**; otherwise, select **api.mailgun.net**. Refer to [Mailgun Base URLs](https://documentation.mailgun.com/docs/mailgun/api-reference/api-overview#base-url) for more information.
 - An **Email Domain**: Enter the email sending domain you're working with. If you have multiple sending domains, refer to [Working with multiple email domains](#working-with-multiple-email-domains) for more information.
-- An **API Key**: View your API key in **Settings > API Keys**. Refer to [Mailgun's API Authentication documentation](https://documentation.mailgun.com/docs/mailgun/api-reference/authentication/) for more detailed instructions.
+- An **API Key**: View your API key in **Settings > API Keys**. Refer to [Mailgun's API Authentication documentation](https://documentation.mailgun.com/docs/mailgun/api-reference/mg-auth) for more detailed instructions.
 
 ## Working with multiple email domains
 
@@ -48727,7 +48617,7 @@ To use endpoints requiring SCA, generate an RSA key pair and add the relevant ke
 2. Add the content of the public key `public.pem` to your Wise **user menu > Settings > API tokens > Manage public keys**.
 3. Add the content of the private key `private.pem` in n8n to the **Private Key (Optional)**.
 
-Refer to [Personal Token SCA](https://docs.wise.com/api-docs/features/strong-customer-authentication-2fa/personal-token-sca) for more information.
+Refer to [Personal Token SCA](https://docs.wise.com/api-docs/guides/strong-customer-authentication-2fa/personal-token-sca) for more information.
 
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/twilio/
@@ -48900,7 +48790,7 @@ Refer to [Authentication](https://developers.strava.com/docs/authentication/) fo
 
 ## Prerequisites
 
-- Create a [Carbon Black subscription](https://www.vmware.com/products/carbon-black-cloud.html).
+- Create a [Carbon Black subscription](https://www.broadcom.com/products/carbon-black/threat-prevention/carbon-black-cloud).
 - Create a [Carbon Black developer account](https://developer.carbonblack.com/).
 
 ## Authentication methods
@@ -49077,13 +48967,13 @@ HighLevel deprecated API v1.0 and no longer maintains it. Use OAuth2 to set up n
 
 Refer to [HighLevel's API 2.0 documentation](https://highlevel.stoplight.io/docs/integrations/0443d7d1a4bd0-overview) for more information about the service.
 
-For existing integrations with the API v1.0, refer to [HighLevel's API 1.0 documentation](https://public-api.gohighlevel.com/).
+For existing integrations with the API v1.0, refer to [HighLevel's API 1.0 documentation](https://help.gohighlevel.com/support/solutions/articles/48001060529-highlevel-api).
 
 ## Using API key
 
 To configure this credential, you'll need:
 
-- An **API Key**: Refer to the [HighLevel API 1.0 Welcome documentation](https://public-api.gohighlevel.com/) for instructions on getting your API key.
+- An **API Key**: Refer to the [HighLevel API 1.0 Welcome documentation](https://help.gohighlevel.com/support/solutions/articles/48001060529-highlevel-api) for instructions on getting your API key.
 
 ## Using OAuth2
 
@@ -49954,7 +49844,7 @@ To configure this credential, you'll need a [Motorhead](https://www.metal.ai/) a
 To set it up, you'll generate an API key:
 
 1. If you're self-hosting Motorhead, update the **Host** URL to match your Motorhead URL.
-2. In Motorhead, go to [**Settings > Organization**](https://app.getmetal.io/settings/organization).
+2. In Motorhead, go to **Settings > Organization**.
 3. In the **API Keys** section, select **Create**.
 4. Enter a **Name** for your API Key, like `n8n integration`.
 5. Select **Generate**.
@@ -50744,7 +50634,7 @@ An accessible instance of [DFIR-IRIS](https://docs.dfir-iris.org/latest/getting_
 
 Refer to [DFIR-IRIS's API documentation](https://docs.dfir-iris.org/operations/api/) for more information about authenticating with the service.
 
-This is a credential-only node. Refer to [Custom API operations](/integrations/custom-operations.md) to learn more. View [example workflows and related content](https://n8n.io/integrations/dfir-iris/) on n8n's website.
+This is a credential-only node. Refer to [Custom API operations](/integrations/custom-operations.md) to learn more. View [example workflows and related content](https://n8n.io/integrations/iris-dfir/) on n8n's website.
 
 
 ## Using API Key
@@ -51022,7 +50912,7 @@ Create a [Mindee](https://mindee.com) account.
 ## Supported authentication methods
 
 - Invoice API key: For use with the [Invoice OCR API](https://www.mindee.com/product/invoice-ocr-api)
-- Receipt API key: For use with the [Receipt OCR API](https://www.mindee.com/product/receipt-ocr-api-copy)
+- Receipt API key: For use with the [Receipt OCR API](https://www.mindee.com/product/receipt-ocr-api)
 
 ## Related resources
 
@@ -51263,7 +51153,7 @@ Refer to [UpLead's API documentation](https://docs.uplead.com/#overview) for mor
 
 To configure this credential, you'll need:
 
-- An **API Key**: Go to your **Account > Profiles** to **Generate New API Key**. Refer to [How can I generate an API key?](https://support.uplead.com/en/articles/5621412-how-can-i-generate-an-api-key) for more information.
+- An **API Key**: Go to your **Account > Profiles** to **Generate New API Key**.
 
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/kobotoolbox/
@@ -52462,7 +52352,7 @@ n8n's node linter, [`eslint-plugin-n8n-nodes-base`](https://github.com/ivov/esli
 
 If using the [n8n node starter](https://github.com/n8n-io/n8n-nodes-starter): Run `npm install` in the starter project to install all dependencies. Once the installation finishes, the linter is available to you. 
 
-If using VS Code, install the [ESLint VS Code extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.VS Code-eslint). For other IDEs, refer to their ESLint integrations.
+If using VS Code, install the [ESLint VS Code extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint). For other IDEs, refer to their ESLint integrations.
 
 /// note | Don't edit the configuration file
 [`.eslintrc.js`](https://github.com/n8n-io/n8n-nodes-starter/blob/master/.eslintrc.js) contains the configuration for `eslint-plugin-n8n-nodes-base`. Don't edit this file.
@@ -52936,11 +52826,13 @@ The file and directory structure of your node depends on:
 * Whether you use node versioning.
 * How many nodes you include in the npm package.
 
+n8n recommends using the [`n8n-node` tool](/integrations/creating-nodes/build/n8n-node.md) to create the expected node file structure. You can customize the generated scaffolding as required to meet more complex needs.
+
 ## Required files and directories
 
 Your node must include:
 
-* A `package.json` file at the root of the project. This is required for any npm module.
+* A `package.json` file at the root of the project. Every npm module requires this.
 * A `nodes` directory, containing the code for your node:
     * This directory must contain the [base file](/integrations/creating-nodes/build/reference/node-base-files/index.md), in the format `<node-name>.node.ts`. For example, `MyNode.node.ts`.
     * n8n recommends including a [codex file](/integrations/creating-nodes/build/reference/node-codex-files.md), containing metadata for your node. The codex filename must match the node base filename. For example, given a node base file named `MyNode.node.ts`, the codex name is `MyNode.node.json`.
@@ -52948,6 +52840,7 @@ Your node must include:
 * A `credentials` directory, containing your credentials code. This code lives in a single [credentials file](/integrations/creating-nodes/build/reference/credentials-files.md). The filename format is `<node-name>.credentials.ts`. For example, `MyNode.credentials.ts`.
 
 ## Modular structure
+
 <!-- vale off -->
 You can choose whether to place all your node's functionality in one file, or split it out into a base file and other modules, which the base file then imports. Unless your node is very simple, it's a best practice to split it out.
 <!-- vale on -->
@@ -53693,6 +53586,15 @@ For more information about UI element types, refer to [UI elements](/integration
 /// note | Do you want n8n to verify your node?
 Consider following these guidelines while building your node if you want to submit it for verification by n8n. Any user with verified community nodes enabled can discover and install verified nodes from n8n's nodes panel across all deployment types (self-hosted and n8n Cloud).
 ///
+
+## Use the n8n-node tool
+
+All verified community node authors should strongly consider using the [`n8n-node` tool](/integrations/creating-nodes/build/n8n-node.md) to create and check their package. This helps n8n ensure quality and consistency by:
+
+* Generating the expected package file structure
+* Adding the required metadata and configuration to the `package.json` file
+* Making it easy to lint your code against n8n's standards
+* Allowing you to load your node in a local n8n instance for testing
 
 ## Package source verification
 
@@ -54760,6 +54662,7 @@ To build and test a node, you need:
 
 * Node.js and npm. Minimum version Node 18.17.0. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL (Windows Subsystem for Linux) [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
 * A local instance of n8n. You can install n8n with `npm install n8n -g`, then follow the steps in [Run your node locally](/integrations/creating-nodes/test/run-node-locally.md) to test your node.
+* When [building verified community nodes](/integrations/community-nodes/build-community-nodes.md), you must use the [`n8n-node` tool](/integrations/creating-nodes/build/n8n-node.md) to create and test your node.
 
 You should also have [git](https://git-scm.com/) installed. This allows you to clone and use the [n8n-node-starter](https://github.com/n8n-io/n8n-nodes-starter).
 
@@ -55253,6 +55156,239 @@ You need to update the `package.json` to include your own information, such as y
 * View an example of a programmatic node: n8n's [Mattermost node](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes/Mattermost). This is an example of a more complex programmatic node structure.
 * Learn about [node versioning](/integrations/creating-nodes/build/reference/node-versioning.md).
 * Make sure you understand key concepts: [item linking](/data/data-mapping/data-item-linking/item-linking-concepts.md) and [data structures](/data/data-structure.md).
+
+=== https://docs.n8n.io/docs/integrations/creating-nodes/build/n8n-node/
+
+# Using the n8n-node tool
+
+The `n8n-node` tool is the official CLI for developing community nodes for n8n. You can use it to scaffold out new nodes, build your projects, and run your node as you develop it.
+
+Using `n8n-node`, you can create nodes that adhere to the 
+
+## Get n8n-node
+
+### Run n8n-node without installing
+
+You can create an `n8n-node` project directly without installing by using the [`@n8n/create-node` initializer](https://www.npmjs.com/package/@n8n/create-node) with your package manager:
+
+```shell
+npm create @n8n/node@latest
+```
+
+This sets up the initial project files locally (an alternative to installing `n8n-node` locally and explicitly running the [`new` command](#new)). Afterward, you run the rest of the `n8n-node` commands through your package manager's script runner inside the project directory (for example, `npm run dev`).
+
+### Install n8n-node globally
+
+You can install `n8n-node` globally with `npm`:
+
+```shell
+npm install --global @n8n/node-cli
+```
+
+Verify access to the command by typing:
+
+```shell
+n8n-node --version
+```
+
+## Command overview
+
+The `n8n-node` tool provides the following commands:
+
+### new
+
+The `new` command creates the file system structure and metadata for a new node. This command initializes the same structure as outlined in [run n8n-node without installing](#run-n8n-node-without-installing).
+
+When called, it interactively prompts for details about your project to customize your starting code. You'll provide the project name, choose a node type, and select the starting template that best matches your needs. The `n8n-node` tool will create your project file structure and optionally install your initial project dependencies.
+
+Learn more about how to use the `new` command in the [creating a new node section](#creating-a-new-node).
+
+### build
+
+The `build` command compiles your node and copies all the required assets.
+
+Learn more about how to use the `build` command in the [building your node section](#building-your-node).
+
+<!-- vale Vale.Spelling = NO -->
+### dev
+<!-- vale Vale.Spelling = YES -->
+
+The `dev` command runs n8n with your node. It monitors your project directory and automatically rebuilds the live preview when it detects changes.
+
+Learn more about how to use the `dev` command in the [testing your node in n8n section](#testing-your-node-in-n8n).
+
+### lint
+
+The `lint` command checks the code for the node in the current directory. You can optionally use with the `--fix` option to attempt to automatically fix any issues it identifies.
+
+Learn more about how to use the `lint` command in the [lint your node section](#lint-your-node).
+
+### release
+
+The `release` command publishes your community node package to npm. It uses [`release-it`](https://github.com/release-it/release-it) to clean, check and cleanly build your package before publishing it to npm.
+
+Learn more about how to use the `release` command in the [release your node section](#release-your-node).
+
+## Creating a new node
+
+To create a new node with `n8n-node`, call `n8n-node new`. You can call this command entirely interactively or provide details on the command line.
+
+/// note | Create new node without installing
+You can optionally create an `n8n-node` project directly without installing `n8n-node` by using the [`@n8n/create-node` initializer](https://www.npmjs.com/package/@n8n/create-node) with your package manager.
+
+In the commands below, substitute `n8n-node new` with `npm create @n8n/node@latest`. When using this form, you must add a double dash (`--`) before including any options (like `--template`). For example:
+
+```shell
+npm create @n8n/node@latest n8n-nodes-mynode -- --template declarative/custom
+```
+///
+
+The command will prompt for any missing information about your node and then generate a project structure to get you started. By default, it will follow up by installing the initial project dependencies (you can disable this by passing the `--skip-install` flag).
+
+### Setting node details interactively
+
+When called without arguments, `n8n-node new` prompts you for details about your new node interactively:
+
+```shell
+n8n-node new
+```
+
+This will start an interactive prompt where you can define the details of your project:
+
+* **What is your node called?** The name of your node. This impacts the name of your project directory, package name, and the n8n node itself. The name must use one of the following formats:
+    * `n8n-nodes-<YOUR_NODE_NAME>`
+    * `@<YOUR_ORG>/n8n-nodes-<YOUR_NODE_NAME>`
+* **What kind of node are you building?** The [node type](/integrations/creating-nodes/plan/choose-node-method.md) you want to build:
+    * **HTTP API**: A low-code, declarative node structure that's designed for faster approval for n8n Cloud.
+    * **Other**: A programmatic style node with full flexibility.
+* **What template do you want to use?** When using the HTTP API, you can choose the template to start from:
+    * **GitHub Issues API**: A demo node that includes multiple operations and credentials. This can help you get familiar with the node structure and conventions.
+    * **Start from scratch**: A blank template that will guide you through your custom setup with some further prompts.
+
+When choosing HTTP API > Start from scratch, `n8n-node` will ask you the following:
+
+* **What's the base URL of the API?** The root URL for the API you plan to integrate with.
+* **What type of authentication does your API use?** The authentication your node should provide:
+    * **API Key**: Send a secret key using headers, query parameters, or the request body.
+    * **Bearer Token**: Send a token using the Authorization header (`Authorization: Bearer <token>`).
+    * **OAuth2**: Use an OAuth 2.0 flow to get access tokens on behalf of a user or app.
+    * **Basic Auth**: Send the base64-encoded username and password through Authorization headers.
+    * **Custom**: Create your own credential logic. This will create an empty credential class that you can customize according to your needs.
+    * **None**: No authentication necessary. Don't create a credential class for the node.
+
+Once you've made your selections, `n8n-node` will create a new project directory for your node in the current directory. By default, it will also install the initial project dependencies (you can disable this by passing the `--skip-install` flag).
+
+### Providing node details on the command line
+
+You can provide some of your node details on the command line to avoid prompts.
+
+You can include the name you want to use for your node an argument:
+
+```shell
+n8n-node new n8n-nodes-myproject
+```
+
+/// note | Node name format
+Node names must use one of the following formats:
+
+* `@<YOUR_ORG>/n8n-nodes-<YOUR_NODE_NAME>`
+* `n8n-nodes-<YOUR_NODE_NAME>`
+///
+
+If you know the template you want to use ahead of time, you can also pass the value using the `--template` flag:
+
+```shell
+n8n-node new --template declarative/custom
+```
+
+The template must be one of the following:
+
+* `declarative/github-issues`: A demo node that includes multiple operations and credentials. This can help you get familiar with the node structure and conventions.
+* `declarative/custom`: A blank template that will guide you through your custom setup with some further prompts.
+* `programmatic/example`: A programmatic style node with full flexibility.
+
+## Building your node
+
+You can build your node by running the `build` command in your project's root directory:
+
+```shell
+n8n-node build
+```
+
+`n8n-node` will compile your TypeScript files and bundle your other project assets. You can also call the `build` script from your package manager. For instance, if you're using `npm`, this works the same:
+
+```shell
+npm run build
+```
+
+## Lint your node
+
+The `n8n-node` tool automatically creates a `lint` script for your project as well. You can run with your package manager. For example:
+
+```shell
+n8n-node lint
+```
+
+You can also run through your package manager's script runner:
+
+```shell
+npm run lint
+```
+
+If you include the `--fix` option (also callable with `npm run lint:fix`), `n8n-node` will attempt to fix the issues that it identifies:
+
+```shell
+n8n-node lint --fix
+```
+
+## Testing your node in n8n
+
+To test your node in n8n, you run the `dev` command in your project's root directory:
+
+```shell
+n8n-node dev
+```
+
+As with the `build` command, you can also run this through your package manager. For example:
+
+```shell
+npm run dev
+```
+
+`n8n-node` will compile your project and start your local `npm`-installed n8n instance with your node loaded.
+
+Visit your `localhost:5678` to sign in to your n8n instance. If you open a workflow, your node appears in the nodes panel:
+
+![node in nodes panel](/_images/integrations/creating-nodes/n8n-node/node_in_nodes_panel.png)
+
+From there, you can add it to your workflow and test the node's functionality as you develop.
+
+## Release your node
+
+To publish your node, run the `release` command in your project directory. This command uses [`release-it`](https://github.com/release-it/release-it) to build and publish your node.
+
+/// note | Log in to npm
+To use the `release` command, you must log in to npm using `npm login` command. Without this, `n8n-node` won't have authorization to publish your project files.
+///
+
+```shell
+n8n-node release
+```
+
+To run with `npm`, type:
+
+```shell
+npm run release
+```
+
+When you run the `release` command, `n8n-node` will perform the following actions:
+
+* build the node
+* run lint checks against your files
+* update the changelog
+* create git tags
+* create a GitHub release
+* publish the package to npm
 
 === https://docs.n8n.io/docs/integrations/creating-nodes/build/declarative-style-node/
 
@@ -63975,10 +64111,10 @@ Read the [Set up SAML](/user-management/saml/setup.md) guide first.
 	
 	| **Name** | **Name format** | **Value** |
 	| -------- | --------------- | --------- |
-	| http://schemas.xmlsoap.org/ws/2005/05/identity/claims/firstname | URI Reference | user.firstName |
-	| http://schemas.xmlsoap.org/ws/2005/05/identity/claims/lastname | URI Reference | user.lastName |
-	| http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn | URI Reference | user.login |
-	| http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress | URI Reference | user.email |
+	| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/firstname` | URI Reference | user.firstName |
+	| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/lastname` | URI Reference | user.lastName |
+	| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn` | URI Reference | user.login |
+	| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` | URI Reference | user.email |
 	
 1. Select **Next**. Okta may prompt you to complete a marketing form, or may take you directly to your new n8n Okta app.
 1. Assign the n8n app to people:
@@ -64069,7 +64205,7 @@ Documentation links for common IdPs.
 | IdP | Documentation |
 | --- | ------------- |
 | Auth0 | [Configure Auth0 as SAML Identity Provider: Manually configure SSO integrations](https://auth0.com/docs/authenticate/protocols/saml/saml-sso-integrations/configure-auth0-saml-identity-provider#manually-configure-sso-integrations) |
-| Authentik | [Applications](https://goauthentik.io/docs/applications) and the [SAML Provider](https://goauthentik.io/docs/providers/saml/) |
+| Authentik | [Applications](https://goauthentik.io/docs/applications) and the [SAML Provider](https://docs.goauthentik.io/add-secure-apps/providers/saml/) |
 | Azure AD | [SAML authentication with Azure Active Directory](https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/auth-saml) |
 | JumpCloud | [How to setup SAML (SSO) applications with JumpCloud](https://jumpcloud.com/support/integrate-with-zoom#configuring-the-sso-integration) (using `Zoom` as an example) |
 | Keycloak | Choose a [Getting Started](https://www.keycloak.org/guides#getting-started) guide depending on your hosting. |
@@ -74666,7 +74802,6 @@ Enable credential overwrites using the following environment variables. Refer to
 | `N8N_RUNNERS_HEARTBEAT_INTERVAL` | Number | `30` | How often (in seconds) the runner must send a heartbeat to the broker, else the task aborts and the runner restarts. Must be greater than 0. |
 | `N8N_RUNNERS_INSECURE_MODE` | Boolean | `false` | Whether to disable all security measures in the task runner, for compatibility with modules that rely on insecure JS features. **Discouraged for production use.** |
 
-
 ## Task runner launcher environment variables
 
 | Variable | Type  | Default  | Description |
@@ -74678,10 +74813,8 @@ Enable credential overwrites using the following environment variables. Refer to
 | `N8N_RUNNERS_LAUNCHER_HEALTH_CHECK_PORT` | Number | `5680` | Port for the launcher's health check server. |
 | `N8N_RUNNERS_MAX_PAYLOAD` | Number | `1 073 741 824` | Maximum payload size in bytes for communication between a task broker and a task runner. |
 | `N8N_RUNNERS_MAX_CONCURRENCY` | Number | `5` | The number of concurrent tasks a task runner can execute at a time. |
-| `NODE_OPTIONS` | String | - | [Options](https://nodejs.org/api/cli.html#node_optionsoptions) for Node.js. |
 
-
-## Task runner environment variables
+## Task runner environment variables (all languages)
 
 | Variable | Type  | Default  | Description |
 | :------- | :---- | :------- | :---------- |
@@ -74691,10 +74824,26 @@ Enable credential overwrites using the following environment variables. Refer to
 | `N8N_RUNNERS_LAUNCHER_HEALTH_CHECK_PORT` | Number | `5680` | Port for the launcher's health check server. |
 | `N8N_RUNNERS_MAX_PAYLOAD` | Number | `1 073 741 824` | Maximum payload size in bytes for communication between a task broker and a task runner. |
 | `N8N_RUNNERS_MAX_CONCURRENCY` | Number | `5` | The number of concurrent tasks a task runner can execute at a time. |
+
+## Task runner environment variables (JavaScript)
+
+| Variable | Type  | Default  | Description |
+| :------- | :---- | :------- | :---------- |
 | `NODE_FUNCTION_ALLOW_BUILTIN` | String | - | Permit users to import specific built-in modules in the Code node. Use * to allow all. n8n disables importing modules by default. |
 | `NODE_FUNCTION_ALLOW_EXTERNAL` | String | - | Permit users to import specific external modules (from `n8n/node_modules`) in the Code node. n8n disables importing modules by default. |
 | `N8N_RUNNERS_ALLOW_PROTOTYPE_MUTATION` | Boolean | `false` | Whether to allow prototype mutation for external libraries. Set to `true` to allow modules that rely on runtime prototype mutation (for example, [`puppeteer`](https://pptr.dev/)) at the cost of relaxing security. | 
 | `GENERIC_TIMEZONE` | * | `America/New_York` | The [same default timezone as configured for the n8n instance](/hosting/configuration/environment-variables/timezone-localization.md). |
+| `NODE_OPTIONS` | String | - | [Options](https://nodejs.org/api/cli.html#node_optionsoptions) for Node.js. |
+| `N8N_RUNNERS_MAX_OLD_SPACE_SIZE` | String |  | The `--max-old-space-size` option to use for a task runner (in MB). By default, Node.js will set this based on available memory. |
+
+## Task runner environment variables (Python)
+
+| Variable | Type  | Default  | Description |
+| :------- | :---- | :------- | :---------- |
+
+| `N8N_RUNNERS_STDLIB_ALLOW` | String | - | Permit users to import specific Python standard library modules in the Code node. Use `*` to allow all. n8n disables all Python standard library imports by default. |
+| `N8N_RUNNERS_EXTERNAL_ALLOW` | String | - | Permit users to import specific third-party Python modules (if available in the `n8nio/runners` image) in the Code node. Use `*` to allow all. n8n disables all third-party Python modules by default. |
+| `N8N_RUNNERS_BUILTINS_DENY` | String | `eval,exec,compile,open,input,breakpoint,getattr,object,type,vars,setattr,delattr,hasattr,dir,memoryview,__build_class__` | List of insecure Python built-ins aren't allowed. Set to an empty string to allow all. | 
 
 === https://docs.n8n.io/docs/hosting/configuration/environment-variables/executions/
 
@@ -74760,7 +74909,7 @@ This page lists environment variables to set up logging for debugging. Refer to 
 | `N8N_LOG_FILE_SIZE_MAX` | Number | `16` | Max size of each log file in MB. |
 | `N8N_LOG_FILE_LOCATION` | String | `<n8n-directory-path>/logs/n8n.log` | Log file location. Requires N8N_LOG_OUTPUT set to `file`. |
 | `DB_LOGGING_ENABLED` | Boolean | `false` | Whether to enable database-specific logging. |
-| `DB_LOGGING_OPTIONS` | Enum string: `query`, `error`, `schema`, `warn`, `info`, `log`  | `error` | Database log output level. To enable all logging, specify `all`. Refer to [TypeORM logging options](https://orkhan.gitbook.io/typeorm/docs/logging#logging-options) |
+| `DB_LOGGING_OPTIONS` | Enum string: `query`, `error`, `schema`, `warn`, `info`, `log`  | `error` | Database log output level. To enable all logging, specify `all`. Refer to [TypeORM logging options](https://orkhan.gitbook.io/typeorm/docs/docs/advanced-topics/5-logging#logging-options) |
 | `DB_LOGGING_MAX_EXECUTION_TIME` | Number | `1000` | Maximum execution time (in milliseconds) before n8n logs a warning. Set to `0` to disable long running query warning. |
 | `CODE_ENABLE_STDOUT` | Boolean | `false` | Set to `true` to send Code node logs to process's stdout for debugging, monitoring, or logging purposes. |
 | `NO_COLOR` | any | `undefined` | Set to any value to output logs without ANSI colors. For more information, see the [no-color.org website](https://no-color.org/). |
@@ -75024,13 +75173,17 @@ Refer to [Configuring multi-main setup](/hosting/scaling/queue-mode.md#configuri
 
 # Task runners
 
-Task runners are a generic mechanism to execute tasks in a secure and performant way. They're used to execute user-provided JavaScript code in the [Code node](/integrations/builtin/core-nodes/n8n-nodes-base.code/index.md).
+Task runners are a generic mechanism to execute tasks in a secure and performant way. They're used to execute user-provided JavaScript and Python code in the [Code node](/integrations/builtin/core-nodes/n8n-nodes-base.code/index.md).
+
+/// note | In beta
+Task runner support for native Python and the `n8nio/runners` image are in beta. Until this feature is stable, you must use the `N8N_NATIVE_PYTHON_RUNNER=true` environment variable to enable the Python runner.
+///
 
 This document describes how task runners work and how you can configure them.
 
 ## How it works
 
-The task runner feature consists of three components: a task runner, a task broker, and a task requester.
+The task runner feature consists of these components: one or more task runners, a task broker, and a task requester.
 
 ![Task runner overview](/_images/hosting/configuration/task-runner-concept.png)
 
@@ -75046,25 +75199,54 @@ You can use task runners in two different modes: internal and external.
 
 ### Internal mode
 
-In internal mode, the n8n instance launches the task runner as a child process. The n8n process monitors and manages the life cycle of the task runner. The task runner process shares the same `uid` and `gid` as n8n.
+In internal mode, the n8n instance launches the task runner as a child process. The n8n process monitors and manages the life cycle of the task runner. The task runner process shares the same `uid` and `gid` as n8n. This is **not** recommended for production.
 
 ### External mode
 
-In external mode, an external orchestrator (for example, Kubernetes) launches the task runner instead of n8n. Typically, this means you would configure the task runner to run as a side-car container next to n8n.
+In external mode, a [launcher application](https://github.com/n8n-io/task-runner-launcher) launches task runners on demand and manages their lifecycle. Typically, this means that next to n8n you add a sidecar container running the [`n8nio/runners`](https://hub.docker.com/r/n8nio/runners) image containing the launcher, the JS task runner and the Python task runner. This sidecar container is independent from the n8n instance.
 
 ![Task runner deployed as a side-car container](/_images/hosting/configuration/task-runner-external-mode.png)
 
-In this mode, the orchestrator monitors and manages the life cycle of the task runner container. The task runner is fully isolated from the n8n instance.
-
-When using the [Queue mode](/hosting/scaling/queue-mode.md), each n8n container (main and workers) needs to have its own task runner.
+When using the [Queue mode](/hosting/scaling/queue-mode.md), each n8n container (main and workers) needs to have its own sidecar task runners container.
 
 ## Setting up external mode
 
-Use the following details to configure task runners in external mode
+In external mode, you run the `n8nio/runners` image as a sidecar container next to n8n. Below you will find a docker compose as a reference. Keep in mind that the `n8nio/runners` image version must match that of the `n8nio/n8n` image, and the n8n version must be >=1.111.0.
 
-### Configuring n8n instance in external mode
+```yaml
+services:
+  n8n:
+    image: n8nio/n8n:1.111.0
+    container_name: n8n-main
+    environment:
+      - N8N_RUNNERS_ENABLED=true
+      - N8N_RUNNERS_MODE=external
+      - N8N_RUNNERS_BROKER_LISTEN_ADDRESS=0.0.0.0
+      - N8N_RUNNERS_AUTH_TOKEN=your-secret-here
+      - N8N_NATIVE_PYTHON_RUNNER=true
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    # etc.
 
-You can configure n8n to use external task runners by setting the following environment variables:
+  task-runners:
+    image: n8nio/runners:1.111.0
+    container_name: n8n-runners
+    environment:
+      - N8N_RUNNERS_TASK_BROKER_URI=http://n8n-main:5679
+      - N8N_RUNNERS_AUTH_TOKEN=your-secret-here
+      # etc.
+    depends_on:
+      - n8n
+
+volumes:
+  n8n_data:
+```
+
+### Configuring n8n container in external mode
+
+These are the main environment variables that you can set on the n8n container running in external mode:
 
 | Environment variables                                  | Description                                                |
 |--------------------------------------------------------|------------------------------------------------------------|
@@ -75075,31 +75257,129 @@ You can configure n8n to use external task runners by setting the following envi
 
 For full list of environment variables see [task runner environment variables](/hosting/configuration/environment-variables/task-runners.md).
 
-### Configuring task runners in external mode
+### Configuring runners container in external mode
 
-The task runner comes bundled within the n8n Docker image. The Docker image also includes the task runner launcher.
-
-The launcher can start the runner on-demand, which means lower memory usage when there's no work needed, but a short delay (few hundred ms) in cold-start. The launcher also monitors the runner and restarts it in case of infinite loops or other issues.
-
-Run a task runner container from the n8n Docker image by setting the following properties:
-
-| Configuration   | Description                                             |
-|-----------------|---------------------------------------------------------|
-| `command`       | `["/usr/local/bin/task-runner-launcher", "javascript"]` |
-| `livenessProbe` | `GET /healthz`, port `5680`                             |
-
-Set the following environment variables for the container, adjusted to fit your needs:
+These are the main environment variables that you can set on the runners container running in external mode:
 
 | Environment variables | Description |
 | ------ | ----- |
 | `N8N_RUNNERS_AUTH_TOKEN=<random secure shared secret>` | The shared secret the task runner uses to connect to the broker. |
-| `N8N_RUNNERS_MAX_CONCURRENCY=5` | The number of concurrent tasks the runner can execute. |
 | `N8N_RUNNERS_TASK_BROKER_URI=localhost:5679` | The address of the task broker server within the n8n instance. |
 | `N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT=15` | Number of seconds of inactivity to wait before shutting down the task runner process. The launcher will automatically start the runner again when there are new tasks to execute. Set to `0` to disable automatic shutdown. |
-| `NODE_OPTIONS=--max-old-space-size=<limit>` | The memory limit for the task runner Node.js process. This should be lower than the limit for container so that the runner runs out of memory before the container. That way, the launcher is able to monitor the runner. |
-| `GENERIC_TIMEZONE` | The [same default timezone as configured for the n8n instance](/hosting/configuration/environment-variables/timezone-localization.md). |
 
 For full list of environment variables see [task runner environment variables](/hosting/configuration/environment-variables/task-runners.md).
+
+### Configuring launcher in runners container in external mode
+
+The launcher will read env vars from runners container environment, and will pass along env vars to each runner as defined in the [default launcher config file](https://github.com/n8n-io/n8n/blob/master/docker/images/runners/n8n-task-runners.json), located in the container at `/etc/task-runners.json`. To customize the launcher config file, mount to this path.
+
+For further information about the launcher config file, see [here](https://github.com/n8n-io/task-runner-launcher/blob/main/docs/setup.md#config-file).
+
+## Adding extra dependencies 
+
+You can customize the `n8nio/runners` image. To do so, you will find the runners Dockerfile at [this directory](https://github.com/n8n-io/n8n/tree/master/docker/images/runners) in the n8n repository. The manifests referred to below are also found in this directory.
+
+To make additional packages available on the Code node, you can bake extra packages into your custom runners image at build time:
+
+* JavaScript: edit `docker/images/runners/package.json`
+  (package.json manifest used to install runtime-only deps into the JS runner)
+* Python (Native): edit `docker/images/runners/extras.txt`
+  (requirements.txt-style list installed into the Python runner venv)
+
+> Important: for security, any external libraries must be explicitly allowed for Code node use. Update `n8n-task-runners.json` to allowlist what you add.
+
+### 1) JavaScript packages
+
+Edit the runtime extras manifest `docker/images/runners/package.json`:
+
+```json
+{
+  "name": "task-runner-runtime-extras",
+  "description": "Runtime-only deps for the JS task-runner image, installed at image build.",
+  "private": true,
+  "dependencies": {
+    "moment": "2.30.1"
+  }
+}
+```
+
+Add any packages you want under `"dependencies"` (pin them for reproducibility), e.g.:
+
+```json
+"dependencies": {
+  "moment": "2.30.1",
+  "uuid": "9.0.0"
+}
+```
+
+### 2) Python packages
+
+Edit the requirements file `docker/images/runners/extras.txt`:
+
+```
+# Runtime-only extras for the Python task runner (installed at image build)
+numpy==2.3.2
+# add more, one per line, e.g.:
+# pandas==2.2.2
+```
+
+Pin versions (for example, `==2.3.2`) for deterministic builds.
+
+### 3) Allowlist packages for the Code node
+
+Open `docker/images/runners/n8n-task-runners.json` and add your packages to the env overrides:
+
+```json
+{
+  "task-runners": [
+    {
+      "runner-type": "javascript",
+      "env-overrides": {
+        "NODE_FUNCTION_ALLOW_BUILTIN": "crypto",
+        "NODE_FUNCTION_ALLOW_EXTERNAL": "moment,uuid",   // <-- add JS packages here
+      }
+    },
+    {
+      "runner-type": "python",
+      "env-overrides": {
+        "PYTHONPATH": "/opt/runners/task-runner-python",
+        "N8N_RUNNERS_STDLIB_ALLOW": "json",
+        "N8N_RUNNERS_EXTERNAL_ALLOW": "numpy,pandas"     // <-- add Python packages here
+      }
+    }
+  ]
+}
+```
+
+* `NODE_FUNCTION_ALLOW_BUILTIN`: comma-separated list of allowed node builtin modules.
+* `NODE_FUNCTION_ALLOW_EXTERNAL`: comma-separated list of allowed JS packages.
+* `N8N_RUNNERS_STDLIB_ALLOW`: comma-separated list of allowed Python standard library packages.
+* `N8N_RUNNERS_EXTERNAL_ALLOW`: comma-separated list of allowed Python packages.
+
+### 4) Build your custom image
+
+For example, from the n8n repository root:
+
+```bash
+docker buildx build \
+  -f docker/images/runners/Dockerfile \
+  -t n8nio/runners:custom \
+  .
+```
+
+### 5) Run it
+
+For example:
+
+```bash
+docker run --rm -it \
+  -e N8N_RUNNERS_AUTH_TOKEN=test \
+  -e N8N_RUNNERS_LAUNCHER_LOG_LEVEL=debug \
+  -e N8N_RUNNERS_TASK_BROKER_URI=http://host.docker.internal:5679 \
+  -p 5680:5680 \
+  n8nio/runners:custom
+```
+
 
 === https://docs.n8n.io/docs/hosting/configuration/supported-databases-settings/
 
@@ -76786,18 +77066,19 @@ Community nodes are npm packages, hosted in the npm registry.
 
 When building a node to submit to the community node repository, use the following resources to make sure your node setup is correct:
 
-* View the [starter node](https://github.com/n8n-io/n8n-nodes-starter) and [n8n's own nodes](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes) for some examples.
+* n8n recommends using the [`n8n-node` CLI tool](/integrations/creating-nodes/build/n8n-node.md) to build and test your node. In particular, this is important if you plan on [submitting your node for verification](/integrations/creating-nodes/deploy/submit-community-nodes.md#submit-your-node-for-verification-by-n8n). This ensures that your node has the correct structure and follows community node requirements. It also simplifies linting and testing.
+* View [n8n's own nodes](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes) for examples of patterns you can use in your nodes.
 * Refer to the documentation on [building your own nodes](/integrations/creating-nodes/overview.md).
 * Make sure your node follows the [standards](#standards) for community nodes.
 
 ## Standards
 
-To make your node available to the n8n community node repository, you must:
+Developing with the [`n8n-node` tool](/integrations/creating-nodes/build/n8n-node.md) ensures that your node adheres to the following standards required to make your node available in the n8n community node repository:
 
 * Make sure the package name starts with `n8n-nodes-` or `@<scope>/n8n-nodes-`. For example, `n8n-nodes-weather` or `@weatherPlugins/n8n-nodes-weather`.
 * Include `n8n-community-node-package` in your package keywords.
-* Make sure that you add your nodes and credentials to the `package.json` file inside the `n8n` attribute. Refer to the [package.json in the starter node](https://github.com/n8n-io/n8n-nodes-starter/blob/master/package.json) for an example.
-* Check your node using the [linter](/integrations/creating-nodes/test/node-linter.md) and test it locally to ensure it works.
+* Make sure that you add your nodes and credentials to the `package.json` file inside the `n8n` attribute.
+* Check your node using the linter (`npm run lint`) and test it locally (`npm run dev`) to ensure it works.
 * Submit the package to the npm registry. Refer to npm's documentation on [Contributing packages to the registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) for more information.
 
 ## Submit your node for verification by n8n
@@ -76806,6 +77087,7 @@ n8n vets verified community nodes. Users can discover and install verified commu
 
 Before submitting your node for review by n8n, you must:
 
+* Start from the [`n8n-node` tool](/integrations/creating-nodes/build/n8n-node.md) generated scaffolding. While this isn't strictly required, n8n strongly suggests using the `n8n-node` CLI tool for any community node you plan to submit for verification. Using the tool ensures that your node follows the expected conventions and adheres to the community node requirements.
 * Make sure that your node follows the [technical guidelines for verified community nodes](/integrations/creating-nodes/build/reference/verification-guidelines.md) and that all automated checks pass. Specifically, verified community nodes aren't allowed to use any run-time dependencies.
 * Ensure that your node follows the [UX guidelines](/integrations/creating-nodes/build/reference/ux-guidelines.md).
 * Make sure that the node has appropriate documentation in the form of a README in the [npm package](https://docs.npmjs.com/about-package-readme-files) or a related public repository.
@@ -77070,9 +77352,11 @@ The syntax to use the built-in methods and variables is `$variableName` or `$met
 
 ### Keyboard shortcuts
 
-The Code node editing environment supports time-saving and useful keyboard shortcuts for a range of operations from autocompletion to code-folding and using multiple-cursors. A full list can be found in the [list of keyboard shortcuts](/integrations/builtin/core-nodes/n8n-nodes-base.code/keyboard-shortcuts.md).
+The Code node editing environment supports time-saving and useful keyboard shortcuts for a range of operations from autocompletion to code-folding and using multiple-cursors. See the full list of [keyboard shortcuts](/integrations/builtin/core-nodes/n8n-nodes-base.code/keyboard-shortcuts.md).
 
-## Python
+## Python (Pyodide - legacy)
+
+Pyodide is a legacy feature. Future versions of n8n will no longer support this feature.
 
 n8n added Python support in version 1.0. It doesn't include a Python executable. Instead, n8n provides Python support using [Pyodide](https://pyodide.org/en/stable/), which is a port of CPython to WebAssembly. This limits the available Python packages to the [Packages included with Pyodide](https://pyodide.org/en/stable/usage/packages-in-pyodide.html#packages-in-pyodide). n8n downloads the package automatically the first time you use it.
 
@@ -77087,7 +77371,7 @@ The syntax to use the built-in methods and variables is `_variableName` or `_met
 
 ### Keyboard shortcuts
 
-The Code node editing environment supports time-saving and useful keyboard shortcuts for a range of operations from autocompletion to code-folding and using multiple-cursors. A full list can be found in the [list of keyboard shortcuts](/integrations/builtin/core-nodes/n8n-nodes-base.code/keyboard-shortcuts.md).
+The Code node editing environment supports time-saving and useful keyboard shortcuts for a range of operations from autocompletion to code-folding and using multiple-cursors. See the full list of [keyboard shortcuts](/integrations/builtin/core-nodes/n8n-nodes-base.code/keyboard-shortcuts.md).
 
 ## File system and HTTP requests
 
@@ -77095,6 +77379,21 @@ You can't access the file system or make HTTP requests. Use the following nodes 
 
 * [Read/Write File From Disk](/integrations/builtin/core-nodes/n8n-nodes-base.readwritefile.md)
 * [HTTP Request](/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/index.md)
+
+## Python (Native - beta)
+
+n8n added native Python support using task runners (beta) in version 1.111.0. 
+
+Main differences from Pyodide:
+
+- Native Python supports only `_items` in all-items mode and `_item` in per-item mode. It doesn't support other n8n built-in methods and variables.
+- Native Python supports importing native Python modules from the standard library and from third-parties, if the `n8nio/runners` image includes them and explicitly allowlists them. See [task runners](/hosting/configuration/task-runners.md) for more details.
+- Denies insecure built-ins by default. See [task runners environment variables](/hosting/configuration/environment-variables/task-runners.md) for more details.
+- Unlike Pyodide, which accepts dot access notation, for example, `item.json.myNewField`, native Python only accepts bracket access notation, for example, `item["json"]["my_new_field"]`. There may be other minor syntax differences where Pyodide accepts constructs that aren't legal in native Python.
+
+Keep in mind upgrading to native Python is a breaking change, so you may need to adjust your Python scripts to use the native Python runner. 
+
+This feature is in beta and is subject to change. As it becomes stable, n8n will roll it out progressively to n8n cloud users during 2025. Self-hosting users can [try it out](/hosting/configuration/environment-variables/task-runners.md) and provide feedback.
 
 ## Coding in n8n
 
