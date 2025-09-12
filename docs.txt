@@ -55163,7 +55163,7 @@ You need to update the `package.json` to include your own information, such as y
 
 The `n8n-node` tool is the official CLI for developing community nodes for n8n. You can use it to scaffold out new nodes, build your projects, and run your node as you develop it.
 
-Using `n8n-node`, you can create nodes that adhere to the 
+Using `n8n-node`, you can create nodes that adhere to the [guidelines for verified community nodes](/integrations/creating-nodes/build/reference/verification-guidelines.md).
 
 ## Get n8n-node
 
@@ -55355,7 +55355,7 @@ As with the `build` command, you can also run this through your package manager.
 npm run dev
 ```
 
-`n8n-node` will compile your project and start your local `npm`-installed n8n instance with your node loaded.
+`n8n-node` will compile your project and then start up a local n8n instance through `npm` with your node loaded.
 
 Visit your `localhost:5678` to sign in to your n8n instance. If you open a workflow, your node appears in the nodes panel:
 
@@ -74546,6 +74546,10 @@ export NODE_FUNCTION_ALLOW_BUILTIN=crypto,fs
 # Allow usage of external npm modules.
 export NODE_FUNCTION_ALLOW_EXTERNAL=moment,lodash
 ```
+/// note | If using Task Runners
+If n8n instance is setup with [Task Runners](/hosting/configuration/task-runners.md), add the environment variables to the Task Runners instead to the main n8n node.
+///
+
 Refer to [Environment variables reference](/hosting/configuration/environment-variables/nodes.md) for more information on these variables.
 
 === https://docs.n8n.io/docs/hosting/configuration/configuration-examples/webhook-url/
@@ -77387,13 +77391,13 @@ n8n added native Python support using task runners (beta) in version 1.111.0.
 Main differences from Pyodide:
 
 - Native Python supports only `_items` in all-items mode and `_item` in per-item mode. It doesn't support other n8n built-in methods and variables.
-- Native Python supports importing native Python modules from the standard library and from third-parties, if the `n8nio/runners` image includes them and explicitly allowlists them. See [task runners](/hosting/configuration/task-runners.md) for more details.
-- Denies insecure built-ins by default. See [task runners environment variables](/hosting/configuration/environment-variables/task-runners.md) for more details.
+- Native Python supports importing native Python modules from the standard library and from third-parties, if the `n8nio/runners` image includes them and explicitly allowlists them. See [adding extra dependencies for task runners](/hosting/configuration/task-runners.md/#adding-extra-dependencies) for more details.
+- Native Python denies insecure built-ins by default. See [task runners environment variables](/hosting/configuration/environment-variables/task-runners.md) for more details.
 - Unlike Pyodide, which accepts dot access notation, for example, `item.json.myNewField`, native Python only accepts bracket access notation, for example, `item["json"]["my_new_field"]`. There may be other minor syntax differences where Pyodide accepts constructs that aren't legal in native Python.
 
 Keep in mind upgrading to native Python is a breaking change, so you may need to adjust your Python scripts to use the native Python runner. 
 
-This feature is in beta and is subject to change. As it becomes stable, n8n will roll it out progressively to n8n cloud users during 2025. Self-hosting users can [try it out](/hosting/configuration/environment-variables/task-runners.md) and provide feedback.
+This feature is in beta and is subject to change. As it becomes stable, n8n will roll it out progressively to n8n cloud users during 2025. Self-hosting users can [try it out](/hosting/configuration/task-runners.md) and provide feedback.
 
 ## Coding in n8n
 
