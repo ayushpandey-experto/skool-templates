@@ -15548,7 +15548,7 @@ Remove your existing Manual Trigger or edit your workflow to connect that trigge
 
 # n8n Form node
 
-Use the n8n Form node to create user-facing forms with multiple steps. You can add other nodes with custom logic between to process user input. You must start the workflow with the [n8n Form Trigger](/integrations/builtin/core-nodes/n8n-nodes-base.formtrigger.md).
+Use the n8n Form node to create user-facing forms with multiple steps. You can add other nodes with custom logic between to process user input. You must start the workflow with the [n8n Form Trigger node](/integrations/builtin/core-nodes/n8n-nodes-base.formtrigger.md).
 
 [[ workflowDemo("file:///integrations/builtin/core-nodes/n8n-nodes-base.form/mutually-exclusive-branching.json") ]]
 
@@ -15556,7 +15556,7 @@ Use the n8n Form node to create user-facing forms with multiple steps. You can a
 
 ### Set default selections with query parameters
 
-You can set the initial values for fields by using [query parameters](https://en.wikipedia.org/wiki/Query_string#Web_forms) with the initial URL provided by the [n8n Form Trigger](/integrations/builtin/core-nodes/n8n-nodes-base.formtrigger.md). Every page in the form receives the same query parameters sent to the n8n Form Trigger URL.
+You can set the initial values for fields by using [query parameters](https://en.wikipedia.org/wiki/Query_string#Web_forms) with the initial URL provided by the [n8n Form Trigger node](/integrations/builtin/core-nodes/n8n-nodes-base.formtrigger.md). Every page in the form receives the same query parameters sent to the n8n Form Trigger node URL.
 
 /// note | Only for production
 Query parameters are only available when using the form in production mode. n8n won't populate field values from query parameters in testing mode.
@@ -15618,7 +15618,7 @@ An example JSON that shows the general format required and the keys available:
 ```javascript
 // Use the "requiredField" key on any field to mark it as mandatory
 // Use the "placeholder" key to specify placeholder data for all fields
-//     except 'dropdown', 'date' and 'file'
+// except 'dropdown', 'date' and 'file'
 
 [
   {
@@ -15780,7 +15780,7 @@ Select **Add Option** to view more configuration options:
 
 ### Build and test workflows
 
-While building or testing a workflow, use the **Test URL** in the [n8n Form Trigger](/integrations/builtin/core-nodes/n8n-nodes-base.formtrigger.md). Using a test URL ensures that you can view the incoming data in the editor UI, which is useful for debugging. 
+While building or testing a workflow, use the **Test URL** in the [n8n Form Trigger node](/integrations/builtin/core-nodes/n8n-nodes-base.formtrigger.md). Using a test URL ensures that you can view the incoming data in the editor UI, which is useful for debugging. 
 
 There are two ways to test:
 
@@ -43252,9 +43252,10 @@ To create a new developer app and set up the credential:
 4. Add an **App logo**.
 5. Check the box to agree to the **Legal agreement**.
 6. Select **Create app**.
-7. This should open the **Products** tab. Select the products/APIs you want to enable for your app. For the LinkedIn node to work properly, you must include:
+7. This should open the **Products** tab. Select the products/APIs you want to enable for your app. For the LinkedIn node to work properly, you must include and configure:
 	- **Share on LinkedIn**
 	- **Sign In with LinkedIn using OpenID Connect**
+ 	- **Advertising API** (if using it as an organization account rather than an individual)
 8. Once you've requested access to the products you need, open the **Auth** tab.
 9. Copy the **Client ID** and enter it in your n8n credential.
 10. Select the icon to **Copy** the **Primary Client Secret**. Enter this in your n8n credential as the **Client Secret**.
@@ -77961,9 +77962,8 @@ You can test your node as you build it by running it in a local n8n instance.
 
 ### Troubleshooting
 
-- There's no `custom` directory in `~/.n8n` local installation.
+If there's no `custom` directory in `~/.n8n` local installation, you have to create `custom` directory manually and run `npm init`:
 
-You have to create `custom` directory manually and run `npm init`
 ```shell
 # In ~/.n8n directory run
 mkdir custom 
@@ -78290,10 +78290,6 @@ You can add `_FILE` to individual variables to provide their configuration in a 
 
 If you want to contribute to this repository - thank you! Before you start, have a look at the existing documentation to get an idea of the structure and writing conventions n8n uses. In writing your documentation, please follow the guidelines described below, to ensure quality and consistency with n8n styles.
 
-## No course contributions
-
-We are working on replacing the course. We are not accepting reports or changes to the current course.
-
 ## Docs issues only
 
 This repo is for the documentation site.
@@ -78302,17 +78298,21 @@ This repo is for the documentation site.
 - Got a feature request or product idea? [Propose it on the forum](https://community.n8n.io/c/feature-requests/5).
 - Found a bug in the product? [Product repo](https://github.com/n8n-io/n8n)
 
+## No course contributions
 
-## Why we might reject your contribution
+n8n is working on replacing the course. n8n isn't accepting reports or changes to the current course.
 
-Due to an increase in spam and poor quality contributions, we've introduced new criteria and processes. We will close issues and PRs that are low-effort and poor quality.
+## Why n8n might reject your contribution
+
+Due to an increase in spam and poor quality contributions, n8n has introduced new criteria and processes. n8n will close issues and PRs that are low-effort and poor quality.
 
 | Label | Action | Notes |
 | ----- | ------ | ----- |
-| `spam` | Close PR/issue; account blocked | This label is applied to things like empty issues. |
-| `ai-slop` |	Close PR/issue; account blocked | This label is applied when content is bad, wrong, and looks like it's probably the result of using AI. n8n isn't banning use of AI in contributions, so long as the contributions are high quality. |
-| `low-effort-bad` |	Close PR/issue; comment with contribution guidance; a second `low-effort-bad` leads to a block. | To avoid this, test your work to make sure it's accurate; follow the [style guide](https://github.com/n8n-io/n8n-docs/wiki/Styles); write meaningful titles and descriptions on your PR/issue. |
-| `duplicate` |	Close PR/issue; comment with contribution guidance; a second `duplicate` leads to a block. | To avoid this, check existing issues and PRs |
+| `spam` | Close PR/issue; account blocked | This label is for things like empty issues. |
+| `ai-slop` |	Close PR/issue; account blocked | This label is for when content is bad, wrong, and looks like it's probably the result of using AI. n8n isn't banning use of AI in contributions, so long as the contributions are high quality. |
+| `low-effort-unusable` |	Close PR/issue; comment with contribution guidance; a second `low-effort-unusable` leads to a block. | n8n uses this for minor changes which have issues. To avoid this, test your work to make sure it's accurate; follow the [style guide](https://github.com/n8n-io/n8n-docs/wiki/Styles); write meaningful titles and descriptions on your PR/issue. |
+| `low-effort-usable` |	No action initially. n8n will accept these, but not in large quantities. Too many occurences in a single month will result in n8n reviewing the activity. |
+| `duplicate` |	Close PR/issue; comment with contribution guidance. | To avoid this, check existing issues and PRs. |
 
 
 ## Style
