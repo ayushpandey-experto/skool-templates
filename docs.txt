@@ -8616,6 +8616,8 @@ The webhook URL to call to resume a [waiting](/integrations/builtin/core-nodes/n
 
 See the [Wait > On webhook call](/integrations/builtin/core-nodes/n8n-nodes-base.wait.md#on-webhook-call) documentation to learn more.
 
+`execution.resumeUrl` is available in workflows containing a Wait node, along with a node that waits for a webhook response.
+
 ## `execution.customData`
 
 This is only available in the Code node.
@@ -8650,6 +8652,7 @@ This is only available in the Code node.
 	```
 
 Refer to [Custom executions data](/workflows/executions/custom-executions-data.md) for more information.
+
 
 === https://docs.n8n.io/docs/code/cookbook/builtin/itemmatching/
 
@@ -64361,6 +64364,17 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.112.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.112.0...n8n@1.112.1) for this version.<br />
+**Release date:** 2025-09-17
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.112.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.111.0...n8n@1.112.0) for this version.<br />
@@ -74867,7 +74881,6 @@ Enable credential overwrites using the following environment variables. Refer to
 
 | Variable | Type  | Default  | Description |
 | :------- | :---- | :------- | :---------- |
-
 | `N8N_RUNNERS_STDLIB_ALLOW` | String | - | Permit users to import specific Python standard library modules in the Code node. Use `*` to allow all. n8n disables all Python standard library imports by default. |
 | `N8N_RUNNERS_EXTERNAL_ALLOW` | String | - | Permit users to import specific third-party Python modules (if available in the `n8nio/runners` image) in the Code node. Use `*` to allow all. n8n disables all third-party Python modules by default. |
 | `N8N_RUNNERS_BUILTINS_DENY` | String | `eval,exec,compile,open,input,breakpoint,getattr,object,type,vars,setattr,delattr,hasattr,dir,memoryview,__build_class__` | List of insecure Python built-ins aren't allowed. Set to an empty string to allow all. | 
