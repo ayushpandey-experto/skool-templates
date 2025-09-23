@@ -14438,6 +14438,32 @@ If you run n8n in Docker, your command runs in the n8n container and not the Doc
 
 This node looks for files relative to the n8n install path. n8n recommends using absolute file paths to prevent any errors.
 
+=== https://docs.n8n.io/docs/integrations/builtin/core-nodes/n8n-nodes-base.datatable/index/
+
+# Data table
+
+The Data Table node allows you to permanently save data across workflow executions in a table format. It provides functionality to perform various data operations on stored data.
+
+## Node parameters
+
+### Resource
+
+Select the resource on which you want to operate
+
+- Rows
+
+### Operations
+
+Select the operation you want to run on the resource:
+
+| Operation | Description | Options |
+|---|---|---|
+| **Get** | Get one or more rows from your table based on defined filters. | **Limit**: The number of rows you want to return, specified as a number. Default value is 50. |
+| **Update** | Update one or more rows. | |
+| **Insert** | Insert rows into an existing table. | **Optimize Bulk**: Optimize the speed of insertions when working with many rows. If you switch on this option, n8n won't return the data that was inserted. Default state is `off`. |
+| **Upsert** | Upsert one or more rows. If the row exists, it's updated; otherwise, a new row is created. | |
+| **Delete** | Delete one or more rows. | **Dry Run:** Simulate a deletion before finalizing it. If you switch on this option, n8n returns the rows that will be deleted by the operation. Default state is `off`. |
+
 === https://docs.n8n.io/docs/integrations/builtin/core-nodes/n8n-nodes-base.removeduplicates/index/
 
 # Remove Duplicates node
@@ -63505,6 +63531,77 @@ When you use `.item` and there are multiple possible matches, n8n doesn't know w
 
 --8<-- "_snippets/data/data-mapping/item-linking-node-creators.md"
 
+=== https://docs.n8n.io/docs/data/data-tables/
+
+# Data tables 
+
+## Overview
+
+Data tables integrate data storage within your n8n environment. Using data tables, you can save, manage, and interact with data directly inside your workflows without relying on external database systems for scenarios such as:
+
+- Storing data generated from workflow executions
+- Persisting data aross workflows in the same project
+- Storing markers to prevent duplicate runs or control workflow triggers
+- Reusing prompts or messages across workflows
+- Storing evaluation data for AI workflows
+- Combining data from different sources to enrich your datasets
+- Creating lookup tables as quick reference points within workflows
+
+## How to use data tables
+
+There are two parts to working with data tables: creating them and interacting with them in workflows.
+
+### Step 1: Creating a data table
+
+1. In your n8n project, select the **Data tables** tab.
+2. Click the split button located in the top right corner and select **Create Data table**.
+
+    ![Data table creation](/_images/data/data-tables/create-data-table.png)
+
+3. Enter a descriptive name for your table.
+   
+   In the table view that appears, you can:
+   
+   * add and reorder columns to organize your data
+   * Add, delete, and update rows
+   * edit existing data
+
+### Step 2: Interacting with Data tables in workflows
+
+Interact with data tables in your workflow using the **Data table** node, which allows you to retreive, update, and manipulate the data stored in a Data table.
+
+See [Data table node](/integrations/builtin/core-nodes/n8n-nodes-base.datatable/index.md).
+
+## Considerations and limitations of data tables
+
+- Data tables are suitable for light to moderate data storage. By default, a data table can't contain more than **50MB** of data. In self-hosted environments, you can increase this default size limit using the environment variable `N8N_DATA_TABLES_MAX_SIZE_BYTES`.
+- When a data table approaches **80%** of your storage limit, a warning will alert you. A final warning appears when you reach the storage limit. Exceeding this limit will disable manual additions to tables and cause workflow execution errors during attempts to insert or update data.
+- By default, data tables created within a project are accessible to all team members in that project.
+- Tables created in a **Personal** space are only accessible by their creator.
+
+## Data tables versus variables
+
+| Feature | Data tables | Variables |
+|---------|-------------|-----------|
+| Unified tabular view | ✓ | ✗ |
+| Row-column relationships | ✓ | ✗ |
+| Cross-project access | ✗ | ✓ |
+| Individual value display | ✗ | ✓ |
+| Optimized for short values | ✗ | ✓ |
+| Structured data | ✓ | ✗ |
+| Scoped to projects | ✓ | ✗ |
+| Use values as expressions | ✗ | ✓ |
+
+## Exporting and importing data
+
+To transfer data between n8n and external tools, use workflows that:
+
+1. Retrieve data from a data table.
+2. Export it using an API or file export.
+3. Import data into another system or data table accordingly.
+
+    ![Data export workflow](/_images/data/data-tables/data-table-export.png)
+
 === https://docs.n8n.io/docs/data/data-pinning/
 
 # Data pinning
@@ -64364,10 +64461,33 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.113.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.112.0...n8n@1.113.0) for this version.<br />
+**Release date:** 2025-09-22
+
+/// note | Next version
+This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains core updates, editor improvements, a new node, node updates, and bug fixes.
+
+### Contributors
+
+[ongdisheng](https://github.com/ongdisheng)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.112.3
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.112.2...n8n@1.112.3) for this version.<br />
 **Release date:** 2025-09-19
+
+/// note | Latest version
+This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
 
 This release contains a bug fix.
 
@@ -64419,9 +64539,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.111.0...n8n@1.112.0) for this version.<br />
 **Release date:** 2025-09-15
 
-/// note | Next version
-This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains API improvements, core updates, editor improvements, node updates, and bug fixes.
 
@@ -64440,9 +64558,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.110.0...n8n@1.111.0) for this version.<br />
 **Release date:** 2025-09-08
 
-/// note | Latest version
-This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 
 
@@ -78296,8 +78412,8 @@ Binary data pruning operates on the active binary data mode. For example, if you
 /// note | Latest and Next versions
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `latest`: 1.111.0  
-Current `next`: 1.112.0
+Current `latest`: 1.112.3  
+Current `next`: 1.113.0
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/server-setups-next-steps/
