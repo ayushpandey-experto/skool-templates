@@ -20625,8 +20625,9 @@ You can find authentication information for this node [here](/integrations/built
 
 * **Maximum Number of Tokens**: Enter the maximum number of tokens used, which sets the completion length.
 * **Sampling Temperature**: Use this option to control the randomness of the sampling process. A higher temperature creates more diverse sampling, but increases the risk of hallucinations.
+* **Thinking Budget**: Controls reasoning tokens for thinking models. Set to `0` to disable automatic thinking. Set to `-1` for dynamic thinking. Leave empty for auto mode.
 * **Top K**: Enter the number of token choices the model uses to generate the next token.
-* **Top P**: Use this option to set the probability the completion should use. Use a lower value to ignore less probable options. 
+* **Top P**: Use this option to set the probability the completion should use. Use a lower value to ignore less probable options.
 * **Safety Settings**: Gemini supports adjustable safety settings. Refer to Google's [Gemini API safety settings](https://ai.google.dev/docs/safety_setting_gemini) for information on the available filters and levels.
 
 ## Templates and examples
@@ -63765,7 +63766,7 @@ The **Settings** > **Users** page shows all users, including ones with pending i
 
 ## Delete a user
 
-1. Open the **Account Type** drop down for the user you want to delete and select **Remove user**.
+1. Open the **three-dot menu** for the user you want to delete and select **Delete user**.
 2. Confirm you want to delete them.
 3. If they're an active user, choose whether to copy their workflow data and credentials to a new user, or permanently delete their workflows and credentials.
 
@@ -64127,7 +64128,7 @@ To remove a user from a project:
 
 1. Select the project.
 1. Select **Project settings**.
-1. In the role type dropdown for the user you want to remove, select **Remove access**.
+1. In the **three-dot menu** for the user you want to remove, select **Remove user**.
 1. Select **Save**.
 
 ## Delete a project
@@ -64461,14 +64462,78 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.113.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.113.0...n8n@1.113.1) for this version.<br />
+**Release date:** 2025-09-23
+
+/// note | Next version
+This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains bug fixes.
+
+<div class="n8n-new-features" markdown> 
+### Data tables
+
+We’re excited to introduce **data tables**, bringing built-in data storage to n8n. You can now store and query structured data directly inside the platform, without relying on external databases for many common automation scenarios. Track workflow state between runs, store tokens or session data, keep product or customer reference tables, or stage intermediate results for multi-step processes.
+<br/><br/>
+Previously, persisting data meant provisioning and connecting to an external store such as Redis or Google Sheets. That added credential setup, infrastructure overhead, latency, and constant context switching. **Data tables** eliminate that friction and keeps your data easily editable and close to your workflows.
+<br/><br/>
+Data tables are available today on all plans. They currently support numbers, strings, and datetimes with JSON support coming soon.  On Cloud, each instance can store up to 50 MB. On self-hosted setups, the default is also 50 MB, but this limit can be adjusted if your infrastructure allows.
+<br/><br/>
+<figure markdown="span">
+[![Data tables](/_images/release-notes/data-tables.jpg)](https://www.youtube.com/watch?v=ljkiIkt6lZ4)
+    <figcaption>[Overview of data tables](https://www.youtube.com/watch?v=ljkiIkt6lZ4)</figcaption>
+</figure>
+
+### How to
+
+#### Create a data table
+
+- From the canvas, open the **Create workflow** dropdown and select **Create Data table**.
+- Or, go to the **Overview** panel on the left-side navigation bar and open the **Data tables** tab.
+
+#### Use a data table in your workflow
+
+- Add the **Data table node** to your workflow to get, update, insert, upsert, or delete rows.
+
+#### Adjust the storage limit (self-hosted only)
+
+- Change the default 50 MB limit with the environment variable: `N8N_DATA_TABLES_MAX_SIZE_BYTES`. [See configuration docs](https://docs.n8n.io/hosting/configuration/configuration-methods/).
+
+### Keep in mind
+
+- Data tables don’t currently support foreign keys or default values.
+- For now, all data tables are accessible to everyone in a project.  More granular permissions and sharing options are planned.
+
+Learn more about [**data tables**](/data/data-tables.md) and the [**Data table node**](/integrations/builtin/core-nodes/n8n-nodes-base.datatable/index.md).
+
+</div> 
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+## n8n@1.112.4
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.112.3...n8n@1.112.4) for this version.<br />
+**Release date:** 2025-09-23
+
+/// note | Latest version
+This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains an editor improvement.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
 ## n8n@1.113.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.112.0...n8n@1.113.0) for this version.<br />
 **Release date:** 2025-09-22
 
-/// note | Next version
-This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains core updates, editor improvements, a new node, node updates, and bug fixes.
 
@@ -64485,9 +64550,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.112.2...n8n@1.112.3) for this version.<br />
 **Release date:** 2025-09-19
 
-/// note | Latest version
-This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains a bug fix.
 
@@ -74973,6 +75036,7 @@ Enable credential overwrites using the following environment variables. Refer to
 | `N8N_SECURITY_AUDIT_DAYS_ABANDONED_WORKFLOW` | Number | 90 | Number of days to consider a workflow abandoned if it's not executed. |
 | `N8N_SECURE_COOKIE` | Boolean | `true` | Ensures that cookies are only sent over HTTPS, enhancing security.|
 | `N8N_SAMESITE_COOKIE` | Enum string: `strict`, `lax`, `none` | `lax` | Controls cross-site cookie behavior ([learn more](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite)):<ul><li>`strict`: Sent only for first-party requests.</li><li>`lax` (default): Sent with top-level navigation requests.</li><li>`none`: Sent in all contexts (requires HTTPS).</li></ul> |
+| `N8N_GIT_NODE_DISABLE_BARE_REPOS` | Boolean | `false` | Set to `true` to prevent the [Git node](/integrations/builtin/core-nodes/n8n-nodes-base.git.md) from working with bare repositories, enhancing security. |
 
 === https://docs.n8n.io/docs/hosting/configuration/environment-variables/task-runners/
 
@@ -78412,8 +78476,8 @@ Binary data pruning operates on the active binary data mode. For example, if you
 /// note | Latest and Next versions
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `latest`: 1.112.3  
-Current `next`: 1.113.0
+Current `latest`: 1.112.4  
+Current `next`: 1.113.1
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/server-setups-next-steps/
