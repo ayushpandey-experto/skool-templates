@@ -2461,7 +2461,7 @@ docker compose up -d
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
 Current `latest`: 1.113.3  
-Current `next`: 1.114.0
+Current `next`: 1.114.2
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -23960,10 +23960,10 @@ Even though this is possible, it isn't recommended. Environment variables aren't
 
 #### Using REST APIs
 
-The recommended way is to load the data using a custom REST endpoint. Set the `CREDENTIALS_OVERWRITE_ENDPOINT` to a path under which this endpoint should be made available.
+The recommended way is to load the data using a custom REST endpoint. Set the `CREDENTIALS_OVERWRITE_ENDPOINT` to a path under which this endpoint should be made available. You can set `CREDENTIALS_OVERWRITE_ENDPOINT_AUTH_TOKEN` to require a token for accessing the endpoint. When this token is configured, the endpoint is only accessible if the token is included in the `Authorization` header as a `Bearer` token.
 
 /// note
-The endpoints can be called just one at a time for security reasons.
+The endpoint can be called just once for security reasons, unless `CREDENTIALS_OVERWRITE_ENDPOINT_AUTH_TOKEN` is set.
 ///
 
 For example:
@@ -23999,6 +23999,12 @@ For example:
 There are cases when credentials are based on others. For example, the `googleSheetsOAuth2Api` extends the `googleOAuth2Api`.
 In this case, you can set parameters on the parent credentials (`googleOAuth2Api`) for all child-credentials (`googleSheetsOAuth2Api`) to use.
 ///
+
+In case `CREDENTIALS_OVERWRITE_ENDPOINT_AUTH_TOKEN` is set to `secure-token`, the curl command will be:
+
+    ```sh
+    curl -H "Content-Type: application/json" -H "Authorization: Bearer secure-token" --data @oauth-credentials.json http://localhost:5678/send-credentials
+    ```
 
 ## Environment variables
 
@@ -27580,14 +27586,36 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.114.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.114.1...n8n@1.114.2) for this version.<br />
+**Release date:** 2025-10-02
+
+/// note | Next version
+This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@1.114.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.114.0...n8n@1.114.1) for this version.<br />
+**Release date:** 2025-10-02
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.114.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.113.0...n8n@1.114.0) for this version.<br />
 **Release date:** 2025-09-29
 
-/// note | Next version
-This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains core updates, editor improvements, project updates, performance improvements, and bug fixes.
 
@@ -27607,6 +27635,8 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.113.2...n8n@1.113
 /// note | Latest version
 This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 ///
+
+
 
 
 
