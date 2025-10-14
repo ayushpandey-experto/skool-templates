@@ -2460,8 +2460,8 @@ docker compose up -d
 /// note | Latest and Next versions
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `latest`: 1.114.3  
-Current `next`: 1.115.0
+Current `latest`: 1.115.2  
+Current `next`: 1.115.2
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -2749,10 +2749,6 @@ For example, this input will create two cards. One named `test1` the other one n
 ```
 
 === https://docs.n8n.io/_snippets/integrations/submit-community-node/
-/// note | Subject to change
-The standards described in this document are for the first release of the community nodes repository. These may change in future releases.
-///
-
 Community nodes are npm packages, hosted in the npm registry.
 
 When building a node to submit to the community node repository, use the following resources to make sure your node setup is correct:
@@ -2784,7 +2780,9 @@ Before submitting your node for review by n8n, you must:
 * Make sure that the node has appropriate documentation in the form of a README in the [npm package](https://docs.npmjs.com/about-package-readme-files) or a related public repository.
 * Submit your node to npm as n8n will fetch it from there for final vetting.
 
-If your node meets all the above requirements, [click here to submit your node for verification](https://internal.users.n8n.cloud/form/f0ff9304-f34a-420e-99da-6103a2f8ac5b). Note that n8n reserves the right to reject nodes that compete with any of n8n's paid features, especially enterprise functionality.
+/// note | Ready to submit?
+If your node meets all the above requirements, sign up or log in to the [n8n Creator Portal](https://creators.n8n.io/nodes) and submit your node for verification. Note that n8n reserves the right to reject nodes that compete with any of n8n's paid features, especially enterprise functionality.
+///
 
 === https://docs.n8n.io/_snippets/integrations/openai-api-issues/
 ## The service is receiving too many requests from you
@@ -12300,6 +12298,65 @@ Now you have seen how to create a basic AI workflow, there are plenty of resourc
 * Learn more about AI concepts and view examples in [Examples and concepts](/advanced-ai/examples/introduction.md).
 * Browse AI [Workflow templates](https://n8n.io/workflows/?categories=25).
 * Find out how to [enhance the AI agent with tools](/advanced-ai/examples/understand-tools.md).
+
+=== https://docs.n8n.io/docs/advanced-ai/ai-workflow-builder/
+
+# AI Workflow Builder
+
+AI Workflow Builder enables you to create, refine, and debug workflows using natural language descriptions of your goals.
+
+It handles the entire workflow construction process, including node selection, placement, and configuration, thereby reducing the time required to build functional workflows.
+
+For details of pricing and availability of AI Workflow Builder, see [n8n Plans and Pricing](https://n8n.io/pricing/).
+
+## Working with the builder
+
+1. **Describe your workflow:** Either select an example prompt or describe your requirements in natural language.
+2. **Monitor the build:** The builder provides real-time feedback through several phases.
+3. **Review and refine the generated workflow:** Review required credentials and other parameters. Refine the workflow using prompts.
+    
+    ![ai-workflow-builder.png](/_images/advanced-ai/ai-workflow-builder.png)
+    
+
+### Commands you can run in the builder
+
+- `/clear`: Clears the context for the LLM and lets you start from scratch
+
+## Understanding credits
+
+### How credits work
+
+Each time you send a message to the builder asking it to create or modify a workflow, that counts as one **interaction**, which is worth one **credit**.
+
+✅ **Counts as an interaction**
+
+- Sending a message to create a new workflow
+- Asking the builder to modify an existing workflow
+- Clicking the **Execute and refine** button in the builder window after a workflow is built
+
+❌ **Does NOT count as an interaction**
+
+- Messages that fail or produce generation errors
+- Requests you manually stop by clicking the stop button
+
+### Getting more credits
+
+If you've used your monthly limit, you can upgrade to a higher plan.
+
+For details on plans and pricing, see [n8n Plans and Pricing](https://n8n.io/pricing/).
+
+## AI model and data handling
+
+The following data are sent to the LLM:
+
+- Text prompts that you provide to create, refine, or debug the workflow
+- Node definitions, parameters, and connections and the current workflow definition.
+- Any mock execution data that is loaded when using the builder
+
+The following data are not sent:
+
+- Details of any credentials you use
+- Past executions of the workflow
 
 === https://docs.n8n.io/docs/advanced-ai/evaluations/light-evaluations/
 
@@ -22018,7 +22075,7 @@ Build a workflow that merges data from the Customer Datastore node and Code node
 
 	If you merge data with the option **Keep Matches** using the name as the input fields to match, the result should look like this (note this example only contains Jay Gatsby; yours might look different depending on which characters you selected):
 
-	<figure><img src="/_images/courses/level-two/chapter-three/exercise_merge_kkm.png" alt="Output of Merge node with option to keep matches" style="width:100%"><figcaption align = "center"><i>Output of Merge node with option to keep matches</i></figcaption></figure>
+	<figure><img src="/_images/courses/level-two/chapter-three/exercise_merge_node.png" alt="Output of Merge node with option to keep matches" style="width:100%"><figcaption align = "center"><i>Output of Merge node with option to keep matches</i></figcaption></figure>
 
 	To check the configuration of the nodes, you can copy the JSON workflow code below and paste it into your Editor UI:
 
@@ -27620,6 +27677,61 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.116.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.115.0...n8n@1.116.0) for this version.<br />
+**Release date:** 2025-10-13
+
+This release contains bug fixes.
+
+### Contributors
+
+[JHTosas](https://github.com/JHTosas)  
+[clesecq](https://github.com/clesecq)  
+[Gulianrdgd](https://github.com/Gulianrdgd)  
+[tishun](https://github.com/tishun)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
+## n8n@1.116.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.115.0...n8n@1.116.0) for this version.<br />
+**Release date:** 2025-10-13
+
+This release contains bug fixes.
+
+### Contributors
+
+[JHTosas](https://github.com/JHTosas)  
+[clesecq](https://github.com/clesecq)  
+[Gulianrdgd](https://github.com/Gulianrdgd)  
+[tishun](https://github.com/tishun)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
+## n8n@1.115.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.115.1...n8n@1.115.2) for this version.<br />
+**Release date:** 2025-10-10
+
+/// note | Next version
+This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+/// note | Latest version
+This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.114.4
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.114.3...n8n@1.114.4) for this version.<br />
@@ -27635,11 +27747,42 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.114.0...n8n@1.115.0) for this version.<br />
 **Release date:** 2025-10-06
 
-/// note | Next version
-This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains bug fixes.
+<div class="n8n-new-features" markdown> 
+### AI Workflow Builder (Beta)
+
+**AI Workflow Builder** turns your natural language prompts into working automations. Describe what you want to build, and n8n will generate a draft workflow by adding and configuring nodes and wiring up the logic for you. From there, you can refine, expand, or adjust the workflow directly in the editor.
+
+This feature helps you move from idea to implementation faster and without losing technical control. It’s especially helpful when starting from a blank canvas, validating an approach, or exploring new nodes and capabilities. Multi-turn interaction lets you iterate in conversation, turning your ideas into structured, production-ready workflows step by step.
+
+
+Learn more about how we we’re building this feature in our [forum post](https://community.n8n.io/t/ai-powered-workflow-building-coming-soon/196499).
+
+<br>
+<video src="/_video/release-notes/AI_Workflow_Builder.webm" controls width="100%"></video>
+<br>
+
+
+**Availability:**  
+
+- This feature is initially going to be available for Cloud users on the 14-day Trial, Starter and Pro plans.
+- Availability for Enterprise users on Cloud will follow in a future update.
+- We are actively exploring the best way to bring this feature to self-hosted users.
+
+**Rollout timing:** 
+
+- To ensure the smoothest experience for all users, this feature will be rolled out to users on version 1.115.0 over the course of a week so you may not have access to the feature immediately when you upgrade to 1.115.0.
+
+**Credit limits by plan:** This feature will have monthly credit limits [by plan](https://n8n.io/pricing/). 
+
+- Each prompt/interaction with the AI Workflow Builder consumes one credit.
+- Trial users have access to 20 credits, Starter plans have 50 per month and Pro plans will have 150 credits per month.
+- At this time, there will not be a way to access additional credits within your plan, however we are we are exploring this.
+
+Learn more about AI Workflow Builder in [documentation](https://docs.n8n.io/advanced-ai/ai-workflow-builder/).
+</div>
 ### Source Control: Added HTTPS support
 
 You can now connect to Git repositories via HTTPS in addition to SSH, making Source Control usable in environments where SSH is restricted.
@@ -27665,9 +27808,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.114.2...n8n@1.114.3) for this version.<br />
 **Release date:** 2025-10-06
 
-/// note | Latest version
-This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 
 This release contains bug fixes.
@@ -27798,22 +27939,22 @@ Data tables are available today on all plans. They currently support numbers, st
     <figcaption>[Overview of data tables](https://www.youtube.com/watch?v=ljkiIkt6lZ4)</figcaption>
 </figure>
 
-### How to
+🛠️ **How to:**
 
-#### Create a data table
+**Create a data table**
 
 - From the canvas, open the **Create workflow** dropdown and select **Create Data table**.
 - Or, go to the **Overview** panel on the left-side navigation bar and open the **Data tables** tab.
 
-#### Use a data table in your workflow
+**Use a data table in your workflow**
 
 - Add the **Data table node** to your workflow to get, update, insert, upsert, or delete rows.
 
-#### Adjust the storage limit (self-hosted only)
+**Adjust the storage limit** (self-hosted only)
 
 - Change the default 50 MB limit with the environment variable: `N8N_DATA_TABLES_MAX_SIZE_BYTES`. [See configuration docs](https://docs.n8n.io/hosting/configuration/configuration-methods/).
 
-### Keep in mind
+🧠**Keep in mind**
 
 - Data tables don’t currently support foreign keys or default values.
 - For now, all data tables are accessible to everyone in a project.  More granular permissions and sharing options are planned.
@@ -61084,7 +61225,7 @@ Use the No Operation, do nothing node when you don't want to perform any operati
 
 # Extract From File
 
-A common pattern in n8n workflows is to receive a file, either from and [HTTP Request node][] (for files you are fetching from a website), a [Webhook Node][] (for files which are sent to your workflow from elsewhere), or from a local source. Data obtained in this way is often in a binary format, for example a spreadsheet or PDF.
+A common pattern in n8n workflows is to receive a file, either from an [HTTP Request node][] (for files you are fetching from a website), a [Webhook Node][] (for files which are sent to your workflow from elsewhere), or from a local source. Data obtained in this way is often in a binary format, for example a spreadsheet or PDF.
 
 The Extract From File node extracts data from a binary format file and converts it to JSON, which can then be easily manipulated by the rest of your workflow. For converting JSON back into a binary file type, please see the [Convert to File](/integrations/builtin/core-nodes/n8n-nodes-base.converttofile.md) node.
 
