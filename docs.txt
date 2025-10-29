@@ -2460,8 +2460,8 @@ docker compose up -d
 /// note | Latest and Next versions
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `latest`: 1.117.2  
-Current `next`: 1.118.0
+Current `latest`: 1.117.3  
+Current `next`: 1.118.1
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -17707,6 +17707,7 @@ You can define external hooks that n8n executes whenever a specific operation ru
 | `N8N_RUNNERS_STDLIB_ALLOW` | String | - | Python standard library modules that you can use in the Code node, including their submodules. Use `*` to allow all stdlib modules. n8n disables all Python standard library imports by default. |
 | `N8N_RUNNERS_EXTERNAL_ALLOW` | String | - | Third-party Python modules that are allowed to be used in the Code node, including their submodules. Use `*` to allow all external modules. n8n disables all third-party Python modules by default. Third-party Python modules must be [included](/hosting/configuration/task-runners.md#adding-extra-dependencies) in the `n8nio/runners` image. |
 | `N8N_RUNNERS_BUILTINS_DENY` | String | `eval,exec,compile,open,input,breakpoint,getattr,object,type,vars,setattr,delattr,hasattr,dir,memoryview,__build_class__,globals,locals` | Python built-ins that you can't use in the Code node. Set to an empty string to allow all built-ins. | 
+| `N8N_BLOCK_RUNNER_ENV_ACCESS` | Boolean | `true` | Whether to block access to the runner's environment from within Python code tasks. Set to `false` to enable all Python code node users access to the runner's environment via `os.environ`. For security reasons, environment variable access is blocked by default. | 
 
 === https://docs.n8n.io/docs/hosting/configuration/environment-variables/index/
 
@@ -27925,14 +27926,39 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 ///
 
 
+## n8n@1.118.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.118.0...n8n@1.118.1) for this version.<br />
+**Release date:** 2025-10-28
+
+/// note | Next version
+This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@1.117.3
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.117.2...n8n@1.117.3) for this version.<br />
+**Release date:** 2025-10-28
+
+/// note | Latest version
+This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
 ## n8n@1.118.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.117.0...n8n@1.118.0) for this version.<br />
 **Release date:** 2025-10-27
 
-/// note | Next version
-This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains bug fixes.
 
@@ -27943,9 +27969,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.117.1...n8n@1.117.2) for this version.<br />
 **Release date:** 2025-10-27
 
-/// note | Latest version
-This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 
 
