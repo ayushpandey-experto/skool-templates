@@ -2460,8 +2460,8 @@ docker compose up -d
 /// note | Latest and Next versions
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `latest`: 1.119.1  
-Current `next`: 1.119.0
+Current `latest`: 1.119.2  
+Current `next`: 1.119.3
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -14684,7 +14684,7 @@ n8n prunes executions when **either** of the following condition occur:
 Keep in mind:
 
 - Executions with the `new`, `running`, or `waiting` status aren't eligible for pruning.
-- Annotated executions are permanently exempt from pruning.
+- Annotated executions (for example, executions with tags or ratings) are never pruned.
 - Pruning honors a safety buffer period of `EXECUTIONS_DATA_HARD_DELETE_BUFFER` hours (default: 1h), to ensure recent data remains available while the user is building or debugging a workflow.
 
 ```sh
@@ -17473,6 +17473,14 @@ To learn more about proxy environment variables, check the [environment variable
 | `N8N_REINSTALL_MISSING_PACKAGES` | Boolean | `false` | If set to `true`, n8n will automatically attempt to reinstall any missing packages. |
 | `N8N_TUNNEL_SUBDOMAIN` | String | - | Specifies the subdomain for the n8n tunnel. If not set, n8n generates a random subdomain.|
 | `N8N_PROXY_HOPS` | Number | 0 | Number of reverse-proxies n8n is running behind. | 
+
+=== https://docs.n8n.io/docs/hosting/configuration/environment-variables/ai-assistant/
+
+# AI Assistant environment variables
+
+| Variable | Type  | Default  | Description |
+| :------- | :---- | :------- | :---------- |
+| `N8N_AI_ASSISTANT_BASE_URL` | String | (empty) | Base URL of the AI assistant service, specified as `https://ai-assistant.n8n.io `. Required if you self-host n8n and want to enable the AI Assistant. |
 
 === https://docs.n8n.io/docs/hosting/configuration/environment-variables/credentials/
 
@@ -25327,7 +25335,7 @@ There are two parts to working with data tables: creating them and interacting w
 
 ### Step 2: Interacting with Data tables in workflows
 
-Interact with data tables in your workflow using the **Data table** node, which allows you to retreive, update, and manipulate the data stored in a Data table.
+Interact with data tables in your workflow using the **Data table** node, which allows you to retrieve, update, and manipulate the data stored in a Data table.
 
 See [Data table node](/integrations/builtin/core-nodes/n8n-nodes-base.datatable/index.md).
 
@@ -28141,6 +28149,16 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 ///
 
 
+## n8n@1.120.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.120.1...n8n@1.120.2) for this version.<br />
+**Release date:** 2025-11-14
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
 
 ## n8n@1.120.1
 
@@ -28150,8 +28168,6 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.120.0...n8n@1.120
 This release contains a bug fix.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-
 
 ## n8n@1.120.0
 
@@ -28163,6 +28179,16 @@ This release contains bug fixes.
 ### Contributors
 
 [rothenbergt](https://github.com/rothenbergt)  
+
+## n8n@1.119.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.119.1...n8n@1.119.2) for this version.<br />
+**Release date:** 2025-11-14
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
 ## n8n@1.119.1
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.119.0...n8n@1.119.1) for this version.<br />
@@ -45609,7 +45635,7 @@ On this page, you'll find a list of operations the Oracle Database node supports
 Refer to [Oracle Database credentials](/integrations/builtin/credentials/oracledb.md) for guidance on setting up authentication.
 
 Requires Oracle Database **19c or later**.
-For thick mode, use Oracle Client Libraries **19c or later**.
+For advanced Oracle Database features like Transparent Application Continuity (TAC) and Sharding, also requires Oracle Client Libraries **19c or later**.
 ///
 
 --8<-- "/_snippets/integrations/builtin/app-nodes/ai-tools.md"
@@ -73981,12 +74007,13 @@ You can use these credentials to authenticate the following nodes:
 
 /// note
 These nodes do not support SSH tunnels.
-They require Oracle Database 19c or later. For thick mode, use Oracle Client Libraries 19c or later.
+They require Oracle Database **19c or later**.
+For advanced Oracle Database features like Transparent Application Continuity (TAC) and Sharding, they also require Oracle Client Libraries **19c or later**.
 ///
 
 ## Prerequisites
 
-Create a user account on a [OracleDB](https://www.oracle.com/pls/topic/lookup?ctx=dblatest&id=GUID-F0246961-558F-480B-AC0F-14B50134621C) server database.
+Create a user account on an [Oracle Database](https://www.oracle.com/pls/topic/lookup?ctx=dblatest&id=GUID-F0246961-558F-480B-AC0F-14B50134621C) server.
 
 ## Supported authentication methods
 
@@ -74002,8 +74029,8 @@ To configure this credential, you'll need:
 
 - A **User** name.
 - A **Password** for that user.
-- **Connection String**: The Oracle database instance to connect to. The string can be an Easy Connect string, or a TNS Alias from a tnsnames.ora file, or the Oracle database instance.
-- **Use Optional Oracle Client Libraries**: If you want to use node-oracledb Thick mode for working with Oracle Database advanced features, turn this on. This option is not available in official n8n docker images. Additional settings to enable Thick mode are required. Refer to [Enabling Thick mode documentation](https://node-oracledb.readthedocs.io/en/latest/user_guide/initialization.html#enabling-node-oracledb-thick-mode) for more information.
+- **Connection String**: The Oracle Database instance to connect to. The string can be an Easy Connect string, or a TNS Alias from a tnsnames.ora file, or the Oracle Database instance.
+- **Use Optional Oracle Client Libraries**: If you want to work with Oracle Database advanced features, turn this on. This option internally uses node-oracledb Thick mode. Additional settings to enable node-oracledb Thick mode are required. Refer to [Enabling Thick mode documentation](https://node-oracledb.readthedocs.io/en/latest/user_guide/initialization.html#enabling-node-oracledb-thick-mode) for more information. This option is not available in the official n8n docker images.
 - **Use SSL**: If your Connection String is using SSL, turn this on and configure additional details for the SSL Authentication.
 - **Wallet Password**: The password to decrypt the Privacy Enhanced Mail (PEM)-encoded private certificate, if it is encrypted.
 - **Wallet Content**: The security credentials required to establish a mutual TLS (mTLS) connection to Oracle Database.
@@ -82314,7 +82341,7 @@ The release of n8n 2.0 continues n8n's commitment to providing a secure, reliabl
 
 ### Return expected sub-workflow data when it contains a wait node
 
-Previously, when a workflow (parent) called a subworkflow (child) that contained a Wait node, the parent workflow incorrectly received the input items to the Wait node from the child workflow.
+Previously, when a workflow (parent) called a subworkflow (child) that contained a node that waits (for example a Wait node or a human-in-the-loop node), the parent workflow incorrectly received the input items to the waiting node from the child workflow.
 
 In v2, the parent workflow now receives the output data from the end of the child workflow instead.
 
