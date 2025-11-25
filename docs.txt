@@ -13755,7 +13755,7 @@ You must be an instance owner, instance admin, or project admin to push changes 
 n8n commits the following to Git:
 
 * Workflows, including their tags and the email address of the workflow owner. You can choose which workflows to push.
-* Credential stubs (ID, name, type)
+* Credential stubs - ID, name and type. Any other fields are included only if they are [expressions](https://docs.n8n.io/code/expressions/). You can choose which credentials to push.
 * Variable stubs (ID and name)
 * Projects
 * Folders
@@ -17876,7 +17876,7 @@ This page lists environment variables for customizing endpoints in n8n.
 | `N8N_METRICS_INCLUDE_API_PATH_LABEL` | Boolean | `false` | Whether to include a label for the path of API invocations. |
 | `N8N_METRICS_INCLUDE_API_METHOD_LABEL` | Boolean | `false` | Whether to include a label for the HTTP method (GET, POST, ...) of API invocations. |
 | `N8N_METRICS_INCLUDE_API_STATUS_CODE_LABEL` | Boolean | `false` | Whether to include a label for the HTTP status code (200, 404, ...) of API invocations. |
-| `N8N_METRICS_INCLUDE_QUEUE_METRICS` | Boolean | `false` | Whether to include metrics for jobs in scaling mode. Not supported in multi-main setup. |
+| `N8N_METRICS_INCLUDE_QUEUE_METRICS` | Boolean | `false` | Whether to include metrics for jobs in scaling mode. |
 | `N8N_METRICS_QUEUE_METRICS_INTERVAL` | Integer | `20` | How often (in seconds) to update queue metrics. |
 | `N8N_ENDPOINT_REST` | String | `rest` | The path used for REST endpoint. |
 | `N8N_ENDPOINT_WEBHOOK` | String | `webhook` | The path used for webhook endpoint. |
@@ -17961,7 +17961,7 @@ You can define external hooks that n8n executes whenever a specific operation ru
 | `N8N_RUNNERS_MAX_PAYLOAD` | Number | `1 073 741 824` | Maximum payload size in bytes for communication between a task broker and a task runner. |
 | `N8N_RUNNERS_MAX_OLD_SPACE_SIZE` | String |  | The `--max-old-space-size` option to use for a task runner (in MB). By default, Node.js will set this based on available memory. |
 | `N8N_RUNNERS_MAX_CONCURRENCY` | Number | `5` | The number of concurrent tasks a task runner can execute at a time. |
-| `N8N_RUNNERS_TASK_TIMEOUT` | Number | `60` | The maximum time, in seconds, a task can run before the runner stops it and restarts. This value must be greater than 0. |
+| `N8N_RUNNERS_TASK_TIMEOUT` | Number | `300` | The maximum time, in seconds, a task can run before the runner stops it and restarts. This value must be greater than 0. |
 | `N8N_RUNNERS_HEARTBEAT_INTERVAL` | Number | `30` | The interval, in seconds, at which the runner must send a heartbeat to the broker. If the runner doesn't send a heartbeat in time, the task stops and the runner restarts. This value must be greater than 0. |
 | `N8N_RUNNERS_INSECURE_MODE` | Boolean | `false` | Whether to disable all security measures in the task runner, for compatibility with modules that rely on insecure JS features. **Discouraged for production use.** |
 | `N8N_RUNNERS_TASK_REQUEST_TIMEOUT` | Number | `20` | How long (in seconds) a task request can wait for a runner to become available before timing out. This prevents workflows from hanging indefinitely when no runners are available. Must be greater than 0. |
@@ -18258,6 +18258,10 @@ You must also allowlist any first-party or third-party packages for use by the C
 * `NODE_FUNCTION_ALLOW_EXTERNAL`: comma-separated list of allowed JS packages.
 * `N8N_RUNNERS_STDLIB_ALLOW`: comma-separated list of allowed Python standard library packages.
 * `N8N_RUNNERS_EXTERNAL_ALLOW`: comma-separated list of allowed Python packages.
+
+#### Multiple runners and the port for the runner's health check server
+
+When a single runner is configured, the *"health-check-server-port"* field found in the `n8n-task-runners.json` configuration file is optional and defaults to 5681. When multiple runners are configured, this is required and must be unique per runner. Refer to the launcher’s [config file documentation](https://github.com/n8n-io/task-runner-launcher/blob/main/docs/setup.md#config-file) for the full list of options and examples.
 
 ### 2. Build your custom image
 
@@ -24668,9 +24672,9 @@ You can set the variable to a single file:
 
 `EXTERNAL_HOOK_FILES=/data/hook.js`
 
-Or to contain multiple files separated by a semicolon:
+Or to contain multiple files separated by a colon:
 
-`EXTERNAL_HOOK_FILES=/data/hook1.js;/data/hook2.js`
+`EXTERNAL_HOOK_FILES=/data/hook1.js:/data/hook2.js`
 
 ### Backend hook files
 
@@ -28218,6 +28222,27 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 ///
 
 
+
+## n8n@1.122.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.121.0...n8n@1.122.0) for this version.<br />
+**Release date:** 2025-11-24
+
+This release contains bug fixes and the following features.
+
+* Introduces best practices for all builder categories and adds support for global credentials.
+* The AI builder now includes a Python script for workflow comparison and sends validation issues to telemetry.
+* Core updates allow creating data tables from CSV files, configurable workflow statistics, and improved user role provisioning for enterprise, including SSO settings integration.
+* The editor features a dismissable callout for scaling mode, CSV download for data tables, custom project roles (Beta), and enhanced data table visibility.
+* Additional improvements include a new MCP Client Node, Stripe billing meter events, and updates to binary data handling and workflow search.
+
+### Contributors
+
+[mi1os](https://github.com/mi1os)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
 ## n8n@1.121.2
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.121.1...n8n@1.121.2) for this version.<br />
@@ -28505,8 +28530,6 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.116.0...n8n@1.117.0) for this version.<br />
 **Release date:** 2025-10-21
 
-
-
 This release contains bug fixes.
 
 ### Contributors
@@ -28524,10 +28547,6 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.116.1...n8n@1.116.2) for this version.<br />
 **Release date:** 2025-10-21
 
-
-
-
-
 This release contains a bug fix.
 
 
@@ -28539,8 +28558,6 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.115.3...n8n@1.115
 This release contains a bug fix.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-
 
 ## n8n@1.116.1
 
@@ -28586,7 +28603,6 @@ For details, see [Import entities](/hosting/cli-commands.md#import-entities)
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
-
 ## n8n@1.116.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.115.0...n8n@1.116.0) for this version.<br />
@@ -28619,13 +28635,9 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.115.1...n8n@1.115
 **Release date:** 2025-10-10
 
 
-
-
-
 This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
 
 
 ## n8n@1.114.4
@@ -28705,15 +28717,12 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.114.2...n8n@1.114
 **Release date:** 2025-10-06
 
 
-
-
 This release contains bug fixes.
 
 ## n8n@1.114.2
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.114.1...n8n@1.114.2) for this version.<br />
 **Release date:** 2025-10-02
-
 
 
 This release contains bug fixes.
@@ -28728,7 +28737,6 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.114.0...n8n@1.114
 This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
 
 
 ## n8n@1.114.0
@@ -28747,17 +28755,10 @@ This release contains core updates, editor improvements, project updates, perfor
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
-
 ## n8n@1.113.3
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.113.2...n8n@1.113.3) for this version.<br />
 **Release date:** 2025-09-26
-
-
-
-
-
-
 
 This release contains a bug fix.
 
