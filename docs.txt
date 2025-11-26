@@ -2460,8 +2460,8 @@ docker compose up -d
 /// note | Latest and Next versions
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `latest`: 1.120.4
-Current `next`: 1.121.2
+Current `latest`: 1.121.2
+Current `next`: 1.122.2
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -2968,7 +2968,6 @@ For the following nodes, you can authenticate by selecting **Sign in with Google
 
 * [Google Calendar](/integrations/builtin/app-nodes/n8n-nodes-base.googlecalendar/index.md)
 * [Google Contacts](/integrations/builtin/app-nodes/n8n-nodes-base.googlecontacts.md)
-* [Google Drive](/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/index.md)
 * [Google Mail](/integrations/builtin/app-nodes/n8n-nodes-base.gmail/index.md)
 * [Google Sheets](/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/index.md)
 * [Google Sheets Trigger](/integrations/builtin/trigger-nodes/n8n-nodes-base.googlesheetstrigger/index.md)
@@ -11336,8 +11335,8 @@ The best way to learn n8n is by using our tutorials to get familiar with the use
 
 ## Change instance ownership
 
-You can change the ownership of an instance by navigating to the **Settings** page in the owner's account and editing the **Email** field. After making the changes, scroll down and press **Save**.
-Note that for the change to be effective, the new email address can't be linked to any other n8n account.
+You can change the ownership of an instance by navigating to the **Settings > Personal** page in the owner's account and editing the **Email** field. After making the changes, scroll down and press **Save**.
+Note that for the change to be effective, the new email address must not be associated with any other n8n account, as each instance can have only one **unique owner email**. If the intended email is already linked to an existing user, that user must be deleted before proceeding.
 
 Changing emails will change the owner of the instance, the email you log in with, and the email your invoices and general communication gets sent to.
 
@@ -14824,7 +14823,7 @@ When handling binary data, n8n keeps the data in memory by default. This can cau
 
 To avoid this, change the `N8N_DEFAULT_BINARY_DATA_MODE` [environment variable](/hosting/configuration/environment-variables/binary-data.md) to `filesystem`. This causes n8n to save data to disk, instead of using memory.
 
-If you're using queue mode, keep this to `default`. n8n doesn't support filesystem mode with queue mode.
+If you're using queue mode, switch this to `database`. n8n doesn't support `filesystem` mode with queue mode.
 
 ## Binary data pruning
 
@@ -17633,7 +17632,7 @@ By default, n8n uses memory to store binary data. Enterprise users can choose to
 | :------- | :---- | :------- | :---------- |
 | `N8N_AVAILABLE_BINARY_DATA_MODES` | String | `filesystem` | A comma separated list of available binary data modes. |
 | `N8N_BINARY_DATA_STORAGE_PATH` | String | `N8N_USER_FOLDER/binaryData` | The path where n8n stores binary data. |
-| `N8N_DEFAULT_BINARY_DATA_MODE` | String | `default` | The default binary data mode. `default` keeps binary data in memory. Set to `filesystem` to use the filesystem, or `s3` to AWS S3. Note that binary data pruning operates on the active binary data mode. For example, if your instance stored data in S3, and you later switched to filesystem mode, n8n only prunes binary data in the filesystem. This may change in future. |
+| `N8N_DEFAULT_BINARY_DATA_MODE` | String | `default` | The default binary data mode. `default` keeps binary data in memory. Set to `filesystem` to use the filesystem, or `s3` to AWS S3, or `database` to use the DB. Note that binary data pruning operates on the active binary data mode. For example, if your instance stored data in S3, and you later switched to filesystem mode, n8n only prunes binary data in the filesystem. This may change in future. |
 
 === https://docs.n8n.io/docs/hosting/configuration/environment-variables/source-control/
 
@@ -17936,6 +17935,7 @@ You can define external hooks that n8n executes whenever a specific operation ru
 | `N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS` | Boolean | `false` | Set to `true` to try to set 0600 permissions for the settings file, giving only the owner read and write access. |
 | `N8N_RESTRICT_FILE_ACCESS_TO` | String |  | Limits access to files in these directories. Provide multiple files as a colon-separated list ("`:`"). |
 | `N8N_SECURITY_AUDIT_DAYS_ABANDONED_WORKFLOW` | Number | 90 | Number of days to consider a workflow abandoned if it's not executed. |
+|`N8N_CONTENT_SECURITY_POLICY`| String | `{}` | Set [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) headers as [helmet.js](https://helmetjs.github.io/#content-security-policy) nested directives object. For example, `{ "frame-ancestors": ["http://localhost:3000"] }` |
 | `N8N_SECURE_COOKIE` | Boolean | `true` | Ensures that cookies are only sent over HTTPS, enhancing security.|
 | `N8N_SAMESITE_COOKIE` | Enum string: `strict`, `lax`, `none` | `lax` | Controls cross-site cookie behavior ([learn more](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite)):<ul><li>`strict`: Sent only for first-party requests.</li><li>`lax` (default): Sent with top-level navigation requests.</li><li>`none`: Sent in all contexts (requires HTTPS).</li></ul> |
 | `N8N_GIT_NODE_DISABLE_BARE_REPOS` | Boolean | `false` | Set to `true` to prevent the [Git node](/integrations/builtin/core-nodes/n8n-nodes-base.git.md) from working with bare repositories, enhancing security. |
@@ -20315,6 +20315,44 @@ Read the [Set up SAML](/user-management/saml/setup.md) guide first.
 1. Select **Save settings**.
 1. Select **Test settings**. n8n opens a new tab. If you're not currently logged in, Okta prompts you to sign in. n8n then displays a success message confirming the attributes returned by Okta.
 
+### Instance and project access provisioning
+
+See the [Set up SAML page](/user-management/saml/setup.md#instance-and-project-access-provisioning) for additional information of this feature.
+
+**Adding the required attributes**
+
+1. In your Okta admin panel, select **Applications** > **Applications**.
+2. Go to the configuration of your n8n application
+3. On the **General** tab, click **Edit** next to **SAML Settings**
+4. In the page that opens, continue to step 2: **Configure SAML**
+5. Add the following two **Attribute Statements**:
+
+	| **Name** | **Name format** | **Value** |
+	| -------- | --------------- | --------- |
+	| n8n_instance_role | string | appuser.n8n_instance_role |
+	| n8n_projects | array | appuser.n8n_projects |
+
+6. Click **Next**
+7. Click **Finish**
+
+**Updating the app profile**
+
+1. In your Okta admin panel, select **Directory** > **Profile Editor**.
+2. Go to the profile of your n8n application
+3. Click **Add Attribute**
+4. Add the **n8n_instance_role** attribute
+	* **Data type**: string
+	* **Display name**: n8n_instance_role
+	* **Variable name**: n8n_instance_role
+	* **Attribute type**: Group
+4. Add the **n8n_projects** attribute
+	* **Data type**: string array
+	* **Display name**: n8n_projects
+	* **Variable name**: n8n_projects
+	* **Attribute type**: Group
+	* **Group priority**: Combine values across groups
+
+Now when you go to **Directory** > **Groups** and edit the assigned n8n application, you can configure the **n8n_instance_role** and **n8n_projects** to be sent to n8n upon logging in via SAML.
 
 === https://docs.n8n.io/docs/user-management/saml/setup/
 
@@ -20326,18 +20364,18 @@ Read the [Set up SAML](/user-management/saml/setup.md) guide first.
 
 1. In n8n, go to **Settings** > **SSO**.
 1. Make a note of the n8n **Redirect URL** and **Entity ID**.
-	1. **Optional**: if your IdP allows you to set up SAML from imported metadata, navigate to the **Entity ID** URL and save the XML. 
-	2. **Optional**: if you are running n8n behind a load balancer make sure you have `N8N_EDITOR_BASE_URL` configured. 
-1. Set up SAML with your IdP (identity provider). You need the redirect URL and entity ID. You may also need an email address and name for the IdP user.
+	* **Optional**: If your IdP allows you to set up SAML from imported metadata, navigate to the **Entity ID** URL and save the XML. 
+	* **Optional**: If you are running n8n behind a load balancer make sure you have `N8N_EDITOR_BASE_URL` configured. 
+1. Set up SAML with your identity provider (IdP). You need the **Redirect URL** and **Entity ID**. You may also need an email address and name for the IdP user.
 1. After completing setup in your IdP, load the metadata XML into n8n. You can use a metadata URL or raw XML:
-	1. **Metadata URL**: Copy the metadata URL from your IdP into the **Identity Provider Settings** field in n8n.
-	1. **Raw XML**: Download the metadata XML from your IdP, toggle **Identiy Provider Settings** to **XML**, then copy the raw XML into **Identity Provider Settings**.
+	* **Metadata URL**: Copy the metadata URL from your IdP into the **Identity Provider Settings** field in n8n.
+	* **Raw XML**: Download the metadata XML from your IdP, toggle **Identiy Provider Settings** to **XML**, and then copy the raw XML into **Identity Provider Settings**.
 1. Select **Save settings**.
 1. Select **Test settings** to check your SAML setup is working.
 1. Set SAML 2.0 to **Activated**.
 
 /// note | SAML Request Type
-Please note, n8n currently doesn't support `POST` binding. Please configure your IdP to use `HTTP` request binding instead. 
+n8n doesn't support `POST` binding. Configure your IdP to use `HTTP` request binding instead. 
 ///
 
 ## Generic IdP setup
@@ -20347,12 +20385,68 @@ The steps to configure the IdP vary depending on your chosen IdP. These are some
 * Create an app for n8n in your IdP.
 * Map n8n attributes to IdP attributes:
 
-	| Name | Name format | Value (IdP side) |
-	| ---- | ----------- | ---------------- |
-	| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` | URI Reference | User email       |
-	| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/firstname`    | URI Reference | User First Name  |
-	| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/lastname`     | URI Reference | User Last Name   |
-	| `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn`          | URI Reference | User Email       |
+| Value (IdP side) | Name format | Name |
+| ---------------- | ----------- | ---- |
+| User email       | URI Reference | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` |
+| User First Name  | URI Reference | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/firstname`    |
+| User Last Name   | URI Reference | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/lastname`     |
+| User Email       | URI Reference | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn`          |
+
+### Instance and project access provisioning
+
+From version `1.122.2` upwards, n8n supports provisioning the instance role and project roles from your IdP.
+
+You need to configure these attributes on the groups or individual users in your IdP:
+
+| Value (on IdP side) | Name format | Name |
+| ---------------- | ----------- | ---- |
+| `n8n_instance_role` | string | `n8n_instance_role` |
+| `n8n_projects` | array | `n8n_projects` |
+
+On the form on the **Settings** > **SSO** page, located the dropdown labeled **User role provisioning**. n8n sets the default value of this dropdown to **Managed in n8n**.
+
+You can choose to set it to one of these values:
+
+- **Instance role**
+    * Only the instance role of each provisioned user is read from the `n8n_instance_role` attribute from the SAML response. Project access is still managed inside n8n only.
+    * If there is no value for `n8n_instance_role` configured on your IdP, the `global:member` role is used as fallback.
+- **Instance and project roles**
+    * Both the instance role and project access of each provisioned user are read from the `n8n_instance_role` and `n8n_projects` attributes from the SAML response.
+
+/// warning | Existing access will be overwritten
+Once you enable "User role provisioning", the next time any user logs in via SAML, any access they've been granted inside n8n, which isn't reflected in the n8n_instance_role and n8n_projects will be removed from that user.
+
+When activating this feature, you are required to download two CSV files before you can save this change. These files contain all your current access settings should you need to reference them.
+///
+
+#### Configuring n8n_instance_role attribute
+
+The `n8n_instance_role` attribute is a string configured for a group or user on your IdP.
+
+Supported instance roles are:
+
+* `global:member`
+* `global:admin`
+
+#### Configuring n8n_projects attribute
+
+The `n8n_projects` attribute is a string array configured for a group or user on your IdP.
+
+Each element in this array needs to follow this format:
+`<project-id>:<role>`
+
+For example:
+
+* `bHsykgeFirmIhezz:viewer`
+* `4K3zrg3DvlMFFTB7:editor`
+* `dCjnYuEpYOUBVaNe:admin`
+
+For existing access settings at the time of enabling project access provisioning through your IdP, you can find the project IDs in the downloaded CSV file.
+
+When creating a project from scratch, get the project ID from the URL when viewing the project in your browser:
+
+In the URL `<your-domain>/projects/VVRWZaq5DRxaf9O1/workflows` for example, the project ID is `VVRWZaq5DRxaf9O1`.
+
 
 ## Setup resources for common IdPs
 
@@ -20367,7 +20461,6 @@ Documentation links for common IdPs.
 | Keycloak | Choose a [Getting Started](https://www.keycloak.org/guides#getting-started) guide depending on your hosting. |
 | Okta | n8n provides a [Workforce Identity setup guide](/user-management/saml/okta.md) |
 | PingIdentity | [PingOne SSO](https://docs.pingidentity.com/pingone/getting_started_with_pingone/p1_p1sso_start.html) |
-
 
 === https://docs.n8n.io/docs/user-management/saml/index/
 
@@ -20577,6 +20670,68 @@ n8n plans on adding PKCE support in a future release
 	- **Client Secret**: Enter the client secret you received when registering your application with your IdP.
 1. Select **Save settings**.
 1. Set OIDC to **Activated**.
+
+### Instance and project access provisioning
+
+From version `1.122.2` upwards, n8n supports provisioning the instance role and project roles from your IdP.
+
+You need to add a an additional scope called `n8n` to your OIDC authorization server.
+
+On this `n8n` scope, you need to add these two claims:
+
+1. **n8n_instance_role** 
+2. **n8n_projects** 
+
+These two need to always be included in the "ID Token" from your authorization server.
+
+Ensure that these two attributes are configured in the user groups of your identity provider that have access to n8n.
+
+Inside the form on the **Settings** > **SSO** page in n8n, you will find a dropdown labeled "User role provisioning" in the form.
+
+By default this is set to "Manged in n8n".
+
+You can choose to set it to:
+
+- Instance role
+    * Only the instance role of each provisioned user will be read from the `n8n_instance_role` attribute from the SAML response. Project access will still be managed inside n8n only.
+    * If there is no value for `n8n_instance_role` configured on your IdP, the `global:member` role is used as fallback.
+- Instance and project roles
+    * Both the instance role and project access of each provisioned user will be read from the `n8n_instance_role` and `n8n_projects` attributes from the SAML response.
+
+/// warning | Existing access will be overwritten
+Once you enable "User role provisioning", the next time any user logs in using SAML, any access they've been granted inside n8n, which isn't reflected in the n8n_instance_role and n8n_projects will be removed from that user.
+
+When activating this feature, you are required to download two CSV files before you can save this change. These files contain all your current access settings should you need to reference them.
+///
+
+**Configuring n8n_instance_role attribute**
+
+The n8n_instance_role attribute is a simple string configured for a group or user on your IdP.
+
+Supported instance roles are:
+
+* global:member
+* global:admin
+
+**Configuring n8n_projects attribute**
+
+The n8n_projects attribute is a string array configured for a group or user on your IdP.
+
+Each element in this array needs to follow this format:
+<project-id>:<role>
+
+For example:
+
+* bHsykgeFirmIhezz:viewer
+* 4K3zrg3DvlMFFTB7:editor
+* dCjnYuEpYOUBVaNe:admin
+
+For existing access settings at the time of enabling project access provisioning using your IdP, you can find the project IDs in the downloaded CSV file.
+
+When creating a project from scratch, get the project ID from the URL when viewing the project in your browser:
+
+In the URL `<your-domain>/projects/VVRWZaq5DRxaf9O1/workflows` for example, the project ID is `VVRWZaq5DRxaf9O1`.
+
 
 ## Provider-specific OIDC setup
 
@@ -27603,7 +27758,7 @@ You can use Python in the Code node. It isn't available in expressions.
 	| `$prevNode.outputIndex` | The index of the output connector that the current input came from. Use this when the previous node had multiple outputs (such as an If or Switch node).  When using the Merge node, note that `$prevNode` always uses the first input connector. | :white_check_mark: |
 	| `$prevNode.runIndex` | The run of the previous node that generated the current input. When using the Merge node, note that `$prevNode` always uses the first input connector. | :white_check_mark: |
 	| `$runIndex` | How many times n8n has executed the current node. Zero-based (the first run is 0, the second is 1, and so on). | :white_check_mark: |
-	| `$secrets` | Contains information about your [External secrets](/external-secrets.md) setup. | :white_check_mark: |
+	| `$secrets` | Contains information about your [External secrets](/external-secrets.md) setup. | :x: |
 	| `$vars` | Contains the [Variables](/code/variables.md) available in the active environment. | :white_check_mark: |
 	| `$version` | The node version. | :x: |
 	| `$workflow.active` | Whether the workflow is active (true) or not (false). | :white_check_mark: |
@@ -28223,6 +28378,21 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.122.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.122.0...n8n@1.122.2) for this version.<br />
+**Release date:** 2025-11-25
+
+/// note | Next version
+This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.122.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.121.0...n8n@1.122.0) for this version.<br />
@@ -28250,9 +28420,7 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.121.1...n8n@1.121
 * Fixed an issue with MCP access scope in the core system.
 * Updated editor to improve notice background colors for better visibility.
 
-/// note | Next version
-This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains bug fixes.
 **Release date:** 2025-11-20
@@ -28323,6 +28491,8 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.120.3...n8n@1.120
 /// note | Latest version
 This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 ///
+
+
 
 * Prepared for release 1.120.4 by updating version numbers across all core, backend, AI/LLM, frontend, and tooling packages.
 * Added a changelog entry for version 1.120.4 to document the release.
