@@ -2460,8 +2460,8 @@ docker compose up -d
 /// note | Latest and Next versions
 n8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `latest`: 1.121.3
-Current `next`: 1.122.3
+Current `latest`: 1.122.5
+Current `next`: 1.123.2
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -15523,6 +15523,23 @@ More granularly, consider blocking or opting out of features or data collection 
 * [Disable the public API](/hosting/securing/disable-public-api.md) if you aren't using it.
 * [Opt out of data collection](/hosting/securing/telemetry-opt-out.md) of the anonymous data n8n collects automatically.
 * [Block certain nodes](/hosting/securing/blocking-nodes.md) from being available to your users.
+* [Restrict account registration](/hosting/securing/restrict-by-email-verification.md) to email-verified users.
+
+=== https://docs.n8n.io/docs/hosting/securing/restrict-by-email-verification/
+
+# Restrict account registration to email-verified users
+
+You can require all new accounts to be verified by email. This prevents malicious admins from registering accounts without email verification.
+
+## Prerequisites
+
+* SMTP must be set up and n8n must be able to send emails.
+
+## How to restrict account registration
+
+Set the environment variable `N8N_INVITE_LINKS_EMAIL_ONLY` to `true`. This locks down your instance so that only users with verified email addresses can register.
+
+For more details on configuring SMTP, see [Set up SMTP](/hosting/configuration/user-management-self-hosted.md/#step-one-smtp).
 
 === https://docs.n8n.io/docs/hosting/installation/npm/
 
@@ -17760,7 +17777,7 @@ Refer to [User management](/hosting/configuration/user-management-self-hosted.md
 | `N8N_USER_MANAGEMENT_JWT_DURATION_HOURS` | Number | 168 | Set an expiration date for the JWTs in hours. |
 | `N8N_USER_MANAGEMENT_JWT_REFRESH_TIMEOUT_HOURS` | Number | 0 | How many hours before the JWT expires to automatically refresh it. 0 means 25% of `N8N_USER_MANAGEMENT_JWT_DURATION_HOURS`. -1 means it will never refresh, which forces users to log in again after the period defined in `N8N_USER_MANAGEMENT_JWT_DURATION_HOURS`. |
 | `N8N_MFA_ENABLED` | Boolean | `true` | Whether to enable two-factor authentication (true) or disable (false). n8n ignores this if existing users have 2FA enabled. |
-| `N8N_INVITE_LINKS_EMAIL_ONLY` | Boolean | `false` | When set to true, n8n will only deliver invite links via email and will not expose them through the API. This option enhances security by preventing invite URLs from being accessible programmatically, or to high priviledged users. |
+| `N8N_INVITE_LINKS_EMAIL_ONLY` | Boolean | `false` | When set to true, n8n will only deliver invite links via email and will not expose them through the API. This option enhances security by preventing invite URLs from being accessible programmatically, or to high privileged users. |
 <!-- vale on -->
 
 === https://docs.n8n.io/docs/hosting/configuration/environment-variables/database/
@@ -28399,6 +28416,49 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@2.0.0-rc.3
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.2...n8n@2.0.0-rc.3) for this version.<br />
+**Release date:** 2025-12-04
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+## n8n@2.0.0-rc.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.0...n8n@2.0.0-rc.1) for this version.<br />
+**Release date:** 2025-12-04
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@1.123.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.1...n8n@1.123.2) for this version.<br />
+**Release date:** 2025-12-04
+
+/// note | Next version
+This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.0.0-rc.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.1...n8n@2.0.0-rc.2) for this version.<br />
+**Release date:** 2025-12-04
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.123.1
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.0...n8n@1.123.1) for this version.<br />
@@ -28407,8 +28467,6 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.0...n8n@1.123
 This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-
 
 ## n8n@2.0.0-rc.0
 
@@ -28423,6 +28481,14 @@ This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
+## n8n@1.123.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.0...n8n@1.123.1) for this version.<br />
+**Release date:** 2025-12-03
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 ## n8n@1.123.0
@@ -28438,7 +28504,20 @@ This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
-## n8n@1.122.3
+## n8n@1.122.5
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.122.4...n8n@1.122.5) for this version.<br />
+**Release date:** 2025-12-04
+
+/// note | Latest version
+This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@1.122.4
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.122.3...n8n@1.122.4) for this version.<br />
 **Release date:** 2025-11-28
@@ -28461,9 +28540,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.122.0...n8n@1.122.2) for this version.<br />
 **Release date:** 2025-11-25
 
-/// note | Next version
-This is the `next` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains bug fixes.
 
@@ -28474,7 +28551,16 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.121.0...n8n@1.122.0) for this version.<br />
 **Release date:** 2025-11-24
 
-This release contains bug fixes and the following features.
+This release contains bug fixes and features.
+
+<div class="n8n-new-features" markdown> 
+### MCP Client node
+
+The **MCP Client node** allows you to connect to and use tools exposed by remote MCP servers directly within your workflow.
+<br><br>
+Previously, this functionality was only available through AI Agents using the **MCP Client Tool**. With this standalone node, you can now call MCP servers *from any step* in your workflow without relying on an Agent - providing greater flexibility and control over how and where you integrate external tools.
+<br><br>
+</div> 
 
 * The AI Workflow Builder now uses improved internal best-practice instructions, which helps it generate higher quality workflows for users.
 * Core updates allow creating data tables from CSV files, configurable workflow statistics, and improved user role provisioning for enterprise, including SSO settings integration.
@@ -28482,7 +28568,7 @@ This release contains bug fixes and the following features.
   * See the [new SAML documentation](/user-management/saml/setup.md#instance-and-project-access-provisioning)
   * See the [new OIDC documentation](/user-management/oidc/setup.md#instance-and-project-access-provisioning)
 * The editor features a dismissable callout for scaling mode, CSV download for data tables, custom project roles (Beta), and enhanced data table visibility.
-* Additional improvements include a new MCP Client Node, Stripe billing meter events, and updates to binary data handling and workflow search.
+* Additional improvements include Stripe billing meter events, and updates to binary data handling and workflow search.
 
 ### Contributors
 
@@ -28536,15 +28622,18 @@ You can now enable MCP connections at the instance level, giving MCP-compatible 
 	
 Once connected, these platforms can discover and interact with your workflows directly from their own interfaces, so you can observe, query, and trigger n8n workflows without switching contexts. As you add new MCP-enabled workflows to your instance, they automatically become available through the same connection without additional setup.
 
+<br><br>
 🛠️ How to:
 To enable workflows through an instance-level MCP connection, both your instance and each workflow must be opted in. 
 - To turn this feature on in your n8n instance, go the settings page for the instance and switch the Enable MCP Access toggle to on.
 - To allow access to individual workflows, go to the settings in each workflow and switch the Available in MCP toggle to on.
 
-🧠 Keep in mind:
+<br><br>
+🧠 Keep in mind:<br>
 - To keep access organized and auditable, consider using a workspace or team account when connecting on behalf of an organization.
 - All platforms connected to your instance MCP will have access to each of the workflows you have enabled. At this time, you cannot limit access of individual workflows to particular platforms.
 
+<br><br>
 This feature simplifies integration and improves visibility across AI platforms that support MCP, helping you use your n8n workflows directly in the tools where you already work and experiment. [Learn more in documentation.](/advanced-ai/accessing-n8n-mcp-server.md)
 <br> 
 <figure markdown="span">
@@ -28573,9 +28662,7 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.120.3...n8n@1.120
 
 **Release date:** 2025-11-19
 
-/// note | Latest version
-This is the `latest` version. n8n recommends using the `latest` version. The `next` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 
 
@@ -28676,6 +28763,18 @@ The default presets and prompts are adapted from the open-source [guardrails pac
 For more info, see [Guardrails documentation](/integrations/builtin/core-nodes/n8n-nodes-langchain.guardrails.md)
 </div>
 
+<div class="n8n-new-features" markdown> 
+### OAuth for MCP Client Tool node
+
+The MCP Client Tool now supports OAuth authentication, enabling secure connections to APIs that implement delegated access flows. [Learn more](/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp.md) about the MCP Client Tool node.
+<br> 
+<figure markdown="span">
+    ![Authentication options in MCP Client Tool node](/_images/release-notes/oauthmcp.png)
+    <figcaption>Authentication options in MCP Client Tool node</figcaption>
+</figure>
+<br>
+
+</div>
 ### Contributors
 
 [cesars-gh](https://github.com/cesars-gh)  
@@ -65341,9 +65440,10 @@ Create the question fields for your form. Select **Add Form Element** to add a n
 
 Every field has the following settings:
 
-- **Field Label**: Enter the label that appears above the input field. 
+- **Field Label**: Enter the label that appears above the input field on the rendered form. 
+- **Field Name**: This name is used in the output of the Form Trigger node. Use it to reference a form field in downstream nodes.
 - **Element Type**: Choose from **Checkboxes**, **Custom HTML**, **Date**, **Dropdown**, **Email**, **File**, **Hidden Field**, **Number**, **Password**, **Radio Buttons**, **Text**, or **Textarea**.
-	- Select **Checkboxes** to include checkbox elements in the form. By default, there is no limit on how many checboxes a form user can select. You can set the limit by specifying a value for the **Limit Selection** option as **Exact Number**, **Range**, or **Unlimited**.
+	- Select **Checkboxes** to include checkbox elements in the form. By default, there is no limit on how many checkboxes a form user can select. You can set the limit by specifying a value for the **Limit Selection** option as **Exact Number**, **Range**, or **Unlimited**.
 	- Select **Custom HTML** to insert arbitrary HTML.
 		- You can include elements like links, images, video, and more. You can't include `<script>`, `<style>`, or `<input>` elements.
 		- By default, Custom HTML fields aren't included in the node output. To include the Custom HTML content in the output, fill out the associated **Element Name** field.
@@ -65351,6 +65451,8 @@ Every field has the following settings:
 	- Select **Dropdown List** > **Add Field Option** to add multiple options. By default, the dropdown is single-choice. To make it multiple-choice, turn on **Multiple Choice**.
 	- Select **Radio Buttons** to include radio button elements in the form.
 	- Select **Hidden Field** to include a form element without displaying it on the form. You can set a default value using the **Field Value** parameter or pass values for the field using [query parameters](#set-default-selections-with-query-parameters).
+- **Placeholder**: Define a sample text to display inside compatible form elements. Placeholders are supported in **Email**, **Number**, **Password**, **Text** and **Textarea**.
+- **Default value**: Define a default value that will be pre-filled or pre-selected in compatible form elements. Default values are supported in all form elements except **Custom HTML**, **File**, **Hidden Field**, and **Password**.
 - **Required Field**: Turn on to require users to complete this field on the form. 
 
 ### Respond When
@@ -65952,14 +66054,16 @@ When serving the form, you can pass values for hidden fields using [query parame
 
 Use **Define Form** > **Using JSON** to define the fields of your form with a [JSON array of objects](/data/data-structure.md). Each object defines a single field by using a combination of these keys:
 
-- `fieldLabel`: The label that appears above the input field. 
+- `fieldLabel`: The label that appears above the input field on the rendered form. 
+- `fieldName`: The field name that is used in the output of the Form node and to reference the field in expressions.
 - `fieldType`: Choose from `checkbox`, `date`, `dropdown`, `email`, `file`, `hiddenField`, `html`, `number`, `password`, `radio`, `text`, or `textarea`.
     - Use `date` to include a date picker in the form. Refer to [Date and time with Luxon](/code/cookbook/luxon.md) for more information on formatting dates.
 	- When using `dropdown`, set the choices with `fieldOptions` (reference the example below). By default, the dropdown is single-choice. To make it multiple-choice, set `multiselect` to `true`. As an alternative, you can use `checkbox` or `radio` together with `fieldOptions` too.
 	- When using `file`, set `multipleFiles` to `true` to allow users to select more than one file. To define the file types to allow, set `acceptFileTypes` to a string containing a comma-separated list of file extensions (reference the example below).
 	- Use `hiddenField` to add a hidden field to your form. Refer to [Including hidden fields](#including-hidden-fields) for more information.
 	- Use `html` to display custom HTML on your form. Refer to [Displaying custom HTML](#displaying-custom-html) for more information.
-- `placeholder`: Specify placeholder data for the field. You can use this for every `fieldType` except `dropdown`, `date`, and `file`.
+- `placeholder`: Specify placeholder data for the field. You can use this for every `fieldType` except `dropdown`, `checkbox`, `radio`, `date`, and `file`.
+- `defaultValue`: Specify a value that will be pre-filled or pre-selected in the form element. You can use this for every `fieldType` except `password`, `html`, `hiddenField` and `file`.
 - `requiredField`: Require users to complete this field on the form.
 
 An example JSON that shows the general format required and the keys available:
@@ -65967,7 +66071,9 @@ An example JSON that shows the general format required and the keys available:
 ```javascript
 // Use the "requiredField" key on any field to mark it as mandatory
 // Use the "placeholder" key to specify placeholder data for all fields
-// except 'dropdown', 'date' and 'file'
+// except 'dropdown', 'checkbox', 'radio', 'date' and 'file'
+// Use the "defaultValue" key to pre-fill a form field or pre-select a 
+// value in 'checkbox', 'radio' or 'dropdown' fields
 
 [
   {
@@ -65989,6 +66095,7 @@ An example JSON that shows the general format required and the keys available:
         }
       ]
     },
+    "defaultValue": "option 1",
     "requiredField": true
   },
   {
@@ -66009,7 +66116,7 @@ An example JSON that shows the general format required and the keys available:
   {
     "fieldLabel": "Email",
     "fieldType": "email",
-    "placeholder": "me@mail.con"
+    "placeholder": "me@mail.com"
   },
   {
     "fieldLabel": "File",
@@ -66031,7 +66138,8 @@ An example JSON that shows the general format required and the keys available:
   },
   {
     "fieldLabel": "Textarea",
-    "fieldType": "textarea"
+    "fieldType": "textarea",
+    "defaultValue": "Lorem ipsum."
   },
   {
     "fieldType": "html",
@@ -66050,7 +66158,8 @@ An example JSON that shows the general format required and the keys available:
           "option": "option 2"
         }
       ]
-    }
+    },
+    "defaultValue": ["option 1", "option 2"]
   },
   {
     "fieldLabel": "Radio",
