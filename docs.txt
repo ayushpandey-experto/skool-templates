@@ -2463,8 +2463,8 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 1.123.4
-Current `beta`: 2.0.0
+Current `stable`: 1.123.5
+Current `beta`: 2.0.1
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -10884,6 +10884,15 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.3...n8n@2.0.0-rc.4) for this version.<br />
 **Release date:** 2025-12-05
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@1.123.5
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.4...n8n@1.123.5) for this version.<br />
+**Release date:** 2025-12-10
 
 This release contains bug fixes.
 
@@ -35358,6 +35367,15 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
 
+## n8n@2.0.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0...n8n@2.0.1) for this version.<br />
+**Release date:** 2025-12-10
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
 ## n8n@2.0.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.3...n8n@2.0.0) for this version.<br />
@@ -39846,10 +39864,8 @@ Unverified community nodes aren't available on n8n cloud and require [self-hosti
 
 # Install community nodes from npm in the n8n app
 
-/// note | Only for instance owners of self-hosted n8n instances
-Only the n8n instance owner of a self-hosted n8n instance can install and manage community nodes from npm. The instance owner is the person who sets up and manages user management.
-
-Admin accounts can also uninstall any community node, verified or unverified. This helps them remove problematic nodes that may affect the instance's health and functionality.
+/// note | Owner and Admin users only
+Only users with an Owner or Admin role can install and manage community nodes from npm on a self-hosted n8n instance. The instance owner is the person who sets up and manages user management.
 ///
 
 ## Install a community node
