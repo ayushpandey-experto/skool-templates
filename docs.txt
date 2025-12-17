@@ -2463,8 +2463,8 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 1.123.5
-Current `beta`: 2.0.1
+Current `stable`: 2.0.2
+Current `beta`: 2.1.0
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -10880,10 +10880,10 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 ///
 
 
-## n8n@2.0.0-rc.4
+## n8n@1.123.6
 
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.3...n8n@2.0.0-rc.4) for this version.<br />
-**Release date:** 2025-12-05
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.5...n8n@1.123.6) for this version.<br />
+**Release date:** 2025-12-15
 
 This release contains bug fixes.
 
@@ -10910,25 +10910,6 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 
 
 
-## n8n@2.0.0-rc.3
-
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.2...n8n@2.0.0-rc.3) for this version.<br />
-**Release date:** 2025-12-04
-
-This release contains bug fixes.
-
-For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-
-## n8n@2.0.0-rc.1
-
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.0...n8n@2.0.0-rc.1) for this version.<br />
-**Release date:** 2025-12-04
-
-This release contains bug fixes.
-
-For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
 ## n8n@1.123.2
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.1...n8n@1.123.2) for this version.<br />
@@ -10942,35 +10923,12 @@ This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
-## n8n@2.0.0-rc.2
-
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.1...n8n@2.0.0-rc.2) for this version.<br />
-**Release date:** 2025-12-04
-
-This release contains a bug fix.
-
-For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-
 ## n8n@1.123.1
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.0...n8n@1.123.1) for this version.<br />
 **Release date:** 2025-12-03
 
 This release contains bug fixes.
-
-For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-## n8n@2.0.0-rc.0
-
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.122.0...n8n@2.0.0-rc.0) for this version.<br />
-**Release date:** 2025-12-02
-
-This release contains bug fixes.
-
-### Contributors
-
-[farzad528](https://github.com/farzad528)  
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
@@ -19201,17 +19159,21 @@ In comparison, you configure an MCP Server Trigger node inside a single workflow
 
 ### For Cloud and self-hosted instances
 
-1. Navigate to **Settings > MCP Access**
+1. Navigate to **Settings > Instance-level MCP**
 2. Toggle **Enable MCP access** (requires instance owner or admin permissions).
 
    ![enable-mcp-access.png](/_images/advanced-ai/enable-mcp-access.png)
 
 Once enabled, you'll see:
 
-- Connection instructions
-- List of workflows exposed to MCP clients
+1. List of workflows exposed to MCP clients
+2. List of connected OAuth clients
+3. Main MCP toggle to enable/disable instance-level access
+4. *Connect* button that shows detailed instructions for connecting MCP clients
 
-**To disable:** Toggle the switch off.
+   ![mcp_page_content.png](/_images/advanced-ai/mcp_page_content.png)
+
+**To disable:** Toggle the main MCP toggle off.
 
 ### For self-hosted: Complete disablement
 
@@ -19223,10 +19185,12 @@ This action removes MCP endpoints and hides all related UI elements.
 
 ## Setting up MCP authentication
 
-The **How to connect** section on the **MCP Access** page provides two authentication methods for MCP clients:
+The **Connect** popup menu provides two authentication options for MCP clients:
 
 - **OAuth2**
 - **Access Token**
+
+   ![mcp_connect_menu.png](/_images/advanced-ai/mcp_connect_menu.png)
 
 ### Using OAuth2
 
@@ -19237,14 +19201,16 @@ After connecting, the client will redirect you to n8n to authorize access.
 
 To revoke access for connected MCP clients:
 
-1. Navigate to **Settings > MCP Access**.
-2. Switch to the **OAuth** tab in the **How to connect** section.
-   You should see a table of connected clients in the **Connected OAuth clients** section.
+1. Navigate to **Settings > Instance-level MCP**.
+2. Switch to the **Connected clients** tab.
+   You should see a table of connected OAuth clients.
 3. Use the action menu in each client's row to revoke access for specific clients.
+
+   ![mcp_revoke_client_access.png](/_images/advanced-ai/mcp_revoke_client_access.png)
 
 ### Using Access Token
 
-Use your instance server URL and your personal MCP Access Token from the **Access Token** tab on the settings page.
+Use your instance server URL and your personal MCP Access Token from the **Access Token** tab on the *Connect* menu.
 
 When you first visit the **MCP Access page**, n8n automatically generates a personal MCP Access Token tied to your user account.
 
@@ -19256,14 +19222,17 @@ Copy your token right away. On future visits, you'll only see a redacted value a
 
 If you lose your token or need to rotate it:
 
-1. Navigate to **Settings > MCP Access**.
-2. Make sure you are on the **Access Token** tab in the **How to connect** section.
-2. Generate a new token.
+1. Navigate to **Settings > Instance-level MCP**.
+2. Open the *Connect* menu by clicking the **Connect** button in the top-right corner.
+3. Switch to the **Access Token** tab.
+4. Generate a new token using the button next to the redacted token value.
     
     n8n revokes the previous token when you generate a new one.
     
 3. Update all connected MCP clients with the new value.
 
+
+   ![mcp_rotate_token.png](/_images/advanced-ai/mcp_rotate_token.png)
 
 ## Exposing workflows to MCP clients
 
@@ -19271,14 +19240,16 @@ If you lose your token or need to rotate it:
 
 In order for a workflow to be available to MCP clients, it must meet the following criteria:
 
-1. Be active
+1. Be published
 2. Contain one of the following trigger nodes:
     - Webhook
     - Schedule
     - Chat
     - Form
 
-By default, no workflows are visible to MCP clients. You must explicitly enable access.
+By default, no workflows are visible to MCP clients. You must explicitly enable access for each eligible workflow you want to expose.
+
+When evaluating workflow eligibility, n8n will take into account only the published version of the workflow. Workflows that have a supported trigger added to a draft version won't be considered eligible until the version is published.
 
 /// info
 Once you unpublish a workflow, n8n removes its MCP access. You will have to re-enable access when you publish the workflow again.
@@ -19300,20 +19271,27 @@ Once you unpublish a workflow, n8n removes its MCP access. You will have to re-e
 
 ### Managing access
 
-The **MCP Access settings page** shows all workflows available to MCP clients. From this list you can:
+The **Instance-level MCP** settings page shows all workflows available to MCP clients. From this list you can:
 
-- Open a workflow directly
+- Open a workflow, its home project or parent folder directly
 - Revoke access using the action menu (or use **Disable MCP access** from the workflow card menu)
+- Update workflow description using the action menu (or use the menu in the workflow editor)
 
 ### Workflow descriptions
 
 To help MCP clients identify workflows, you can add free-text descriptions as follows:
 
-1. Open the workflow.
-2. Click the pencil icon next to the workflow name.
-3. Enter your description in the **Description** field.
+1. Option 1: From the **Instance-level MCP** page
+	1. Navigate to **Settings > Instance-level MCP**.
+	2. Make sure you are on the **Workflows** tab.
+    3. Use the action menu in the desired workflow's row and select the **Edit description** action.
+	
+2. Option 2: From the workflow editor
+	1. Open the workflow.
+	2. Click the main workflow menu (`...`) in the top-right corner.
+	3. Select **Edit description**.
 
-	![mcp-access-workflow-descriptions.png](/_images/advanced-ai/mcp-access-workflow-descriptions.png)
+	![mcp_workflow_description.png](/_images/advanced-ai/mcp_workflow_description.png)
 
 ## Executing workflows through MCP clients
 
@@ -19321,12 +19299,7 @@ MCP clients can execute eligible workflows on your request. When a client trigge
 
 ### Providing input data
 
-If a workflow requires input data, the MCP client must provide that data when triggering the workflow. The workflow's trigger node determines the schema of the input data:
-
-1. **Webhook trigger**: The MCP client will look for hints in workflow contents and its description. It's up to the workflow author to provide enough information for the client to generate valid input data.
-2. **Schedule trigger**: No input data is required.
-3. **Chat trigger**: Chat input format is determined by the chat node configuration.
-4. **Form trigger**: Form fields are determined by the form node configuration.
+MCP clients are typically able to assess what inputs are expected by a workflow. If you have a webhook trigger and If you see a client struggling to determine the right inputs, we recommend you provide this information in the workflow description.
 
 ### Workflow timeouts
 
@@ -19359,7 +19332,7 @@ n8n enforces a 5-minute timeout for workflow executions triggered by MCP clients
 2. Click on **Add custom connector**.
 3. Enter the following details:
    	- **Name:** n8n MCP
-    - **Remote MCP Server URL**: Your n8n base URL (shown on the **MCP Access** page)
+    - **Remote MCP Server URL**: Your n8n base URL (shown on the **Instance-level MCP** page)
 4. Save the connector.
 5. When prompted, authorize Claude Desktop to access your n8n instance.
 
@@ -19391,7 +19364,7 @@ Add the following entry to your `claude_desktop_config.json` file:
 
 Here, replace:
 
-- `<your-n8n-domain>`: Your n8n base URL (shown on the **MCP Access** page)
+- `<your-n8n-domain>`: Your n8n base URL (shown on the **Instance-level MCP** page)
 - `<YOUR_N8N_MCP_TOKEN>`: Your generated token
 
 ### Connecting Claude Code to n8n MCP server
@@ -19421,7 +19394,7 @@ Alternatively, add the following entry to your `claude.json` file:
 
 Here, replace:
 
-- `<your-n8n-domain>`: Your n8n base URL (shown on the **MCP Access** page)
+- `<your-n8n-domain>`: Your n8n base URL (shown on the **Instance-level MCP** page)
 - `<YOUR_N8N_MCP_TOKEN>`: Your generated token
 
 ### Connecting Codex CLI to n8n MCP server
@@ -19443,7 +19416,7 @@ args = [
 
 Here, replace:
 
-- `<your-n8n-domain>`: Your n8n base URL (shown on the **MCP Access** page)
+- `<your-n8n-domain>`: Your n8n base URL (shown on the **Instance-level MCP** page)
 - `<YOUR_N8N_MCP_TOKEN>`: Your generated token
 
 ### Connecting Google ADK agent to n8n MCP server
@@ -20156,6 +20129,72 @@ This again depends a lot on your data:
 Using the right overlap size is important for the AI to understand the context of the chunk. That's also why using the Markdown or Code Block splitting can often help to make chunks better.
 
 Another good approach is to add more context to it (for example, about the document where the chunk came from). If you want you can read more about this, you can check out [this great article from Anthropic](https://www.anthropic.com/news/contextual-retrieval).
+
+=== https://docs.n8n.io/docs/advanced-ai/chat-hub/
+
+# Chat Hub
+
+## Overview
+
+Chat Hub is a centralized AI chat interface where you can access multiple AI models, interact with n8n agents, and create your own agents. Chat Hub also introduces Chat user, a role that lets users interact with the chat interface without accessing n8n workflows.
+
+## How to use
+
+To use Chat Hub, find the **Chat** option in the navigation bar, select a model, and start a conversation.
+
+### Creating simple personal agents
+
+To make AI more reliable for simple, repetitive tasks, you can create Custom Agents with custom instructions. To create a simple personal agent:
+
+1. Click on **Personal Agents** and then **+New Agent**.
+2. Define the name, description, system prompt, preferred model, and access to tools.
+3. Select **Save**.
+
+Once created, you can select the personal agent from the model selector.
+
+### Using n8n workflows agents
+
+For more complex scenarios, use n8n workflow agents (built by you or your colleagues) to make your workflows available in Chat Hub. Right now, you can only use workflows that have a **Chat Trigger** with streaming enabled in the **Agent** node. To make your workflow available:
+
+1. Open your selected workflow.
+2. Open the **Chat Trigger**.
+    
+    /// note
+    Only chat triggers of the newest version will work. To get the newest chat trigger version, delete your existing chat trigger and insert a new one.
+    ///
+    
+3. Enable the **Make Available in n8n Chat** option and set the name and description of the personal agent.
+4. Make sure that your AI Agent node has the **Enable Streaming** option enabled.
+5. Activate your workflow.
+
+Once defined, you can select your workflow from the model selector in Chat Hub. Your colleagues need access to the workflow by sharing it or having it in a project where they have at least viewer access.
+
+## Managing permissions
+
+You can define which users can perform which actions through n8n's role system. Chat Hub also gives you more ways to control who uses what.
+
+### Chat user role
+
+The Chat user is a role for people in your organization who want to use workflows without building them. Chat users only see the chat interface and can't add credentials or workflows by default.
+
+Chat users are only available on Starter, Pro, Business and Enterprise plans.
+
+### Provider settings
+
+Admins can control which models and providers users can access in Chat Hub. This includes:
+
+- Enabling or disabling specific models and providers
+- Preventing users from adding their own models
+- Setting default credentials for each provider
+- Restricting users from adding their own credentials (through n8n's permission system)
+
+To manage these settings, go to **Settings > Chat** and edit the providers.
+
+## Considerations and limitations
+
+1. You can't add file knowledge when creating simple personal agents.
+2. Tool selection is limited to a few options.
+2. Only workflows with [Chat Trigger node](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md) and streaming-enabled [AI Agent node](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/index.md) work as workflow agents. Your workflows must meet specific requirements.
 
 === https://docs.n8n.io/docs/advanced-ai/index/
 
@@ -22420,6 +22459,14 @@ The nodes that can pose security risks vary based on your use case and user prof
 * [Execute Command](/integrations/builtin/core-nodes/n8n-nodes-base.executecommand/index.md)
 * [Read/Write Files from Disk](/integrations/builtin/core-nodes/n8n-nodes-base.readwritefile.md)
 
+## Enable nodes that are blocked by default
+
+Some nodes, like Execute Command, are blocked by default. Remove them from the exclude list to enable them:
+
+```
+NODES_EXCLUDE: "[]"
+```
+
 ## Related resources
 
 Refer to [Nodes environment variables](/hosting/configuration/environment-variables/nodes.md) for more information on this environment variable.
@@ -24617,7 +24664,7 @@ This page lists the environment variables configuration options for managing [no
 | `NODE_FUNCTION_ALLOW_BUILTIN`            | String           | -                             | Permit users to import specific built-in modules in the Code node. Use * to allow all. n8n disables importing modules by default.                                                                                                   |
 | `NODE_FUNCTION_ALLOW_EXTERNAL`           | String           | -                             | Permit users to import specific external modules (from `n8n/node_modules`) in the Code node. n8n disables importing modules by default.                                                                                             |
 | `NODES_ERROR_TRIGGER_TYPE`               | String           | `n8n-nodes-base.errorTrigger` | Specify which node type to use as Error Trigger.                                                                                                                                                                                      |
-| `NODES_EXCLUDE`                          | Array of strings | -                             | Specify which nodes not to load. For example, to block nodes that can be a security risk if users aren't trustworthy: `NODES_EXCLUDE: "[\"n8n-nodes-base.executeCommand\", \"@n8n/n8n-nodes-langchain.lmChatDeepSeek\"]"`                       |
+| `NODES_EXCLUDE`                          | Array of strings | `[\"n8n-nodes-base.executeCommand\", \"n8n-nodes-base.localFileTrigger\"]`                             | Specify which nodes not to load. For example, to block nodes that can be a security risk if users aren't trustworthy: `NODES_EXCLUDE: "[\"n8n-nodes-base.executeCommand\", \"@n8n/n8n-nodes-langchain.lmChatDeepSeek\"]"`.  To enable all nodes, specify `NODES_EXCLUDE: "[]"`.                       |
 | `NODES_INCLUDE`                          | Array of strings | -                             | Specify which nodes to load.                                                                                                                                                                                                          |
 
 === https://docs.n8n.io/docs/hosting/configuration/environment-variables/external-secrets/
@@ -31808,7 +31855,7 @@ n8n has many [environment variables](/hosting/configuration/environment-variable
 | `EXECUTIONS_DATA_PRUNE` | Boolean | `true` | Whether to delete data of past executions on a rolling basis. |
 | `EXECUTIONS_DATA_MAX_AGE` | Number | `336` | The execution age (in hours) before it's deleted. |
 | `EXECUTIONS_DATA_PRUNE_MAX_COUNT` | Number | `10000` | Maximum number of executions to keep in the database. 0 = no limit |
-| `NODES_EXCLUDE` | Array of strings | - | Specify which nodes not to load. For example, to block nodes that can be a security risk if users aren't trustworthy: `NODES_EXCLUDE: "[\"n8n-nodes-base.executeCommand\", \"n8n-nodes-base.readWriteFile\"]"` |
+| `NODES_EXCLUDE` | Array of strings | `[\"n8n-nodes-base.executeCommand\", \"n8n-nodes-base.localFileTrigger\"]` | Specify which nodes not to load. For example, to block nodes that can be a security risk if users aren't trustworthy: `NODES_EXCLUDE: "[\"n8n-nodes-base.executeCommand\", \"n8n-nodes-base.readWriteFile\"]"`. To enable all nodes, specify `NODES_EXCLUDE: "[]"`. |
 | `NODES_INCLUDE` | Array of strings | - | Specify which nodes to load. |
 | `N8N_TEMPLATES_ENABLED` | Boolean | `true` | Enable [workflow templates](/glossary.md#template-n8n) (true) or disable (false). |
 | `N8N_TEMPLATES_HOST` | String | `https://api.n8n.io` | Change this if creating your own workflow template library. Note that to use your own workflow templates library, your API must provide the same endpoints and response structure as n8n's. Refer to [Workflow templates](/workflows/templates.md) for more information. |
@@ -35399,7 +35446,20 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
 
+## n8n@2.1.0
 
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0...n8n@2.1.0) for this version.<br />
+**Release date:** 2025-12-16
+
+This release contains bug fixes and features.
+
+### Contributors
+
+[Akcthecoder200](https://github.com/Akcthecoder200)  
+[rishiraj-58](https://github.com/rishiraj-58)  
+[rlafferty](https://github.com/rlafferty)
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 ## n8n@2.0.2
 
@@ -35407,15 +35467,6 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.1...n8n@2.0.2) 
 **Release date:** 2025-12-12
 
 This release contains a bug fix.
-
-For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-## n8n@1.123.5
-
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.0...n8n@1.123.5) for this version.<br />
-**Release date:** 2025-12-12
-
-This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
@@ -35467,6 +35518,56 @@ n8n 2.0 introduces a safer approach to updating live workflows. The `Save` butto
 **Canvas and navigation improvements**
 
 Subtle refinements to the workflow editor canvas and reorganized sidebar navigation.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+## n8n@2.0.0-rc.4
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.3...n8n@2.0.0-rc.4) for this version.<br />
+**Release date:** 2025-12-05
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.0.0-rc.3
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.2...n8n@2.0.0-rc.3) for this version.<br />
+**Release date:** 2025-12-04
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.0.0-rc.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.1...n8n@2.0.0-rc.2) for this version.<br />
+**Release date:** 2025-12-04
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.0.0-rc.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.0.0-rc.0...n8n@2.0.0-rc.1) for this version.<br />
+**Release date:** 2025-12-04
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.0.0-rc.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.122.0...n8n@2.0.0-rc.0) for this version.<br />
+**Release date:** 2025-12-02
+
+This release contains bug fixes.
+
+### Contributors
+
+[farzad528](https://github.com/farzad528)  
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
@@ -64220,7 +64321,7 @@ To avoid this error, reduce output your command produces. Check your command's m
 The Execute Command node runs shell commands on the host machine that runs n8n.
 
 /// warning | Security considerations
-The Execute Command node can introduce significant security risks in environments that operate with untrusted users. Because of this, n8n recommends [disabling](/hosting/securing/blocking-nodes.md#exclude-nodes) it in such setups.
+The Execute Command node can introduce significant security risks in environments that operate with untrusted users. Because of this, the node is [disabled](/hosting/securing/blocking-nodes.md#exclude-nodes) by default starting from version 2.0.
 ///
 
 /// note | Which shell runs the command?
@@ -66219,9 +66320,13 @@ The following options are also available:
 
 The Local File Trigger node starts a workflow when it detects changes on the file system. These changes involve a file or folder getting added, changed, or deleted.
 
+/// warning | Security considerations
+The Local File Trigger node can introduce significant security risks in environments that operate with untrusted users. Because of this, the node is [disabled](/hosting/securing/blocking-nodes.md#exclude-nodes) by default starting from version 2.0.
+///
+
 /// note | Self-hosted n8n only
 This node isn't available on n8n Cloud.
-///
+/// 
 
 ## Node parameters
 
@@ -67552,14 +67657,14 @@ Set whether the chat should be publicly available (turned on) or only available 
 
 Leave this turned off while you're building the workflow. Turn it on when you're ready to publish the workflow and allow users to access the chat.
 
-### Mode
+#### Mode
 
 Choose how users access the chat. Select from:
 
 * **Hosted Chat**: Use n8n's hosted chat interface. Recommended for most users because you can configure the interface using the [node options](#node-options) and don't have to do any other setup.
 * **Embedded Chat**: This option requires you to create your own chat interface. You can use n8n's [chat widget](https://www.npmjs.com/package/@n8n/chat) or build your own. Your chat interface must call the webhook URL shown in **Chat URL** in the node.
 
-### Authentication
+#### Authentication
 
 Choose whether and how to restrict access to the chat. Select from:
 
@@ -67568,9 +67673,21 @@ Choose whether and how to restrict access to the chat. Select from:
 	* Select or create a **Credential for Basic Auth** with a username and password. All users must use the same username and password.
 * **n8n User Auth**: Only users logged in to an n8n account can use the chat.
 
-### Initial Message(s)
+#### Initial Message(s)
 
 This parameter's only available if you're using **Hosted Chat**. Use it to configure the message the n8n chat interface displays when the user arrives on the page.
+
+### Make Available in n8n Chat
+
+Choose whether to make the agent available to Chat Hub.
+
+#### Agent Name
+
+The name of the agent on Chat Hub.
+
+#### Agent description
+
+The description of the agent on Chat Hub.
 
 ## Node options
 
@@ -83900,6 +84017,16 @@ v2: The parent execution receives the result of the child execution:
 This allows using human-in-the-loop nodes in the sub-workflow and use the results (for example approving or declining an action) in the parent-workflow.
 
 **Migration path:** Review any workflows that call sub-workflows and expect to receive the input to the sub-workflow. Update these workflows to handle the new behavior, where the parent-workflow receives the output from the end of the child-workflow instead.
+
+### Start node removed
+
+The Start node is no longer supported. This node was the original way to begin workflows but more specific trigger nodes now replace it.
+
+**Migration path:** Replace the Start node based on how you use your workflow:
+
+- **Manual executions:** Replace the Start node with a [Manual Trigger](/integrations/builtin/core-nodes/n8n-nodes-base.manualworkflowtrigger.md) node.
+- **Sub-workflows:** If another workflow calls this workflow as a sub-workflow, replace the Start node with an [Execute Workflow Trigger](/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger.md) node and activate the workflow.
+- **Disabled Start nodes:** If the Start node is disabled, delete it from the workflow.
 
 ### Removed nodes for retired services
 
