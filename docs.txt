@@ -2463,8 +2463,8 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.1.4
-Current `beta`: 2.2.1
+Current `stable`: 2.2.3
+Current `beta`: 2.3.0
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -10879,6 +10879,15 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n [here](/release-notes/0-x.md)
 ///
+
+## n8n@1.123.10
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.9...n8n@1.123.10) for this version.<br />
+**Release date:** 2025-12-31
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 ## n8n@1.123.9
 
@@ -32678,8 +32687,8 @@ See [Data table node](/integrations/builtin/core-nodes/n8n-nodes-base.datatable/
 
 ## Considerations and limitations of data tables
 
-- Data tables are suitable for light to moderate data storage. By default, a data table can't contain more than 50MB of data. In self-hosted environments, you can increase this default size limit using the environment variable `N8N_DATA_TABLES_MAX_SIZE_BYTES`.
-- When a data table approaches 80% of your storage limit, a warning will alert you. A final warning appears when you reach the storage limit. Exceeding this limit will disable manual additions to tables and cause workflow execution errors during attempts to insert or update data.
+- Data tables are suitable for light to moderate data storage. By default, the total storage used by all data tables in an instance is limited to 50MB. In self-hosted environments, you can increase this default size limit using the environment variable `N8N_DATA_TABLES_MAX_SIZE_BYTES`.
+- When your data tables approach 80% of your storage limit, a warning will alert you. A final warning appears when you reach the storage limit. Exceeding this limit will disable manual additions to tables and cause workflow execution errors during attempts to insert or update data.
 - By default, data tables created within a project are accessible to all team members in that project.
 - Tables created in a **Personal** space are only accessible by their creator.
 
@@ -35485,48 +35494,60 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
 
-## n8n@2.2.0
 
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.1.0...n8n@2.2.0) for this version.<br />
 
-**Release date:** 2025-12-22
+## n8n@2.2.4
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.2.3...n8n@2.2.4) for this version.<br />
+**Release date:** 2026-01-06
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.3.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.2.0...n8n@2.3.0) for this version.<br />
+**Release date:** 2026-01-05
+
+This release contains bug fixes.
+
+### Contributors
+
+[Shashwat-06](https://github.com/Shashwat-06)  
+[ByteEVM](https://github.com/ByteEVM)  
+[mithredate](https://github.com/mithredate)  
+[belyas](https://github.com/belyas)  
+[saurabhssonkar](https://github.com/saurabhssonkar)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.2.3
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.2.2...n8n@2.2.3) for this version.<br />
+**Release date:** 2026-01-05
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.2.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.2.1...n8n@2.2.2) for this version.<br />
+**Release date:** 2025-12-30
 
 This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
+## n8n@2.1.5
 
-## n8n@2.1.2
-
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.1.1...n8n@2.1.2) for this version.<br />
-**Release date:** 2025-12-22
-
-This release contains bug fixes.
-
-For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-
-## n8n@2.1.3
-
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.1.2...n8n@2.1.3) for this version.<br />
-**Release date:** 2025-12-23
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.1.4...n8n@2.1.5) for this version.<br />
+**Release date:** 2025-12-30
 
 This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-
-
-## n8n@2.2.1
-
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.2.0...n8n@2.2.1) for this version.<br />
-**Release date:** 2025-12-23
-
-This release contains bug fixes.
-
-For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-
 
 ## n8n@2.1.4
 
@@ -35537,7 +35558,42 @@ This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
+## n8n@2.1.3
 
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.1.2...n8n@2.1.3) for this version.<br />
+**Release date:** 2025-12-23
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.2.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.2.0...n8n@2.2.1) for this version.<br />
+**Release date:** 2025-12-23
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.2.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.1.0...n8n@2.2.0) for this version.<br />
+
+**Release date:** 2025-12-22
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.1.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.1.1...n8n@2.1.2) for this version.<br />
+**Release date:** 2025-12-22
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 ## n8n@2.1.1
 
@@ -35547,8 +35603,6 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.1.0...n8n@2.1.1) 
 This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
-
-
 
 ## n8n@2.0.3
 
@@ -35700,6 +35754,11 @@ This release contains bug fixes.
 [farzad528](https://github.com/farzad528)  
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+/// note | Older versions
+You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
+///
 
 === https://docs.n8n.io/docs/migration-tool-v2/
 
