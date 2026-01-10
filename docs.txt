@@ -2387,7 +2387,7 @@ In your environment variables, set `N8N_TEMPLATES_ENABLED` to false.
 
 === https://docs.n8n.io/_snippets/user-management/sso-saml-availability/
 /// info | Feature availability
-* Available on Enterprise plans.
+* Available on Business and Enterprise plans.
 * You need to be an instance owner or admin to enable and configure SAML.
 ///	
 
@@ -27635,7 +27635,7 @@ Self-hosted users can configure their n8n instance to disable 2FA for all users 
 # Lightweight Directory Access Protocol (LDAP)
 
 /// info | Feature availability
-* Available on Self-hosted Enterprise and Cloud Enterprise plans.
+* Available on Self-hosted Business and Enterprise, and Cloud Enterprise plans.
 * You need access to the n8n instance owner account.
 ///
 
