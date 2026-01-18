@@ -24482,7 +24482,7 @@ If you're not familiar with SMTP, this [blog post by SendGrid](https://sendgrid.
 
 # Supported databases
 
-By default, n8n uses SQLite to save credentials, past executions, and workflows. n8n also supports PostgresDB.
+By default, n8n uses SQLite to save credentials, past executions, and workflows. n8n also supports PostgresDB (only [actively maintained versions](https://www.postgresql.org/support/versioning/)).
 
 ## Database type by n8n installation
 
@@ -84586,6 +84586,10 @@ The Start node is no longer supported. This node was the original way to begin w
 - **Manual executions:** Replace the Start node with a [Manual Trigger](/integrations/builtin/core-nodes/n8n-nodes-base.manualworkflowtrigger.md) node.
 - **Sub-workflows:** If another workflow calls this workflow as a sub-workflow, replace the Start node with an [Execute Workflow Trigger](/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger.md) node and activate the workflow.
 - **Disabled Start nodes:** If the Start node is disabled, delete it from the workflow.
+
+### Saving and publishing workflows
+
+The new workflow publishing system replaces the previous active/inactive toggle. This means that the old "Activate/Deactivate" toggles become the new "Publish/Unpublish" buttons. This change gives you better control over when your workflow changes go live, reducing the risk of accidentally deploying work-in-progress changes to production. More information can be found here: [Saving and publishing workflows.](/workflows/publish.md)
 
 ### Removed nodes for retired services
 
