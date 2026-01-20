@@ -10881,6 +10881,27 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 ///
 
 
+
+## n8n@1.123.16
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.15...n8n@1.123.16) for this version.<br />
+**Release date:** 2026-01-16
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+## n8n@1.123.15
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.14...n8n@1.123.15) for this version.<br />
+**Release date:** 2026-01-15
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
 ## n8n@1.123.13
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.12...n8n@1.123.13) for this version.<br />
@@ -27226,6 +27247,12 @@ Users can share workflows they created. Instance owners, and users with the admi
 3. In **Add users**, find and select the users you want to share with.
 4. Select **Save**.
 
+**Note:** This option is only available when sharing a workflow that is inside a **Personal** workspace. When trying to use the "Add users" option for a workflow that's **inside a project**, you'll get this pop-up instead:
+
+![Screenshot of the sharing option within projects](/_images/workflows/sharing-within-projects.png)
+
+This is intended behavior, and it means that the workflow is shared with everyone inside that specific project. Instead of adding the user directly to the workflow, you need to add the user to the project in which the workflow is located.
+
 ## View shared workflows
 
 You can browse and search workflows on the **Workflows** list. The workflows in the list depend on the project:
@@ -35737,6 +35764,36 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
+
+
+## n8n@2.4.3
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.2...n8n@2.4.3) for this version.<br />
+**Release date:** 2026-01-15
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.3.6
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.3.5...n8n@2.3.6) for this version.<br />
+**Release date:** 2026-01-16
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
+## n8n@2.4.4
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.3...n8n@2.4.4) for this version.<br />
+**Release date:** 2026-01-16
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
