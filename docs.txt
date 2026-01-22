@@ -2463,8 +2463,8 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.3.4
-Current `beta`: 2.4.1
+Current `stable`: 2.4.4
+Current `beta`: 2.5.0
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -12367,7 +12367,7 @@ This release contains core updates, editor improvements, node updates, and bug f
 
 ### **Respond to Chat node**
 
-With the [**Respond to Chat](/integrations/builtin/core-nodes/n8n-nodes-langchain.respondtochat.md) node**, you can now access Human-in-the-Loop functionality natively in n8n Chat.
+With the [**Respond to Chat](/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md) node**, you can now access Human-in-the-Loop functionality natively in n8n Chat.
 
 Enable conversational experiences where you can ask for clarification, request approval before taking further action, and get back intermediate results — all within a single workflow execution.
 
@@ -35772,6 +35772,10 @@ You can find the release notes for older versions of n8n: [1.x](/release-notes/1
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.0...n8n@2.5.0) for this version.<br />
 **Release date:** 2026-01-20
 
+/// note | Beta version
+This is the `beta` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
 This release contains bug fixes.
 
 ### Contributors
@@ -35810,6 +35814,10 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.3...n8n@2.4.4) for this version.<br />
 **Release date:** 2026-01-16
 
+/// note | Stable version
+This is the `stable` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
 This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
@@ -35832,9 +35840,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.0...n8n@2.4.1) for this version.<br />
 **Release date:** 2026-01-13
 
-/// note | Beta version
-This is the `beta` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains a bug fix.
 
@@ -35890,9 +35896,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.3.3...n8n@2.3.4) for this version.<br />
 **Release date:** 2026-01-13
 
-/// note | Stable version
-This is the `stable` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 
 
@@ -47691,7 +47695,7 @@ Refer to [Slack credentials](/integrations/builtin/credentials/slack.md) for gui
     * **Get permalink**: Get a message's permalink.
     * **Search** for messages
     * **Send** a message
-    * **Send and Wait for Approval**: Send a message and wait for approval from the recipient before continuing.
+    * **Send and Wait for Response**: Send a message and wait for a response from the recipient before continuing.
     * **Update** a message
 * **Reaction**
     * **Add** a reaction to a message.
@@ -47757,7 +47761,7 @@ If those aren't enough, use the table below to look up the resource and operatio
 | Message      | Get Permalink              | [chat.getPermalink](https://api.slack.com/methods/chat.getPermalink)               |
 | Message      | Search                     | [search.messages](https://api.slack.com/methods/search.messages)                   |
 | Message      | Send                       | [chat.postMessage](https://api.slack.com/methods/chat.postMessage)                 |
-| Message      | Send and Wait for Approval | [chat.postMessage](https://api.slack.com/methods/chat.postMessage)                 |
+| Message      | Send and Wait for Response | [chat.postMessage](https://api.slack.com/methods/chat.postMessage)                 |
 | Message      | Update                     | [chat.update](https://api.slack.com/methods/chat.update)                           |
 | Reaction     | Add                        | [reactions.add](https://api.slack.com/methods/reactions.add)                       |
 | Reaction     | Get                        | [reactions.get](https://api.slack.com/methods/reactions.get)                       |
@@ -64811,6 +64815,119 @@ You can also configure this operation with these **Options**:
 <!-- see https://www.notion.so/n8n/Pull-in-templates-for-the-integrations-pages-37c716837b804d30a33b47475f6e3780 -->
 [[ templatesWidget(page.title, 'convert-to-file') ]]
 
+=== https://docs.n8n.io/docs/integrations/builtin/core-nodes/n8n-nodes-langchain.chat/
+
+# Chat node
+
+Use the Chat node with the [Chat Trigger](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md) node to send messages into the chat and optionally wait for responses from users. This enables human-in-the-loop (HITL) use cases in chat workflows, allowing you to have multiple chat interactions within a single execution. The Chat node also works as a tool for AI Agents.
+
+All features work with both embedded and hosted chat interfaces.
+
+/// note | Chat Trigger node
+The Chat node requires a [Chat Trigger](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md) node to be present in the workflow, with the [Response Mode](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md#response-mode) set to 'Using Response Nodes'.
+///
+
+/// note | Previous version
+In previous versions, this node was called "Respond to Chat" and used a single "Wait for User Reply" toggle. The functionality has been reorganized into two distinct actions with additional response types.
+///
+
+## Node parameters
+
+--8<-- "_snippets/integrations/builtin/app-nodes/ai-tools.md"
+
+Configure this node using the following parameters.
+
+### Operation
+
+The Chat node supports the following operations:
+
+* **Send Message**: Send a message to the chat. The workflow execution continues immediately after sending.
+* **Send and Wait for Response**: Send a message to the chat and wait for a response from the user. This operation pauses the workflow execution until the user submits a response.
+
+Choosing **Send and Wait for Response** activates additional parameters and options as discussed in [waiting for a response](#waiting-for-a-response).
+
+### Message
+
+The message to send to the chat. This parameter is available for both operations.
+
+## Node options
+
+Use these **Options** to further refine the node's behavior.
+
+### Add Memory Input Connection
+
+Choose whether you want to commit the messages from the Chat node to a connected memory. Using a shared memory between an agent or chain [root node](/integrations/builtin/cluster-nodes/root-nodes/index.md) and the Chat node attaches the same session key to these messages and lets you capture the full message history.
+
+## Waiting for a response
+
+By choosing the **Send and Wait for Response** operation, you can send a message and pause the workflow execution until a person responds. This enables multi-turn conversations and approval workflows within a single execution.
+
+### Response Type
+
+You can choose between the following types of responses:
+
+* **Free Text**: Users can type any response in the chat. This is the same behavior as the previous "Wait for User Reply" option.
+* **Approval**: Users can approve or disapprove using inline buttons in the message. You can also optionally allow users to type custom responses.
+
+Different parameters and options are available depending on which type you choose.
+
+### Free Text parameters and options
+
+When using the Free Text response type, the user can type any message as their response.
+
+**Use cases:**
+- Open-ended questions
+- Collecting detailed feedback
+- Requesting specific information
+
+**Options:**
+* **Limit Wait Time**: Whether the workflow automatically resumes execution after a specified time limit. This can be an interval or a specific wall time.
+
+### Approval parameters and options
+
+When using the Approval response type, the message displays inline buttons that users can click to approve or disapprove. This response type follows the same pattern as other human-in-the-loop (HITL) nodes in n8n.
+
+**Use cases:**
+- Simple yes/no decisions
+- Approval workflows
+- Confirmations
+
+When using the Approval response type, the following parameters are available:
+
+* **Type of Approval**: Whether to present only an approval button or both approval and disapproval buttons.
+  - **Approve Only**: Displays a single approval button
+  - **Approve and Disapprove**: Displays both buttons (default)
+
+* **Approve Button Label**: The text to display on the approval button. Default: `Approve`
+
+* **Disapprove Button Label**: The text to display on the disapproval button (only shown when Type of Approval is "Approve and Disapprove"). Default: `Disapprove`
+
+* **Block User Input**: Whether to prevent users from typing custom messages (enabled) or allow them to type responses (disabled, default).
+  - When **disabled** (default): Users can click buttons or type a custom message. Typed messages are treated as disapproval with a custom message.
+  - When **enabled**: Users can only interact using the buttons.
+
+The Approval response type also offers the following option:
+
+* **Limit Wait Time**: Whether the workflow automatically resumes execution after a specified time limit. This can be an interval or a specific wall time.
+
+## Related resources
+
+--8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md"
+
+Refer to the [Chat Trigger](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md) node documentation for information about setting up the chat interface.
+
+## Templates and examples
+
+[[ templatesWidget(page.title, 'chat') ]]
+
+## Common issues
+
+- The Chat node doesn't work when used as a tool of a subagent.
+- The Chat node doesn't work when used in a subworkflow. This includes usage in a subworkflow that's being used as a tool for an AI Agent.
+- Make sure the Chat Trigger node's Response Mode is set to "Using Response Nodes" for the Chat node to function properly.
+
+For common questions or issues with the Chat Trigger node, refer to [Common Chat Trigger Node Issues](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/common-issues.md).
+
 === https://docs.n8n.io/docs/integrations/builtin/core-nodes/n8n-nodes-base.rssfeedread/
 
 # RSS Read
@@ -68345,7 +68462,7 @@ If you select any option other than **Off**, you must connect the Chat trigger a
 Use this option when building a workflow with steps after the agent or chain that's handling the chat. Choose from:
 
 * **When Last Node Finishes**: The Chat Trigger node returns the response code and the data output from the last node executed in the workflow.
-* **Using Response Nodes**: The Chat Trigger node responds as defined in a [Respond to Chat](/integrations/builtin/core-nodes/n8n-nodes-langchain.respondtochat.md) node or [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md) node. In this response mode, the Chat Trigger will solely show messages as defined in these nodes and not output the data from the last node executed in the workflow.
+* **Using Response Nodes**: The Chat Trigger node responds as defined in a [Chat](/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md) node or [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md) node. In this response mode, the Chat Trigger will solely show messages as defined in these nodes and not output the data from the last node executed in the workflow.
 
 /// note | Using Response Nodes
 This mode replaces the 'Using Respond to Webhook Node' mode from version 1.2 of the Chat Trigger node.
@@ -68382,7 +68499,7 @@ If you select any option other than **Off**, you must connect the Chat trigger a
 Use this option when building a workflow with steps after the agent or chain that's handling the chat. Choose from:
 
 * **When Last Node Finishes**: The Chat Trigger node returns the response code and the data output from the last node executed in the workflow.
-* **Using Response Nodes**: The Chat Trigger node responds as defined in a [Respond to Chat](/integrations/builtin/core-nodes/n8n-nodes-langchain.respondtochat.md) node or [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md) node. In this response mode, the Chat Trigger will solely show messages as defined in these nodes and not output the data from the last node executed in the workflow.
+* **Using Response Nodes**: The Chat Trigger node responds as defined in a [Chat](/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md) node or [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md) node. In this response mode, the Chat Trigger will solely show messages as defined in these nodes and not output the data from the last node executed in the workflow.
 
 /// note | Using Response Nodes
 This mode replaces the 'Using Respond to Webhook Node' mode from version 1.2 of the Chat Trigger node.
@@ -68406,8 +68523,8 @@ In a basic workflow, the Agent and Chain nodes output a parameter named either `
 
 If you need to manually create the response sent to the user, you must create a parameter named either `text` or `output`. If you use a different parameter name, the Chat trigger sends the entire object as its response, not just the value.
 
-/// note | Respond to Chat node
-When you are using a [Respond to Chat](/integrations/builtin/core-nodes/n8n-nodes-langchain.respondtochat.md) node to manually create the response sent to the user, you must set the Chat Trigger response mode to 'Using Response Nodes'.
+/// note | Chat node
+When you are using a [Chat](/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md) node to manually create the response sent to the user, you must set the Chat Trigger response mode to 'Using Response Nodes'.
 ///
 
 ## Common issues
@@ -70826,47 +70943,6 @@ n8n uses the following parsers:
 * To convert from Markdown to HTML: [Showdown](https://www.npmjs.com/package/showdown). Some options allow you to extend your Markdown with [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
 
-
-=== https://docs.n8n.io/docs/integrations/builtin/core-nodes/n8n-nodes-langchain.respondtochat/
-
-# Respond to Chat node
-
-Use the Respond to Chat node in correspondence with the [Chat Trigger](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md) node to send a response into the chat and optionally wait for a response from the user. This allows you to have multiple chat interactions within a single execution and enables human-in-the-loop use cases in the chat. The Respond to Chat node also works as a tool for AI Agents.
-
-/// note | Chat Trigger node
-The Respond to Chat node requires a [Chat Trigger](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md) node to be present in the workflow, with the [Response Mode](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md#response-mode) set to 'Using Response Nodes'.
-///
-
-## Node parameters
-
-### Message
-
-The message to send to the chat.
-
-### Wait for User Reply
-
-Set whether the workflow execution should wait for a response from the user (enabled) or continue immediately after sending the message (disabled).
-
-## Node options
-
-### Add Memory Input Connection
-
-Choose whether you want to commit the messages from the Respond to Chat node to a connected memory. Using a shared memory between an agent or chain [root node](/integrations/builtin/cluster-nodes/root-nodes/index.md) and the Respond to Chat node attaches the same session key to these messages and lets you capture the full message history.
-
-### Limit Wait Time
-
-When you enable **Wait for User Reply**, this option decides whether the workflow automatically resumes execution after a specific limit (enabled) or not (disabled).
-
-## Related resources
-
---8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md"
-
-## Common issues
-
-- The Respond to Chat node does not work when used as a tool of a subagent.
-- The Respond to Chat node does not work when used in a subworkflow. This includes usage in a subworkflow that's being used as a tool for an AI Agent.
-
-For common questions or issues and suggested solutions with the Chat Trigger node, refer to [Common Chat Trigger Node Issues](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/common-issues.md).
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/odoo/
 
