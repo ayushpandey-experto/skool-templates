@@ -3051,6 +3051,11 @@ To use a predefined credential type:
 This node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](/advanced-ai/examples/using-the-fromai-function.md).
 ///
 
+=== https://docs.n8n.io/_snippets/integrations/builtin/app-nodes/hitl-tools/
+/// note | Human-in-the-loop for AI tool calls
+This node can be used as a human review step for AI Agent tool calls. When configured this way, the AI Agent will pause and request human approval through this service before executing tools that require oversight. Learn more in [Human-in-the-loop for AI tool calls](/advanced-ai/human-in-the-loop-tools.md).
+///
+
 === https://docs.n8n.io/_snippets/integrations/builtin/app-nodes/googlesheets/node-options/
 - **Cell Format**: Use this option to choose how to format the data in cells. Refer to [Google Sheets API | CellFormat](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/cells#CellFormat) for more information.
     - **Let Google Sheets format** (default): n8n formats text and numbers in the cells according to Google Sheets' default settings. 
@@ -19904,6 +19909,126 @@ Since there are too many test cases to check individually, evaluations measure t
 * [Metric-based evaluations](/advanced-ai/evaluations/metric-based-evaluations.md): Advanced evaluations to maintain performance and correctness in production by using scoring and metrics with large datasets.
 * [Tips and common issues](/advanced-ai/evaluations/tips-and-common-issues.md): Learn how to set up specific evaluation use cases and work around common issues.
 
+=== https://docs.n8n.io/docs/advanced-ai/human-in-the-loop-tools/
+
+# Human-in-the-loop for AI tool calls
+
+You can require human approval before an AI Agent executes a specific tool. When a tool requires human review, the workflow pauses and waits for a person to take one of the following actions:
+
+- **Approve**: The tool executes with the input specified by the AI.
+- **Deny**: The action is canceled and doesn't run.
+
+This feature allows for selective oversight of tool use within AI workflows, making it easier to apply additional review to tools with higher risk, such as sending messages, modifying records, or deleting data.
+
+## When to use human review
+
+Human-in-the-loop (HITL) review is useful when:
+
+- **Tools perform irreversible actions**: Deleting data, sending external communications, or making purchases.
+- **Compliance requirements exist**: Regulated industries may require human approval for certain automated actions.
+- **High-value decisions are involved**: Actions that have significant business impact benefit from human oversight.
+- **You're building trust in AI workflows**: Start with human review enabled, then reduce oversight as confidence grows.
+
+HITL can be applied to all tools connected to an AI Agent node, or just selected individual tools, offering more precise control than general output gating.
+
+## How it works
+
+1. The AI Agent determines it needs to use a tool that has human review enabled.
+2. The workflow pauses and sends an approval request through your configured channel (such as Slack, Telegram, or the n8n Chat interface).
+3. A human reviewer receives the request showing which tool the AI wants to use and with what parameters.
+4. The reviewer either approves or denies the request.
+5. If approved, the tool executes with the AI-specified input. If denied, the action is canceled and the AI is informed of the rejection.
+
+/// note | Different approval channels
+The review step can happen through a different channel than the main interaction. For example, you could have users interact with an AI agent through the n8n Chat interface, but route approval requests to a specific person in Slack.
+///
+
+## Setting up human review for tools
+
+### Step 1: Open the Tools Panel
+
+In your workflow, click the **Tools** connector on an AI Agent node to open the Tools Panel.
+
+### Step 2: Add a human review step
+
+1. In the Tools Panel, find the **Human review** section.
+2. Select your preferred approval channel from the available options.
+3. Configure the approval channel with the appropriate credentials and settings.
+
+### Step 3: Connect tools to the review step
+
+1. Add the tools that require approval to the human review step's tool connector.
+2. Configure each tool as you normally would.
+
+<!-- TBD: Add screenshot showing Tools panel with Human review section and connected tools -->
+
+## Available approval channels
+
+You can use any of the following services as your human review channel:
+
+| Channel | Description |
+|---------|-------------|
+| [Chat](/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md) | n8n's built-in chat interface |
+| [Slack](/integrations/builtin/app-nodes/n8n-nodes-base.slack.md) | Send approval requests to a Slack channel or DM |
+| [Discord](/integrations/builtin/app-nodes/n8n-nodes-base.discord/index.md) | Send approval requests to a Discord channel |
+| [Telegram](/integrations/builtin/app-nodes/n8n-nodes-base.telegram/index.md) | Send approval requests through Telegram |
+| [Microsoft Teams](/integrations/builtin/app-nodes/n8n-nodes-base.microsoftteams.md) | Send approval requests to a Teams channel or chat |
+| [Gmail](/integrations/builtin/app-nodes/n8n-nodes-base.gmail/index.md) | Send approval requests via email |
+| [WhatsApp Business Cloud](/integrations/builtin/app-nodes/n8n-nodes-base.whatsapp/index.md) | Send approval requests through WhatsApp |
+| [Google Chat](/integrations/builtin/app-nodes/n8n-nodes-base.googlechat.md) | Send approval requests to Google Chat |
+| [Microsoft Outlook](/integrations/builtin/app-nodes/n8n-nodes-base.microsoftoutlook.md) | Send approval requests via Outlook email |
+
+## Using expressions in human review tools
+
+### The $tool variable
+
+When configuring the human review step, you can use the `$tool` variable to construct a message for the reviewer that provides context about what the AI is trying to do. This variable has two properties:
+
+| Property | Description |
+|----------|-------------|
+| `$tool.name` | The name of the tool the AI Agent is trying to call. This is the node name as shown on the canvas in n8n. |
+| `$tool.parameters` | The parameters the AI Agent is trying to use in the tool call. This includes any fields in the tool's input schema that are configured with `$fromAI()` expressions. |
+
+**Example message configuration:**
+
+```
+The AI wants to use {{ $tool.name }} with the following parameters:
+{{ JSON.stringify($tool.parameters, null, 2) }}
+```
+
+This helps reviewers understand exactly what action the AI is attempting before they approve or deny the request.
+
+### Using $fromAI() in human review tools
+
+The [`$fromAI()` function](/advanced-ai/examples/using-the-fromai-function.md) works with tools connected to human review steps. This means the AI can dynamically specify tool parameters, and those AI-determined values are what the human reviewer sees and approves.
+
+## System prompt best practices
+
+For the AI Agent to correctly interpret and handle denied tool call attempts, include information about the human review setup in your system prompt.
+
+/// warning | System prompt configuration required
+Make sure you include the tool setup and human review steps in your system prompt. This helps the AI understand which tools require approval and how to respond gracefully when a tool call is denied.
+///
+
+Consider including:
+
+- Which tools require human approval
+- What happens when approval is denied
+- How the AI should respond to rejections (for example, inform the user, suggest alternatives, or ask for clarification)
+
+<!-- TBD: Provide an example snippet -->
+
+## Chaining and subagents
+
+When using an AI Agent as a tool for another AI Agent, human review steps in the subagent work correctly.
+
+## Related resources
+
+- [AI Agent node](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/index.md)
+- [Tools Agent](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/tools-agent.md)
+- [What is a tool in AI?](/advanced-ai/examples/understand-tools.md)
+- [Let AI specify tool parameters with $fromAI()](/advanced-ai/examples/using-the-fromai-function.md)
+
 === https://docs.n8n.io/docs/advanced-ai/langchain/langchain-n8n/
 
 # LangChain concepts in n8n
@@ -22458,6 +22583,22 @@ This report shows:
 ## Run task runners as sidecars in external mode
 
 To increase the isolation between the core n8n process and code in the Code node, run task runners in [external mode](/hosting/configuration/task-runners.md#setting-up-external-mode). External task runners launch as separate containers, providing a fully isolated environment to execute the JavaScript defined in the Code node.
+
+## Use the distroless image
+
+For a reduced attack surface, use the distroless Docker image variant. Distroless images contain only the application and its runtime dependencies, excluding package managers, shells, and other utilities that aren't needed at runtime.
+
+To use the distroless image, append the `-distroless` suffix to the Docker tag. For example: `2.4.6-distroless`.
+
+## Run as the nobody user
+
+For improved security, configure task runners to run as the unprivileged `nobody` user with user and group ID 65532. This prevents the container process from running with root privileges and limits potential damage from security vulnerabilities.
+
+## Configure read-only root filesystem
+
+Configure a [read-only root filesystem](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) to prevent any modifications to the container's filesystem at runtime. This helps protect against malicious code that might attempt to modify system files.
+
+Task runners still require some temporary storage for operation. To accommodate this, mount a minimal `emptyDir` volume to `/tmp`. If your workflows require more temporary space, increase the size of the volume accordingly.
 
 === https://docs.n8n.io/docs/hosting/securing/telemetry-opt-out/
 
@@ -25225,6 +25366,10 @@ Task runners are a generic mechanism to execute tasks in a secure and performant
 
 This document describes how task runners work and how you can configure them.
 
+/// warning | Internal mode not recommended for production
+Using internal mode in production environments can pose a security risk. For production deployments, use [external mode](#external-mode) to ensure proper isolation between n8n and task runner processes. Refer to [Hardening task runners](/hosting/securing/hardening-task-runners.md) for additional security measures.
+///
+
 ## How it works
 
 The task runner feature consists of these components: one or more task runners, a task broker, and a task requester.
@@ -25251,7 +25396,7 @@ In external mode, a [launcher application](https://github.com/n8n-io/task-runner
 
 ![Task runner deployed as a side-car container](/_images/hosting/configuration/task-runner-external-mode.png)
 
-When using [Queue mode](/hosting/scaling/queue-mode.md), each worker needs to have its own sidecar container for task runners. 
+When using [Queue mode](/hosting/scaling/queue-mode.md), each worker needs to have its own sidecar container for task runners.
 
 In addition, if you haven't enabled offloading manual executions to workers (if you aren't setting `OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS=true` in your configuration), then your main instance will run manual executions and needs its own sidecar container for task runners as well. Please note that running n8n with offloading disabled isn't recommended for production.
 
@@ -25332,7 +25477,7 @@ The default launcher configuration file is locked down, but you can edit this fi
 path/to/n8n-task-runners.json:/etc/n8n-task-runners.json
 ```
 
-## Adding extra dependencies 
+## Adding extra dependencies
 
 ### 1. Extend the `n8nio/runners` image
 
@@ -35765,6 +35910,55 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
 
+## n8n@2.5.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.5.1...n8n@2.5.2) for this version.<br />
+**Release date:** 2026-01-23
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+## n8n@2.4.6
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.5...n8n@2.4.6) for this version.<br />
+**Release date:** 2026-01-23
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+## n8n@2.4.5
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.4...n8n@2.4.5) for this version.<br />
+**Release date:** 2026-01-22
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
+## n8n@2.6.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.5.0...n8n@2.6.0) for this version.<br />
+**Release date:** 2026-01-26
+
+This release contains bug fixes.
+
+### Contributors
+
+[ibex088](https://github.com/ibex088)  
+[johnlinp](https://github.com/johnlinp)  
+[loganaden](https://github.com/loganaden)  
+[Jameswlepage](https://github.com/Jameswlepage)  
+[cesars-gh](https://github.com/cesars-gh)  
+[antman1p](https://github.com/antman1p)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
 
 
 ## n8n@2.5.0
@@ -41146,6 +41340,10 @@ On this page, you'll find a list of events the Microsoft Teams Trigger node can 
 You can find authentication information for this node [here](/integrations/builtin/credentials/microsoft.md).
 ///
 
+/// tip | Government Cloud Support
+If you're using a government cloud tenant (US Government, US Government DOD, or China), make sure to select the appropriate **Microsoft Graph API Base URL** in your Microsoft credentials configuration.
+///
+
 ## Events
 
 * **New Channel**
@@ -41331,6 +41529,11 @@ On this page, you'll find a list of events the Microsoft Outlook Trigger node ca
 ///  note  | Credentials
 You can find authentication information for this node [here](/integrations/builtin/credentials/microsoft.md).
 ///
+
+/// tip | Government Cloud Support
+If you're using a government cloud tenant (US Government, US Government DOD, or China), make sure to select the appropriate **Microsoft Graph API Base URL** in your Microsoft credentials configuration.
+///
+
 ///  note  | Examples and templates
 For usage examples and templates to help you get started, refer to n8n's [Microsoft Outlook integrations](https://n8n.io/integrations/microsoft-outlook-trigger/) page.
 ///
@@ -42929,16 +43132,16 @@ For usage examples and templates to help you get started, refer to n8n's [Gumroa
 
 === https://docs.n8n.io/docs/integrations/builtin/trigger-nodes/n8n-nodes-base.jotformtrigger/
 
-# JotForm Trigger node
+# Jotform Trigger node
 
-[JotForm](https://www.jotform.com/) is an online form building service. JotForm's software creates forms with a drag and drop creation tool and an option to encrypt user data.
+[Jotform](https://www.jotform.com/) is an online form building service. Jotform's software creates forms with a drag and drop creation tool and an option to encrypt user data.
 
 /// note | Credentials
 You can find authentication information for this node [here](/integrations/builtin/credentials/jotform.md).
 ///
 
 ///  note  | Examples and templates
-For usage examples and templates to help you get started, refer to n8n's [JotForm Trigger integrations](https://n8n.io/integrations/jotform-trigger/) page.
+For usage examples and templates to help you get started, refer to n8n's [Jotform Trigger integrations](https://n8n.io/integrations/jotform-trigger/) page.
 ///
 
 === https://docs.n8n.io/docs/integrations/builtin/trigger-nodes/n8n-nodes-base.invoiceninjatrigger/
@@ -43359,6 +43562,10 @@ On this page, you'll find a list of events the Microsoft OneDrive Trigger node c
 
 ///  note  | Credentials
 You can find authentication information for this node [here](/integrations/builtin/credentials/microsoft.md).
+///
+
+/// tip | Government Cloud Support
+If you're using a government cloud tenant (US Government, US Government DOD, or China), make sure to select the appropriate **Microsoft Graph API Base URL** in your Microsoft credentials configuration.
 ///
 
 ///  note  | Examples and templates
@@ -44645,7 +44852,13 @@ On this page, you'll find a list of operations the Microsoft Teams node supports
 Refer to [Microsoft credentials](/integrations/builtin/credentials/microsoft.md) for guidance on setting up authentication.
 ///
 
+/// tip | Government Cloud Support
+If you're using a government cloud tenant (US Government, US Government DOD, or China), make sure to select the appropriate **Microsoft Graph API Base URL** in your Microsoft credentials configuration.
+///
+
 --8<-- "_snippets/integrations/builtin/app-nodes/ai-tools.md"
+
+--8<-- "_snippets/integrations/builtin/app-nodes/hitl-tools.md"
 
 ## Operations
 
@@ -44693,6 +44906,10 @@ On this page, you'll find a list of operations the Microsoft To Do node supports
 
 /// note | Credentials
 Refer to [Microsoft credentials](/integrations/builtin/credentials/microsoft.md) for guidance on setting up authentication.
+///
+
+/// tip | Government Cloud Support
+If you're using a government cloud tenant (US Government, US Government DOD, or China), make sure to select the appropriate **Microsoft Graph API Base URL** in your Microsoft credentials configuration.
 ///
 
 --8<-- "_snippets/integrations/builtin/app-nodes/ai-tools.md"
@@ -46529,6 +46746,10 @@ On this page, you'll find a list of operations the Microsoft Graph Security node
 Refer to [Microsoft credentials](/integrations/builtin/credentials/microsoft.md) for guidance on setting up authentication.
 ///
 
+/// tip | Government Cloud Support
+If you're using a government cloud tenant (US Government, US Government DOD, or China), make sure to select the appropriate **Microsoft Graph API Base URL** in your Microsoft credentials configuration.
+///
+
 ## Operations
 
 * Secure Score
@@ -46815,6 +47036,10 @@ On this page, you'll find a list of operations the Microsoft OneDrive node suppo
 
 /// note | Credentials
 Refer to [Microsoft credentials](/integrations/builtin/credentials/microsoft.md) for guidance on setting up authentication.
+///
+
+/// tip | Government Cloud Support
+If you're using a government cloud tenant (US Government, US Government DOD, or China), make sure to select the appropriate **Microsoft Graph API Base URL** in your Microsoft credentials configuration.
 ///
 
 --8<-- "_snippets/integrations/builtin/app-nodes/ai-tools.md"
@@ -47663,8 +47888,10 @@ Use the Slack node to automate work in Slack, and integrate Slack with other app
 On this page, you'll find a list of operations the Slack node supports and links to more resources.
 
 /// note | Credentials
-Refer to [Slack credentials](/integrations/builtin/credentials/slack.md) for guidance on setting up authentication. 
+Refer to [Slack credentials](/integrations/builtin/credentials/slack.md) for guidance on setting up authentication.
 ///
+
+--8<-- "_snippets/integrations/builtin/app-nodes/hitl-tools.md"
 
 ## Operations
 
@@ -48304,8 +48531,10 @@ Use the WhatsApp Business Cloud node to automate work in WhatsApp Business, and 
 On this page, you'll find a list of operations the WhatsApp Business Cloud node supports and links to more resources.
 
 /// note | Credentials
-Refer to [WhatsApp Business Cloud credentials](/integrations/builtin/credentials/whatsapp.md) for guidance on setting up authentication. 
+Refer to [WhatsApp Business Cloud credentials](/integrations/builtin/credentials/whatsapp.md) for guidance on setting up authentication.
 ///
+
+--8<-- "_snippets/integrations/builtin/app-nodes/hitl-tools.md"
 
 ## Operations
 
@@ -49115,7 +49344,9 @@ To use most of these operations, you must add your bot to a channel so that it c
 ///
 
 --8<-- "_snippets/integrations/builtin/app-nodes/ai-tools.md"
-s
+
+--8<-- "_snippets/integrations/builtin/app-nodes/hitl-tools.md"
+
 ## Delete Chat Message
 
 Use this operation to delete a message from chat using the Bot API [deleteMessage](https://core.telegram.org/bots/api#deletemessage) method.
@@ -53094,6 +53325,8 @@ Refer to [Google credentials](/integrations/builtin/credentials/google/index.md)
 
 --8<-- "_snippets/integrations/builtin/app-nodes/ai-tools.md"
 
+--8<-- "_snippets/integrations/builtin/app-nodes/hitl-tools.md"
+
 ## Operations
 
 * Member
@@ -53544,6 +53777,8 @@ For common errors or issues and suggested resolution steps, refer to [Common Iss
 # Gmail node Message Operations
 
 Use the Message operations to send, reply to, delete, mark read or unread, add a label to, remove a label from, or get a message or get a list of messages in Gmail. Refer to the [Gmail node](/integrations/builtin/app-nodes/n8n-nodes-base.gmail/index.md) for more information on the Gmail node itself.
+
+--8<-- "_snippets/integrations/builtin/app-nodes/hitl-tools.md"
 
 ## Add Label to a message
 
@@ -54637,6 +54872,10 @@ On this page, you'll find a list of operations the Microsoft Excel node supports
 Refer to [Microsoft credentials](/integrations/builtin/credentials/microsoft.md) for guidance on setting up authentication.
 ///
 
+/// tip | Government Cloud Support
+If you're using a government cloud tenant (US Government, US Government DOD, or China), make sure to select the appropriate **Microsoft Graph API Base URL** in your Microsoft credentials configuration.
+///
+
 --8<-- "_snippets/integrations/builtin/app-nodes/ai-tools.md"
 
 ## Operations
@@ -55340,6 +55579,8 @@ Refer to [Discord credentials](/integrations/builtin/credentials/discord.md) for
 
 --8<-- "_snippets/integrations/builtin/app-nodes/ai-tools.md"
 
+--8<-- "_snippets/integrations/builtin/app-nodes/hitl-tools.md"
+
 ## Operations
 <!-- vale off -->
 <!-- "Many" triggers warnings -->
@@ -55659,7 +55900,13 @@ On this page, you'll find a list of operations the Microsoft Outlook node suppor
 Refer to [Microsoft credentials](/integrations/builtin/credentials/microsoft.md) for guidance on setting up authentication.
 ///
 
+/// tip | Government Cloud Support
+If you're using a government cloud tenant (US Government, US Government DOD, or China), make sure to select the appropriate **Microsoft Graph API Base URL** in your Microsoft credentials configuration.
+///
+
 --8<-- "_snippets/integrations/builtin/app-nodes/ai-tools.md"
+
+--8<-- "_snippets/integrations/builtin/app-nodes/hitl-tools.md"
 
 ## Operations
 
@@ -56890,6 +57137,10 @@ On this page, you'll find a list of operations the Microsoft Entra ID node suppo
 
 ///  note  | Credentials
 You can find authentication information for this node [here](/integrations/builtin/credentials/microsoftentra.md).
+///
+
+/// tip | Government Cloud Support
+If you're using a government cloud tenant (US Government, US Government DOD, or China), make sure to select the appropriate **Microsoft Graph API Base URL** in your Microsoft Entra ID credentials configuration.
 ///
 
 
@@ -62194,6 +62445,21 @@ Refer to the main AI Agent node's [Templates and examples](/integrations/builtin
 
 To learn how to dynamically populate parameters for app node tools, refer to [Let AI specify tool parameters with `$fromAI()`](/advanced-ai/examples/using-the-fromai-function.md).
 
+## Human review for tool calls
+
+You can require human approval before the AI Agent executes specific tools. This is useful for tools that perform sensitive actions like sending messages, modifying records, or deleting data.
+
+To add a human review step:
+
+1. Click the tool connector on the AI Agent node.
+2. In the Tools Panel, find the **Human review** section.
+3. Select your preferred approval channel (Chat, Slack, Telegram, and more) and configure it.
+4. Connect the tools that require approval to the human review step.
+
+When the AI wants to use a gated tool, the workflow pauses and sends an approval request through your chosen channel. The recipient can approve (tool executes) or deny (action canceled).
+
+For detailed setup instructions and best practices, refer to [Human-in-the-loop for AI tool calls](/advanced-ai/human-in-the-loop-tools.md).
+
 ## Common issues
 
 For common questions or issues and suggested solutions, refer to [Common issues](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/common-issues.md).
@@ -62780,9 +63046,10 @@ You can find authentication information for this node [here](/integrations/built
 
 ## Prerequisites
 Before using this node, you need a Redis database with the [Redis Query Engine](https://redis.io/docs/latest/develop/ai/search-and-query/?utm_source=n8n&utm_medium=docs) enabled. Use one of the following:
-   - Redis Open Source (v8.0 and later) - includes the Redis Query Engine by default 
-   - [Redis Cloud](https://cloud.redis.io/?utm_source=n8n&utm_medium=docs) - fully managed service 
-   - [Redis Software](https://redis.io/software/?utm_source=n8n&utm_medium=docs) - self-managed deployment
+
+- **Redis Open Source (v8.0 and later)** : includes the Redis Query Engine by default 
+- **[Redis Cloud](https://cloud.redis.io/?utm_source=n8n&utm_medium=docs)** : fully managed service 
+- **[Redis Software](https://redis.io/software/?utm_source=n8n&utm_medium=docs)** : self-managed deployment
 
 /// note | A new index will be created if you don't have one.
 Creating your own indices in advance is only necessary if you want to use a custom index schema or reuse an existing index.
@@ -62797,7 +63064,7 @@ You can use the Redis Vector Store node in the following patterns:
 
 You can use the Redis Vector Store as a regular node to insert or get documents. This pattern places the Redis Vector Store in the regular connection flow without using an agent.
 
-You can see an example of this in scenario 1 of [this template](https://n8n.io/workflows/2621-ai-agent-to-chat-with-files-in-supabase-storage/) (the template uses the Supabase Vector Store, but the pattern is the same).
+You can see an example in [this template](https://n8n.io/workflows/10887-reduce-llm-costs-with-semantic-caching-using-redis-vector-store-and-huggingface/) where the semantic cache is stored in Redis and retrieved using the Redis Vector Store node in the start of the workflow.
 
 ### Connect directly to an AI agent as a tool
 
@@ -62815,7 +63082,7 @@ An [example of the connection flow](https://n8n.io/workflows/1960-ask-questions-
 
 Another pattern uses the [Vector Store Question Answer Tool](/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolvectorstore.md) to summarize results and answer questions from the Redis Vector Store node. Rather than connecting the Redis Vector Store directly as a tool, this pattern uses a tool specifically designed to summarizes data in the vector store.
 
-The [connections flow](https://n8n.io/workflows/2464-scale-deal-flow-with-a-pitch-deck-ai-vision-chatbot-and-qdrant-vector-store/) (the linked example uses Qdrant, but the pattern is the same) in this case would look like this: AI agent (tools connector) -> Vector Store Question Answer Tool (Vector Store connector) -> Redis Vector store.
+This [template](https://n8n.io/workflows/10837-chat-with-github-issues-using-openai-and-redis-vector-search/) shows how to use the Vector Store Question Answer Tool with the Redis Vector Store node. The connections flow in this case would look like this: AI agent (tools connector) -> Vector Store Question Answer Tool (Vector Store connector) -> Redis Vector store.
 
 ## Node parameters
 
@@ -62825,9 +63092,9 @@ The [connections flow](https://n8n.io/workflows/2464-scale-deal-flow-with-a-pitc
 
 --8<-- "_snippets/integrations/builtin/cluster-nodes/vector-store-rerank-results.md"
 
-<!-- vale off -->
+<!-- vale from-write-good.Weasel = NO  -->
 ### Get Many parameters
-<!-- vale on -->
+<!-- vale from-write-good.Weasel = YES -->
 
 - **Redis Index**: Enter the name of the Redis vector search index to use. Optionally choose an existing one from the list.
 - **Prompt**: Enter the search query.
@@ -62841,9 +63108,9 @@ This Operation Mode includes one **Node option**, the [Metadata Filter](#metadat
 
 ### Retrieve Documents (As Vector Store for Chain/Tool) parameters
 
-- **Redis Index**: Enter the name of the Redis vector search index to use.
+- **Redis Index**: Enter the name of the Redis vector search index to use. Optionally choose an existing one from the list.
 
-This Operation Mode includes one **Node option**, the [Metadata Filter](#metadata-filter). Optionally choose an existing one from the list.
+This Operation Mode includes one **Node option**, the [Metadata Filter](#metadata-filter). 
 
 ### Retrieve Documents (As Tool for AI Agent) parameters
 
@@ -64834,6 +65101,8 @@ In previous versions, this node was called "Respond to Chat" and used a single "
 ## Node parameters
 
 --8<-- "_snippets/integrations/builtin/app-nodes/ai-tools.md"
+
+--8<-- "_snippets/integrations/builtin/app-nodes/hitl-tools.md"
 
 Configure this node using the following parameters.
 
@@ -67375,7 +67644,7 @@ Choose between these options when using **On n8n Form Submission**:
 
 - **Show Completion Screen**: Shows users a final screen to confirm that they submitted the form.
 	- Fill in **Completion Title** to set the `h1` title on the form.
-	- n8n displays the **Completion Message** as a subtitle below the main `h1` title on the form. Use `<br>` to add a line break. 
+	- n8n displays the **Completion Message** as a subtitle below the main `h1` title on the form. Use `\n` or `<br>` to add a line break. 
 	- Select **Add option** and fill in **Completion Page Title** to set the page's title in the browser tab.
 - **Redirect to URL**: Redirect the user to a specified URL when the form completes.
 	- Fill in the **URL** field with the page you want to redirect to when users complete the form.
@@ -67383,7 +67652,7 @@ Choose between these options when using **On n8n Form Submission**:
 	- Fill in the **Text** field with the HTML or plain text content you wish to show.
 - **Return Binary File**: Return a binary file upon completion.
 	- Fill in **Completion Title** to set the `h1` title on the form.
-	- n8n displays the **Completion Message** as a subtitle below the main `h1` title on the form. Use `<br>` to add a line break. 
+	- n8n displays the **Completion Message** as a subtitle below the main `h1` title on the form. Use `\n` or `<br>` to add a line break. 
 	- Provide the **Input Data Field Name** containing the binary file to return to the user.
 
 ### Forms with branches
@@ -67413,7 +67682,7 @@ This workflow may execute more than one branch during an execution. Here, n8n ex
 Select **Add Option** to view more configuration options: 
 
 - **Form Title**: The title for your form. n8n displays the **Form Title** as the webpage title and main `h1` title on the form.
-- **Form Description**: The description for your form. n8n displays the **Form Description** as a subtitle below the main `h1` title on the form. This field supports HTML. Use `<br>` to add a line break. The Form Description also populates the [HTML meta description](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#standard_metadata_names_defined_in_the_html_specification) for the page.
+- **Form Description**: The description for your form. n8n displays the **Form Description** as a subtitle below the main `h1` title on the form. This field supports HTML. Use `\n` or `<br>` to add a line break. The Form Description also populates the [HTML meta description](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#standard_metadata_names_defined_in_the_html_specification) for the page.
 - **Button Label**: The label to use for your form's submit button. n8n displays the **Button Label** as the name of the submit button.
 - **Custom Form Styling**: Override the default styling of the public form interface with CSS. The field pre-populates with the default styling so you can change only what you need to.
 - **Completion Page Title**: The title for the final completion page of the form.
@@ -69853,19 +70122,19 @@ You can find authentication information for this node [here](/integrations/built
 
 ## Operations
 
-* [**Add**](#add) a file or folder to commit. Performs a [git add](https://git-scm.com/docs/git-add).
-* [**Add Config**](#add-config): Add configuration property. Performs a [git config](https://git-scm.com/docs/git-config) set or add.
-* [**Clone**](#clone) a repository: Performs a [git clone](https://git-scm.com/docs/git-clone).
-* [**Commit**](#commit) files or folders to git. Performs a [git commit](https://git-scm.com/docs/git-commit).
-* [**Fetch**](#fetch) from remote repository. Performs a [git fetch](https://git-scm.com/docs/git-fetch).
-* [**List Config**](#list-config): Return current configuration. Performs a [git config](https://git-scm.com/docs/git-config) query.
-* [**Log**](#log): Return git commit history. Performs a [git log](https://git-scm.com/docs/git-log).
-* [**Pull**](#pull) from remote repository: Performs a [git pull](https://git-scm.com/docs/git-pull).
-* [**Push**](#push) to remote repository: Performs a [git push](https://git-scm.com/docs/git-push).
-* [**Push Tags**](#push-tags) to remote repository: Performs a [git push --tags](https://git-scm.com/docs/git-push#Documentation/git-push.txt---tags).
-* Return [**Status**](#status) of current repository: Performs a [git status](https://git-scm.com/docs/git-status).
-* Create a new [**Tag**](#tag): Performs a [git tag](https://git-scm.com/docs/git-tag).
-* [**User Setup**](#user-setup): Set the user.
+* **Add** a file or folder to commit. Performs a [git add](https://git-scm.com/docs/git-add).
+* **Add Config**: Add configuration property. Performs a [git config](https://git-scm.com/docs/git-config) set or add.
+* **Clone** a repository: Performs a [git clone](https://git-scm.com/docs/git-clone).
+* **Commit** files or folders to git. Performs a [git commit](https://git-scm.com/docs/git-commit).
+* **Fetch** from remote repository. Performs a [git fetch](https://git-scm.com/docs/git-fetch).
+* **List Config**: Return current configuration. Performs a [git config](https://git-scm.com/docs/git-config) query.
+* **Log**: Return git commit history. Performs a [git log](https://git-scm.com/docs/git-log).
+* **Pull** from remote repository: Performs a [git pull](https://git-scm.com/docs/git-pull).
+* **Push** to remote repository: Performs a [git push](https://git-scm.com/docs/git-push).
+* **Push Tags** to remote repository: Performs a [git push --tags](https://git-scm.com/docs/git-push#Documentation/git-push.txt---tags).
+* Return **Status** of current repository: Performs a [git status](https://git-scm.com/docs/git-status).
+* Create a new **Tag**: Performs a [git tag](https://git-scm.com/docs/git-tag).
+* **User Setup**: Set the user.
 
 Refer to the sections below for more details on the parameters and options for each operation.
 
@@ -79384,7 +79653,7 @@ For self-hosted users, there are two main steps to configure OAuth2 from scratch
 1. [Register an application](#register-an-application) with the Microsoft Identity Platform.
 2. [Generate a client secret](#generate-a-client-secret) for that application.
 
-Follow the detailed instructions for each step below. For more detail on the Microsoft OAuth2 web flow, refer to [Microsoft authentication and authorization basics](https://learn.microsoft.com/en-us/graph/auth/auth-concepts). 
+Follow the detailed instructions for each step below. For more detail on the Microsoft OAuth2 web flow, refer to [Microsoft authentication and authorization basics](https://learn.microsoft.com/en-us/graph/auth/auth-concepts).
 
 ### Register an application
 
@@ -79418,6 +79687,31 @@ With your application created, generate a client secret for it:
 1. Log in to your Microsoft account and allow the app to access your info.
 
 Refer to Microsoft's [Add credentials](https://learn.microsoft.com/en-us/graph/auth-register-app-v2#add-credentials) for more information on adding a client secret.
+
+### Microsoft Graph API Base URL
+
+The Microsoft OAuth2 credential supports different Microsoft cloud environments. Select the appropriate endpoint based on your tenant's cloud environment:
+
+- **Global**: Use for standard Microsoft 365 tenants (default)
+- **US Government**: Use for Azure US Government (GCC) tenants
+- **US Government DOD**: Use for Azure US Government Department of Defense tenants
+- **China**: Use for Microsoft 365 operated by 21Vianet in China
+
+This setting applies to all Microsoft Graph API nodes that use Microsoft credentials, including:
+
+- Microsoft Teams
+- Microsoft Outlook
+- Microsoft Excel
+- Microsoft OneDrive
+- Microsoft Graph Security
+- Microsoft To Do
+
+/// warning | Government Cloud Authorization URLs
+If you're using a government cloud tenant, you may also need to update the **Authorization URL** and **Access Token URL** fields in your credential to use the government cloud endpoints. For example:
+
+- US Government: Use `https://login.microsoftonline.us/{tenant}/oauth2/v2.0/authorize` and `https://login.microsoftonline.us/{tenant}/oauth2/v2.0/token`
+- Replace `{tenant}` with your tenant ID or use `common` for multi-tenant apps
+///
 
 ### Service-specific settings
 
@@ -81519,11 +81813,11 @@ Refer to the Nextcloud [OAuth2 Configuration documentation](https://docs.nextclo
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/jotform/
 
-# JotForm credentials
+# Jotform credentials
 
 You can use these credentials to authenticate the following nodes:
 
-- [JotForm Trigger](/integrations/builtin/trigger-nodes/n8n-nodes-base.jotformtrigger.md)
+- [Jotform Trigger](/integrations/builtin/trigger-nodes/n8n-nodes-base.jotformtrigger.md)
 
 ## Supported authentication methods
 
@@ -81531,11 +81825,11 @@ You can use these credentials to authenticate the following nodes:
 
 ## Related resources
 
-Refer to [JotForm's API documentation](https://api.jotform.com/docs/) for more information about the service.
+Refer to [Jotform's API documentation](https://api.jotform.com/docs/) for more information about the service.
 
 ## Using API key
 
-To configure this credential, you'll need a [JotForm](https://www.jotform.com/) account and:
+To configure this credential, you'll need a [Jotform](https://www.jotform.com/) account and:
 
 - An **API Key**
 - The **API Domain**
@@ -81544,14 +81838,14 @@ To set it up:
 
 1. Go to **Settings >** [**API**](https://www.jotform.com/myaccount/api).
 2. Select **Create New Key**.
-3. Select the **Name** in JotForm to update the API key name to something meaningful, like `n8n integration`.
+3. Select the **Name** in Jotform to update the API key name to something meaningful, like `n8n integration`.
 4. Copy the **API Key** and enter it in your n8n credential.
 5. In n8n, select the **API Domain** that applies to you based on the forms you're using:
     - **api.jotform.com**: Use this unless the other form types apply to you.
-    - **eu-api.jotform.com**: Select this if you're using JotForm [EU Safe Forms](https://www.jotform.com/eu-safe-forms/).
-    - **hipaa-api.jotform.com**: Select this if you're using JotForm [HIPAA forms](https://www.jotform.com/hipaa/).
+    - **eu-api.jotform.com**: Select this if you're using Jotform [EU Safe Forms](https://www.jotform.com/eu-safe-forms/).
+    - **hipaa-api.jotform.com**: Select this if you're using Jotform [HIPAA forms](https://www.jotform.com/hipaa/).
 
-Refer to the [JotForm API documentation](https://api.jotform.com/docs/) for more information on creating keys and API domains.
+Refer to the [Jotform API documentation](https://api.jotform.com/docs/) for more information on creating keys and API domains.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/peekalink/
 
@@ -81672,6 +81966,21 @@ With your application created, generate a client secret for it:
 1. Log in to your Microsoft account and allow the app to access your info.
 
 Refer to Microsoft's [Add credentials](https://learn.microsoft.com/en-us/graph/auth-register-app-v2#add-credentials) for more information on adding a client secret.
+
+### Microsoft Graph API Base URL
+
+Microsoft Entra ID credentials extend the Microsoft OAuth2 API credentials and support different Microsoft cloud environments. Select the appropriate endpoint based on your tenant's cloud environment:
+
+- **Global**: Use for standard Microsoft 365 tenants (default)
+- **US Government**: Use for Azure US Government (GCC) tenants
+- **US Government DOD**: Use for Azure US Government Department of Defense tenants
+- **China**: Use for Microsoft 365 operated by 21Vianet in China
+
+/// warning | Government Cloud Authorization URLs
+If you're using a government cloud tenant, you may also need to update the **Authorization URL** and **Access Token URL** fields in your credential to use the government cloud endpoints. For example:
+- US Government: Use `https://login.microsoftonline.us/{tenant}/oauth2/v2.0/authorize` and `https://login.microsoftonline.us/{tenant}/oauth2/v2.0/token`
+- Replace `{tenant}` with your tenant ID or use `common` for multi-tenant apps
+///
 
 ## Setting custom scopes
 
