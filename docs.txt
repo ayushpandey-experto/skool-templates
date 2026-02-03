@@ -2463,8 +2463,8 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.4.7
-Current `beta`: 2.6.2
+Current `stable`: 2.6.3
+Current `beta`: 2.7.0
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -10884,6 +10884,17 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n [here](/release-notes/0-x.md)
 ///
+
+
+
+## n8n@1.123.18
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.17...n8n@1.123.18) for this version.<br />
+**Release date:** 2026-01-29
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
@@ -25398,7 +25409,7 @@ In external mode, a [launcher application](https://github.com/n8n-io/task-runner
 
 When using [Queue mode](/hosting/scaling/queue-mode.md), each worker needs to have its own sidecar container for task runners.
 
-In addition, if you haven't enabled offloading manual executions to workers (if you aren't setting `OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS=true` in your configuration), then your main instance will run manual executions and needs its own sidecar container for task runners as well. Please note that running n8n with offloading disabled isn't recommended for production.
+In addition, if [`OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS=false`](/hosting/configuration/environment-variables/queue-mode/#queue-mode-environment-variables), then your main instance will run manual executions and needs its own sidecar container for task runners as well. Please note that running n8n with offloading disabled isn't recommended for production.
 
 ## Setting up external mode
 
@@ -35910,6 +35921,57 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
 
+## n8n@2.7.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.6.0...n8n@2.7.0) for this version.<br />
+**Release date:** 2026-02-02
+
+/// note | Beta version
+This is the `beta` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains bug fixes.
+
+### Contributors
+
+[LostInBrittany](https://github.com/LostInBrittany)  
+[adriencohen](https://github.com/adriencohen)  
+[ibex088](https://github.com/ibex088)  
+[rutgere-indeed](https://github.com/rutgere-indeed)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.4.7-exp.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.7...n8n@2.4.7-exp.0) for this version.<br />
+**Release date:** 2026-01-29
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+## n8n@2.6.3
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.6.2...n8n@2.6.3) for this version.<br />
+**Release date:** 2026-02-02
+
+/// note | Stable version
+This is the `stable` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+## n8n@2.4.8
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.7...n8n@2.4.8) for this version.<br />
+**Release date:** 2026-01-29
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 ## n8n@2.6.2
@@ -35917,9 +35979,7 @@ You can find the release notes for older versions of n8n: [1.x](/release-notes/1
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.6.1...n8n@2.6.2) for this version.<br />
 **Release date:** 2026-01-28
 
-/// note | Beta version
-This is the `beta` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains bug fixes.
 
@@ -35930,9 +35990,7 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.6...n8n@2.4.7) for this version.<br />
 **Release date:** 2026-01-28
 
-/// note | Stable version
-This is the `stable` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains a bug fix.
 
