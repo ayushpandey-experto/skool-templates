@@ -2464,7 +2464,7 @@ docker compose up -d
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
 Current `stable`: 2.6.3
-Current `beta`: 2.7.0
+Current `beta`: 2.7.1
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/suggested-pod-resources/
@@ -25409,7 +25409,7 @@ In external mode, a [launcher application](https://github.com/n8n-io/task-runner
 
 When using [Queue mode](/hosting/scaling/queue-mode.md), each worker needs to have its own sidecar container for task runners.
 
-In addition, if [`OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS=false`](/hosting/configuration/environment-variables/queue-mode/#queue-mode-environment-variables), then your main instance will run manual executions and needs its own sidecar container for task runners as well. Please note that running n8n with offloading disabled isn't recommended for production.
+In addition, if [`OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS=false`](/hosting/configuration/environment-variables/queue-mode.md#queue-mode-environment-variables), then your main instance will run manual executions and needs its own sidecar container for task runners as well. Please note that running n8n with offloading disabled isn't recommended for production.
 
 ## Setting up external mode
 
@@ -35921,14 +35921,27 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
 
+
+
+## n8n@2.7.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.7.0...n8n@2.7.1) for this version.<br />
+**Release date:** 2026-02-03
+
+/// note | Beta version
+This is the `beta` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
+///
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
 ## n8n@2.7.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.6.0...n8n@2.7.0) for this version.<br />
 **Release date:** 2026-02-02
 
-/// note | Beta version
-This is the `beta` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
-///
+
 
 This release contains bug fixes.
 
@@ -35958,6 +35971,8 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.6.2...n8n@2.6.3) 
 /// note | Stable version
 This is the `stable` version. n8n recommends using the `stable` version. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 ///
+
+
 
 This release contains bug fixes.
 
@@ -36039,7 +36054,35 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.5.0...n8n@2.6.0) 
 
 
 This release contains bug fixes.
+<div class="n8n-new-features" markdown> 
 
+### Human-in-the-loop for AI tool calls
+
+You can now require explicit human approval before an AI Agent executes specific tools.
+
+Human-in-the-loop (HITL) for AI tool calls enforces review directly at the tool level. A gated tool cannot execute unless a human explicitly approves the action, giving you deterministic control over high-impact operations like deleting records, writing to production systems, or sending high-impact emails. This removes the uncertainty of prompt-based safeguards and insulates you from probabilistic agent behavior.
+
+Because the review step is implemented using standard n8n integrations, approvals are not limited to a single user or interface. Decisions can be routed across people and systems, enforcing approval from the right person using the channels they already work in.
+
+#### What you can do
+
+- Require explicit human approval for any tool the agent can call, including the MCP Client tool or sub-workflows exposed as tools
+- Apply approval selectively, so some tools execute autonomously while others require review
+- Route approvals across users and channels (for example, send a Slack-initiated action for approval by another user via email)
+- Add safety checks for high-impact or potentially destructive operations without complex workflow patterns or brittle prompt logic.
+
+#### How to use it
+
+Start with a workflow where an AI Agent is connected to one or more tools.
+
+1. On the connection from the AI Agent to the tool you want to gate, click the **+** icon and choose **Add human review step** (hovering over the icon shows the tooltip).
+2. The **Tools panel** opens with nodes you can use to handle the review step. Select the one you want to use.
+3. Configure the approval step in the added node’s parameters. Depending on the integration, you can define the approver, the message they receive, the available actions (for example, approve or deny), and the associated buttons.
+<br>
+<video src="/_video/release-notes/HITLToolCalls.webm" controls width="100%"></video>
+<br>
+Get precise control over where human judgment is required, without limiting what your agent can do. Learn more [here](/advanced-ai/human-in-the-loop-tools.md).
+</div> 
 ### Contributors
 
 [ibex088](https://github.com/ibex088)  
@@ -36062,7 +36105,8 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.4.0...n8n@2.5.0) 
 
 This release contains bug fixes.
 <div class="n8n-new-features" markdown>
-### **Chat node: human-in-the-loop actions**
+
+### Chat node: human-in-the-loop actions
 
 The **Chat** node now includes two new Actions for human-in-the-loop interactions in agentic workflows:
 
@@ -36073,12 +36117,12 @@ These Actions can be used as deterministic workflow steps or as tools for an **A
 
 When used as an agent tool, the agent can ask for clarification before proceeding, helping it better interpret user intent and follow instructions. Agents can also send updates during long-running workflows using these Actions.
 
-### **How to**
+#### How to
 
 1. Trigger your workflow with the **Chat Trigger** node. In the node parameters, add the *Response Mode* option and set it to *Using Response Nodes*.
 2. Add a **Chat** node later in the workflow, or add it as a tool for an **AI Agent**. Select one of the following operations: *Send a message* or *Send a message and wait for response*.
 
-### **Keep in mind**
+#### Keep in mind
 
 - If you want an AI Agent to choose between sending a message or waiting for input, add two **Chat** tool nodes, one for each action.
 - For AI Agents triggered by the **Chat Trigger** node, adding **Send a message and wait for response** is recommended so the agent can request clarification when needed.
@@ -36177,7 +36221,18 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.3.0...n8n@2.4.0) 
 
 
 This release contains bug fixes.
+<div class="n8n-new-features" markdown>
 
+### TLS support for Syslog log streaming
+
+The Syslog log streaming destination now supports TLS over TCP for encrypted connections. This enables secure log streaming to enterprise SIEM and observability platforms that require encrypted transport. With this release, log streaming is now compatible with a broader range of enterprise SIEM platforms.
+
+### Update credentials via API
+
+n8n's public API now supports updating existing credentials by ID via a new *PATCH /credentials/:id* endpoint. Previously, credentials could only be created through the API so any changes required deleting and recreating the credential.
+
+When updating, you can either replace all credential data at once (useful for bulk updates) or set *isPartialData: true* to merge changes with existing data. Ideal for automated secret rotation or fixing individual values without losing your configuration.
+</div>
 ### Contributors
 
 [JonLaliberte](https://github.com/JonLaliberte)  
@@ -36327,6 +36382,28 @@ View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.1.0...n8n@2.2.0) 
 **Release date:** 2025-12-22
 
 This release contains bug fixes.
+<div class="n8n-new-features" markdown>
+
+### More granular workflow permissions within Custom Project Roles (Enterprise)
+
+Custom Project Roles allow you to define fine-grained permissions at the project level. With this release, workflow permissions have been further refined by separating workflow editing from workflow publishing.
+
+This change makes it easier to align access controls with internal processes where building workflows and publishing them are handled by different users or teams.
+<br> 
+<figure markdown="span">
+    ![Custom Project Roles](/_images/release-notes/WorkflowEditor.png)
+    <figcaption>Custom Project Roles</figcaption>
+</figure>
+<br>
+
+### Log streaming: More audit events for improved observability
+
+Log streaming now includes additional audit events to improve visibility into operational and security-relevant changes.
+
+This update adds events for manual workflow cancellations and workflow activation/deactivation (publish/unpublish), variable lifecycle events (create/update/delete), and user management actions (including enabling/disabling 2FA). 
+
+Workflow settings updates are also logged with the specific parameters that changed (for example, selecting a new error workflow), instead of a generic “updated” event.
+</div> 
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
@@ -66069,9 +66146,9 @@ The n8n Trigger node triggers when the current workflow updates or activates, or
 
 The node includes a single parameter to identify the **Events** that should trigger it. Choose from these events:
 
-- **Active Workflow Updated**: If you select this event, the node triggers when this workflow is updated.
-- **Instance started**: If you select this event, the node triggers when the n8n instance starts or restarts.
-- **Workflow Activated**: If you select this event, the node triggers when this workflow is activated.
+- **Active Workflow Updated**: Triggers when the workflow containing this node is updated (not other workflows in the instance).
+- **Instance started**: Triggers when the n8n instance starts or restarts.
+- **Workflow Activated**: Triggers when the workflow containing this node is activated.
 
 You can select one or more of these events.
 
@@ -66999,7 +67076,9 @@ Enter the title for your form. n8n displays the **Form Title** as the webpage ti
 
 ### Form Description
 
-Enter the description for your form. n8n displays the **Form Description** as a subtitle below the main `h1` title on the form. Use `\n` or `<br>` to add a line break. 
+Enter the description for your form. n8n displays the **Form Description** as a subtitle below the main `h1` title on the form. Use `\n` or `<br>` to add a line break.
+
+For information on allowed and restricted HTML tags, see [HTML security and allowed tags](#html-security-and-allowed-tags).
 
 ### Form Elements
 
@@ -67012,7 +67091,7 @@ Every field has the following settings:
 - **Element Type**: Choose from **Checkboxes**, **Custom HTML**, **Date**, **Dropdown**, **Email**, **File**, **Hidden Field**, **Number**, **Password**, **Radio Buttons**, **Text**, or **Textarea**.
 	- Select **Checkboxes** to include checkbox elements in the form. By default, there is no limit on how many checkboxes a form user can select. You can set the limit by specifying a value for the **Limit Selection** option as **Exact Number**, **Range**, or **Unlimited**.
 	- Select **Custom HTML** to insert arbitrary HTML.
-		- You can include elements like links, images, video, and more. You can't include `<script>`, `<style>`, or `<input>` elements.
+		- You can include elements like links, images, video, and more. You can't include `<script>`, `<style>`, or `<input>` elements. For more information, see [HTML security and allowed tags](#html-security-and-allowed-tags).
 		- By default, Custom HTML fields aren't included in the node output. To include the Custom HTML content in the output, fill out the associated **Element Name** field.
     - Select **Date** to include a date picker in the form. Refer to [Date and time with Luxon](/code/cookbook/luxon.md) for more information on formatting dates.
 	- Select **Dropdown List** > **Add Field Option** to add multiple options. By default, the dropdown is single-choice. To make it multiple-choice, turn on **Multiple Choice**.
@@ -67058,6 +67137,30 @@ You can use one of the following options to add authentication to your form:
 • Add a Wait node with form authentication as a secondary form page
 • Store hashed passwords in a database and compare against form submissions for validation
 • Use external authentication providers like Google Forms if you need advanced authentication
+
+## HTML security and allowed tags
+
+The n8n Form Trigger automatically sanitizes HTML content in the **Form Description** field and **Custom HTML** form elements to prevent security vulnerabilities. While HTML is supported for formatting, certain tags and attributes are restricted.
+
+### Allowed HTML Tags
+
+You can use the following tags for formatting: `<a>`, `<b>`, `<br>`, `<code>`, `<div>`, `<em>`, `<h1>` through `<h6>`, `<i>`, `<iframe>`, `<img>`, `<li>`, `<ol>`, `<p>`, `<pre>`, `<span>`, `<strong>`, `<sub>`, `<sup>`, `<table>`, `<tbody>`, `<td>`, `<tfoot>`, `<th>`, `<thead>`, `<tr>`, `<u>`, `<ul>`, `<video>`, and `<source>`.
+
+### Restricted Tags
+
+The following tags are automatically removed for security: `<script>`, `<style>`, `<input>`, `<form>`, `<button>`, and other potentially dangerous elements that could enable XSS attacks or interfere with form functionality.
+
+### Attribute Restrictions
+
+Only specific attributes are allowed on certain tags:
+
+* Links (<a>): `href`, `target`, `rel`
+* Images (<img>): `src`, `alt`, `width`, `height`
+* Videos (<video>): `controls`, `autoplay`, `loop`, `muted`, `poster`, `width`, `height`
+* Iframes (<iframe>): `src`, `width`, `height`, `frameborder`, `allow`, `allowfullscreen`, `referrerpolicy` (automatically sandboxed)
+* Table cells (<td>, <th>): `colspan`, `rowspan`, `scope`, `headers`
+
+All other attributes are removed during sanitization. Only `http://` and `https://` URL schemes are permitted.
 
 ## Templates and examples
 
@@ -78306,7 +78409,7 @@ Once configured, you can use your credentials to authenticate the following node
 | [Google BigQuery](/integrations/builtin/app-nodes/n8n-nodes-base.googlebigquery.md) | :white_check_mark: | :white_check_mark: |
 | [Google Books](/integrations/builtin/app-nodes/n8n-nodes-base.googlebooks.md) | :white_check_mark: | :white_check_mark: |
 | [Google Calendar](/integrations/builtin/app-nodes/n8n-nodes-base.googlecalendar/index.md) | :white_check_mark: | :x: |
-| [Google Chat](/integrations/builtin/app-nodes/n8n-nodes-base.googlechat.md) | :x: | :white_check_mark: |
+| [Google Chat](/integrations/builtin/app-nodes/n8n-nodes-base.googlechat.md) | :white_check_mark: | :white_check_mark: |
 | [Google Cloud Storage](/integrations/builtin/app-nodes/n8n-nodes-base.googlecloudstorage.md) | :white_check_mark: | :x: |
 | [Google Contacts](/integrations/builtin/app-nodes/n8n-nodes-base.googlecontacts.md) | :white_check_mark: | :x: |
 | [Google Cloud Firestore](/integrations/builtin/app-nodes/n8n-nodes-base.googlecloudfirestore.md) | :white_check_mark: | :white_check_mark: |
