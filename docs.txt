@@ -26470,21 +26470,25 @@ Publishing makes your workflow live and locks it to a specific version. Producti
 - Schedules will run at the times you've defined
 - Events from connected apps will trigger this workflow
 
-**Initial state: You open the workflow**
+**Initial state** When you open a workflow with no publishable changes, the Publish button is disabled.
 
-![Initial state when workflow is opened](/_images/publish/open-workflow.png)
+![](/_images/publish/publish-initial.png)
 
-**Changed state: Autosaved changes yet to be published**
+**Ready to publish** When the workflow is not yet published but has changes, the button becomes active.
 
-![Changes awaiting publish](/_images/publish/post-change.png)
+![](/_images/publish/publish-ready.png)
 
-**Published state: All changes published**
+**Published, up to date** The workflow is currently published and there are no new changes since the last publish.
 
-![All changes published](/_images/publish/all-published.png)
+![](/_images/publish/published.png)
 
-**Changed state: New changes yet to be published**
+**Published, has changes** The workflow is published, but you've made changes since the last publish that haven't gone live yet.
 
-![New changes awaiting publish](/_images/publish/new-unpublished.png)
+![](/_images/publish/published-changes.png)
+
+**Published, error** The workflow is published, but there are errors in your recent changes that need to be fixed before you can publish again.
+
+![](/_images/publish/published-error.png)
 
 
 ## How collaboration works
@@ -26524,6 +26528,7 @@ View and manage version history by clicking the history icon in the header. In t
 Unpublish a workflow from either:
 
 - The workflow settings menu
+- In the workflow list
 - The version history page (unpublish action on published versions)
 
 === https://docs.n8n.io/docs/workflows/subworkflow-conversion/
@@ -35920,6 +35925,17 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
+
+
+
+## n8n@2.7.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.7.1...n8n@2.7.2) for this version.<br />
+**Release date:** 2026-02-04
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
@@ -63639,6 +63655,108 @@ For common errors or issues and suggested resolution steps, refer to [Common Iss
 
 
 
+=== https://docs.n8n.io/docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorechroma/
+
+# Chroma Vector Store node
+
+Use the Chroma node to interact with your Chroma database as [vector store](/glossary.md/#ai-vector-store). You can insert documents into a vector database, get documents from a vector database, retrieve documents to provide them to a retriever connected to a [chain](/glossary.md/#ai-chain), or connect directly to an [agent](/glossary.md/#ai-agent) as a [tool](/glossary.md/#ai-tool). 
+
+On this page, you'll find the node parameters for the Chroma node, and links to more resources.
+
+/// note | Credentials
+You can find authentication information for this node [here](/integrations/builtin/credentials/chroma.md).
+///
+
+## Node usage patterns
+
+You can use the Chroma Vector Store node in the following patterns.
+
+### Use as a regular node to insert and retrieve documents
+
+You can use the Chroma Vector Store as a regular node to insert or get documents. This pattern places the Chroma Vector Store in the regular connection flow without using an agent.
+
+### Connect directly to an AI agent as a tool
+
+You can connect the Chroma Vector Store node directly to the tool connector of an [AI agent](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/index.md) to use a vector store as a resource when answering queries.
+
+Here, the connection would be: AI agent (tools connector) -> Chroma Vector Store node.
+
+### Use a retriever to fetch documents
+
+You can use the [Vector Store Retriever](/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievervectorstore.md) node with the Chroma Vector Store node to fetch documents from the Chroma Vector Store node. This is often used with the [Question and Answer Chain](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainretrievalqa/index.md) node to fetch documents from the vector store that match the given chat input.
+
+An example of the connection flow would be as follows:
+
+Question and Answer Chain (Retriever connector) -> Vector Store Retriever (Vector Store connector) -> Chroma Vector Store.
+
+### Use the Vector Store Question Answer Tool to answer questions
+
+Another pattern uses the [Vector Store Question Answer Tool](/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolvectorstore.md) to summarize results and answer questions from the Chroma Vector Store node. Rather than connecting the Chroma Vector Store directly as a tool, this pattern uses a tool specifically designed to summarize data in the vector store.
+
+The connections flow in this case would look like this: AI agent (tools connector) -> Vector Store Question Answer Tool (Vector Store connector) -> Chroma Vector store.
+
+## Node parameters
+
+### Operation Mode
+
+This Vector Store node has four modes: **Get Many**, **Insert Documents**, **Retrieve Documents (As Vector Store for Chain/Tool)**, and **Retrieve Documents (As Tool for AI Agent)**. The mode you select determines the operations you can perform with the node and what inputs and outputs are available.
+
+#### Get Many
+
+In this mode, you can retrieve multiple documents from your vector database by providing a prompt. The prompt is embedded and used for similarity search. The node returns the documents that are most similar to the prompt with their similarity score. This is useful if you want to retrieve a list of similar documents and pass them to an agent as additional context.
+
+#### Insert Documents
+
+Use insert documents mode to insert new documents into your vector database.
+
+#### Retrieve Documents (as Vector Store for Chain/Tool)
+
+Use Retrieve Documents (As Vector Store for Chain/Tool) mode with a vector-store retriever to retrieve documents from a vector database and provide them to the retriever connected to a chain. In this mode you must connect the node to a retriever node or root node.
+
+#### Retrieve Documents (as Tool for AI Agent)
+
+Use Retrieve Documents (As Tool for AI Agent) mode to use the vector store as a tool resource when answering queries. When formulating responses, the agent uses the vector store when the vector store name and description match the question details.
+
+### Rerank Results
+
+Enables [reranking](/glossary.md#ai-reranking). If you enable this option, you must connect a reranking node to the vector store. That node will then rerank the results for queries. You can use this option with the `Get Many`, `Retrieve Documents (As Vector Store for Chain/Tool)` and `Retrieve Documents (As Tool for AI Agent)` modes.
+
+### Get Many parameters
+
+- **Chroma collection name**: Select your collection from the fetched collections list.
+- **Prompt**: Enter the search query.
+- **Limit**: Enter how many results to retrieve from the vector store. For example, set this to `5` to get the five best results.
+
+This Operation Mode includes one **Node option**, the Metadata Filter
+
+### Insert Documents parameters
+
+- **Chroma collection name**: Select your collection from the fetched collections list.
+
+### Retrieve Documents (As Vector Store for Chain/Tool) parameters
+
+- **Chroma collection name**: Select your collection from the fetched collections list.
+
+This Operation Mode includes one **Node option**, the Metadata Filter
+
+### Retrieve Documents (As Tool for AI Agent) parameters
+
+- **Description**: Explain to the LLM what this tool does. A good, specific description allows LLMs to produce expected results more often.
+- **Chroma collection name**: Select your collection from the fetched collections list.
+- **Limit**: Enter how many results to retrieve from the vector store. For example, set this to `5` to get the five best results.
+
+## Node options
+
+### Metadata Filter
+
+--8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/vector-store-metadata-filter.md"
+
+## Related resources
+
+Refer to [LangChain's Chroma documentation](https://js.langchain.com/oss/javascript/integrations/vectorstores/chroma) for more information about the service.
+
+View n8n's [Advanced AI](/advanced-ai/index.md) documentation.
+
 === https://docs.n8n.io/docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepinecone/
 
 # Pinecone Vector Store node
@@ -70832,6 +70950,10 @@ You can use curl to call REST APIs. If the API documentation of the service you 
 
 Import a curl command:
 
+/// note | Import format
+This option always imports any parameter values as strings. If you wish to preserve the type of numbers and booleans in your request, switch **Using Fields Below** to **Using JSON** and paste your JSON object containing the parameters.
+///
+
 1. From the HTTP Request node's **Parameters** tab, select **Import cURL**. The **Import cURL command** modal opens.
 2. Paste your curl command into the text box.
 3. Select **Import**. n8n loads the request configuration into the node fields. This overwrites any existing configuration.
@@ -74858,6 +74980,50 @@ To configure this credential, you'll need:
 - An **API Key**: Get an API Key from your **Account > API**.
 
 Refer to [Using the Malcore API](https://support.malcore.io/hc/en-au/articles/17711707070617-Using-the-Malcore-API) for more information.
+
+=== https://docs.n8n.io/docs/integrations/builtin/credentials/chroma/
+
+# Chroma credentials
+
+You can use these credentials to authenticate the following nodes:
+
+- Chroma Vector Store 
+
+## Prerequisites 
+Create and run a [Chroma](https://www.trychroma.com/home) instance. Refer to the [Running Chroma in Client-Server Mode](https://docs.trychroma.com/docs/run-chroma/client-server) for more information.
+
+## Supported authentication methods
+- API key
+- Instance URL
+
+## Related resources
+
+Refer to [Chroma's documentation](https://docs.trychroma.com/docs/overview/getting-started) for more information about the service. Also refer to [Chroma Cloud](https://docs.trychroma.com/cloud/getting-started) for using cloud instance.
+
+View n8n's [Advanced AI](/advanced-ai/index.md) documentation.
+
+--8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md"
+
+## Using API key
+
+To configure this credential, you'll need a  [Chroma](https://www.trychroma.com/) account. You'll also need the following:
+
+- An **API Key**
+- Your **Tenant ID**
+- Your **Database Name**
+
+To set it up:
+
+1. Go to the **Cloud Dashboard**.
+2. Create a **Database**
+3. Click **Settings** for the database you want the access to.
+4. Click **Create API key and copy code**
+5. Enter your **API Key**, **Tenant ID** and **Database Name** to n8n credential
+## Using Instance URL
+
+To configure this credential, you'll need:
+
+- **Base URL:** The base URL of your Chroma instance. The default value is `http://localhost:8000`
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/ldap/
 
@@ -79941,6 +80107,13 @@ If you're using a government cloud tenant, you may also need to update the **Aut
 - US Government: Use `https://login.microsoftonline.us/{tenant}/oauth2/v2.0/authorize` and `https://login.microsoftonline.us/{tenant}/oauth2/v2.0/token`
 - Replace `{tenant}` with your tenant ID or use `common` for multi-tenant apps
 ///
+
+### Custom Scopes
+
+Define granular permissions for interacting with the following Microsoft services:
+
+* Microsoft Teams
+* Microsoft Excel
 
 ### Service-specific settings
 
