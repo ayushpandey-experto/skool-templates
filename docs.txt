@@ -10887,6 +10887,17 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.123.20
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.19...n8n@1.123.20) for this version.<br />
+**Release date:** 2026-02-06
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.123.19
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.18...n8n@1.123.19) for this version.<br />
@@ -26094,6 +26105,7 @@ Available flags:
 | --projectId | Import the workflow or credential to the specified project. Can't be used with `--userId`. |
 | --separate | Imports `*.json` files from directory provided by --input. |
 | --userId | Import the workflow or credential to the specified user. Can't be used with `--projectId`. |
+| --skipMigrationChecks | Skip migration validation checks. |
 
 /// note | Migrating to SQLite
 n8n limits workflow and credential names to 128 characters, but SQLite doesn't enforce size limits.
@@ -27540,10 +27552,13 @@ The following events are available. You can choose which events to stream in **S
 	* Started
 	* Success
 	* Failed
+	* Cancelled
 * Node executions
 	* Started
 	* Finished
 * Audit
+	* User login success
+	* User login failed
 	* User signed up
 	* User updated
 	* User deleted
@@ -27559,16 +27574,38 @@ The following events are available. You can choose which events to stream in **S
 	* User credentials deleted
 	* User API created
 	* User API deleted
+	* User MFA enabled
+	* User MFA disabled
+	* User execution deleted
+	* Workflow executed
 	* Package installed
 	* Package updated
 	* Package deleted
 	* Workflow created
 	* Workflow deleted
 	* Workflow updated
+	* Workflow archived
+	* Workflow unarchived
+	* Workflow activated
+	* Workflow deactivated
+	* Workflow version updated
+	* Variable created
+	* Variable updated
+	* Variable deleted
+	* External secrets provider settings saved
+	* External secrets provider reloaded
+	* Personal publishing restricted enabled
+	* Personal publishing restricted disabled
+	* Personal sharing restricted enabled
+	* Personal sharing restricted disabled
+	* 2FA enforcement enabled
+	* 2FA enforcement disabled
+* Worker
+	* Started
+	* Stopped
 * AI node logs
 	* Memory get messages
 	* Memory added message
-	* Output parser get instructions
 	* Output parser parsed
 	* Retriever get relevant documents
 	* Embeddings embedded document
@@ -27578,7 +27615,9 @@ The following events are available. You can choose which events to stream in **S
 	* Tool called
 	* Vector store searched
 	* LLM generated
+	* LLM error
 	* Vector store populated
+	* Vector store updated
 * Runner
 	* Task requested
 	* Response received
@@ -35936,6 +35975,43 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
+
+## n8n@2.7.3
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.7.2...n8n@2.7.3) for this version.<br />
+**Release date:** 2026-02-09
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+## n8n@2.6.4
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.6.3...n8n@2.6.4) for this version.<br />
+**Release date:** 2026-02-06
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
+## n8n@2.8.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.7.0...n8n@2.8.0) for this version.<br />
+**Release date:** 2026-02-09
+
+This release contains bug fixes.
+
+### Contributors
+
+[AmitAnveri](https://github.com/AmitAnveri)  
+[derandreas-dt](https://github.com/derandreas-dt)  
+[ongdisheng](https://github.com/ongdisheng)  
+[vCaisim](https://github.com/vCaisim)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
@@ -62137,6 +62213,64 @@ Refer to [LangChain's Qdrant documentation](https://js.langchain.com/docs/integr
 
 --8<-- "_snippets/self-hosting/starter-kits/self-hosted-ai-starter-kit.md"
 
+=== https://docs.n8n.io/docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.microsoftagent365trigger/index/
+
+# Microsoft Agent 365 Trigger node
+
+/// warning | Early preview
+This is an early preview for building agents with Microsoft Agent 365 and n8n. You need to be part of the [Frontier preview program](https://adoption.microsoft.com/copilot/frontier-program/) to get early access to Microsoft Agent 365.
+///
+
+Use the Microsoft Agent 365 Trigger node to receive messages from Microsoft Agent 365 and respond with AI-powered agent capabilities. This node allows n8n to act as the backend for your Agent 365 agents.
+
+/// note | Credentials
+You can find authentication information for this node [here](/integrations/builtin/credentials/microsoftagent365.md).
+///
+
+## Node connectors
+
+The Microsoft Agent 365 Trigger node can connect to the following sub-nodes:
+
+- **Model**: Connect a language model (Chat model sub-node) to process incoming messages
+- **Memory**: Connect a memory sub-node to maintain conversation context
+- **Tool**: Connect tool sub-nodes to give your agent additional capabilities
+
+## Node options
+
+### Enable Microsoft MCP Tools
+
+Toggle this option to give your agent access to Microsoft 365 tools through the Model Context Protocol (MCP). Default: Off.
+
+When enabled, select one of:
+
+- **All**: Enable all available Microsoft MCP tools
+- **Selected**: Choose specific tools from the list:
+	- Calendar
+	- Mail
+	- SharePoint
+	- Teams
+	- Word
+	- and more
+
+## Getting started
+
+We recommend following these resources to set up your Agent 365 integration:
+
+1. [n8n Sample Agent Documentation](https://github.com/microsoft/Agent365-Samples/tree/main/nodejs/n8n/sample-agent): Example n8n agent implementation with Microsoft Agent 365
+2. [Agent 365 CLI Documentation](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/agent-365-cli): Cross-platform command-line tool for deploying and managing Agent 365 applications on Azure
+
+## Known limitations
+
+### No conversation context in metadata
+
+Currently, incoming messages don't include metadata to link memory to a specific user or conversation context. This functionality is coming soon.
+
+## Related resources
+
+Refer to [Microsoft Agent 365 developer documentation](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/) for more information about the service.
+
+--8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-overview-link.md"
+
 === https://docs.n8n.io/docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent/
 
 # Conversational AI Agent node
@@ -66273,15 +66407,15 @@ Using a regular expression can affect any keys that match the expression, includ
 
 # n8n Trigger node
 
-The n8n Trigger node triggers when the current workflow updates or activates, or when the n8n instance starts or restarts. You can use the n8n Trigger node to notify when these events occur.
+The n8n Trigger node triggers when the workflow containing this node updates or gets published, or when the n8n instance starts or restarts. This node only responds to events in its own workflow; changes to other workflows won't trigger it. 
 
 ## Node parameters
 
 The node includes a single parameter to identify the **Events** that should trigger it. Choose from these events:
 
-- **Active Workflow Updated**: Triggers when the workflow containing this node is updated (not other workflows in the instance).
-- **Instance started**: Triggers when the n8n instance starts or restarts.
-- **Workflow Activated**: Triggers when the workflow containing this node is activated.
+- **Published Workflow Updated**: If you select this event, the node triggers when the workflow containing this node is updated. Changes to other workflows won't trigger this node.
+- **Instance started**: If you select this event, the node triggers when the n8n instance starts or restarts.
+- **Workflow Published**: If you select this event, the node triggers when the workflow containing this node is published. Publishing other workflows won't trigger this node.
 
 You can select one or more of these events.
 
@@ -82538,6 +82672,48 @@ To configure this credential, you'll need:
 
 - An **API Key**: Refer to the [Hybrid Analysis' API documentation](https://www.hybrid-analysis.com/docs/api/v2) for instructions on generating an API key.
 
+=== https://docs.n8n.io/docs/integrations/builtin/credentials/microsoftagent365/
+
+# Microsoft Agent 365 credentials
+
+You can use these credentials to authenticate the following nodes:
+
+- [Microsoft Agent 365 Trigger](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.microsoftagent365trigger/index.md)
+
+/// warning | Early preview
+Microsoft Agent 365 is an early preview feature. You need to be part of the [Frontier preview program](https://adoption.microsoft.com/copilot/frontier-program/) to get early access.
+///
+
+## Prerequisites
+
+- Enrollment in the [Microsoft Frontier preview program](https://adoption.microsoft.com/copilot/frontier-program/)
+- A [Microsoft Azure](https://azure.microsoft.com/) account
+- An Agent 365 blueprint created using the Agent 365 CLI
+
+## Supported authentication methods
+
+- OAuth2 (App Registration)
+
+## Related resources
+
+Refer to [Microsoft Agent 365 developer documentation](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/) for more information about the service.
+
+## Using OAuth2
+
+To configure this credential, you'll need:
+
+- **Tenant ID**: Your Microsoft Entra tenant ID
+- **Client ID**: The Application (client) ID from your Azure app registration
+- **Client Secret**: The secret generated for your app registration
+
+To set up the credential:
+
+1. Find your Tenant ID in [Microsoft Entra ID](https://entra.microsoft.com/#home) and copy it into n8n as the **Tenant ID**.
+2. Open the [Microsoft Application Registration Portal](https://aka.ms/appregistrations) and follow the [custom client app registration guide](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/custom-client-app-registration) for Microsoft Agent 365. Once your custom client app is created, copy the Application (client) ID into n8n as the **Client ID**.
+3. Follow the [credentials guide](https://learn.microsoft.com/en-us/entra/identity-platform/how-to-add-credentials?tabs=client-secret) to generate a client secret and copy the **Secret** in the **Value** column and paste it into n8n as the **Client Secret**.
+
+We recommend using [Agent 365 CLI](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/agent-365-cli) to create your agent blueprint and manifest. You can find more details in the [n8n Sample Agent repository](https://github.com/microsoft/Agent365-Samples/tree/main/nodejs/n8n/sample-agent) for Microsoft Agent 365.
+
 === https://docs.n8n.io/docs/integrations/builtin/credentials/kitemaker/
 
 # Kitemaker credentials
@@ -83350,7 +83526,7 @@ The default **Base URL** is `http://localhost:11434`, but if you've set the `OLL
 
 If you're connecting to Ollama through authenticated proxy services (such as [Open WebUI](https://docs.openwebui.com/getting-started/api-endpoints/#-ollama-api-proxy-support)) you must include an API key. If you don't need authentication, leave this field empty. When provided, the API key is sent as a Bearer token in the `Authorization` header of the request to the Ollama API.
 
-Refer to [How do I configure Ollama server?](https://github.com/ollama/ollama/blob/main/docs/faq.md#how-do-i-configure-ollama-server) for more information.
+Refer to [How do I configure Ollama server?](https://github.com/ollama/ollama/blob/main/docs/faq.mdx#how-do-i-configure-ollama-server) for more information.
 
 ### Ollama and self-hosted n8n
 
@@ -83358,7 +83534,7 @@ If you're self-hosting n8n on the same machine as Ollama, you may run into issue
 
 For this setup, open a specific port for n8n to communicate with Ollama by setting the `OLLAMA_ORIGINS` variable or adjusting `OLLAMA_HOST` to an address the other container can access.
 
-Refer to Ollama's [How can I allow additional web origins to access Ollama?](https://github.com/ollama/ollama/blob/main/docs/faq.md#how-can-i-allow-additional-web-origins-to-access-ollama) for more information.
+Refer to Ollama's [How can I allow additional web origins to access Ollama?](https://docs.ollama.com/faq#how-can-i-allow-additional-web-origins-to-access-ollama) for more information.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/segment/
 
