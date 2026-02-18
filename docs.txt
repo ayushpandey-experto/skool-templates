@@ -66435,6 +66435,10 @@ Each worker process runs a server that exposes optional endpoints:
 - [credentials overwrite endpoint](/embed/configuration.md#credential-overwrites)
 - [`/metrics`](/hosting/configuration/configuration-examples/prometheus.md)
 
+/// note | Customizing health check endpoints
+You can customize the health check endpoint path using the [`N8N_ENDPOINT_HEALTH`](/hosting/configuration/environment-variables/endpoints.md) environment variable.
+///
+
 #### View running workers 
 
 /// info | Feature availability
@@ -67197,6 +67201,10 @@ You can also explicitly enable the Cloud Run API (even if you don't do this, it 
 gcloud services enable run.googleapis.com
 ```
 
+/// warning | Required: Custom health check endpoint
+Google Cloud Run reserves `/healthz` for its own health checks. Since n8n uses this path by default, it can conflict and cause connection issues in the workflow canvas. To fix this, set the `N8N_ENDPOINT_HEALTH` environment variable to a custom path (included in the deployment commands below).
+///
+
 To deploy n8n:
 
 ```sh
@@ -67206,7 +67214,8 @@ gcloud run deploy n8n \
     --allow-unauthenticated \
     --port=5678 \
     --no-cpu-throttling \
-    --memory=2Gi
+    --memory=2Gi \
+    --set-env-vars="N8N_ENDPOINT_HEALTH=health"
 ```
 
 (you can specify whichever region you prefer, instead of "us-west1")
@@ -67223,7 +67232,8 @@ gcloud run deploy n8n \
     --port=5678 \
     --no-cpu-throttling \
     --memory=2Gi \
-    --scaling=1
+    --scaling=1 \
+    --set-env-vars="N8N_ENDPOINT_HEALTH=health"
 ```
 
 This does not prevent data loss completely, such as whenever the Cloud Run service is re-deployed/updated. If you want truly persistant data, you should refer to the instructions below for how to attach a database.
@@ -67349,7 +67359,7 @@ gcloud run deploy n8n \
     --port=5678 \
     --memory=2Gi \
     --no-cpu-throttling \
-    --set-env-vars="N8N_PORT=5678,N8N_PROTOCOL=https,DB_TYPE=postgresdb,DB_POSTGRESDB_DATABASE=n8n,DB_POSTGRESDB_USER=n8n-user,DB_POSTGRESDB_HOST=/cloudsql/$PROJECT_ID:$REGION:n8n-db,DB_POSTGRESDB_PORT=5432,DB_POSTGRESDB_SCHEMA=public,GENERIC_TIMEZONE=UTC,QUEUE_HEALTH_CHECK_ACTIVE=true" \
+    --set-env-vars="N8N_PORT=5678,N8N_PROTOCOL=https,N8N_ENDPOINT_HEALTH=health,DB_TYPE=postgresdb,DB_POSTGRESDB_DATABASE=n8n,DB_POSTGRESDB_USER=n8n-user,DB_POSTGRESDB_HOST=/cloudsql/$PROJECT_ID:$REGION:n8n-db,DB_POSTGRESDB_PORT=5432,DB_POSTGRESDB_SCHEMA=public,GENERIC_TIMEZONE=UTC,QUEUE_HEALTH_CHECK_ACTIVE=true" \
     --set-secrets="DB_POSTGRESDB_PASSWORD=n8n-db-password:latest,N8N_ENCRYPTION_KEY=n8n-encryption-key:latest" \
     --add-cloudsql-instances=$PROJECT_ID:$REGION:n8n-db \
     --service-account=n8n-service-account@$PROJECT_ID.iam.gserviceaccount.com
@@ -68959,6 +68969,7 @@ This page lists environment variables for customizing endpoints in n8n.
 | `N8N_ENDPOINT_WEBHOOK` | String | `webhook` | The path used for webhook endpoint. |
 | `N8N_ENDPOINT_WEBHOOK_TEST` | String | `webhook-test` | The path used for test-webhook endpoint. |
 | `N8N_ENDPOINT_WEBHOOK_WAIT` | String | `webhook-waiting` | The path used for waiting-webhook endpoint. |
+| `N8N_ENDPOINT_HEALTH` | String | `healthz` | The path used for health check endpoint. |
 | `WEBHOOK_URL` | String | - | Used to manually provide the Webhook URL when running n8n behind a reverse proxy. See [here](/hosting/configuration/configuration-examples/webhook-url.md) for more details. |
 | `N8N_DISABLE_PRODUCTION_MAIN_PROCESS` | Boolean | `false` | Disable production webhooks from main process. This helps ensure no HTTP traffic load to main process when using webhook-specific processes. |
 
@@ -70357,6 +70368,9 @@ Access the endpoint:
 <your-instance-url>/healthz/readiness
 ```
 
+/// note | Customizing health check endpoints
+You can customize the health check endpoint path using the [`N8N_ENDPOINT_HEALTH`](/hosting/configuration/environment-variables/endpoints.md) environment variable.
+///
 
 ## metrics
 
@@ -70371,10 +70385,13 @@ Access the endpoint:
 /// info | Feature availability
 The `/metrics` endpoint isn't available on n8n Cloud.
 ///
+
 <!-- vale off -->
-## Enable metrics and healthz for self-hosted n8n
+## Enable metrics and health checks for self-hosted n8n
 <!-- vale on -->
-The `/metrics` and `/healthz` endpoints are disabled by default. To enable them, configure your n8n instance:
+The `/metrics` endpoint is disabled by default. The health endpoint is always enabled on the main n8n server. For worker servers in [queue mode](/hosting/scaling/queue-mode.md), the health endpoint is disabled by default.
+
+To enable them, configure your n8n instance:
 
 ```shell
 # metrics
