@@ -1755,7 +1755,13 @@ Current `beta`: 2.10.1
 Use this for local development and testing. It isn't safe to use it in production.
 ///
 
-To use webhooks for trigger nodes of external services like GitHub, n8n has to be reachable from the web. n8n runs a [tunnel service](https://github.com/localtunnel/localtunnel) that can redirect requests from n8n's servers to your local n8n instance.
+/// warning | Development tooling
+The tunnel feature is a convenience tool for local development. The underlying implementation may change between n8n versions.
+///
+
+To use webhooks for trigger nodes of external services like GitHub, n8n has to be reachable from the web. n8n provides a tunnel service using [cloudflared](https://github.com/cloudflare/cloudflared) that redirects requests from the web to your local n8n instance. Docker must be installed for the tunnel to work.
+
+There are two ways to use the tunnel, depending on how you run n8n:
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/server-setups-next-steps/
 * Learn more about [configuring](/hosting/configuration/environment-variables/index.md) and [scaling](/hosting/scaling/overview.md) n8n.
@@ -12270,101 +12276,6 @@ If the API you're using supports choosing the page size in the query:
 
 
 
-=== https://docs.n8n.io/docs/code/cookbook/expressions/common-issues/
-
-# Expressions common issues
-
-Here are some common errors and issues related to [expressions](/data/expressions.md) and steps to resolve or troubleshoot them.
-
-## The 'JSON Output' in item 0 contains invalid JSON
-
-This error occurs when you use JSON mode but don't provide a valid JSON object. Depending on the problem with the JSON object, the error sometimes display as `The 'JSON Output' in item 0 does not contain a valid JSON object`.
-
-To resolve this, make sure that the code you provide is valid JSON:
-
-- Check the JSON with a [JSON validator](https://jsonlint.com/).
-- Check that your JSON object doesn't reference undefined input data. This may occur if the incoming data doesn't always include the same fields.
-
-## Can't get data for expression
-
-This error occurs when n8n can't retrieve the data referenced by an expression. Often, this happens when the preceding node hasn't been run yet.
-
-Another variation of this may appear as `Referenced node is unexecuted`.  In that case, the full text of this error will tell you the exact node that isn't executing in this format:
-
-> An expression references the node '&lt;node-name&gt;', but it hasn’t been executed yet. Either change the expression, or re-wire your workflow to make sure that node executes first.
-> 
-
-To begin troubleshooting, test the workflow up to the named node.
-
-For nodes that use JavaScript or other custom code, you can check if a previous node has executed before trying to use its value by checking the following:
-
-```javascript
-$("<node-name>").isExecuted
-```
-
-As an example, this JSON references the parameters of the input data. This error will display if you test this step without connecting it to another node:
-
-```javascript
-{
-  "my_field_1": {{ $input.params }}
-}
-```
-
-## Invalid syntax
-
-This error occurs when you use an expression that has a syntax error.
-
-For example, the expression in this JSON includes a trailing period, which results in an invalid syntax error:
-
-```jsx
-{
-  "my_field_1": "value",
-  "my_field_2": {{ $('If').item.json. }}
-}
-
-```
-
-To resolve this error, check your [expression syntax](/data/expressions.md) to make sure they follow the expected format.
-
-=== https://docs.n8n.io/docs/code/cookbook/expressions/index/
-
-# Expressions cookbook
-
-This section contains examples and recipes for tasks you can do with [expressions](/glossary.md#expression-n8n).
-
-/// note | Python support
-You can use Python in the Code node. It isn't available in expressions.
-///
-[[% import "_macros/section-toc.html" as sectionToc %]]
-
-[[ sectionToc.sectionToc(page) ]]
-
-## Related resources
-
-* [Built-in methods and variables reference](/code/builtin/overview.md)
-* [Expressions](/data/expressions.md)
-
-=== https://docs.n8n.io/docs/code/cookbook/expressions/check-incoming-data/
-
-# Check incoming data
-
-At times, you may want to check the incoming data. If the incoming data doesn't match a condition, you may want to return a different value. For example, you want to check if a variable from the previous node is empty and return a string if it's empty. Use the following code snippet to return `not found` if the variable is empty.
-
-```javascript
-{{$json["variable_name"]? $json["variable_name"] :"not found"}}
-```
-
-The above expression uses the ternary operator. You can learn more about the ternary operator [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
-
-As an alternative, you can use the [nullish coalescing operator (??)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing) or the [logical or operator (||)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR):
-
-```javascript
-{{ $x ?? "default value" }}
-{{ $x || "default value" }}
-```
-
-In either of the above two cases, the value of `$x` will be used if it's set to a non-null, non-false value. The string `default value` is the fallback value.
-
 === https://docs.n8n.io/docs/code/cookbook/code-node/get-binary-data-buffer/
 
 # Get the binary data buffer
@@ -18948,10 +18859,8 @@ If your n8n cloud instance crashes and fails to start, you can prevent installed
 
 # Install verified community nodes in the n8n app
 
-/// note | Limited to n8n instance owners
-Only the n8n instance owner can install and manage verified community nodes. The instance owner is the person who sets up and manages user management. All members of an n8n instance can use already installed community nodes in their workflows.
-
-Admin accounts can also uninstall any community node, verified or unverified. This helps them remove problematic nodes that may affect the instance's health and functionality.
+/// note | Limited to n8n instance owners and admins
+The n8n instance owner and admin accounts can install and manage verified community nodes. The instance owner is the person who sets up and manages user management. All members of an n8n instance can use already installed community nodes in their workflows.
 ///
 
 ## Install a community node
@@ -45959,7 +45868,7 @@ This error occurs when WhatsApp Business Cloud rejects your request because of a
 
 To resolve this issue, review the parameters in your [message template](https://www.facebook.com/business/help/2055875911147364?id=2129163877102343). Pay attention to each parameter's data type and the order they're defined in the template.
 
-Check the data that n8n is mapping to the template parameters. If you're using expressions to set parameter values, check the input data to make sure each item resolves to a valid value. You may want to use the [Edit Fields (Set) node](/integrations/builtin/core-nodes/n8n-nodes-base.set.md) or [set a fallback value](/code/cookbook/expressions/check-incoming-data.md) to ensure you send a value with the correct format.
+Check the data that n8n is mapping to the template parameters. If you're using expressions to set parameter values, check the input data to make sure each item resolves to a valid value. You may want to use the [Edit Fields (Set) node](/integrations/builtin/core-nodes/n8n-nodes-base.set.md) or set a fallback value to ensure you send a value with the correct format.
 
 ## Working with non-text media
 
@@ -46433,7 +46342,7 @@ To work around this, check for the existence of the field data before sending it
 
 To check for the data before executing the Notion node, use an [If](/integrations/builtin/core-nodes/n8n-nodes-base.if.md) node to check whether the field is unset. This allows you to use the [Edit Fields (Set)](/integrations/builtin/core-nodes/n8n-nodes-base.set.md) node to conditionally remove the field when it doesn't have a valid value.
 
-As an alternative, you can set a [default value](/code/cookbook/expressions/check-incoming-data.md) if the incoming data doesn't provide one.
+As an alternative, you can set a default value if the incoming data doesn't provide one.
 
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.notion/index/
 
@@ -66293,11 +66202,29 @@ npm install -g n8n@next
 
 --8<-- "_snippets/self-hosting/installation/tunnel.md"
 
-Start n8n with `--tunnel` by running:
+/// note | Docker required
+The tunnel uses cloudflared, which runs as a Docker container. Make sure [Docker](https://docs.docker.com/get-docker/) is installed on your machine, even when running n8n via npm.
+///
+
+For npm installations, use the **services only** approach. Start cloudflared as a standalone service, then run n8n locally:
 
 ```bash
-n8n start --tunnel
+# Terminal 1: Start the cloudflared tunnel service
+pnpm --filter n8n-containers services --services cloudflared
+
+# Terminal 2: Start n8n locally
+pnpm dev
 ```
+
+The `services` command starts cloudflared, fetches the public tunnel URL, and writes a `.env` file to `packages/cli/bin/.env` with `WEBHOOK_URL` and `N8N_PROXY_HOPS=1`. n8n picks up this `.env` automatically on startup.
+
+Clean up when done:
+
+```bash
+pnpm --filter n8n-containers services:clean
+```
+
+For the full stack approach (n8n and cloudflared both in containers), refer to the [Docker tunnel setup](/hosting/installation/docker.md#n8n-with-tunnel).
 
 ## Reverting an upgrade
 
@@ -66457,21 +66384,37 @@ docker run --name=<container_name> [options] -d docker.n8n.io/n8nio/n8n
 
 --8<-- "_snippets/self-hosting/installation/tunnel.md"
 
-Start n8n with `--tunnel` by running:
+### Full stack
+
+This runs n8n and cloudflared together in containers. The tunnel URL prints on startup and everything is wired automatically:
 
 ```shell
-docker volume create n8n_data
+pnpm stack --tunnel
+```
 
-docker run -it --rm \
- --name n8n \
- -p 5678:5678 \
- -e GENERIC_TIMEZONE="<YOUR_TIMEZONE>" \
- -e TZ="<YOUR_TIMEZONE>" \
- -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true \
- -e N8N_RUNNERS_ENABLED=true \
- -v n8n_data:/home/node/.n8n \
- docker.n8n.io/n8nio/n8n \
- start --tunnel
+### Services only
+
+If you prefer to run n8n locally with `pnpm dev` or `pnpm start`, you can start cloudflared as a standalone service:
+
+```shell
+# Terminal 1: Start the cloudflared tunnel service
+pnpm --filter n8n-containers services --services cloudflared
+
+# Terminal 2: Start n8n locally
+pnpm dev
+```
+
+The `services` command:
+
+1. Starts cloudflared pointing at `host.docker.internal:5678` (your local n8n).
+2. Fetches the public tunnel URL from cloudflared's metrics endpoint.
+3. Writes a `.env` file to `packages/cli/bin/.env` with `WEBHOOK_URL` and `N8N_PROXY_HOPS=1`.
+4. `pnpm dev` and `pnpm start` pick up that `.env` automatically via dotenv.
+
+Clean up when done:
+
+```shell
+pnpm --filter n8n-containers services:clean
 ```
 
 ## Next steps
@@ -76553,6 +76496,58 @@ The following code use the Luxon date and time library to find the time between 
   return diffInMonths.toObject();
 })()}}
 ```
+
+## Common issues
+
+Here are some common errors and issues related to [expressions](/data/expressions.md) and steps to resolve or troubleshoot them.
+
+### The 'JSON Output' in item 0 contains invalid JSON
+
+This error occurs when you use JSON mode but don't provide a valid JSON object. Depending on the problem with the JSON object, the error sometimes displays as `The 'JSON Output' in item 0 does not contain a valid JSON object`.
+
+To resolve this, make sure that the code you provide is valid JSON:
+
+- Check the JSON with a [JSON validator](https://jsonlint.com/).
+- Check that your JSON object doesn't reference undefined input data. This may occur if the incoming data doesn't always include the same fields.
+
+### Can't get data for expression
+
+This error occurs when n8n can't retrieve the data referenced by an expression. Often, this happens when the preceding node hasn't been run yet.
+
+Another variation of this may appear as `Referenced node is unexecuted`.  In that case, the full text of this error will tell you the exact node that isn't executing in this format:
+
+> An expression references the node '&lt;node-name&gt;', but it hasn't been executed yet. Either change the expression, or re-wire your workflow to make sure that node executes first.
+
+To begin troubleshooting, test the workflow up to the named node.
+
+For nodes that use JavaScript or other custom code, you can check if a previous node has executed before trying to use its value by checking the following:
+
+```javascript
+$("<node-name>").isExecuted
+```
+
+As an example, this JSON references the parameters of the input data. This error will display if you test this step without connecting it to another node:
+
+```javascript
+{
+  "my_field_1": {{ $input.params }}
+}
+```
+
+### Invalid syntax
+
+This error occurs when you use an expression that has a syntax error.
+
+For example, the expression in this JSON includes a trailing period, which results in an invalid syntax error:
+
+```jsx
+{
+  "my_field_1": "value",
+  "my_field_2": {{ $('If').item.json. }}
+}
+```
+
+To resolve this error, check your [expression syntax](/data/expressions.md) to make sure it follows the expected format.
 
 === https://docs.n8n.io/docs/video-courses/
 
