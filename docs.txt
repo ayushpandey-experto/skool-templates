@@ -5432,6 +5432,20 @@ n8n only supports plaintext values for secrets, not JSON objects.
 1. **Save** your configuration.
 1. As long as this store is connected, you can reference its secrets in credentials.
 
+## Share vault
+
+By default, a secrets vault is **global**: users across the instance can use credentials that reference secrets from that vault.
+
+Instance admins can restrict a vault to a specific [project](/user-management/rbac/projects.md). Once you assign a vault to a project, only that project’s credentials can reference its secrets. You can choose to tie a vault to a single project or keep it global.
+
+To assign the scope:
+
+1. In n8n, go to **Settings** > **External Secrets**.
+1. Find the vault you want to configure and select **Edit**.
+1. Under **Share**, choose one of the following:
+    - **Global**: Share this vault across your entire n8n instance. This allows credentials across the instance to reference these secrets.
+    - **Project**: Restrict this vault to a specific project. Choosing a project limits secret access to only that project's credentials.
+1. **Save** your configuration.
 
 ## Use secrets in n8n credentials
 
@@ -5456,6 +5470,8 @@ For example, you have two n8n instances, one for development and one for product
 ## Using external secrets in projects
 
 To use external secrets in an [RBAC project](/user-management/rbac/index.md), you must have an [instance owner or instance admin](/user-management/account-types.md) as a member of the project.
+
+You can restrict usage of a vault to a specific project using [share vault](#share-vault). A vault assigned to a project is only usable within this project's credentials.
 
 ## Troubleshooting
 
@@ -11272,6 +11288,23 @@ You can find the release notes for older versions of n8n: [1.x](/release-notes/1
 
 
 
+## n8n@2.11.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.10.0...n8n@2.11.0) for this version.<br />
+**Release date:** 2026-03-02
+
+This release contains bug fixes.
+
+### Contributors
+
+[ByteEVM](https://github.com/ByteEVM)  
+[aikido-autofix[bot]](https://github.com/aikido-autofix[bot])  
+[onyxraven](https://github.com/onyxraven)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@2.9.4-exp.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.9.4...n8n@2.9.4-exp.0) for this version.<br />
@@ -15937,6 +15970,14 @@ If you have one version of your node, this can be a number. If you want to suppo
 
 n8n supports two methods of node versioning, but declarative-style nodes must use the light versioning approach. Refer to [Node versioning](/integrations/creating-nodes/build/reference/node-versioning.md) for more information.
 
+## `features`
+
+_Object_ | _Optional_
+
+Define named feature flags evaluated against the node version. Use features to control parameter visibility with `@feature` in `displayOptions`.
+
+Refer to [Feature-based versioning](/integrations/creating-nodes/build/reference/node-versioning.md#feature-based-versioning) for more information.
+
 === https://docs.n8n.io/docs/integrations/creating-nodes/build/reference/node-base-files/index/
 
 # Node base file
@@ -16026,6 +16067,14 @@ Use `version` when using the light versioning approach.
 If you have one version of your node, this can be a number. If you want to support multiple versions, turn this into an array, containing numbers for each node version.
 
 n8n support two methods of node versioning. Programmatic-style nodes can use either. Refer to [Node versioning](/integrations/creating-nodes/build/reference/node-versioning.md) for more information.
+
+## `features`
+
+_Object_ | _Optional_
+
+Define named feature flags evaluated against the node version. Use features to control parameter visibility with `@feature` in `displayOptions`, or check them in code with `this.isNodeFeatureEnabled()`.
+
+Refer to [Feature-based versioning](/integrations/creating-nodes/build/reference/node-versioning.md#feature-based-versioning) for more information.
 
 
 === https://docs.n8n.io/docs/integrations/creating-nodes/build/reference/node-base-files/structure/
@@ -17841,6 +17890,78 @@ As an example, say you want to add versioning to the NasaPics node from the [Dec
             },
         },
     ],
+}
+```
+
+## Feature-based versioning
+
+Feature flags let you control parameter visibility and execution logic based on named features tied to node versions.
+
+### Defining features
+
+Add a `features` object to your node type description. Each feature uses `@version` conditions to specify which versions enable it:
+
+```js
+{
+    version: [2, 2.1, 2.2, 2.3, 2.4],
+    features: {
+        useNewApi: { '@version': [{ _cnd: { gte: 2.2 } }] },
+        useLegacyAuth: { '@version': [{ _cnd: { lte: 2.1 } }] },
+        useSpecialMode: { '@version': [2] },
+    },
+    // More basic parameters here
+}
+```
+
+Available conditions: `gte`, `lte`, `gt`, `lt`. Pass a plain version number to match a specific version.
+
+### Using `@feature` in `displayOptions`
+
+Use `@feature` in `displayOptions` to control parameter visibility based on feature flags:
+
+```js
+{
+    displayName: 'New API Field',
+    name: 'newApiField',
+    type: 'string',
+    displayOptions: {
+        show: {
+            '@feature': ['useNewApi'],
+        },
+    },
+}
+```
+
+To show a parameter when a feature is **not** enabled, use the condition syntax:
+
+```js
+displayOptions: {
+    show: {
+        '@feature': [{ _cnd: { not: 'useNewApi' } }],
+    },
+}
+```
+
+You can combine `@feature` with other display conditions:
+
+```js
+displayOptions: {
+    show: {
+        resource: ['myResource'],
+        '@feature': [{ _cnd: { eq: 'useNewApi' } }],
+    },
+}
+```
+
+### Checking features in code
+
+Use `this.isNodeFeatureEnabled()` in execution contexts (such as `IExecuteFunctions` or `IWebhookFunctions`):
+
+```js
+if (this.isNodeFeatureEnabled('useNewApi')) {
+    // Process with new API
+} else {
+    // Process with legacy API
 }
 ```
 
