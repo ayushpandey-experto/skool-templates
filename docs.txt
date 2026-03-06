@@ -1744,8 +1744,8 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.9.4
-Current `beta`: 2.10.2
+Current `stable`: 2.10.2
+Current `beta`: 2.11.1
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/tunnel/
@@ -4766,6 +4766,7 @@ Outbound traffic may appear to originate from any of:
 * 4.184.78.240/28
 * 20.79.32.32/28
 * 51.116.119.64/28
+* 51.107.180.112/28
 
 === https://docs.n8n.io/docs/manage-cloud/download-workflows/
 
@@ -11286,6 +11287,19 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
 
+
+
+## n8n@2.11.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.11.0...n8n@2.11.1) for this version.<br />
+**Release date:** 2026-03-04
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@2.11.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.10.0...n8n@2.11.0) for this version.<br />
@@ -11309,12 +11323,23 @@ This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
+
+## n8n@2.10.3
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.10.2...n8n@2.10.3) for this version.<br />
+**Release date:** 2026-03-04
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
 ## n8n@2.10.2
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.10.1...n8n@2.10.2) for this version.<br />
-**Release date:** 2026-02-25
+**Release date:** 2026-02-27
 
-This release contains a bug fix.
+This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
@@ -61459,9 +61484,7 @@ Refer to Salesforce's [Create a Connected App in Your Org](https://developer.sal
 
 To configure this credential, you'll need a [Salesforce](https://www.salesforce.com/) account.
 
---8<-- "_snippets/integrations/builtin/credentials/cloud-oauth-button.md"
-
-Cloud and hosted users will need to select your **Environment Type**. Choose between **Production** and **Sandbox**.
+You will need to select your **Environment Type**. Choose between **Production** and **Sandbox**.
 
 ### Create an External Client App (recommended)
 
@@ -61474,12 +61497,12 @@ If you're [self-hosting](/hosting/index.md) n8n, you'll need to configure OAuth2
 5. On the App Manager page, select **New External Client App**.
 6. Enter the required **Basic Info** for your external client app, including a **Name** and **Contact Email address**.
 7. Under **API (Enable OAuth Settings)**, select **Enable OAuth**.
-8. In the **Callback URL** box, add your n8n OAuth callback URL (for example, `https://your-n8n-instance.com/rest/oauth2-credential/callback`).
+8. In the **Callback URL** box, add your n8n OAuth callback URL (for example, `https://your-n8n-instance.com/rest/oauth2-credential/callback`. For n8n Cloud, this will be `https://oauth.n8n.cloud/oauth2/callback`).
 9. In the **OAuth Scopes** section, select these scopes:
     - **Full access (full)**
     - **Perform requests at any time (refresh_token, offline_access)**
-10. In the **Flow Enablement** section, select **Enable Client Credentials Flow**.
-11. Under **OAuth Policies**, make sure the following settings are **unchecked**:
+10. In the **Flow Enablement** section, select **Enable Authorization Code and Credentials Flow**.
+11. Under **OAuth Policies**, make sure the following settings are **checked**:
     - **Require Secret for Web Server Flow**
     - **Require Secret for Refresh Token Flow**
     - **Require Proof Key for Code Exchange (PKCE) Extension for Supported Authorization Flows**
@@ -77806,22 +77829,14 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
-## n8n@1.124.0
-
-View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.22...n8n@1.124.0) for this version.<br />
-**Release date:** 2026-02-25
-
-This release contains a bug fix.
-
-For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 ## n8n@1.123.23
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.22...n8n@1.123.23) for this version.<br />
-**Release date:** 2026-02-25
+**Release date:** 2026-03-04
 
-This release contains a bug fix.
+This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
