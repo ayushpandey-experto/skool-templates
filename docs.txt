@@ -5639,7 +5639,7 @@ You can find all available nodes in the **nodes panel** on the right side of the
 
 - Click the **+** icon in the top right corner of the canvas.
 - Click the **+** icon on the right side of an existing node on the canvas (the node to which you want to add another one).
-- Click the ++tab++ key on your keyboard.
+- Press the ++n++ key on your keyboard.
 
 <figure style="text-align: center; width:50%; margin:auto;"><img src="/_images/courses/level-one/chapter-one/l1-c1-node-menu-drilldown.gif" alt="Nodes panel"><figcaption align = "center"><i>Nodes panel</i></figcaption></figure>
 
@@ -5759,7 +5759,7 @@ The finished workflow will look like this:
 
 ## 1. Add a Manual Trigger node
 
-Open the nodes panel (reminder: you can open this by selecting the **+** icon in the top right corner of the [canvas](/glossary.md#canvas-n8n) or selecting ++tab++ on your keyboard).
+Open the nodes panel (reminder: you can open this by selecting the **+** icon in the top right corner of the [canvas](/glossary.md#canvas-n8n) or pressing ++n++ on your keyboard).
 
 Then:
 
@@ -19013,7 +19013,7 @@ The n8n instance owner and admin accounts can install and manage verified commun
 
 To install a [verified community node](/integrations/creating-nodes/deploy/submit-community-nodes.md#submit-your-node-for-verification-by-n8n):
 
-1. Go to the **Canvas** and open the **nodes panel** (either by selecting '+' or pressing ++tab++).
+1. Go to the **Canvas** and open the **nodes panel** (either by selecting '+' or pressing ++n++).
 2. **Search** for the node that you're looking for. If there is a matching verified community node, you will see a **More from the community** section at the bottom of the nodes panel.
 3. Select the node you want to install. This takes you to a detailed view of the node, showing all the supported actions.
 4. Select **install**. This will install the node for your instance and enable all members to use it in their workflows.
@@ -63507,7 +63507,7 @@ By incorporating the AI agent as a node, n8n can combine AI-driven steps with tr
 
 Every workflow needs somewhere to start. In n8n these are called ['trigger nodes'](/glossary.md#trigger-node-n8n). For this workflow, we want to start with a chat node.
 
- 1. Select **Add first step** or press ++tab++ to open the node menu.
+ 1. Select **Add first step** or press ++n++ to open the node menu.
 
  1. Search for **Chat Trigger**. n8n shows a list of nodes that match the search.
 
@@ -91705,7 +91705,7 @@ n8n provides keyboard shortcuts for some actions.
 
 ## Node panel
 
- - **Tab**: open the Node Panel
+ - **N**: open the Node Panel
  - **Enter**: insert selected node into workflow
  - **Escape**: close Node panel
 
