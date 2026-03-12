@@ -951,6 +951,11 @@ Use this option to guide the agent's decision-making.
 === https://docs.n8n.io/_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/binary-images/
 Use this option to control whether binary images should be automatically passed through to the agent as image type messages (turned on) or not (turned off).
 
+=== https://docs.n8n.io/_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/tracing-metadata/
+Add custom key-value metadata to tracing events for this agent. This is useful for filtering and debugging runs in tracing tools like [LangSmith](/advanced-ai/langchain/langsmith.md).
+
+Entries with empty keys or values are ignored.
+
 === https://docs.n8n.io/_snippets/integrations/builtin/cluster-nodes/sub-node-expression-resolution/
 /// note | Parameter resolution in sub-nodes
 Sub-nodes behave differently to other nodes when processing multiple items using an expression.
@@ -1744,8 +1749,8 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.10.4
-Current `beta`: 2.11.2
+Current `stable`: 2.11.2
+Current `beta`: 2.12.0
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/tunnel/
@@ -11316,6 +11321,19 @@ You can find the release notes for older versions of n8n: [1.x](/release-notes/1
 
 
 
+
+
+## n8n@2.12.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.12.0...n8n@2.12.1) for this version.<br />
+**Release date:** 2026-03-11
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@2.12.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.11.0...n8n@2.12.0) for this version.<br />
@@ -11325,9 +11343,20 @@ This release contains bug fixes.
 
 ### Contributors
 
-[github-actions[bot]](https://github.com/github-actions[bot])  
+`github-actions[bot]` 
 [amenk](https://github.com/amenk)  
 [bpk9](https://github.com/bpk9)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
+## n8n@2.11.3
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.11.2...n8n@2.11.3) for this version.<br />
+**Release date:** 2026-03-11
+
+This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
@@ -25272,6 +25301,10 @@ Available LangChain expressions:
 * `{current_step}`: Contains information about the current step.
 * `{agent_scratchpad}`: Information to remember for the next iteration.
 
+### Tracing Metadata
+
+--8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/tracing-metadata.md"
+
 ## Templates and examples
 
 Refer to the main AI Agent node's [Templates and examples](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/index.md#templates-and-examples) section.
@@ -25453,6 +25486,10 @@ Refine the Tools Agent node's behavior using these options:
 
 --8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/return-intermediate-steps.md"
 
+### Tracing Metadata
+
+--8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/tracing-metadata.md"
+
 <!-- vale off -->
 ### Automatically Passthrough Binary Images
 <!-- vale on -->
@@ -25557,6 +25594,10 @@ Add text to append after the tools list at the start of the conversation when th
 ### Return Intermediate Steps
 
 --8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/return-intermediate-steps.md"
+
+### Tracing Metadata
+
+--8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/tracing-metadata.md"
 
 ## Related resources
 
@@ -25679,6 +25720,10 @@ Here is the user's input (remember to respond with a markdown code snippet of a 
 
 --8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/return-intermediate-steps.md"
 
+### Tracing Metadata
+
+--8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/tracing-metadata.md"
+
 ## Templates and examples
 
 Refer to the main AI Agent node's [Templates and examples](/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/index.md#templates-and-examples) section.
@@ -25730,6 +25775,10 @@ Refine the OpenAI Functions Agent node's behavior using these options:
 ### Return Intermediate Steps
 
 --8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/return-intermediate-steps.md"
+
+### Tracing Metadata
+
+--8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/tracing-metadata.md"
 
 ## Templates and examples
 
@@ -25822,6 +25871,10 @@ n8n fills this field with an example.
 Enter the maximum number of results to return.
 
 Default is `10`.
+
+### Tracing Metadata
+
+--8<-- "_snippets/integrations/builtin/cluster-nodes/langchain-root-nodes/tracing-metadata.md"
 
 ## Templates and examples
 
@@ -77995,6 +78048,17 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n [here](/release-notes/0-x.md)
 ///
+
+
+
+## n8n@1.123.24
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.23...n8n@1.123.24) for this version.<br />
+**Release date:** 2026-03-11
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
