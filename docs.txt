@@ -1306,10 +1306,10 @@ n8n added native Python support using task runners in version 1.111.0. This feat
 Main differences from Pyodide:
 
 - Native Python supports only `_items` in all-items mode and `_item` in per-item mode. It doesn't support other n8n built-in methods and variables.
-- Native Python supports importing native Python modules from the standard library and from third-parties, if the `n8nio/runners` image includes them and explicitly allowlists them. See [adding extra dependencies for task runners](/hosting/configuration/task-runners.md/#adding-extra-dependencies) for more details.
+- On self-hosted, native Python supports importing native Python modules from the standard library and from third-parties, if the `n8nio/runners` image includes them and explicitly allowlists them. See [adding extra dependencies for task runners](/hosting/configuration/task-runners.md/#adding-extra-dependencies) for more details.
 - Native Python denies insecure built-ins by default. See [task runners environment variables](/hosting/configuration/environment-variables/task-runners.md) for more details.
 - Unlike Pyodide, which accepts dot access notation, for example, `item.json.myNewField`, native Python only accepts bracket access notation, for example, `item["json"]["my_new_field"]`. There may be other minor syntax differences where Pyodide accepts constructs that aren't legal in native Python.
-- On n8n cloud, the Python option for the Code node doesn't allow users to import any third-party Python libraries. Self-hosting users can find setup instructions to include external libraries [here](https://docs.n8n.io/hosting/configuration/task-runners/#adding-extra-dependencies). In the long term, the n8n team is committed to allowing users to securely execute arbitrary Python code with any first- and third-party libraries using task runners.
+- On n8n cloud, the Python option for the Code node doesn't allow users to import any Python libraries — whether from the standard library or third-party packages. Self-hosting users can find setup instructions to include external libraries [here](https://docs.n8n.io/hosting/configuration/task-runners/#adding-extra-dependencies). In the long term, the n8n team is committed to allowing users to securely execute arbitrary Python code with any first- and third-party libraries using task runners.
 
 Upgrading to native Python is a breaking change, so you may need to adjust your Python scripts to use the native Python runner. 
 
@@ -1749,8 +1749,8 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.11.2
-Current `beta`: 2.12.0
+Current `stable`: 2.11.3
+Current `beta`: 2.12.2
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/tunnel/
@@ -9523,7 +9523,7 @@ Learn more about:
 
 # n8n v2.0 breaking changes
 
-n8n v2.0 will be released soon. This document highlights important breaking changes and actions you should take to prepare for the transition. These updates improve security, simplify configuration, and remove legacy features.
+n8n v2.0 has been released, and with it came some important changes. This document highlights breaking changes and actions you should take to prepare for the transition. These updates improve security, simplify configuration, and remove legacy features.
 
 The release of n8n 2.0 continues n8n's commitment to providing a secure, reliable, and production-ready automation platform. This major version includes important security enhancements and cleanup of deprecated features.
 
@@ -11321,6 +11321,17 @@ You can find the release notes for older versions of n8n: [1.x](/release-notes/1
 
 
 
+## n8n@2.12.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.12.1...n8n@2.12.2) for this version.<br />
+**Release date:** 2026-03-13
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 
 
 ## n8n@2.12.1
@@ -11351,10 +11362,21 @@ For full release details, refer to [Releases](https://github.com/n8n-io/n8n/rele
 
 
 
+## n8n@2.11.4
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.11.3...n8n@2.11.4) for this version.<br />
+**Release date:** 2026-03-13
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@2.11.3
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.11.2...n8n@2.11.3) for this version.<br />
-**Release date:** 2026-03-11
+**Release date:** 2026-03-13
 
 This release contains bug fixes.
 
@@ -66322,7 +66344,9 @@ You can also set this value in the configuration file.
 
 When using multiple webhook processes you will need a load balancer to route requests. If you are using the same domain name for your n8n instance and the webhooks, you can set up your load balancer to route requests as follows:
 
-- Redirect any request that matches `/webhook/*` to the webhook servers pool
+- Redirect webhook triggers to the webhook servers pool. Paths to consider:
+  - `/webhook/*`: Webhook trigger node endpoints
+  - `/webhook-waiting/*`: Human-in-the-loop webhook endpoints used by nodes that perform "send and wait" operations (for example, the Slack node).
 - All other paths (the n8n internal API, the static files for the editor, etc.) should get routed to the main process
 
 **Note:** The default URL for manual workflow executions is `/webhook-test/*`. Make sure that these URLs route to your main process.
@@ -78299,10 +78323,21 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.123.25
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.24...n8n@1.123.25) for this version.<br />
+**Release date:** 2026-03-13
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.123.24
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.23...n8n@1.123.24) for this version.<br />
-**Release date:** 2026-03-11
+**Release date:** 2026-03-13
 
 This release contains bug fixes.
 
