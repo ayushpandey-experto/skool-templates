@@ -1749,7 +1749,7 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.11.3
+Current `stable`: 2.11.4
 Current `beta`: 2.12.2
 ///
 
@@ -5459,6 +5459,34 @@ Provide the **Vault URL** for your vault instance, and select your **Authenticat
 	- [AppRole auth method](https://developer.hashicorp.com/vault/docs/auth/approle)
 	- [Userpass auth method](https://developer.hashicorp.com/vault/docs/auth/userpass)
 - If you use vault namespaces, you can enter the namespace n8n should connect to. Refer to [Vault Enterprise namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) for more information on HashiCorp Vault namespaces.
+
+#### Manual KV mount configuration
+
+By default, n8n autodiscovers KV secret engines by reading `sys/mounts`. If your Vault token doesn't have access to `sys/mounts`, you can manually specify the KV engine mount path and version instead:
+
+- **KV Mount Path**: The mount path of your KV secret engine (for example, `secret/`). When set, n8n skips `sys/mounts` autodiscovery and uses this path directly. Leave blank to use autodiscovery.
+- **KV Version**: The KV engine version (`v1` or `v2`). Defaults to `v2`. Only applies when you specify a **KV Mount Path**.
+
+Your Vault token still needs read and list access to the KV path itself. The following example shows a minimal Vault policy for a KV v2 mount at `secret/`:
+
+```hcl
+# Read and list secrets at the "secret/" KV v2 mount
+path "secret/data/*" {
+  capabilities = ["read"]
+}
+path "secret/metadata/*" {
+  capabilities = ["read", "list"]
+}
+```
+
+For KV v1, you only need a single policy path:
+
+```hcl
+# Read and list secrets at the "kv/" KV v1 mount
+path "kv/*" {
+  capabilities = ["read", "list"]
+}
+```
 
 ## Share vault
 
@@ -11318,6 +11346,25 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
+
+
+
+## n8n@2.13.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.12.0...n8n@2.13.0) for this version.<br />
+**Release date:** 2026-03-16
+
+This release contains bug fixes.
+
+### Contributors
+
+[tbigby-kristin](https://github.com/tbigby-kristin)  
+[ajuijas](https://github.com/ajuijas)  
+[ByteEVM](https://github.com/ByteEVM)  
+[mjain](https://github.com/mjain)  
+[bram2w](https://github.com/bram2w)  
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
@@ -59130,6 +59177,10 @@ Then:
 3. Give your key a **Name**, like `n8n-integration`.
 4. Select **Copy Key** to copy the key.
 5. Enter this as the **API Key** in your n8n credential.
+6. (Optional) To add custom headers to your API requests:
+    1. Enable the **Add Custom Header** toggle.
+    2. Enter the **Header Name** for your custom header.
+    3. Enter the **Header Value** for your custom header.
 
 Refer to Anthropic's [Intro to Claude](https://docs.anthropic.com/en/docs/intro-to-claude) and [Quickstart](https://docs.anthropic.com/en/docs/quickstart) for more information.
 
@@ -68983,10 +69034,11 @@ You can provide a [configuration file](/hosting/configuration/configuration-meth
 
 You can define external hooks that n8n executes whenever a specific operation runs. Refer to [Backend hooks](/embed/configuration.md#backend-hooks) for examples of available hooks and [Hook files](/embed/configuration.md#backend-hook-files) for information on file formatting. 
 
-| Variable | Type  | Description |
-| :------- | :---- | :---------- |
-| `EXTERNAL_HOOK_FILES` | String | Files containing backend external hooks. Provide multiple files as a colon-separated list ("`:`"). |
-| `EXTERNAL_FRONTEND_HOOKS_URLS` | String | URLs to files containing frontend external hooks. Provide multiple URLs as a colon-separated list ("`:`"). |
+| Variable | Type  | Default | Description |
+| :------- | :---- | :------ | :---------- |
+| `EXTERNAL_HOOK_FILES` | String | - | Files containing backend external hooks. Provide multiple files separated by the character defined in `EXTERNAL_HOOK_FILES_SEPARATOR`. |
+| `EXTERNAL_HOOK_FILES_SEPARATOR` | String | `:` | Separator character for `EXTERNAL_HOOK_FILES`. Use `;` on Windows to avoid conflicts with drive-letter paths like `C:\`. |
+| `EXTERNAL_FRONTEND_HOOKS_URLS` | String | - | URLs to files containing frontend external hooks. Provide multiple URLs as a colon-separated list ("`:`"). |
 
 === https://docs.n8n.io/docs/hosting/configuration/environment-variables/logs/
 
