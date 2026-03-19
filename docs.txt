@@ -1749,8 +1749,8 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.11.4
-Current `beta`: 2.12.2
+Current `stable`: 2.12.3
+Current `beta`: 2.13.1
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/tunnel/
@@ -11385,6 +11385,17 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
+
+
+
+## n8n@2.13.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.13.0...n8n@2.13.1) for this version.<br />
+**Release date:** 2026-03-18
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
@@ -56699,44 +56710,29 @@ If your email provider isn't listed here, search for their `IMAP settings` or `I
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/imap/outlook/
 
+/// warning | Microsoft has removed Basic Auth for Outlook.com IMAP
+Microsoft deprecated Basic Authentication for IMAP in Exchange Online and
+Outlook.com. As a result, the IMAP node **cannot connect to Outlook.com or
+Microsoft 365 accounts**. App passwords are not a workaround for this
+restriction.
+
+**Use the [Microsoft Outlook node](/integrations/builtin/app-nodes/n8n-nodes-base.microsoftoutlook.md)
+instead.** It uses OAuth 2.0, which Microsoft now requires for mail access.
+
+Refer to [Microsoft's deprecation notice](https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online#what-we-are-changing)
+for more information.
+///
+
+
 # Outlook.com IMAP credentials
 
-Follow these steps to configure the IMAP credentials with an Outlook.com account.
+IMAP access for Outlook.com and Microsoft 365 accounts is no longer supported in n8n due to Microsoft's deprecation of Basic Authentication. You cannot use IMAP (with a regular password or app password) to connect to Outlook.com or Microsoft 365 accounts.
 
-## Set up the credentials
+To replace IMAP triggers for incoming email, use the [Microsoft Outlook Trigger node](/integrations/builtin/trigger-nodes/n8n-nodes-base.microsoftoutlooktrigger.md), which supports the Message Received event.
 
-To set up the IMAP credential with Outlook.com account, use these settings:
+For general Microsoft Outlook automation, use the [Microsoft Outlook node](/integrations/builtin/app-nodes/n8n-nodes-base.microsoftoutlook.md), which uses OAuth 2.0 as required by Microsoft.
 
-1. Enter your Outlook.com email address as the **User**.
-2. Enter your Outlook.com password as the **Password**.
-
-    /// note | App password
-    Outlook.com doesn't require you to use an app password, but if you'd like to for security reasons, refer to [Use an app password](#use-an-app-password).
-    ///
-
-3. Enter `outlook.office365.com` as the **Host**.
-4. For the **Port**, keep the default port number of `993`.
-5. Turn on the **SSL/TLS** toggle.
-6. Check with your email administrator about whether to **Allow Self-Signed Certificates**.
-
-Refer to Microsoft's [POP, IMAP, and SMTP settings for Outlook.com](https://support.microsoft.com/en-us/office/pop-imap-and-smtp-settings-for-outlook-com-d088b986-291d-42b8-9564-9c414e2aa040) documentation for more information.
-
-## Connection errors
-
-You may receive a connection error if you configured your Outlook.com account as IMAP in multiple email clients. Microsoft is working on a fix for this. For now, try this workaround:
-
-1. Go to [account.live.com/activity](https://account.live.com/activity) and sign in using the email address and password of the affected account.
-1. Under **Recent activity**, find the **Session Type** event that matches the most recent time you received the connection error. Select it to expand the details.
-1. Select **This was me** to approve the IMAP connection.
-1. Retest your n8n credential.
-
-Refer to [What is the Recent activity page?](https://support.microsoft.com/en-us/account-billing/what-is-the-recent-activity-page-23cf5556-4dbe-70da-82c8-bb3a8d8f8016) for more information on using this page.
-
-The source for these instructions is [Outlook.com IMAP connection errors](https://support.microsoft.com/en-us/office/pop-imap-and-smtp-settings-for-outlook-com-d088b986-291d-42b8-9564-9c414e2aa040). Refer to that documentation for more information.
-
-## Use an app password
-
---8<-- "_snippets/integrations/builtin/credentials/email/outlook-app-password.md"
+For more information, refer to [Microsoft's deprecation notice](https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online#what-we-are-changing).
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/imap/yahoo/
 
@@ -60163,7 +60159,7 @@ To configure this credential, you'll need:
   - Turn **OFF** for port `587` (uses STARTTLS explicit encryption)
   - Turn **OFF** for port `25` (no encryption)
 - **Disable STARTTLS**: When SSL/TLS is disabled, the SMTP server can still try to [upgrade the TCP connection using STARTTLS](https://en.wikipedia.org/wiki/Opportunistic_TLS). Turning this on prevents that behaviour.
-- **Client Host Name**: If needed by your provider, add a client host name. This name identifies the client to the server.
+- **Client Host Name**: This name identifies the client to the server. May not be required for Gmail, Outlook.com, or Yahoo. Leave this field empty unless your email provider or administrator specifically requests it. If you do need to provide a value, use a fully qualified domain name (FQDN) such as `mail.yourdomain.com`. Avoid generic values like `localhost`.
 
 ### Provider instructions
 
@@ -60187,30 +60183,15 @@ If your email provider isn't listed here, search for `SMTP settings` to find the
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/sendemail/outlook/
 
+
 # Outlook.com Send Email credentials
 
-Follow these steps to configure the Send Email credentials with an Outlook.com account.
+/// warning | Microsoft has removed Basic Auth and App Passwords for Outlook.com SMTP
+Microsoft deprecated Basic Authentication and app passwords for SMTP in Exchange Online and Outlook.com. As a result, the Send Email node **cannot connect to Outlook.com or Microsoft 365 accounts** using username/password or app password authentication.
 
-## Set up the credential
+**To send email from your Outlook.com or Microsoft 365 account, use the [Microsoft Outlook node](/integrations/builtin/app-nodes/n8n-nodes-base.microsoftoutlook.md), which uses OAuth 2.0 as required by Microsoft.**
 
-To configure the Send Email credential to use an Outlook.com account:
-
-1. Enter your Outlook.com email address as the **User**.
-2. Enter your Outlook.com password as the **Password**.
-
-	/// note | App password
-	Outlook.com doesn't require you to use an app password, but if you'd like to for security reasons, refer to [Use an app password](#use-an-app-password).
-	///
-
-4. Enter `smtp-mail.outlook.com` as the **Host**.
-5. Enter `587` for the **Port**.
-6. Turn on the **SSL/TLS** toggle.
-
-Refer to Microsoft's [POP, IMAP, and SMTP settings for Outlook.com](https://support.microsoft.com/en-us/office/pop-imap-and-smtp-settings-for-outlook-com-d088b986-291d-42b8-9564-9c414e2aa040) documentation for more information. If the settings above don't work for you, check with your email administrator.
-
-## Use an app password
-
---8<-- "_snippets/integrations/builtin/credentials/email/outlook-app-password.md"
+Refer to [Microsoft's deprecation notice](https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online#what-we-are-changing) for more information.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/sendemail/yahoo/
 
@@ -76693,8 +76674,8 @@ In n8n, data flows through your workflow from node to node. Each node receives d
 
 **View data at every stage**: You can inspect data at any point in your workflow:
 
-- **Node details view**: Double-click any node to see its input and output data
-- **Execution logs**: Review past workflow runs to see the data that passed through each node
+- **Node details view**: Double-click any node to see its input and output data. Choose between **Schema**, **Table** and **JSON** views. Schema view shows a simplified structure from the first item only, Table and JSON display the full dataset.
+- **Execution logs**: Review past workflow runs to see the data that passed through each node.
 
 **Reference previous data**: Use [data mapping](/data/data-mapping/index.md) to reference data from earlier nodes in your workflow. You can:
 
@@ -78519,6 +78500,17 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n [here](/release-notes/0-x.md)
 ///
+
+
+
+## n8n@1.123.26
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.25...n8n@1.123.26) for this version.<br />
+**Release date:** 2026-03-18
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
