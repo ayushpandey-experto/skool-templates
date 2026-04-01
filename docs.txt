@@ -71189,8 +71189,7 @@ services:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
       - N8N_PORT=5678
-      - N8N_PROTOCOL=https
-      - N8N_RUNNERS_ENABLED=true
+      - N8N_PROTOCOL=https  
       - NODE_ENV=production
       - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
@@ -91412,6 +91411,11 @@ The n8n MCP Server exposes the following tools so that you can create and update
     * `includeData` (boolean): Include full execution result data. Defaults to `false` (metadata only).
     * `nodeNames` (array): When `includeData` is true, return data only for the specific node names.
     * `truncateData` (boolean): When `includeData` is true, limit the number of data items returned per node.
+
+### Testing workflows
+
+* `prepare_test_pin_data`: Look at a workflow and return JSON schemas for any nodes that need simulated data (triggers, credentialed nodes, HTTP requests). Use these schemas to generate realistic test data before running `test_workflow`. (v2.15 onward)
+* `test_workflow`: Run a workflow using generated pin data to simulate external services, while still actually executing logic nodes (Set, If, Code). Return the execution status. (v2.15 onward)
 
 ### Projects and folders
 
