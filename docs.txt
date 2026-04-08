@@ -2995,8 +2995,8 @@ docker compose up -d
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.14.2
-Current `beta`: 2.15.0
+Current `stable`: 2.15.0
+Current `beta`: 2.16.0
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/server-setups-next-steps/
@@ -4801,6 +4801,19 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n: [1.x](/release-notes/1-x.md) and [0.x](/release-notes/0-x.md)
 ///
+
+
+
+## n8n@2.16.0
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.15.0...n8n@2.16.0) for this version.<br />
+**Release date:** 2026-04-07
+
+This release contains bug fixes.
+
+
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
@@ -33848,10 +33861,12 @@ When working with a production URL, ensure that you have saved and published the
 
 Use the Chat node with the [Chat Trigger](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md) node to send messages into the chat and optionally wait for responses from users. This enables human-in-the-loop (HITL) use cases in chat workflows, allowing you to have multiple chat interactions within a single execution. The Chat node also works as a tool for AI Agents.
 
-All features work with both embedded and hosted chat interfaces.
-
 /// note | Chat Trigger node
 The Chat node requires a [Chat Trigger](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md) node to be present in the workflow, with the [Response Mode](/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/index.md#response-mode) set to 'Using Response Nodes'.
+///
+
+/// warning | Embedded mode not supported
+The Chat node isn't supported when the Chat Trigger node is set to **Embedded** mode. In Embedded mode, use the [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md) node instead.
 ///
 
 /// note | Previous version
@@ -33951,6 +33966,7 @@ Refer to the [Chat Trigger](/integrations/builtin/core-nodes/n8n-nodes-langchain
 
 ## Common issues
 
+- The Chat node isn't supported when the Chat Trigger node's **Mode** is set to **Embedded**. In Embedded mode, the Chat Trigger node only offers **Respond to Webhook** as a response mode. Use the [Respond to Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook.md) node instead.
 - The Chat node doesn't work when used as a tool of a subagent.
 - The Chat node doesn't work when used in a subworkflow. This includes usage in a subworkflow that's being used as a tool for an AI Agent.
 - Make sure the Chat Trigger node's Response Mode is set to "Using Response Nodes" for the Chat node to function properly.
@@ -76525,6 +76541,17 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 
 
 
+## n8n@1.123.29
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.28...n8n@1.123.29) for this version.<br />
+**Release date:** 2026-04-07
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
 ## n8n@1.123.28
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.27...n8n@1.123.28) for this version.<br />
@@ -94126,7 +94153,23 @@ Sticky Notes are a core node. To add a new Sticky Note:
 To change the Sticky Note color:
 
 1. Hover over the Sticky Note
-1. Select **Change color** <span class="n8n-inline-image">![Change Sticky Note color icon](/_images/common-icons/change-color.png){.off-glb}</span>
+2. Select **Change color** <span class="n8n-inline-image">![Change Sticky Note color icon](/_images/common-icons/change-color.png){.off-glb}</span>
+3. Choose from seven preset colors, or click the rainbow gradient button to select a custom color
+
+![Color selector showing preset colors and custom color button](/_images/workflows/components/stickies/color-picker-popover.png)
+
+### Custom colors
+
+In addition to the seven preset colors, you can select any custom color for your sticky notes:
+
+1. Click the button with the rainbow gradient and plus icon
+2. Use the color picker to select your desired color, or enter a hex color code (for example, `#FF5733`)
+3. Click **Apply** to set the color
+
+
+Your recently used custom colors (up to 8) are automatically saved and displayed in the color picker for quick access.
+
+Custom colors feature theme-aware borders that automatically adjust for optimal visibility in both light and dark modes.
 
 ## Sticky Note positioning
 
