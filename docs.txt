@@ -1528,11 +1528,6 @@ return newItems;
 
 If you self-host n8n, you can import and use built-in and external npm modules in the Function node. To learn how to enable external modules, refer the [Configuration](/hosting/configuration/#use-built-in-and-external-modules-in-function-nodes) guide.
 
-=== https://docs.n8n.io/_snippets/embed-license/
-/// info | Feature availability
-Embed requires an embed license. For more information about when to use Embed, as well as costs and licensing processes, refer to [Embed](https://n8n.io/embed/) on the n8n website.
-///
-
 === https://docs.n8n.io/_snippets/integrations/managed-google-oauth/
 * [Google Calendar](/integrations/builtin/app-nodes/n8n-nodes-base.googlecalendar/index.md)
 * [Google Calendar Trigger](/integrations/builtin/trigger-nodes/n8n-nodes-base.googlecalendartrigger.md)
@@ -2972,6 +2967,11 @@ Self-hosting n8n requires technical knowledge, including:
 n8n recommends self-hosting for expert users. Mistakes can lead to data loss, security issues, and downtime. If you aren't experienced at managing servers, n8n recommends [n8n Cloud](https://n8n.io/cloud/).
 ///
 
+=== https://docs.n8n.io/_snippets/self-hosting/oem-agreement/
+/// info | OEM agreement required
+OEM deployment of n8n requires a separate commercial agreement with n8n. [Contact n8n](mailto:license@n8n.io) for more information.
+///
+
 === https://docs.n8n.io/_snippets/self-hosting/configuration/environment-variables/all/
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/docker-compose-updating/
@@ -3670,6 +3670,134 @@ Thanks for helping us improve docs! Please give us as much information as you ca
 
 Add any other context or screenshots about the feature request here.
 
+=== https://docs.n8n.io/skills/n8n-docs-author/SKILL/
+
+# n8n docs author
+
+You write and review documentation for the n8n-docs repo.
+All content must follow the style guide at `STYLE_GUIDE.md` (repo root).
+
+## Modes
+
+Determine what the user needs and work accordingly:
+
+1. **Write**: Draft a new page or section. Read nearby existing pages first
+   to match structure and tone. Use the correct template from
+   `document-templates/` for the page type (app node, core node, credentials,
+   feature, tutorial, release notes).
+
+2. **Edit**: Improve existing content. Read the file first. Fix style
+   violations without changing meaning. Preserve admonition syntax, link
+   format, and code block indentation exactly.
+
+3. **Review**: Check content against the style guide. Return a table:
+
+   | Location | Current text | Issue | Suggested fix |
+   |----------|-------------|-------|---------------|
+
+   Group by: terminology / structure first, then style, then grammar.
+
+
+
+## More detail
+
+See [reference.md](reference.md) for full syntax examples (admonitions,
+collapsibles, tabs, link format) and linting guidance (Vale + Lexi targets).
+
+=== https://docs.n8n.io/skills/n8n-docs-author/reference/
+# n8n docs author — formatting reference
+
+Full syntax examples for MkDocs constructs used in n8n-docs.
+
+## External links
+
+All external links must open in a new tab and carry the `.external-link` class:
+
+```markdown
+[Microsoft Writing Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/){:target="_blank" .external-link}
+```
+
+## Admonitions
+
+Use the experimental `///` syntax (not the `!!!` Material default):
+
+```markdown
+/// note | Note title
+Content here.
+///
+
+/// warning | Warning title
+Content here.
+///
+
+/// danger | Danger title
+Content here.
+///
+
+/// info | Info title
+Content here — typically used for feature restrictions (pricing tier, platform).
+///
+```
+
+**Don't over-use admonitions.** They lose their effectiveness if used frequently.
+
+## Collapsible admonition blocks
+
+Uses standard Material theme syntax with `???`:
+
+```markdown
+??? note "Collapsible title"
+    Content must be indented four spaces.
+
+    You can include lists, code blocks, and other Markdown here.
+```
+
+## Tabbed content
+
+Use tabs when content differs by platform, language, or configuration. Use sparingly — they can hide content from users.
+
+```markdown
+=== "First tab"
+
+    Content indented four spaces.
+
+    - List item one
+    - List item two
+
+=== "Second tab"
+
+    1. Numbered list
+    2. Another item
+```
+
+See the [Material docs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs){:target="_blank" .external-link} for more detail.
+
+## Code blocks
+
+Always use **tabs, not spaces** for indentation inside code blocks. This matches the n8n node linter convention and prevents linter failures if users copy the code.
+
+````markdown
+```typescript
+function example() {
+	const value = 'uses a tab here';
+	return value;
+}
+```
+````
+
+## Placeholders in code
+
+Placeholders inside code spans or blocks use hyphenated words in angle brackets:
+
+```markdown
+Run `n8n start --tunnel` from `<your-project-directory>`.
+```
+
+
+=== https://docs.n8n.io/CLAUDE/
+When writing or reviewing documentation, follow the guidance in
+`skills/n8n-docs-author/SKILL.md`.
+
 === https://docs.n8n.io/CONTRIBUTOR_LICENSE_AGREEMENT/
 # n8n Contributor License Agreement
 
@@ -4301,6 +4429,181 @@ n8n-docs is [fair-code](https://faircode.io/) licensed under the [**Sustainable 
 More information about the license is available in the [License documentation](https://docs.n8n.io/sustainable-use-license).
 
 
+=== https://docs.n8n.io/STYLE_GUIDE/
+# n8n docs writing style
+
+## Quickstart
+
+n8n uses the [Microsoft Writing Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/).
+
+### Text formatting
+
+* Headings: sentence case ([more info](https://docs.microsoft.com/en-us/style-guide/scannable-content/headings#formatting-headings))
+* UI elements: bold ([more info](https://docs.microsoft.com/en-us/style-guide/procedures-instructions/formatting-text-in-instructions))
+* User input: code formatted. Placeholders as hyphenated words in angle brackets. For example `<your-root-directory>`.
+* File names, directory names, and paths: code formatted.
+* Make sure you match brand names precisely. For example: "GitHub", not "Github".
+
+### Numbers
+
+Write zero to nine in letters, 10 and above in numerals.
+
+[More info](https://docs.microsoft.com/en-us/style-guide/numbers)
+
+### Links
+
+All external links open in new tab. Use the following syntax:
+
+```
+[commits](https://github.com/n8n-io/n8n/compare/n8n@0.176.0...n8n@0.177.0){:target="_blank" .external-link}
+```
+
+Note that the `.external-link` class currently doesn't do anything. However, it effectively tags all external links, making them easy to find - and to re-style in future if we want to.
+
+## Code examples
+
+Use tabs not spaces. This is important because:
+
+* The n8n node linter enforces this convention. Any code samples in the 'Creating nodes' section could be copied into a user's node, then cause a linter fail if they use spaces.
+* To accommodate the node linter, we've configured MkDocs to use the preserved_tabs option in the SuperFences extension (more details [here](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/#preserve-tabs)), along with some custom CSS to make the tabs a sensible width. Spaces _should_ still display ok, but tabs are safer.
+
+## Admonitions
+
+We have access to all the [admonitions styles](https://squidfunk.github.io/mkdocs-material/reference/admonitions/) provided by the Material theme. Use them as follows:
+
+* `note` for general notes, information you want to stand out.
+* `warning` if something has risks or unexpected behaviours.
+* `danger` if something is a high security risk (such as opening a tunnel to your local n8n instance), or destructive (the user can permanently lose data if they do this wrong)
+* `info` for feature restriction boxes (features limited to certain platforms or pricing tiers)
+
+**Don't over-use admonitions. They lose their effectiveness if they're used a lot.**
+
+We use an experimental syntax:
+
+```
+/// note | Admonition title
+Some admonition content.
+///
+```
+
+
+## Collapsible admonition blocks
+
+Similar to admonitions, but are collapsed. The user clicks to expand. 
+
+For details we use the main [Material theme syntax](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks):
+
+```
+??? note "Admonition title"
+    Some admonition content.
+```
+
+Note the indentation.
+
+We have a custom collapsible admonition, "Details". You can see an example in the [Google Credentials docs](https://docs.n8n.io/integrations/builtin/credentials/google/oauth-generic/).
+
+## Tabbed content
+
+When a block of content is different due to external considerations (platform, coding language etc) it **can** be useful to separate it using tabs, so the user sees only the content relevant to them. Using the material theme, tabbed content is denoted like this:
+
+```
+=== "First tab"
+
+    Content should be indented to match the " in the line above (four blank characters)
+    The indented content will be rendered following the normal Markdown syntax. To add a list:
+
+    * Item one
+    * Another item
+    * Still more items
+
+=== "Second tab"
+
+    1. Use tabbed sections sparingly as they could impact discoverability
+    2. The tabbed section ends when it is no longer indented
+
+```
+See the [material docs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs) for more detail
+
+## Plain language
+
+* Clearly explain each step of the process you are documenting.
+* Use present tense, active voice, and "you"-form to address the readers.
+* Keep your writing as concise as possible. [Hemingway](https://hemingwayapp.com/) is a free browser app to measure language complexity. There is no fixed rule about what grade to aim for, but the lower the reading grade, the better.
+
+## Linting
+
+n8n uses [Vale](https://docs.errata.ai/) and [Lexi](https://github.com/Rebilly/lexi/tree/main) to lint documentation. Linting supports writing quality, and helps writers use the style guide.
+
+The setup comprises:
+
+- A `.vale.ini` file in the root of the repo, containing the configuration
+- A `styles` directory, containing the style definitions. This includes off-the-shelf style libraries for Microsoft, write-good, and alex.
+- Two GitHub Actions: one to run Vale and one to run Lexi.
+
+### Vale
+
+Vale is a text linter that checks for spelling, grammar, and style guide adherence. Vale can be run locally (on your machine) or remotely (as part of a CI process) We use the GitHub Action, but we don't currently allow it to fail pull requests, because Vale is detecting some false positives.
+
+#### Running Vale locally
+
+1. Follow the Vale docs to [install Vale CLI](https://vale.sh/docs/vale-cli/installation/).
+2. Choose whether to lint from the command line, or install a text editor plugin:
+    1. Running `vale --glob="*.md" docs` will lint all Markdown files in the `docs` directory
+    2. Or install a plugin and view problems automatically in your text editor. If using VS Code, install [vale-vscode](https://github.com/chrischinchilla/vale-vscode) by ChrisChinchilla.
+
+#### View the GitHub Action linting output
+
+https://github.com/n8n-io/n8n-docs/assets/10284570/c15d45bb-4c7c-4bca-878c-c8fab919fd0c
+
+#### Create custom rules and configure Vale
+
+Vale supports complex rule setups. The [Vale docs](https://vale.sh/docs/) are a good starting point. There is a [playground to help you create rules](https://studio.vale.sh/). The #testthedocs channel in the [Write the Docs Slack](https://www.writethedocs.org/slack/) is a source of support.
+
+In the n8n docs:
+
+* `/styles` contains the dictionaries, style libraries, and most custom rules (some ignore patterns are defined in `.vale.ini`, which is in the root of the project)
+* `/styles/config/vocabularies/default` contains the two files to add vocabulary to if you want Vale to accept or reject it. For example, you will often need to add brand names to `accept.txt`.
+* `/styles/n8n-styles` is the directory for custom rules.
+
+## Using AI to write and review docs
+
+n8n-docs includes an AI agent skill at `skills/n8n-docs-author/SKILL.md`. It's a distillation of this style guide for use with AI. This style guide is the source of truth — the skill is a convenience, not a replacement for reading it.
+
+### How it works
+
+If you use an AI coding agent from within this repo, the skill can load automatically. For example, the `CLAUDE.md` file at the repo root points Claude Code at the skill, so you don't need to do anything extra.
+
+### How to use it
+
+Ask Claude to write or review docs as you normally would. To be explicit about the mode:
+
+- **Write:** "Write a trigger node page for X."
+- **Edit:** "Edit this page to fix style guide violations."
+- **Review:** "Review this page against the style guide."
+
+For a review, Claude returns a table of issues grouped by severity, with suggested fixes.
+
+### Lexi
+
+Lexi measures the complexity of writing in Markdown files. It's the product of extensive research and testing (more info here: https://youtu.be/BRZqQ6AjPc0?si=UZOBUpotnDs-bL0n) It applies several different ways of measuring complexity, to come up with a combined readability score.
+
+The team behind Lexi recommend an ideal combined readability score of 60 or higher. I would suggest this is an absolute minimum: many pages should be far better. For example, the docs homepage (which has a chattier style and some custom formatting that Lexi fails to ignore) is still ~64. Most pages should be better than this.
+
+These are the targets for each individual measure:
+
+> Metric | Range | Ideal score
+> --- | --- | ---
+> Flesch Reading Ease | 100 (very easy read) to 0 (extremely difficult read) | 60
+> Gunning Fog | 6 (very easy read) to 17 (extremely difficult read) | 8 or less
+> Auto. Read. Index | 6 (very easy read) to 14 (extremely difficult read) | 8 or less
+> Coleman Liau Index | 6 (very easy read) to 17 (extremely difficult read) | 8 or less
+> Dale-Chall Readability | 4.9 (very easy read) to 9.9 (extremely difficult read) | 6.9 or less
+
+Lexi adds the report to the conversation on your pull request. If you make changes, Lexi runs again. You can see reports for different commits by clicking **edited**.
+
+https://github.com/n8n-io/n8n-docs/assets/10284570/75844191-2baf-4893-9474-e74994caa367
+
+
 === https://docs.n8n.io/docs/choose-n8n/
 
 # Choose your n8n
@@ -4316,7 +4619,7 @@ There are different ways to set up n8n depending on how you intend to use it:
 	* [npm](/hosting/installation/npm.md)
 	* [Docker](/hosting/installation/docker.md)
 	* [Server setup guides](/hosting/installation/server-setups/index.md) for popular platforms
-* [Embed](/embed/index.md): n8n Embed allows you to white label n8n and build it into your own product. Contact n8n on the [Embed website](https://n8n.io/embed/) for pricing and support.
+* [OEM deployment](/hosting/oem-deployment/index.md): Surface n8n's interface inside your own product's UI. Requires an OEM agreement - [contact n8n](mailto:license@n8n.io) for details.
 
 --8<-- "_snippets/self-hosting/warning.md"
 
@@ -13491,6 +13794,7 @@ All verified community node authors should use the [`n8n-node` tool](/integratio
 
 * The node **MUST** not be an existing node, If your node is an iteration on an existing node create a pull request instead.
 * n8n isn't accepting Logic or Flow control nodes at the moment.
+* Each package should integrate exactly one third-party service. A trigger node for the same service may be included alongside the main node. Packages that wrap multiple unrelated APIs or act as a proxy layer for several services generally don't qualify for verification. Submit each service as its own separate package.
 
 ## Package source verification
 
@@ -19074,7 +19378,7 @@ This section explains how an n8n administrator can register a single Entra ID ap
 
 ### Pre-configure credentials for users
 
-Once admin consent is granted, use [credential overwrites](https://docs.n8n.io/embed/configuration/#credential-overwrites) to pre-configure the Client ID and Client Secret so users in your organisation can connect without their own app registration. Refer to the [Microsoft OAuth credential overwrites configuration guide](/hosting/configuration/configuration-examples/microsoft-oauth-credential-overwrites.md) for Docker and Kubernetes setup instructions.
+Once admin consent is granted, use [credential overwrites](/hosting/configuration/credential-overwrites.md) to pre-configure the Client ID and Client Secret so users in your organisation can connect without their own app registration. Refer to the [Microsoft OAuth credential overwrites configuration guide](/hosting/configuration/configuration-examples/microsoft-oauth-credential-overwrites.md) for Docker and Kubernetes setup instructions.
 
 ### Required scopes by integration
 
@@ -56549,6 +56853,14 @@ You can configure how the node listens for events.
 	* Delete
 * Select **Listen to Channel**, then enter a channel name that the node should monitor.
 
+/// note | Postgres event listener and required database permissions
+* To listen for trigger events, n8n automatically creates a Postgres trigger on the target table. This trigger is added when you activate a workflow, and removed when you deactivate it.
+* If your workflow is inactive, the trigger is also added when you test the workflow and removed once test event listening stops.
+* The Postgress trigger calls an automatically-created procedure to tell n8n about the event.
+* The user in your Postgres credential must have permissions to create and execute triggers and procedures. In PostgreSQL, this requires superuser access, table ownership, or the TRIGGER privilege - plus CREATE privilege on the schema where the procedure will reside.
+///
+
+
 ## Related resources
 
 n8n provides an app node for Postgres. You can find the node docs [here](/integrations/builtin/app-nodes/n8n-nodes-base.postgres/index.md).
@@ -66429,7 +66741,7 @@ Bob sets up n8n to embed an AI chatbot within the ACME app. The AI chatbot's cre
 
 ### What if I want to use n8n for something that's not permitted by the license?
 
-You must sign a separate commercial agreement with us. We actively encourage software creators to embed n8n within their products; we just ask them to sign an agreement laying out the terms of use, and the fees owed to n8n for using the product in this way. We call this mode of use n8n Embed. You can learn more, and contact us about it [here](https://n8n.io/embed). 
+You must sign a separate commercial agreement with us. We actively encourage software creators to build with n8n in their products; we just ask them to sign an agreement laying out the terms of use, and the fees owed to n8n for using the product in this way. [Contact us](mailto:license@n8n.io) to learn more.
 
 If you are unsure whether the use case you have in mind constitutes an internal business purpose or not, take a look at [the examples](#what-is-and-isnt-allowed-under-the-license-in-the-context-of-n8ns-product), and if you're still unclear, email us at [license@n8n.io](mailto:license@n8n.io).
 
@@ -66586,930 +66898,6 @@ The Command Bar provides quick access to actions and navigation throughout n8n. 
 * **Execution actions:** Debug, copy, retry, stop, or delete executions
 * **General navigation:** Access Templates, Variables, Insights, Settings, Help resources, and Documentation
 
-
-=== https://docs.n8n.io/docs/embed/workflow-templates/
-
-# Workflow templates
-
---8<-- "_snippets/embed-license.md"
-
-n8n provides a library of workflow [templates](/glossary.md#template-n8n). When embedding n8n, you can:
-
-* Continue to use n8n's workflow templates library (this is the default behavior)
-* Disable workflow templates
-* Create your own workflow templates library
-
-## Disable workflow templates
-
---8<-- "_snippets/workflows/templates/disable-templates.md"
-
-## Use your own workflow templates library
-
---8<-- "_snippets/workflows/templates/custom-templates-library.md"
-
-## Add your workflows to the n8n library
-
---8<-- "_snippets/workflows/templates/submit-templates.md"
-
-
-=== https://docs.n8n.io/docs/embed/configuration/
-
-# Configuration
-
---8<-- "_snippets/embed-license.md"
-
-## Authentication
-
-You can secure n8n by setting up [User management](/user-management/index.md), n8n's built-in authentication feature.
-
-n8n supports [LDAP](/user-management/ldap.md) and [SAML](/user-management/saml/index.md).
-
-### Credential overwrites
-
-To offer OAuth login to users, it's possible to overwrite [credentials](/glossary.md#credential-n8n) on a global basis. This credential data isn't visible to users but the backend uses it automatically.
-
-In the Editor UI, n8n hides all overwritten fields by default. This means that users are able to authenticate using  OAuth by pressing the "connect" button on the credentials.
-
-n8n offers two ways to apply credential overwrites: using Environment Variable and using the REST API.
-
-#### Using environment variables
-
-You can set credential overwrites using environment variable by setting the `CREDENTIALS_OVERWRITE_DATA` to `{ CREDENTIAL_NAME: { PARAMETER: VALUE }}`.
-
-/// warning
-Even though this is possible, it isn't recommended. Environment variables aren't protected in n8n, so the data can leak to users.
-///
-
-#### Using REST APIs
-
-The recommended way is to load the data using a custom REST endpoint. Set the `CREDENTIALS_OVERWRITE_ENDPOINT` to a path under which this endpoint should be made available. You can set `CREDENTIALS_OVERWRITE_ENDPOINT_AUTH_TOKEN` to require a token for accessing the endpoint. When this token is configured, the endpoint is only accessible if the token is included in the `Authorization` header as a `Bearer` token.
-
-/// note
-The endpoint can be called just once for security reasons, unless `CREDENTIALS_OVERWRITE_ENDPOINT_AUTH_TOKEN` is set.
-///
-
-For example:
-
-1. Activate the endpoint by setting the environment variable in the environment n8n runs under:
-
-    ```sh
-    export CREDENTIALS_OVERWRITE_ENDPOINT=send-credentials
-    ```
-
-2. A JSON file with the credentials to overwrite is then needed. For example, a `oauth-credentials.json` file to overwrite credentials for Asana and GitHub could look like this:
-
-    ```json
-    {
-        "asanaOAuth2Api": {
-            "clientId": "<id>",
-            "clientSecret": "<secret>"
-        },
-        "githubOAuth2Api": {
-            "clientId": "<id>",
-            "clientSecret": "<secret>"
-        }
-    }
-    ```
-
-3. Then apply it to the instance by sending it using curl:
-
-    ```sh
-    curl -H "Content-Type: application/json" --data @oauth-credentials.json http://localhost:5678/send-credentials
-    ```
-
-/// note
-There are cases when credentials are based on others. For example, the `googleSheetsOAuth2Api` extends the `googleOAuth2Api`.
-In this case, you can set parameters on the parent credentials (`googleOAuth2Api`) for all child-credentials (`googleSheetsOAuth2Api`) to use.
-///
-
-In case `CREDENTIALS_OVERWRITE_ENDPOINT_AUTH_TOKEN` is set to `secure-token`, the curl command will be:
-
-    ```sh
-    curl -H "Content-Type: application/json" -H "Authorization: Bearer secure-token" --data @oauth-credentials.json http://localhost:5678/send-credentials
-    ```
-
-#### Persistence
-
-To store credential overwrites in the database and propagate them automatically to all workers in multi-instance/queue mode, enable:
-
-```sh
-export CREDENTIALS_OVERWRITE_PERSISTENCE=true
-```
-
-When enabled, n8n stores the encrypted overwrites in the `settings` table and broadcasts a `reload-overwrite-credentials` event so that workers reload the latest values. When disabled, overwrites remain in memory on the process that loaded them and aren't propagated to workers or preserved across restarts.
-
-## Environment variables
-
-n8n has many [environment variables](/hosting/configuration/environment-variables/index.md) you can configure. Here are the most relevant environment variables for your hosted solution:
-
-| Variable | Type | Default | Description |
-| :------- | :--- | :------ | :---------- |
-| `EXECUTIONS_TIMEOUT` | Number | `-1` | Sets a default timeout (in seconds) to all workflows after which n8n stops their execution. Users can override this for individual workflows up to the duration set in `EXECUTIONS_TIMEOUT_MAX`. Set `EXECUTIONS_TIMEOUT` to `-1` to disable. |
-| `EXECUTIONS_DATA_PRUNE` | Boolean | `true` | Whether to delete data of past executions on a rolling basis. |
-| `EXECUTIONS_DATA_MAX_AGE` | Number | `336` | The execution age (in hours) before it's deleted. |
-| `EXECUTIONS_DATA_PRUNE_MAX_COUNT` | Number | `10000` | Maximum number of executions to keep in the database. 0 = no limit |
-| `NODES_EXCLUDE` | Array of strings | `[\"n8n-nodes-base.executeCommand\", \"n8n-nodes-base.localFileTrigger\"]` | Specify which nodes not to load. For example, to block nodes that can be a security risk if users aren't trustworthy: `NODES_EXCLUDE: "[\"n8n-nodes-base.executeCommand\", \"n8n-nodes-base.readWriteFile\"]"`. To enable all nodes, specify `NODES_EXCLUDE: "[]"`. |
-| `NODES_INCLUDE` | Array of strings | - | Specify which nodes to load. |
-| `N8N_TEMPLATES_ENABLED` | Boolean | `true` | Enable [workflow templates](/glossary.md#template-n8n) (true) or disable (false). |
-| `N8N_TEMPLATES_HOST` | String | `https://api.n8n.io` | Change this if creating your own workflow template library. Note that to use your own workflow templates library, your API must provide the same endpoints and response structure as n8n's. Refer to [Workflow templates](/workflows/templates.md) for more information. |
-
-## Backend hooks
-
-It's possible to define external hooks that n8n executes whenever a specific operation runs. You can use these, for example, to log data, change data, or forbid an action by throwing an error.
-
-### Available hooks
-
-| Hook     | Arguments | Description |
-| :------- | :---------| :---------- |
-| `credentials.create` | `[credentialData: ICredentialsDb]` | Called before new credentials get created. Use to restrict the number of credentials. |
-| `credentials.delete` | `[id: credentialId]` | Called before credentials get deleted. |
-| `credentials.update` | `[credentialData: ICredentialsDb]` | Called before existing credentials are saved. |
-| `frontend.settings` | `[frontendSettings: IN8nUISettings]` | Gets called on n8n startup. Allows you to, for example, overwrite frontend data like the displayed OAuth URL. |
-| `n8n.ready` | `[app: App]` | Called once n8n is ready. Use to, for example, register custom API endpoints. |
-| `n8n.stop` |  | Called when an n8n process gets stopped. Allows you to save some process data. |
-| `oauth1.authenticate` | `[oAuthOptions: clientOAuth1.Options, oauthRequestData: {oauth_callback: string}]` | Called before an OAuth1 authentication. Use to overwrite an OAuth callback URL. |
-| `oauth2.callback` | `[oAuth2Parameters: {clientId: string, clientSecret: string \| undefined, accessTokenUri: string, authorizationUri: string, redirectUri: string, scopes: string[]}]` | Called in an OAuth2 callback. Use to overwrite an OAuth callback URL. |
-| `workflow.activate` | `[workflowData: IWorkflowDb]` | Called before a workflow gets activated. Use to restrict the number of active workflows. |
-| `workflow.afterCreate` | `[workflowId: string]` | Called after a workflow gets created. |
-| `workflow.afterDelete` | `[workflowId: string]` | Called after a workflow gets deleted. |
-| `workflow.afterUpdate` | `[workflowData: IWorkflowBase]` | Called after an existing workflow gets saved. |
-| `workflow.create` | `[workflowData: IWorkflowBase]` | Called before a workflow gets created. Use to restrict the number of saved workflows. |
-| `workflow.delete` | `[workflowId: string]` | Called before a workflow gets delete. |
-| `workflow.postExecute` | `[run: IRun, workflowData: IWorkflowBase]` | Called after a workflow gets executed. |
-| `workflow.preExecute` | `[workflow: Workflow: mode: WorkflowExecuteMode]` | Called before a workflow gets executed. Allows you to count or limit the number of workflow executions. |
-| `workflow.update` | `[workflowData: IWorkflowBase]` | Called before an existing workflow gets saved. |
-| `workflow.afterArchive` | `[workflowId: string]` | Called after you archive a workflow. |
-| `workflow.afterUnarchive` | `[workflowId: string]` | Called after you restore a workflow from the archive. |
-
-### Registering hooks
-
-Set hooks by registering a hook file that contains the hook functions.
-To register a hook, set the environment variable `EXTERNAL_HOOK_FILES`.
-
-You can set the variable to a single file:
-
-`EXTERNAL_HOOK_FILES=/data/hook.js`
-
-Or to contain multiple files separated by a colon:
-
-`EXTERNAL_HOOK_FILES=/data/hook1.js:/data/hook2.js`
-
-### Backend hook files
-
-Hook files are regular JavaScript files that have the following format:
-
-```js
-module.exports = {
-    "frontend": {
-        "settings": [
-            async function (settings) {
-                settings.oauthCallbackUrls.oauth1 = 'https://n8n.example.com/oauth1/callback';
-                settings.oauthCallbackUrls.oauth2 = 'https://n8n.example.com/oauth2/callback';
-            }
-        ]
-    },
-    "workflow": {
-        "activate": [
-            async function (workflowData) {
-                const activeWorkflows = await this.dbCollections.Workflow.count({ active: true });
-
-                if (activeWorkflows > 1) {
-                    throw new Error(
-                        'Active workflow limit reached.'
-                    );
-                }
-            }
-        ]
-    }
-}
-```
-
-### Backend hook functions
-
-A hook or a hook file can contain multiple hook functions, with all functions executed one after another.
-
-If the parameters of the hook function are objects, it's possible to change the data of that parameter to change the behavior of n8n.
-
-You can also access the database in any hook function using `this.dbCollections` (refer to the code sample in [Backend hook files](#backend-hook-files).
-
-## Frontend external hooks
-
-Like backend external hooks, it's possible to define external hooks in the frontend code that get executed by n8n whenever a user performs a specific operation. You can use them, for example, to log data and change data.
-
-### Available hooks
-
-| Hook     | Description |
-| :------- | :---------- |
-| `credentialsEdit.credentialTypeChanged` | Called when an existing credential's type changes. |
-| `credentials.create` | Called when someone creates a new credential. |
-| `credentialsList.dialogVisibleChanged` |  |
-| `dataDisplay.nodeTypeChanged` |  |
-| `dataDisplay.onDocumentationUrlClick` | Called when someone selects the help documentation link. |
-| `execution.open` | Called when an existing execution opens. |
-| `executionsList.openDialog` | Called when someone selects an execution from existing Workflow Executions. |
-| `expressionEdit.itemSelected` |  |
-| `expressionEdit.dialogVisibleChanged` |  |
-| `nodeCreateList.filteredNodeTypesComputed` |  |
-| `nodeCreateList.nodeFilterChanged` | Called when someone makes any changes to the node panel filter. |
-| `nodeCreateList.selectedTypeChanged` |  |
-| `nodeCreateList.mounted` |  |
-| `nodeCreateList.destroyed` |  |
-| `nodeSettings.credentialSelected` |  |
-| `nodeSettings.valueChanged` |  |
-| `nodeView.createNodeActiveChanged` |  |
-| `nodeView.addNodeButton` |  |
-| `nodeView.createNodeActiveChanged` |  |
-| `nodeView.mount` |  |
-| `pushConnection.executionFinished` |  |
-| `showMessage.showError` |  |
-| `runData.displayModeChanged` |  |
-| `workflow.activeChange` |  |
-| `workflow.activeChangeCurrent` |  |
-| `workflow.afterUpdate` | Called when someone updates an existing workflow. |
-| `workflow.open` |  |
-| `workflowRun.runError` |  |
-| `workflowRun.runWorkflow` | Called when a workflow executes. |
-| `workflowSettings.dialogVisibleChanged` |  |
-| `workflowSettings.saveSettings` | Called when someone saves the settings of a workflow. |
-
-### Registering hooks
-
-You can set hooks by loading the hooks script on the page. One way to do this is by creating a hooks file in the project and adding a script tag in your `editor-ui/public/index.html` file:
-
-```html
-<script src="frontend-hooks.js"></script>
-```
-
-### Frontend hook files
-
-Frontend external hook files are regular JavaScript files which have the following format:
-
-```js
-window.n8nExternalHooks = {
-  nodeView: {
-    mount: [
-      function (store, meta) {
-        // do something
-      },
-    ],
-    createNodeActiveChanged: [
-      function (store, meta) {
-        // do something
-      },
-      function (store, meta) {
-        // do something else
-      },
-    ],
-    addNodeButton: [
-      function (store, meta) {
-        // do something
-      },
-    ],
-  },
-};
-```
-
-### Frontend hook functions
-
-You can define multiple hook functions per hook. Each hook function is invoked with the following arguments arguments:
-
-* `store`: The Vuex store object. You can use this to change or get data from the store.
-* `metadata`: The object that contains any data provided by the hook. To see what's passed, search for the hook in the `editor-ui` package.
-
-=== https://docs.n8n.io/docs/embed/white-labelling/
-
-# White labelling
-
---8<-- "_snippets/embed-license.md"
-
-White labelling n8n means customizing the frontend styling and assets to match your brand identity. The process involves changing two packages in n8n's source code [github.com/n8n-io/n8n](https://github.com/n8n-io/n8n):
-
-* [packages/frontend/@n8n/design-system](https://github.com/n8n-io/n8n/tree/master/packages/frontend/@n8n/design-system): n8n's [storybook](https://storybook.js.org/) design system with CSS styles and Vue.js components
-* [packages/frontend/editor-ui](https://github.com/n8n-io/n8n/tree/master/packages/frontend/editor-ui): n8n's [Vue.js](https://vuejs.org/) frontend build with [Vite.js](https://vitejs.dev)
-
-
-## Prerequisites
-
-You need the following installed on your development machine:
-
---8<-- "_snippets/integrations/creating-nodes/prerequisites.md"
-
-Create a fork of [n8n's repository](https://github.com/n8n-io/n8n) and clone your new repository.
-
-```shell
-git clone https://github.com/<your-organization>/n8n.git n8n
-cd n8n
-```
-
-Install all dependencies, build and start n8n.
-
-```shell
-npm install
-npm run build
-npm run start
-```
-
-Whenever you make changes you need to rebuild and restart n8n. While developing you can use `npm run dev` to automatically rebuild and restart n8n anytime you make code changes. 
-
-## Theme colors
-
-To customize theme colors open [packages/frontend/@n8n/design-system](https://github.com/n8n-io/n8n/tree/master/packages/frontend/@n8n/design-system) and start with:
-
-- [packages/frontend/@n8n/design-system/src/css/_tokens.scss](https://github.com/n8n-io/n8n/blob/master/packages/frontend/@n8n/design-system/src/css/_tokens.scss)
-- [packages/frontend/@n8n/design-system/src/css/_tokens.dark.scss](https://github.com/n8n-io/n8n/blob/master/packages/frontend/@n8n/design-system/src/css/_tokens.dark.scss)
-
-
-At the top of `_tokens.scss` you will find `--color-primary` variables as HSL colors:
-
-```scss
-@mixin theme {
-	--color-primary-h: 6.9;
-	--color-primary-s: 100%;
-	--color-primary-l: 67.6%;
-```
-
-In the following example the primary color changes to <span style="color:#0099ff">#0099ff</span>. To convert to HSL you can use a [color converter tool](https://www.w3schools.com/colors/colors_converter.asp).
-
-```scss
-@mixin theme {
-	--color-primary-h: 204;
-	--color-primary-s: 100%;
-	--color-primary-l: 50%;
-```
-
-![Example Theme Color Customization](/_images/embed/white-label/color-transition.gif)
-
-
-## Theme logos
-
-To change the editor’s logo assets look into [packages/frontend/editor-ui/public](https://github.com/n8n-io/n8n/tree/master/packages/frontend/editor-ui/public) and replace:
-
-- favicon-16x16.png
-- favicon-32x32.png
-- favicon.ico
-- n8n-logo.svg
-- n8n-logo-collapsed.svg
-- n8n-logo-expanded.svg
-
-Replace these logo assets. n8n uses them in Vue.js components, including:
-
-* [MainSidebar.vue](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/src/components/MainSidebar.vue): top/left logo in the main sidebar.
-* [Logo.vue](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/src/components/Logo/Logo.vue): reused in other components.
-
-In the following example replace `n8n-logo-collapsed.svg` and `n8n-logo-expanded.svg` to update the main sidebar's logo assets.
-
-![Example Logo Main Sidebar](/_images/embed/white-label/logo-main-sidebar.png)
-
-If your logo assets require different sizing or placement you can customize SCSS styles at the bottom of [MainSidebar.vue](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/src/components/MainSidebar.vue).
-
-```scss
-.logoItem {
-	display: flex;
-	justify-content: space-between;
-	height: $header-height;
-	line-height: $header-height;
-	margin: 0 !important;
-	border-radius: 0 !important;
-	border-bottom: var(--border-width-base) var(--border-style-base) var(--color-background-xlight);
-	cursor: default;
-
-	&:hover, &:global(.is-active):hover {
-		background-color: initial !important;
-	}
-
-	* { vertical-align: middle; }
-	.icon {
-		height: 18px;
-		position: relative;
-		left: 6px;
-	}
-
-}
-```
-
-## Text localization
-
-To change all text occurrences like `n8n` or `n8n.io` to your brand identity you can customize n8n's English internationalization file: [packages/frontend/@n8n/i18n/src/locales/en.json](https://github.com/n8n-io/n8n/blob/master/packages/frontend/@n8n/i18n/src/locales/en.json).
-
-n8n uses the [Vue I18n](https://kazupon.github.io/vue-i18n/) internationalization plugin for Vue.js to translate the majority of UI texts. To search and replace text occurrences inside `en.json` you can use [Linked locale messages](https://kazupon.github.io/vue-i18n/guide/messages.html#linked-locale-messages).
-
-In the following example add the `_brand.name` translation key to white label n8n's [AboutModal.vue](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/src/components/AboutModal.vue).
-
-```js
-{
-	"_brand.name": "My Brand",
-	//replace n8n with link to _brand.name
-	"about.aboutN8n": "About @:_brand.name",
-	"about.n8nVersion": "@:_brand.name Version",
-}
-```
-
-![Example About Modal Localization](/_images/embed/white-label/about-modal.png)
-
-### Window title
-
-To change n8n's window title to your brand name, edit the following:
-
-- [packages/frontend/editor-ui/index.html](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/index.html)
-- [packages/frontend/editor-ui/src/composables/useDocumentTitle.ts](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/src/composables/useDocumentTitle.ts)
-
-The following example replaces all occurrences of `n8n` and `n8n.io` with `My Brand` in `index.html` and `useDocumentTitle.ts`.
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<!-- Replace html title attribute -->
-	<title>My Brand - Workflow Automation</title>
-</head>
-```
-
-```typescript
-import { useSettingsStore } from '@/stores/settings.store';
-
-// replace n8n
-const DEFAULT_TITLE = 'My Brand';
-const DEFAULT_TAGLINE = 'Workflow Automation';
-```
-
-![Example Window Title Localization](/_images/embed/white-label/window-title.png)
-
-
-
-
-
-=== https://docs.n8n.io/docs/embed/deployment/
-
-# Deployment
-
---8<-- "_snippets/embed-license.md"
-
-See the [hosting documentation](/hosting/installation/server-setups/index.md) for detailed setup options.
-
-## User data
-
-n8n recommends that you follow the same or similar practices used internally for n8n Cloud: Save user data using [Rook](https://rook.io/) and, if an n8n server goes down, a new instance starts on another machine using the same data.
-
-Due to this, you don't need to use backups except in case of a catastrophic failure, or when a user wants to reactivate their account within your prescribed retention period (two weeks for n8n Cloud).
-
-## Backups
-
-n8n recommends creating nightly backups by attaching another container, and copying all data to this second container. In this manner, RAM usage is negligible, and so doesn't impact the amount of users you can place on the server.
-
-## Restarting
-
-If your instance is down or restarting, missed executions (for example, Cron or Webhook nodes) during this time aren't recoverable. If it's important for you to maintain 100% uptime, you need to build another proxy in front of it which caches the data.
-
-=== https://docs.n8n.io/docs/embed/index/
-
-# n8n Embed
-
-n8n Embed is part of n8n's paid offering. Using Embed, you can white label n8n, or incorporate it in your software as part of your commercial product.
-
-For more information about when to use Embed, as well as costs and licensing processes, refer to [Embed](https://n8n.io/embed/) on the n8n website.
-
-## Support
-
-The [community forum](https://community.n8n.io/) can help with various issues. If you are a current Embed customer, you can also contact n8n support, using the email provided when you bought the license.
-
-## Russia and Belarus
-
-n8n Embed isn't available in Russia and Belarus. Refer to n8n's blog post [Update on n8n cloud accounts in Russia and Belarus](https://blog.n8n.io/update-on-n8n-cloud-accounts-in-russia-and-belarus/) for more information.
-
-=== https://docs.n8n.io/docs/embed/prerequisites/
-
-# Prerequisites
-
---8<-- "_snippets/embed-license.md"
-
-The requirements provided here are an example based on n8n Cloud and are for illustrative purposes only. Your requirements may vary depending on the number of users, workflows, and executions. Contact n8n for more information.
-
-| Component | Sizing | Supported |
-| :-------- | :----- | :-------- |
-| CPU/vCPU  | Minimum 10 CPU cycles, scaling as needed | Any public or private cloud |
-| Database  | 512 MB - 4 GB SSD | SQLite or PostgreSQL |
-| Memory    | 320 MB - 2 GB | |
-
-## CPU considerations
-
-n8n isn't CPU intensive so even small instances (of providers such as AWS and GCP) should be enough for most use cases. Usually, memory requirements supersede CPU requirements, so focus resources there when planning your infrastructure.
-
-## Database considerations
-
-n8n uses its database to store [credentials](/glossary.md#credential-n8n), past executions, and workflows.
-
-A core feature of n8n is the flexibility to choose a database. All the supported databases have different advantages and disadvantages, which you have to consider individually and pick the one that best suits your needs. By default n8n creates an SQLite database if no database exists at the given location.
-
-n8n recommends that every n8n instance have a dedicated database. This helps to prevent dependencies and potential performance degradation. If it isn't possible to provide a dedicated database for every n8n instance, n8n recommends making use of Postgres's schema feature.
-
-For Postgres, the database must already exist on the DB-instance. The database user for the n8n process needs to have full permissions on all tables that they're using or creating. n8n creates and maintains the database schema.
-
-### Best practices
-
-* SSD storage.
-* In containerized cloud environments, ensure that the volume is persisted and mounted when stopping/starting a container. If not, all data is lost.
-* If using Postgres, don't use the `tablePrefix` configuration option. It will be deprecated in the near future.
-* Pay attention to the changelog of new versions and consider reverting migrations before downgrading.
-* Set up at least the basic database security and stability mechanisms such as IP allow lists and backups.
-
-## Memory considerations
-
-An n8n instance doesn't typically require large amounts of available memory. For example an n8n Cloud instance at idle requires ~100MB. It's the nature of your workflows and the data being processed that determines your memory requirements.
-
-For example, while most nodes just pass data to the next node in the workflow, the [Code node](/code/code-node.md) creates a pre-processing and post-processing copy of the data. When dealing will large binary files, this can consume all available resources.
-
-=== https://docs.n8n.io/docs/embed/managing-workflows/
-
-# Workflow management in Embed
-
---8<-- "_snippets/embed-license.md"
-
-When managing an embedded n8n deployment, spanning across teams or organizations, you will likely need to run the same (or similar) workflows for multiple users. There are two available options for doing so:
-
-| Solution | Pros | Cons |
-| -------- | ---- | ---- |
-| Create a workflow for each user | No limitation on how workflow starts (can use any trigger) | Requires managing multiple workflows. |
-| Create a single workflow, and pass it user credentials when executing | Simplified workflow management (only need to change one workflow). | To run the workflow, your product must call it |
-
-
-
-/// warning
-The APIs referenced in this document are subject to change at any time. Be sure the check for continued functionality with each version upgrade.
-///
-
-## Workflow per user
-
-There are three general steps to follow:
-
-* Obtain the credentials for each user, and any additional parameters that may be required based on the workflow.
-* Create the [n8n credentials](/glossary.md#credential-n8n) for this user.
-* Create the workflow.
-
-### 1. Obtain user credentials
-
-Here you need to capture all credentials for any node/service this user must authenticate with, along with any additional parameters required for the particular workflow. The credentials and any parameters needed will depend on your workflow and what you are trying to do.
-
-### 2. Create user credentials
-
-After all relevant credential details have been obtained, you can proceed to create the relevant service credentials in n8n. This can be done using the Editor UI or API call.
-
-
-#### Using the Editor UI
-
-1. From the menu select **Credentials** > **New**.
-1. Use the drop-down to select the **Credential type** to create, for example *Airtable*.
-    ![Create New Credentials drop-down](/_images/embed/managing-workflows/create_new_credentials.png)
-1. In the **Create New Credentials** modal, enter the corresponding credentials details for the user, and select the nodes that will have access to these credentials.
-    ![Create New Credentials modal](/_images/embed/managing-workflows/create_new_credentials2.png)
-1. Click **Create** to finish and save.
-
-#### Using the API
-
-The frontend API used by the Editor UI can also be called to achieve the same result. The API endpoint is in the format: `https://<n8n-domain>/rest/credentials`.
-
-For example, to create the credentials in the Editor UI example above, the request would be:
-```
-POST https://<n8n-domain>/rest/credentials
-```
-
-With the request body:
-```json
-{
-   "name":"MyAirtable",
-   "type":"airtableApi",
-   "nodesAccess":[
-      {
-         "nodeType":"n8n-nodes-base.airtable"
-      }
-   ],
-   "data":{
-      "apiKey":"q12we34r5t67yu"
-   }
-}
-```
-
-The response will contain the ID of the new credentials, which you will use when creating the workflow for this user:
-```json
-{
-   "data":{
-      "name":"MyAirtable",
-      "type":"airtableApi",
-      "data":{
-         "apiKey":"q12we34r5t67yu"
-      },
-      "nodesAccess":[
-         {
-            "nodeType":"n8n-nodes-base.airtable",
-            "date":"2021-09-10T07:41:27.770Z"
-         }
-      ],
-      "id":"29",
-      "createdAt":"2021-09-10T07:41:27.777Z",
-      "updatedAt":"2021-09-10T07:41:27.777Z"
-   }
-}
-```
-
-### 3. Create the workflow
-
-Best practice is to have a “base” workflow that you then duplicate and customize for each new user with their credentials (and any other details).
-
-You can duplicate and customize your template workflow using either the Editor UI or API call.
-
-#### Using the Editor UI
-
-1. From the menu select **Workflows** > **Open** to open the template workflow to be duplicated.
-
-1. Select **Workflows** > **Duplicate**, then enter a name for this new workflow and click **Save**.
-    ![Duplicate workflow](/_images/embed/managing-workflows/duplicate_workflow.png)
-
-1. Update all relevant nodes to use the credentials for this user (created above).
-
-1. **Save** this workflow set it to **Active** using the toggle in the top-right corner.
-
-#### Using the API
-
-1. Fetch the JSON of the template workflow using the endpoint: `https://<n8n-domain>/rest/workflows/<workflow_id>`
-``` 
-GET https://<n8n-domain>/rest/workflows/1012
-```
-
-The response will contain the JSON data of the selected workflow:
-```json
-{
-  "data": {
-    "id": "1012",
-    "name": "Nathan's Workflow",
-    "active": false,
-    "nodes": [
-      {
-        "parameters": {},
-        "name": "Start",
-        "type": "n8n-nodes-base.start",
-        "typeVersion": 1,
-        "position": [
-          130,
-          640
-        ]
-      },
-      {
-        "parameters": {
-          "authentication": "headerAuth",
-          "url": "https://internal.users.n8n.cloud/webhook/custom-erp",
-          "options": {
-            "splitIntoItems": true
-          },
-          "headerParametersUi": {
-            "parameter": [
-              {
-                "name": "unique_id",
-                "value": "recLhLYQbzNSFtHNq"
-              }
-            ]
-          }
-        },
-        "name": "HTTP Request",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 1,
-        "position": [
-          430,
-          300
-        ],
-        "credentials": {
-          "httpHeaderAuth": "beginner_course"
-        }
-      },
-      {
-        "parameters": {
-          "operation": "append",
-          "application": "appKBGQfbm6NfW6bv",
-          "table": "processingOrders",
-          "options": {}
-        },
-        "name": "Airtable",
-        "type": "n8n-nodes-base.airtable",
-        "typeVersion": 1,
-        "position": [
-          990,
-          210
-        ],
-        "credentials": {
-          "airtableApi": "Airtable"
-        }
-      },
-      {
-        "parameters": {
-          "conditions": {
-            "string": [
-              {
-                "value1": "={{$json[\"orderStatus\"]}}",
-                "value2": "processing"
-              }
-            ]
-          }
-        },
-        "name": "IF",
-        "type": "n8n-nodes-base.if",
-        "typeVersion": 1,
-        "position": [
-          630,
-          300
-        ]
-      },
-      {
-        "parameters": {
-          "keepOnlySet": true,
-          "values": {
-            "number": [
-              {
-                "name": "=orderId",
-                "value": "={{$json[\"orderID\"]}}"
-              }
-            ],
-            "string": [
-              {
-                "name": "employeeName",
-                "value": "={{$json[\"employeeName\"]}}"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "name": "Set",
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 1,
-        "position": [
-          800,
-          210
-        ]
-      },
-      {
-        "parameters": {
-          "functionCode": "let totalBooked = items.length;\nlet bookedSum = 0;\n\nfor(let i=0; i < items.length; i++) {\n  bookedSum = bookedSum + items[i].json.orderPrice;\n}\nreturn [{json:{totalBooked, bookedSum}}]\n"
-        },
-        "name": "Function",
-        "type": "n8n-nodes-base.function",
-        "typeVersion": 1,
-        "position": [
-          800,
-          400
-        ]
-      },
-      {
-        "parameters": {
-          "webhookUri": "https://discord.com/api/webhooks/865213348202151968/oD5_WPDQwtr22Vjd_82QP3-_4b_lGhAeM7RynQ8Js5DzyXrQEnj0zeAQIA6fki1JLtXE",
-          "text": "=This week we have {{$json[\"totalBooked\"]}} booked orders with a total value of {{$json[\"bookedSum\"]}}. My Unique ID: {{ $(\"HTTP Request\").params.headerParameters.parameters[0].value }}"
-        },
-        "name": "Discord",
-        "type": "n8n-nodes-base.discord",
-        "typeVersion": 1,
-        "position": [
-          1000,
-          400
-        ]
-      },
-      {
-        "parameters": {
-          "triggerTimes": {
-            "item": [
-              {
-                "mode": "everyWeek",
-                "hour": 9
-              }
-            ]
-          }
-        },
-        "name": "Cron",
-        "type": "n8n-nodes-base.cron",
-        "typeVersion": 1,
-        "position": [
-          220,
-          300
-        ]
-      }
-    ],
-    "connections": {
-      "HTTP Request": {
-        "main": [
-          [
-            {
-              "node": "IF",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Start": {
-        "main": [
-          []
-        ]
-      },
-      "IF": {
-        "main": [
-          [
-            {
-              "node": "Set",
-              "type": "main",
-              "index": 0
-            }
-          ],
-          [
-            {
-              "node": "Function",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Set": {
-        "main": [
-          [
-            {
-              "node": "Airtable",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Function": {
-        "main": [
-          [
-            {
-              "node": "Discord",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Cron": {
-        "main": [
-          [
-            {
-              "node": "HTTP Request",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      }
-    },
-    "createdAt": "2021-07-16T11:15:46.066Z",
-    "updatedAt": "2021-07-16T12:05:44.045Z",
-    "settings": {},
-    "staticData": null,
-    "tags": []
-  }
-}
-```
-
-1. Save the returned JSON data and update any relevant credentials and fields for the new user.
-
-1. Create a new workflow using the updated JSON as the request body at endpoint: `https://<n8n-domain>/rest/workflows`
-``` 
-POST https://<n8n-domain>/rest/workflows/
-```
-
-The response will contain the ID of the new workflow, which you will use in the next step.
-
-1. Lastly, publish the new workflow:
-```
-PATCH https://<n8n-domain>/rest/workflows/1012
-```
-
-Passing the additional value `active` in your JSON payload:
-```json
-// ...
-"active":true,
-"settings": {},
-"staticData": null,
-"tags": []
-```
-
-## Single workflow
-
-There are four steps to follow to implement this method:
-
-* Obtain the credentials for each user, and any additional parameters that may be required based on the workflow. See [Obtain user credentials](#1-obtain-user-credentials) above.
-* Create the n8n credentials for this user. See [Create user credentials](#2-create-user-credentials) above.
-* Create the workflow.
-* Call the workflow as needed.
-
-### Create the workflow
-
-The details and scope of this workflow will vary greatly according to the individual use case, however there are a few design implementations to keep in mind:
-
-* This workflow must be triggered by a [Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.webhook/index.md) node.
-* The incoming webhook call must contain the user’s credentials and any other workflow parameters required.
-* Each node where the user’s credentials are needed should use an [expression](/data/expressions.md) so that the node’s credential field reads the credential provided in the webhook call.
-* Save and publish the workflow, ensuring the production URL is selected for the Webhook node. Refer to [webhook node](/integrations/builtin/core-nodes/n8n-nodes-base.webhook/index.md) for more information.
-
-### Call the workflow
-
-For each new user, or for any existing user as may be needed, call the webhook defined as the workflow trigger and provide the necessary credentials (and any other workflow parameters).
 
 === https://docs.n8n.io/docs/migration-tool-v2/
 
@@ -68963,7 +68351,7 @@ Each worker process runs a server that exposes optional endpoints:
 
 - `/healthz`: returns whether the worker is up, if you enable the `QUEUE_HEALTH_CHECK_ACTIVE` environment variable
 - `/healthz/readiness`: returns whether worker's DB and Redis connections are ready, if you enable the `QUEUE_HEALTH_CHECK_ACTIVE` environment variable
-- [credentials overwrite endpoint](/embed/configuration.md#credential-overwrites)
+- [credentials overwrite endpoint](/hosting/configuration/credential-overwrites.md)
 - [`/metrics`](/hosting/configuration/configuration-examples/prometheus.md)
 
 /// note | Customizing health check endpoints
@@ -69350,6 +68738,81 @@ Once you have a license key, activate it by clicking the button in the license e
 
 Once activated, your license will not expire. We may change the unlocked features in the future. This will not impact previously unlocked features.
 
+=== https://docs.n8n.io/docs/hosting/configuration/credential-overwrites/
+
+# Credential overwrites
+
+Credential overwrites let you set credential data globally. This data isn't visible to users, but n8n uses it automatically in the background - for example, to enable OAuth login using a "Connect" button without exposing client secrets.
+
+In the Editor UI, n8n hides all overwritten fields by default, so users can authenticate with OAuth using the "Connect" button on the credential.
+
+For the environment variables used to configure credential overwrites, refer to [Credentials environment variables](/hosting/configuration/environment-variables/credentials.md).
+
+## Using environment variables
+
+Set `CREDENTIALS_OVERWRITE_DATA` to `{ CREDENTIAL_NAME: { PARAMETER: VALUE }}`.
+
+/// warning
+This approach isn't recommended. Environment variables aren't protected in n8n, so the data can leak to users.
+///
+
+## Using the REST API
+
+The recommended approach is to load the data using a custom REST endpoint.
+
+1. Set `CREDENTIALS_OVERWRITE_ENDPOINT` to the path where the endpoint should be available:
+
+    ```sh
+    export CREDENTIALS_OVERWRITE_ENDPOINT=send-credentials
+    ```
+
+    Optionally, set `CREDENTIALS_OVERWRITE_ENDPOINT_AUTH_TOKEN` to require a bearer token for accessing the endpoint.
+
+    /// note
+    Without an auth token, the endpoint can only be called once for security reasons.
+    ///
+
+2. Prepare a JSON file with the credentials to overwrite. For example, `oauth-credentials.json` for Asana and GitHub:
+
+    ```json
+    {
+        "asanaOAuth2Api": {
+            "clientId": "<id>",
+            "clientSecret": "<secret>"
+        },
+        "githubOAuth2Api": {
+            "clientId": "<id>",
+            "clientSecret": "<secret>"
+        }
+    }
+    ```
+
+3. Send the file to your n8n instance:
+
+    ```sh
+    curl -H "Content-Type: application/json" --data @oauth-credentials.json http://localhost:5678/send-credentials
+    ```
+
+    If `CREDENTIALS_OVERWRITE_ENDPOINT_AUTH_TOKEN` is set to `secure-token`:
+
+    ```sh
+    curl -H "Content-Type: application/json" -H "Authorization: Bearer secure-token" --data @oauth-credentials.json http://localhost:5678/send-credentials
+    ```
+
+/// note
+Credentials can extend other credentials. For example, `googleSheetsOAuth2Api` extends `googleOAuth2Api`. You can set parameters on the parent (`googleOAuth2Api`) and all child credentials will use them.
+///
+
+## Persistence
+
+To store credential overwrites in the database and propagate them to all workers in multi-instance or queue mode, enable:
+
+```sh
+export CREDENTIALS_OVERWRITE_PERSISTENCE=true
+```
+
+When enabled, n8n stores the encrypted overwrites in the `settings` table and broadcasts a `reload-overwrite-credentials` event so workers reload the latest values. When disabled, overwrites remain in memory on the process that loaded them and n8n doesn't propagate them to workers or preserve them across restarts.
+
 === https://docs.n8n.io/docs/hosting/configuration/task-runners/
 
 # Task runners
@@ -69625,7 +69088,7 @@ Refer to [Environment variables reference](/hosting/configuration/environment-va
 
 # Pre-configure Microsoft OAuth credentials
 
-After [setting up a Microsoft Entra ID app registration with delegated access](/integrations/builtin/credentials/microsoftentra.md#delegated-access-for-organisation-wide-microsoft-integrations), you can use [credential overwrites](/embed/configuration.md#credential-overwrites) to inject the Client ID and Client Secret into n8n at startup. This means users in your organisation can connect to Microsoft services without completing their own OAuth app registration.
+After [setting up a Microsoft Entra ID app registration with delegated access](/integrations/builtin/credentials/microsoftentra.md#delegated-access-for-organisation-wide-microsoft-integrations), you can use [credential overwrites](/hosting/configuration/credential-overwrites.md) to inject the Client ID and Client Secret into n8n at startup. This means users in your organisation can connect to Microsoft services without completing their own OAuth app registration.
 
 n8n supports three environment variables for credential overwrites. This guide uses `CREDENTIALS_OVERWRITE_DATA_FILE`. Refer to [Credentials environment variables](/hosting/configuration/environment-variables/credentials.md) for the full variable reference.
 
@@ -70371,6 +69834,28 @@ The system doesn't accept:
 - Private key files
 - Convert these formats to PEM before use.
 
+=== https://docs.n8n.io/docs/hosting/configuration/configuration-examples/custom-templates/
+
+# Configure a custom workflow templates library
+
+n8n provides a library of workflow [templates](/glossary.md#template-n8n). When self-hosting n8n, you can:
+
+* Continue to use n8n's workflow templates library (this is the default behavior)
+* Disable workflow templates
+* Create your own workflow templates library
+
+## Disable workflow templates
+
+--8<-- "_snippets/workflows/templates/disable-templates.md"
+
+## Use your own workflow templates library
+
+--8<-- "_snippets/workflows/templates/custom-templates-library.md"
+
+## Add your workflows to the n8n library
+
+--8<-- "_snippets/workflows/templates/submit-templates.md"
+
 === https://docs.n8n.io/docs/hosting/configuration/configuration-examples/time-zone/
 
 # Set the self-hosted instance timezone
@@ -70547,6 +70032,178 @@ This is the default database that gets used if nothing is defined.
 
 The database file is located at:
 `~/.n8n/database.sqlite`
+
+=== https://docs.n8n.io/docs/hosting/configuration/external-hooks/
+
+# External hooks
+
+External hooks let you run custom code whenever n8n performs a specific operation. Use them to log data, change data, or forbid an action by throwing an error.
+
+There are two types:
+
+- **Backend hooks**: run server-side, registered using the `EXTERNAL_HOOK_FILES` environment variable.
+- **Frontend hooks**: run in the browser, loaded with a script tag.
+
+For the environment variables used to register hooks, refer to [External hooks environment variables](/hosting/configuration/environment-variables/external-hooks.md).
+
+## Backend hooks
+
+### Available hooks
+
+| Hook     | Arguments | Description |
+| :------- | :---------| :---------- |
+| `credentials.create` | `[credentialData: ICredentialsDb]` | Called before new credentials get created. Use to restrict the number of credentials. |
+| `credentials.delete` | `[id: credentialId]` | Called before credentials get deleted. |
+| `credentials.update` | `[credentialData: ICredentialsDb]` | Called before n8n saves existing credentials. |
+| `frontend.settings` | `[frontendSettings: IN8nUISettings]` | Gets called on n8n startup. Allows you to, for example, overwrite frontend data like the displayed OAuth URL. |
+| `n8n.ready` | `[app: App]` | Called once n8n is ready. Use to, for example, register custom API endpoints. |
+| `n8n.stop` |  | Called when an n8n process gets stopped. Allows you to save some process data. |
+| `oauth1.authenticate` | `[oAuthOptions: clientOAuth1.Options, oauthRequestData: {oauth_callback: string}]` | Called before an OAuth1 authentication. Use to overwrite an OAuth callback URL. |
+| `oauth2.callback` | `[oAuth2Parameters: {clientId: string, clientSecret: string \| undefined, accessTokenUri: string, authorizationUri: string, redirectUri: string, scopes: string[]}]` | Called in an OAuth2 callback. Use to overwrite an OAuth callback URL. |
+| `workflow.activate` | `[workflowData: IWorkflowDb]` | Called before a workflow gets activated. Use to restrict the number of active workflows. |
+| `workflow.afterCreate` | `[workflowId: string]` | Called after a workflow gets created. |
+| `workflow.afterDelete` | `[workflowId: string]` | Called after a workflow gets deleted. |
+| `workflow.afterUpdate` | `[workflowData: IWorkflowBase]` | Called after an existing workflow gets saved. |
+| `workflow.create` | `[workflowData: IWorkflowBase]` | Called before a workflow gets created. Use to restrict the number of saved workflows. |
+| `workflow.delete` | `[workflowId: string]` | Called before a workflow gets deleted. |
+| `workflow.postExecute` | `[run: IRun, workflowData: IWorkflowBase]` | Called after a workflow gets executed. |
+| `workflow.preExecute` | `[workflow: Workflow: mode: WorkflowExecuteMode]` | Called before a workflow gets executed. Allows you to count or limit the number of workflow executions. |
+| `workflow.update` | `[workflowData: IWorkflowBase]` | Called before an existing workflow gets saved. |
+| `workflow.afterArchive` | `[workflowId: string]` | Called after you archive a workflow. |
+| `workflow.afterUnarchive` | `[workflowId: string]` | Called after you restore a workflow from the archive. |
+
+### Registering hooks
+
+Set hooks by registering a hook file that contains the hook functions. To register a hook, set the environment variable `EXTERNAL_HOOK_FILES`.
+
+You can set the variable to a single file:
+
+`EXTERNAL_HOOK_FILES=/data/hook.js`
+
+Or to contain multiple files separated by a colon:
+
+`EXTERNAL_HOOK_FILES=/data/hook1.js:/data/hook2.js`
+
+### Hook files
+
+Hook files are regular JavaScript files that have the following format:
+
+```js
+module.exports = {
+    "frontend": {
+        "settings": [
+            async function (settings) {
+                settings.oauthCallbackUrls.oauth1 = 'https://n8n.example.com/oauth1/callback';
+                settings.oauthCallbackUrls.oauth2 = 'https://n8n.example.com/oauth2/callback';
+            }
+        ]
+    },
+    "workflow": {
+        "activate": [
+            async function (workflowData) {
+                const activeWorkflows = await this.dbCollections.Workflow.count({ active: true });
+
+                if (activeWorkflows > 1) {
+                    throw new Error(
+                        'Active workflow limit reached.'
+                    );
+                }
+            }
+        ]
+    }
+}
+```
+
+### Hook functions
+
+A hook or a hook file can contain multiple hook functions, with all functions executed one after another.
+
+If the parameters of the hook function are objects, it's possible to change the data of that parameter to change the behavior of n8n.
+
+You can also access the database in any hook function using `this.dbCollections` (refer to the code sample in [Hook files](#hook-files) above).
+
+## Frontend external hooks
+
+Like backend external hooks, it's possible to define external hooks in the frontend code that get executed by n8n whenever a user performs a specific operation. You can use them, for example, to log data and change data.
+
+### Available hooks
+
+| Hook     | Description |
+| :------- | :---------- |
+| `credentialsEdit.credentialTypeChanged` | Called when an existing credential's type changes. |
+| `credentials.create` | Called when someone creates a new credential. |
+| `credentialsList.dialogVisibleChanged` |  |
+| `dataDisplay.nodeTypeChanged` |  |
+| `dataDisplay.onDocumentationUrlClick` | Called when someone selects the help documentation link. |
+| `execution.open` | Called when an existing execution opens. |
+| `executionsList.openDialog` | Called when someone selects an execution from existing Workflow Executions. |
+| `expressionEdit.itemSelected` |  |
+| `expressionEdit.dialogVisibleChanged` |  |
+| `nodeCreateList.filteredNodeTypesComputed` |  |
+| `nodeCreateList.nodeFilterChanged` | Called when someone makes any changes to the node panel filter. |
+| `nodeCreateList.selectedTypeChanged` |  |
+| `nodeCreateList.mounted` |  |
+| `nodeCreateList.destroyed` |  |
+| `nodeSettings.credentialSelected` |  |
+| `nodeSettings.valueChanged` |  |
+| `nodeView.createNodeActiveChanged` |  |
+| `nodeView.addNodeButton` |  |
+| `nodeView.mount` |  |
+| `pushConnection.executionFinished` |  |
+| `showMessage.showError` |  |
+| `runData.displayModeChanged` |  |
+| `workflow.activeChange` |  |
+| `workflow.activeChangeCurrent` |  |
+| `workflow.afterUpdate` | Called when someone updates an existing workflow. |
+| `workflow.open` |  |
+| `workflowRun.runError` |  |
+| `workflowRun.runWorkflow` | Called when a workflow executes. |
+| `workflowSettings.dialogVisibleChanged` |  |
+| `workflowSettings.saveSettings` | Called when someone saves the settings of a workflow. |
+
+### Registering frontend hooks
+
+You can set hooks by loading the hooks script on the page. One way to do this is by creating a hooks file in the project and adding a script tag in your `editor-ui/public/index.html` file:
+
+```html
+<script src="frontend-hooks.js"></script>
+```
+
+### Frontend hook files
+
+Frontend external hook files are regular JavaScript files which have the following format:
+
+```js
+window.n8nExternalHooks = {
+  nodeView: {
+    mount: [
+      function (store, meta) {
+        // do something
+      },
+    ],
+    createNodeActiveChanged: [
+      function (store, meta) {
+        // do something
+      },
+      function (store, meta) {
+        // do something else
+      },
+    ],
+    addNodeButton: [
+      function (store, meta) {
+        // do something
+      },
+    ],
+  },
+};
+```
+
+### Frontend hook functions
+
+You can define multiple hook functions per hook. n8n calls each hook function with the following arguments:
+
+* `store`: The Vuex store object. You can use this to change or get data from the store.
+* `metadata`: The object that contains any data provided by the hook. To see what's passed, search for the hook in the `editor-ui` package.
 
 === https://docs.n8n.io/docs/hosting/configuration/environment-variables/insights/
 
@@ -71015,7 +70672,7 @@ n8n uses Git-based source control to support environments. Refer to [Source cont
 
 --8<-- "_snippets/self-hosting/file-based-configuration.md"
 
-You can define external hooks that n8n executes whenever a specific operation runs. Refer to [Backend hooks](/embed/configuration.md#backend-hooks) for examples of available hooks and [Hook files](/embed/configuration.md#backend-hook-files) for information on file formatting. 
+You can define external hooks that n8n executes whenever a specific operation runs. Refer to [External hooks](/hosting/configuration/external-hooks.md) for the full reference, including available hooks and file formatting.
 
 | Variable | Type  | Default | Description |
 | :------- | :---- | :------ | :---------- |
@@ -71114,13 +70771,13 @@ This page lists environment variables for customizing endpoints in n8n.
 
 --8<-- "_snippets/self-hosting/file-based-configuration.md"
 
-Enable credential overwrites using the following environment variables. Refer to [Credential overwrites](/embed/configuration.md#credential-overwrites) for details.
+Enable credential overwrites using the following environment variables. Refer to [Credential overwrites](/hosting/configuration/credential-overwrites.md) for details.
 
 | Variable | Type  | Default  | Description |
 | :------- | :---- | :------- | :---------- |
 | `CREDENTIALS_OVERWRITE_DATA`<br>/`_FILE` | * | - | Overwrites for credentials. |
 | `CREDENTIALS_OVERWRITE_ENDPOINT` | String | - | The API endpoint to fetch credentials. |
-| `CREDENTIALS_OVERWRITE_PERSISTENCE` | Boolean | `false` | Enable database persistence for credential overwrites. Required for multiinstance or queue mode to propagate overwrites to workers through a publish/subscribe approach. |
+| `CREDENTIALS_OVERWRITE_PERSISTENCE` | Boolean | `false` | Enable database persistence for credential overwrites. Required for multi-instance or queue mode to propagate overwrites to workers through a publish/subscribe approach. |
 | `CREDENTIALS_DEFAULT_NAME` | String | `My credentials` | The default name for credentials. |
 
 === https://docs.n8n.io/docs/hosting/configuration/user-management-self-hosted/
@@ -74344,6 +74001,479 @@ Head to [the GitHub repository](https://github.com/n8n-io/self-hosted-ai-starter
 n8n designed this kit to help you get started with self-hosted AI workflows. While it’s not fully optimized for production environments, it combines robust components that work well together for proof-of-concept projects. Customize it to meet your needs. Secure and harden it before using in production.
 ///
 
+=== https://docs.n8n.io/docs/hosting/oem-deployment/index/
+
+# OEM deployment
+
+--8<-- "_snippets/self-hosting/oem-agreement.md"
+
+n8n's OEM deployment option lets you embed and surface n8n's interface inside your own product's UI. This allows your users to build workflows, configure connections, and run workflow automation without leaving your product. n8n branding is required as part of an OEM integration.
+
+This is distinct from [using n8n as a backend](/hosting/index.md), where workflows execute behind the scenes and end users never see n8n. In that model, your product calls n8n using a webhook or the [API](/api/index.md) to trigger workflows, and n8n behaves like any other self-hosted service in your infrastructure - your users never see any n8n UI. This is available on all paid plans under the standard license, with no separate agreement needed. OEM deployment is only necessary when you want your users to interact with the n8n editor directly.
+
+## What's covered
+
+- [Prerequisites](/hosting/oem-deployment/prerequisites.md): Guidance on CPU, memory, and database requirements for planning your deployment.
+- [Managing workflows](/hosting/oem-deployment/managing-workflows.md): Patterns for managing workflows across multiple users or organizations within an embedded deployment.
+- [Workflow templates](/hosting/configuration/configuration-examples/custom-templates.md): Configure a custom workflow template library for your users.
+- [Credential overwrites](/hosting/configuration/credential-overwrites.md): Set OAuth credentials globally so your users can authenticate without seeing or entering client secrets.
+
+
+## Support
+
+Contact [n8n support](mailto:support@n8n.io) using the email provided when you signed your OEM agreement. The [community forum](https://community.n8n.io/) is also available for general questions.
+
+=== https://docs.n8n.io/docs/hosting/oem-deployment/prerequisites/
+
+# Prerequisites
+
+The requirements provided here are an example based on n8n Cloud and are for illustrative purposes only. Your requirements may vary depending on the number of users, workflows, and executions. Contact n8n for more information.
+
+| Component | Sizing | Supported |
+| :-------- | :----- | :-------- |
+| CPU/vCPU  | Minimum 10 CPU cycles, scaling as needed | Any public or private cloud |
+| Database  | 512 MB - 4 GB SSD | SQLite or PostgreSQL |
+| Memory    | 320 MB - 2 GB | |
+
+## CPU considerations
+
+n8n isn't CPU intensive so even small instances (of providers such as AWS and GCP) should be enough for most use cases. Usually, memory requirements supersede CPU requirements, so focus resources there when planning your infrastructure.
+
+## Database considerations
+
+n8n uses its database to store [credentials](/glossary.md#credential-n8n), past executions, and workflows.
+
+A core feature of n8n is the flexibility to choose a database. All the supported databases have different advantages and disadvantages, which you have to consider individually and pick the one that best suits your needs. By default n8n creates an SQLite database if no database exists at the given location.
+
+n8n recommends that every n8n instance have a dedicated database. This helps to prevent dependencies and potential performance degradation. If it isn't possible to provide a dedicated database for every n8n instance, n8n recommends making use of Postgres's schema feature.
+
+For Postgres, the database must already exist on the DB-instance. The database user for the n8n process needs to have full permissions on all tables that they're using or creating. n8n creates and maintains the database schema.
+
+### Best practices
+
+* SSD storage.
+* In containerized cloud environments, ensure that the volume is persisted and mounted when stopping/starting a container. If not, all data is lost.
+* If using Postgres, don't use the `tablePrefix` configuration option. It will be deprecated in the near future.
+* Pay attention to the changelog of new versions and consider reverting migrations before downgrading.
+* Set up at least the basic database security and stability mechanisms such as IP allow lists and backups.
+
+## Memory considerations
+
+An n8n instance doesn't typically require large amounts of available memory. For example an n8n Cloud instance at idle requires ~100MB. It's the nature of your workflows and the data being processed that determines your memory requirements.
+
+For example, while most nodes just pass data to the next node in the workflow, the [Code node](/code/code-node.md) creates a pre-processing and post-processing copy of the data. When dealing with large binary files, this can consume all available resources.
+
+## Deployment recommendations
+
+See the [hosting documentation](/hosting/installation/server-setups/index.md) for detailed setup options.
+
+### User data
+
+n8n recommends that you follow the same or similar practices used internally for n8n Cloud: Save user data using [Rook](https://rook.io/) and, if an n8n server goes down, a new instance starts on another machine using the same data.
+
+Due to this, you don't need to use backups except in case of a catastrophic failure, or when a user wants to reactivate their account within your prescribed retention period (two weeks for n8n Cloud).
+
+### Backups
+
+n8n recommends creating nightly backups by attaching another container, and copying all data to this second container. In this manner, RAM usage is negligible, and so doesn't impact the amount of users you can place on the server.
+
+### Restarting
+
+If your instance is down or restarting, missed executions (for example, Cron or Webhook nodes) during this time aren't recoverable. If it's important for you to maintain 100% uptime, you need to build another proxy in front of it which caches the data.
+
+=== https://docs.n8n.io/docs/hosting/oem-deployment/managing-workflows/
+
+# Managing workflows
+
+--8<-- "_snippets/self-hosting/oem-agreement.md"
+
+When managing an n8n OEM deployment spanning across teams or organizations, you will likely need to run the same (or similar) workflows for multiple users. There are two available options for doing so:
+
+| Solution | Pros | Cons |
+| -------- | ---- | ---- |
+| Create a workflow for each user | No limitation on how workflow starts (can use any trigger) | Requires managing multiple workflows. |
+| Create a single workflow, and pass it user credentials when executing | Simplified workflow management (only need to change one workflow). | To run the workflow, your product must call it |
+
+
+
+/// warning
+The APIs referenced in this document are subject to change at any time. Be sure to check for continued functionality with each version upgrade.
+///
+
+## Workflow per user
+
+There are three general steps to follow:
+
+* Obtain the credentials for each user, and any additional parameters that may be required based on the workflow.
+* Create the [n8n credentials](/glossary.md#credential-n8n) for this user.
+* Create the workflow.
+
+### 1. Obtain user credentials
+
+Here you need to capture all credentials for any node/service this user must authenticate with, along with any additional parameters required for the particular workflow. The credentials and any parameters needed will depend on your workflow and what you are trying to do.
+
+### 2. Create user credentials
+
+After all relevant credential details have been obtained, you can proceed to create the relevant service credentials in n8n. This can be done using the Editor UI or API call.
+
+
+#### Using the Editor UI
+
+1. From the menu select **Credentials** > **New**.
+1. Use the drop-down to select the **Credential type** to create, for example *Airtable*.
+    ![Create New Credentials drop-down](/_images/hosting/oem-deployment/managing-workflows/create_new_credentials.png)
+1. In the **Create New Credentials** modal, enter the corresponding credentials details for the user, and select the nodes that will have access to these credentials.
+    ![Create New Credentials modal](/_images/hosting/oem-deployment/managing-workflows/create_new_credentials2.png)
+1. Click **Create** to finish and save.
+
+#### Using the API
+
+The frontend API used by the Editor UI can also be called to achieve the same result. The API endpoint is in the format: `https://<n8n-domain>/rest/credentials`.
+
+For example, to create the credentials in the Editor UI example above, the request would be:
+```
+POST https://<n8n-domain>/rest/credentials
+```
+
+With the request body:
+```json
+{
+   "name":"MyAirtable",
+   "type":"airtableApi",
+   "nodesAccess":[
+      {
+         "nodeType":"n8n-nodes-base.airtable"
+      }
+   ],
+   "data":{
+      "apiKey":"q12we34r5t67yu"
+   }
+}
+```
+
+The response will contain the ID of the new credentials, which you will use when creating the workflow for this user:
+```json
+{
+   "data":{
+      "name":"MyAirtable",
+      "type":"airtableApi",
+      "data":{
+         "apiKey":"q12we34r5t67yu"
+      },
+      "nodesAccess":[
+         {
+            "nodeType":"n8n-nodes-base.airtable",
+            "date":"2021-09-10T07:41:27.770Z"
+         }
+      ],
+      "id":"29",
+      "createdAt":"2021-09-10T07:41:27.777Z",
+      "updatedAt":"2021-09-10T07:41:27.777Z"
+   }
+}
+```
+
+### 3. Create the workflow
+
+Best practice is to have a “base” workflow that you then duplicate and customize for each new user with their credentials (and any other details).
+
+You can duplicate and customize your template workflow using either the Editor UI or API call.
+
+#### Using the Editor UI
+
+1. From the menu select **Workflows** > **Open** to open the template workflow to be duplicated.
+
+1. Select **Workflows** > **Duplicate**, then enter a name for this new workflow and click **Save**.
+    ![Duplicate workflow](/_images/hosting/oem-deployment/managing-workflows/duplicate_workflow.png)
+
+1. Update all relevant nodes to use the credentials for this user (created above).
+
+1. **Save** this workflow and set it to **Active** using the toggle in the top-right corner.
+
+#### Using the API
+
+1. Fetch the JSON of the template workflow using the endpoint: `https://<n8n-domain>/rest/workflows/<workflow_id>`
+``` 
+GET https://<n8n-domain>/rest/workflows/1012
+```
+
+The response will contain the JSON data of the selected workflow:
+```json
+{
+  "data": {
+    "id": "1012",
+    "name": "Nathan's Workflow",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {},
+        "name": "Start",
+        "type": "n8n-nodes-base.start",
+        "typeVersion": 1,
+        "position": [
+          130,
+          640
+        ]
+      },
+      {
+        "parameters": {
+          "authentication": "headerAuth",
+          "url": "https://internal.users.n8n.cloud/webhook/custom-erp",
+          "options": {
+            "splitIntoItems": true
+          },
+          "headerParametersUi": {
+            "parameter": [
+              {
+                "name": "unique_id",
+                "value": "recLhLYQbzNSFtHNq"
+              }
+            ]
+          }
+        },
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 1,
+        "position": [
+          430,
+          300
+        ],
+        "credentials": {
+          "httpHeaderAuth": "beginner_course"
+        }
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "application": "appKBGQfbm6NfW6bv",
+          "table": "processingOrders",
+          "options": {}
+        },
+        "name": "Airtable",
+        "type": "n8n-nodes-base.airtable",
+        "typeVersion": 1,
+        "position": [
+          990,
+          210
+        ],
+        "credentials": {
+          "airtableApi": "Airtable"
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "string": [
+              {
+                "value1": "={{$json[\"orderStatus\"]}}",
+                "value2": "processing"
+              }
+            ]
+          }
+        },
+        "name": "IF",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 1,
+        "position": [
+          630,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "keepOnlySet": true,
+          "values": {
+            "number": [
+              {
+                "name": "=orderId",
+                "value": "={{$json[\"orderID\"]}}"
+              }
+            ],
+            "string": [
+              {
+                "name": "employeeName",
+                "value": "={{$json[\"employeeName\"]}}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "name": "Set",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 1,
+        "position": [
+          800,
+          210
+        ]
+      },
+      {
+        "parameters": {
+          "functionCode": "let totalBooked = items.length;\nlet bookedSum = 0;\n\nfor(let i=0; i < items.length; i++) {\n  bookedSum = bookedSum + items[i].json.orderPrice;\n}\nreturn [{json:{totalBooked, bookedSum}}]\n"
+        },
+        "name": "Function",
+        "type": "n8n-nodes-base.function",
+        "typeVersion": 1,
+        "position": [
+          800,
+          400
+        ]
+      },
+      {
+        "parameters": {
+          "webhookUri": "https://discord.com/api/webhooks/865213348202151968/oD5_WPDQwtr22Vjd_82QP3-_4b_lGhAeM7RynQ8Js5DzyXrQEnj0zeAQIA6fki1JLtXE",
+          "text": "=This week we have {{$json[\"totalBooked\"]}} booked orders with a total value of {{$json[\"bookedSum\"]}}. My Unique ID: {{ $(\"HTTP Request\").params.headerParameters.parameters[0].value }}"
+        },
+        "name": "Discord",
+        "type": "n8n-nodes-base.discord",
+        "typeVersion": 1,
+        "position": [
+          1000,
+          400
+        ]
+      },
+      {
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "mode": "everyWeek",
+                "hour": 9
+              }
+            ]
+          }
+        },
+        "name": "Cron",
+        "type": "n8n-nodes-base.cron",
+        "typeVersion": 1,
+        "position": [
+          220,
+          300
+        ]
+      }
+    ],
+    "connections": {
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "IF",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Start": {
+        "main": [
+          []
+        ]
+      },
+      "IF": {
+        "main": [
+          [
+            {
+              "node": "Set",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Function",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set": {
+        "main": [
+          [
+            {
+              "node": "Airtable",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Function": {
+        "main": [
+          [
+            {
+              "node": "Discord",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Cron": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "createdAt": "2021-07-16T11:15:46.066Z",
+    "updatedAt": "2021-07-16T12:05:44.045Z",
+    "settings": {},
+    "staticData": null,
+    "tags": []
+  }
+}
+```
+
+1. Save the returned JSON data and update any relevant credentials and fields for the new user.
+
+1. Create a new workflow using the updated JSON as the request body at endpoint: `https://<n8n-domain>/rest/workflows`
+``` 
+POST https://<n8n-domain>/rest/workflows/
+```
+
+The response will contain the ID of the new workflow, which you will use in the next step.
+
+1. Lastly, publish the new workflow:
+```
+PATCH https://<n8n-domain>/rest/workflows/1012
+```
+
+Passing the additional value `active` in your JSON payload:
+```json
+// ...
+"active":true,
+"settings": {},
+"staticData": null,
+"tags": []
+```
+
+## Single workflow
+
+There are four steps to follow to implement this method:
+
+* Obtain the credentials for each user, and any additional parameters that may be required based on the workflow. See [Obtain user credentials](#1-obtain-user-credentials) above.
+* Create the n8n credentials for this user. See [Create user credentials](#2-create-user-credentials) above.
+* Create the workflow.
+* Call the workflow as needed.
+
+### Create the workflow
+
+The details and scope of this workflow will vary greatly according to the individual use case, however there are a few design implementations to keep in mind:
+
+* This workflow must be triggered by a [Webhook](/integrations/builtin/core-nodes/n8n-nodes-base.webhook/index.md) node.
+* The incoming webhook call must contain the user’s credentials and any other workflow parameters required.
+* Each node where the user’s credentials are needed should use an [expression](/data/expressions.md) so that the node’s credential field reads the credential provided in the webhook call.
+* Save and publish the workflow, ensuring the production URL is selected for the Webhook node. Refer to [webhook node](/integrations/builtin/core-nodes/n8n-nodes-base.webhook/index.md) for more information.
+
+### Call the workflow
+
+For each new user, or for any existing user as may be needed, call the webhook defined as the workflow trigger and provide the necessary credentials (and any other workflow parameters).
+
 === https://docs.n8n.io/docs/hosting/securing/disable-public-api/
 
 # Disable the public REST API
@@ -76544,9 +76674,9 @@ You can find the release notes for older versions of n8n [here](/release-notes/0
 ## n8n@1.123.29
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.28...n8n@1.123.29) for this version.<br />
-**Release date:** 2026-04-07
+**Release date:** 2026-04-08
 
-This release contains a bug fix.
+This release contains bug fixes.
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
@@ -92985,8 +93115,9 @@ In comparison, you configure an MCP Server Trigger node inside a single workflow
 ### Key considerations when using instance-level MCP access
 
 - MCP supports two types of workflow interactions: running existing workflows with the workflow execution tools, and building or editing workflows (v2.13 onward).
-- It doesn't provide blanket exposure to all workflows in your instance. You must enable MCP at the instance level and then enable each workflow individually.
-- It's not scoped to each MCP client. Any connected client sees all workflows you’ve enabled for MCP access.
+- It doesn’t provide blanket exposure to all workflows in your instance. You must enable MCP at the instance level and then enable each workflow individually.
+- It’s not scoped to each MCP client. Any connected client sees all workflows you’ve enabled for MCP access.
+- Most MCP tools work on unpublished workflows. The exception is `execute_workflow`, which defaults to production mode and runs the published version of a workflow. It also supports a `manual` execution mode to run the current (unpublished) version.
 
 ## Enabling MCP access
 
@@ -93162,6 +93293,15 @@ The n8n MCP Server exposes the following tools so that you can create and update
 * `publish_workflow`: Publish a workflow by ID.
 * `unpublish_workflow`: Unpublish a workflow by ID.
 
+### Workflow discovery
+
+* `search_workflows`: Search for workflows enabled for MCP access. Returns workflow IDs, names, descriptions, and trigger information.
+* `get_workflow_details`: Get detailed information about a specific workflow including trigger details.
+
+### Workflow execution
+
+* `execute_workflow`: Execute a workflow by ID. Defaults to `production` mode, which runs the **published** version of the workflow - the workflow must be published for this mode. Supports a `manual` mode to run the current (unpublished) version instead. Returns an execution ID and status; use `get_execution` to retrieve full results.
+
 ### Workflow introspection
 
 * `get_execution`: Retrieve workflow execution history and results. Supports filtering parameters to avoid context overflow. (v2.14 onward)
@@ -93178,6 +93318,16 @@ The n8n MCP Server exposes the following tools so that you can create and update
 
 * `search_projects`: Search for projects accessible to the current user. (v2.14 onward)
 * `search_folders`: Search for folders within a project. (v2.14 onward)
+
+### Data tables
+
+* `create_data_table`: Create a new data table with the specified columns. Use `search_projects` to find a project ID first. (v2.16 onward)
+* `search_data_tables`: Search for data tables accessible to the current user. Use this to find a data table ID before modifying or adding data to it. (v2.16 onward)
+* `add_data_table_rows`: Insert rows into an existing data table. Each row is an object mapping column names to values. Use `search_data_tables` to find the data table ID first. (v2.16 onward)
+* `add_data_table_column`: Add a new column to an existing data table. (v2.16 onward)
+* `rename_data_table`: Rename an existing data table. (v2.16 onward)
+* `rename_data_table_column`: Rename a column in a data table. (v2.16 onward)
+* `delete_data_table_column`: Delete a column from a data table. This permanently removes the column and all its data. (v2.16 onward)
 
 ## Resources
 
