@@ -278,8 +278,8 @@ Binary data pruning operates on the active binary data mode. For example, if you
 /// note | Stable and Beta versions
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.15.0
-Current `beta`: 2.16.0
+Current `stable`: 2.16.1
+Current `beta`: 2.17.2
 ///
 
 === https://docs.n8n.io/_snippets/self-hosting/installation/tunnel/
@@ -3980,6 +3980,17 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 /// note | Older versions
 You can find the release notes for older versions of n8n [here](/release-notes/0-x.md)
 ///
+
+
+
+## n8n@1.123.31
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@1.123.30...n8n@1.123.31) for this version.<br />
+**Release date:** 2026-04-15
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
 
 
@@ -18022,7 +18033,7 @@ Search for folders within a project.
 #### Notes
 
 - Maximum result limit is 100.
-- This tool enables MCP clients to create workflows in a specific folder
+- This tool enables MCP clients to create workflows in a specific folder.
 
 
 ### search_nodes
@@ -18103,6 +18114,7 @@ Create a workflow in n8n from validated SDK code. Parses the code into a workflo
 - Marks the workflow with `aiBuilderAssisted` metadata.
 - Resolves webhook node IDs automatically.
 - `folderId` requires `projectId` to also be provided.
+- MCP clients should generate short descriptions for all new workflows.
 
 
 ### archive_workflow
@@ -18128,7 +18140,7 @@ Archive a workflow in n8n by its ID.
 
 #### Notes
 
-- Idempotent -- skips already-archived workflows.
+- Idempotent - skips already-archived workflows.
 
 
 ### create_data_table
@@ -23570,14 +23582,54 @@ You can find the release notes for older versions of n8n: [1.x](/release-notes/1
 
 
 
+## n8n@2.17.3
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.17.2...n8n@2.17.3) for this version.<br />
+**Release date:** 2026-04-20
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
+## n8n@2.17.2
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.17.1...n8n@2.17.2) for this version.<br />
+**Release date:** 2026-04-16
+
+This release contains bug fixes.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
+## n8n@2.17.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.17.0...n8n@2.17.1) for this version.<br />
+**Release date:** 2026-04-15
+
+This release contains a bug fix.
+
+For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
+
+
+
+## n8n@2.16.1
+
+View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.16.0...n8n@2.16.1) for this version.<br />
+**Release date:** 2026-04-15
+
+This release contains bug fixes.
+
+
+
 ## n8n@2.16.0
 
 View the [commits](https://github.com/n8n-io/n8n/compare/n8n@2.15.0...n8n@2.16.0) for this version.<br />
 **Release date:** 2026-04-07
 
 This release contains bug fixes.
-
-
 
 For full release details, refer to [Releases](https://github.com/n8n-io/n8n/releases) on GitHub.
 
