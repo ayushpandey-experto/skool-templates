@@ -1467,48 +1467,115 @@ tabs, code blocks, link format) and linting guidance (Vale + Lexi targets).
 
 | ID | Name | Parent space | Include snippet | Preview | Used in |
 |----|------|--------------|-----------------|---------|---------|
-| `6vuTxJwns2nA8U7V56ij` | ai-tools | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/6vuTxJwns2nA8U7V56ij/" %}` | {% hint style="info" %} **This node can be used as an AI tool**  This node can be used to enhance the capabilities of an | docs/integrations/builtin/app-nodes/n8n-nodes-base.actionnetwork.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.s3.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.jwt.md (+12) |
-| `iIcw3xaOoa9HryGmR8dX` | builtin-methods | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iIcw3xaOoa9HryGmR8dX/" %}` | \| Method \| Description \| \| ------ \| ----------- \| \| `this.addInputData(inputName, data)` \| Populate the data of  | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.code.md |
-| `HoGXnGIfupVt81dGox48` | cloud-oauth-button | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/HoGXnGIfupVt81dGox48/" %}` | {% hint style="info" %} **Note for n8n Cloud users**  Cloud users don't need to provide connection details. Select **Con | docs/integrations/builtin/credentials/box.md, docs/integrations/builtin/credentials/slack.md, docs/integrations/builtin/credentials/gumroad.md (+4) |
-| `nQYOCBZiuZBtHlBAOFq9` | cluster-nodes-summary | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/nQYOCBZiuZBtHlBAOFq9/" %}` | [Cluster nodes](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#cluster-node-n8n) are node groups th | docs/integrations/builtin/node-types.md |
-| `7QbEnpnpOks3Rq0SiMFb` | cred-only-statement | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/7QbEnpnpOks3Rq0SiMFb/" %}` | You can use these credentials to authenticate when using the [HTTP Request node](https://app.gitbook.com/s/BKcbOzIWja8Nf | docs/integrations/builtin/credentials/sekoia.md, docs/integrations/builtin/credentials/sysdig.md, docs/integrations/builtin/credentials/f5bigip.md (+9) |
-| `k23mQunNshTkLRuOqark` | credential-only-intro | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/k23mQunNshTkLRuOqark/" %}` | One of the most complex parts of setting up [API](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#ap | docs/integrations/README.md |
-| `0nvcx1EqJQgGVzUXOOMN` | data-section-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/0nvcx1EqJQgGVzUXOOMN/" %}` | Learn more about [data structure and data flow](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/overview)  | docs/integrations/builtin/core-nodes/n8n-nodes-base.removeduplicates/README.md |
-| `yA5x9FIRtnDGdghFU93g` | docker-compose-updating | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/yA5x9FIRtnDGdghFU93g/" %}` | If you run n8n using a Docker Compose file, follow these steps to update n8n:  ```sh # Navigate to the directory contain | docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-digital-ocean.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-hetzner.md |
-| `ASsLuMLGKMy2O0q7awMF` | file-based-configuration | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ASsLuMLGKMy2O0q7awMF/" %}` | {% hint style="info" %} **File-based configuration**  You can add `_FILE` to individual variables to provide their confi | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/source-control.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/workflows.md |
-| `D8oFoz7X85mQuXGFYlv9` | How to update n8n | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/D8oFoz7X85mQuXGFYlv9/" %}` | ## How to update n8n <a href="#how-to-update-n8n" id="how-to-update-n8n"></a>  The steps to update your n8n depend on wh | docs/changelog/release-notes.md |
-| `mjXhKRIw98UJ5hk9LWBl` | langchain-overview-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}` | View n8n's [Advanced AI](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai) documentation. | docs/integrations/builtin/credentials/groq.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwikipedia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsazureopenai.md (+23) |
-| `iFLUKG9zJaouigaM7IOo` | latest-next-version | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}` | {% hint style="info" %} **Stable and Beta versions**  n8n releases a new minor version most weeks. The `stable` version  | docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-digital-ocean.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-hetzner.md |
-| `8UflrA3Nx8LD5bKQn8Xc` | max-iterations | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/8UflrA3Nx8LD5bKQn8Xc/" %}` | Enter the number of times the model should run to try and generate a good answer from the user's prompt.  Defaults to `1 | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md |
-| `nqwVeyXZtOyDsX8afllD` | Node operations: Triggers and Actions | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/nqwVeyXZtOyDsX8afllD/" %}` | ## Node operations: Triggers and Actions <a href="#node-operations-triggers-and-actions" id="node-operations-triggers-an | docs/integrations/builtin/node-types.md |
-| `dGOXJYk0OQgOLlRpyJnn` | node-icons | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/dGOXJYk0OQgOLlRpyJnn/" %}` | n8n recommends using an SVG for your node icon, but you can also use PNG. If using PNG, the icon resolution should be 60 | docs/connect/create-nodes/build-your-node/reference/base-files/standard-parameters.md |
-| `eiIkcF23uZ2A8BkFVQM5` | Operation Mode | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/eiIkcF23uZ2A8BkFVQM5/" %}` | This Vector Store node has four modes: **Get Many**, **Insert Documents**, **Retrieve Documents (As Vector Store for Cha | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreweaviate.md |
-| `IsHMhvgDA3Ok5qdqnHnJ` | output-format | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/IsHMhvgDA3Ok5qdqnHnJ/" %}` | This parameter controls whether you want the node to require a specific output format. When turned on, n8n prompts you t | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md |
-| `ZmZC9v8B1NG5lgRY44yF` | predefined-credential-type-how-to | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ZmZC9v8B1NG5lgRY44yF/" %}` | To use a predefined credential type:  1. Open your HTTP Request node, or add a new one to your workflow. 2. In **Authent | docs/integrations/builtin/credentials/httprequest.md |
-| `Ss9Y6clfLTwlXMx69w6E` | prompt | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Ss9Y6clfLTwlXMx69w6E/" %}` | Select how you want the node to construct the prompt (also known as the user's query or input from the chat).  Choose fr | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md |
-| `EzVIOV8i2lmQ5HW3xFoo` | reduce-memory-consumption | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/EzVIOV8i2lmQ5HW3xFoo/" %}` | * Split the data processed into smaller chunks. For example, instead of fetching 10,000 rows with each execution, proces | docs/deploy/host-n8n/configure-n8n/scaling/fix-memory-issues.md |
-| `skA96E8hAnMMKG7c4Lta` | return-intermediate-steps | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/skA96E8hAnMMKG7c4Lta/" %}` | Select whether to include intermediate steps the agent took in the final output (turned on) or not (turned off).  This c | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md |
+| `1MYzyKWyHTaQMU44vlTt` | ai-how-to | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/1MYzyKWyHTaQMU44vlTt/" %}` | {% hint style="info" %} **Feature availability**  AI assistance in the Code node is available to Cloud users. It isn't a | docs/build/code-in-n8n/get-coding-help-from-ai.md |
+| `6vuTxJwns2nA8U7V56ij` | ai-tools | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/6vuTxJwns2nA8U7V56ij/" %}` | {% hint style="info" %} **This node can be used as an AI tool**  This node can be used to enhance the capabilities of an | docs/integrations/builtin/app-nodes/n8n-nodes-base.actionnetwork.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.activecampaign.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.affinity.md (+112) |
+| `PlbR0ntmBBE0DgjKiavq` | app-becoming-unauthorized | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/PlbR0ntmBBE0DgjKiavq/" %}` | For Google Cloud apps with **Publishing status** set to **Testing** and **User type** set to **External**, consent and t | docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/common-issues.md, docs/integrations/builtin/credentials/google/oauth-generic.md, docs/integrations/builtin/credentials/google/oauth-single-service.md |
+| `bMMOCQFbQ4YpKDnWQQOg` | Available data type comparisons | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/bMMOCQFbQ4YpKDnWQQOg/" %}` | ## Available data type comparisons <a href="#available-data-type-comparisons" id="available-data-type-comparisons"></a>  | docs/integrations/builtin/core-nodes/n8n-nodes-base.filter.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.if.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.switch.md |
+| `kct3MUrE5xSbDyeytQIX` | binary-data-pruning | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/kct3MUrE5xSbDyeytQIX/" %}` | {% hint style="info" %} **Binary data pruning**  Binary data pruning operates on the active binary data mode. For exampl | docs/deploy/host-n8n/configure-n8n/scaling/manage-execution-data.md, docs/deploy/host-n8n/configure-n8n/scaling/use-external-storage.md |
+| `2rKQZnqDH1pc3xlyYYdX` | binary-images | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/2rKQZnqDH1pc3xlyYYdX/" %}` | Use this option to control whether binary images should be automatically passed through to the agent as image type messa | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/tools-agent.md |
+| `iIcw3xaOoa9HryGmR8dX` | builtin-methods | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iIcw3xaOoa9HryGmR8dX/" %}` | \| Method \| Description \| \| ------ \| ----------- \| \| `this.addInputData(inputName, data)` \| Populate the data of  | docs/build/code-in-n8n/use-built-in-shortcuts/langchain-code-node.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.code.md |
+| `ipTfg43EHN14P930L6JP` | chat-memory-manager-purpose | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ipTfg43EHN14P930L6JP/" %}` | This node is useful when you:  * Can't add a memory node directly. * Need to do more complex memory management, beyond w | docs/build/integrate-ai/understand-ai-components/how-memory-works.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymanager.md |
+| `HoGXnGIfupVt81dGox48` | cloud-oauth-button | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/HoGXnGIfupVt81dGox48/" %}` | {% hint style="info" %} **Note for n8n Cloud users**  Cloud users don't need to provide connection details. Select **Con | docs/integrations/builtin/credentials/acuityscheduling.md, docs/integrations/builtin/credentials/airtable.md, docs/integrations/builtin/credentials/asana.md (+29) |
+| `nQYOCBZiuZBtHlBAOFq9` | cluster-nodes-summary | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/nQYOCBZiuZBtHlBAOFq9/" %}` | [Cluster nodes](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#cluster-node-n8n) are node groups th | docs/integrations/builtin/cluster-nodes/README.md, docs/integrations/builtin/cluster-nodes/root-nodes/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/README.md (+1) |
+| `A6AUEJWQnhjgrypgRNwY` | code-node | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/A6AUEJWQnhjgrypgRNwY/" %}` | Use the Code node to write custom JavaScript or Python and run it as a step in your workflow.  {% hint style="info" %} * | docs/build/code-in-n8n/using-the-code-node.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.code/README.md |
+| `w3ftfKhp9KdsaTfUFHE8` | community-packages | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/w3ftfKhp9KdsaTfUFHE8/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_COMMUNITY_PACK | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/nodes.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md, docs/integrations/community-nodes/installation-and-management/environment-variable-installation.md |
+| `UqTgO2VbAzax4T8z4Fyh` | configure-git-in-n8n | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/UqTgO2VbAzax4T8z4Fyh/" %}` | 1. Go to **Settings** > **Environments**. 1. Choose your connection method: 	- **SSH**: In **Git repository URL**, enter | docs/administer/use-source-control-and-environments/set-up-source-control.md, docs/administer/use-source-control-and-environments/tutorial-create-environments-with-source-control.md |
+| `n3k6ZZ7BRnKZ6enSxeVQ` | create-google-cloud-project | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/n3k6ZZ7BRnKZ6enSxeVQ/" %}` | 1. Log in to your [Google Cloud Console](https://console.cloud.google.com) using your Google credentials. 2. In the top  | docs/integrations/builtin/credentials/google/oauth-generic.md, docs/integrations/builtin/credentials/google/oauth-single-service.md, docs/integrations/builtin/credentials/google/service-account.md |
+| `odStQfuU7M0KPowwye9k` | create-set-error-workflow | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/odStQfuU7M0KPowwye9k/" %}` | 1. Create a new workflow, with the Error Trigger as the first node.  2. Give the workflow a name, for example `Error Han | docs/build/flow-logic/handle-errors-gracefully.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger.md |
+| `7QbEnpnpOks3Rq0SiMFb` | cred-only-statement | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/7QbEnpnpOks3Rq0SiMFb/" %}` | You can use these credentials to authenticate when using the [HTTP Request node](https://app.gitbook.com/s/BKcbOzIWja8Nf | docs/integrations/builtin/credentials/alienvault.md, docs/integrations/builtin/credentials/auth0management.md, docs/integrations/builtin/credentials/carbonblack.md (+32) |
+| `k23mQunNshTkLRuOqark` | credential-only-intro | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/k23mQunNshTkLRuOqark/" %}` | One of the most complex parts of setting up [API](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#ap | docs/integrations/README.md, docs/integrations/builtin/custom-api-actions-for-existing-nodes.md |
+| `hEbJHXcEBce6m2wEE65f` | custom-execution-data-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/hEbJHXcEBce6m2wEE65f/" %}` | {% hint style="info" %} **Feature availability**  Custom executions data is available on:  * Cloud: Pro, Enterprise * Se | docs/build/understand-workflows/understand-executions/customize-executions-data.md, docs/build/understand-workflows/understand-executions/view-all-executions.md, docs/build/understand-workflows/understand-executions/view-executions-for-a-single-workflow.md (+1) |
+| `8iCj3lLPJNp281ko0uOE` | custom-templates-library | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/8iCj3lLPJNp281ko0uOE/" %}` | In your environment variables, set `N8N_TEMPLATES_HOST` to the base URL of your API.  ### Endpoints <a href="#endpoints" | docs/build/ways-of-building-workflows/use-templates.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/configuration-examples/configure-a-custom-workflow-templates-library.md |
+| `0nvcx1EqJQgGVzUXOOMN` | data-section-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/0nvcx1EqJQgGVzUXOOMN/" %}` | Learn more about [data structure and data flow](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/overview)  | docs/integrations/builtin/core-nodes/n8n-nodes-base.aggregate.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.limit.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.removeduplicates/README.md (+3) |
+| `d0B6W4LSyDTfMfmxdG4T` | disable-templates | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/d0B6W4LSyDTfMfmxdG4T/" %}` | In your environment variables, set `N8N_TEMPLATES_ENABLED` to false. | docs/deploy/host-n8n/configure-n8n/basic-configuration/configuration-examples/configure-a-custom-workflow-templates-library.md |
+| `yA5x9FIRtnDGdghFU93g` | docker-compose-updating | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/yA5x9FIRtnDGdghFU93g/" %}` | If you run n8n using a Docker Compose file, follow these steps to update n8n:  ```sh # Navigate to the directory contain | docs/deploy/host-n8n/install-options/install-with-docker.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-digital-ocean.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-hetzner.md |
+| `Xs1r022aU39nYSgCg3At` | enable-apis | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Xs1r022aU39nYSgCg3At/" %}` | 1. Access your [Google Cloud Console - Library](https://console.cloud.google.com/apis/library). Make sure you're in the  | docs/integrations/builtin/credentials/google/oauth-generic.md, docs/integrations/builtin/credentials/google/oauth-single-service.md, docs/integrations/builtin/credentials/google/service-account.md |
+| `rAiMowL1bA7C4GcH8FyS` | error-data | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/rAiMowL1bA7C4GcH8FyS/" %}` | The default error data received by the Error Trigger is:  ```json [ 	{ 		"execution": { 			"id": "231", 			"url": "https | docs/build/flow-logic/handle-errors-gracefully.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.errortrigger.md |
+| `vKIIq31qrlay3ovXTvUj` | examples-color-key | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/vKIIq31qrlay3ovXTvUj/" %}` | To load the template into your n8n instance:  1. Download the workflow JSON file. 1. Open a new workflow in your n8n ins | docs/build/integrate-ai/ai-examples/call-apis.md, docs/build/integrate-ai/ai-examples/set-a-human-fallback-for-ai-workflows.md, docs/build/integrate-ai/ai-examples/use-google-sheets-as-a-data-source.md (+3) |
+| `2T2SmMUgiLyck7FDDwRD` | feature-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/2T2SmMUgiLyck7FDDwRD/" %}` | {% hint style="info" %} **Feature availability**  * Available on Business and Enterprise plans. * You must be an n8n ins | docs/administer/use-source-control-and-environments/README.md, docs/administer/use-source-control-and-environments/tutorial-create-environments-with-source-control.md, docs/administer/use-source-control-and-environments/understand-source-control.md |
+| `VJPiDgC5Bx5FmuGODmCq` | field-value-clash | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/VJPiDgC5Bx5FmuGODmCq/" %}` | If multiple items at an index have a field with the same name, this is a clash. For example, if all items in both Input  | docs/integrations/builtin/core-nodes/n8n-nodes-base.merge.md |
+| `ASsLuMLGKMy2O0q7awMF` | file-based-configuration | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ASsLuMLGKMy2O0q7awMF/" %}` | {% hint style="info" %} **File-based configuration**  You can add `_FILE` to individual variables to provide their confi | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/binary-data.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/credentials.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/database.md (+20) |
+| `iLayKGKnzGLWFd5VGZVk` | gdpr-self-hosted | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iLayKGKnzGLWFd5VGZVk/" %}` | If you self-host n8n, you are responsible for deleting user data. If you need to delete data on behalf of one of your us | docs/privacy-and-security/privacy.md, docs/privacy-and-security/what-you-can-do.md |
+| `niFQjDjbGJDJTKB57Z1s` | github-action | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/niFQjDjbGJDJTKB57Z1s/" %}` | A GitHub Action example:  ```yaml name: CI on:   # Trigger the workflow on push or pull request events for the "producti | docs/administer/use-source-control-and-environments/move-work-between-environments.md, docs/administer/use-source-control-and-environments/tutorial-create-environments-with-source-control.md |
+| `rJn9WooD0IwP7abKawNZ` | gmail-app-password | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/rJn9WooD0IwP7abKawNZ/" %}` | To generate an app password:  1. In your Google account, go to [App passwords](https://myaccount.google.com/apppasswords | docs/integrations/builtin/credentials/imap/gmail.md, docs/integrations/builtin/credentials/send-email/gmail.md |
+| `ysY7mHC9pN3kCUPncSi8` | gmail-two-step-verification | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ysY7mHC9pN3kCUPncSi8/" %}` | To enable 2-step Verification:  1. Log in to your [Google Account](https://myaccount.google.com/). 2. Select **Security* | docs/integrations/builtin/credentials/imap/gmail.md, docs/integrations/builtin/credentials/send-email/gmail.md |
+| `sYWM3IB0LEL4RkPx8ndF` | hitl-tools | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/sYWM3IB0LEL4RkPx8ndF/" %}` | {% hint style="info" %} **Human-in-the-loop for AI tool calls**  This node can be used as a human review step for AI Age | docs/integrations/builtin/app-nodes/n8n-nodes-base.discord/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gmail/message-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlechat.md (+6) |
+| `D8oFoz7X85mQuXGFYlv9` | How to update n8n | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/D8oFoz7X85mQuXGFYlv9/" %}` | ## How to update n8n <a href="#how-to-update-n8n" id="how-to-update-n8n"></a>  The steps to update your n8n depend on wh | docs/changelog/release-notes-0.x.md, docs/changelog/release-notes-1.x.md, docs/changelog/release-notes-2.x.md (+1) |
+| `3EMfTKLe60rEZQ4dBdBw` | how-to-pin-data | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3EMfTKLe60rEZQ4dBdBw/" %}` | To pin data in a node:  1. Run the node to load data. 2. In the **OUTPUT** view, select **Pin data** <img src="../../ass | docs/build/work-with-data/pin-and-mock-data.md |
+| `o5sVhTw0cyO5aAAkAVDj` | if-merge-branch-execution | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/o5sVhTw0cyO5aAAkAVDj/" %}` | {% hint style="info" %} **0.236.0 and below**  n8n removed this execution behavior in version 1.0. This section applies  | docs/integrations/builtin/core-nodes/n8n-nodes-base.if.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.merge.md |
+| `c0111xcskz1G8PKOQogB` | in-app-setup | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/c0111xcskz1G8PKOQogB/" %}` | When you set up user management for the first time, you create an owner account.  1. Open n8n. The app displays a signup | docs/administer/manage-users-and-access/set-up-for-cloud.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
+| `75cM0VtFejV1gnDTFOSV` | instance-owner | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/75cM0VtFejV1gnDTFOSV/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_INSTANCE_OWNER | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/user-management-and-2fa.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
+| `8qoOEjsLz4RnydVBogNy` | invite-users | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/8qoOEjsLz4RnydVBogNy/" %}` | You can now invite other people to your n8n instance.  1. Sign into your workspace with your owner account. (If you are  | docs/administer/manage-users-and-access/set-up-for-cloud.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
+| `XqCm6UXa2H3VaFURpo9h` | item-linking-code-node | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/XqCm6UXa2H3VaFURpo9h/" %}` | When referencing a previous node you need to know which item to use. This is solved by item linking. Most nodes automati | docs/build/work-with-data/reference-data/link-data-items/preserving-linking-in-the-code-node.md |
+| `kXGDlwgR3wBuMfOWaSGE` | item-linking-node-creators | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/kXGDlwgR3wBuMfOWaSGE/" %}` | {% hint style="info" %} **Programmatic-style nodes only**  This guidance applies to programmatic-style nodes. If you're  | docs/build/work-with-data/reference-data/link-data-items/item-linking-for-node-creators.md, docs/connect/create-nodes/build-your-node/reference/item-linking.md |
+| `7MPhMVJM8wcmiOf5zn2m` | langchain-doc-loaders-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/7MPhMVJM8wcmiOf5zn2m/" %}` | Refer to [LangChain's documentation on document loaders](https://js.langchain.com/docs/modules/data_connection/document_ | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentgithubloader.md |
+| `mjXhKRIw98UJ5hk9LWBl` | langchain-overview-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}` | View n8n's [Advanced AI](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai) documentation. | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/README.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainllm.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainretrievalqa/README.md (+107) |
+| `iFLUKG9zJaouigaM7IOo` | latest-next-version | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}` | {% hint style="info" %} **Stable and Beta versions**  n8n releases a new minor version most weeks. The `stable` version  | docs/changelog/README.md, docs/changelog/release-notes-0.x.md, docs/changelog/release-notes-1.x.md (+11) |
+| `JvN9TDUUWTwpWaT83YrH` | log-streaming | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/JvN9TDUUWTwpWaT83YrH/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_LOG_STREAMING_ | docs/administer/observe-and-log/stream-logs-to-external-systems.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/logs.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md |
+| `OI5s27oyRBdDvpwcuMQF` | managed-google-oauth | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/OI5s27oyRBdDvpwcuMQF/" %}` | * [Google Calendar](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.googlecalendar) * [G | docs/integrations/builtin/credentials/google/README.md, docs/integrations/builtin/credentials/google/oauth-generic.md, docs/integrations/builtin/credentials/google/oauth-single-service.md |
+| `8UflrA3Nx8LD5bKQn8Xc` | max-iterations | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/8UflrA3Nx8LD5bKQn8Xc/" %}` | Enter the number of times the model should run to try and generate a good answer from the user's prompt.  Defaults to `1 | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/openai-functions-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/tools-agent.md |
+| `Gf4nC8Xoy8uJDma1fIYg` | mcp | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Gf4nC8Xoy8uJDma1fIYg/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_MCP_MANAGED_BY | docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md |
+| `O5AqRfApNuiINXZOe5j1` | multi-instance-multi-branch-pros-cons | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/O5AqRfApNuiINXZOe5j1/" %}` | The advantages of this pattern are:  * An added safety layer to prevent changes getting into your production environment | docs/administer/use-source-control-and-environments/choose-branching-patterns.md, docs/administer/use-source-control-and-environments/tutorial-create-environments-with-source-control.md |
+| `Vo4DpZeEyTa0iuufMDB8` | multi-instance-one-branch-pros-cons | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Vo4DpZeEyTa0iuufMDB8/" %}` | The advantage of this pattern is that work is instantly available to other environments when you push from one instance. | docs/administer/use-source-control-and-environments/choose-branching-patterns.md, docs/administer/use-source-control-and-environments/tutorial-create-environments-with-source-control.md |
+| `WSJc9HCsn26Um2uT6zAQ` | n8n with tunnel | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/WSJc9HCsn26Um2uT6zAQ/" %}` | ## n8n with tunnel <a href="#n8n-with-tunnel" id="n8n-with-tunnel"></a>  {% hint style="danger" %} Use this for local de | docs/deploy/host-n8n/install-options/install-with-docker.md, docs/deploy/host-n8n/install-options/install-with-npm.md |
+| `fXYywkPyzPTxeGOEnYgb` | Need admin approval | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/fXYywkPyzPTxeGOEnYgb/" %}` | ### Need admin approval <a href="#need-admin-approval" id="need-admin-approval"></a>  When attempting to add credentials | docs/integrations/builtin/credentials/azurecosmosdb.md, docs/integrations/builtin/credentials/azurestorage.md, docs/integrations/builtin/credentials/microsoft.md (+1) |
+| `nqwVeyXZtOyDsX8afllD` | Node operations: Triggers and Actions | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/nqwVeyXZtOyDsX8afllD/" %}` | ## Node operations: Triggers and Actions <a href="#node-operations-triggers-and-actions" id="node-operations-triggers-an | docs/build/understand-workflows/workflow-components/work-with-nodes.md, docs/integrations/builtin/node-types.md |
+| `dGOXJYk0OQgOLlRpyJnn` | node-icons | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/dGOXJYk0OQgOLlRpyJnn/" %}` | n8n recommends using an SVG for your node icon, but you can also use PNG. If using PNG, the icon resolution should be 60 | docs/connect/create-nodes/build-your-node/reference/base-files/standard-parameters.md, docs/connect/create-nodes/build-your-node/tutorial-build-a-declarative-style-node.md, docs/connect/create-nodes/build-your-node/tutorial-build-a-programmatic-style-node.md (+1) |
+| `5qCFLvqGg2hlBEeEqCwp` | node-options | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/5qCFLvqGg2hlBEeEqCwp/" %}` | - **Cell Format**: Use this option to choose how to format the data in cells. Refer to [Google Sheets API \| CellFormat] | docs/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/sheet-operations.md |
+| `6kdIvlPPl0XWVn5z8UJh` | oem-agreement | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/6kdIvlPPl0XWVn5z8UJh/" %}` | {% hint style="info" %} **OEM agreement required**  OEM deployment of n8n requires a separate commercial agreement with  | docs/deploy/host-n8n/deploy-as-an-oem-integration/README.md, docs/deploy/host-n8n/deploy-as-an-oem-integration/manage-workflows.md |
+| `sVOSvjfqJPLqOGb1x77B` | one-direction | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/sVOSvjfqJPLqOGb1x77B/" %}` | {% hint style="info" %} **Recommendation: don't push and pull to the same n8n instance**  You can push work from an inst | docs/administer/use-source-control-and-environments/choose-branching-patterns.md, docs/administer/use-source-control-and-environments/push-and-pull-changes.md, docs/administer/use-source-control-and-environments/tutorial-create-environments-with-source-control.md |
+| `wqdQXLzKrIsqxA7CuhxT` | openai-api-issues | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/wqdQXLzKrIsqxA7CuhxT/" %}` | ## The service is receiving too many requests from you <a href="#the-service-is-receiving-too-many-requests-from-you" id | docs/integrations/builtin/app-nodes/n8n-nodes-langchain.openai/common-issues.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenai/common-issues.md |
+| `eiIkcF23uZ2A8BkFVQM5` | Operation Mode | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/eiIkcF23uZ2A8BkFVQM5/" %}` | This Vector Store node has four modes: **Get Many**, **Insert Documents**, **Retrieve Documents (As Vector Store for Cha | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreinmemory.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremilvus.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremongodbatlas.md (+6) |
+| `IsHMhvgDA3Ok5qdqnHnJ` | output-format | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/IsHMhvgDA3Ok5qdqnHnJ/" %}` | This parameter controls whether you want the node to require a specific output format. When turned on, n8n prompts you t | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/openai-functions-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/plan-execute-agent.md (+3) |
+| `91KTZVqkKv8rY72iELNl` | pagination-api-differences | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/91KTZVqkKv8rY72iELNl/" %}` | {% hint style="info" %} **API differences**  Different APIs implement pagination in different ways. Check the API docume | docs/build/code-in-n8n/cookbook/http-request-node/pagination.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/README.md |
+| `I3wrw8MpZtbjn2khruiw` | pagination-variables | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/I3wrw8MpZtbjn2khruiw/" %}` | \| Variable \| Description \| \| -------- \| ----------- \| \| `$pageCount` \| The pagination count. Tracks how many pag | docs/build/code-in-n8n/use-built-in-shortcuts/http-node.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/README.md |
+| `DnRpcOvtlMPcHD6I3kyx` | poll-modes | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/DnRpcOvtlMPcHD6I3kyx/" %}` | ### Every Hour mode <a href="#every-hour-mode" id="every-hour-mode"></a>  Enter the **Minute** of the hour to trigger th | docs/integrations/builtin/core-nodes/n8n-nodes-base.rssfeedreadtrigger.md, docs/integrations/builtin/trigger-nodes/n8n-nodes-base.gmailtrigger/poll-mode-options.md |
+| `ZmZC9v8B1NG5lgRY44yF` | predefined-credential-type-how-to | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ZmZC9v8B1NG5lgRY44yF/" %}` | To use a predefined credential type:  1. Open your HTTP Request node, or add a new one to your workflow. 2. In **Authent | docs/integrations/builtin/credentials/httprequest.md, docs/integrations/builtin/custom-api-actions-for-existing-nodes.md |
+| `7rCdLiI9qnTIK3Afb3NX` | prerequisites | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/7rCdLiI9qnTIK3Afb3NX/" %}` | * [git](https://git-scm.com/downloads) * Node.js and npm. Minimum version Node 18.17.0. You can find instructions on how | docs/connect/create-nodes/build-your-node/tutorial-build-a-declarative-style-node.md, docs/connect/create-nodes/build-your-node/tutorial-build-a-programmatic-style-node.md |
+| `Ss9Y6clfLTwlXMx69w6E` | prompt | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Ss9Y6clfLTwlXMx69w6E/" %}` | Select how you want the node to construct the prompt (also known as the user's query or input from the chat).  Choose fr | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/openai-functions-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/plan-execute-agent.md (+4) |
+| `jlwygEO1bOtH6HDbN3We` | push | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/jlwygEO1bOtH6HDbN3We/" %}` | To push work to Git:  1. Select **Push** <img src="../../assets/push-icon.png" alt="Push icon" data-size="line"> in the  | docs/administer/use-source-control-and-environments/push-and-pull-changes.md, docs/administer/use-source-control-and-environments/tutorial-create-environments-with-source-control.md |
+| `z7oYIete6nifvfi0QZKs` | push-pull-menu-state | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/z7oYIete6nifvfi0QZKs/" %}` | <details>  <summary>View screenshot</summary>  <figure markdown> 	<img src="../../assets/pull-push-menu-closed.png" alt= | docs/administer/use-source-control-and-environments/push-and-pull-changes.md, docs/administer/use-source-control-and-environments/tutorial-create-environments-with-source-control.md |
+| `EzVIOV8i2lmQ5HW3xFoo` | reduce-memory-consumption | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/EzVIOV8i2lmQ5HW3xFoo/" %}` | * Split the data processed into smaller chunks. For example, instead of fetching 10,000 rows with each execution, proces | docs/deploy/host-n8n/configure-n8n/scaling/fix-memory-issues.md, docs/deploy/use-n8n-cloud/configure-cloud/manage-your-data.md |
+| `nAnAPqDqAcOOqFiJJrTl` | Referenced node is unexecuted | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/nAnAPqDqAcOOqFiJJrTl/" %}` | ## Referenced node is unexecuted <a href="#referenced-node-is-unexecuted" id="referenced-node-is-unexecuted"></a>   This | docs/integrations/builtin/app-nodes/n8n-nodes-langchain.openai/common-issues.md |
+| `yD2T5eTeZvZaPRV8P7MJ` | retry-options | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/yD2T5eTeZvZaPRV8P7MJ/" %}` | 3. Select either of the following options to retry the execution:     * **Retry with currently saved workflow**: Once yo | docs/build/understand-workflows/understand-executions/view-all-executions.md, docs/build/understand-workflows/understand-executions/view-executions-for-a-single-workflow.md |
+| `skA96E8hAnMMKG7c4Lta` | return-intermediate-steps | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/skA96E8hAnMMKG7c4Lta/" %}` | Select whether to include intermediate steps the agent took in the final output (turned on) or not (turned off).  This c | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/openai-functions-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/react-agent.md (+1) |
 | `YQVaIUXYUYVnHpb9qPTu` | schema-type-structuring | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/YQVaIUXYUYVnHpb9qPTu/" %}` | 1. **Generate from JSON Example**: Input an example JSON object to automatically generate the schema. The node uses the  | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserstructured/README.md |
-| `GtC2RL8itCPuNiwv5UUW` | server-setups-next-steps | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/GtC2RL8itCPuNiwv5UUW/" %}` | * Learn more about [configuring](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configurati | docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-digital-ocean.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-hetzner.md |
-| `TJ7IUBpRrfLoXyEn4T4d` | sso-activation | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/TJ7IUBpRrfLoXyEn4T4d/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_SSO_MANAGED_BY | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md |
-| `SBpz79jvy94Y5dKIvxqR` | sso-oidc | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/SBpz79jvy94Y5dKIvxqR/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_SSO_OIDC_LOGIN | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md |
-| `NnYMdwgkElS7TK37owd0` | sso-saml | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/NnYMdwgkElS7TK37owd0/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_SSO_SAML_LOGIN | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md |
-| `9DXSTQsxYGisAV8xk6p4` | sso-saml-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}` | {% hint style="info" %} **Feature availability**  * Available on Business and Enterprise plans. * You need to be an inst | docs/administer/manage-users-and-access/verify-user-identity/use-saml/set-up-saml.md |
-| `X6JM1Mgg5iwvZLDpGEB0` | sub-node-expression-resolution | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/X6JM1Mgg5iwvZLDpGEB0/" %}` | {% hint style="info" %} **Parameter resolution in sub-nodes**  Sub-nodes behave differently to other nodes when processi | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwikipedia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsazureopenai.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreweaviate.md (+13) |
-| `I9ftZ1V1rwx3OrFOh0bT` | suggested-pod-resources | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/I9ftZ1V1rwx3OrFOh0bT/" %}` | - **Start**: 320mb RAM, 10 millicore CPU burstable - **Pro (10k executions)**: 640mb RAM, 20 millicore CPU burstable - * | docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md |
-| `Ci5NMdJiVoyT9dtdTE9w` | system-message | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Ci5NMdJiVoyT9dtdTE9w/" %}` | If you'd like to send a message to the agent before the conversation starts, enter the message you'd like to send.  Use  | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md |
-| `aLQxqepKmNn7Oz3PDTB7` | token-rotation | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/aLQxqepKmNn7Oz3PDTB7/" %}` | Slack offers **token rotation** that you can turn on for bot and user tokens. This makes every tokens expire after 12 ho | docs/integrations/builtin/credentials/slack.md |
-| `Yl56nEscwQQAbBUeWfvp` | tools-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Yl56nEscwQQAbBUeWfvp/" %}` | Refer to [LangChain's documentation on tools](https://langchain-ai.github.io/langgraphjs/how-tos/tool-calling/) for more | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwikipedia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolvectorstore.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcalculator.md |
-| `GAsqtB1RVGEDrT5PMMLl` | tracing-metadata | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/GAsqtB1RVGEDrT5PMMLl/" %}` | Add custom key-value metadata to tracing events for this agent. This is useful for filtering and debugging runs in traci | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md |
+| `xVIddGVtWAPFZlRYTrwL` | security-policy | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/xVIddGVtWAPFZlRYTrwL/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_SECURITY_POLIC | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/security.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md, docs/deploy/host-n8n/configure-n8n/security/manage-security-policies.md |
+| `dN5Se1JVH7wYGtmN4n0v` | Self-hosted AI Starter Kit | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/dN5Se1JVH7wYGtmN4n0v/" %}` | ## Self-hosted AI Starter Kit <a href="#self-hosted-ai-starter-kit" id="self-hosted-ai-starter-kit"></a>  New to working | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreazureaisearch.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremongodbatlas.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepgvector.md (+4) |
+| `GtC2RL8itCPuNiwv5UUW` | server-setups-next-steps | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/GtC2RL8itCPuNiwv5UUW/" %}` | * Learn more about [configuring](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configurati | docs/deploy/host-n8n/install-options/install-with-docker.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md (+6) |
+| `OlpV1rtc5ZIqBmvX4lBQ` | sharing-credentials | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/OlpV1rtc5ZIqBmvX4lBQ/" %}` | {% hint style="warning" %} **Sharing credentials**  Exported workflow JSON files include [credential](https://app.gitboo | docs/build/manage-workflows/export-and-import.md |
+| `TJ7IUBpRrfLoXyEn4T4d` | sso-activation | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/TJ7IUBpRrfLoXyEn4T4d/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_SSO_MANAGED_BY | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md |
+| `SBpz79jvy94Y5dKIvxqR` | sso-oidc | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/SBpz79jvy94Y5dKIvxqR/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_SSO_OIDC_LOGIN | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md |
+| `3sB2Mxc1yXYEg1FeAYjK` | sso-oidc-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3sB2Mxc1yXYEg1FeAYjK/" %}` | {% hint style="info" %} **Feature availability**  * Available on Enterprise plans. * You need to be an instance owner or | docs/administer/manage-users-and-access/verify-user-identity/use-oidc/README.md, docs/administer/manage-users-and-access/verify-user-identity/use-oidc/set-up-oidc.md |
+| `NnYMdwgkElS7TK37owd0` | sso-saml | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/NnYMdwgkElS7TK37owd0/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_SSO_SAML_LOGIN | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md |
+| `9DXSTQsxYGisAV8xk6p4` | sso-saml-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}` | {% hint style="info" %} **Feature availability**  * Available on Business and Enterprise plans. * You need to be an inst | docs/administer/manage-users-and-access/verify-user-identity/use-saml/README.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/manage-users-with-saml.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/set-up-saml.md |
+| `X6JM1Mgg5iwvZLDpGEB0` | sub-node-expression-resolution | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/X6JM1Mgg5iwvZLDpGEB0/" %}` | {% hint style="info" %} **Parameter resolution in sub-nodes**  Sub-nodes behave differently to other nodes when processi | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreazureaisearch.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreinmemory.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremilvus.md (+76) |
+| `E552YKHiixJuJvzEdrBI` | submit-community-node | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/E552YKHiixJuJvzEdrBI/" %}` | Community nodes are npm packages, hosted in the npm registry.  When building a node to submit to the community node repo | docs/connect/create-nodes/deploy-your-node/submit-community-nodes.md, docs/integrations/community-nodes/building-community-nodes.md |
+| `mr8LBJxxxIAFYHNPNKU2` | submit-templates | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mr8LBJxxxIAFYHNPNKU2/" %}` | You can submit your workflows to n8n's template library.  n8n is working on a creator program, and developing a marketpl | docs/build/ways-of-building-workflows/use-templates.md, docs/contribute/README.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/configuration-examples/configure-a-custom-workflow-templates-library.md |
+| `edKlUxnfiRMq38CujuFv` | subworkflow-data-flow | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/edKlUxnfiRMq38CujuFv/" %}` | As an example, imagine you have an Execute Sub-workflow node in **Workflow A**. The Execute Sub-workflow node calls anot | docs/build/flow-logic/break-workflows-into-smaller-parts.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger.md |
+| `wlwT5JcWyWTecnDN6aul` | subworkflow-usage | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/wlwT5JcWyWTecnDN6aul/" %}` | ### Create the sub-workflow <a href="#create-the-sub-workflow" id="create-the-sub-workflow"></a>   1. Create a new workf | docs/build/flow-logic/break-workflows-into-smaller-parts.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger.md |
+| `I9ftZ1V1rwx3OrFOh0bT` | suggested-pod-resources | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/I9ftZ1V1rwx3OrFOh0bT/" %}` | - **Start**: 320mb RAM, 10 millicore CPU burstable - **Pro (10k executions)**: 640mb RAM, 20 millicore CPU burstable - * | docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-google-kubernetes.md |
+| `Ci5NMdJiVoyT9dtdTE9w` | system-message | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Ci5NMdJiVoyT9dtdTE9w/" %}` | If you'd like to send a message to the agent before the conversation starts, enter the message you'd like to send.  Use  | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/openai-functions-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/tools-agent.md |
+| `WlCAEDxY4EZLDV85eB8C` | testing | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/WlCAEDxY4EZLDV85eB8C/" %}` | You can test your node as you build it by running it in a local n8n instance.  1. Install n8n using npm:   ```shell   np | docs/connect/create-nodes/build-your-node/tutorial-build-a-declarative-style-node.md, docs/connect/create-nodes/build-your-node/tutorial-build-a-programmatic-style-node.md, docs/connect/create-nodes/test-your-node/run-your-node-locally.md |
+| `ttmJg4aaEfjB4LyKpCzt` | timezone-settings | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ttmJg4aaEfjB4LyKpCzt/" %}` | {% hint style="info" %} **Timezone settings**  The node relies on the timezone setting. n8n uses either:  1. The workflo | docs/integrations/builtin/core-nodes/n8n-nodes-base.datetime.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/README.md |
+| `aLQxqepKmNn7Oz3PDTB7` | token-rotation | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/aLQxqepKmNn7Oz3PDTB7/" %}` | Slack offers **token rotation** that you can turn on for bot and user tokens. This makes every tokens expire after 12 ho | docs/integrations/builtin/credentials/slack.md, docs/integrations/builtin/trigger-nodes/n8n-nodes-base.slacktrigger.md |
+| `Yl56nEscwQQAbBUeWfvp` | tools-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Yl56nEscwQQAbBUeWfvp/" %}` | Refer to [LangChain's documentation on tools](https://langchain-ai.github.io/langgraphjs/how-tos/tool-calling/) for more | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcalculator.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcode.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp.md (+5) |
+| `GAsqtB1RVGEDrT5PMMLl` | tracing-metadata | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/GAsqtB1RVGEDrT5PMMLl/" %}` | Add custom key-value metadata to tracing events for this agent. This is useful for filtering and debugging runs in traci | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/openai-functions-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/plan-execute-agent.md (+3) |
+| `uEYII1oKijzYurya61sf` | unverified-app | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/uEYII1oKijzYurya61sf/" %}` | If using the OAuth authentication method, you might see the warning **Google hasn't verified this app**. To avoid this:  | docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/common-issues.md, docs/integrations/builtin/credentials/google/oauth-generic.md, docs/integrations/builtin/credentials/google/oauth-single-service.md |
 | `1Q2X3RjU5o2jnRfcKzuN` | updating-best-practices | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/1Q2X3RjU5o2jnRfcKzuN/" %}` | * Update frequently: this avoids having to jump multiple versions at once, reducing the risk of a disruptive update. Try | docs/deploy/host-n8n/keep-n8n-running/update-n8n.md |
-| `cHtfs3gewkhPbGP31rjc` | use-with-chat-trigger | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/cHtfs3gewkhPbGP31rjc/" %}` | You can use this agent with the [Chat Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nod | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md |
-| `vIyn1XsEkjlolZzHTfTG` | Using basic auth | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/vIyn1XsEkjlolZzHTfTG/" %}` | ## Using basic auth <a href="#using-basic-auth" id="using-basic-auth"></a>  Use this generic authentication if your app  | docs/integrations/builtin/credentials/httprequest.md |
+| `cHtfs3gewkhPbGP31rjc` | use-with-chat-trigger | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/cHtfs3gewkhPbGP31rjc/" %}` | You can use this agent with the [Chat Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nod | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/openai-functions-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/tools-agent.md |
+| `vIyn1XsEkjlolZzHTfTG` | Using basic auth | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/vIyn1XsEkjlolZzHTfTG/" %}` | ## Using basic auth <a href="#using-basic-auth" id="using-basic-auth"></a>  Use this generic authentication if your app  | docs/integrations/builtin/credentials/httprequest.md, docs/integrations/builtin/credentials/webhook.md |
 | `JeIbggto5Oi1mPf9SOYv` | Using bearer auth | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/JeIbggto5Oi1mPf9SOYv/" %}` | ## Using bearer auth <a href="#using-bearer-auth" id="using-bearer-auth"></a>  Use this generic authentication if your a | docs/integrations/builtin/credentials/httprequest.md |
 | `tq6Yob45CR8oPKrT6Ggr` | Using digest auth | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/tq6Yob45CR8oPKrT6Ggr/" %}` | ## Using digest auth <a href="#using-digest-auth" id="using-digest-auth"></a>  Use this generic authentication if your a | docs/integrations/builtin/credentials/httprequest.md |
-| `fjWxEWe1g0CDvsx1igf6` | Using header auth | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/fjWxEWe1g0CDvsx1igf6/" %}` | ## Using header auth <a href="#using-header-auth" id="using-header-auth"></a>  Use this generic authentication if your a | docs/integrations/builtin/credentials/httprequest.md |
-| `KcxcfJWhy81cjCSzO4vQ` | vector-store-rerank-results | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/KcxcfJWhy81cjCSzO4vQ/" %}` | Enables [reranking](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#ai-reranking). If you enable thi | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreweaviate.md |
-| `YLv7Cqg70tj1alDgktSX` | warning | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/YLv7Cqg70tj1alDgktSX/" %}` | {% hint style="info" %} **Self-hosting knowledge prerequisites**  Self-hosting n8n requires technical knowledge, includi | docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-digital-ocean.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-hetzner.md |
-| `96ifDzfcUuwOyYrubZUt` | What to do if your operation isn't supported | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/96ifDzfcUuwOyYrubZUt/" %}` | ## What to do if your operation isn't supported <a href="#what-to-do-if-your-operation-isnt-supported" id="what-to-do-if | docs/integrations/builtin/app-nodes/n8n-nodes-base.misp.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.strava.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.rundeck.md (+27) |
+| `fjWxEWe1g0CDvsx1igf6` | Using header auth | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/fjWxEWe1g0CDvsx1igf6/" %}` | ## Using header auth <a href="#using-header-auth" id="using-header-auth"></a>  Use this generic authentication if your a | docs/integrations/builtin/credentials/httprequest.md, docs/integrations/builtin/credentials/webhook.md |
+| `9OWZ8hSpVqky4D4xRnYP` | vector-store-metadata-filter | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9OWZ8hSpVqky4D4xRnYP/" %}` | Available in **Get Many** mode. When searching for data, use this to match with metadata associated with the document.   | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorechroma.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremilvus.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepgvector.md (+4) |
+| `5aeZAt5P1m2YndTmiFTG` | vector-store-mode-with-update | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/5aeZAt5P1m2YndTmiFTG/" %}` | This Vector Store node has five modes: **Get Many**, **Insert Documents**, **Retrieve Documents (As Vector Store for Cha | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreazureaisearch.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepinecone.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoresupabase.md |
+| `KcxcfJWhy81cjCSzO4vQ` | vector-store-rerank-results | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/KcxcfJWhy81cjCSzO4vQ/" %}` | Enables [reranking](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#ai-reranking). If you enable thi | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreazureaisearch.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreinmemory.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremilvus.md (+9) |
+| `c0Jp2CWNEFSR2IfIVdlL` | Waiting for a response | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/c0Jp2CWNEFSR2IfIVdlL/" %}` | ## Waiting for a response <a href="#waiting-for-a-response" id="waiting-for-a-response"></a>  By choosing the **Send and | docs/integrations/builtin/app-nodes/n8n-nodes-base.discord/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlechat.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftoutlook.md (+2) |
+| `YLv7Cqg70tj1alDgktSX` | warning | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/YLv7Cqg70tj1alDgktSX/" %}` | {% hint style="info" %} **Self-hosting knowledge prerequisites**  Self-hosting n8n requires technical knowledge, includi | docs/deploy/host-n8n/install-options/install-with-docker.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md (+6) |
+| `96ifDzfcUuwOyYrubZUt` | What to do if your operation isn't supported | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/96ifDzfcUuwOyYrubZUt/" %}` | ## What to do if your operation isn't supported <a href="#what-to-do-if-your-operation-isnt-supported" id="what-to-do-if | docs/integrations/builtin/app-nodes/n8n-nodes-base.actionnetwork.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.activecampaign.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.adalo.md (+151) |
+| `i66Pv0lYL7QjJ9F9tZUj` | workflow-values | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/i66Pv0lYL7QjJ9F9tZUj/" %}` | Set values to pass to the workflow you're calling.  These values appear in the output data of the trigger node in the wo | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrieverworkflow.md |
+| `2ZBcW11hezK8c3JZNsKm` | yahoo-app-password | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/2ZBcW11hezK8c3JZNsKm/" %}` | 1. Log in to your Yahoo account [Security page](https://login.yahoo.com/account/security). 2. Select **Generate app pass | docs/integrations/builtin/credentials/imap/yahoo.md, docs/integrations/builtin/credentials/send-email/yahoo.md |
 
 === https://docs.n8n.io/styles/from-write-good/README/
 Based on [write-good](https://github.com/btford/write-good).
@@ -5951,12 +6018,6 @@ Coming soon:
 
 **n8n CLI** is a lightweight command-line client that communicates with a running n8n instance through the [n8n API](n8n-api/README.md). It can run from any machine with network access and authenticates using an API key.
 
-{% hint style="info" %}
-**n8n CLI is in beta**
-
-Use it only for experimenting, local development, and personal projects and not for production workflows.
-{% endhint %}
-
 Use the API CLI to:
 
 - List and inspect workflows  
@@ -8757,7 +8818,6 @@ This applies to self-hosting n8n. When encountering **JavaScript heap out of mem
 **Feature availability**
 
 * Available on Self-hosted Enterprise plans
-* If you want access to this feature on Cloud Enterprise, [contact n8n](https://n8n-community.typeform.com/to/y9X2YuGa).
 {% endhint %}
 
 n8n can store binary data and execution data produced by workflow executions externally. This feature is useful to avoid relying on the database or filesystem for storing large amounts of data.
@@ -9207,7 +9267,7 @@ n8n creates the webhook URL by combining `N8N_PROTOCOL`, `N8N_HOST` and `N8N_POR
 
 When running n8n behind a reverse proxy, it's important to do the following:
 
-* set the webhook URL manually with the `WEBHOOK_URL` environment variable so that n8n can  display it in the editor UI and register the correct webhook URLs with external services.
+* set the webhook URL manually with the `N8N_WEBHOOK_URL` environment variable so that n8n can display it in the editor UI and register the correct webhook URLs with external services. (`N8N_WEBHOOK_URL` replaces the deprecated `WEBHOOK_URL`; n8n logs a deprecation warning if you still use `WEBHOOK_URL`.)
 * Set the `N8N_PROXY_HOPS` environment variable to `1`.
 * On the last proxy on the request path, set the following headers to pass on information about the initial request:
     * [`X-Forwarded-For`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
@@ -9215,7 +9275,7 @@ When running n8n behind a reverse proxy, it's important to do the following:
     * [`X-Forwarded-Proto`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
 
 ```bash
-export WEBHOOK_URL=https://n8n.example.com/
+export N8N_WEBHOOK_URL=https://n8n.example.com/
 export N8N_PROXY_HOPS=1
 ```
 Refer to [Environment variables reference](../use-environment-variables/endpoints.md) for more information on this variable.
@@ -10175,6 +10235,7 @@ Controls the reaper, which releases runs an instance claimed but never finished 
 | `N8N_SCHEDULER_REAPER_INTERVAL` | Number | `30` | How often, in seconds, the scheduler looks for runs an instance claimed but never finished (for example after a crash or shutdown) and makes them available again. Must be greater than 0. |
 | `N8N_SCHEDULER_REAPER_BATCH_SIZE` | Number | `100` | The most expired-claim runs a single reaper pass reclaims. Larger batches recover a backlog faster but hold more work on one instance per pass. Must be greater than 0. |
 | `N8N_SCHEDULER_REAPER_TIMEOUT` | Number | `60` | How long, in seconds, a single recovery pass may run before it's abandoned and retried on the next interval. Must be greater than 0. |
+| `N8N_SCHEDULER_MAX_ATTEMPTS` | Number | `5` | How many times a scheduled run may be reclaimed (for example after a crash) or retried on error before n8n gives up on it and dead-letters it. Raise it on infrastructure prone to instance restarts or transient errors; lower it to give up and move on sooner. Must be greater than 0. |
 
 ## Retention <a href="#retention-vars" id="retention-vars"></a>
 
@@ -10389,7 +10450,8 @@ This page lists environment variables for customizing endpoints in n8n.
 | `N8N_ENDPOINT_WEBHOOK_TEST` | String | `webhook-test` | The path used for test-webhook endpoint. |
 | `N8N_ENDPOINT_WEBHOOK_WAIT` | String | `webhook-waiting` | The path used for waiting-webhook endpoint. |
 | `N8N_ENDPOINT_HEALTH` | String | `healthz` | The path used for health check endpoint. |
-| `WEBHOOK_URL` | String | - | Used to manually provide the Webhook URL when running n8n behind a reverse proxy. See [here](../configuration-examples/configure-webhook-urls-with-reverse-proxy.md) for more details. |
+| `N8N_WEBHOOK_URL` | String | - | Sets the base URL for both test and production webhooks when running n8n behind a reverse proxy. Use this instead of the `N8N_ENDPOINT_*` variables above, which set only the endpoint _path_, not a URL. See [Configure webhook URLs with reverse proxy](../configuration-examples/configure-webhook-urls-with-reverse-proxy.md). |
+| `WEBHOOK_URL` | String | - | Deprecated alias of `N8N_WEBHOOK_URL`. Still works, but n8n logs a deprecation warning on startup. |
 | `N8N_DISABLE_PRODUCTION_MAIN_PROCESS` | Boolean | `false` | Disable production webhooks from main process. This helps ensure no HTTP traffic load to main process when using webhook-specific processes. |
 
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/expression-engine/
@@ -28334,7 +28396,7 @@ From the **Data tables** tab, you can:
 
 ## Considerations and limitations of data tables <a href="#considerations-and-limitations-of-data-tables" id="considerations-and-limitations-of-data-tables"></a>
 
-- Data tables are suitable for light to moderate data storage. By default, the total storage used by all data tables in an instance is limited to 50MB. In self-hosted environments, you can increase this default size limit using the environment variable `N8N_DATA_TABLES_MAX_SIZE_BYTES`.
+- Data tables are suitable for light to moderate data storage. By default, the total storage used by all data tables in an instance is limited to 200 MiB. In self-hosted environments, you can change this size limit using the environment variable `N8N_DATA_TABLES_MAX_SIZE_BYTES`.
 - When your data tables approach 80% of your storage limit, n8n displays a warning. A final warning appears when you reach the storage limit. Exceeding this limit will disable manual additions to tables and cause workflow execution errors during attempts to insert or update data.
 - By default, data tables created within a project are accessible to all team members in that project.
 - Admins and Owner can see all Users' data tables.
@@ -49322,7 +49384,7 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
 Current `stable`: 2.31.6
-Current `beta`: 2.32.4
+Current `beta`: 2.32.5
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -55534,7 +55596,7 @@ You can further refine the node's behavior when you **Add Option**s:
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-n8n provides an app node for Slack. You can find the node docs [here](../app-nodes/n8n-nodes-base.slack.md).
+n8n provides an app node for Slack. You can find the node docs [here](../app-nodes/n8n-nodes-base.slack/README.md).
 
 View [example workflows and related content](https://n8n.io/integrations/slack-trigger/) on n8n's website.
 
@@ -56943,39 +57005,6 @@ For usage examples and templates to help you get started, refer to n8n's [GetRes
 - Receive notifications when an email is clicked
 - Receive notifications when a survey is submitted
 
-
-=== https://docs.n8n.io/docs/integrations/builtin/trigger-nodes/n8n-nodes-base.crowddevtrigger/
-
-# crowd.dev Trigger node <a href="#crowddev-trigger-node" id="crowddev-trigger-node"></a>
-
-Use the crowd.dev Trigger node to respond to events in [crowd.dev](https://www.crowd.dev/) and integrate crowd.dev with other applications. n8n has built-in support for a wide range of crowd.dev events, including new activities and new members.
-
-On this page, you'll find a list of events the crowd.dev Trigger node can respond to and links to more resources.
-
-{% hint style="info" %}
-**Credentials**
-
-You can find authentication information for this node [here](../credentials/crowddev.md).
-{% endhint %}
-
-{% hint style="info" %}
-**Examples and templates**
-
-For usage examples and templates to help you get started, refer to n8n's [crowd.dev Trigger integrations](https://n8n.io/integrations/crowddev-trigger/) list.
-{% endhint %}
-
-## Events <a href="#events" id="events"></a>
-
-* New Activity
-* New Member
-
-## Related resources <a href="#related-resources" id="related-resources"></a>
-
-n8n provides an app node for crowd.dev. You can find the node docs [here](../app-nodes/n8n-nodes-base.crowddev.md).
-
-View [example workflows and related content](https://n8n.io/integrations/crowddev/) on n8n's website.
-
-Refer to [crowd.dev's documentation](https://docs.crowd.dev/docs) for more information about the service.
 
 === https://docs.n8n.io/docs/integrations/builtin/trigger-nodes/n8n-nodes-base.wisetrigger/
 
@@ -59327,16 +59356,16 @@ To configure this credential, you'll need:
 
 You can use these credentials to authenticate the following nodes:
 
-- [Slack](../app-nodes/n8n-nodes-base.slack.md)
+- [Slack](../app-nodes/n8n-nodes-base.slack/README.md)
 - [Slack Trigger](../trigger-nodes/n8n-nodes-base.slacktrigger.md)
 
 ## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
 
 - API access token:
     - Required for the [Slack Trigger](../trigger-nodes/n8n-nodes-base.slacktrigger.md) node.
-    - Works with the [Slack](../app-nodes/n8n-nodes-base.slack.md) node, but not recommended.
+    - Works with the [Slack](../app-nodes/n8n-nodes-base.slack/README.md) node, but not recommended.
 - OAuth2:
-    - Recommended method for the [Slack](../app-nodes/n8n-nodes-base.slack.md) node.
+    - Recommended method for the [Slack](../app-nodes/n8n-nodes-base.slack/README.md) node.
     - Doesn't work with the [Slack Trigger](../trigger-nodes/n8n-nodes-base.slacktrigger.md) node.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
@@ -59447,8 +59476,10 @@ n8n recommends enabling request signature verification for your Slack Trigger fo
 
 1. Go to [Your Apps](https://api.slack.com/apps/) in Slack and select the app you want to use.
 2. Go to **Settings** > **Basic Information**.
-3. Copy the value of **Signing**.
+3. Copy the value of **Signing Secret**.
 4. In n8n, Paste this value into the **Signature Secret** field for the credential.
+
+The **Signature Secret** field is also required for [Approvals in Slack](../app-nodes/n8n-nodes-base.slack/approvals.md).
 
 ## Using OAuth2 <a href="#using-oauth2" id="using-oauth2"></a>
 
@@ -64135,11 +64166,11 @@ Refer to [Grist's API documentation](https://support.getgrist.com/api/) for more
 
 To configure this credential, you'll need:
 
-- An **API Key**: Refer to the [Grist API authentication documentation](https://support.getgrist.com/rest-api/#authentication) for instructions on creating an API key.
-- To select your Grist **Plan Type**. Options include:
-    - Free
-    - Paid: If selected, provide your Grist **Custom Subdomain**. This is the portion that comes before `.getgrist.com`. For example, if our full Grist domain was `n8n.getgrist.com`, we'd enter `n8n` here.
-    - Self-Hosted: If selected, provide your Grist **Self-Hosted URL**. This should be the full URL.
+- An **API Key**: in Grist, open the account menu (top right), then go to **Account settings** > **Developer** to create or copy your API key. Refer to the [Grist API authentication documentation](https://support.getgrist.com/rest-api/#authentication) for more information.
+- A **Grist URL**. This points n8n at your Grist server:
+    - The default, `https://api.getgrist.com`, works for any account on hosted Grist (getgrist.com).
+    - To restrict the connection to a single team, use `https://YOUR_TEAM.getgrist.com`.
+    - For a self-managed instance, use its URL, without `/api` and without a trailing slash (for example `https://grist.example.com`).
 
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/harvest/
@@ -64260,39 +64291,6 @@ To set up the credential:
         - Your **Self-Hosted Domain**. Use only the domain itself. For example, if you view a form at `https://yourserver.com/yourproject/manage/view`, the Self-Hosted Domain is `https://yourserver.com`.
 2. Enter the **Email address** you use to log in to Form.io.
 3. Enter the **Password** you use to log in to Form.io.
-
-=== https://docs.n8n.io/docs/integrations/builtin/credentials/crowddev/
-
-# crowd.dev credentials <a href="#crowddev-credentials" id="crowddev-credentials"></a>
-
-You can use these credentials to authenticate the following nodes:
-
-* [crowd.dev](../app-nodes/n8n-nodes-base.crowddev.md)
-* [crowd.dev Trigger](../trigger-nodes/n8n-nodes-base.crowddevtrigger.md)
-
-## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
-
-Create a working instance of [crowd.dev](https://www.crowd.dev/).
-
-## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
-
-- API key
-
-## Related resources <a href="#related-resources" id="related-resources"></a>
-
-Refer to [crowd.dev's documentation](https://docs.crowd.dev/docs) for more information about the service, and their [API documentation](https://api.crowd.dev/api-reference) for working with the API.
-
-## Using API key <a href="#using-api-key" id="using-api-key"></a>
-
-To configure this credential, you'll need:
-
-- A **URL**:
-    - If your crowd.dev instance is hosted on crowd.dev, keep the default of `https://app.crowd.dev`.
-    - If your crowd.dev instance is [self-hosted](https://docs.crowd.dev/docs/technical-docs/self-hosting), use the URL you use to access your crowd.dev instance.
-- Your crowd.dev **Tenant ID**: Displayed in the **Settings** section of the crowd.dev app
-- An API **Token**: Displayed in the **Settings** section of the crowd.dev app
-
-Refer to the [crowd.dev API documentation](https://api.crowd.dev/api-reference) for more detailed instructions.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/cratedb/
 
@@ -66413,6 +66411,17 @@ The Calendly Trigger node relies on Calendly webhooks. Calendly only offers acce
 - Personal Access Token
 - OAuth2
 
+## Required scopes <a href="#required-scopes" id="required-scopes"></a>
+
+To use Calendly nodes and triggers in n8n, your credentials must have the following scopes:
+
+- `users:read`: Read user information
+- `webhooks:read`: Read webhook subscriptions
+- `webhooks:write`: Create and manage webhook subscriptions
+- `scheduled_events:read`: Read scheduled event information
+
+Personal Access Tokens also require the same scopes. When creating a Personal Access Token in Calendly, select the same scopes listed above.
+
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
 Refer to [Calendly's API documentation](https://developer.calendly.com/getting-started) for more information about the service.
@@ -66450,10 +66459,15 @@ To get both, create a new OAuth app in Calendly:
 3. In **Environment type**, select the environment that corresponds to your usage, either **Sandbox** or **Production**.
     - Calendly recommends starting with **Sandbox** for development and creating a second application for **Production** when you're ready to go live.
 4. Copy the **OAuth Redirect URL** from n8n and enter it as a **Redirect URI** in the OAuth app.
-5. Select **Save & Continue**. The app details display.
-5. Copy the **Client ID** and enter this as your n8n **Client ID**.
-6. Copy the **Client secret** and enter this as your n8n **Client Secret**.
-1. Select **Connect my account** in n8n and follow the on-screen prompts to finish authorizing the credential.
+5. In the **Scopes** section, add the following required scopes:
+    - `users:read`
+    - `webhooks:read`
+    - `webhooks:write`
+    - `scheduled_events:read`
+6. Select **Save & Continue**. The app details display.
+7. Copy the **Client ID** and enter this as your n8n **Client ID**.
+8. Copy the **Client secret** and enter this as your n8n **Client Secret**.
+9. Select **Connect my account** in n8n and follow the on-screen prompts to finish authorizing the credential.
 
 Refer to [Registering your application with Calendly](https://developer.calendly.com/create-a-developer-account) for more information.
 
@@ -82327,64 +82341,6 @@ Refer to [Yourls credentials](../credentials/yourls.md) for guidance on setting 
 [Browse Yourls node documentation integration templates](https://n8n.io/integrations/yourls) or [search all templates](https://n8n.io/workflows/)
 
 
-=== https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.crowddev/
-
-# crowd.dev node <a href="#crowddev-node" id="crowddev-node"></a>
-
-Use the crowd.dev node to automate work in crowd.dev and integrate crowd.dev with other applications. n8n has built-in support for a wide range of crowd.dev features, which includes creating, updating, and deleting members, notes, organizations, and tasks.
-
-On this page, you'll find a list of operations the crowd.dev node supports, and links to more resources.
-
-{% hint style="info" %}
-**Credentials**
-
-You can find authentication information for this node [here](../credentials/crowddev.md).
-{% endhint %}
-
-## Operations <a href="#operations" id="operations"></a>
-
-* Activity
-	* Create or Update with a Member
-	* Create
-* Automation
-	* Create
-	* Destroy
-	* Find
-	* List
-	* Update
-* Member
-	* Create or Update
-	* Delete
-	* Find
-	* Update
-* Note
-	* Create
-	* Delete
-	* Find
-	* Update
-* Organization
-	* Create
-	* Delete
-	* Find
-	* Update
-* Task
-	* Create
-	* Delete
-	* Find
-	* Update
-
-## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
-
-
-[Browse crowd.dev node documentation integration templates](https://n8n.io/integrations/crowddev) or [search all templates](https://n8n.io/workflows/)
-
-## Related resources <a href="#related-resources" id="related-resources"></a>
-
-n8n provides a trigger node for crowd.dev. You can find the trigger node docs [here](../trigger-nodes/n8n-nodes-base.crowddevtrigger.md).
-
-{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/96ifDzfcUuwOyYrubZUt/" %}
-
-
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.magento2/
 
 # Magento 2 node <a href="#magento-2-node" id="magento-2-node"></a>
@@ -84733,6 +84689,254 @@ Refer to [Zulip credentials](../credentials/zulip.md) for guidance on setting up
 
 
 [Browse Zulip node documentation integration templates](https://n8n.io/integrations/zulip) or [search all templates](https://n8n.io/workflows/)
+
+=== https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.slack/approvals/
+
+# Approvals in Slack
+
+{% hint style="info" %}
+**This feature is in preview**
+
+Preview features may change in future releases. Avoid relying on them in production workflows. n8n is rolling this feature out gradually, so it may not be available on your instance yet.
+{% endhint %}
+
+With the **Message** > **Send and Wait for Response** operation, approvers can approve or decline directly inside Slack. No browser page opens: the workflow resumes as soon as someone responds, and the output records who responded.
+
+## How it differs from link buttons
+
+| What | Link buttons (default) | Approvals in Slack |
+|------|------------------------|--------------------|
+| Where the decision happens | Opens an n8n page in the browser | One click inside Slack |
+| Who can respond | Anyone who can click the link | Only the approvers you list (an empty list lets anyone who can see the message respond). Anyone else gets a private note you can word yourself, and the workflow keeps waiting. |
+| Output | `approved` and `respondedAt` | Adds who responded (ID, name, username, and email) plus the channel and message |
+| The message after the decision | Unchanged. The buttons stay clickable, but later clicks show a "no action required" page. The first decision stands. | Your choice: show the outcome and remove the buttons (default), remove the buttons only, or leave the message unchanged |
+| Security | Signed links: no one can tamper with the URL or its action, but anyone who has the link can respond, and n8n can't tell who clicked | n8n verifies every callback came from Slack (using Slack's request signing) and checks the responder against your approver list |
+
+## Requirements
+
+To approve within Slack, you need:
+
+- Your n8n instance to be reachable from Slack over public HTTPS. Slack calls your instance back when someone responds, so an instance running on localhost won't work.
+- A Slack credential, using either an API access token or OAuth2.
+- The **Signature Secret** field of your Slack credential must contain your Slack app's signing secret, found in **Settings** > **Basic Information**. Without it, the buttons render but clicks don't resume the workflow.
+- **Response Type** set to **Approval**.
+- The `users:read` and `users:read.email` scopes. The responder's ID, name, and username come from Slack's interaction payload; the email comes from the Slack API and needs these scopes. Missing scopes just mean the output omits the email. If you use an OAuth2 credential created before this feature existed, reconnect it so it picks up the `users:read.email` scope.
+
+## Set up approvals
+
+### 1. Create a Slack app and credential
+
+Follow [Using API access token](../../credentials/slack.md#using-api-access-token) or [Using OAuth2](../../credentials/slack.md#using-oauth2) to create a Slack app and set up your credential. When you configure your app's scopes, add `users:read` and `users:read.email` so the output can include the responder's email.
+
+### 2. Turn on Interactivity
+
+1. Go to [Your Apps](https://api.slack.com/apps) in Slack and select the app you want to use.
+2. Go to **Features** > **Interactivity & Shortcuts** and turn on **Interactivity**.
+3. In **Request URL**, enter `https://<your-n8n-instance>/webhook-waiting-slack`. All workflows on the instance share this one URL. If you changed the `N8N_ENDPOINT_WEBHOOK_WAIT` environment variable, adjust the path to match.
+4. Select **Save Changes**.
+
+{% hint style="info" %}
+Slack allows one **Request URL** per app, so one Slack app serves one n8n instance.
+{% endhint %}
+
+### 3. Add the signing secret to your credential
+
+1. In your Slack app, go to **Settings** > **Basic Information** and copy the **Signing Secret** from the **App Credentials** section.
+2. In n8n, paste it into the **Signature Secret** field of your Slack credential.
+
+n8n uses the signing secret to verify that each callback comes from Slack. n8n rejects callbacks that fail verification, and the workflow keeps waiting.
+
+### 4. Configure the node
+
+In the Slack node, select the **Message** resource with the **Send and Wait for Response** operation, and set **Response Type** to **Approval**. The settings below then appear under the **Advanced Interactivity** section header.
+
+- **Capture Who Responded**: turn this on to switch the approval buttons to Slack interactive buttons and record who responded. The remaining settings appear once it's on.
+- **Restrict Who Can Approve**: select the users allowed to act. You can also specify user IDs with an expression. Anyone not on the list who clicks gets a private notice, and the workflow keeps waiting.
+- **Unauthorized Reply**: the private (ephemeral) message shown to someone who clicks but isn't on the approver list. Defaults to `You are not authorized to respond to this request.`
+- **After Decision**: what happens to the original Slack message once someone approves or declines.
+    - **Show Outcome and Remove Buttons** (default): removes the buttons and adds a line naming the decision and the responder.
+    - **Remove Buttons Only**: removes the buttons without adding an outcome line.
+    - **Keep Message Unchanged**: leaves the message as sent, buttons included. Later clicks don't change the recorded decision, which is the first one.
+
+If you leave the approver list empty, anyone who can see the message can approve or decline. In a channel, that's every member. The list controls who can respond, not who can see the request, so post sensitive approvals to a private channel or direct message.
+
+### 5. Test it
+
+Execute the workflow, select **Approve** in Slack, and check the node output.
+
+## Node output
+
+When someone responds in Slack, the node outputs the decision and the responder:
+
+```json
+{
+	"data": {
+		"approved": true,
+		"respondedAt": "2025-07-13T12:34:56.000Z",
+		"channel": "C0123ABC456",
+		"messageId": "1752407696.123456",
+		"responder": {
+			"id": "U0123ABC456",
+			"name": "Jo Doe",
+			"username": "jo.doe",
+			"email": "jo@example.com",
+			"source": "slack"
+		}
+	}
+}
+```
+
+With link buttons, the output contains only `approved` and `respondedAt`.
+
+## When you get link buttons instead
+
+The node behaves as before, sending buttons that open an n8n confirmation page, when any of these apply:
+
+- The feature isn't enabled on your instance yet.
+- **Response Type** is **Free Text** or **Custom Form**.
+- **Capture Who Responded** is off.
+
+Existing workflows keep working unchanged.
+
+## Troubleshooting
+
+- **The buttons don't do anything, or Slack shows a warning**: the **Request URL** is wrong, your instance isn't publicly reachable over HTTPS, or the **Signature Secret** is missing or wrong. Slack shows the same warning for a rejected callback as for an unreachable URL.
+- **Someone gets a "not authorized" reply**: that user isn't listed in **Restrict Who Can Approve**. The wording comes from **Unauthorized Reply**.
+- **The workflow never resumes although someone responded**: the **Signature Secret** is missing or doesn't match your app's **Signing Secret**. n8n rejects callbacks it can't verify, and the workflow keeps waiting.
+
+=== https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.slack/README/
+
+# Slack node <a href="#slack-node" id="slack-node"></a>
+
+Use the Slack node to automate work in Slack, and integrate Slack with other applications. n8n has built-in support for a wide range of Slack features, including creating, archiving, and closing channels, getting users and files, as well as deleting messages.
+
+On this page, you'll find a list of operations the Slack node supports and links to more resources.
+
+{% hint style="info" %}
+**Credentials**
+
+Refer to [Slack credentials](../../credentials/slack.md) for guidance on setting up authentication.
+{% endhint %}
+
+{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/sYWM3IB0LEL4RkPx8ndF/" %}
+
+## Operations <a href="#operations" id="operations"></a>
+
+* **Channel**
+    * **Archive** a channel.
+    * **Close** a direct message or multi-person direct message.
+    * **Create** a public or private channel-based conversation.
+    * **Get** information about a channel.
+    * **Get Many**: Get a list of channels in Slack.
+    * **History**: Get a channel's history of messages and events.
+    * **Invite** a user to a channel.
+    * **Join** an existing channel.
+    * **Kick**: Remove a user from a channel.
+    * **Leave** a channel.
+    * **Member**: List the members of a channel.
+    * **Open** or resume a direct message or multi-person direct message.
+    * **Rename** a channel.
+    * **Replies**: Get a thread of messages posted to a channel.
+    * **Sets purpose** of a channel.
+    * **Sets topic** of a channel.
+    * **Unarchive** a channel.
+* **File**
+    * **Get** a file.
+    * **Get Many**: Get and filter team files.
+    * **Upload**: Create or upload an existing file.
+* **Message**
+    * **Delete** a message
+    * **Get permalink**: Get a message's permalink.
+    * **Search** for messages
+    * **Send** a message
+    * **Send and Wait for Response**: Send a message and wait for a response from the recipient before continuing. Approvers can also respond directly inside Slack. Refer to [Approvals in Slack](approvals.md) for more information.
+    * **Update** a message
+* **Reaction**
+    * **Add** a reaction to a message.
+    * **Get** a message's reactions.
+    * **Remove** a reaction from a message.
+* **Star**
+    * **Add** a star to an item.
+    * **Delete** a star from an item.
+    * **Get Many**: Get a list of an authenticated user's stars.
+* **User**
+    * **Get** information about a user.
+	* **Get Many**: Get a list of users.
+    * **Get User's Profile**.
+    * **Get User's Status**.
+	* **Update User's Profile**.
+* **User Group**
+    * **Create** a user group.
+    * **Disable** a user group.
+    * **Enable** a user group.
+    * **Get Many**: Get a list of user groups.
+    * **Update** a user group.
+
+## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
+
+
+[Browse Slack node documentation integration templates](https://n8n.io/integrations/slack) or [search all templates](https://n8n.io/workflows/)
+
+## Related resources <a href="#related-resources" id="related-resources"></a>
+
+Refer to [Slack's documentation](https://api.slack.com/) for more information about the service.
+
+## Required scopes <a href="#required-scopes" id="required-scopes"></a>
+
+Once you create a Slack app for your [Slack credentials](../../credentials/slack.md), you must add the appropriate scopes to your Slack app for this node to work. Start with the scopes listed in the [Scopes | Slack credentials](../../credentials/slack.md#scopes) page.
+
+If those aren't enough, use the table below to look up the resource and operation you want to use, then follow the link to Slack's API documentation to find the correct scopes.
+
+
+
+| **Resource** | **Operation**              | **Slack API method**                                                               |
+|--------------|----------------------------|------------------------------------------------------------------------------------|
+| Channel      | Archive                    | [conversations.archive](https://api.slack.com/methods/conversations.archive)       |
+| Channel      | Close                      | [conversations.close](https://api.slack.com/methods/conversations.close)           |
+| Channel      | Create                     | [conversations.create](https://api.slack.com/methods/conversations.create)         |
+| Channel      | Get                        | [conversations.info](https://api.slack.com/methods/conversations.info)             |
+| Channel      | Get Many                   | [conversations.list](https://api.slack.com/methods/conversations.list)             |
+| Channel      | History                    | [conversations.history](https://api.slack.com/methods/conversations.history)       |
+| Channel      | Invite                     | [conversations.invite](https://api.slack.com/methods/conversations.invite)         |
+| Channel      | Join                       | [conversations.join](https://api.slack.com/methods/conversations.join)             |
+| Channel      | Kick                       | [conversations.kick](https://api.slack.com/methods/conversations.kick)             |
+| Channel      | Leave                      | [conversations.leave](https://api.slack.com/methods/conversations.leave)           |
+| Channel      | Member                     | [conversations.members](https://api.slack.com/methods/conversations.members)       |
+| Channel      | Open                       | [conversations.open](https://api.slack.com/methods/conversations.open)             |
+| Channel      | Rename                     | [conversations.rename](https://api.slack.com/methods/conversations.rename)         |
+| Channel      | Replies                    | [conversations.replies](https://api.slack.com/methods/conversations.replies)       |
+| Channel      | Set Purpose                | [conversations.setPurpose](https://api.slack.com/methods/conversations.setPurpose) |
+| Channel      | Set Topic                  | [conversations.setTopic](https://api.slack.com/methods/conversations.setTopic)     |
+| Channel      | Unarchive                  | [conversations.unarchive](https://api.slack.com/methods/conversations.unarchive)   |
+| File         | Get                        | [files.info](https://api.slack.com/methods/files.info)                             |
+| File         | Get Many                   | [files.list](https://api.slack.com/methods/files.list)                             |
+| File         | Upload                     | [files.upload](https://api.slack.com/methods/files.upload)                         |
+| Message      | Delete                     | [chat.delete](https://api.slack.com/methods/chat.delete)                           |
+| Message      | Get Permalink              | [chat.getPermalink](https://api.slack.com/methods/chat.getPermalink)               |
+| Message      | Search                     | [search.messages](https://api.slack.com/methods/search.messages)                   |
+| Message      | Send                       | [chat.postMessage](https://api.slack.com/methods/chat.postMessage)                 |
+| Message      | Send and Wait for Response | [chat.postMessage](https://api.slack.com/methods/chat.postMessage)                 |
+| Message      | Update                     | [chat.update](https://api.slack.com/methods/chat.update)                           |
+| Reaction     | Add                        | [reactions.add](https://api.slack.com/methods/reactions.add)                       |
+| Reaction     | Get                        | [reactions.get](https://api.slack.com/methods/reactions.get)                       |
+| Reaction     | Remove                     | [reactions.remove](https://api.slack.com/methods/reactions.remove)                 |
+| Star         | Add                        | [stars.add](https://api.slack.com/methods/stars.add)                               |
+| Star         | Delete                     | [stars.remove](https://api.slack.com/methods/stars.remove)                         |
+| Star         | Get Many                   | [stars.list](https://api.slack.com/methods/stars.list)                             |
+| User         | Get                        | [users.info](https://api.slack.com/methods/users.info)                             |
+| User         | Get Many                   | [users.list](https://api.slack.com/methods/users.list)                             |
+| User         | Get User's Profile         | [users.profile.get](https://api.slack.com/methods/users.profile.get)               |
+| User         | Get User's Status          | [users.getPresence](https://api.slack.com/methods/users.getPresence)               |
+| User         | Update User's Profile      | [users.profile.set](https://api.slack.com/methods/users.profile.set)               |
+| User Group   | Create                     | [usergroups.create](https://api.slack.com/methods/usergroups.create)               |
+| User Group   | Disable                    | [usergroups.disable](https://api.slack.com/methods/usergroups.disable)             |
+| User Group   | Enable                     | [usergroups.enable](https://api.slack.com/methods/usergroups.enable)               |
+| User Group   | Get Many                   | [usergroups.list](https://api.slack.com/methods/usergroups.list)                   |
+| User Group   | Update                     | [usergroups.update](https://api.slack.com/methods/usergroups.update)               |
+
+
+
+{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/96ifDzfcUuwOyYrubZUt/" %}
 
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.tapfiliate/
 
@@ -89034,7 +89238,7 @@ The **Approval** response type adds these options:
 * **Type of Approval**: Whether to present only an approval button or both an approval and disapproval buttons.
 * **Button Label**: The label for the approval or disapproval button. The default choice is `✅ Approve` and `❌ Decline` for approval and disapproval actions respectively.
 * **Limit Wait Time**: Whether the workflow will automatically resume execution after a specified time limit. This can be an interval or a specific wall time.
-* **Approve Within Chat**: Whether approvers respond with a single tap on the message's buttons, instead of opening a link in their browser. Refer to [Approve Within Chat](#approve-within-chat) below for more information.
+* **Approve Within Chat**: Whether approvers respond with a single tap on the message's buttons, instead of opening a link in their browser. You'll find it under the **Advanced Interactivity** section header. Refer to [Approve Within Chat](#approve-within-chat) below for more information.
 
 #### Approve within chat
 
@@ -89064,9 +89268,9 @@ If your instance isn't reachable over public HTTPS, or you turn **Approve Within
 Button taps behave the same way in private chats, groups, and channels. As with any other **Message** operation, your bot needs to be a member of the channel to post and edit messages there. Refer to [Common Issues | Add a bot to a Telegram channel](common-issues.md#add-a-bot-to-a-telegram-channel) for more information.
 {% endhint %}
 
-Turning on **Approve Within Chat** reveals a **Chat Approval Options** section with these fields:
+Turning on **Approve Within Chat** reveals these fields beneath it, in the same **Advanced Interactivity** section:
 
-* **Restrict to User IDs**: The Telegram user IDs allowed to approve or decline. Separate multiple IDs with a comma. If you leave this empty, anyone who can see the message can respond.
+* **Restrict Who Can Approve**: The Telegram user IDs allowed to approve or decline. Separate multiple IDs with a comma. If you leave this empty, anyone who can see the message can respond.
 * **Unauthorized Reply**: The message shown, as a Telegram popup, to someone who taps a button but isn't on the approver list.
 * **After Decision**: What happens to the message after someone responds:
     * **Show Outcome and Remove Buttons**: Removes the buttons and adds a line showing who approved or declined.
@@ -89723,140 +89927,6 @@ Use the MQTT node to send a message. You can set the message topic, and choose w
 n8n provides a trigger node for MQTT. You can find the trigger node docs [here](../trigger-nodes/n8n-nodes-base.mqtttrigger.md).
 
 Refer to [MQTT's documentation](https://mqtt.org/getting-started/) for more information about the service.
-
-=== https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.slack/
-
-# Slack node <a href="#slack-node" id="slack-node"></a>
-
-Use the Slack node to automate work in Slack, and integrate Slack with other applications. n8n has built-in support for a wide range of Slack features, including creating, archiving, and closing channels, getting users and files, as well as deleting messages.
-
-On this page, you'll find a list of operations the Slack node supports and links to more resources.
-
-{% hint style="info" %}
-**Credentials**
-
-Refer to [Slack credentials](../credentials/slack.md) for guidance on setting up authentication.
-{% endhint %}
-
-{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/sYWM3IB0LEL4RkPx8ndF/" %}
-
-## Operations <a href="#operations" id="operations"></a>
-
-* **Channel**
-    * **Archive** a channel.
-    * **Close** a direct message or multi-person direct message.
-    * **Create** a public or private channel-based conversation.
-    * **Get** information about a channel.
-    * **Get Many**: Get a list of channels in Slack.
-    * **History**: Get a channel's history of messages and events.
-    * **Invite** a user to a channel.
-    * **Join** an existing channel.
-    * **Kick**: Remove a user from a channel.
-    * **Leave** a channel.
-    * **Member**: List the members of a channel.
-    * **Open** or resume a direct message or multi-person direct message.
-    * **Rename** a channel.
-    * **Replies**: Get a thread of messages posted to a channel.
-    * **Sets purpose** of a channel.
-    * **Sets topic** of a channel.
-    * **Unarchive** a channel.
-* **File**
-    * **Get** a file.
-    * **Get Many**: Get and filter team files.
-    * **Upload**: Create or upload an existing file.
-* **Message**
-    * **Delete** a message
-    * **Get permalink**: Get a message's permalink.
-    * **Search** for messages
-    * **Send** a message
-    * **Send and Wait for Response**: Send a message and wait for a response from the recipient before continuing.
-    * **Update** a message
-* **Reaction**
-    * **Add** a reaction to a message.
-    * **Get** a message's reactions.
-    * **Remove** a reaction from a message.
-* **Star**
-    * **Add** a star to an item.
-    * **Delete** a star from an item.
-    * **Get Many**: Get a list of an authenticated user's stars.
-* **User**
-    * **Get** information about a user.
-	* **Get Many**: Get a list of users.
-    * **Get User's Profile**.
-    * **Get User's Status**.
-	* **Update User's Profile**.
-* **User Group**
-    * **Create** a user group.
-    * **Disable** a user group.
-    * **Enable** a user group.
-    * **Get Many**: Get a list of user groups.
-    * **Update** a user group.
-
-## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
-
-
-[Browse Slack node documentation integration templates](https://n8n.io/integrations/slack) or [search all templates](https://n8n.io/workflows/)
-
-## Related resources <a href="#related-resources" id="related-resources"></a>
-
-Refer to [Slack's documentation](https://api.slack.com/) for more information about the service.
-
-## Required scopes <a href="#required-scopes" id="required-scopes"></a>
-
-Once you create a Slack app for your [Slack credentials](../credentials/slack.md), you must add the appropriate scopes to your Slack app for this node to work. Start with the scopes listed in the [Scopes | Slack credentials](../credentials/slack.md#scopes) page.
-
-If those aren't enough, use the table below to look up the resource and operation you want to use, then follow the link to Slack's API documentation to find the correct scopes.
-
-
-
-| **Resource** | **Operation**              | **Slack API method**                                                               |
-|--------------|----------------------------|------------------------------------------------------------------------------------|
-| Channel      | Archive                    | [conversations.archive](https://api.slack.com/methods/conversations.archive)       |
-| Channel      | Close                      | [conversations.close](https://api.slack.com/methods/conversations.close)           |
-| Channel      | Create                     | [conversations.create](https://api.slack.com/methods/conversations.create)         |
-| Channel      | Get                        | [conversations.info](https://api.slack.com/methods/conversations.info)             |
-| Channel      | Get Many                   | [conversations.list](https://api.slack.com/methods/conversations.list)             |
-| Channel      | History                    | [conversations.history](https://api.slack.com/methods/conversations.history)       |
-| Channel      | Invite                     | [conversations.invite](https://api.slack.com/methods/conversations.invite)         |
-| Channel      | Join                       | [conversations.join](https://api.slack.com/methods/conversations.join)             |
-| Channel      | Kick                       | [conversations.kick](https://api.slack.com/methods/conversations.kick)             |
-| Channel      | Leave                      | [conversations.leave](https://api.slack.com/methods/conversations.leave)           |
-| Channel      | Member                     | [conversations.members](https://api.slack.com/methods/conversations.members)       |
-| Channel      | Open                       | [conversations.open](https://api.slack.com/methods/conversations.open)             |
-| Channel      | Rename                     | [conversations.rename](https://api.slack.com/methods/conversations.rename)         |
-| Channel      | Replies                    | [conversations.replies](https://api.slack.com/methods/conversations.replies)       |
-| Channel      | Set Purpose                | [conversations.setPurpose](https://api.slack.com/methods/conversations.setPurpose) |
-| Channel      | Set Topic                  | [conversations.setTopic](https://api.slack.com/methods/conversations.setTopic)     |
-| Channel      | Unarchive                  | [conversations.unarchive](https://api.slack.com/methods/conversations.unarchive)   |
-| File         | Get                        | [files.info](https://api.slack.com/methods/files.info)                             |
-| File         | Get Many                   | [files.list](https://api.slack.com/methods/files.list)                             |
-| File         | Upload                     | [files.upload](https://api.slack.com/methods/files.upload)                         |
-| Message      | Delete                     | [chat.delete](https://api.slack.com/methods/chat.delete)                           |
-| Message      | Get Permalink              | [chat.getPermalink](https://api.slack.com/methods/chat.getPermalink)               |
-| Message      | Search                     | [search.messages](https://api.slack.com/methods/search.messages)                   |
-| Message      | Send                       | [chat.postMessage](https://api.slack.com/methods/chat.postMessage)                 |
-| Message      | Send and Wait for Response | [chat.postMessage](https://api.slack.com/methods/chat.postMessage)                 |
-| Message      | Update                     | [chat.update](https://api.slack.com/methods/chat.update)                           |
-| Reaction     | Add                        | [reactions.add](https://api.slack.com/methods/reactions.add)                       |
-| Reaction     | Get                        | [reactions.get](https://api.slack.com/methods/reactions.get)                       |
-| Reaction     | Remove                     | [reactions.remove](https://api.slack.com/methods/reactions.remove)                 |
-| Star         | Add                        | [stars.add](https://api.slack.com/methods/stars.add)                               |
-| Star         | Delete                     | [stars.remove](https://api.slack.com/methods/stars.remove)                         |
-| Star         | Get Many                   | [stars.list](https://api.slack.com/methods/stars.list)                             |
-| User         | Get                        | [users.info](https://api.slack.com/methods/users.info)                             |
-| User         | Get Many                   | [users.list](https://api.slack.com/methods/users.list)                             |
-| User         | Get User's Profile         | [users.profile.get](https://api.slack.com/methods/users.profile.get)               |
-| User         | Get User's Status          | [users.getPresence](https://api.slack.com/methods/users.getPresence)               |
-| User         | Update User's Profile      | [users.profile.set](https://api.slack.com/methods/users.profile.set)               |
-| User Group   | Create                     | [usergroups.create](https://api.slack.com/methods/usergroups.create)               |
-| User Group   | Disable                    | [usergroups.disable](https://api.slack.com/methods/usergroups.disable)             |
-| User Group   | Enable                     | [usergroups.enable](https://api.slack.com/methods/usergroups.enable)               |
-| User Group   | Get Many                   | [usergroups.list](https://api.slack.com/methods/usergroups.list)                   |
-| User Group   | Update                     | [usergroups.update](https://api.slack.com/methods/usergroups.update)               |
-
-
-
-{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/96ifDzfcUuwOyYrubZUt/" %}
 
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.questdb/
 
@@ -102543,7 +102613,7 @@ This agent supports the following chat models:
 * [SendGrid](../../../app-nodes/n8n-nodes-base.sendgrid.md)
 * [SerpApi (Google Search)](../../sub-nodes/n8n-nodes-langchain.toolserpapi.md)
 * [Shopify](../../../app-nodes/n8n-nodes-base.shopify.md)
-* [Slack](../../../app-nodes/n8n-nodes-base.slack.md)
+* [Slack](../../../app-nodes/n8n-nodes-base.slack/README.md)
 * [Spotify](../../../app-nodes/n8n-nodes-base.spotify.md)
 * [Stripe](../../../app-nodes/n8n-nodes-base.stripe.md)
 * [Supabase](../../../app-nodes/n8n-nodes-base.supabase/README.md)
@@ -103277,7 +103347,6 @@ If you are self-hosting n8n, you can disable community nodes by setting `N8N_COM
     * [Copper](builtin/app-nodes/n8n-nodes-base.copper.md)
     * [Cortex](builtin/app-nodes/n8n-nodes-base.cortex.md)
     * [CrateDB](builtin/app-nodes/n8n-nodes-base.cratedb.md)
-    * [crowd.dev](builtin/app-nodes/n8n-nodes-base.crowddev.md)
     * [Customer.io](builtin/app-nodes/n8n-nodes-base.customerio.md)
     * [Databricks](builtin/app-nodes/n8n-nodes-base.databricks.md)
     * [DeepL](builtin/app-nodes/n8n-nodes-base.deepl.md)
@@ -103476,7 +103545,8 @@ If you are self-hosting n8n, you can disable community nodes by setting `N8N_COM
     * [seven](builtin/app-nodes/n8n-nodes-base.sms77.md)
     * [Shopify](builtin/app-nodes/n8n-nodes-base.shopify.md)
     * [SIGNL4](builtin/app-nodes/n8n-nodes-base.signl4.md)
-    * [Slack](builtin/app-nodes/n8n-nodes-base.slack.md)
+    * [Slack](builtin/app-nodes/n8n-nodes-base.slack/README.md)
+      * [Approvals](builtin/app-nodes/n8n-nodes-base.slack/approvals.md)
     * [Snowflake](builtin/app-nodes/n8n-nodes-base.snowflake.md)
     * [Splunk](builtin/app-nodes/n8n-nodes-base.splunk.md)
     * [Spotify](builtin/app-nodes/n8n-nodes-base.spotify.md)
@@ -103549,7 +103619,6 @@ If you are self-hosting n8n, you can disable community nodes by setting `N8N_COM
     * [Clockify Trigger](builtin/trigger-nodes/n8n-nodes-base.clockifytrigger.md)
     * [ConvertKit Trigger](builtin/trigger-nodes/n8n-nodes-base.convertkittrigger.md)
     * [Copper Trigger](builtin/trigger-nodes/n8n-nodes-base.coppertrigger.md)
-    * [crowd.dev Trigger](builtin/trigger-nodes/n8n-nodes-base.crowddevtrigger.md)
     * [Customer.io Trigger](builtin/trigger-nodes/n8n-nodes-base.customeriotrigger.md)
     * [Emelia Trigger](builtin/trigger-nodes/n8n-nodes-base.emeliatrigger.md)
     * [Eventbrite Trigger](builtin/trigger-nodes/n8n-nodes-base.eventbritetrigger.md)
@@ -103798,7 +103867,6 @@ If you are self-hosting n8n, you can disable community nodes by setting `N8N_COM
     * [Copper credentials](builtin/credentials/copper.md)
     * [Cortex credentials](builtin/credentials/cortex.md)
     * [CrateDB credentials](builtin/credentials/cratedb.md)
-    * [crowd.dev credentials](builtin/credentials/crowddev.md)
     * [CrowdStrike credentials](builtin/credentials/crowdstrike.md)
     * [Crypto credentials](builtin/credentials/crypto.md)
     * [Customer.io credentials](builtin/credentials/customerio.md)
