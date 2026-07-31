@@ -19643,7 +19643,7 @@ else:
 	return [
 		{
 			"json": {
-				"results": items.length,
+				"results": len(items),
 			}
 		}
 	]
@@ -19696,7 +19696,7 @@ n8n provides these methods to make it easier to perform common tasks in the [Lan
 {% hint style="info" %}
 **LangChain Code node only**
 
-These variables are for use in expressions in the LangChain Code node. You can't use them in other nodes.
+The built-in methods and variables on this page are for use in expressions in the LangChain Code node. You can't use them in other nodes.
 {% endhint %}
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iIcw3xaOoa9HryGmR8dX/" %}
@@ -28218,6 +28218,7 @@ The most frequently used methods for accessing data are:
 
 - **`$json`**: Access JSON data from the current input item
 - **`$('<node-name>').item.json`**: Access JSON data from a [linked item](link-data-items/README.md) in a previous node
+- **`$('<node-name>').item.binary`**: Access binary data (files, images) from a [linked item](link-data-items/README.md) in a previous node
 
 ## Other referencing methods <a href="#other-referencing-methods" id="other-referencing-methods"></a>
 
@@ -28279,11 +28280,26 @@ Methods for working with the output of other nodes. Some methods and variables a
 | `$("<node-name>").first(branchIndex?, runIndex?)` | The first item output by the given node. If `branchIndex` isn't given it will default to the output that connects `node-name` with the node where you use the expression or code. | ✅ |
 | `$("<node-name>").last(branchIndex?, runIndex?)` | The last item output by the given node. If `branchIndex` isn't given it will default to the output that connects `node-name` with the node where you use the expression or code. | ✅ |
 | `$("<node-name>").item` | The linked item. This is the item in the specified node used to produce the current item. Refer to [Item linking](link-data-items/README.md) for more information on item linking. | ✅ |
+| `$("<node-name>").item.binary` | Binary data from the linked item, keyed by binary property name (`data` by default). Refer to [`BinaryFile`](../transform-data/expression-reference/binaryfile.md) for the available properties. | ✅ |
 | `$("<node-name>").params` | Object containing the query settings of the given node. This includes data such as the operation it ran, result limits, and so on. | ✅ |
 | `$("<node-name>").context` | Boolean. Only available when working with the Loop Over Items node. Provides information about what's happening in the node. Use this to determine whether the node is still processing items. | ✅ |
 | `$("<node-name>").itemMatching(currentNodeInputIndex)` | Use instead of `$("<node-name>").item` in the Code node if you need to trace back from an input item. | ✅ |
 {% endtab %}
 {% endtabs %}
+
+## Reference binary data from a previous node
+
+`$('<node-name>').item` returns the whole [linked item](link-data-items/README.md), so you can read its binary data the same way you read its JSON data: use `.item.json` for the item's JSON object and `.item.binary` for its binary data (files, images, and other attachments).
+
+An item can hold several binary properties, each under its own name, so `.item.binary` returns an object of those properties rather than a single value. Most nodes output binary data under the property name `data`, but the name depends on the upstream node. Each binary property is a `BinaryFile` with fields such as `fileName`, `mimeType`, and `fileExtension`.
+
+For example, to get the file name of the binary property `data` produced by an **HTTP Request** node:
+
+```js
+{{ $('HTTP Request').item.binary.data.fileName }}
+```
+
+For more about binary data and the nodes that produce it, refer to [Binary data](../handle-special-data-types/work-with-files-and-images.md).
 
 === https://docs.n8n.io/docs/build/work-with-data/reference-data/link-data-items/accessing-linked-items-in-the-code-node/
 
@@ -49807,7 +49823,7 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
 Current `stable`: 2.32.6
-Current `beta`: 2.33.1
+Current `beta`: 2.33.2
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -89970,7 +89986,7 @@ Use the **Additional Fields** to further refine the behavior of the node. Select
 
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/common-issues/
 
-# Cmmon issues
+# Common issues
 
 Here are some common errors and issues with the [Telegram node](./README.md) and steps to resolve or troubleshoot them.
 
@@ -103988,7 +104004,7 @@ If you are self-hosting n8n, you can disable community nodes by setting `N8N_COM
       * [Callback operations](builtin/app-nodes/n8n-nodes-base.telegram/callback-operations.md)
       * [File operations](builtin/app-nodes/n8n-nodes-base.telegram/file-operations.md)
       * [Message operations](builtin/app-nodes/n8n-nodes-base.telegram/message-operations.md)
-      * [Cmmon issues](builtin/app-nodes/n8n-nodes-base.telegram/common-issues.md)
+      * [Common issues](builtin/app-nodes/n8n-nodes-base.telegram/common-issues.md)
     * [TheHive](builtin/app-nodes/n8n-nodes-base.thehive.md)
     * [TheHive 5](builtin/app-nodes/n8n-nodes-base.thehive5.md)
     * [TimescaleDB](builtin/app-nodes/n8n-nodes-base.timescaledb.md)
