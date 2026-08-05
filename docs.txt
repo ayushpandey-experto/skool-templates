@@ -8707,6 +8707,47 @@ export N8N_DISABLE_PRODUCTION_MAIN_PROCESS=true
 
 When disabling the webhook process in the main process, run the main process and don't add it to the load balancer's webhook pool.
 
+## Large webhook responses
+
+In queue mode, a worker runs the execution, but the client that sent the webhook request stays connected to the main or webhook instance. A response from a **Respond to Webhook** node travels from the worker back to that instance inside a queue message, so Redis holds the whole response while the message is in flight.
+
+`N8N_WEBHOOK_RESPONSE_RELAY_SIZE_MAX` sets how large that message can be, in MiB. It defaults to `64`. Redis holds several copies of a response in flight, so budget about 1.5 times this value in Redis memory for each response in flight. Without offloading, a response above the limit fails the node.
+
+The same limit applies to a tool result an MCP Trigger workflow returns from a worker. You can't offload a tool result, so an oversized one reaches the MCP client as a tool error naming the limit.
+
+### Offload a large response body to storage
+
+{% hint style="info" %}
+**Available from n8n 2.34.0**
+{% endhint %}
+
+Set `N8N_WEBHOOK_RESPONSE_RELAY_OFFLOAD_ENABLED=true` on your workers to store a response body above the limit in [binary data storage](../basic-configuration/use-environment-variables/binary-data.md) instead of failing the node. The queue message then carries a reference, the main instance streams the body from storage to the client, and n8n deletes the stored body once it delivers the response.
+
+Offloading needs storage that every instance can read. Every mode except `default` stores, so set `N8N_DEFAULT_BINARY_DATA_MODE` to `filesystem`, `database`, `s3`, or `azure`:
+
+```bash
+export N8N_WEBHOOK_RESPONSE_RELAY_SIZE_MAX=64
+export N8N_WEBHOOK_RESPONSE_RELAY_OFFLOAD_ENABLED=true
+export N8N_DEFAULT_BINARY_DATA_MODE=s3
+```
+
+n8n recommends `s3` or `azure` for large responses. Both stream the body, so the main instance holds one chunk at a time. Refer to [External storage](use-external-storage.md) for how to configure them. In `database` mode, the main instance loads the whole body into memory before sending it, and the response passes through your primary database. In `filesystem` mode, every instance needs to mount the same disk, which n8n doesn't recommend. The `default` mode keeps binary data in memory, so there's nothing for the main instance to read, and a response above the limit still fails the node.
+
+n8n only offloads the response body. It measures the rest of the response, its headers and status code, against the same limit, so a response whose headers alone exceed the limit fails either way.
+
+### Turn on offloading during an upgrade
+
+Only a main instance running n8n 2.34.0 or later reads an offloaded body. An older one returns the storage reference to the client instead of the response body. Upgrade every main and webhook instance first, then set `N8N_WEBHOOK_RESPONSE_RELAY_OFFLOAD_ENABLED` on your workers. A worker with the variable unset sends every response inline and fails one above the limit.
+
+### Troubleshoot large webhook responses
+
+| Error | Cause | Fix |
+| :---- | :---- | :-- |
+| `The response is too large to be sent back from the worker`, naming `N8N_WEBHOOK_RESPONSE_RELAY_OFFLOAD_ENABLED` | Offloading is off on the worker. | Set the variable on your workers, or raise `N8N_WEBHOOK_RESPONSE_RELAY_SIZE_MAX`. |
+| `The response is too large to be sent back from the worker`, naming `N8N_DEFAULT_BINARY_DATA_MODE` | Binary data storage keeps data in memory, so there's nowhere to offload to. | Set `N8N_DEFAULT_BINARY_DATA_MODE` to `filesystem`, `database`, `s3`, or `azure`. |
+| `The response is too large for the binary-data store to hold` | `database` mode refused the body for its own size limit. | Raise `N8N_BINARY_DATA_DATABASE_MAX_FILE_SIZE`, up to the 1 GB a database column holds, or switch to `filesystem`, `s3`, or `azure`, which apply no limit of their own. |
+| `The stored webhook response body could not be read` | The main instance can't read the storage the worker wrote to. | Point every instance at the same storage. In `filesystem` mode, every instance needs to mount the same disk, which n8n doesn't recommend. |
+
 ## Configure worker concurrency <a href="#configure-worker-concurrency" id="configure-worker-concurrency"></a>
 
 You can define the number of jobs a worker can run in parallel by using the `concurrency` flag. It defaults to `10`. To change it:
@@ -8766,6 +8807,8 @@ If needed, you can adjust the leader key options:
 # Binary data <a href="#binary-data" id="binary-data"></a>
 
 Binary data is any file-type data, such as image files or documents generated or processed during the execution of a workflow. 
+
+In queue mode, binary data storage also backs webhook responses too large to send through the queue. Refer to [Large webhook responses](enable-queue-mode.md#large-webhook-responses) for details.
 
 ## Enable filesystem mode <a href="#enable-filesystem-mode" id="enable-filesystem-mode"></a>
 
@@ -10155,6 +10198,15 @@ You can run n8n in different modes depending on your needs. Queue mode provides 
 | `QUEUE_WORKER_STALLED_INTERVAL` | Number | `30000` | How often should a worker check for stalled jobs (use 0 for never). |
 | `QUEUE_WORKER_MAX_STALLED_COUNT` | Number | `1` | Maximum amount of times a stalled job will be re-processed. |
 
+## Webhook responses
+
+In queue mode, a worker sends a webhook response back to the main instance inside a queue message. These variables set how large that message can be, and whether n8n stores a larger response body in binary data storage instead of failing the node. Refer to [Large webhook responses](../../scaling/enable-queue-mode.md#large-webhook-responses) for details.
+
+| Variable | Type  | Default  | Description |
+| :------- | :---- | :------- | :---------- |
+| `N8N_WEBHOOK_RESPONSE_RELAY_SIZE_MAX` | Number | `64` | Maximum size (in MiB) of a response a worker sends back to the main instance inside a queue message. Redis holds several copies of a response in flight, so budget about 1.5 times this value in Redis memory per response in flight. The same limit applies to a tool result an MCP Trigger workflow returns. |
+| `N8N_WEBHOOK_RESPONSE_RELAY_OFFLOAD_ENABLED` | Boolean | `false` | Whether a worker stores a response body above `N8N_WEBHOOK_RESPONSE_RELAY_SIZE_MAX` in binary data storage, so the main instance can stream it to the client, instead of failing the node. Needs a `N8N_DEFAULT_BINARY_DATA_MODE` that stores (`filesystem`, `database`, `s3`, or `azure`), and storage every instance can read. Set this on your workers only after every main and webhook instance runs n8n 2.34.0 or later. |
+
 ## Multi-main setup <a href="#multi-main-setup" id="multi-main-setup"></a>
 
 Refer to [Configuring multi-main setup](../../scaling/enable-queue-mode.md#configuring-multi-main-setup) for details.
@@ -10306,6 +10358,7 @@ By default, n8n uses memory to store binary data. Enterprise users can choose to
 | Variable | Type  | Default  | Description |
 | :------- | :---- | :------- | :---------- |
 | `N8N_AVAILABLE_BINARY_DATA_MODES` | String | `filesystem` | A comma separated list of available binary data modes. |
+| `N8N_BINARY_DATA_DATABASE_MAX_FILE_SIZE` | Number | `512` | Maximum size (in MiB) of a single file n8n stores when `N8N_DEFAULT_BINARY_DATA_MODE` is `database`. Can't exceed `1024`, the limit of a database column. Storing a larger file fails. |
 | `N8N_BINARY_DATA_STORAGE_PATH` | String | `N8N_USER_FOLDER/binaryData` | The path where n8n stores binary data. |
 | `N8N_DEFAULT_BINARY_DATA_MODE` | String | `default` | The default binary data mode. `default` keeps binary data in memory. Set to `filesystem` to use the filesystem, `s3` to use AWS S3, `azure` to use Azure Blob Storage, or `database` to use the DB. Note that binary data pruning operates on the active binary data mode. For example, if your instance stored data in S3, and you later switched to filesystem mode, n8n only prunes binary data in the filesystem. This may change in future. |
 
@@ -47451,6 +47504,20 @@ Old-style release notes pages for [2.x](release-notes-2.x.md), [1.x](release-not
 
 ***
 
+## Return webhook responses of any size from your workers
+
+**Released:** 2026-08-04 in [n8n 2.34](release-notes.md#n8n234)
+
+Your queue mode workers can now return a webhook response however large the payload. In queue mode the worker runs the execution, but the client that made the request stays connected to the main or webhook instance, so a response from a [Respond to Webhook](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.respondtowebhook) node has to travel back through the queue. Redis holds the whole response while that message is in flight, which is why n8n caps it at 64 MiB by default (`N8N_WEBHOOK_RESPONSE_RELAY_SIZE_MAX`). A response that serialized to more than that failed the node: a wide result set from a database query, a batch of aggregated API calls, or a CSV or XML document assembled in the workflow.
+
+Set `N8N_WEBHOOK_RESPONSE_RELAY_OFFLOAD_ENABLED=true` on your workers and n8n stores a response body above that limit in [binary data storage](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/handle-binary-data) instead. The queue message then carries only a reference, the main instance streams the body from storage to the client, and n8n deletes the stored copy once it delivers the response, so nothing accumulates. Redis memory stays flat no matter how large the response gets.
+
+Offloading needs a `N8N_DEFAULT_BINARY_DATA_MODE` that stores data (any mode except `default`) and storage that every instance can read. n8n recommends `s3` or `azure`, since both stream the body a chunk at a time. Only a main instance running 2.34.0 or later can read an offloaded body, so the variable ships turned off: upgrade your main and webhook instances first, then enable it on your workers.
+
+Refer to [Large webhook responses](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/enable-queue-mode#large-webhook-responses) for the full configuration, upgrade order, and troubleshooting.
+
+***
+
 ## App-only authentication for Microsoft nodes
 
 **Released:** 2026-07-07 in [n8n 2.30](release-notes.md#n8n230)
@@ -47524,7 +47591,7 @@ Learn more in the [Canvas Groups documentation](https://app.gitbook.com/s/rPN1zU
 
 ### GitHub node: manage the full pull request lifecycle
 
-The [GitHub node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.github) now has a dedicated Pull Request resource. Create pull requests (including drafts and cross-fork PRs), update, close, and reopen them, read and add comments, fetch diffs and patches, and merge with merge, squash, or rebase. These native operations replace the custom HTTP Request setups that such tasks used to need. Errors are surfaced exactly as GitHub returns them, so failures are easy to diagnose.
+The [GitHub node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.github#operations) now has a dedicated Pull Request resource. Create pull requests (including drafts and cross-fork PRs), update, close, and reopen them, read and add comments, fetch diffs and patches, and merge with merge, squash, or rebase. These native operations replace the custom HTTP Request setups that such tasks used to need. Errors are surfaced exactly as GitHub returns them, so failures are easy to diagnose.
 
 ### Webhook node: Only Run If
 
@@ -47592,11 +47659,11 @@ When a sub-workflow's last node runs more than once, the [Execute Workflow Trigg
 
 **Released:** 2026-05-19 in [n8n 2.22](release-notes.md#n8n222)
 
-Connect your agent to select MCP servers without setting up an [MCP Client node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.mcpclient) and credential by hand. Pick a server from the nodes panel, sign in, and it's available to your agent.
+Connect your agent to select MCP servers without setting up an [MCP Client node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.mcpClient) and credential by hand. Pick a server from the nodes panel, sign in, and it's available to your agent.
 
 Initial coverage includes some of the most-used services in the official MCP registry — Apify, Linear, monday.com, Notion, and PostHog — and we'll expand the list to cover more services soon.
 
-If you need to connect to an MCP server that isn't in the list, you can still use the [MCP Client node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.mcpclient) with manual configuration.
+If you need to connect to an MCP server that isn't in the list, you can still use the [MCP Client node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.mcpClient) with manual configuration.
 
 {% embed url="https://youtu.be/RGhHFbLMXhQ" %}
 Connect to MCP servers with less setup
@@ -49034,6 +49101,10 @@ When you open a pull request, GitBook automatically builds a preview of your cha
 
 You can then check how your changes render on the docs site.
 
+Once the preview finishes building, a bot also posts a **GitBook page previews** comment on your PR with a direct link to each page you changed, so you don't have to find them in the navigation. The comment updates on every push.
+
+![GitBook page previews comment on a pull request](.gitbook/assets/gitbook-preview-links-comment.png)
+
 It's not possible to build the site locally.
 
 ### Open an issue
@@ -49964,8 +50035,8 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.32.7
-Current `beta`: 2.33.3
+Current `stable`: 2.33.3
+Current `beta`: 2.34.0
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -53672,9 +53743,9 @@ To configure dynamic time saved:
 When you use dynamic time saved, n8n adds up the time from all Time Saved nodes that execute during a workflow run to calculate the total time saved for that execution.
 
 {% hint style="info" %}
-**Subworkflow support**
+**Sub-workflow and error workflow support**
 
-Time saved tracking currently only works on parent workflows. Time saved from subworkflows isn't currently supported, with plans to support this in a future release.
+Time saved tracking currently only works on parent workflows. Time saved from sub-workflows isn't currently supported, with plans to support this in a future release. Error workflow executions don't contribute to Time saved, even though n8n includes them in the other insights metrics.
 {% endhint %}
 
 ## Disable or configure insights metrics collection <a href="#disable-or-configure-insights-metrics-collection" id="disable-or-configure-insights-metrics-collection"></a>
@@ -53698,7 +53769,9 @@ Raising those thresholds above the defaults keeps finer detail longer. That adds
 
 ### Which executions do n8n use to calculate the values in the insights banner and dashboard? <a href="#which-executions-do-n8n-use-to-calculate-the-values-in-the-insights-banner-and-dashboard" id="which-executions-do-n8n-use-to-calculate-the-values-in-the-insights-banner-and-dashboard"></a>
 
-n8n insights only collects data from production executions (for example, those from active workflows triggered on a schedule or a webhook) from the main (parent) workflow. This means that it doesn't count manual (test) executions or executions from sub-workflows or error workflows.
+Insights collects data from production executions, for example those from published workflows triggered on a schedule or a webhook. This includes error workflow executions. It doesn't include manual (test) executions or sub-workflow executions.
+
+n8n records an error workflow execution's own outcome and run time against the error workflow itself, not the workflow that failed. This affects total executions, failure metrics, and run time average. In n8n 2.23.0 and later, error workflow executions don't contribute to Time saved.
 
 ### Does n8n use historic execution data when upgrading to a version with insights? <a href="#does-n8n-use-historic-execution-data-when-upgrading-to-a-version-with-insights" id="does-n8n-use-historic-execution-data-when-upgrading-to-a-version-with-insights"></a>
 
@@ -60307,6 +60380,7 @@ The Microsoft Entra Service Principal credential gives n8n app-only access to Mi
 You can use these credentials to authenticate the following nodes:
 
 * [Microsoft Excel (OneDrive)](../app-nodes/n8n-nodes-base.microsoftexcel.md)
+* [Microsoft Excel (SharePoint)](../app-nodes/n8n-nodes-base.microsoftexcelsharepoint.md)
 * [Microsoft OneDrive](../app-nodes/n8n-nodes-base.microsoftonedrive.md)
 * [Microsoft OneDrive Trigger](../trigger-nodes/n8n-nodes-base.microsoftonedrivetrigger.md)
 * [Microsoft Outlook](../app-nodes/n8n-nodes-base.microsoftoutlook.md)
@@ -60318,7 +60392,7 @@ You can use these credentials to authenticate the following nodes:
 {% hint style="info" %}
 **Node version requirements**
 
-The Microsoft Excel (OneDrive), Microsoft Outlook, and Microsoft Teams nodes support this credential from version 2 of the node. n8n plans to support the Microsoft SharePoint node.
+The Microsoft Excel (OneDrive), Microsoft Outlook, and Microsoft Teams nodes support this credential from version 2 of the node. The Microsoft Excel (SharePoint) node supports it from version 1. n8n plans to support the Microsoft SharePoint node.
 {% endhint %}
 
 ## Prerequisites
@@ -67858,6 +67932,7 @@ You can use these credentials to authenticate the following nodes:
 
 - [Microsoft Dynamics CRM](../app-nodes/n8n-nodes-base.microsoftdynamicscrm.md)
 - [Microsoft Excel (OneDrive)](../app-nodes/n8n-nodes-base.microsoftexcel.md)
+- [Microsoft Excel (SharePoint)](../app-nodes/n8n-nodes-base.microsoftexcelsharepoint.md)
 - [Microsoft Graph Security](../app-nodes/n8n-nodes-base.microsoftgraphsecurity.md)
 - [Microsoft OneDrive](../app-nodes/n8n-nodes-base.microsoftonedrive.md)
 - [Microsoft Outlook](../app-nodes/n8n-nodes-base.microsoftoutlook.md)
@@ -67870,7 +67945,7 @@ You can use these credentials to authenticate the following nodes:
 {% hint style="info" %}
 **Choosing a credential type**
 
-Some nodes (such as Microsoft Excel (OneDrive) and Microsoft OneDrive) let you choose between the node-specific credential (for example, **Microsoft Excel OAuth2 API**) and this generic **Microsoft OAuth2 API** credential. The generic credential can be reused across multiple Microsoft nodes; when you use it, make sure it's granted the scopes each node needs. Nodes that don't show this dropdown use their node-specific credential.
+Some nodes (such as Microsoft Excel (OneDrive) and Microsoft OneDrive) let you choose between the node-specific credential (for example, **Microsoft Excel OAuth2 API**) and this generic **Microsoft OAuth2 API** credential. The generic credential can be reused across multiple Microsoft nodes; when you use it, make sure it's granted the scopes each node needs. Nodes that don't show this dropdown use their node-specific credential. The Microsoft Excel (SharePoint) node only works with this generic credential (or the Microsoft Entra Service Principal credential for app-only access); it doesn't accept the node-specific Microsoft Excel or Microsoft SharePoint credentials.
 {% endhint %}
 
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
@@ -68000,6 +68075,7 @@ This setting applies to all Microsoft Graph API nodes that use Microsoft credent
 - Microsoft Teams
 - Microsoft Outlook
 - Microsoft Excel (OneDrive)
+- Microsoft Excel (SharePoint)
 - Microsoft OneDrive
 - Microsoft Graph Security
 - Microsoft To Do
@@ -84274,6 +84350,76 @@ Refer to [Elasticsearch credentials](../credentials/elasticsearch.md) for guidan
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/96ifDzfcUuwOyYrubZUt/" %}
 
 
+=== https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftexcelsharepoint/
+
+# Microsoft Excel (SharePoint) node
+
+Use the Microsoft Excel (SharePoint) node to read and write Excel workbooks stored in SharePoint document libraries, including workbooks shared through Microsoft Teams sites.
+
+On this page, you'll find a list of operations the Microsoft Excel (SharePoint) node supports, guidance on choosing a workbook, and links to more resources.
+
+{% hint style="info" %}
+**Credentials**
+
+The node offers two ways to sign in, chosen with the **Authentication** dropdown:
+
+* **Microsoft OAuth2 (Graph)**: sign in as a person with the generic [Microsoft OAuth2 credential](../credentials/microsoft.md). Enter the scopes the node needs in the credential's **Scope** field: `Sites.Read.All` to browse and read, `Sites.ReadWrite.All` to write. Include `openid offline_access` so the credential can refresh its tokens. For example, to perform all of the node's operations: `openid offline_access Sites.ReadWrite.All`.
+* **Microsoft Entra Service Principal (App-Only)**: sign in as an app, for unattended workflows where no user is present, with the [Microsoft Entra Service Principal credential](../credentials/microsoftentraserviceprincipal.md). Grant the app registration `Sites.Read.All` to read and `Sites.ReadWrite.All` to write, with admin consent. To limit the app to specific sites, grant `Sites.Selected` for each site instead.
+
+These are the only credentials the node accepts. The node-specific **Microsoft Excel** and **Microsoft SharePoint** credentials don't work with it: the Excel credential doesn't include the SharePoint (`Sites.*`) scopes, and the SharePoint credential issues tokens for the SharePoint REST API rather than for Microsoft Graph, which this node uses.
+{% endhint %}
+
+## Which Excel node should I use?
+
+n8n has two Excel nodes:
+
+* **Microsoft Excel (OneDrive)**: for workbooks stored in a personal or business OneDrive.
+* **Microsoft Excel (SharePoint)** (this node): for workbooks stored in SharePoint document libraries, including files that live behind a Teams site. This node also supports app-only sign in, so it suits unattended workflows.
+
+If someone shared a workbook link with you and the link points at a SharePoint site, this is the node to use.
+
+## Choosing a workbook
+
+There are three ways to point the node at a workbook:
+
+* **Paste the workbook's address** (the default): copy the link from SharePoint or Excel (**Share** > **Copy link**) and paste it into the **Workbook** field. The link straight from the copy button works as-is, and you don't need to choose a site or library first.
+* **Pick from a list**: choose the **Site** and **Document Library**, then search for the workbook by name.
+* **By ID**: paste the workbook's ID directly.
+
+## Operations
+
+* **Sheet**:
+  * Append: append rows to the end of a sheet.
+  * Append or Update: append a new row or update the current one if it already exists.
+  * Clear: clear a sheet or a range.
+  * Delete: delete a sheet.
+  * Get Many: retrieve a list of the workbook's sheets.
+  * Get Rows: read rows from a range or the used range of a sheet.
+  * Update: update rows matched by a column value.
+* **Table**:
+  * Append: append rows to the end of a table.
+  * Convert to Range: convert a table to a plain range of cells.
+  * Create: create a table from a range of cells.
+  * Delete: delete a table.
+  * Get Columns: retrieve a list of the table's columns.
+  * Get Many: retrieve a list of the workbook's tables.
+  * Get Rows: retrieve a list of the table's rows.
+  * Lookup: look for a specific column value and then return the matching row.
+* **Workbook**:
+  * Add Sheet: add a new sheet to the workbook.
+  * Delete: delete a workbook.
+  * Get Many: retrieve a list of the document library's workbooks.
+
+More operations are on the way. This page is updated as they ship.
+
+## Templates and examples
+
+[Search all templates](https://n8n.io/workflows/) for examples using this node.
+
+## Related resources
+
+Refer to [Microsoft's Excel Graph API documentation](https://learn.microsoft.com/en-us/graph/api/resources/excel) for more information about the service.
+
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.zoom/
 
 # Zoom node <a href="#zoom-node" id="zoom-node"></a>
@@ -84917,7 +85063,7 @@ Refer to [Unleashed Software credentials](../credentials/unleashedsoftware.md) f
 
 # GitHub node <a href="#github-node" id="github-node"></a>
 
-Use the GitHub node to automate work in GitHub, and integrate GitHub with other applications. n8n has built-in support for a wide range of GitHub features, including creating, updating, deleting, and editing files, repositories, issues, releases, and users. 
+Use the GitHub node to automate work in GitHub, and integrate GitHub with other applications. n8n has built-in support for a wide range of GitHub features, including creating, updating, deleting, and editing files, repositories, issues, pull requests, releases, and users. 
 
 On this page, you'll find a list of operations the GitHub node supports and links to more resources.
 
@@ -84945,6 +85091,17 @@ Refer to [GitHub credentials](../credentials/github.md) for guidance on setting 
 	* Lock
 * Organization
 	* Get Repositories
+* Pull Request
+	* Close
+	* Create
+	* Create Comment
+	* Edit Comment
+	* Get
+	* Get Diff
+	* Get Patch
+	* Merge
+	* Reopen
+	* Update
 * Release
 	* Create
 	* Delete
@@ -104050,6 +104207,7 @@ If you are self-hosting n8n, you can disable community nodes by setting `N8N_COM
     * [Microsoft Dynamics CRM](builtin/app-nodes/n8n-nodes-base.microsoftdynamicscrm.md)
     * [Microsoft Entra ID](builtin/app-nodes/n8n-nodes-base.microsoftentra.md)
     * [Microsoft Excel (OneDrive)](builtin/app-nodes/n8n-nodes-base.microsoftexcel.md)
+    * [Microsoft Excel (SharePoint)](builtin/app-nodes/n8n-nodes-base.microsoftexcelsharepoint.md)
     * [Microsoft Graph Security](builtin/app-nodes/n8n-nodes-base.microsoftgraphsecurity.md)
     * [Microsoft OneDrive](builtin/app-nodes/n8n-nodes-base.microsoftonedrive.md)
     * [Microsoft Outlook](builtin/app-nodes/n8n-nodes-base.microsoftoutlook.md)
