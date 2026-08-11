@@ -6382,9 +6382,7 @@ See [n8n packages](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflo
 
 # Connect to n8n MCP server
 
-Connect supported MCP clients to your n8n workflows through n8n's built-in MCP server.
-
-The server allows clients such as Lovable or Claude Desktop to connect securely to an n8n instance. Once connected, these clients can:
+n8n's built-in MCP server lets supported clients, such as Lovable or Claude Desktop, connect securely to your n8n instance. Once connected, these clients can:
 
 * Search for your workflows
 * Interact with workflows marked as available in MCP
@@ -6399,30 +6397,35 @@ In comparison, you configure an MCP Server Trigger node inside a single workflow
 
 ### Key considerations when using instance-level MCP access <a href="#key-considerations-when-using-instance-level-mcp-access" id="key-considerations-when-using-instance-level-mcp-access"></a>
 
-* MCP supports two types of workflow interactions: running existing workflows with the workflow execution tools, and building or editing workflows (v2.13 onward).
-* It doesn’t provide blanket exposure to all workflows in your instance. You must enable MCP at the instance level and then enable each workflow individually. The only exception here is the `search_workflows` tool, which is able to access all workflows current user has access to but it will only be able to surface previews, not the full workflow data.
+* MCP supports two types of workflow interactions: running existing workflows with the workflow execution tools, and building or editing workflows (n8n 2.13 onward).
+* It doesn't provide blanket exposure to all workflows in your instance. You must enable MCP at the instance level and then enable each workflow individually. The only exception is `search_workflows`, which can access every workflow the current user has permission to view, but only returns previews, not full workflow data.
 * It's not scoped to each MCP client. All clients you connect (for example, Claude Desktop and ChatGPT) can see all workflows you've enabled for MCP access. You can't restrict specific workflows to specific clients. On a user level, visibility remains user-scoped: users can only see MCP-enabled workflows they have access to.
 * Most MCP tools work on unpublished workflows. The exception is `execute_workflow`, which defaults to production mode and runs the published version of a workflow. It also supports a `manual` execution mode to run the current (unpublished) version.
 
 ## Enabling MCP access <a href="#enabling-mcp-access" id="enabling-mcp-access"></a>
 
+{% hint style="info" %}
+**Feature availability**
+
+The settings layout described below (**Connection details**, **Access**, **Connected clients**), the **Connect a client** dialog, and **Allowed callback URLs** are available from n8n 2.33.0. These replace the previous single-page MCP settings screen. On older versions, this page shows a simpler layout without per-client setup steps.
+{% endhint %}
+
 ### For Cloud and self-hosted instances <a href="#for-cloud-and-self-hosted-instances" id="for-cloud-and-self-hosted-instances"></a>
 
-1. Navigate to **Settings > Instance-level MCP**
-2.  Toggle **Enable MCP access** (requires instance owner or admin permissions).
+1. Navigate to **Settings > Instance-level MCP**.
+2. Select **Enable MCP access** (requires instance owner or admin permissions).
 
-    ![enable-mcp-access.png](<.gitbook/assets/enable-mcp-access (1).png>)
+![The Instance-level MCP page before MCP is enabled, showing the Enable MCP access button](.gitbook/assets/mcp-enable-screen.png)
 
-Once enabled, you'll see:
+Once enabled, the page groups settings into three sections:
 
-1. List of workflows exposed to MCP clients
-2. List of connected OAuth clients
-3. Main MCP toggle to enable/disable instance-level access
-4.  _Connection details_ button that shows detailed instructions for connecting MCP clients
+* **Connection details**: shows the **MCP status** and a **Connect** button that opens setup steps for your MCP client.
+* **Access**: shows how many workflows (and, if your instance has the agents feature, agents) are exposed to MCP clients, see [Exposing workflows to MCP clients](#exposing-workflows-to-mcp-clients) and [Exposing agents to MCP clients](#exposing-agents-to-mcp-clients). Instance owners and admins also see **Allowed callback URLs** here, see [Restricting OAuth callback URLs](#restricting-oauth-callback-urls).
+* **Connected clients**: shows how many clients currently have access, each with its own granted permissions. Select **View all** to review or revoke access for individual clients, see [Reviewing and revoking client access](#revoking-client-access).
 
-    ![mcp\_page\_content.png](<.gitbook/assets/mcp_page_content (1).png>)
+![The Instance-level MCP page after MCP is enabled, showing Connection details, Access, and Connected clients](.gitbook/assets/mcp-enabled-screen.png)
 
-**To disable:** Toggle the main MCP toggle off.
+**To disable:** In **Connection details**, select the **MCP status** control and choose **Disable**. n8n asks you to confirm, since disabling disconnects every connected client and revokes its access. You can turn MCP access back on later.
 
 {% hint style="info" %}
 **Environment variables (self-hosted only)**
@@ -6438,64 +6441,76 @@ To remove the feature entirely, set the environment variable:
 
 This action removes MCP endpoints and hides all related UI elements.
 
-## Setting up MCP authentication <a href="#setting-up-mcp-authentication" id="setting-up-mcp-authentication"></a>
-
-The **Connection details** popup menu provides two authentication options for MCP clients:
-
-* **OAuth2**
-*   **Access Token**
-
-    ![mcp\_connect\_menu.png](<.gitbook/assets/mcp_connect_menu (1).png>)
-
-### Using OAuth2 <a href="#using-oauth2" id="using-oauth2"></a>
-
-Copy your instance server URL from the **OAuth** tab and use it to configure your MCP client. After connecting, the client will redirect you to n8n to authorize access.
-
-#### Revoking client access <a href="#revoking-client-access" id="revoking-client-access"></a>
-
-To revoke access for connected MCP clients:
-
-1. Navigate to **Settings > Instance-level MCP**.
-2. Switch to the **Connected clients** tab. You should see a table of connected OAuth clients.
-3.  Use the action menu in each client's row to revoke access for specific clients.
-
-    ![mcp\_revoke\_client\_access.png](<.gitbook/assets/mcp_revoke_client_access (1).png>)
-
-### Using Access Token <a href="#using-access-token" id="using-access-token"></a>
-
-Use your instance server URL and your personal MCP Access Token from the **Access Token** tab on the _Connection details_ menu.
-
-When you first visit the **MCP Access page**, n8n automatically generates a personal MCP Access Token tied to your user account.
+## Connecting MCP clients <a href="#setting-up-mcp-authentication" id="setting-up-mcp-authentication"></a>
 
 {% hint style="info" %}
-Copy your token right away. On future visits, you'll only see a redacted value and the copy button will be disabled.
+**Feature availability**
+
+Per-client connection setup steps are available from n8n 2.33.0. Earlier versions don't show these steps. Use the manual instructions in [MCP client connection examples](connect-to-n8n-mcp-server/mcp-client-examples.md) to configure your client instead.
 {% endhint %}
 
-#### Rotating your token <a href="#rotating-your-token" id="rotating-your-token"></a>
+In **Connection details**, select **Connect** to open the **Connect a client** dialog, then choose an authentication method: [OAuth (recommended)](#using-oauth2) or [API key](#using-access-token).
+
+### Using OAuth (recommended) <a href="#using-oauth2" id="using-oauth2"></a>
+
+1. Navigate to **Settings > Instance-level MCP**.
+2. In **Connection details**, select **Connect** to open the **Connect a client** dialog.
+3. Make sure the **OAuth (recommended)** tab is selected.
+4. In the **Your client** dropdown, pick your AI assistant, IDE, or CLI. n8n groups clients into **CLI** (Claude Code, Codex, Gemini CLI), **Web** (Claude.ai, ChatGPT), and **IDE** (Cursor, VS Code, Windsurf), and shows setup steps tailored to your choice.
+5. Follow the steps shown for your client type:
+   * **Web clients**: select **One-click setup** to add n8n to the client directly, or copy the **Server URL** and paste it into the client's own connector settings yourself.
+   * **CLI clients**: run the install command shown, or add the manual configuration snippet to the client's configuration file instead. Either way, finish with the **Authenticate** step to complete the OAuth sign-in (see the [Claude Code](connect-to-n8n-mcp-server/mcp-client-examples.md#connecting-claude-code-to-n8n-mcp-server) and [Codex](connect-to-n8n-mcp-server/mcp-client-examples.md#connecting-codex-cli-to-n8n-mcp-server) examples for the exact commands).
+   * **IDE clients**: select the one-click install link (where the editor supports one), or copy the **Server URL** and add the manual configuration snippet to the editor yourself.
+6. When the client redirects you to n8n, approve access to finish connecting it.
+
+#### Reviewing and revoking client access <a href="#revoking-client-access" id="revoking-client-access"></a>
+
+Each connected client only has the permissions you granted it when it connected, for example reading workflows without being able to create or run them. To review or revoke a client's access:
+
+1. Navigate to **Settings > Instance-level MCP**.
+2. In **Connected clients**, select **View all**. You should see a table of connected OAuth clients, their access level, and when they connected. Clients using an API key don't appear here, since they authenticate with a bearer token rather than an OAuth connection.
+3. Select a client's row to open its details and see every permission you granted it, or select **Revoke access** directly on the row to skip straight to revoking.
+4. Confirm the revocation. n8n disconnects the client at once; it must reconnect and sign in again to regain access.
+
+### Using API key <a href="#using-access-token" id="using-access-token"></a>
+
+1. Navigate to **Settings > Instance-level MCP**.
+2. In **Connection details**, select **Connect** to open the **Connect a client** dialog.
+3. Switch to the **API key** tab. n8n automatically generates a personal access token tied to your user account the first time you open it.
+4. Copy what you need: the **Configuration JSON** block, already filled in with your server URL and an `Authorization: Bearer` header carrying your token, or the individual **Server URL** and access token values if your client doesn't use that JSON format (for example, Codex's TOML config). Once you leave this tab, n8n only shows a redacted token value, and you won't be able to copy it again unless you [rotate it](#rotating-your-token).
+5. Paste what you copied into your MCP client's configuration: drop the **Configuration JSON** straight in for clients that accept an `mcpServers` JSON snippet, or use the individual **Server URL** and token for clients that need a different format. This tab isn't client-specific, so the same values work no matter which client you're setting up (see [MCP client connection examples](connect-to-n8n-mcp-server/mcp-client-examples.md) for client-specific formats).
+
+#### Rotating your access token <a href="#rotating-your-token" id="rotating-your-token"></a>
 
 If you lose your token or need to rotate it:
 
 1. Navigate to **Settings > Instance-level MCP**.
-2. Open the _Connection details_ menu by clicking the button in the top-right corner.
-3. Switch to the **Access Token** tab.
-4.  Generate a new token using the button next to the redacted token value.
+2. In **Connection details**, select **Connect** to open the **Connect a client** dialog.
+3. Switch to the **API key** tab.
+4. Generate a new token using the button next to the redacted value.
 
     n8n revokes the previous token when you generate a new one.
-5.  Update all connected MCP clients with the new value.
-
-    ![mcp\_rotate\_token.png](<.gitbook/assets/mcp_rotate_token (1).png>)
+5. Update all connected MCP clients with the new value.
 
 ## Exposing workflows to MCP clients <a href="#exposing-workflows-to-mcp-clients" id="exposing-workflows-to-mcp-clients"></a>
 
 MCP clients can discover previews of all workflows the current user has access to using `search_workflows`. However, clients can't access full workflow data, nor execute or modify a workflow unless you explicitly enable MCP access for that workflow.
 
+{% hint style="info" %}
+**Workflow eligibility** <a href="#workflow-eligibility" id="workflow-eligibility"></a>
+
+Only workflows that are published, and that contain a webhook, form, schedule, or chat trigger node, can be enabled for MCP access.
+{% endhint %}
+
 ### Enabling access for individual workflows <a href="#enabling-access-for-individual-workflows" id="enabling-access-for-individual-workflows"></a>
 
-#### Option 1: From MCP settings page (available from n8n v2.2.0) <a href="#option-1-from-mcp-settings-page-available-from-n8n-v220" id="option-1-from-mcp-settings-page-available-from-n8n-v220"></a>
+#### Option 1: From the Workflows exposed page (available from n8n 2.2.0) <a href="#option-1-from-mcp-settings-page-available-from-n8n-v220" id="option-1-from-mcp-settings-page-available-from-n8n-v220"></a>
 
-1. Click the **Enable workflows** button (in the workflows table header or in the table's empty state)
-2. Search for the desired workflow (by name or description) and select it from the list
-3. Click **Enable** button to confirm
+1. Navigate to **Settings > Instance-level MCP**.
+2. Select **Workflows exposed**.
+3. Click the **Enable workflows** button (in the workflows table header or in the table's empty state).
+4. Search for the desired workflow (by name or description) and select it from the list.
+5. Click **Enable** to confirm.
 
 #### Option 2: From the workflow editor <a href="#option-2-from-the-workflow-editor" id="option-2-from-the-workflow-editor"></a>
 
@@ -6513,7 +6528,9 @@ MCP clients can discover previews of all workflows the current user has access t
 ### Enabling access for projects/folders <a href="#enabling-access-for-projectsfolders" id="enabling-access-for-projectsfolders"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.24.0**
+**Feature availability**
+
+Project and folder-level MCP access control is available from n8n 2.24.0.
 {% endhint %}
 
 You can use the **Options** menu <img src=".gitbook/assets/three-dot-options-menu (1).png" alt="Options menu" data-size="line"> in the workflow list to toggle MCP access for all workflows in the current project or folder:
@@ -6532,20 +6549,20 @@ This will toggle MCP access for all workflows that are **currently** in the sele
 
 ### Managing access <a href="#managing-access" id="managing-access"></a>
 
-The **Instance-level MCP** settings page shows all workflows enabled for MCP clients to access and operate on. From this list you can:
+The **Workflows exposed** page (**Access > Workflows exposed**) shows all workflows enabled for MCP clients to access and operate on. From this list you can:
 
 * Open a workflow, its home project or parent folder directly
 * Revoke access using the action menu (or use **Disable MCP access** from the workflow card menu)
 * Update workflow description using the action menu (or use the menu in the workflow editor)
-* Enable access for more workflows using the **Enable workflows** button (available from n8n v2.2.0)
+* Enable access for more workflows using the **Enable workflows** button (available from n8n 2.2.0)
 
 ### Workflow descriptions <a href="#workflow-descriptions" id="workflow-descriptions"></a>
 
 To help MCP clients identify workflows, you can add free-text descriptions as follows:
 
-1. Option 1: From the **Instance-level MCP** page
+1. Option 1: From the **Workflows exposed** page
    1. Navigate to **Settings > Instance-level MCP**.
-   2. Make sure you are on the **Workflows** tab.
+   2. Select **Workflows exposed**.
    3. Use the action menu in the desired workflow's row and select the **Edit description** action.
    4. Alternatively, click the description text directly to open the edit dialog.
 2.  Option 2: From the workflow editor
@@ -6556,13 +6573,64 @@ To help MCP clients identify workflows, you can add free-text descriptions as fo
 
     ![mcp\_workflow\_description.png](<.gitbook/assets/mcp_workflow_description (1).png>)
 
+## Exposing agents to MCP clients <a href="#exposing-agents-to-mcp-clients" id="exposing-agents-to-mcp-clients"></a>
+
+{% hint style="info" %}
+**Feature availability**
+
+Agents are available from n8n 2.34.0 and are a separate feature from workflows. See [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents) for details. This section only applies if agents are enabled on your instance.
+{% endhint %}
+
+{% hint style="info" %}
+**Feature availability**
+
+Agents are in preview and may change in future releases. Avoid relying on them in production workflows.
+{% endhint %}
+
+If your instance has the agents feature, the **Access** section also shows **Agents exposed**. As with workflows, MCP clients can't read or manage an agent unless you explicitly enable MCP access for it.
+
+### Enabling access for individual agents <a href="#enabling-access-for-individual-agents" id="enabling-access-for-individual-agents"></a>
+
+#### Option 1: From the MCP settings page <a href="#option-1-from-the-mcp-settings-page-agents" id="option-1-from-the-mcp-settings-page-agents"></a>
+
+1. Navigate to **Settings > Instance-level MCP**.
+2. Select **Agents exposed**.
+3. Select **Enable agents**.
+4. Search for the desired agent by name and select it from the list.
+5. Select **Enable** to confirm.
+
+#### Option 2: From the agent builder <a href="#option-2-from-the-agent-builder" id="option-2-from-the-agent-builder"></a>
+
+1. Open the agent in the agent builder.
+2. Open its MCP settings.
+3. Toggle **Available in MCP**.
+
+### Managing agent access <a href="#managing-agent-access" id="managing-agent-access"></a>
+
+The **Agents exposed** page shows every agent enabled for MCP clients to access, with its name and its project or folder location. From this list you can:
+
+* Open an agent or its project directly.
+* Remove access for a single agent from its row, or select multiple agents and remove access for all of them at once.
+* Enable access for more agents using the **Enable agents** button.
+
+## Restricting OAuth callback URLs <a href="#restricting-oauth-callback-urls" id="restricting-oauth-callback-urls"></a>
+
+Instance owners and admins can restrict which URLs an OAuth client can redirect to after it signs in. By default, n8n allows any callback URL, which is less secure.
+
+1. Navigate to **Settings > Instance-level MCP**.
+2. In **Access**, select **Allowed callback URLs**.
+3. Choose a mode:
+   * **All callback URLs**: any URL can complete an OAuth sign-in.
+   * **Only trusted URLs**: only the URLs you list can complete an OAuth sign-in.
+4. If you chose **Only trusted URLs**, add each URL you trust, then select **Save**.
+
 ## Tools and resources <a href="#tools-and-resources" id="tools-and-resources"></a>
 
 {% hint style="info" %}
 Consider using coding agents (such as Claude Code or Google ADK agents) instead of chat clients as your MCP clients. Coding agents are optimized for generating and validating TypeScript code, making them ideal for building workflows programmatically.
 {% endhint %}
 
-The n8n MCP server exposes tools for workflow management, workflow building, and data tables. For a complete list of available tools and their parameters, refer to the [MCP server tools reference](connect-to-n8n-mcp-server/mcp-server-tools-reference.md).
+The n8n MCP server exposes tools for workflow management, workflow building, agent management, and data tables. For a complete list of available tools and their parameters, refer to the [MCP server tools reference](connect-to-n8n-mcp-server/mcp-server-tools-reference.md).
 
 ## n8n Skills for coding agents
 
@@ -6570,7 +6638,7 @@ When you connect a coding agent to the n8n MCP server, the agent can build and e
 
 n8n Skills are a set of capability modules published in the [n8n-io/skills](https://github.com/n8n-io/skills) repository. They pair with the instance-level MCP server and include:
 
-* **13 capability skills** covering workflow best practices, including subworkflows, expressions, loops, AI agents, error handling, credentials, Data Tables, and debugging.
+* **13 capability skills** covering workflow best practices, including sub-workflows, expressions, loops, AI agents, error handling, credentials, data tables, and debugging.
 * **50+ reference documents and examples** with per-node guidance, decision trees, and copy-paste workflow snippets.
 * **Hooks** that load the right guidance automatically, so the agent reads the relevant skill before it makes high-impact MCP calls.
 
@@ -6592,177 +6660,7 @@ The [n8n-io/skills](https://github.com/n8n-io/skills) repository has up-to-date 
 
 ## Examples <a href="#examples" id="examples"></a>
 
-#### Connecting Lovable to n8n MCP server <a href="#connecting-lovable-to-n8n-mcp-server" id="connecting-lovable-to-n8n-mcp-server"></a>
-
-1. Configure MCP Server in Lovable (OAuth).
-   * Navigate to your workspace  **Settings > Integrations**.
-   * In the **MCP Servers** section, find **n8n** and click **Connect**.
-   * Enter your n8n server URL (shown on the **MCP Access** page).
-   * Save the connection. If successful, n8n redirects you to authorize Lovable.
-2. Verify connectivity.
-   * Once connected, Lovable can query for workflows with MCP access enabled.
-   * **Example:** Asking Lovable to build a workflow UI that lists users and allows deleting them.
-
-#### Connecting Claude Desktop to n8n MCP server <a href="#connecting-claude-desktop-to-n8n-mcp-server" id="connecting-claude-desktop-to-n8n-mcp-server"></a>
-
-**Using OAuth2**
-
-1. Navigate to **Settings** > **Connectors** in Claude Desktop.
-2. Click on **Add custom connector**.
-3. Enter the following details:
-   * **Name:** n8n MCP
-   * **Remote MCP Server URL**: Your n8n base URL (shown on the **Instance-level MCP** page)
-4. Save the connector.
-5. When prompted, authorize Claude Desktop to access your n8n instance.
-
-**Using Access Token**
-
-Add the following entry to your `claude_desktop_config.json` file:
-
-```json
-"mcpServers": {
-  "n8n-mcp": {
-    "command": "npx",
-    "args": [
-    "-y",
-    "supergateway",
-    "--streamableHttp",
-    "https://<your-n8n-domain>/mcp-server/http",
-    "--header",
-    "Authorization:Bearer <YOUR_N8N_MCP_TOKEN>"
-    ]
-  }
-}
-```
-
-
-Here, replace:
-
-* `<your-n8n-domain>`: Your n8n base URL (shown on the **Instance-level MCP** page)
-
-#### Connecting Claude Code to n8n MCP server <a href="#connecting-claude-code-to-n8n-mcp-server" id="connecting-claude-code-to-n8n-mcp-server"></a>
-
-**OPTION 1: Authenticate using OAuth2 (Recommended)**
-
-Use the following CLI command:
-
-```bash
-claude mcp add --transport http n8n-mcp https://<your-n8n-domain>/mcp-server/http
-```
-
-Alternatively, add the following entry to your `claude.json` file:
-
-```json
-{
-    "mcpServers": {
-        "n8n-mcp": {
-            "type": "http",
-            "url": "https://<your-n8n-domain>/mcp-server/http"
-        }
-    }
-}
-```
-
-Here, replace:
-
-* `<your-n8n-domain>`: Your n8n base URL (shown on the **Instance-level MCP** page)
-
-**OPTION 2: Authenticate using Access Token**
-
-Use the following CLI command:
-
-```bash
-claude mcp add --transport http n8n-mcp https://<your-n8n-domain>/mcp-server/http \
-  --header "Authorization: Bearer <YOUR_N8N_MCP_TOKEN>"
-```
-
-Alternatively, add the following entry to your `claude.json` file:
-
-```json
-{
-    "mcpServers": {
-        "n8n-mcp": {
-            "type": "http",
-            "url": "https://<your-n8n-domain>/mcp-server/http",
-            "headers": {
-                "Authorization": "Bearer <YOUR_N8N_MCP_TOKEN>"
-            }
-        }
-    }
-}
-```
-
-Here, replace:
-
-* `<your-n8n-domain>`: Your n8n base URL (shown on the **Instance-level MCP** page)
-* `<YOUR_N8N_MCP_TOKEN>`: Your generated token
-
-### Connecting Codex CLI to n8n MCP server <a href="#connecting-codex-cli-to-n8n-mcp-server" id="connecting-codex-cli-to-n8n-mcp-server"></a>
-
-**OPTION 1: Authenticate using OAuth2 (Recommended)**
-
-Use the following CLI command:
-
-```bash
-codex mcp add n8n-mcp --url https://<your-n8n-domain>/mcp-server/http
-```
-
-Alternatively, add the following entry to your `~/.codex/config.toml` file:
-
-```toml
-[mcp_servers.n8n-mcp]
-url = "http://localhost:5678/mcp-server/http"
-```
-
-Here, replace:
-
-* `<your-n8n-domain>`: Your n8n base URL (shown on the **Instance-level MCP** page)
-
-**OPTION 2: Authenticate using Access Token**
-
-Add the following entry to your `~/.codex/config.toml` file:
-
-```toml
-[mcp_servers.n8n-mcp]
-url = "https://<your-n8n-domain>/mcp-server/http"
-http_headers = { "authorization" = "Bearer <YOUR_N8N_MCP_TOKEN>" }
-```
-
-Here, replace:
-
-* `<your-n8n-domain>`: Your n8n base URL (shown on the **Instance-level MCP** page)
-* `<YOUR_N8N_MCP_TOKEN>`: Your generated token
-
-### Connecting Google ADK agent to n8n MCP server <a href="#connecting-google-adk-agent-to-n8n-mcp-server" id="connecting-google-adk-agent-to-n8n-mcp-server"></a>
-
-Here's sample code to create an agent that connects to a remote n8n MCP server:
-
-```python
-from google.adk.agents import Agent
-from google.adk.tools.mcp_tool import McpToolset
-from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPServerParams
-
-N8N_INSTANCE_URL = "https://localhost:5678"
-N8N_MCP_TOKEN = "YOUR_N8N_MCP_TOKEN"
-
-root_agent = Agent(
-    model="gemini-2.5-pro",
-    name="n8n_agent",
-    instruction="Help users manage and execute workflows in n8n",
-    tools=[
-        McpToolset(
-            connection_params=StreamableHTTPServerParams(
-                url=f"{N8N_INSTANCE_URL}/mcp-server/http",
-                headers={
-                    "Authorization": f"Bearer {N8N_MCP_TOKEN}",
-                },
-            ),
-        )
-    ],
-)
-```
-
-For more details, see [Connect ADK agent to n8n](https://google.github.io/adk-docs/tools/third-party/n8n/).
+For exact commands and configuration to connect specific clients, including Lovable, Claude Desktop, Claude Code, Codex, Gemini CLI, Cursor, VS Code, Windsurf, and Google ADK agents, see [MCP client connection examples](connect-to-n8n-mcp-server/mcp-client-examples.md).
 
 ## Troubleshooting <a href="#troubleshooting" id="troubleshooting"></a>
 
@@ -6771,7 +6669,7 @@ If you encounter issues connecting MCP clients to your n8n instance, consider th
 * Ensure that your n8n instance is publicly accessible if you are using cloud-based MCP clients.
 * Verify that the MCP access is enabled in n8n settings.
 * Check that the workflows you want to execute or modify are marked as **Available in MCP**.
-* Confirm that the authentication method (OAuth2 or Access Token) is correctly configured in your MCP client.
+* Confirm that the authentication method (OAuth or API key) is configured correctly in your MCP client.
 * Review n8n server logs for any error messages related to MCP connections.
 
 === https://docs.n8n.io/docs/connect/connect-to-n8n-mcp-server/mcp-server-tools-reference/
@@ -6820,7 +6718,7 @@ Execute a workflow by ID. Returns the execution ID immediately without waiting f
 
 #### Notes <a href="#notes" id="notes"></a>
 
-- This tool starts the workflow and returns immediately. Use `get_execution` with the returned `executionId` to check the final execution status or fetch execution data.
+- This tool starts the workflow and returns immediately. Use `get_workflow_execution` with the returned `executionId` to check the final execution status or fetch execution data.
 - Production mode supports workflows with Webhook, Chat Trigger, Form Trigger, and Schedule Trigger nodes.
 - Manual mode also supports Manual Trigger nodes.
 - When `executionMode` is `"production"`, the workflow must have a published (active) version.
@@ -6828,12 +6726,12 @@ Execute a workflow by ID. Returns the execution ID immediately without waiting f
 - Executing workflows with multi-step forms or any kind of human-in-the-loop interactions isn't supported.
 
 
-### prepare_test_pin_data <a href="#preparetestpindata" id="preparetestpindata"></a>
+### prepare_workflow_pin_data <a href="#preparetestpindata" id="preparetestpindata"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.15.0**
+**Feature availability**
 
-
+`prepare_workflow_pin_data` is available from n8n 2.15.0.
 {% endhint %}
 
 Prepare test pin data for a workflow. Trigger nodes, nodes with credentials, and HTTP Request nodes need pin data. Logic nodes (Set, If, Code, etc.) and credential-free I/O nodes (Execute Command, file read/write) execute normally without pin data. Returns JSON Schemas describing the expected output shape for each node that needs pin data.
@@ -6861,14 +6759,15 @@ Prepare test pin data for a workflow. Trigger nodes, nodes with credentials, and
 #### Notes <a href="#notes" id="notes"></a>
 
 - Schemas should be used to generate realistic sample data for `test_workflow`.
+- Renamed from `prepare_test_pin_data` in n8n 2.34.0.
 
 
 ### unpublish_workflow <a href="#unpublishworkflow" id="unpublishworkflow"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.12.0**
+**Feature availability**
 
-
+`unpublish_workflow` is available from n8n 2.12.0.
 {% endhint %}
 
 Unpublish (deactivate) a workflow to stop it from being available for production execution.
@@ -6892,9 +6791,9 @@ Unpublish (deactivate) a workflow to stop it from being available for production
 ### search_folders <a href="#searchfolders" id="searchfolders"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.14.0**
+**Feature availability**
 
-
+`search_folders` is available from n8n 2.14.0.
 {% endhint %}
 
 Search for folders within a project.
@@ -6925,12 +6824,12 @@ Search for folders within a project.
 
 ## Execution management <a href="#execution-management" id="execution-management"></a>
 
-### get_execution <a href="#getexecution" id="getexecution"></a>
+### get_workflow_execution <a href="#getexecution" id="getexecution"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.12.0**
+**Feature availability**
 
-
+`get_workflow_execution` is available from n8n 2.12.0.
 {% endhint %}
 
 Get execution details by execution ID and workflow ID. By default returns metadata only.
@@ -6966,6 +6865,7 @@ Get execution details by execution ID and workflow ID. By default returns metada
 
 - Use lightweight metadata queries (default) when full execution data isn't needed.
 - Filtering by `nodeNames` and truncating via `truncateData` helps manage large result sets.
+- Renamed from `get_execution` in n8n 2.34.0.
 
 
 ## Credential management <a href="#credential-management" id="credential-management"></a>
@@ -6973,9 +6873,9 @@ Get execution details by execution ID and workflow ID. By default returns metada
 ### list_credentials <a href="#listcredentials" id="listcredentials"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.21.0**
+**Feature availability**
 
-
+`list_credentials` is available from n8n 2.21.0.
 {% endhint %}
 
 List credentials the current user can access. Use this to find a credential ID before referencing it from a workflow node. Never returns credential secret data.
@@ -7018,18 +6918,19 @@ List credentials the current user can access. Use this to find a credential ID b
 ### search_nodes <a href="#searchnodes" id="searchnodes"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.12.0**
+**Feature availability**
 
-
+`search_nodes` is available from n8n 2.12.0.
 {% endhint %}
 
-Search for n8n nodes by service name, trigger type, or utility function. Returns node IDs, discriminators (resource/operation/mode), and related nodes needed for `get_node_types` tool.
+Search for n8n nodes by service name, trigger type, or utility function. Set `usage` to `"agentTool"` to return only agent-compatible tool nodes. Returns node IDs, discriminators (resource/operation/mode), and related nodes needed for `get_node_types` tool.
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| `queries` | `string[]` | Yes (min 1) | Search queries -- service names (for example `"gmail"`, `"slack"`), trigger types (for example `"schedule trigger"`, `"webhook"`), or utility nodes (for example `"set"`, `"if"`, `"merge"`, `"code"`) |
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `queries` | `string[]` | Yes (min 1) | | Search queries -- service names (for example `"gmail"`, `"slack"`), trigger types (for example `"schedule trigger"`, `"webhook"`), or utility nodes (for example `"set"`, `"if"`, `"merge"`, `"code"`) |
+| `usage` | `"workflow" | "agentTool"` | No | `"workflow"` | Set to `"agentTool"` to return only nodes that can be configured as agent tools |
 
 #### Output <a href="#output" id="output"></a>
 
@@ -7037,14 +6938,18 @@ Search for n8n nodes by service name, trigger type, or utility function. Returns
 |-------|------|-------------|
 | `results` | `string` | Search results with matching node IDs, discriminators, and related nodes |
 
+#### Notes <a href="#notes" id="notes"></a>
+
+- `usage` is available from n8n 2.34.0.
+- Use `usage="agentTool"` when searching for nodes to attach to an agent as a tool, for example with `mutate_agent` or `create_agent`. This excludes nodes that can't run as an agent tool, such as human-in-the-loop and MCP client nodes.
 
 
 ### get_workflow_best_practices <a href="#getworkflowbestpractices" id="getworkflowbestpractices"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.26.0**
+**Feature availability**
 
-
+`get_workflow_best_practices` is available from n8n 2.26.0.
 {% endhint %}
 
 Get best-practices guidance for a workflow technique. Useful this before searching for nodes or writing workflow code.
@@ -7077,9 +6982,9 @@ Get best-practices guidance for a workflow technique. Useful this before searchi
 ### validate_workflow <a href="#validateworkflow" id="validateworkflow"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.12.0**
+**Feature availability**
 
-
+`validate_workflow` is available from n8n 2.12.0.
 {% endhint %}
 
 Validate n8n Workflow SDK code. Parses the code into a workflow and checks for errors. Always validate before creating or updating a workflow.
@@ -7114,9 +7019,9 @@ Validate n8n Workflow SDK code. Parses the code into a workflow and checks for e
 ### create_workflow_from_code <a href="#createworkflowfromcode" id="createworkflowfromcode"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.12.0**
+**Feature availability**
 
-
+`create_workflow_from_code` is available from n8n 2.12.0.
 {% endhint %}
 
 Create a workflow in n8n from validated SDK code. Parses the code into a workflow and saves it.
@@ -7161,15 +7066,15 @@ Create a workflow in n8n from validated SDK code. Parses the code into a workflo
 - `folderId` requires `projectId` to also be provided.
 - If the user names a target project, call `search_projects` first and pass the resolved `projectId`; don't guess.
 - After creation, tell the user which project the workflow was created in using the `targetProject` field.
-- From n8n v2.27.0, a `description` longer than 255 characters is truncated (not rejected); the response `note` mentions when this happens.
+- From n8n 2.27.0, a `description` longer than 255 characters is truncated (not rejected); the response `note` mentions when this happens.
 
 
 ### archive_workflow <a href="#archiveworkflow" id="archiveworkflow"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.12.0**
+**Feature availability**
 
-
+`archive_workflow` is available from n8n 2.12.0.
 {% endhint %}
 
 Archive a workflow in n8n by its ID.
@@ -7193,50 +7098,346 @@ Archive a workflow in n8n by its ID.
 - Idempotent - skips already-archived workflows.
 
 
-### create_data_table <a href="#createdatatable" id="createdatatable"></a>
+### get_agent <a href="#getagent" id="getagent"></a>
 
-{% hint style="info" %}
-**Available from n8n v2.16.0**
-
-
-{% endhint %}
-
-Create a new data table with the specified columns.
+Read an agent draft, its skills, tasks, custom tools, runnable state, and `configHash`. Call before `mutate_agent`. Pass `versionId` to inspect a published version snapshot instead of the draft.
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `projectId` | `string` | Yes | The project ID where the data table will be created |
-| `name` | `string` | Yes | The name of the data table (min 1, max 128 chars, must be unique within the project) |
-| `columns` | `array` | Yes (min 1) | The columns to create in the data table |
-| `columns[].name` | `string` | Yes | Column name. Must start with a letter, contain only letters, numbers, and underscores (max 63 chars). |
-| `columns[].type` | `string` | Yes | The data type of the column. One of: `"string"`, `"number"`, `"boolean"`, `"date"` |
+| `agentId` | `string` | Yes | The ID of the agent to retrieve |
+| `versionId` | `string` | No | Read a published version snapshot instead of the draft, for example the agent's `activeVersionId`. Snapshots are read-only, so the response has no `configHash`. |
+
+#### Output <a href="#output" id="output"></a>
+
+When `versionId` is omitted, the response describes the current draft:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `agent` | `object` | Agent metadata |
+| `agent.id` | `string` | Agent ID |
+| `agent.name` | `string` | Agent name |
+| `agent.projectId` | `string` | The project the agent belongs to |
+| `agent.published` | `boolean` | Whether the agent has a published (active) version |
+| `agent.versionId` | `string` | The draft's internal version pointer |
+| `agent.activeVersionId` | `string | null` | The published version ID, or null if unpublished |
+| `agent.createdAt` | `string` | ISO timestamp when the agent was created |
+| `agent.updatedAt` | `string` | ISO timestamp when the agent was last updated |
+| `config` | `object` | The editable agent configuration (model, credential, instructions, tools, and so on). Excludes `integrations`, which is reported separately below. |
+| `configHash` | `string` | Hash of the full persisted configuration. Pass this as `baseConfigHash` to `mutate_agent`. |
+| `isRunnable` | `boolean` | Whether the agent has everything it needs to run |
+| `missing` | `string[]` | Config paths still needed before the agent is runnable |
+| `skills` | `object` | Map of skill ID to skill body (`name`, `description`, `instructions`, and optionally `allowedTools`, `references`) |
+| `tasks` | `array` | Scheduled tasks, each with `id`, `name`, `objective`, `cronExpression`, and `enabled` |
+| `customTools` | `array` | Custom tools, each with `id` and `descriptor` (`name`, `description`, `inputSchema`, `outputSchema`, and related metadata) |
+| `integrations` | `array` | Configured Slack, Telegram, or Linear integrations. Read-only here; manage with `update_agent_integration`. |
+
+When `versionId` is provided, the response describes that published snapshot instead:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `agent` | `object` | Agent metadata, same shape as above |
+| `version` | `object` | Version metadata |
+| `version.versionId` | `string` | The version ID |
+| `version.author` | `string` | Who published this version |
+| `version.createdAt` | `string` | ISO timestamp when this version was published |
+| `version.isActive` | `boolean` | Whether this version is the currently published one |
+| `config` | `object` | The editable agent configuration at that version |
+| `skills` | `object` | Skills at that version |
+| `tasks` | `array` | Tasks at that version, each with `id`, `name`, `objective`, `cronExpression`, `enabled` |
+| `customTools` | `array` | Custom tools at that version |
+
+#### Notes <a href="#notes" id="notes"></a>
+
+- A version snapshot response has no `configHash` and can't be used as a `mutate_agent` baseline; mutations only ever apply to the draft.
+- Use `list_agent_versions` to find a `versionId` to inspect.
+
+
+### discover_agent_assets <a href="#discoveragentassets" id="discoveragentassets"></a>
+
+Discover model catalogs, chat integrations, attachable workflows, published sub-agents, or MCP registry servers to ground an agent's configuration.
+
+#### Parameters <a href="#parameters" id="parameters"></a>
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `projectId` | `string` | Yes | The project to discover assets in |
+| `kind` | `"models" | "integrations" | "workflows" | "subagents" | "mcpServers"` | Yes | The kind of asset to discover |
+| `query` | `string` | No | Filter for `workflows`, `subagents`, or `mcpServers` |
+| `provider` | `string` | No | Model provider for `kind=models` (for example `"openai"`, `"anthropic"`). Omit to get a provider summary without model lists. |
+| `credentialId` | `string` | No | Accessible credential used to verify live models for the selected provider |
+| `excludeAgentId` | `string` | No | Agent to omit when `kind=subagents` |
+
+#### Output <a href="#output" id="output"></a>
+
+The `data` field's shape depends on `kind`:
+
+| `kind` | `data` shape |
+|--------|--------------|
+| `models` (no `provider`) | `{ providers: [{ provider, name, modelCount }], hint }`, a provider summary. Pass `provider` to list its models. |
+| `models` (with `provider`) | `{ provider, verified, models: [{ id, name, toolCall, releaseDate?, reasoning?, cost?, limits? }] }`. `verified` is true when the list was confirmed against the provider's own API using `credentialId`. |
+| `integrations` | Array of `{ type, label, icon, credentialTypes, settingsRequired, settingsSchema?, settingsGuidance? }`. Telegram entries include `settingsSchema` and `settingsGuidance`. |
+| `workflows` | Array of `{ name, active, triggerType }`, for workflows with a trigger supported for attaching as a `type: "workflow"` tool |
+| `subagents` | Array of `{ agentId, name }`, for published agents in the project, excluding `excludeAgentId` |
+| `mcpServers` | Array of MCP registry servers, each with `name`, `title`, `description`, `url`, `transport`, `authentication`, `credentialType`, `tools`, `metadata` |
+
+Top-level response: `{ ok, kind, data }`.
+
+#### Notes <a href="#notes" id="notes"></a>
+
+- Omitting `provider` for `kind=models` returns a summary only; the full model catalog is too large for most MCP clients' token limits.
+- For `kind=mcpServers`, omit `query` to list up to 20 registry servers; pass `query` to search by name.
+- Attaching a discovered asset (a workflow, sub-agent, or MCP server) still requires adding it to the agent's config with `mutate_agent`.
+
+
+### mutate_agent <a href="#mutateagent" id="mutateagent"></a>
+
+Apply one config, skill, task, or custom-tool mutation to an agent draft. Returns the next `configHash` for subsequent mutations.
+
+#### Parameters <a href="#parameters" id="parameters"></a>
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `agentId` | `string` | Yes | The ID of the agent to mutate |
+| `baseConfigHash` | `string` | Yes | The latest `configHash` returned by `get_agent` or a previous successful mutation |
+| `operation` | `object` | Yes | The mutation to apply. Its fields sit directly on the object (no `value` wrapper) alongside `type`. |
+
+**`operation` variants (discriminated by `type`):**
+
+| `type` | Fields | Description |
+|--------|--------|-------------|
+| `config.replace` | `config: object` | Replace the full editable agent configuration. Can't include `integrations`. |
+| `config.patch` | `patch: array` (min 1) | Apply an array of RFC 6902 JSON Patch operations (`add`, `remove`, `replace`, `move`, `copy`, `test`). Paths under `/integrations` are rejected. |
+| `skill.upsert` | `skill: object`, `skillId?: string` | Omit `skillId` to create and attach a new skill; pass it to replace an existing skill body |
+| `skill.delete` | `skillId: string` | Delete a skill and remove its config reference |
+| `task.upsert` | `task: object`, `taskId?: string`, `enabled?: boolean` | Omit `taskId` to create a new scheduled task; pass it to replace an existing one. `task` has `name`, `objective`, and `cronExpression` (a standard five-field cron expression). |
+| `task.delete` | `taskId: string` | Delete a task and remove its config reference |
+| `customTool.upsert` | `code: string` | Compile, validate, store, and attach a custom tool from source code |
+| `customTool.delete` | `toolId: string` | Delete a custom tool and remove its config reference |
+
+#### Output <a href="#output" id="output"></a>
+
+On success:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `agentId` | `string` | The agent ID |
+| `operation` | `string` | The applied operation's `type` |
+| `configHash` | `string` | The configuration hash after this mutation. Pass to the next `mutate_agent` call. |
+| `resource` | `object` | Present for skill, task, and custom-tool operations: `{ type: "skill" | "task" | "customTool", id }` |
+
+On a stale configuration:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `ok` | `boolean` | `false` |
+| `code` | `string` | `"stale_config"` |
+| `agentId` | `string` | The agent ID |
+| `configHash` | `string` | The current, correct configuration hash |
+| `message` | `string` | `"Call get_agent before retrying the mutation."` |
+
+#### Notes <a href="#notes" id="notes"></a>
+
+- Every mutation requires `baseConfigHash` from `get_agent` or the previous successful mutation. If the agent changed since that hash was read, the call returns `stale_config` instead of applying the mutation; call `get_agent` and retry against the returned `configHash`.
+- Integrations (Slack, Telegram, Linear) can't be changed through `config.replace` or `config.patch`; use [update_agent_integration](#updateagentintegration).
+- Custom tool code may only import `@n8n/agents` and `zod`. Its default export must be a `Tool` builder chain with `description`, `input` (a Zod schema), and `handler`; `output` is optional.
+- Fetch [get_agent_builder_reference](#getagentbuilderreference) for the full configuration schema and worked examples before calling `config.replace` or `config.patch`.
+
+
+### verify_agent_mcp_server <a href="#verifyagentmcpserver" id="verifyagentmcpserver"></a>
+
+Test an MCP server with a user-accessible credential and return its available tools. Call before writing an `mcpServers` config entry.
+
+#### Parameters <a href="#parameters" id="parameters"></a>
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `projectId` | `string` | Yes | | The project the agent belongs to |
+| `name` | `string` | Yes | | Server name (max 64 chars, letters, numbers, `_` and `-` only) |
+| `url` | `string` | Yes | | The HTTP(S) MCP server endpoint |
+| `transport` | `"sse" | "streamableHttp"` | No | `"streamableHttp"` | The MCP transport to use |
+| `authentication` | `string` | No | `"none"` | Authentication method: `"none"`, `"bearerAuth"`, `"headerAuth"`, `"multipleHeadersAuth"`, `"mcpOAuth2Api"`, or any credential type name ending in `McpOAuth2Api`. Every value other than `"none"` requires `credential`. |
+| `credential` | `string` | No | | Accessible credential ID; required when `authentication` isn't `"none"` |
+| `connectionTimeoutMs` | `integer` | No | | Connection timeout in milliseconds (1–120,000) |
 
 #### Output <a href="#output" id="output"></a>
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `id` | `string` | The unique identifier of the created data table |
-| `name` | `string` | The name of the created data table |
-| `projectId` | `string` | The project ID of the created data table |
+| `tools` | `array` | Tools the server exposes, each with `name` and `description` |
 
 #### Notes <a href="#notes" id="notes"></a>
 
-- At least one column is required.
-- Table name must be unique within the project.
-- Column names must match the pattern: `^[a-zA-Z][a-zA-Z0-9_]*$` (max 63 chars).
+- Opens a temporary connection to verify the server; it doesn't need to be attached to the agent first.
+- `validate_agent` doesn't perform this live check, so an unverified `mcpServers` entry can pass validation and still fail at runtime.
+- Use the returned tool names to populate `toolFilter` in the agent's `mcpServers` config entry instead of guessing.
 
 
-### rename_data_table_column <a href="#renamedatatablecolumn" id="renamedatatablecolumn"></a>
+### unpublish_agent <a href="#unpublishagent" id="unpublishagent"></a>
+
+Unpublish an agent and stop its live tasks and integrations.
+
+#### Parameters <a href="#parameters" id="parameters"></a>
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `agentId` | `string` | Yes | The ID of the agent to unpublish |
+
+#### Output <a href="#output" id="output"></a>
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `agentId` | `string` | The agent ID |
+| `published` | `boolean` | `false` |
+| `versionId` | `string` | The draft's internal version pointer |
+| `activeVersionId` | `string | null` | `null` after unpublishing |
+
+#### Notes <a href="#notes" id="notes"></a>
+
+- Stops scheduled tasks and channel integrations from running until the agent is published again.
+- The draft is left untouched and remains editable.
+
+
+### list_agent_versions <a href="#listagentversions" id="listagentversions"></a>
+
+List the publish history of an agent, newest first.
+
+#### Parameters <a href="#parameters" id="parameters"></a>
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `agentId` | `string` | Yes | | The ID of the agent |
+| `limit` | `integer` | No | `20` | Limit the number of results (max 100) |
+| `offset` | `integer` | No | `0` | Number of versions to skip, for pagination |
+
+#### Output <a href="#output" id="output"></a>
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `data` | `array` | Publish history, newest first |
+| `data[].versionId` | `string` | The version ID |
+| `data[].agentId` | `string` | The agent ID |
+| `data[].createdAt` | `string` | ISO timestamp when this version was published |
+| `data[].updatedAt` | `string` | ISO timestamp when this version was last updated |
+| `data[].author` | `string` | Who published this version |
+| `data[].isActive` | `boolean` | Whether this version is the currently published one |
+| `count` | `integer` | Number of versions returned |
+
+#### Notes <a href="#notes" id="notes"></a>
+
+- Pass a `versionId` from this list to `get_agent` to inspect a version before `revert_agent` or `publish_agent`.
+
+
+### delete_agent <a href="#deleteagent" id="deleteagent"></a>
+
+Permanently delete an agent and its associated resources.
+
+#### Parameters <a href="#parameters" id="parameters"></a>
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `agentId` | `string` | Yes | The ID of the agent to delete |
+
+#### Output <a href="#output" id="output"></a>
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `deleted` | `boolean` | `true` |
+| `agentId` | `string` | The deleted agent's ID |
+
+#### Notes <a href="#notes" id="notes"></a>
+
+- This action can't be undone.
+
+
+## Data tables <a href="#data-tables" id="data-tables"></a>
+
+### search_data_tables <a href="#searchdatatables" id="searchdatatables"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.16.0**
+**Feature availability**
 
-
+`search_data_tables` is available from n8n 2.16.0.
 {% endhint %}
 
-Rename a column in a data table.
+Search for data tables accessible to the current user. Use this to find a data table ID before modifying or adding data to it.
+
+#### Parameters <a href="#parameters" id="parameters"></a>
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `query` | `string` | No | Filter data tables by name (case-insensitive partial match) |
+| `projectId` | `string` | No | Filter by project ID |
+| `limit` | `integer` | No | Limit the number of results (max 100) |
+
+#### Output <a href="#output" id="output"></a>
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `data` | `array` | List of data tables matching the query |
+| `data[].id` | `string` | Unique identifier of the data table |
+| `data[].name` | `string` | The name of the data table |
+| `data[].projectId` | `string` | The project this data table belongs to |
+| `data[].createdAt` | `string` | ISO timestamp when the data table was created |
+| `data[].updatedAt` | `string` | ISO timestamp when the data table was last updated |
+| `data[].columns` | `array` | The columns defined in this data table |
+| `data[].columns[].id` | `string` | Column unique identifier |
+| `data[].columns[].name` | `string` | Column name |
+| `data[].columns[].type` | `string` | Column data type. One of: `"string"`, `"number"`, `"boolean"`, `"date"` |
+| `data[].columns[].index` | `integer` | Column position in the table |
+| `count` | `integer` | Total number of matching data tables |
+
+#### Notes <a href="#notes" id="notes"></a>
+
+- Maximum result limit is 100.
+
+
+### add_data_table_column <a href="#adddatatablecolumn" id="adddatatablecolumn"></a>
+
+{% hint style="info" %}
+**Feature availability**
+
+`add_data_table_column` is available from n8n 2.16.0.
+{% endhint %}
+
+Add a new column to an existing data table.
+
+#### Parameters <a href="#parameters" id="parameters"></a>
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `dataTableId` | `string` | Yes | The ID of the data table to add a column to |
+| `projectId` | `string` | Yes | The project ID the data table belongs to |
+| `name` | `string` | Yes | Column name. Must start with a letter, contain only letters, numbers, and underscores (max 63 chars). |
+| `type` | `string` | Yes | The data type of the new column. One of: `"string"`, `"number"`, `"boolean"`, `"date"` |
+
+#### Output <a href="#output" id="output"></a>
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `success` | `boolean` | Whether the operation succeeded |
+| `message` | `string` | Description of the result |
+| `column` | `object` | The created column |
+| `column.id` | `string` | Column unique identifier |
+| `column.name` | `string` | Column name |
+| `column.type` | `string` | Column data type |
+
+#### Notes <a href="#notes" id="notes"></a>
+
+- Column names must match the pattern: `^[a-zA-Z][a-zA-Z0-9_]*$` (max 63 chars).
+- Column type is immutable (through MCP) after creation.
+
+
+### delete_data_table_column <a href="#deletedatatablecolumn" id="deletedatatablecolumn"></a>
+
+{% hint style="info" %}
+**Feature availability**
+
+`delete_data_table_column` is available from n8n 2.16.0.
+{% endhint %}
+
+Delete a column from a data table. This permanently removes the column and all its data.
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
@@ -7244,8 +7445,7 @@ Rename a column in a data table.
 |------|------|----------|-------------|
 | `dataTableId` | `string` | Yes | The ID of the data table containing the column |
 | `projectId` | `string` | Yes | The project ID the data table belongs to |
-| `columnId` | `string` | Yes | The ID of the column to rename |
-| `name` | `string` | Yes | The new column name. Must follow column naming rules. |
+| `columnId` | `string` | Yes | The ID of the column to delete |
 
 #### Output <a href="#output" id="output"></a>
 
@@ -7253,45 +7453,336 @@ Rename a column in a data table.
 |-------|------|-------------|
 | `success` | `boolean` | Whether the operation succeeded |
 | `message` | `string` | Description of the result |
-| `column` | `object` | The renamed column |
-| `column.id` | `string` | Column unique identifier |
-| `column.name` | `string` | New column name |
-| `column.type` | `string` | Column data type |
 
 #### Notes <a href="#notes" id="notes"></a>
 
-- New name must follow column naming rules: `^[a-zA-Z][a-zA-Z0-9_]*$` (max 63 chars).
+- Deleting a column through MCP can't be undone.
 
 
-### rename_data_table <a href="#renamedatatable" id="renamedatatable"></a>
+### add_data_table_rows <a href="#adddatatablerows" id="adddatatablerows"></a>
 
 {% hint style="info" %}
-**Available from n8n v2.16.0**
+**Feature availability**
 
-
+`add_data_table_rows` is available from n8n 2.16.0.
 {% endhint %}
 
-Rename an existing data table.
+Insert rows into an existing data table. Each row is an object mapping column names to values.
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `dataTableId` | `string` | Yes | The ID of the data table to rename |
+| `dataTableId` | `string` | Yes | The ID of the data table to insert rows into |
 | `projectId` | `string` | Yes | The project ID the data table belongs to |
-| `name` | `string` | Yes | The new name for the data table (min 1, max 128 chars) |
+| `rows` | `array` | Yes (min 1, max 1000) | Array of row objects. Each object maps column names to values (`string`, `number`, `boolean`, or `null`). |
 
 #### Output <a href="#output" id="output"></a>
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `success` | `boolean` | Whether the operation succeeded |
-| `message` | `string` | Description of the result |
+| `success` | `boolean` | Whether the insert operation succeeded |
+| `insertedCount` | `integer` | Number of rows successfully inserted |
 
 #### Notes <a href="#notes" id="notes"></a>
 
-- Name must be unique within the project.
+- Maximum 1000 rows per call.
+- Row values must be `string`, `number`, `boolean`, or `null`.
+- Column names in row objects must match existing column names in the data table.
 
+=== https://docs.n8n.io/docs/connect/connect-to-n8n-mcp-server/mcp-client-examples/
+
+# MCP client connection examples <a href="#mcp-client-connection-examples" id="mcp-client-connection-examples"></a>
+
+These examples show the exact commands and configuration for connecting specific clients to n8n's MCP server. Before using them, [enable MCP access](../connect-to-n8n-mcp-server.md#enabling-mcp-access) on your instance and choose an authentication method, see [Connecting MCP clients](../connect-to-n8n-mcp-server.md#setting-up-mcp-authentication).
+
+{% hint style="info" %}
+The **Connect a client** dialog (available from n8n 2.33.0) provides one-click setup to connect Claude.ai, Cursor, and VS Code. It also provides interactive setup steps for Claude Code, Codex, Gemini CLI, ChatGPT, and Windsurf. See [Using OAuth (recommended)](../connect-to-n8n-mcp-server.md#using-oauth2) for how to open the dialog and pick your client.
+
+The examples below are useful if interactive steps aren't shown in n8n for your chosen client, for reference purposes, or for manual configuration.
+{% endhint %}
+
+## Connecting Lovable to n8n MCP server <a href="#connecting-lovable-to-n8n-mcp-server" id="connecting-lovable-to-n8n-mcp-server"></a>
+
+1. Configure MCP Server in Lovable (OAuth).
+   * Navigate to your workspace **Settings > Integrations**.
+   * In the **MCP Servers** section, find **n8n** and click **Connect**.
+   * Enter your n8n server URL: the **Server URL** value shown in the **Connect a client** dialog.
+   * Save the connection. If successful, n8n redirects you to authorize Lovable.
+2. Verify connectivity.
+   * Once connected, Lovable can query for workflows with MCP access enabled.
+   * **Example:** Asking Lovable to build a workflow UI that lists users and allows deleting them.
+
+## Connecting Claude Desktop to n8n MCP server <a href="#connecting-claude-desktop-to-n8n-mcp-server" id="connecting-claude-desktop-to-n8n-mcp-server"></a>
+
+**Using OAuth (recommended)**
+
+1. Navigate to **Settings** > **Connectors** in Claude Desktop.
+2. Click on **Add custom connector**.
+3. Enter the following details:
+   * **Name:** n8n MCP
+   * **Remote MCP Server URL**: the **Server URL** value shown in the **Connect a client** dialog
+4. Save the connector.
+5. When prompted, authorize Claude Desktop to access your n8n instance.
+
+**Using API key**
+
+Add the following entry to your `claude_desktop_config.json` file:
+
+```json
+"mcpServers": {
+  "n8n-mcp": {
+    "command": "npx",
+    "args": [
+    "-y",
+    "supergateway",
+    "--streamableHttp",
+    "https://<your-n8n-domain>/mcp-server/http",
+    "--header",
+    "Authorization:Bearer <YOUR_N8N_MCP_TOKEN>"
+    ]
+  }
+}
+```
+
+Here, replace:
+
+* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+
+## Connecting Claude Code to n8n MCP server <a href="#connecting-claude-code-to-n8n-mcp-server" id="connecting-claude-code-to-n8n-mcp-server"></a>
+
+**OPTION 1: Authenticate using OAuth (recommended)**
+
+Use the following CLI command:
+
+```bash
+claude mcp add --transport http n8n https://<your-n8n-domain>/mcp-server/http
+```
+
+Alternatively, add the following entry to your `claude.json` file:
+
+```json
+{
+    "mcpServers": {
+        "n8n": {
+            "type": "http",
+            "url": "https://<your-n8n-domain>/mcp-server/http"
+        }
+    }
+}
+```
+
+Here, replace:
+
+* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+
+Run `/mcp` in Claude Code and select **n8n** to complete the OAuth authorization.
+
+**OPTION 2: Authenticate using API key**
+
+Use the following CLI command:
+
+```bash
+claude mcp add --transport http n8n-mcp https://<your-n8n-domain>/mcp-server/http \
+  --header "Authorization: Bearer <YOUR_N8N_MCP_TOKEN>"
+```
+
+Alternatively, add the following entry to your `claude.json` file:
+
+```json
+{
+    "mcpServers": {
+        "n8n-mcp": {
+            "type": "http",
+            "url": "https://<your-n8n-domain>/mcp-server/http",
+            "headers": {
+                "Authorization": "Bearer <YOUR_N8N_MCP_TOKEN>"
+            }
+        }
+    }
+}
+```
+
+Here, replace:
+
+* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<YOUR_N8N_MCP_TOKEN>`: Your generated token
+
+## Connecting Codex CLI to n8n MCP server <a href="#connecting-codex-cli-to-n8n-mcp-server" id="connecting-codex-cli-to-n8n-mcp-server"></a>
+
+**OPTION 1: Authenticate using OAuth (recommended)**
+
+Use the following CLI command:
+
+```bash
+codex mcp add n8n --url "https://<your-n8n-domain>/mcp-server/http"
+```
+
+Alternatively, add the following entry to your `~/.codex/config.toml` file:
+
+```toml
+[features]
+experimental_use_rmcp_client = true
+
+[mcp_servers.n8n]
+url = "https://<your-n8n-domain>/mcp-server/http"
+```
+
+{% hint style="info" %}
+The `[features]` block enables Codex's HTTP MCP client. Older Codex builds require it; newer builds ignore it.
+{% endhint %}
+
+Here, replace:
+
+* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+
+Run `codex mcp login n8n` to complete the OAuth authorization.
+
+**OPTION 2: Authenticate using API key**
+
+Add the following entry to your `~/.codex/config.toml` file:
+
+```toml
+[features]
+experimental_use_rmcp_client = true
+
+[mcp_servers.n8n-mcp]
+url = "https://<your-n8n-domain>/mcp-server/http"
+http_headers = { "authorization" = "Bearer <YOUR_N8N_MCP_TOKEN>" }
+```
+
+Here, replace:
+
+* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<YOUR_N8N_MCP_TOKEN>`: Your generated token
+
+## Connecting Gemini CLI to n8n MCP server <a href="#connecting-gemini-cli-to-n8n-mcp-server" id="connecting-gemini-cli-to-n8n-mcp-server"></a>
+
+Use the following CLI command:
+
+```bash
+gemini mcp add --transport http n8n https://<your-n8n-domain>/mcp-server/http
+```
+
+Alternatively, add the following entry to your `~/.gemini/settings.json` file:
+
+```json
+{
+    "mcpServers": {
+        "n8n": {
+            "httpUrl": "https://<your-n8n-domain>/mcp-server/http"
+        }
+    }
+}
+```
+
+Here, replace:
+
+* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+
+Run `/mcp` in Gemini CLI and select **n8n** to complete the OAuth authorization.
+
+## Connecting Cursor to n8n MCP server <a href="#connecting-cursor-to-n8n-mcp-server" id="connecting-cursor-to-n8n-mcp-server"></a>
+
+In the **Connect a client** dialog, select **Cursor** from **Your client**, then select **One-click setup** to open Cursor and add the n8n server automatically. Approve access when Cursor redirects you back to n8n.
+
+Alternatively, add the following entry to your `~/.cursor/mcp.json` file (or the project's `.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "n8n": {
+      "type": "streamable-http",
+      "url": "https://<your-n8n-domain>/mcp-server/http"
+    }
+  }
+}
+```
+
+Here, replace:
+
+* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+
+## Connecting VS Code to n8n MCP server <a href="#connecting-vs-code-to-n8n-mcp-server" id="connecting-vs-code-to-n8n-mcp-server"></a>
+
+In the **Connect a client** dialog, select **VS Code** from **Your client**, then select **One-click setup** to open VS Code and add the n8n server automatically. Approve access when VS Code redirects you back to n8n.
+
+Alternatively, add the following entry to your workspace's `.vscode/mcp.json` file:
+
+```json
+{
+  "servers": {
+    "n8n": {
+      "type": "http",
+      "url": "https://<your-n8n-domain>/mcp-server/http"
+    }
+  }
+}
+```
+
+Here, replace:
+
+* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+
+## Connecting Windsurf to n8n MCP server <a href="#connecting-windsurf-to-n8n-mcp-server" id="connecting-windsurf-to-n8n-mcp-server"></a>
+
+Add the following entry to your `~/.codeium/windsurf/mcp_config.json` file:
+
+```json
+{
+  "mcpServers": {
+    "n8n": {
+      "serverUrl": "https://<your-n8n-domain>/mcp-server/http"
+    }
+  }
+}
+```
+
+Here, replace:
+
+* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+
+Approve access when Windsurf redirects you to n8n on its first connection attempt.
+
+## Connecting Google ADK agent to n8n MCP server <a href="#connecting-google-adk-agent-to-n8n-mcp-server" id="connecting-google-adk-agent-to-n8n-mcp-server"></a>
+
+Here's sample code to create an agent that connects to a remote n8n MCP server:
+
+```python
+from google.adk.agents import Agent
+from google.adk.tools.mcp_tool import McpToolset
+from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPServerParams
+
+N8N_INSTANCE_URL = "https://localhost:5678"
+N8N_MCP_TOKEN = "YOUR_N8N_MCP_TOKEN"
+
+root_agent = Agent(
+    model="gemini-2.5-pro",
+    name="n8n_agent",
+    instruction="Help users manage and execute workflows in n8n",
+    tools=[
+        McpToolset(
+            connection_params=StreamableHTTPServerParams(
+                url=f"{N8N_INSTANCE_URL}/mcp-server/http",
+                headers={
+                    "Authorization": f"Bearer {N8N_MCP_TOKEN}",
+                },
+            ),
+        )
+    ],
+)
+```
+
+Here, replace:
+
+* `N8N_INSTANCE_URL`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `YOUR_N8N_MCP_TOKEN`: Your generated access token
+
+For more details, see [Connect ADK agent to n8n](https://google.github.io/adk-docs/tools/third-party/n8n/).
+
+## Troubleshooting
+
+If a client doesn't connect using the steps above, see [Troubleshooting](../connect-to-n8n-mcp-server.md#troubleshooting) on the main MCP server page.
 
 === https://docs.n8n.io/docs/connect/SUMMARY/
 # Table of contents
@@ -7316,6 +7807,7 @@ Rename an existing data table.
     ```
 * [n8n CLI](n8n-cli.md)
 * [Connect to n8n MCP server](connect-to-n8n-mcp-server.md)
+  * [MCP client connection examples](connect-to-n8n-mcp-server/mcp-client-examples.md)
   * [MCP server tools reference](connect-to-n8n-mcp-server/mcp-server-tools-reference.md)
 * [Connect to the n8n docs MCP server](connect-to-n8n-docs-mcp-server.md)
 * [Create nodes](create-nodes/README.md)
@@ -7928,9 +8420,11 @@ Task runners are a generic mechanism to execute tasks in a secure and performant
 This document describes how task runners work and how you can configure them.
 
 {% hint style="warning" %}
-**Internal mode not recommended for production**
+**Always use task runners in production**
 
-Using internal mode in production environments can pose a security risk. For production deployments, use [external mode](set-up-task-runners.md#external-mode) to ensure proper isolation between n8n and task runner processes. Refer to [Hardening task runners](security/harden-task-runners.md) for additional security measures.
+Task runners are the only isolation layer between user-provided code and n8n. Without them, or with [internal mode](set-up-task-runners.md#internal-mode), anyone who can edit a workflow could potentially read your database, [encryption key](basic-configuration/configuration-examples/set-a-custom-encryption-key.md), stored credentials, and environment variables.
+
+In production, and on any instance holding sensitive data, use [external mode](set-up-task-runners.md#external-mode) plus the measures in [Hardening task runners](security/harden-task-runners.md). Skipping external mode to save hosting costs is only a reasonable tradeoff on isolated instances that hold nothing but trusted or mock data.
 {% endhint %}
 
 ## How it works <a href="#how-it-works" id="how-it-works"></a>
@@ -7951,7 +8445,13 @@ You can use task runners in two different modes: internal and external.
 
 ### Internal mode <a href="#internal-mode" id="internal-mode"></a>
 
-In internal mode, the n8n instance launches the task runner as a child process. The n8n process monitors and manages the life cycle of the task runner. The task runner process shares the same `uid` and `gid` as n8n. This is **not** recommended for production.
+In internal mode, the n8n instance launches the task runner as a child process, which is insecure by design. The n8n process monitors and manages the life cycle of the task runner. The task runner process shares the same `uid` and `gid` as n8n.
+
+{% hint style="warning" %}
+**Internal mode not recommended for production**
+
+Because the runner runs as the same user on the same host as n8n, code that escapes the runner's sandbox has the same access as n8n, including to stored credentials (see the warning at the top of this page). Use internal mode only on isolated instances that hold no sensitive data.
+{% endhint %}
 
 ### External mode <a href="#external-mode" id="external-mode"></a>
 
@@ -8007,7 +8507,7 @@ These are the main environment variables that you can set on the n8n container r
 {% hint style="info" %}
 **`N8N_RUNNERS_ENABLED` is deprecated from version 2.0**
 
-From version 2.0 onwards, `N8N_RUNNERS_ENABLED` is deprecated and you no longer need to set it. It's still supported in version 1.x, where you must set it to `true` to enable task runners.
+From version 2.0 onwards, `N8N_RUNNERS_ENABLED` is deprecated and you no longer need to set it. It's still supported in version 1.x, where you must set it to `true` to enable task runners. Leaving task runners disabled on 1.x runs Code node scripts inside the main n8n process with no isolation at all. Don't do this on any instance that holds sensitive credentials or data.
 {% endhint %}
 
 | Environment variables                                  | Description                                                                                                                                                                   |
@@ -21218,6 +21718,57 @@ n8n lets you build AI workflows that connect different LLM providers such as Ope
 [ai-examples.md](ai-examples.md)
 {% endcontent-ref %}
 
+=== https://docs.n8n.io/docs/build/manage-workflows/favorite-items/
+
+# Favorite items
+
+{% hint style="info" %}
+**Available from n8n 2.18.0**
+{% endhint %}
+
+You can favorite workflows, folders, projects, and data tables to pin them for quick access. Favoriting an item adds it to a **Favorites** section in the left menu, so you don't have to search or browse for the items you use most.
+
+Favorites are personal to each user. Favoriting an item doesn't change who can view or edit it, and doesn't affect other users' favorites.
+
+## Favorite an item
+
+To favorite an item, select its **three-dot menu**, then select **Favorite**. To remove it from your favorites, select the same **three-dot menu**, then select **Unfavorite**.
+
+Find the **three-dot menu** for each item type here:
+
+* **Workflows**: Next to a workflow on the **Workflows** list, or in the top header while the workflow is open.
+* **Folders**: Next to a folder on the **Workflows** list.
+* **Data tables**: Next to a data table on the **Data tables** list.
+* **Projects**: Next to a project on the **Workflows** list. Team projects also have a star icon in the project header, which you can select instead.
+
+{% hint style="info" %}
+**Star icon only appears for team projects**
+
+The star icon in the project header only appears when you open a team project. To favorite your personal project, use its **three-dot menu** instead.
+{% endhint %}
+
+## View your favorites
+
+n8n lists your favorites in a **Favorites** section in the left menu, grouped by item type: projects, folders, workflows, then data tables. Select an item to open it, or select **x** next to an item to remove it from your favorites without opening it.
+
+{% hint style="info" %}
+**Limited discoverability**
+
+The **Favorites** section only appears in the left menu after you favorite at least one item. There's no dedicated favorites page, and currently no way to search, sort, or filter within the list.
+{% endhint %}
+
+## Limits
+
+You can favorite up to 200 items in total. If you reach this limit, remove an existing favorite before you add a new one.
+
+n8n automatically removes a favorite when someone deletes the underlying item. If you lose access to a favorited item, for example if someone removes you from its project, it stops appearing in your favorites list until you regain access.
+
+## Related resources
+
+* [Data tables](../work-with-data/data-tables.md)
+* [Tag workflows](tag-workflows.md)
+* [Organize work in projects](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/set-permissions-and-roles-rbac/organize-work-in-projects)
+
 === https://docs.n8n.io/docs/build/manage-workflows/share-with-others/
 
 # Workflow sharing <a href="#workflow-sharing" id="workflow-sharing"></a>
@@ -21469,6 +22020,10 @@ You can edit existing tags. Instance owners can delete tags.
 Tags are global. If you edit or delete a tag, this affects all users of your n8n instance.
 {% endhint %}
 
+## Related resources <a href="#related-resources" id="related-resources"></a>
+
+* [Favorite items](favorite-items.md): Pin workflows, folders, projects, and data tables for quick access.
+
 === https://docs.n8n.io/docs/build/manage-workflows/view-change-history/
 
 # View change history
@@ -21531,6 +22086,10 @@ You can restore a previous workflow version, or make a copy of it:
 
 {% content-ref url="tag-workflows.md" %}
 [tag-workflows.md](tag-workflows.md)
+{% endcontent-ref %}
+
+{% content-ref url="favorite-items.md" %}
+[favorite-items.md](favorite-items.md)
 {% endcontent-ref %}
 
 {% content-ref url="view-change-history.md" %}
@@ -29855,6 +30414,7 @@ View and work with data tables directly in the UI through a visual interface. Th
     * Add and reorder columns to organize your data
     * Add, delete, and update rows
     * Edit existing data
+    * [Favorite the data table](../manage-workflows/favorite-items.md) for quick access
 
 ## Exporting and importing data <a href="#exporting-and-importing-data" id="exporting-and-importing-data"></a>
 
@@ -29917,6 +30477,7 @@ From the **Data tables** tab, you can:
 * [Manage workflows](manage-workflows/README.md)
   * [Configure workflow settings](manage-workflows/configure-workflow-settings.md)
   * [Tag workflows](manage-workflows/tag-workflows.md)
+  * [Favorite items](manage-workflows/favorite-items.md)
   * [View change history](manage-workflows/view-change-history.md)
   * [Export and import](manage-workflows/export-and-import.md)
   * [n8n packages](manage-workflows/n8n-packages/README.md)
@@ -31341,7 +31902,8 @@ Instance-level MCP isn't the only way n8n works with MCP:
 
 ## Learn more
 
-* [Connect to n8n MCP server](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server) — set up instance-level MCP access, authenticate clients (OAuth2 or access token), expose workflows, and see client examples.
+* [Connect to n8n MCP server](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server) — set up instance-level MCP access, authenticate clients (OAuth or API key), and expose workflows.
+* [MCP client connection examples](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server/mcp-client-examples) — exact commands and configuration for Lovable, Claude Desktop, Claude Code, Codex, Gemini CLI, Cursor, VS Code, Windsurf, and Google ADK agents.
 * [MCP server tools reference](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server/mcp-server-tools-reference) — full list of available tools and their parameters.
 * [MCP Server Trigger node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.mcptrigger) — expose tools from a single workflow.
 
@@ -32341,9 +32903,9 @@ For the current plans, editions, licenses, and prices, always check the [pricing
 
 n8n is a fair-code licensed workflow automation tool that combines AI capabilities with business process automation.
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="image">Cover image</th></tr></thead><tbody><tr><td><i class="fa-server">:server:</i> <strong>Get set up on n8n</strong></td><td><ul><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/start-your-free-trial">Start your free trial</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-with-npm">Install with npm</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-with-docker">Install with Docker</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/use-a-cloud-provider">Use a cloud provider</a></li></ul></td><td></td><td><a href=".gitbook/assets/start.png">start.png</a></td></tr><tr><td><i class="fa-draw-square">:draw-square:</i> <strong>Build your first automation</strong></td><td><a data-mention href="build-your-first-workflow.md">build-your-first-workflow.md</a></td><td></td><td><a href=".gitbook/assets/build.png">build.png</a></td></tr><tr><td><i class="fa-stamp">:stamp:</i> <strong>Get inspiration for what to automate</strong></td><td><ul><li><a href="https://n8n.io/workflows/1750-creating-an-api-endpoint/">Creating an API endpoint</a></li><li><a href="https://n8n.io/workflows/1954-ai-agent-chat/">AI agent chat</a></li><li><a href="https://n8n.io/workflows/1951-scrape-and-summarize-webpages-with-ai/">Scrape and summarize webpages with AI</a></li><li><a href="https://n8n.io/workflows/1747-joining-different-datasets/">Joining different datasets</a></li></ul></td><td></td><td><a href=".gitbook/assets/inspire.png">inspire.png</a></td></tr><tr><td><i class="fa-lightbulb-gear">:lightbulb-gear:</i> <strong>Understand key concepts</strong></td><td><ul><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/transform-data/expressions-for-data-transformation">Expressions for data transformation</a></li><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/flow-logic">Flow logic</a></li><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/understand-executions">Understand executions</a></li></ul></td><td></td><td><a href=".gitbook/assets/deep.png">deep.png</a></td></tr><tr><td><strong>Anthropic</strong> <strong>Claude Desktop</strong></td><td>Add the n8n connector to Claude Desktop</td><td><a data-mention href="https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server#connecting-claude-desktop-to-n8n-mcp-server">Connect to n8n MCP server #Connecting Claude Desktop to n8n MCP server</a></td><td><a href=".gitbook/assets/Claude_logo (1).jpeg">Claude_logo (1).jpeg</a></td></tr><tr><td><strong>Anthropic</strong> <strong>Claude Code</strong></td><td><pre data-overflow="wrap"><code>claude mcp add --transport http n8n-mcp https:///mcp-server/http
-</code></pre></td><td><a data-mention href="https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server#connecting-claude-code-to-n8n-mcp-server">Connect to n8n MCP server #Connecting Claude Code to n8n MCP server</a></td><td><a href=".gitbook/assets/Claude_code_logo.jpeg">Claude_code_logo.jpeg</a></td></tr><tr><td><strong>Open AI Codex</strong></td><td><pre data-overflow="wrap"><code>codex mcp add n8n-mcp --url https:///mcp-server/http
-</code></pre></td><td><a data-mention href="https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server#connecting-codex-cli-to-n8n-mcp-server">Connect to n8n MCP server #Connecting Codex CLI to n8n MCP server</a></td><td><a href=".gitbook/assets/codex_logo.jpeg">codex_logo.jpeg</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="image">Cover image</th></tr></thead><tbody><tr><td><i class="fa-server">:server:</i> <strong>Get set up on n8n</strong></td><td><ul><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/start-your-free-trial">Try free then choose a plan</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-with-npm">Install with npm</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-with-docker">Install with Docker</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/use-a-cloud-provider">Use a cloud provider</a></li></ul></td><td></td><td><a href=".gitbook/assets/start.png">start.png</a></td></tr><tr><td><i class="fa-draw-square">:draw-square:</i> <strong>Build your first automation</strong></td><td><a data-mention href="build-your-first-workflow.md">build-your-first-workflow.md</a></td><td></td><td><a href=".gitbook/assets/build.png">build.png</a></td></tr><tr><td><i class="fa-stamp">:stamp:</i> <strong>Get inspiration for what to automate</strong></td><td><ul><li><a href="https://n8n.io/workflows/1750-creating-an-api-endpoint/">Creating an API endpoint</a></li><li><a href="https://n8n.io/workflows/1954-ai-agent-chat/">AI agent chat</a></li><li><a href="https://n8n.io/workflows/1951-scrape-and-summarize-webpages-with-ai/">Scrape and summarize webpages with AI</a></li><li><a href="https://n8n.io/workflows/1747-joining-different-datasets/">Joining different datasets</a></li></ul></td><td></td><td><a href=".gitbook/assets/inspire.png">inspire.png</a></td></tr><tr><td><i class="fa-lightbulb-gear">:lightbulb-gear:</i> <strong>Understand key concepts</strong></td><td><ul><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/transform-data/expressions-for-data-transformation">Expressions for data transformation</a></li><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/flow-logic">Flow logic</a></li><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/understand-executions">Understand executions</a></li></ul></td><td></td><td><a href=".gitbook/assets/deep.png">deep.png</a></td></tr><tr><td><strong>Anthropic</strong> <strong>Claude Desktop</strong></td><td><a href="https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server/mcp-client-examples#connecting-claude-desktop-to-n8n-mcp-server">Connecting Claude Desktop to n8n MCP server</a></td><td></td><td><a href=".gitbook/assets/Claude_logo.jpeg">Claude_logo.jpeg</a></td></tr><tr><td><strong>Anthropic</strong> <strong>Claude Code</strong></td><td><pre data-overflow="wrap"><code>claude mcp add --transport http n8n-mcp https:///mcp-server/http
+</code></pre></td><td><a href="https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server/mcp-client-examples#connecting-claude-code-to-n8n-mcp-server">Connecting Claude Code to n8n MCP server</a></td><td><a href=".gitbook/assets/Claude_code_logo.jpeg">Claude_code_logo.jpeg</a></td></tr><tr><td><strong>Open AI Codex</strong></td><td><pre data-overflow="wrap"><code>codex mcp add n8n-mcp --url https:///mcp-server/http
+</code></pre></td><td><a href="https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server/mcp-client-examples#connecting-codex-cli-to-n8n-mcp-server">Connecting Codex CLI to n8n MCP server</a></td><td><a href=".gitbook/assets/codex_logo.jpeg">codex_logo.jpeg</a></td></tr></tbody></table>
 
 === https://docs.n8n.io/docs/changelog/release-notes-1.x/
 
@@ -48846,7 +49408,7 @@ This makes deployment configuration the single source of truth, so you can stand
 
 **Released:** 2026-04-21 in [n8n 2.18](release-notes.md#n8n218)
 
-You can now mark projects, folders, workflows, and data tables as favorites, so the resources you work with every day are one click away instead of a search away.
+You can now mark projects, folders, workflows, and data tables as [favorites](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/favorite-items), so the resources you work with every day are one click away instead of a search away.
 
 ### Slack Trigger: App Home opens as a dedicated event
 
@@ -50301,14 +50863,14 @@ You can make contributions in a variety of different ways:
 
 ### Edit a page in your browser
 
-This method is best for quick edits to a single page. Click **Edit this page** on any n8n Docs page and GitHub will guide you through making your changes and opening a pull request (aka PR - a formal proposal to add your changes to the docs).
+This method is best for quick edits to a single page. GitHub will guide you through making your changes and opening a pull request (aka PR - a formal proposal to add your changes to the docs).
 
 **Prerequisites:** A [GitHub](https://github.com/) account.
 
-1. On any n8n Docs page, click **Edit** from the dropdown menu at the top right. This takes you to the page in the [n8n Docs GitHub repository](https://github.com/n8n-io/n8n-docs).
+1. Open the **Copy** dropdown at the top of any n8n Docs page, and select **Edit on GitHub**. This takes you to the page in the [n8n Docs GitHub repository](https://github.com/n8n-io/n8n-docs).
 2. Click the pencil icon to edit the page.
 
-You may be prompted to fork the repository first. Click **Fork this repository** and GitHub automatically creates a fork for you.
+If you're an external contributor, GitHub will prompt you to fork the repository before making changes. Click **Fork this repository** and GitHub automatically creates a fork for you.
 
 3. Make your edits in the text editor, and click **Commit changes** > **Propose changes**.
 
@@ -50393,7 +50955,7 @@ Once you open a pull request, the n8n Docs team will review it and either merge 
 | `action:needs-review`       | Your PR is in the queue and waiting for a technical writer to review it                                                                                 |
 | `action:needs-sme`          | Your PR requires review from a subject matter expert before it can be merged                                                                            |
 | `status:pending-dev`        | Your PR is linked to an unmerged code change and will be reviewed once that merges                                                                      |
-| `status:in-next-release`    | The linked code change has merged and your PR will be reviewed shortly                                                                                  |
+| `status:awaiting-release`    | The linked code change has merged, but not yet been released. Your PR will be reviewed shortly                                                                                  |
 | `status:dev-cancelled`      | The code change your PR was linked to has been cancelled — the docs PR will be closed                                                                   |
 | `status:duplicate`          | Your PR covers the same ground as an existing PR or issue - the PR will be closed                                                                       |
 | `status:outdated`           | Your PR has been overtaken by subsequent changes to the docs - the PR will be closed                                                                    |
@@ -50498,6 +51060,24 @@ This page is the source of truth for product terminology. Vale checks some pairs
 {% include ".gitbook/includes/integrations/referenced-node-unexecuted.md" %}
 
 
+
+{% include ".gitbook/includes/integrations/builtin/send-and-wait-operation.md" %}
+
+{% include ".gitbook/includes/integrations/builtin/core-nodes/data-types.md" %}
+
+{% include ".gitbook/includes/self-hosting/starter-kits/self-hosted-ai-starter-kit.md" %}
+
+{% include ".gitbook/includes/integrations/builtin/credentials/generic-auth/basic-auth.md" %}
+
+{% include ".gitbook/includes/integrations/builtin/credentials/generic-auth/digest-auth.md" %}
+
+{% include ".gitbook/includes/integrations/builtin/credentials/generic-auth/header-auth.md" %}
+
+{% include ".gitbook/includes/integrations/builtin/credentials/generic-auth/bearer-auth.md" %}
+
+{% include ".gitbook/includes/integrations/builtin/credentials/microsoft-need-admin-approval.md" %}
+
+{% include ".gitbook/includes/integrations/builtin/app-nodes/operation-not-supported.md" %}
 
 {% include ".gitbook/includes/integrations/builtin/node-operations.md" %}
 
@@ -51606,7 +52186,7 @@ When building a node to submit to the community node repository, use the followi
 * n8n recommends using the [`n8n-node` CLI tool](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/build-your-node/using-the-n8n-node-tool) to build and test your node. In particular, this is important if you plan on [submitting your node for verification](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/deploy-your-node/submit-community-nodes#submit-your-node-for-verification-by-n8n). This ensures that your node has the correct structure and follows community node requirements. It also simplifies linting and testing.
 * View [n8n's own nodes](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes) for examples of patterns you can use in your nodes.
 * Refer to the documentation on [building your own nodes](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/overview).
-* Make sure your node follows the [standards](#standards) for community nodes.
+* Make sure your node respects the following standards for community nodes.
 
 ## Standards <a href="#standards" id="standards"></a>
 
@@ -51616,7 +52196,7 @@ Developing with the [`n8n-node` tool](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5
 * Include `n8n-community-node-package` in your package keywords.
 * Make sure that you add your nodes and credentials to the `package.json` file inside the `n8n` attribute.
 * Check your node using the linter (`npm run lint`) and test it locally (`npm run dev`) to ensure it works.
-* Publish the package to npm. If you plan to submit your node for verification through the [n8n Creator Portal](https://creators.n8n.io/nodes), you must publish using a GitHub Actions workflow with a [provenance statement](https://docs.npmjs.com/generating-provenance-statements). See [Publishing to npm](#publishing-to-npm) below.
+* Publish the package to npm. If you plan to submit your node for verification through the [n8n Creator Portal](https://creators.n8n.io/nodes), you must publish using a GitHub Actions workflow with a [provenance statement](https://docs.npmjs.com/generating-provenance-statements). See **Publishing to npm** below.
 
 ## Publishing to npm <a href="#publishing-to-npm" id="publishing-to-npm"></a>
 
@@ -51662,7 +52242,7 @@ n8n vets verified community nodes. Users can discover and install verified commu
 {% hint style="info" %}
 **GitHub Actions publish required for verification**
 
-From May 1st 2026, nodes submitted for verification through the [n8n Creator Portal](https://creators.n8n.io/nodes) must be published using GitHub Actions with a provenance statement. See [Publishing to npm](#publishing-to-npm) for setup instructions.
+From May 1st 2026, nodes submitted for verification through the [n8n Creator Portal](https://creators.n8n.io/nodes) must be published using GitHub Actions with a provenance statement. See Publishing to npm for setup instructions.
 {% endhint %}
 
 Before submitting your node for review by n8n, you must:
@@ -51671,7 +52251,7 @@ Before submitting your node for review by n8n, you must:
 * Make sure that your node follows the [technical guidelines for verified community nodes](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/build-your-node/reference/verification-guidelines) and that all automated checks pass. Specifically, verified community nodes aren't allowed to use any run-time dependencies.
 * Ensure that your node follows the [UX guidelines](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/build-your-node/reference/ux-guidelines).
 * Make sure that the node has appropriate documentation in the form of a README in the [npm package](https://docs.npmjs.com/about-package-readme-files) or a related public repository.
-* Publish your node to npm using a GitHub Actions workflow with provenance, as described in [Publishing to npm](#publishing-to-npm). n8n will fetch it from there for final vetting.
+* Publish your node to npm using a GitHub Actions workflow with provenance, as described in **Publishing to npm**. n8n will fetch it from there for final vetting.
 
 ## Ready to submit? <a href="#ready-to-submit" id="ready-to-submit"></a>
 If your node meets all the above requirements, sign up or log in to the [n8n Creator Portal](https://creators.n8n.io/nodes) and submit your node for verification. Note that n8n reserves the right to reject nodes that compete with any of n8n's paid features, especially enterprise functionality.
@@ -54191,6 +54771,10 @@ To delete a project:
 4. Choose what to do with the workflows and credentials. You can select:
    * **Transfer its workflows and credentials to another project**: n8n prompts you to choose a project to move the data to.
    * **Delete its workflows and credentials**: n8n prompts you to confirm that you want to delete all the data in the project.
+
+### Favorite a project <a href="#favorite-a-project" id="favorite-a-project"></a>
+
+You can favorite a team project to pin it for quick access. Open the project and select the star icon in the project header, or select its **three-dot menu** and select **Favorite**. See [Favorite items](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/favorite-items) for details, including how to favorite workflows, folders, and data tables the same way.
 
 ### Move workflows and credentials between projects or users <a href="#move-workflows-and-credentials-between-projects-or-users" id="move-workflows-and-credentials-between-projects-or-users"></a>
 
