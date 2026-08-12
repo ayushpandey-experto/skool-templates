@@ -8628,16 +8628,17 @@ AI Assistant isn't yet available for self-hosted Enterprise. Support for self-ho
 If you're an Enterprise customer and want to try AI Assistant before then, contact your Customer Success Manager (CSM) about preview access.
 {% endhint %}
 
-To run AI Assistant on a self-hosted instance, you need:
+## What AI Assistant needs
 
-* An API key for an LLM provider.
-* An AI model. n8n uses `anthropic/claude-opus-4-8` by default, or you can set your own.
-* A sandbox provider. Daytona is recommended.
-* A search provider if you want web search. Brave Search is recommended.
+Every setup needs three things:
 
-{% hint style="info" %}
-Most AI Assistant settings use `N8N_INSTANCE_AI_*` environment variables. `INSTANCE_AI_BRAVE_SEARCH_API_KEY` is a deliberate exception. The internal module name is `instance-ai`.
-{% endhint %}
+* **A model provider:** An API key for Anthropic, OpenAI, or OpenRouter.
+* **A sandbox:** An isolated environment where AI Assistant runs code. This is required.
+* **A search provider (optional):** Lets AI Assistant look things up on the web.
+
+How you provide the sandbox is the main decision. n8n's own bundled sandbox (`n8n-sandbox`) is a good fit for local development and testing. It's what the [one-line setup command](../install-options/one-line-setup.md) and [Docker Compose guide](../install-options/install-using-docker-compose.md) set up automatically. For production, use Daytona instead.
+
+[Pick your setup](#pick-your-setup) below based on how you installed n8n and where you're running it.
 
 ### Before you start
 
@@ -8645,81 +8646,160 @@ Make sure you have:
 
 * Access to configure environment variables for the n8n instance.
 * A recent version of n8n. Run the latest stable release or later; older versions may work, but newer is better.
-* An API key for a supported LLM provider:
-  * Anthropic
-  * OpenAI
-  * OpenRouter
-* A sandbox provider. Daytona is recommended.
-* A search provider if you want web search. Brave Search is recommended.
+* An API key for a supported LLM provider: Anthropic, OpenAI, or OpenRouter.
 
-### Quick setup with Daytona
+## Pick your setup
 
-Daytona is the recommended sandbox provider for most self-hosted setups.
+| Setup | Use this if... | Sandbox hosted by | Best for |
+| --- | --- | --- | --- |
+| [1. Already running the sandbox](#1-already-running-the-sandbox-recommended-for-local-development) | You installed with the one-line setup command or the Docker Compose guide. | You (already done) | Local development and testing |
+| [2. Self-host the sandbox manually](#2-self-host-the-sandbox-manually-advanced) | You're running n8n some other way and want to self-host the sandbox rather than use Daytona. | You | Local development and testing |
+| [3. Daytona (managed sandbox)](#3-daytona-managed-sandbox-recommended-for-production) | You're deploying to production, or don't want to run sandbox containers yourself. | Daytona | Production |
 
-This setup enables AI Assistant with an Anthropic model, Daytona, and Brave Search for web search.
+### 1. Already running the sandbox (recommended for local development)
 
-Set these environment variables on your n8n instance:
+If you installed n8n with the [one-line setup command](../install-options/one-line-setup.md) or built it by hand with the [Docker Compose guide](../install-options/install-using-docker-compose.md), the sandbox and search, via bundled SearXNG, are already running. All that's left is a model key.
+
+**What you need:** an LLM API key. Nothing else.
+
+**Steps:**
+
+The quickest way: open the editor, go to the instance's AI settings, and add your model key there. Prefer `.env`?  Use the steps below.
+
+1. Add your model key to `.env`:
+
+   ```bash
+   N8N_INSTANCE_AI_MODEL_API_KEY=sk-ant-xxx
+   ```
+
+2. Restart n8n.
+3. Open the editor and confirm AI Assistant appears and responds.
+
+`N8N_INSTANCE_AI_MODEL` defaults to `anthropic/claude-opus-4-8`. Set it explicitly only if you want a different model (see [Choose a model provider](#choose-a-model-provider)).
+
+### 2. Self-host the sandbox manually (advanced)
+
+Use this if you're configuring n8n outside of the one-line setup command or Docker Compose guide, and you want to run the sandbox yourself rather than hand it to Daytona.
+
+{% hint style="warning" %}
+This means hosting two extra containers yourself: the sandbox API and a privileged Docker-in-Docker runner, plus mutual TLS between them. Like setup 1, this uses `n8n-sandbox`, which is best suited to local development and testing. For production, use [Daytona](#3-daytona-managed-sandbox-recommended-for-production) instead.
+{% endhint %}
+
+**What you need:**
+
+* The n8n Sandbox Service running and reachable from n8n. See the [Docker Compose guide](../install-options/install-using-docker-compose.md) for the full stack (`sandbox-certs`, `sandbox-api`, `sandbox-runner-1`) and its secrets.
+* An LLM API key.
+
+**Steps:**
+
+1. Stand up the sandbox stack (Docker Compose guide linked above).
+2. Point n8n at it:
+
+   ```bash
+   N8N_INSTANCE_AI_SANDBOX_ENABLED=true
+   N8N_INSTANCE_AI_SANDBOX_PROVIDER=n8n-sandbox
+   N8N_INSTANCE_AI_SANDBOX_API_URL=http://sandbox-api:8080
+   N8N_INSTANCE_AI_SANDBOX_API_KEY=my-sandbox-api-key
+   ```
+
+   | Variable | Description |
+   | --- | --- |
+   | `N8N_INSTANCE_AI_SANDBOX_ENABLED` | Set to `true`. |
+   | `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Set to `n8n-sandbox`. |
+   | `N8N_INSTANCE_AI_SANDBOX_API_URL` | URL of the sandbox API, reachable from n8n. |
+   | `N8N_INSTANCE_AI_SANDBOX_API_KEY` | Must match `SANDBOX_API_KEYS` on the API container. |
+
+3. Add your model key (see [Choose a model provider](#choose-a-model-provider)) and restart n8n.
+
+**Verify:**
 
 ```bash
-# Enable the module and choose a model
-N8N_ENABLED_MODULES=instance-ai
-N8N_INSTANCE_AI_MODEL=anthropic/claude-opus-4-8
-N8N_INSTANCE_AI_MODEL_API_KEY=sk-ant-xxx
-
-# Sandbox, required
-N8N_INSTANCE_AI_SANDBOX_ENABLED=true
-N8N_INSTANCE_AI_SANDBOX_PROVIDER=daytona
-N8N_INSTANCE_AI_SANDBOX_IMAGE=daytonaio/sandbox:0.5.3-slim
-
-# Daytona
-DAYTONA_API_URL=https://app.daytona.io/api
-DAYTONA_API_KEY=dtn_xxx
-
-# Web search, recommended
-INSTANCE_AI_BRAVE_SEARCH_API_KEY=BSA-xxx
+curl http://<sandbox-api-host>:8080/healthz
 ```
 
-These variables do the following:
+Expected response: `{"status":"ok"}`
 
-| Variable                           | Description                                                                                                         |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `N8N_ENABLED_MODULES`              | Must include `instance-ai` to enable the module.                                                                    |
-| `N8N_INSTANCE_AI_MODEL`            | Selects the LLM in `provider/model` format. Has a default (`anthropic/claude-opus-4-8`), so setting it is optional. |
-| `N8N_INSTANCE_AI_MODEL_API_KEY`    | API key for the selected provider.                                                                                  |
-| `N8N_INSTANCE_AI_SANDBOX_ENABLED`  | Set to `true`. AI Assistant requires a sandbox.                                                                     |
-| `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Sandbox provider. Use `daytona` for Daytona.                                                                        |
-| `N8N_INSTANCE_AI_SANDBOX_IMAGE`    | Base container image for Daytona sandboxes.                                                                         |
-| `DAYTONA_API_URL`                  | Daytona API endpoint.                                                                                               |
-| `DAYTONA_API_KEY`                  | Your Daytona API key.                                                                                               |
-| `INSTANCE_AI_BRAVE_SEARCH_API_KEY` | Brave Search API key for web search. This variable intentionally doesn't use the `N8N_` prefix.                     |
+**Notes:**
 
-### Docker Compose example
+* Replace `my-sandbox-api-key` with your own secret, and set matching registration-token and runner-key secrets on the API and runner containers. See the [Docker Compose guide](../install-options/install-using-docker-compose.md) for the full set of variables and how they connect.
+* `N8N_INSTANCE_AI_SANDBOX_API_KEY` must match a value in `SANDBOX_API_KEYS` on the sandbox API container.
+* The runner pulls its sandbox image on first use. For air-gapped setups, preload that image into the runner's inner Docker.
+* Hostnames matter. The certificates are issued for `sandbox-api` and `sandbox-runner-<n>`, so keep those service names or regenerate certificates with matching SANs.
 
-```yaml
-services:
-  n8n:
-    image: docker.n8n.io/n8nio/n8n
-    environment:
-      N8N_ENABLED_MODULES: instance-ai
-      N8N_INSTANCE_AI_MODEL: anthropic/claude-opus-4-8
-      N8N_INSTANCE_AI_MODEL_API_KEY: sk-ant-xxx
-      N8N_INSTANCE_AI_SANDBOX_ENABLED: 'true'
-      N8N_INSTANCE_AI_SANDBOX_PROVIDER: daytona
-      N8N_INSTANCE_AI_SANDBOX_IMAGE: daytonaio/sandbox:0.5.3-slim
-      DAYTONA_API_URL: https://app.daytona.io/api
-      DAYTONA_API_KEY: dtn_xxx
-      INSTANCE_AI_BRAVE_SEARCH_API_KEY: BSA-xxx
+### 3. Daytona (managed sandbox, recommended for production)
+
+Daytona creates sandboxes on demand instead of you hosting the containers yourself. It's the sandbox provider n8n recommends for production use.
+
+**What you need:** a Daytona account and API key, plus an LLM API key.
+
+**Steps:**
+
+1. Set these environment variables on your n8n instance:
+
+   ```bash
+   # Enable the module and choose a model
+   N8N_ENABLED_MODULES=instance-ai
+   N8N_INSTANCE_AI_MODEL=anthropic/claude-opus-4-8
+   N8N_INSTANCE_AI_MODEL_API_KEY=sk-ant-xxx
+
+   # Sandbox, required
+   N8N_INSTANCE_AI_SANDBOX_ENABLED=true
+   N8N_INSTANCE_AI_SANDBOX_PROVIDER=daytona
+   N8N_INSTANCE_AI_SANDBOX_IMAGE=daytonaio/sandbox:0.5.3-slim
+
+   # Daytona
+   DAYTONA_API_URL=https://app.daytona.io/api
+   DAYTONA_API_KEY=dtn_xxx
+
+   # Web search, recommended
+   INSTANCE_AI_BRAVE_SEARCH_API_KEY=BSA-xxx
+   ```
+
+   | Variable | Description |
+   | --- | --- |
+   | `N8N_ENABLED_MODULES` | Must include `instance-ai` to enable the module. |
+   | `N8N_INSTANCE_AI_MODEL` | Selects the LLM in `provider/model` format. Has a default (`anthropic/claude-opus-4-8`), so setting it is optional. |
+   | `N8N_INSTANCE_AI_MODEL_API_KEY` | API key for the selected provider. |
+   | `N8N_INSTANCE_AI_SANDBOX_ENABLED` | Set to `true`. AI Assistant requires a sandbox. |
+   | `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Set to `daytona`. |
+   | `N8N_INSTANCE_AI_SANDBOX_IMAGE` | Base container image for Daytona sandboxes. |
+   | `DAYTONA_API_URL` | Daytona API endpoint. |
+   | `DAYTONA_API_KEY` | Your Daytona API key. |
+   | `INSTANCE_AI_BRAVE_SEARCH_API_KEY` | Brave Search API key for web search. This variable intentionally doesn't use the `N8N_` prefix. |
+
+   Docker Compose example:
+
+   ```yaml
+   services:
+     n8n:
+       image: docker.io/n8nio/n8n
+       environment:
+         N8N_ENABLED_MODULES: instance-ai
+         N8N_INSTANCE_AI_MODEL: anthropic/claude-opus-4-8
+         N8N_INSTANCE_AI_MODEL_API_KEY: sk-ant-xxx
+         N8N_INSTANCE_AI_SANDBOX_ENABLED: 'true'
+         N8N_INSTANCE_AI_SANDBOX_PROVIDER: daytona
+         N8N_INSTANCE_AI_SANDBOX_IMAGE: daytonaio/sandbox:0.5.3-slim
+         DAYTONA_API_URL: https://app.daytona.io/api
+         DAYTONA_API_KEY: dtn_xxx
+         INSTANCE_AI_BRAVE_SEARCH_API_KEY: BSA-xxx
+   ```
+
+2. Restart n8n, open the editor, and confirm AI Assistant appears and responds.
+
+**Optional: tune the sandbox lifecycle**
+
+```bash
+N8N_INSTANCE_AI_SANDBOX_AUTO_STOP_MINUTES=15
+N8N_INSTANCE_AI_SANDBOX_AUTO_ARCHIVE_MINUTES=60
+N8N_INSTANCE_AI_SANDBOX_AUTO_DELETE_MINUTES=10080
 ```
 
-### Apply and verify
+{% hint style="info" %}
+By default, Daytona stops an idle sandbox after 15 minutes, archives a stopped sandbox after 1 hour, and deletes it after 7 days. Change these settings with the variables above.
+{% endhint %}
 
-After you set the variables:
-
-1. Restart all n8n processes.
-2. Open the editor.
-3. Confirm that AI Assistant appears and responds.
-
-### Choose a model provider
+## Choose a model provider
 
 `N8N_INSTANCE_AI_MODEL` uses this format:
 
@@ -8767,168 +8847,11 @@ N8N_INSTANCE_AI_MODEL_API_KEY=optional-key
 
 Some local servers don't require an API key.
 
-### Configure a sandbox provider
+## Enable web search
 
-AI Assistant runs its work in an isolated sandbox, so a sandbox provider is required.
+Web search lets AI Assistant look things up on the web. It's optional, and the rest of AI Assistant works without it.
 
-| Provider      | Best for                                                           |
-| ------------- | ------------------------------------------------------------------ |
-| `daytona`     | Recommended setup for most self-hosted instances.                  |
-| `n8n-sandbox` | Advanced setup when you want to host the sandbox service yourself. |
-
-### Option A: Daytona
-
-If you follow [Quick setup with Daytona](set-up-ai-assistant.md#quick-setup-with-daytona), you already have the required Daytona variables in place.
-
-Daytona creates sandboxes on demand.
-
-Tune the sandbox lifecycle with these variables:
-
-```bash
-N8N_INSTANCE_AI_SANDBOX_AUTO_STOP_MINUTES=15
-N8N_INSTANCE_AI_SANDBOX_AUTO_ARCHIVE_MINUTES=60
-N8N_INSTANCE_AI_SANDBOX_AUTO_DELETE_MINUTES=10080
-```
-
-{% hint style="info" %}
-By default, Daytona stops an idle sandbox after 15 minutes, archives a stopped sandbox after 1 hour, and deletes it after 7 days. Change these with the auto-stop, auto-archive, and auto-delete variables above.
-{% endhint %}
-
-### Option B: n8n Sandbox Service
-
-Use the [n8n Sandbox Service](https://github.com/n8n-io/n8n-sandbox-service) if you want to host the sandbox service yourself.
-
-{% hint style="warning" %}
-This is an advanced setup. Use Daytona unless you need to run the sandbox service yourself.
-{% endhint %}
-
-The n8n Sandbox Service has two containers:
-
-* `n8nio/n8n-sandbox-service-api`: the HTTP API that n8n talks to.
-* `n8nio/n8n-sandbox-service-runner-dind`: the runner that executes sandboxes as Docker-in-Docker containers.
-
-{% hint style="warning" %}
-The runner must run in privileged mode.
-{% endhint %}
-
-The API and runner communicate over mutual TLS. The API image includes a `bootstrap-mtls.sh` script that generates the certificates.
-
-#### Full Docker Compose example
-
-Run this alongside your n8n service:
-
-{% code expandable="true" %}
-```yaml
-volumes:
-  sandbox-tls:
-
-services:
-  # One-shot: generates mTLS certificates, then exits
-  sandbox-certs:
-    image: n8nio/n8n-sandbox-service-api:latest
-    user: '0:0'
-    entrypoint: ['sh', '-c']
-    command:
-      - >
-        bootstrap-mtls.sh --out-dir /tls --api-san sandbox-api
-        --control-san-prefix sandbox-runner --world-readable &&
-        chown -R sandbox-api:sandbox-api /tls/api && chmod -R a+rX /tls
-    environment:
-      NUM_RUNNERS: '1'
-    volumes:
-      - sandbox-tls:/tls
-
-  sandbox-api:
-    image: n8nio/n8n-sandbox-service-api:latest
-    depends_on:
-      sandbox-certs:
-        condition: service_completed_successfully
-    environment:
-      SANDBOX_API_KEYS: my-sandbox-api-key
-      SANDBOX_API_RUNNER_REGISTRATION_TOKEN: my-registration-token
-      SANDBOX_API_RUNNER_API_KEY: my-runner-key
-      SANDBOX_API_GRPC_TLS_CERT_FILE: /tls/api/grpc-server.crt
-      SANDBOX_API_GRPC_TLS_KEY_FILE: /tls/api/grpc-server.key
-      SANDBOX_API_GRPC_TLS_CLIENT_CA_FILE: /tls/api/ca.crt
-      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CA_FILE: /tls/api/ca.crt
-      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/api/control-grpc-api-client.crt
-      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/api/control-grpc-api-client.key
-      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_SERVER_NAME: sandbox-runner-1
-    volumes:
-      - sandbox-tls:/tls:ro
-
-  sandbox-runner-1:
-    image: n8nio/n8n-sandbox-service-runner-dind:latest
-    privileged: true
-    depends_on:
-      - sandbox-api
-    environment:
-      SANDBOX_RUNNER_API_KEYS: my-runner-key
-      SANDBOX_RUNNER_REGISTRATION_TOKEN: my-registration-token
-      SANDBOX_RUNNER_API_GRPC_ADDR: sandbox-api:9090
-      SANDBOX_RUNNER_HTTP_BASE_URL: http://sandbox-runner-1:8080
-      SANDBOX_RUNNER_CONTROL_GRPC_LISTEN_ADDR: ':9091'
-      SANDBOX_RUNNER_CONTROL_GRPC_ADVERTISE_ADDR: sandbox-runner-1:9091
-      SANDBOX_RUNNER_ID: runner-1
-      SANDBOX_RUNNER_DOCKER_SANDBOX_IMAGE: n8nio/n8n-sandbox-service-sandbox:latest
-      SANDBOX_RUNNER_REGISTRATION_GRPC_CA_FILE: /tls/runner/ca.crt
-      SANDBOX_RUNNER_REGISTRATION_GRPC_CERT_FILE: /tls/runner/grpc-client.crt
-      SANDBOX_RUNNER_REGISTRATION_GRPC_KEY_FILE: /tls/runner/grpc-client.key
-      SANDBOX_RUNNER_REGISTRATION_GRPC_SERVER_NAME: sandbox-api
-      SANDBOX_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/runner/control-grpc-server.crt
-      SANDBOX_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/runner/control-grpc-server.key
-      SANDBOX_RUNNER_CONTROL_GRPC_TLS_CLIENT_CA_FILE: /tls/runner/ca.crt
-    volumes:
-      - sandbox-tls:/tls:ro
-```
-{% endcode %}
-
-#### Point n8n at the sandbox service
-
-After the service is running, set these variables on your n8n instance:
-
-```bash
-N8N_INSTANCE_AI_SANDBOX_ENABLED=true
-N8N_INSTANCE_AI_SANDBOX_PROVIDER=n8n-sandbox
-N8N_SANDBOX_SERVICE_URL=http://sandbox-api:8080
-N8N_SANDBOX_SERVICE_API_KEY=my-sandbox-api-key
-```
-
-| Variable                           | Description                                         |
-| ---------------------------------- | --------------------------------------------------- |
-| `N8N_INSTANCE_AI_SANDBOX_ENABLED`  | Set to `true`.                                      |
-| `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Set to `n8n-sandbox`.                               |
-| `N8N_SANDBOX_SERVICE_URL`          | URL of the sandbox API, reachable from n8n.         |
-| `N8N_SANDBOX_SERVICE_API_KEY`      | Must match `SANDBOX_API_KEYS` on the API container. |
-
-Verify that the service is running:
-
-```bash
-curl http://<sandbox-api-host>:8080/healthz
-```
-
-Expected response:
-
-```json
-{"status":"ok"}
-```
-
-Notes:
-
-* Replace `my-sandbox-api-key`, `my-registration-token`, and `my-runner-key` with your own secrets.
-* The runner pulls `n8nio/n8n-sandbox-service-sandbox` from Docker Hub on first use.
-* For air-gapped setups, preload `n8nio/n8n-sandbox-service-sandbox` into the runner's inner Docker.
-* Hostnames matter. The certificates are issued for `sandbox-api` and `sandbox-runner-<n>`, so keep those service names or regenerate certificates with matching SANs.
-
-### Optional features
-
-After the base setup works, you can adjust web search.
-
-#### Enable web search
-
-Web search lets AI Assistant look things up on the web. It requires a search provider.
-
-Brave Search is the recommended provider. The recommended setup includes Brave Search by default. If you don't configure web search, the rest of AI Assistant still works, but the web-search action stays disabled.
+If you used the [one-line setup](../install-options/one-line-setup.md) or the [Docker Compose guide](../install-options/install-using-docker-compose.md), SearXNG is already bundled and running. No setup is needed unless you'd rather use Brave Search instead.
 
 ```bash
 # Brave Search
@@ -8942,18 +8865,16 @@ N8N_INSTANCE_AI_SEARXNG_URL=http://searxng:8080
 `INSTANCE_AI_BRAVE_SEARCH_API_KEY` intentionally doesn't use the `N8N_` prefix. Use the variable exactly as shown.
 {% endhint %}
 
-If you want web search, configure Brave Search. If you also configure SearXNG, Brave Search takes priority over SearXNG.
-
-Free or unauthenticated providers, including SearXNG, can hit rate limits. Use Brave Search for a more reliable setup.
+If you configure both, Brave Search takes priority over SearXNG. Free or unauthenticated providers, including SearXNG, can hit rate limits, so use Brave Search for a more reliable setup.
 
 If an instance admin selects a Brave Search or SearXNG credential in the AI settings UI, n8n uses that credential instead of these environment variables.
 
-### Enable agents
+## Enable agents
 
 Agents run on the same self-hosted stack as AI Assistant. Once AI Assistant works, add the `agents` module to [build and run agents on your instance](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents). Agents need n8n `2.32.3` (Beta) or later.
 
 {% hint style="warning" %}
-Agents aren't ready for self-hosted Enterprise yet. Support for self-hosted Enterprise is coming soon.
+Agents aren't ready for self-hosted Enterprise yet.
 {% endhint %}
 
 You build agents manually with just the `agents` module: you pick the model, write the instructions, and attach the tools and skills yourself. AI Assistant (`instance-ai`) is optional and adds AI-assisted building, where you describe an agent and n8n scaffolds it for you.
@@ -8972,12 +8893,12 @@ N8N_AGENTS_AI_SANDBOX_PROVIDER=daytona
 WEBHOOK_URL=https://your-public-url
 ```
 
-| Variable                        | Description                                                                                                                    |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `N8N_ENABLED_MODULES`           | Include `agents` to enable the module. Keep `instance-ai` for AI-assisted building.                                            |
-| `N8N_AGENTS_AI_SANDBOX_ENABLED` | Set to `true` to enable the knowledge base, so agents can search uploaded files. Requires a Daytona sandbox.                    |
-| `N8N_AGENTS_AI_SANDBOX_PROVIDER`| Sandbox provider for the knowledge base. Use `daytona`. Reuses the Daytona keys you set for AI Assistant.                       |
-| `WEBHOOK_URL`                   | Public, secure URL for your instance. Required to connect agents to channels such as Slack, Telegram, and Linear.              |
+| Variable | Description |
+| --- | --- |
+| `N8N_ENABLED_MODULES` | Include `agents` to enable the module. Keep `instance-ai` for AI-assisted building. |
+| `N8N_AGENTS_AI_SANDBOX_ENABLED` | Set to `true` to enable the knowledge base, so agents can search uploaded files. Requires a Daytona sandbox. |
+| `N8N_AGENTS_AI_SANDBOX_PROVIDER` | Sandbox provider for the knowledge base. Use `daytona`. Reuses the Daytona keys you set for AI Assistant. |
+| `WEBHOOK_URL` | Public, secure URL for your instance. Required to connect agents to channels such as Slack, Telegram, and Linear. |
 
 {% hint style="info" %}
 The knowledge base is a preview feature on self-hosted and needs the Daytona sandbox. Without it, the rest of the agent still works.
@@ -8985,7 +8906,7 @@ The knowledge base is a preview feature on self-hosted and needs the Daytona san
 
 For a full deployment example, see [Installation options](../install-options/README.md). After you enable the module, see [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents).
 
-### Disable AI Assistant
+## Disable AI Assistant
 
 To disable AI Assistant, remove `instance-ai` from `N8N_ENABLED_MODULES`.
 
@@ -8995,20 +8916,32 @@ You can also disable the module explicitly:
 N8N_DISABLED_MODULES=instance-ai
 ```
 
-### Troubleshooting
+## Troubleshooting
 
-If AI Assistant doesn't appear or doesn't work, check that:
+If AI Assistant doesn't appear or doesn't work, check for these issues.
+
+**General**
 
 * `N8N_ENABLED_MODULES` includes `instance-ai`.
 * The model value uses `provider/model` format if you set `N8N_INSTANCE_AI_MODEL`.
 * The API key is valid for the selected provider.
 * `N8N_INSTANCE_AI_SANDBOX_ENABLED` is set to `true`.
-* A sandbox provider is configured.
-* The sandbox provider is reachable from the n8n instance.
-* For Daytona, `DAYTONA_API_URL` and `DAYTONA_API_KEY` are set.
-* If you want web search, `INSTANCE_AI_BRAVE_SEARCH_API_KEY` is set, or `N8N_INSTANCE_AI_SEARXNG_URL` is set.
-* For n8n Sandbox Service, `N8N_SANDBOX_SERVICE_API_KEY` matches `SANDBOX_API_KEYS` on the API container.
-* The sandbox service health check returns `{"status":"ok"}`.
+
+**Self-hosted sandbox (setup 2)**
+
+* `N8N_INSTANCE_AI_SANDBOX_API_KEY` matches `SANDBOX_API_KEYS` on the API container.
+* The sandbox health check returns `{"status":"ok"}`.
+* `N8N_INSTANCE_AI_SANDBOX_API_URL` is reachable from the n8n container.
+
+**Daytona (setup 3)**
+
+* `DAYTONA_API_URL` and `DAYTONA_API_KEY` are set.
+* Your Daytona account has capacity to create a new sandbox.
+
+**Web search**
+
+* `INSTANCE_AI_BRAVE_SEARCH_API_KEY` is set, or `N8N_INSTANCE_AI_SEARXNG_URL` is set.
+* If nothing is set, this is expected. Web search is optional and the rest of AI Assistant still works.
 
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/durable-scheduler/
 
@@ -11177,6 +11110,7 @@ Unlike the main n8n image, you CANNOT use file-based configuration for secrets i
 | Variable | Type  | Default  | Description |
 | :------- | :---- | :------- | :---------- |
 | `N8N_RUNNERS_GRANT_TOKEN` | String | Random string | Token the runner uses to authenticate with the task broker. This is automatically provided by the launcher. |
+| `N8N_RUNNERS_ID` | String | Random string | ID the runner identifies itself with to the task broker. In `internal` mode, n8n sets it for each runner it launches. In `external` mode, leave it unset unless you need stable IDs in the broker logs: every runner needs a unique value, and two runners sharing one keep evicting each other. Set it per runner type as an `env-override` in the [runners config file](../../set-up-task-runners.md#configuring-launcher-in-runners-container-in-external-mode) (`/etc/n8n-task-runners.json`), not as a container environment variable. Available from n8n 2.35.0. |
 | `N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT` | Number | `15` | The number of seconds to wait before shutting down an idle runner. |
 | `N8N_RUNNERS_TASK_BROKER_URI` | String | `http://127.0.0.1:5679` | The URI of the task broker server (n8n instance). |
 | `N8N_RUNNERS_LAUNCHER_HEALTH_CHECK_PORT` | Number | `5680` | Port for the launcher's health check server. |
@@ -13845,7 +13779,13 @@ More granularly, consider blocking or opting out of features or data collection 
 
 === https://docs.n8n.io/docs/deploy/host-n8n/install-options/install-with-docker/
 
-# Docker Installation <a href="#docker-installation" id="docker-installation"></a>
+# Install with Docker
+
+{% hint style="warning" %}
+**This content is outdated.** Please refer to [Install using Docker Compose](install-using-docker-compose.md) for the recommended installation method.
+{% endhint %}
+
+## Docker Installation <a href="#docker-installation" id="docker-installation"></a>
 
 n8n recommends using [Docker](https://www.docker.com/) for most self-hosting needs. It provides a clean, isolated environment, avoids operating system and tooling incompatibilities, and makes database and environment management simpler.
 
@@ -13857,7 +13797,7 @@ You can also follow along with our video guide here:
 
 {% embed url="https://www.youtube.com/embed/6ET3G7GiqZA?si=mwCKbtyLqNCRc2pa" %}
 
-## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
+### Prerequisites <a href="#prerequisites" id="prerequisites"></a>
 
 Before proceeding, install Docker:
 
@@ -13866,7 +13806,7 @@ Before proceeding, install Docker:
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}
 
-## Starting n8n <a href="#starting-n8n" id="starting-n8n"></a>
+### Starting n8n <a href="#starting-n8n" id="starting-n8n"></a>
 
 From your terminal, run the following commands, replacing the `<YOUR_TIMEZONE>` placeholders with [your timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List):
 
@@ -13888,8 +13828,8 @@ This command creates a volume to store persistent data, downloads the required n
 
 * Maps and exposes port `5678` on the host.
 * Sets the timezone for the container:
-	* the `TZ` environment variable sets the system timezone to control what scripts and commands like `date` return.
-	* the [`GENERIC_TIMEZONE` environment variable](../configure-n8n/basic-configuration/use-environment-variables/timezone-and-localization.md) sets the correct timezone for schedule-oriented nodes like the [Schedule Trigger node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.scheduletrigger).
+  * the `TZ` environment variable sets the system timezone to control what scripts and commands like `date` return.
+  * the [`GENERIC_TIMEZONE` environment variable](../configure-n8n/basic-configuration/use-environment-variables/timezone-and-localization.md) sets the correct timezone for schedule-oriented nodes like the [Schedule Trigger node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.scheduletrigger).
 * Enforces secure file permissions for the n8n configuration file.
 * Enables [task runners](../configure-n8n/set-up-task-runners.md), the recommended way of executing tasks in n8n.
 * Mounts the `n8n_data` volume to the `/home/node/.n8n` directory to persist your data across container restarts.
@@ -13900,10 +13840,9 @@ This command creates a volume to store persistent data, downloads the required n
 From version 2.0 onwards, `N8N_RUNNERS_ENABLED` is deprecated and you no longer need to set it. It's still supported in version 1.x, where you must set it to `true` to enable task runners.
 {% endhint %}
 
-Once running, you can access n8n by opening:
-[http://localhost:5678](http://localhost:5678)
+Once running, you can access n8n by opening: [http://localhost:5678](http://localhost:5678)
 
-## Using with PostgreSQL <a href="#using-with-postgresql" id="using-with-postgresql"></a>
+### Using with PostgreSQL <a href="#using-with-postgresql" id="using-with-postgresql"></a>
 
 By default, n8n uses SQLite to save credentials[^1], past executions, and workflows. n8n also supports PostgreSQL, configurable using environment variables as detailed below.
 
@@ -13938,7 +13877,7 @@ docker run -it --rm \
 
 You can find a complete `docker-compose` file for PostgreSQL in the [n8n hosting repository](https://github.com/n8n-io/n8n-hosting/tree/main/docker-compose/withPostgres).
 
-## Updating <a href="#updating" id="updating"></a>
+### Updating <a href="#updating" id="updating"></a>
 
 To update n8n, in Docker Desktop, navigate to the **Images** tab and select **Pull** from the context menu to download the latest n8n image:
 
@@ -13973,13 +13912,13 @@ docker rm <container_id>
 docker run --name=<container_name> [options] -d docker.n8n.io/n8nio/n8n
 ```
 
-### Updating Docker Compose <a href="#updating-docker-compose" id="updating-docker-compose"></a>
+#### Updating Docker Compose <a href="#updating-docker-compose" id="updating-docker-compose"></a>
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/yA5x9FIRtnDGdghFU93g/" %}
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/WSJc9HCsn26Um2uT6zAQ/" %}
 
-### Full stack <a href="#full-stack" id="full-stack"></a>
+#### Full stack <a href="#full-stack" id="full-stack"></a>
 
 This runs n8n and cloudflared together in containers. The tunnel URL prints on startup and everything is wired automatically:
 
@@ -13987,7 +13926,7 @@ This runs n8n and cloudflared together in containers. The tunnel URL prints on s
 pnpm stack --tunnel
 ```
 
-### Services only <a href="#services-only" id="services-only"></a>
+#### Services only <a href="#services-only" id="services-only"></a>
 
 If you prefer to run n8n locally with `pnpm dev` or `pnpm start`, you can start cloudflared as a standalone service:
 
@@ -14012,12 +13951,479 @@ Clean up when done:
 pnpm --filter n8n-containers services:clean
 ```
 
-## Next steps <a href="#next-steps" id="next-steps"></a>
+### Next steps <a href="#next-steps" id="next-steps"></a>
 
 * Find more information about Docker setup in the README file for the [Docker image](https://github.com/n8n-io/n8n/tree/master/docker/images/n8n).
+
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/GtC2RL8itCPuNiwv5UUW/" %}
 
 [^1]: In n8n, credentials store authentication information to connect with specific apps and services. After creating credentials with your authentication information (username and password, API key, OAuth secrets, etc.), you can use the associated app node to interact with the service.
+
+=== https://docs.n8n.io/docs/deploy/host-n8n/install-options/install-using-docker-compose/
+
+## Who this is for
+
+This guide walks through building your own Docker Compose setup by hand, including the sandbox stack that powers the AI Assistant. Use it if you want full control over your configuration, or need to fold n8n into an existing Compose project.
+
+If you just want n8n (and the AI Assistant) running quickly without writing any files yourself, use the [one-line setup](../install-options/one-line-setup.md) instead; it sets up everything below automatically.
+
+## What you need before you start
+
+- Docker Engine and Docker Compose v2. Run `docker compose version` to check.
+- At least 4 GB of RAM and 2 vCPUs. The sandbox that runs AI-generated code (`sandbox-runner-1`) uses Docker-in-Docker, which needs more headroom than a typical container.
+
+{% hint style="info" %}
+**Windows users:** Use WSL, with either Docker Desktop (WSL2 backend) or Docker Engine installed directly in your Linux distro. Keep your project folder inside the WSL filesystem (for example, `~/n8n`), not under `/mnt/c/...`. Bind mounts across that boundary are slow and can cause permission issues.
+{% endhint %}
+
+## Step 1: Create a project folder
+
+```bash
+mkdir n8n && cd n8n
+```
+
+## Step 2: Create `.env`
+
+This file holds the secrets the sandbox services use to talk to each other. Create a file named `.env` with your own values in place of the placeholders and keep this file out of version control.
+
+```
+# Sandbox service secrets — pick your own values
+SANDBOX_API_KEYS=change-me-api-key
+SANDBOX_API_RUNNER_REGISTRATION_TOKEN=change-me-registration-token
+SANDBOX_API_RUNNER_API_KEY=change-me-runner-key
+
+# Must match a value in SANDBOX_API_KEYS above — this is how n8n authenticates to the sandbox
+N8N_INSTANCE_AI_SANDBOX_API_KEY=change-me-api-key
+
+# Web search: secret for the bundled SearXNG instance — pick your own value
+SEARXNG_SECRET=change-me-searxng-secret
+N8N_INSTANCE_AI_SEARXNG_URL=http://searxng:8080
+```
+
+You don't need an AI provider key yet; see [Turn on the AI Assistant](#optional-turn-on-the-ai-assistant) below once everything's running.
+
+## Step 3: Create `searxng-settings.yml`
+
+The stock SearXNG image only serves HTML; n8n's web search needs its JSON API, which this file turns on.
+
+```yaml
+use_default_settings: true
+search:
+  formats:
+    - html
+    - json
+```
+
+## Step 4: Create `compose.yml`
+
+This defines every service you're setting up: n8n itself, the sandbox stack that lets the AI Assistant safely run code, and SearXNG for web search.
+
+```yaml
+volumes:
+  sandbox-tls:
+
+services:
+  sandbox-certs:
+    image: ghcr.io/n8n-io/n8n-sandbox-service-api:latest
+    user: '0:0'
+    entrypoint: ['sh', '-c']
+    command:
+      - >
+        bootstrap-mtls.sh --out-dir /tls --api-san sandbox-api
+        --control-san-prefix sandbox-runner &&
+        chown -R sandbox-api:sandbox-api /tls/api
+    environment:
+      NUM_RUNNERS: '1'
+    volumes:
+      - sandbox-tls:/tls
+
+  sandbox-api:
+    image: ghcr.io/n8n-io/n8n-sandbox-service-api:latest
+    depends_on:
+      sandbox-certs:
+        condition: service_completed_successfully
+    environment:
+      SANDBOX_API_KEYS: ${SANDBOX_API_KEYS}
+      SANDBOX_API_RUNNER_REGISTRATION_TOKEN: ${SANDBOX_API_RUNNER_REGISTRATION_TOKEN}
+      SANDBOX_API_RUNNER_API_KEY: ${SANDBOX_API_RUNNER_API_KEY}
+      SANDBOX_API_GRPC_TLS_CERT_FILE: /tls/api/grpc-server.crt
+      SANDBOX_API_GRPC_TLS_KEY_FILE: /tls/api/grpc-server.key
+      SANDBOX_API_GRPC_TLS_CLIENT_CA_FILE: /tls/api/ca.crt
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CA_FILE: /tls/api/ca.crt
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/api/control-grpc-api-client.crt
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/api/control-grpc-api-client.key
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_SERVER_NAME: sandbox-runner-1
+    volumes:
+      - sandbox-tls:/tls:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    # Never publish 8080/9090 to the host on an internet-facing server.
+    # n8n reaches this container by service name over the default Compose network.
+
+  sandbox-runner-1:
+    image: ghcr.io/n8n-io/n8n-sandbox-service-runner-dind:latest
+    privileged: true
+    depends_on:
+      sandbox-api:
+        condition: service_healthy
+    environment:
+      SANDBOX_RUNNER_API_KEYS: ${SANDBOX_API_RUNNER_API_KEY}
+      SANDBOX_RUNNER_REGISTRATION_TOKEN: ${SANDBOX_API_RUNNER_REGISTRATION_TOKEN}
+      SANDBOX_RUNNER_API_GRPC_ADDR: sandbox-api:9090
+      SANDBOX_RUNNER_HTTP_BASE_URL: http://sandbox-runner-1:8080
+      SANDBOX_RUNNER_CONTROL_GRPC_LISTEN_ADDR: ':9091'
+      SANDBOX_RUNNER_CONTROL_GRPC_ADVERTISE_ADDR: sandbox-runner-1:9091
+      SANDBOX_RUNNER_ID: runner-1
+      SANDBOX_RUNNER_DOCKER_SANDBOX_IMAGE: ghcr.io/n8n-io/n8n-sandbox-service-sandbox:latest
+      SANDBOX_RUNNER_REGISTRATION_GRPC_CA_FILE: /tls/runner/ca.crt
+      SANDBOX_RUNNER_REGISTRATION_GRPC_CERT_FILE: /tls/runner/grpc-client.crt
+      SANDBOX_RUNNER_REGISTRATION_GRPC_KEY_FILE: /tls/runner/grpc-client.key
+      SANDBOX_RUNNER_REGISTRATION_GRPC_SERVER_NAME: sandbox-api
+      SANDBOX_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/runner/control-grpc-server.crt
+      SANDBOX_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/runner/control-grpc-server.key
+      SANDBOX_RUNNER_CONTROL_GRPC_TLS_CLIENT_CA_FILE: /tls/runner/ca.crt
+    volumes:
+      - sandbox-tls:/tls:ro
+    # Never expose this container's ports publicly — it runs privileged Docker-in-Docker.
+
+  searxng:
+    image: ghcr.io/searxng/searxng:latest
+    environment:
+      SEARXNG_SECRET: ${SEARXNG_SECRET}
+    volumes:
+      - ./searxng-settings.yml:/etc/searxng/settings.yml:ro
+    # Internal-only: n8n reaches it by service name. Never publish its port.
+
+  n8n:
+    image: docker.io/n8nio/n8n
+    depends_on:
+      sandbox-api:
+        condition: service_healthy
+    ports:
+      - "5678:5678"     # The only port that should be internet-facing
+    env_file: .env
+    environment:
+      N8N_ENABLED_MODULES: instance-ai
+      N8N_INSTANCE_AI_MODEL: anthropic/claude-opus-4-8
+      N8N_INSTANCE_AI_SANDBOX_ENABLED: 'true'
+      N8N_INSTANCE_AI_SANDBOX_IMAGE: ghcr.io/n8n-io/n8n-sandbox-service-sandbox:latest
+      N8N_INSTANCE_AI_SANDBOX_API_URL: http://sandbox-api:8080
+```
+
+## What you've just set up
+
+| Component | What it's for |
+|---|---|
+| **n8n** | The workflow editor itself, available at `http://localhost:5678`. |
+| **sandbox-certs** | Runs once to generate the TLS certificates the other sandbox services need, then exits. |
+| **sandbox-api** | The control plane n8n talks to when the AI Assistant needs to run code. |
+| **sandbox-runner-1** | Does the actual work; a privileged Docker-in-Docker container that creates and runs the sandboxes. |
+| **searxng** | Bundled web search backend for the AI Assistant. |
+
+This bundles n8n's own sandbox (`n8n-sandbox`), which is a good fit for local development and testing. For a production instance, n8n currently recommends Daytona as the sandbox provider instead. See [Set up the AI Assistant](../configure-n8n/set-up-ai-assistant.md) for how to configure a Daytona sandbox.
+
+There's no database service defined here. n8n falls back to its built-in SQLite database, stored inside the container unless you mount a volume for it. For a production instance, swap in Postgres. See [Use PostgreSQL instead of SQLite](#optional-use-postgresql-instead-of-sqlite) below.
+
+## Step 5: Start everything
+
+```bash
+docker compose up -d
+docker compose ps
+```
+
+Wait until `sandbox-api` shows `healthy`; `sandbox-runner-1` and `n8n` will then start automatically.
+
+## Step 6: Verify it's working
+
+```bash
+# sandbox-api is reachable from n8n
+docker compose exec n8n wget -qO- http://sandbox-api:8080/healthz
+
+# the runner registered itself with the API
+docker compose logs sandbox-api | grep -i runner
+
+# n8n is up
+curl -sf http://localhost:5678/healthz
+```
+
+Launch n8n by pointing your web browser to `http://localhost:5678`
+
+## Optional: Turn on the AI Assistant
+
+Everything above runs the full sandbox stack, but the AI Assistant itself stays off until you give it a model to use. You can do this from the n8n UI (in the instance's AI settings) once n8n is running, or via `.env` if you'd rather configure it before first login:
+
+1. Add your AI provider key to `.env`:
+
+   ```
+   N8N_INSTANCE_AI_MODEL_API_KEY=sk-ant-xxx
+   ```
+
+2. Restart n8n so it picks up the change:
+
+   ```bash
+   docker compose up -d n8n
+   ```
+
+Web search runs through the bundled SearXNG service by default. If you'd rather use Brave Search instead, you can set it from the UI or add your Brave API key to `.env`; it takes priority over SearXNG once set:
+
+```
+INSTANCE_AI_BRAVE_SEARCH_API_KEY=BSA-xxx
+```
+
+Full setup steps, including which model providers are supported, are in [Set up the AI Assistant](../configure-n8n/set-up-ai-assistant.md).
+
+## Optional: Use PostgreSQL instead of SQLite
+
+SQLite is fine for trying things out, but for a production instance that must handle more than a handful of users or workflows running around the clock use Postgres instead.
+
+1. Add the Postgres credentials to `.env`, alongside the sandbox secrets:
+
+   ```
+   POSTGRES_USER=change-me-user
+   POSTGRES_PASSWORD=change-me-password
+   POSTGRES_DB=n8n
+   ```
+
+2. Add a `postgres` service to `compose.yml`, and a volume for its data:
+
+   ``` yaml
+   volumes:
+     db-storage:
+
+   services:
+     postgres:
+       image: postgres:16
+       restart: always
+       environment:
+         POSTGRES_USER: ${POSTGRES_USER}
+         POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+         POSTGRES_DB: ${POSTGRES_DB}
+       volumes:
+         - db-storage:/var/lib/postgresql/data
+       healthcheck:
+         test: ["CMD-SHELL", "pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+         interval: 5s
+         timeout: 5s
+         retries: 10
+   ```
+
+3. Point n8n at it by adding these to the n8n service's environment block, and making it wait on Postgres too:
+
+   ``` yaml
+   environment:
+         # ...your existing N8N_ENABLED_MODULES, N8N_INSTANCE_AI_* settings stay as they are
+         DB_TYPE: postgresdb
+         DB_POSTGRESDB_HOST: postgres
+         DB_POSTGRESDB_PORT: '5432'
+         DB_POSTGRESDB_DATABASE: ${POSTGRES_DB}
+         DB_POSTGRESDB_USER: ${POSTGRES_USER}
+         DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
+     depends_on:
+       sandbox-api:
+         condition: service_healthy
+       postgres:
+         condition: service_healthy
+   ```
+
+4. Restart everything:
+
+   ``` bash
+   docker compose up -d
+   ```
+
+   n8n migrates itself to the new Postgres database on startup. Existing SQLite data doesn't carry over automatically. This is meant for a fresh instance, not an in-place migration.
+
+   {% hint style="info" %} For a more hardened setup, such as a dedicated non-root Postgres user and an external task runner, see the [`withPostgres` example](https://github.com/n8n-io/n8n-hosting/tree/main/docker-compose/withPostgres) in the n8n hosting repository.
+   {% endhint %}
+
+## Troubleshooting
+
+| Symptom | Likely cause |
+|---|---|
+| `sandbox-api` or `sandbox-runner-1` fail to start, cert errors | `sandbox-certs` didn't complete. Check `docker compose logs sandbox-certs`. |
+| `sandbox-api` never becomes `healthy` | Check its logs; also confirm `wget` actually exists in that image. |
+| `sandbox-runner-1` crash-loops on startup with `... must be set` errors | It's missing required environment variables, most commonly `SANDBOX_RUNNER_API_KEYS` or `SANDBOX_RUNNER_REGISTRATION_TOKEN`. For the full list of environment variables the runner requires, run `strings /usr/local/bin/sandbox-runner \| grep -oE 'SANDBOX_[A-Z_]+ must be set'` inside the runner container. |
+| Runner never registers with the API | `SANDBOX_RUNNER_REGISTRATION_TOKEN` mismatch, or `SANDBOX_RUNNER_API_GRPC_ADDR` wrong. |
+| n8n's sandbox calls fail | Sandbox URL/key in `.env` doesn't match `sandbox-api`'s address or `SANDBOX_API_KEYS`. |
+| Works on Linux, fails on WSL | Usually a bind-mount path issue; keep the project inside the WSL filesystem, not `/mnt/c/...`. |
+
+## Security checklist
+
+- `sandbox-runner-1` (`privileged: true`, Docker-in-Docker) is never exposed to the public internet. Treat it as equivalent to root on the host.
+- Only n8n's port is open on your cloud firewall.
+- `SANDBOX_API_KEYS`, the registration token, and the runner key are unique, not left as `change-me-...`, and rotated periodically.
+- `sandbox-api` and `sandbox-runner-1` do **not** use `env_file: .env`. Each only receives the specific variables it needs, explicitly, in its `environment` block. The model API key, Brave key, Postgres password, and n8n encryption key never reach the sandbox containers.
+- The mTLS keys under the `sandbox-tls` volume, including the root CA key, are locked down to `0600` and owned only by the service that needs them (`sandbox-api` for its own key; root for the runner's key and the CA key). None of them are world-readable.
+- You have a plan to regenerate the `sandbox-tls` volume. The certs `sandbox-certs` generates don't auto-renew.
+
+## Service architecture
+
+```mermaid
+flowchart LR
+    subgraph compose["docker-compose.yml (one project)"]
+        n8n["n8n"]
+        certs["sandbox-certs<br/>(runs once, then exits)"]
+        api["sandbox-api"]
+        runner["sandbox-runner-1<br/>(privileged, DinD)"]
+        sandboxes["sandbox containers<br/>(per execution)"]
+
+        certs -.->|TLS certs| api
+        certs -.->|TLS certs| runner
+        n8n -->|HTTP :8080| api
+        api -->|control gRPC| runner
+        runner --> sandboxes
+    end
+
+    classDef oneshot fill:#eee,stroke:#999,stroke-dasharray: 3 3;
+    class certs oneshot
+```
+
+n8n sends code execution requests to `sandbox-api`, which hands them to `sandbox-runner-1`, which creates and runs the actual sandbox containers. `sandbox-certs` runs once at startup to generate the TLS certificates the other two need and then exits; everything else waits on it.
+
+=== https://docs.n8n.io/docs/deploy/host-n8n/install-options/one-line-setup/
+
+# One-line setup <a href="#one-line-setup" id="one-line-setup"></a>
+
+## Who this is for
+
+This guide sets up a brand-new n8n instance with a single command that replaces the old `npm install n8n` / `npx n8n` approach, which no longer works from n8n 3.0 onwards (launching October 2026). It's the fastest way to get n8n running, whether or not you've used Docker before.
+
+It's meant for fresh installs, not for changing an existing setup:
+
+- **Already self-hosting with your own Docker Compose file?** You don't need to switch to this script, but feel free to take inspiration from [the Docker Compose setup process](./install-using-docker-compose.md).
+- **Currently installing n8n via npm?** From v3, n8n is only distributed through Docker. Your existing npm install keeps working for now, but new installs (and future upgrades) should use this method instead. A step-by-step migration guide is coming soon.
+
+## What you need before you start
+
+This method uses Docker, a tool that runs n8n in a self-contained package so you don't have to install or configure anything else yourself. If you don't already have it:
+
+- Install [Docker](https://docs.docker.com/get-docker/). This includes Docker Compose, which the setup command also needs.
+
+You don't need to know Docker to use this guide; just have it installed and running in the background.
+
+{% hint style="info" %}
+The one-line setup command requires the `docker compose` v2 plugin specifically (not the older standalone `docker-compose` binary), and checks that the Docker daemon is running. If you're using Podman, Colima, or other Docker-compatible engines, install the `docker` CLI with the compose plugin and point `DOCKER_HOST` at their socket.
+{% endhint %}
+
+## Run the command
+
+Open a terminal and run:
+
+```bash
+curl -fsSL https://get.n8n.io | sh -s -- --version 2.35.0
+```
+
+The version specification is necessary until n8n 2.35.0 (currently a beta release) is a stable release.
+
+This does everything for you:
+
+1. Checks that Docker is installed and running, and tells you how to fix it if not.
+2. Creates a new folder called `n8n` in your current directory to hold everything.
+3. Writes the configuration files n8n needs to run.
+4. Downloads n8n and starts it up.
+
+It's safe to run more than once. If n8n is already set up in that folder, the command just tells you it's already there instead of changing anything.
+
+A successful run looks like this:
+
+```
+$ curl -fsSL https://get.n8n.io | sh
+
+✓ Docker found (24.0.6)
+✓ Docker Compose found (v2.24.0)
+✓ Created ./n8n/compose.yml
+✓ Created ./n8n/searxng-settings.yml
+✓ Created ./n8n/.env (unique secrets generated)
+Pulling images and starting (this can take a few minutes on first run)...
+✓ Started n8n 2.32.0 and sandbox services
+
+n8n is running at: http://localhost:5678
+Data stored in:    ./n8n (Docker volume: n8n-data)
+Config files:      ./n8n/compose.yml, ./n8n/.env
+
+To stop:      docker compose -f ./n8n/compose.yml down
+To upgrade:   curl -fsSL https://get.n8n.io | sh -s -- --upgrade
+To uninstall: docker compose -f ./n8n/compose.yml down -v   # -v DELETES all n8n data
+              rm -rf ./n8n
+```
+
+{% hint style="warning" %}
+n8n takes a few moments to finish starting the first time. The command waits and only prints the URL once it's ready. If the page doesn't load right away, wait a bit and refresh.
+{% endhint %}
+
+## What's included by default
+
+Running the command sets up everything below automatically. There's nothing extra to install:
+
+| Component | What it's for |
+|---|---|
+| **n8n** | The workflow editor itself, running at `http://localhost:5678`. |
+| **A built-in database** | Stores your workflows, credentials, and execution history. This is [SQLite](https://www.sqlite.org/), a lightweight database that lives in a file. There is no separate database server to install or manage. |
+| **AI Assistant support services** | A sandbox that safely runs code the AI Assistant writes, and a bundled search tool so it can look things up on the web. These start automatically alongside n8n, but the assistant itself stays switched off until you add an AI provider key. See [Turn on the AI Assistant](#optional-turn-on-the-ai-assistant) |
+
+If you're setting n8n up for a team or a production environment, you'll likely want a more robust database like Postgres rather than the built-in default. See [Install using Docker Compose](./install-using-docker-compose.md) for that setup.
+
+The same goes for the sandbox: this setup uses n8n's own bundled sandbox, which is a good fit for trying things out, but for production, n8n currently recommends Daytona instead. See [Set up the AI Assistant](../configure-n8n/set-up-ai-assistant.md) for how to configure it.
+
+## Optional: Turn on the AI Assistant
+
+n8n works fully without the AI Assistant, which is an optional extra. Once n8n is running, the easiest way to turn it on is from the UI in the instance's AI settings. Add your model API key there. Prefer to configure it before you ever log in? Edit `.env` instead:
+
+1. Open the `.env` file the command created (in `./n8n/.env` by default).
+2. Add your AI provider key to the `N8N_INSTANCE_AI_MODEL_API_KEY` line.
+3. Restart n8n: `docker compose -f ./n8n/compose.yml up -d`
+
+Full setup steps, including which providers are supported, are in [Set up the AI Assistant](../configure-n8n/set-up-ai-assistant.md).
+
+By default, the AI Assistant's web search runs through a bundled search tool with no setup needed. If you'd rather use Brave Search, add your Brave API key to `INSTANCE_AI_BRAVE_SEARCH_API_KEY` in the same `.env` file. It's used automatically once it's set.
+
+{% hint style="info" %}
+You don't need to open any extra ports or configure anything for these services. Only n8n itself (port `5678`) is ever reachable from outside your machine. Everything else stays private by default.
+{% endhint %}
+
+## Everyday commands
+
+| To do this | Run this |
+|---|---|
+| Stop n8n | `docker compose -f ./n8n/compose.yml down` |
+| Start it again | `docker compose -f ./n8n/compose.yml up -d` |
+| Upgrade to the latest version | `curl -fsSL https://get.n8n.io \| sh -s -- --upgrade` |
+| Remove n8n and delete its data | `docker compose -f ./n8n/compose.yml down -v` then `rm -rf ./n8n` |
+
+## Flags (for more control)
+
+Adding these to the end of the install command changes what it does:
+
+| Flag | What it does |
+|---|---|
+| `--version` | On its own, shows the script's version and the latest n8n version it would install. Followed by a version number (for example, `--version 2.31.4`), installs or upgrades to that specific version. |
+| `--no-start` | Sets up the configuration files without starting n8n yet. |
+| `--upgrade` | Upgrades an existing install to a newer n8n version. Only updates the version number; your data, settings, and any customizations are left alone. |
+| `--help` | Shows all available options. |
+
+## Prefer not to run a script from the internet?
+
+You can download and read it first, then run it yourself:
+
+```bash
+curl -fsSL https://get.n8n.io -o get-n8n.sh
+less get-n8n.sh   # review it
+sh get-n8n.sh
+```
+
+## Windows users
+
+The one-line setup command needs a terminal that understands shell scripts, which the standard Windows Command Prompt or PowerShell don't. Run it instead from:
+
+- **WSL** (Windows Subsystem for Linux), with Docker Desktop's WSL2 integration turned on.
+- **Git Bash** (installed alongside [Git for Windows](https://git-scm.com/downloads/win)) with Docker Desktop running can also run POSIX shell scripts, but it hasn't been verified end-to-end for the one-line setup command. Stick with WSL unless you've confirmed Git Bash works for your setup.
+
+
+
 
 === https://docs.n8n.io/docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-heroku/
 
@@ -15168,6 +15574,8 @@ This hosting guide shows you how to self-host n8n on a Hetzner cloud server. It 
 * [Caddy](https://caddyserver.com) (a reverse proxy) to allow access to the Server from the internet.
 * [Docker Compose](https://docs.docker.com/compose/) to create and define the application components and how they work together.
 
+Once n8n is up and running, an optional last section covers adding the AI Assistant.
+
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/YLv7Cqg70tj1alDgktSX/" %}
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}
@@ -15183,7 +15591,7 @@ You can change most of the settings to suit your needs, but as this guide uses D
 {% hint style="info" %}
 **Type**
 
-When creating the server, Hetzner asks you to choose a plan. For most usage levels, the CPX11 type is enough.
+When creating the server, Hetzner asks you to choose a plan. For most usage levels, the CPX11 type is enough. If you plan to add the AI Assistant, choose a plan with at least 4 GB RAM / 2 vCPU instead. CPX11 doesn't have enough headroom once the sandbox is added.
 {% endhint %}
 {% hint style="info" %}
 **SSH keys**
@@ -15255,6 +15663,8 @@ sudo ufw allow 80
 sudo ufw allow 443
 ```
 
+{% hint style="info" %} If you add the AI Assistant later, its sandbox services stay internal to the Compose network. You don't need to open any additional ports for them. {% endhint %}
+
 ## Configure n8n <a href="#configure-n8n" id="configure-n8n"></a>
 
 n8n needs some environment variables set to pass to the application running in the Docker container. The example `.env` file contains placeholders you need to replace with values of your own.
@@ -15271,7 +15681,7 @@ Refer to [Environment variables](../../configure-n8n/basic-configuration/use-env
 
 ## The Docker Compose file <a href="#the-docker-compose-file" id="the-docker-compose-file"></a>
 
-The Docker Compose file (`docker-compose.yml`) defines the services the application needs, in this case Caddy and n8n.
+The Docker Compose file (`docker-compose.yml`) defines the services the application needs, in this case Caddy and n8n. There's no separate database service. n8n uses its built-in SQLite database by default.
 
 - The Caddy service definition defines the ports it uses and the local volumes to copy to the containers.
 - The n8n service definition defines the ports it uses, the environment variables n8n needs to run (some defined in the `.env` file), and the volumes it needs to copy to the containers.
@@ -15281,6 +15691,8 @@ The Docker Compose file uses the environment variables set in the `.env` file, s
 ```shell
 nano docker-compose.yml
 ```
+
+{% hint style="info" %} This repository currently pulls the n8n image via `docker.n8n.io/n8nio/n8n`, which can hit rate limits. n8n recommends `docker.io/n8nio/n8n` instead. If you hit pull issues, try changing the `image:` line to `docker.io/n8nio/n8n`. {% endhint %}
 
 ## Configure Caddy <a href="#configure-caddy" id="configure-caddy"></a>
 
@@ -15321,6 +15733,146 @@ You can stop n8n and Caddy with the following command:
 ```shell
 sudo docker compose stop
 ```
+
+## Optional: Add the AI Assistant <a href="#optional-add-the-ai-assistant" id="optional-add-the-ai-assistant"></a>
+
+The AI Assistant needs a sandbox to run code in. You can add the same sandbox stack used in the [Docker Compose guide](../install-using-docker-compose.md) to this setup. A few things are worth knowing before you start:
+
+* This sandbox is suitable for local development and testing. The stack below uses n8n's own bundled sandbox (`n8n-sandbox`). Since a DigitalOcean droplet with a public domain is often a real deployment, consider Daytona instead if this is going to production.
+* **Resize if needed.** The sandbox runner uses Docker-in-Docker, which needs more headroom than n8n alone. Make sure you provision at least 4 GB RAM / 2 vCPU.
+* **No networking changes required.** Caddy only ever proxies n8n itself; the sandbox services stay internal to the Compose network and don't need DNS, firewall, or Caddyfile changes.
+
+1. Add the sandbox secrets to `.env`, alongside the variables already there:
+
+   ```
+   # Sandbox service secrets — pick your own values
+   SANDBOX_API_KEYS=change-me-api-key
+   SANDBOX_API_RUNNER_REGISTRATION_TOKEN=change-me-registration-token
+   SANDBOX_API_RUNNER_API_KEY=change-me-runner-key
+
+   # Web search: secret for the bundled SearXNG instance — pick your own value
+   SEARXNG_SECRET=change-me-searxng-secret
+   ```
+
+2. Create a `searxng-settings.yml` file alongside your other config files (the stock SearXNG image only serves HTML; this turns on the JSON API n8n's web search needs):
+
+   ``` yaml
+   use_default_settings: true
+   search:
+     formats:
+       - html
+       - json
+   ```
+
+3. Open `docker-compose.yml` and add the sandbox and search services alongside the existing `caddy` and `n8n` services:
+
+   ```yaml
+   volumes:
+     sandbox-tls:
+
+   services:
+     sandbox-certs:
+       image: ghcr.io/n8n-io/n8n-sandbox-service-api:latest
+       user: '0:0'
+       entrypoint: ['sh', '-c']
+       command:
+         - >
+           bootstrap-mtls.sh --out-dir /tls --api-san sandbox-api
+           --control-san-prefix sandbox-runner &&
+           chown -R sandbox-api:sandbox-api /tls/api
+       environment:
+         NUM_RUNNERS: '1'
+       volumes:
+         - sandbox-tls:/tls
+
+     sandbox-api:
+       image: ghcr.io/n8n-io/n8n-sandbox-service-api:latest
+       depends_on:
+         sandbox-certs:
+           condition: service_completed_successfully
+       environment:
+         SANDBOX_API_KEYS: ${SANDBOX_API_KEYS}
+         SANDBOX_API_RUNNER_REGISTRATION_TOKEN: ${SANDBOX_API_RUNNER_REGISTRATION_TOKEN}
+         SANDBOX_API_RUNNER_API_KEY: ${SANDBOX_API_RUNNER_API_KEY}
+         SANDBOX_API_GRPC_TLS_CERT_FILE: /tls/api/grpc-server.crt
+         SANDBOX_API_GRPC_TLS_KEY_FILE: /tls/api/grpc-server.key
+         SANDBOX_API_GRPC_TLS_CLIENT_CA_FILE: /tls/api/ca.crt
+         SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CA_FILE: /tls/api/ca.crt
+         SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/api/control-grpc-api-client.crt
+         SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/api/control-grpc-api-client.key
+         SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_SERVER_NAME: sandbox-runner-1
+       volumes:
+         - sandbox-tls:/tls:ro
+       healthcheck:
+         test: ["CMD", "wget", "-qO-", "http://localhost:8080/healthz"]
+         interval: 5s
+         timeout: 3s
+         retries: 5
+         start_period: 10s
+       # Never publish 8080/9090 — Caddy never routes to this service, and it shouldn't.
+
+     sandbox-runner-1:
+       image: ghcr.io/n8n-io/n8n-sandbox-service-runner-dind:latest
+       privileged: true
+       depends_on:
+         sandbox-api:
+           condition: service_healthy
+       environment:
+         SANDBOX_RUNNER_API_KEYS: ${SANDBOX_API_RUNNER_API_KEY}
+         SANDBOX_RUNNER_REGISTRATION_TOKEN: ${SANDBOX_API_RUNNER_REGISTRATION_TOKEN}
+         SANDBOX_RUNNER_API_GRPC_ADDR: sandbox-api:9090
+         SANDBOX_RUNNER_HTTP_BASE_URL: http://sandbox-runner-1:8080
+         SANDBOX_RUNNER_CONTROL_GRPC_LISTEN_ADDR: ':9091'
+         SANDBOX_RUNNER_CONTROL_GRPC_ADVERTISE_ADDR: sandbox-runner-1:9091
+         SANDBOX_RUNNER_ID: runner-1
+         SANDBOX_RUNNER_DOCKER_SANDBOX_IMAGE: ghcr.io/n8n-io/n8n-sandbox-service-sandbox:latest
+         SANDBOX_RUNNER_REGISTRATION_GRPC_CA_FILE: /tls/runner/ca.crt
+         SANDBOX_RUNNER_REGISTRATION_GRPC_CERT_FILE: /tls/runner/grpc-client.crt
+         SANDBOX_RUNNER_REGISTRATION_GRPC_KEY_FILE: /tls/runner/grpc-client.key
+         SANDBOX_RUNNER_REGISTRATION_GRPC_SERVER_NAME: sandbox-api
+         SANDBOX_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/runner/control-grpc-server.crt
+         SANDBOX_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/runner/control-grpc-server.key
+         SANDBOX_RUNNER_CONTROL_GRPC_TLS_CLIENT_CA_FILE: /tls/runner/ca.crt
+       volumes:
+         - sandbox-tls:/tls:ro
+       # Never expose this container's ports publicly — it runs privileged Docker-in-Docker.
+
+     searxng:
+       image: ghcr.io/searxng/searxng:latest
+       environment:
+         SEARXNG_SECRET: ${SEARXNG_SECRET}
+       volumes:
+         - ./searxng-settings.yml:/etc/searxng/settings.yml:ro
+       # Internal-only: n8n reaches it by service name. Never publish its port, and don't route Caddy to it.
+   ```
+
+4. Add the matching sandbox variables to the existing `n8n` service's `environment` block:
+
+   ```yaml
+   environment:
+    # ...your existing N8N_HOST, N8N_PORT, etc. stay as they are
+    - N8N_ENABLED_MODULES=instance-ai
+    - N8N_INSTANCE_AI_SANDBOX_ENABLED=true
+    - N8N_INSTANCE_AI_SANDBOX_PROVIDER=n8n-sandbox
+    - N8N_INSTANCE_AI_SANDBOX_API_URL=http://sandbox-api:8080
+    - N8N_INSTANCE_AI_SANDBOX_API_KEY=${SANDBOX_API_KEYS}
+    - N8N_INSTANCE_AI_SEARXNG_URL=http://searxng:8080
+   depends_on:
+    sandbox-api:
+      condition: service_healthy
+   ```
+
+5. Restart everything so the new services pick up the changes:
+
+   ```bash
+   sudo docker compose up -d
+   ```
+
+6. Add your model API key. See [Set up AI Assistant](../../configure-n8n/set-up-ai-assistant.md) for the full reference, including how to pick a model provider. Web search works out of the box via the bundled SearXNG service above; add a Brave Search key instead if you'd rather use that.
+
+{% hint style="warning" %}
+Replace the `change-me-...` placeholders in `.env` with your own unique secrets before exposing this Droplet to the internet. `sandbox-runner-1` runs privileged Docker-in-Docker. Never publish its ports, and don't route Caddy to it.
+{% endhint %}
 
 ## Updating <a href="#updating" id="updating"></a>
 
@@ -16074,10 +16626,12 @@ kubectl delete -f .
 
 # Hosting n8n on DigitalOcean <a href="#hosting-n8n-on-digitalocean" id="hosting-n8n-on-digitalocean"></a>
 
-This hosting guide shows you how to self-host n8n on a DigitalOcean droplet. It uses:
+This hosting guide shows you how to self-host n8n on a DigitalOcean droplet with a real domain and automatic HTTPS. It uses:
 
-* [Caddy](https://caddyserver.com) (a reverse proxy) to allow access to the Droplet from the internet. Caddy will also automatically create and manage SSL / TLS certificates for your n8n instance.
+* [Caddy](https://caddyserver.com) (a reverse proxy) to allow access to the Droplet from the internet. Caddy also automatically creates and manages SSL/TLS certificates for your n8n instance.
 * [Docker Compose](https://docs.docker.com/compose/) to create and define the application components and how they work together.
+
+Once n8n is up and running, an optional last section covers adding the AI Assistant.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/YLv7Cqg70tj1alDgktSX/" %}
 
@@ -16095,11 +16649,13 @@ This hosting guide shows you how to self-host n8n on a DigitalOcean droplet. It 
 
 When creating the Droplet, DigitalOcean asks you to choose a plan. For most usage levels, a basic shared CPU plan is enough.
 {% endhint %}
+
 {% hint style="info" %}
 **SSH key or Password**
 
 DigitalOcean lets you choose between SSH key and password-based authentication. SSH keys are considered more secure.
 {% endhint %}
+
 ## Log in to your Droplet and create new user <a href="#log-in-to-your-droplet-and-create-new-user" id="log-in-to-your-droplet-and-create-new-user"></a>
 
 The rest of this guide requires you to log in to the Droplet using a terminal with SSH. Refer to [How to Connect to Droplets with SSH](https://docs.digitalocean.com/products/droplets/how-to/connect-with-ssh/) for more information.
@@ -16189,7 +16745,7 @@ Refer to [Environment variables](../../configure-n8n/basic-configuration/use-env
 
 ## The Docker Compose file <a href="#the-docker-compose-file" id="the-docker-compose-file"></a>
 
-The Docker Compose file (`docker-compose.yml`) defines the services the application needs, in this case Caddy and n8n.
+The Docker Compose file (`docker-compose.yml`) defines the services the application needs, in this case Caddy and n8n. There's no separate database service — n8n uses its built-in SQLite database by default.
 
 - The Caddy service definition defines the ports it uses and the local volumes to copy to the containers.
 - The n8n service definition defines the ports it uses, the environment variables n8n needs to run (some defined in the `.env` file), and the volumes it needs to copy to the containers.
@@ -16199,6 +16755,8 @@ The Docker Compose file uses the environment variables set in the `.env` file, s
 ```shell
 nano docker-compose.yml
 ```
+
+{% hint style="info" %} This repository currently pulls the n8n image via `docker.n8n.io/n8nio/n8n`, which can hit rate limits. n8n recommends `docker.io/n8nio/n8n` instead. If you hit pull issues, try changing the `image:` line to `docker.io/n8nio/n8n`. {% endhint %}
 
 ## Configure Caddy <a href="#configure-caddy" id="configure-caddy"></a>
 
@@ -16240,7 +16798,7 @@ This may take a few minutes.
 
 ## Test your setup <a href="#test-your-setup" id="test-your-setup"></a>
 
-In your browser, open the URL formed of the subdomain and domain name defined earlier. Enter the user name and password defined earlier, and you should be able to access n8n.
+In your browser, open the URL formed of the subdomain and domain name defined earlier. The first time you open it, n8n prompts you to create an owner account.
 
 ## Stop n8n and Caddy <a href="#stop-n8n-and-caddy" id="stop-n8n-and-caddy"></a>
 
@@ -16249,6 +16807,147 @@ You can stop n8n and Caddy with the following command:
 ```shell
 sudo docker compose stop
 ```
+
+## Optional: Add the AI Assistant <a href="#optional-add-the-ai-assistant" id="optional-add-the-ai-assistant"></a>
+
+The AI Assistant needs a sandbox to run code in. You can add the same sandbox stack used in the [Docker Compose guide](../install-using-docker-compose.md) to this setup. A few things are worth knowing before you start:
+
+* This sandbox is suitable for local development and testing. The stack below uses n8n's own bundled sandbox (`n8n-sandbox`). Since a DigitalOcean droplet with a public domain is often a real deployment, consider Daytona instead if this is going to production.
+* **Resize if needed.** The sandbox runner uses Docker-in-Docker, which needs more headroom than n8n alone. Make sure you provision at least 4 GB RAM / 2 vCPU.
+* **No networking changes required.** Caddy only ever proxies n8n itself; the sandbox services stay internal to the Compose network and don't need DNS, firewall, or Caddyfile changes.
+
+1. Add the sandbox secrets to `.env`, alongside the variables already there:
+
+   ```
+   # Sandbox service secrets — pick your own values
+   SANDBOX_API_KEYS=change-me-api-key
+   SANDBOX_API_RUNNER_REGISTRATION_TOKEN=change-me-registration-token
+   SANDBOX_API_RUNNER_API_KEY=change-me-runner-key
+
+   # Web search: secret for the bundled SearXNG instance — pick your own value
+   SEARXNG_SECRET=change-me-searxng-secret
+   ```
+
+2. Create a `searxng-settings.yml` file alongside your other config files (the stock SearXNG image only serves HTML; this turns on the JSON API n8n's web search needs):
+
+   ``` yaml
+   use_default_settings: true
+   search:
+     formats:
+       - html
+       - json
+   ```
+
+3. Open `docker-compose.yml` and add the sandbox and search services alongside the existing `caddy` and `n8n` services:
+
+   ```yaml
+   volumes:
+     sandbox-tls:
+
+   services:
+     sandbox-certs:
+       image: ghcr.io/n8n-io/n8n-sandbox-service-api:latest
+       user: '0:0'
+       entrypoint: ['sh', '-c']
+       command:
+         - >
+           bootstrap-mtls.sh --out-dir /tls --api-san sandbox-api
+           --control-san-prefix sandbox-runner &&
+           chown -R sandbox-api:sandbox-api /tls/api
+       environment:
+         NUM_RUNNERS: '1'
+       volumes:
+         - sandbox-tls:/tls
+
+     sandbox-api:
+       image: ghcr.io/n8n-io/n8n-sandbox-service-api:latest
+       depends_on:
+         sandbox-certs:
+           condition: service_completed_successfully
+       environment:
+         SANDBOX_API_KEYS: ${SANDBOX_API_KEYS}
+         SANDBOX_API_RUNNER_REGISTRATION_TOKEN: ${SANDBOX_API_RUNNER_REGISTRATION_TOKEN}
+         SANDBOX_API_RUNNER_API_KEY: ${SANDBOX_API_RUNNER_API_KEY}
+         SANDBOX_API_GRPC_TLS_CERT_FILE: /tls/api/grpc-server.crt
+         SANDBOX_API_GRPC_TLS_KEY_FILE: /tls/api/grpc-server.key
+         SANDBOX_API_GRPC_TLS_CLIENT_CA_FILE: /tls/api/ca.crt
+         SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CA_FILE: /tls/api/ca.crt
+         SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/api/control-grpc-api-client.crt
+         SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/api/control-grpc-api-client.key
+         SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_SERVER_NAME: sandbox-runner-1
+       volumes:
+         - sandbox-tls:/tls:ro
+       healthcheck:
+         test: ["CMD", "wget", "-qO-", "http://localhost:8080/healthz"]
+         interval: 5s
+         timeout: 3s
+         retries: 5
+         start_period: 10s
+       # Never publish 8080/9090 — Caddy never routes to this service, and it shouldn't.
+
+     sandbox-runner-1:
+       image: ghcr.io/n8n-io/n8n-sandbox-service-runner-dind:latest
+       privileged: true
+       depends_on:
+         sandbox-api:
+           condition: service_healthy
+       environment:
+         SANDBOX_RUNNER_API_KEYS: ${SANDBOX_API_RUNNER_API_KEY}
+         SANDBOX_RUNNER_REGISTRATION_TOKEN: ${SANDBOX_API_RUNNER_REGISTRATION_TOKEN}
+         SANDBOX_RUNNER_API_GRPC_ADDR: sandbox-api:9090
+         SANDBOX_RUNNER_HTTP_BASE_URL: http://sandbox-runner-1:8080
+         SANDBOX_RUNNER_CONTROL_GRPC_LISTEN_ADDR: ':9091'
+         SANDBOX_RUNNER_CONTROL_GRPC_ADVERTISE_ADDR: sandbox-runner-1:9091
+         SANDBOX_RUNNER_ID: runner-1
+         SANDBOX_RUNNER_DOCKER_SANDBOX_IMAGE: ghcr.io/n8n-io/n8n-sandbox-service-sandbox:latest
+         SANDBOX_RUNNER_REGISTRATION_GRPC_CA_FILE: /tls/runner/ca.crt
+         SANDBOX_RUNNER_REGISTRATION_GRPC_CERT_FILE: /tls/runner/grpc-client.crt
+         SANDBOX_RUNNER_REGISTRATION_GRPC_KEY_FILE: /tls/runner/grpc-client.key
+         SANDBOX_RUNNER_REGISTRATION_GRPC_SERVER_NAME: sandbox-api
+         SANDBOX_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/runner/control-grpc-server.crt
+         SANDBOX_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/runner/control-grpc-server.key
+         SANDBOX_RUNNER_CONTROL_GRPC_TLS_CLIENT_CA_FILE: /tls/runner/ca.crt
+       volumes:
+         - sandbox-tls:/tls:ro
+       # Never expose this container's ports publicly — it runs privileged Docker-in-Docker.
+
+     searxng:
+       image: ghcr.io/searxng/searxng:latest
+       environment:
+         SEARXNG_SECRET: ${SEARXNG_SECRET}
+       volumes:
+         - ./searxng-settings.yml:/etc/searxng/settings.yml:ro
+       # Internal-only: n8n reaches it by service name. Never publish its port, and don't route Caddy to it.
+   ```
+
+4. Add the matching sandbox variables to the existing `n8n` service's `environment` block:
+
+   ```yaml
+   environment:
+    # ...your existing N8N_HOST, N8N_PORT, etc. stay as they are
+    - N8N_ENABLED_MODULES=instance-ai
+    - N8N_INSTANCE_AI_SANDBOX_ENABLED=true
+    - N8N_INSTANCE_AI_SANDBOX_PROVIDER=n8n-sandbox
+    - N8N_INSTANCE_AI_SANDBOX_API_URL=http://sandbox-api:8080
+    - N8N_INSTANCE_AI_SANDBOX_API_KEY=${SANDBOX_API_KEYS}
+    - N8N_INSTANCE_AI_SEARXNG_URL=http://searxng:8080
+   depends_on:
+    sandbox-api:
+      condition: service_healthy
+   ```
+
+5. Restart everything so the new services pick up the changes:
+
+   ```bash
+   sudo docker compose up -d
+   ```
+
+6. Add your model API key. See [Set up AI Assistant](../../configure-n8n/set-up-ai-assistant.md) for the full reference, including how to pick a model provider. Web search works out of the box via the bundled SearXNG service above; add a Brave Search key instead if you'd rather use that.
+
+{% hint style="warning" %}
+Replace the `change-me-...` placeholders in `.env` with your own unique secrets before exposing this Droplet to the internet. `sandbox-runner-1` runs privileged Docker-in-Docker. Never publish its ports, and don't route Caddy to it.
+{% endhint %}
+
 ## Updating <a href="#updating" id="updating"></a>
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/yA5x9FIRtnDGdghFU93g/" %}
@@ -16533,6 +17232,14 @@ Lastly, you must setup OAuth for these services. Visit `https://console.cloud.go
 === https://docs.n8n.io/docs/deploy/host-n8n/install-options/README/
 # Install options <a href="#install-options" id="install-options"></a>
 
+{% content-ref url="one-line-setup.md" %}
+[one-line-setup.md](one-line-setup.md)
+{% endcontent-ref %}
+
+{% content-ref url="install-using-docker-compose.md" %}
+[install-using-docker-compose.md](install-using-docker-compose.md)
+{% endcontent-ref %}
+
 {% content-ref url="install-with-npm.md" %}
 [install-with-npm.md](install-with-npm.md)
 {% endcontent-ref %}
@@ -16547,11 +17254,19 @@ Lastly, you must setup OAuth for these services. Visit `https://console.cloud.go
 
 === https://docs.n8n.io/docs/deploy/host-n8n/install-options/install-with-npm/
 
-# npm <a href="#npm" id="npm"></a>
+{% hint style="warning" %}
+**Feature availability**
+
+npm-based installs are deprecated from n8n 3.0.
+{% endhint %}
+
+{% hint style="info" %}
+**AI Assistant not available**
+
+The AI Assistant feature is not available when using the npm installation method.
+{% endhint %}
 
 npm is a quick way to get started with n8n on your local machine. You must have [Node.js](https://nodejs.org/en/) installed. n8n requires a Node.js version between 20.19 and 24.x, inclusive.
-
-{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}
 
 ## Try n8n with npx <a href="#try-n8n-with-npx" id="try-n8n-with-npx"></a>
 
@@ -18524,7 +19239,7 @@ n8n designed this kit to help you get started with self-hosted AI workflows. Whi
 
 # Self-hosting n8n <a href="#self-hosting-n8n" id="self-hosting-n8n"></a>
 
-You can self-host n8n on your own infrastructure, on-premises or in a private cloud, using Docker, Kubernetes, or npm.
+You can self-host n8n on your own infrastructure, on-premises or in a private cloud, using Docker Compose, one-line setup, or other deployment methods.
 
 All self-hosted installations use the same core product. Without a license key, n8n runs as the free Community edition. Adding a Business or Enterprise license key enables those editions. See [Compare editions](community-edition-features.md) for the differences between the self-hosted editions.
 
@@ -18532,25 +19247,25 @@ All self-hosted installations use the same core product. Without a license key, 
 
 Select the installation method that best fits your technical requirements and infrastructure:
 
-- __npm__
+- __One-line setup__
 
-	**Best for:** Local development, testing, or simple single-server deployments.
+	**Best for:** Quick setup with minimal configuration.
 	
-	**Requirements:** Node.js installed on your system.
+	**Requirements:** Linux or macOS system with curl installed.
 	
-	Installs n8n directly using Node Package Manager. Quick to set up but requires managing Node.js versions and dependencies yourself.
+	Automated installation script that handles all dependencies and configuration for you.
 
-	[npm installation guide](install-options/install-with-npm.md)
+	[One-line setup guide](install-options/one-line-setup.md)
 
-- __Docker__
+- __Docker Compose__
 
-	**Best for:** Isolated environments, easy updates, and consistent deployments.
+	**Best for:** Production deployments with databases and additional services.
 	
-	**Requirements:** Docker installed on your system.
+	**Requirements:** Docker and Docker Compose installed on your system.
 	
-	Runs n8n in a container with all dependencies included. Simplifies installation and updates.
+	Multi-container setup ideal for robust deployments with persistent data and scalability.
 
-	[Docker installation guide](install-options/install-with-docker.md)
+	[Docker Compose guide](install-options/install-using-docker-compose.md)
 
 - __AWS__
 
@@ -18594,11 +19309,17 @@ Select the installation method that best fits your technical requirements and in
 
 	[OpenShift setup guide](install-options/use-a-cloud-provider/deploy-to-openshift-local-crc.md)
 
-- __Docker Compose__
+- __npm__
 
-	Multi-container setup ideal for production deployments with databases and additional services.
+	**Best for:** Local development or testing.
+	
+	**Requirements:** Node.js installed on your system.
+	
+	**Note:** This installation method is being deprecated in n8n v3. Consider using Docker Compose or one-line setup instead.
+	
+	Installs n8n directly using Node Package Manager. Quick to set up but requires managing Node.js versions and dependencies yourself.
 
-	[Docker Compose guide](install-options/use-a-cloud-provider/use-docker-compose.md)
+	[npm installation guide](install-options/install-with-npm.md)
 
 === https://docs.n8n.io/docs/deploy/host-n8n/understand-the-architecture/understand-the-database/
 
@@ -19150,6 +19871,8 @@ The maintenance window sets when n8n can apply upgrades, so you can reduce disru
   * [Download workflows](use-n8n-cloud/download-workflows.md)
 * [Host n8n](host-n8n/README.md)
   * [Install options](host-n8n/install-options/README.md)
+    * [One-line setup](host-n8n/install-options/one-line-setup.md)
+    * [Install using Docker Compose](host-n8n/install-options/install-using-docker-compose.md)
     * [Install with npm](host-n8n/install-options/install-with-npm.md)
     * [Install with Docker](host-n8n/install-options/install-with-docker.md)
     * [Use a cloud provider](host-n8n/install-options/use-a-cloud-provider/README.md)
@@ -32903,7 +33626,7 @@ For the current plans, editions, licenses, and prices, always check the [pricing
 
 n8n is a fair-code licensed workflow automation tool that combines AI capabilities with business process automation.
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="image">Cover image</th></tr></thead><tbody><tr><td><i class="fa-server">:server:</i> <strong>Get set up on n8n</strong></td><td><ul><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/start-your-free-trial">Try free then choose a plan</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-with-npm">Install with npm</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-with-docker">Install with Docker</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/use-a-cloud-provider">Use a cloud provider</a></li></ul></td><td></td><td><a href=".gitbook/assets/start.png">start.png</a></td></tr><tr><td><i class="fa-draw-square">:draw-square:</i> <strong>Build your first automation</strong></td><td><a data-mention href="build-your-first-workflow.md">build-your-first-workflow.md</a></td><td></td><td><a href=".gitbook/assets/build.png">build.png</a></td></tr><tr><td><i class="fa-stamp">:stamp:</i> <strong>Get inspiration for what to automate</strong></td><td><ul><li><a href="https://n8n.io/workflows/1750-creating-an-api-endpoint/">Creating an API endpoint</a></li><li><a href="https://n8n.io/workflows/1954-ai-agent-chat/">AI agent chat</a></li><li><a href="https://n8n.io/workflows/1951-scrape-and-summarize-webpages-with-ai/">Scrape and summarize webpages with AI</a></li><li><a href="https://n8n.io/workflows/1747-joining-different-datasets/">Joining different datasets</a></li></ul></td><td></td><td><a href=".gitbook/assets/inspire.png">inspire.png</a></td></tr><tr><td><i class="fa-lightbulb-gear">:lightbulb-gear:</i> <strong>Understand key concepts</strong></td><td><ul><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/transform-data/expressions-for-data-transformation">Expressions for data transformation</a></li><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/flow-logic">Flow logic</a></li><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/understand-executions">Understand executions</a></li></ul></td><td></td><td><a href=".gitbook/assets/deep.png">deep.png</a></td></tr><tr><td><strong>Anthropic</strong> <strong>Claude Desktop</strong></td><td><a href="https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server/mcp-client-examples#connecting-claude-desktop-to-n8n-mcp-server">Connecting Claude Desktop to n8n MCP server</a></td><td></td><td><a href=".gitbook/assets/Claude_logo.jpeg">Claude_logo.jpeg</a></td></tr><tr><td><strong>Anthropic</strong> <strong>Claude Code</strong></td><td><pre data-overflow="wrap"><code>claude mcp add --transport http n8n-mcp https:///mcp-server/http
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="image">Cover image</th></tr></thead><tbody><tr><td><i class="fa-server">:server:</i> <strong>Get set up on n8n</strong></td><td><ul><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/start-your-free-trial">Try free then choose a plan</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/one-line-setup">One-line setup</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-using-docker-compose">Install using Docker Compose</a></li><li><a data-mention href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/use-a-cloud-provider">Use a cloud provider</a></li></ul></td><td></td><td><a href=".gitbook/assets/start.png">start.png</a></td></tr><tr><td><i class="fa-draw-square">:draw-square:</i> <strong>Build your first automation</strong></td><td><a data-mention href="build-your-first-workflow.md">build-your-first-workflow.md</a></td><td></td><td><a href=".gitbook/assets/build.png">build.png</a></td></tr><tr><td><i class="fa-stamp">:stamp:</i> <strong>Get inspiration for what to automate</strong></td><td><ul><li><a href="https://n8n.io/workflows/1750-creating-an-api-endpoint/">Creating an API endpoint</a></li><li><a href="https://n8n.io/workflows/1954-ai-agent-chat/">AI agent chat</a></li><li><a href="https://n8n.io/workflows/1951-scrape-and-summarize-webpages-with-ai/">Scrape and summarize webpages with AI</a></li><li><a href="https://n8n.io/workflows/1747-joining-different-datasets/">Joining different datasets</a></li></ul></td><td></td><td><a href=".gitbook/assets/inspire.png">inspire.png</a></td></tr><tr><td><i class="fa-lightbulb-gear">:lightbulb-gear:</i> <strong>Understand key concepts</strong></td><td><ul><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/transform-data/expressions-for-data-transformation">Expressions for data transformation</a></li><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/flow-logic">Flow logic</a></li><li><a data-mention href="https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/understand-executions">Understand executions</a></li></ul></td><td></td><td><a href=".gitbook/assets/deep.png">deep.png</a></td></tr><tr><td><strong>Anthropic</strong> <strong>Claude Desktop</strong></td><td><a href="https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server/mcp-client-examples#connecting-claude-desktop-to-n8n-mcp-server">Connecting Claude Desktop to n8n MCP server</a></td><td></td><td><a href=".gitbook/assets/Claude_logo.jpeg">Claude_logo.jpeg</a></td></tr><tr><td><strong>Anthropic</strong> <strong>Claude Code</strong></td><td><pre data-overflow="wrap"><code>claude mcp add --transport http n8n-mcp https:///mcp-server/http
 </code></pre></td><td><a href="https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server/mcp-client-examples#connecting-claude-code-to-n8n-mcp-server">Connecting Claude Code to n8n MCP server</a></td><td><a href=".gitbook/assets/Claude_code_logo.jpeg">Claude_code_logo.jpeg</a></td></tr><tr><td><strong>Open AI Codex</strong></td><td><pre data-overflow="wrap"><code>codex mcp add n8n-mcp --url https:///mcp-server/http
 </code></pre></td><td><a href="https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server/mcp-client-examples#connecting-codex-cli-to-n8n-mcp-server">Connecting Codex CLI to n8n MCP server</a></td><td><a href=".gitbook/assets/codex_logo.jpeg">codex_logo.jpeg</a></td></tr></tbody></table>
 
@@ -49153,6 +49876,32 @@ Refer to [Large webhook responses](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDY
 
 ***
 
+## Read and write SharePoint Excel workbooks directly in n8n
+
+**Released:** 2026-07-28 in [n8n 2.33](release-notes.md#n8n233)
+
+You can now read and write Excel workbooks stored in SharePoint document libraries, including files shared through Microsoft Teams sites, using the new Microsoft Excel (SharePoint) node. This gives you direct access to workbook data without needing separate authentication or intermediate steps to retrieve file contents.
+
+The node supports two authentication methods: sign in as a person using a Microsoft OAuth2 credential with the `Sites.ReadWrite.All` (or `Sites.Read.All`) scope, or sign in as an app using a Microsoft Entra Service Principal credential for unattended workflows that require no user interaction.
+
+Learn more in the [Microsoft Excel (SharePoint) node documentation](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.microsoftexcelsharepoint).
+
+***
+
+## Capture who approved and when in human-in-the-loop steps
+
+**Released:** 2026-07-07 in [n8n 2.30](release-notes.md#n8n230)
+
+You can now get a full audit trail for every human-in-the-loop step in your workflows. Every Send and Wait node across Slack, Telegram, Discord, WhatsApp, Google Chat, Gmail, Outlook, Email/SMTP, Microsoft Teams, and the Chat Trigger node now includes a `respondedAt` ISO-8601 timestamp in its output the moment n8n receives a response. No configuration is required: the field appears automatically alongside the existing `approved`, `text`, or `form` fields and does not change the output shape for existing workflows.
+
+For Slack and Telegram, you can go further with the new **Advanced Interactivity** options on the Send and Wait for Response operation. Approvers respond with a single tap or click inside the app itself, and the node output records who responded: their ID, name, username, and (for Slack, when scopes allow) email, plus the channel and message ID. You can restrict which users are allowed to approve by listing their IDs in **Restrict Who Can Approve**. Anyone not on the list gets a private notice you can word yourself, and the workflow keeps waiting. You can also control what happens to the message after a decision with the **After Decision** setting: show the outcome and remove the buttons (the default), remove the buttons only, or leave the message unchanged.
+
+To enable approvals in Slack, your n8n instance must be reachable from Slack over public HTTPS. You will need to turn on Interactivity in your Slack app, set the **Request URL** to `https://<your-n8n-instance>/webhook-waiting-slack`, and paste your app's signing secret into the **Signature Secret** field of your Slack credential. Then, in the Slack node, set **Response Type** to **Approval** and turn on **Capture Who Responded** under the **Advanced Interactivity** section. For Telegram, your instance must be reachable over public HTTPS on a port Telegram supports for webhooks (443, 80, 88, or 8443). Enable **Approve Within Chat** in the same section: n8n registers the webhook for you using your existing Telegram credential, with no additional setup on Telegram's side.
+
+Learn more in the [Approvals in Slack documentation](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.slack/approvals).
+
+***
+
 ## App-only authentication for Microsoft nodes
 
 **Released:** 2026-07-07 in [n8n 2.30](release-notes.md#n8n230)
@@ -49226,7 +49975,7 @@ Three states guide you as you work with custom date ranges:
 
 To use this, open the Insights dashboard, choose a date range with the date range picker, and check the alert banner at the top of the dashboard. If you see a partial or no-data alert, adjust your range to align with the dates your retention policy covers. Note that the alerts reflect your current retention configuration and do not extend how long execution data is stored.
 
-Learn more in the [documentation](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/observe-and-log/track-usage-with-insights#disable-or-configure-insights-metrics-collection).
+Learn more in the [insights retention documentation](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/observe-and-log/track-usage-with-insights#disable-or-configure-insights-metrics-collection).
 
 {% hint style="info" %}
 **Availability:** Pro, Business, and Enterprise.
@@ -49236,7 +49985,7 @@ Learn more in the [documentation](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm
 
 ## Organize large workflows with Canvas Groups
 
-**Released:** 2026-06-29 in [n8n 2.28](release-notes.md#n8n228)
+**Released:** 2026-06-23 in [n8n 2.28](release-notes.md#n8n228)
 
 You can now organize related nodes into a single named Canvas Group and collapse it for a cleaner view. Group the nodes that handle one part of a workflow, give the group a name, and collapse it to hide the detail until you need it. A large workflow that used to sprawl across the canvas shrinks to a handful of labeled blocks you can read at a glance, so it's faster to find your way around a workflow a teammate built or one you haven't opened in months.
 
@@ -49255,6 +50004,18 @@ The [GitHub node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nod
 ### Webhook node: Only Run If
 
 The [Webhook node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.webhook) gains an expression-based **Only run if** option that rejects requests that don't match a condition before an execution starts. Filter out health checks, retries, or irrelevant events at the door instead of starting a run that immediately exits: fewer no-op executions, less noise in your execution list, and saved execution quota.
+
+### One credential for multiple Microsoft nodes
+
+The generic **Microsoft OAuth2 API** credential now works with Microsoft Excel 365, Outlook, Teams, To Do, and Graph Security, alongside OneDrive. Instead of registering a separate Microsoft Entra app for every Microsoft service you automate, you register one and grant it the delegated permissions your workflows need. To use it, open any supported node, set **Authentication** to **Microsoft OAuth2 (Graph)**, and select the credential. Your IT team approves and maintains a single app registration instead of one per service.
+
+Set the credential's **Scope** field to the space-separated permissions the nodes you use require, for example `Files.ReadWrite.All` for OneDrive and Excel, or `Mail.ReadWrite` and `Mail.Send` for Outlook, always including `openid` and `offline_access`. Some permissions, such as `SecurityEvents.ReadWrite.All` for Graph Security, need admin consent. If your organization runs on a sovereign cloud (US Government, US Government DOD, or China), set the **Microsoft Graph API Base URL** on the credential and every node using it picks it up.
+
+Nothing changes for existing workflows. On saved nodes the **Authentication** dropdown stays on the node-specific credential, so credentials like Microsoft Excel OAuth2 API keep working untouched. The generic credential is an additive option, not a replacement.
+
+_Microsoft OneDrive support released in 2.27 (2026-06-16)._
+
+Learn more in the [Microsoft credentials documentation](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/credentials/microsoft).
 
 ***
 
@@ -49332,7 +50093,7 @@ Connect to MCP servers with less setup
 
 You can now attach custom span attributes to OpenTelemetry traces at the node, workflow, and project level, letting you filter and group execution spans by tenant, environment, customer ID, or any other dimension. Attribute values support expressions, so they can pull live data from webhook payloads or API responses at runtime rather than relying on hardcoded values. Configure tags in node or workflow settings when tracing is enabled (`N8N_OTEL_ENABLED=true`).
 
-Learn more in the [documentation](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/trace-executions-with-opentelemetry#custom-span-attributes).
+Learn more in the [custom span attributes documentation](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/trace-executions-with-opentelemetry#custom-span-attributes).
 
 {% hint style="info" %}
 **Availability:** Enterprise.
@@ -51873,7 +52634,7 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
 Current `stable`: 2.33.7
-Current `beta`: 2.34.4
+Current `beta`: 2.35.0
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -56007,6 +56768,10 @@ In the Editor UI, n8n hides all overwritten fields by default, so users can auth
 
 For the environment variables used to configure credential overwrites, refer to [Credentials environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/credentials).
 
+Watch a tutorial on credential overwrites, including how to set them up [using the REST API](#using-the-rest-api) with a [ready-made workflow template](https://n8n.io/workflows/17052-register-credential-overwrites-on-startup-with-the-n8n-api/):
+
+{% embed url="https://www.youtube.com/embed/VtCbCdKrqAE" %}
+
 ## Using environment variables <a href="#using-environment-variables" id="using-environment-variables"></a>
 
 Set `CREDENTIALS_OVERWRITE_DATA` to `{ CREDENTIAL_NAME: { PARAMETER: VALUE }}`.
@@ -56127,8 +56892,11 @@ You can mix fixed and end-user credentials across nodes in one workflow. For exa
 3. Configure the connection. For OAuth credentials, include the **Client ID**, **Client Secret**, and **OAuth Redirect URL** to register with the service.
 4. Select **Save**.
 
-Users with access to the project can now connect their own account to this credential.
+Users with project access can now connect their own account to this credential. When a user runs a workflow that uses the credential, n8n prompts them to connect if they haven't already. They can also connect from the n8n UI, by opening a node on the canvas or from the project's **Credentials** list.
 
+{% hint style="info" %}
+Some trigger nodes, such as the **MCP Server Trigger**, let you require that the triggering user has permission to execute the trigger. When you enable this, only users with a project role that allows workflow execution can trigger it. A user without that role can't connect their account.
+{% endhint %}
 ## Connect your account
 
 Before you can use an end-user credential in a workflow, connect your account to the template. You can do this from:
