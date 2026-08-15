@@ -582,7 +582,7 @@ In comparison, you configure an MCP Server Trigger node inside a single workflow
 
 ### Key considerations when using instance-level MCP access <a href="#key-considerations-when-using-instance-level-mcp-access" id="key-considerations-when-using-instance-level-mcp-access"></a>
 
-* MCP supports two types of workflow interactions: running existing workflows with the workflow execution tools, and building or editing workflows (n8n 2.13 onward).
+* MCP supports two types of workflow interactions: running existing workflows with the workflow execution tools, and building or editing workflows (available from n8n 2.13.0).
 * It doesn't provide blanket exposure to all workflows in your instance. You must enable MCP at the instance level and then enable each workflow individually. The only exception is `search_workflows`, which can access every workflow the current user has permission to view, but only returns previews, not full workflow data.
 * It's not scoped to each MCP client. All clients you connect (for example, Claude Desktop and ChatGPT) can see all workflows you've enabled for MCP access. You can't restrict specific workflows to specific clients. On a user level, visibility remains user-scoped: users can only see MCP-enabled workflows they have access to.
 * Most MCP tools work on unpublished workflows. The exception is `execute_workflow`, which defaults to production mode and runs the published version of a workflow. It also supports a `manual` execution mode to run the current (unpublished) version.
@@ -689,8 +689,9 @@ Only workflows that are published, and that contain a webhook, form, schedule, o
 
 ### Enabling access for individual workflows <a href="#enabling-access-for-individual-workflows" id="enabling-access-for-individual-workflows"></a>
 
-#### Option 1: From the Workflows exposed page (available from n8n 2.2.0) <a href="#option-1-from-mcp-settings-page-available-from-n8n-v220" id="option-1-from-mcp-settings-page-available-from-n8n-v220"></a>
+#### Option 1: From the Workflows exposed page <a href="#option-1-from-mcp-settings-page-available-from-n8n-v220" id="option-1-from-mcp-settings-page-available-from-n8n-v220"></a>
 
+From the **Workflows exposed** page (available from n8n 2.2.0), you can enable access for individual workflows:
 1. Navigate to **Settings > Instance-level MCP**.
 2. Select **Workflows exposed**.
 3. Click the **Enable workflows** button (in the workflows table header or in the table's empty state).
@@ -2390,7 +2391,11 @@ You have access to your live data. This is useful for trying out requests. Be aw
 {% hint style="info" %}
 **Feature availability**
 
-The API playground isn't available on Cloud. It's available for all self-hosted pricing tiers.
+The API playground is available on:
+
+- **Self-hosted:** All editions
+
+It isn't available on n8n Cloud.
 {% endhint %}
 
 The n8n API comes with a built-in Swagger UI playground in self-hosted versions. This provides interactive documentation, where you can try out requests. The path to access the playground depends on your hosting.
@@ -2533,7 +2538,7 @@ The n8n API isn't available during the free trial. Please upgrade to access this
 1. Go to **Settings** > **n8n API**.
 1. Select **Create an API key**.
 1. Choose a **Label** and set an **Expiration** time for the key.
-1. If on an Enterprise plan, choose the **Scopes** to give the key. Refer to [API Scopes](#api-scopes) for the full list of available scopes.
+1. If you're on an Enterprise plan, choose the **Scopes** to give the key. Refer to [API Scopes](#api-scopes) for the full list of available scopes.
 1. Copy **My API Key** and use this key to authenticate your calls.
 
 ## Call the API using your key <a href="#call-the-api-using-your-key" id="call-the-api-using-your-key"></a>
@@ -2576,9 +2581,9 @@ For the available operations and parameters, refer to the [n8n node](https://app
 
 ## API Scopes <a href="#api-scopes" id="api-scopes"></a>
 
-Users of [enterprise instances](https://n8n.io/enterprise/) can limit which resources and actions an API key can access with scopes. Choose the minimum scopes needed for the key's intended purpose.
+On [Enterprise instances](https://n8n.io/enterprise/), you can limit which resources and actions an API key can access with scopes. Choose the minimum scopes needed for the key's intended purpose.
 
-Non-enterprise API keys have full access to all the account's resources and capabilities.
+Non-Enterprise API keys have full access to all the account's resources and capabilities.
 
 {% hint style="info" %}
 **API key scopes vs. project role scopes**
@@ -4817,7 +4822,11 @@ For an example, refer to the [Mattermost node](https://github.com/n8n-io/n8n/blo
 
 ## Deprecation of the previous helper <a href="#deprecation-of-the-previous-helper" id="deprecation-of-the-previous-helper"></a>
 
-The previous helper implementation using `this.helpers.request(options)` used and exposed the `request-promise` library. This was removed in version 1.
+{% hint style="warning" %}
+**Feature availability**
+
+The previous `this.helpers.request(options)` implementation, which used and exposed the `request-promise` library, was removed from n8n 1.0.
+{% endhint %}
 
 To minimize incompatibility, n8n made a transparent conversion to another library called `Axios`.
 
@@ -7276,7 +7285,7 @@ Nodes and operations where you need to design a loop into your workflow:
 {% hint style="info" %}
 **Feature availability**
 
-Available on all plans from n8n 1.97.0.
+Sub-workflow conversion is available from n8n 1.97.0.
 {% endhint %}
 
 Use sub-workflow conversion to refactor your workflows into reusable parts. Expressions referencing other nodes are automatically updated and added as parameters in the [Execute Workflow Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger) node.
@@ -7415,7 +7424,7 @@ When building your logic, you'll use n8n's [Core nodes](https://app.gitbook.com/
 n8n's node execution order depends on the version of n8n you're using:
 
 * For workflows created before n8n 1.0: n8n executes the first node of each branch, then the second node of each branch, and so on.
-* For workflows created in n8n 1.0 and above: executes each branch in turn, completing one branch before starting another. n8n orders the branches based on their position on the canvas[^1], from topmost to bottommost. If two branches are at the same height, the leftmost branch executes first.
+* For workflows created from n8n 1.0: executes each branch in turn, completing one branch before starting another. n8n orders the branches based on their position on the canvas[^1], from topmost to bottommost. If two branches are at the same height, the leftmost branch executes first.
 
 You can change the execution order in your [workflow settings](../manage-workflows/configure-workflow-settings.md).
 
@@ -7737,7 +7746,10 @@ Executing a node again clears its dirty status. You can do this manually by trig
 {% hint style="info" %}
 **Feature availability**
 
-Available on n8n Cloud and registered Community plans.
+Debugging and re-running past executions is available on:
+
+- **n8n Cloud:** All plans
+- **Self-hosted:** Registered Community, Business, Enterprise
 {% endhint %}
 
 You can load data from a previous execution into your current workflow. This is useful for debugging data from failed production executions: you can see a failed execution, make changes to your workflow to fix it, then re-run it with the previous execution data.
@@ -8149,7 +8161,10 @@ Each time you make a change to a workflow, n8n autosaves those changes to a new 
 {% hint style="info" %}
 **Feature availability**
 
-Named versions are available on Pro and Enterprise Cloud plans, and Enterprise self-hosted plans.
+Named versions are available on:
+
+- **n8n Cloud:** Pro, Enterprise
+- **Self-hosted:** Enterprise
 {% endhint %}
 
 Named versions let you give a meaningful name and description to any workflow version. This helps you identify important milestones in your workflow's development. Named versions are also protected from automatic [version history pruning](../manage-workflows/view-change-history.md), so they persist indefinitely.
@@ -8309,7 +8324,7 @@ When active or set, they do the following:
   * **Stop Workflow**: Halts the entire workflow when an error occurs, preventing further node execution.
   * **Continue**: Proceeds to the next node despite the error, using the last valid data.
   * **Continue (using error output)**: Continues workflow execution, passing error information to the next node for potential handling.
-* **Custom Span Attributes**: Add custom key-value attributes to a node's OpenTelemetry span. Keys are plain text, and values support expressions. This setting only appears if you enable OpenTelemetry tracing and have an Enterprise license. Refer to [Custom span attributes](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/trace-executions-with-opentelemetry#custom-span-attributes) for details.
+* **Custom Span Attributes**: Add custom key-value attributes to a node's OpenTelemetry span. Keys are plain text, and values support expressions. This setting only appears if you enable OpenTelemetry tracing and have a self-hosted Enterprise license. Refer to [Custom span attributes](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/trace-executions-with-opentelemetry#custom-span-attributes) for details.
 
 You can document your workflow using node notes:
 
@@ -8586,7 +8601,7 @@ When you create or edit an OAuth credential, you choose a **Credential type**:
 * **Fixed credential**: the same credential is used regardless of who runs the workflow. This is the default credential behaviour.
 * **End-user credential**: each user's credential is used at runtime, and can only be seen and used by that user.
 
-End-user credentials let a workflow run with the credentials of the person who triggers it, and keep each user's data private to them. This choice appears for OAuth credentials on Enterprise plans. To learn how to set them up, see [End-user credentials](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-credentials/end-user-credentials).
+End-user credentials let a workflow run with the credentials of the person who triggers it, and keep each user's data private to them. The choice between **Fixed credential** and **End-user credential** types appears for OAuth credentials on n8n Cloud Enterprise and self-hosted Enterprise. To learn how to set them up, see [End-user credentials](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-credentials/end-user-credentials).
 
 ## Allowed HTTP request domains <a href="#allowed-http-request-domains" id="allowed-http-request-domains"></a>
 
@@ -9061,7 +9076,14 @@ You can define which users can perform which actions through n8n's role system. 
 
 The Chat user is a role for people in your organization who want to use workflows without building them. Chat users only see the chat interface and can't add credentials or workflows by default.
 
-Chat users are only available on Starter, Pro, Business and Enterprise plans.
+{% hint style="info" %}
+**Feature availability**
+
+The Chat user role is available on:
+
+- **n8n Cloud:** All plans
+- **Self-hosted:** Business, Enterprise
+{% endhint %}
 
 ### Provider settings <a href="#provider-settings" id="provider-settings"></a>
 
@@ -9115,7 +9137,9 @@ Ask n8n AI offers a range of tools to support you:
 ## AI usage settings <a href="#ai-usage-settings" id="ai-usage-settings"></a>
 
 {% hint style="info" %}
-Available in n8n 2.7.0 and above.
+**Feature availability**
+
+AI usage settings are available from n8n 2.7.0.
 {% endhint %}
 
 You can manage your AI usage settings by navigating to **Settings** > **AI Usage** in your n8n instance. Here, you can control what data is shared with Ask n8n AI.
@@ -9283,9 +9307,12 @@ Move faster in the editor with workflow, canvas, and node shortcuts.
 {% hint style="info" %}
 **Feature availability**
 
-* Full workflow history is available on Enterprise Cloud and Enterprise Self-hosted.
-* Versions from the last five days are available for Cloud Pro users.
-* Versions from the last 24 hours are available for all users.
+Full workflow history is available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
+
+Versions from the last five days are available for n8n Cloud Pro users. Versions from the last 24 hours are available for all users.
 {% endhint %}
 
 Use workflow history to view and restore previous versions of your workflows.
@@ -9327,7 +9354,7 @@ You can restore a previous workflow version, or make a copy of it:
    * **Clone to new workflow**: create a new workflow based on the selected version.
    * **Open version in new tab**: open a second tab displaying the selected version. Use this to compare versions.
    * **Download**: download the version as JSON.
-   * **Name version**: give the version a name and description. Named versions are protected from automatic pruning. Refer to [Naming versions](../understand-workflows/save-and-publish-workflows.md#naming-versions) for more details. Available on Pro and Enterprise plans.
+   * **Name version**: give the version a name and description. Named versions are protected from automatic pruning. Refer to [Naming versions](../understand-workflows/save-and-publish-workflows.md#naming-versions) for more details. Named versions are available on n8n Cloud Pro, Enterprise, and self-hosted Enterprise.
 
 === https://docs.n8n.io/docs/build/manage-workflows/export-and-import/
 
@@ -9553,7 +9580,10 @@ Tags are global. If you edit or delete a tag, this affects all users of your n8n
 {% hint style="info" %}
 **Feature availability**
 
-Available on all Cloud plans, and Enterprise self-hosted plans.
+Workflow sharing is available on:
+
+- **n8n Cloud:** All plans
+- **Self-hosted:** Enterprise
 {% endhint %}
 
 Workflow sharing allows you to share workflows between users of the same n8n instance.
@@ -10042,7 +10072,7 @@ For what each event's payload holds, see [Events](export-a-package.md#events) on
 n8n packages are in preview. The import options may change in future releases.
 {% endhint %}
 
-Import reads an [n8n package](README.md), a [`.n8np` archive](package-format.md), and writes its contents to the target instance. n8n checks the whole package first: if anything would block the import, it writes nothing and returns every problem at once. See [How import works](how-import-works.md) for the detail.
+Import reads an [n8n package](README.md), a [.n8np archive](package-format.md), and writes its contents to the target instance. n8n checks the whole package first: if anything would block the import, it writes nothing and returns every problem at once. See [How import works](how-import-works.md) for the detail.
 
 Use the [n8n CLI](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-cli):
 
@@ -10216,10 +10246,10 @@ A successful import returns `200` with eight keys:
 	"workflows": [
 		{ "sourceWorkflowId": "wf9Zx1", "localId": "wf9Zx1", "name": "Send email",
 			"projectId": "prProd4", "parentFolderId": null,
-			"activeVersionId": "<version-id>", "publishing": { "state": "published" }, "status": "created" },
+			"activeVersionId": null, "publishing": { "state": "unchanged" }, "status": "created" },
 		{ "sourceWorkflowId": "wf7Kq2", "localId": "wf7Kq2", "name": "Triage inbound",
 			"projectId": "prProd4", "parentFolderId": null,
-			"activeVersionId": "<version-id>", "publishing": { "state": "published" }, "status": "created" }
+			"activeVersionId": null, "publishing": { "state": "unchanged" }, "status": "created" }
 	],
 	"folders": [],
 	"projects": [],
@@ -10249,6 +10279,8 @@ There's no data table summary in the response.
 A workflow's `localId` is its ID on the target instance: the package's ID under `--workflow-id-policy=source`, a fresh ID under `new`, and the existing workflow's ID when it was updated or skipped.
 
 `publishing.state` is one of `published`, `unpublished`, `unchanged`, `blocked`, or `failed`. For what each means, see [Publishing outcomes](how-import-works.md#publishing-outcomes).
+
+Both workflows in the example are new, and the default `preserve-published-state` never publishes a new workflow, so each reports `unchanged`. To have new workflows arrive published, use `--workflow-publishing-policy=publish-all`, or `match-source` when they are specified as `published` in the package.
 
 ## Errors
 
@@ -10703,9 +10735,7 @@ Export needs no license feature. For the full matrix, see [Limits and permission
 
 A missing entity and an inaccessible one return the same `400` with the same message, so you can't use export to test whether an ID exists. Export never returns a `404`.
 
-Error bodies carry a `message` only, and it names how many entities were affected rather than which. The CLI prints the same message, and the log streaming event records only the failure reason and the IDs you asked for, so the offending IDs aren't surfaced anywhere.
-
-To find which dependency is missing, export again with `--missing-workflow-dependency-policy=reference-only` and read `requirements.workflows` in the [manifest](package-format.md#manifestjson).
+Error bodies carry a `message` only. 
 
 ## Events
 
@@ -10718,13 +10748,10 @@ Every export emits an event on both the log streaming and telemetry paths, so yo
 
 The success event carries the user and the `workflowIds`, `folderIds`, and `projectIds` that actually ended up in the package, so it reflects folder contents and auto-included sub-workflows rather than what you asked for. Each list is present only when it isn't empty.
 
-The failure event carries the user, the IDs you requested, and a `reason` of `access-denied`, `entity-not-found`, `blocked`, or `validation`.
+The failure event carries the user, the IDs requested, and a `reason` of `access-denied`, `entity-not-found`, `blocked`, or `validation`.
 
-Log streaming events carry IDs but no counts. The telemetry events carry the per-entity counts instead, and no IDs.
-
-{% hint style="info" %}
-n8n emits the success event before it streams the archive to you. If the download then fails part-way, the same request emits the failure event too, so one export can produce both. A client that disconnects before the download finishes emits neither an error nor a failure event.
-{% endhint %}
+Log streaming events carry IDs. 
+Telemetry events emit counts to keep the data anonymized.
 
 ## Read next
 
@@ -11358,7 +11385,10 @@ Filtering in n8n can mean different things depending on what you want to accompl
 {% hint style="info" %}
 **Feature availability**
 
-Available on Community, Cloud Pro, and Enterprise plans.
+Filtering data in the node **INPUT** and **OUTPUT** panels is available on:
+
+- **n8n Cloud:** Pro, Enterprise
+- **Self-hosted:** All editions
 {% endhint %}
 
 Search and filter data in the node **INPUT** and **OUTPUT** panels. Use this to check your node's data and find specific items.
@@ -17786,9 +17816,12 @@ In n8n, data flows through your workflow from node to node. Each node receives d
 
 
 {% hint style="info" %}
-**Available on registered community and paid plans**
+**Feature availability**
 
-Light evaluations are available to registered community users and on all paid plans.
+Light evaluations are available on:
+
+- **n8n Cloud:** All plans
+- **Self-hosted:** Registered Community, Business, Enterprise
 {% endhint %}
 
 ## What are light evaluations? <a href="#what-are-light-evaluations" id="what-are-light-evaluations"></a>
@@ -17886,9 +17919,14 @@ Once your dataset grows past a handful of examples, consider [metric-based evalu
 
 
 {% hint style="info" %}
-**Available on Pro and Enterprise plans**
+**Feature availability**
 
-Metric-based evaluation is available on Pro and Enterprise plans. Registered community and Starter plan users can also use it for a single workflow.
+Metric-based evaluation is available on:
+
+- **n8n Cloud:** Pro, Enterprise
+- **Self-hosted:** Enterprise
+
+Registered Community and Starter plan users can also use it for a single workflow.
 {% endhint %}
 
 ### What are metric-based evaluations? <a href="#what-are-metric-based-evaluations" id="what-are-metric-based-evaluations"></a>
@@ -17966,9 +18004,9 @@ The default maximum depends on your plan:
 
 | Plan | Maximum parallel test cases |
 | :--- | :-------------------------- |
-| Community / Pro | 1 (sequential) |
-| Business | 3 |
-| Enterprise | 5 |
+| Self-hosted Community, n8n Cloud Pro | 1 (sequential) |
+| Self-hosted Business | 3 |
+| n8n Cloud Enterprise, self-hosted Enterprise | 5 |
 
 When the maximum is `1`, the caret and popover are hidden and **Run Test** is a plain button — runs are sequential, identical to earlier versions.
 
@@ -19150,8 +19188,12 @@ for item in previousNodeData:
 {% hint style="info" %}
 **Feature availability**
 
-* Available on Self-hosted Enterprise and Pro and Enterprise Cloud plans.
-* You need access to the n8n instance owner account to create variables.
+`vars` is available on:
+
+- **n8n Cloud:** Pro, Enterprise
+- **Self-hosted:** Enterprise
+
+You need access to the n8n instance owner account to create variables.
 {% endhint %}
 
 `vars` contains all [Variables](../../define-custom-variables.md) for the active environment. It's read-only: you can access variables using `vars`, but must set them using the UI.
@@ -19854,8 +19896,12 @@ These variables are for use in expressions in the HTTP node. You can't use them 
 {% hint style="info" %}
 **Feature availability**
 
-* Available on Self-hosted Enterprise and Pro Cloud plans.
-* Only instance owners and admins can create variables.
+Custom variables are available on:
+
+- **n8n Cloud:** Pro, Enterprise
+- **Self-hosted:** Enterprise
+
+Only instance owners and admins can create variables.
 {% endhint %}
 
 Custom variables are read-only variables that you can use to store and reuse values in n8n workflows.
@@ -19865,7 +19911,7 @@ Custom variables are read-only variables that you can use to store and reuse val
 
 * **Global variables** are available to everyone on your n8n instance, across all projects.
 * **Project-scoped variables** are available only within the specific project they're created in.
-* Project-scoped variables are available in 1.118.0 and above. Previous versions only support global variables accessible from the left side menu.
+* Project-scoped variables are available from n8n 1.118.0. Previous versions only support global variables accessible from the left side menu.
 {% endhint %}
 
 ## Create variables <a href="#create-variables" id="create-variables"></a>
@@ -20091,7 +20137,9 @@ To assist and improve user experience, n8n may send specific context data to LLM
 #### AI usage settings <a href="#ai-usage-settings" id="ai-usage-settings"></a>
 
 {% hint style="info" %}
-Available in n8n 2.7.0 and above.
+**Feature availability**
+
+AI usage settings are available from n8n 2.7.0.
 {% endhint %}
 
 You can manage your AI usage settings by navigating to **Settings** > **AI Usage** in your n8n instance.
@@ -20325,7 +20373,11 @@ More information on these variables is available in [Environment variables](http
 
 # Set up user management on n8n Cloud <a href="#set-up-user-management-on-n8n-cloud" id="set-up-user-management-on-n8n-cloud"></a>
 
-To access user management, upgrade to version 0.195.0 or newer.
+{% hint style="info" %}
+**Feature availability**
+
+User management is available from n8n 0.195.0.
+{% endhint %}
 
 {% hint style="warning" %}
 **Irreversible upgrade**
@@ -20368,7 +20420,10 @@ There are three built-in instance roles: Owner, Admin, and Member. If these don'
 {% hint style="info" %}
 **Feature availability**
 
-The Admin role is available on Pro and Enterprise plans.
+The **Admin** role is available on:
+
+- **n8n Cloud:** Pro, Enterprise
+- **Self-hosted:** Enterprise
 {% endhint %}
 
 {% hint style="info" %}
@@ -20412,7 +20467,7 @@ User management in n8n allows you to invite people to work in your n8n instance.
 
 * Login and password management
 * Adding and removing users
-* Three built-in [instance roles](understand-instance-roles.md): **Owner** and **Member** (and **Admin** for Pro & Enterprise plans), plus custom instance roles
+* Three built-in [instance roles](understand-instance-roles.md): **Owner**, **Admin**, and **Member** (**Admin** is available on n8n Cloud Pro, Enterprise, and self-hosted Enterprise), plus custom instance roles
 
 {% hint style="info" %}
 **Privacy**
@@ -20433,8 +20488,15 @@ This section includes guides to configuring [LDAP](verify-user-identity/connect-
 {% hint style="info" %}
 **Feature availability**
 
-* The Project Editor role is available on Pro Cloud and Self-hosted Enterprise plans. 
-* The Project Viewer role is only available on Self-hosted Enterprise and Cloud Enterprise plans.
+The **Project Editor** role is available on:
+
+- **n8n Cloud:** Pro
+- **Self-hosted:** Enterprise
+
+The **Project Viewer** role is available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
 {% endhint %}
 
 Within projects, there are three user roles: Admin, Editor, and Viewer. These roles control what the user can do in a project. A user can have different roles within different projects.
@@ -20450,13 +20512,15 @@ A Project Admin role has the highest level of permissions. Project admins can:
 
 ## Project Editor <a href="#project-editor" id="project-editor"></a>
 
-A Project Editor can view, create, update, and delete any workflows, credentials, or executions within a project. 
+A Project Editor can view, create, update, and delete any workflows, credentials, or executions within a project. The **Project Editor** role is available on n8n Cloud Pro and self-hosted Enterprise.
 
 ## Project Viewer <a href="#project-viewer" id="project-viewer"></a>
 
 A Project Viewer is effectively a `read-only` role with access to all workflows, credentials, and executions within a project.
 
 Viewers aren't able to manually execute any workflows that exist in a project. 
+
+The **Project Viewer** role is available on n8n Cloud Enterprise and self-hosted Enterprise.
 
 {% hint style="info" %}
 **Project roles and instance roles**
@@ -20477,7 +20541,7 @@ n8n has two levels of roles. [Instance roles](../understand-instance-roles.md) c
 | Use external secrets in credentials | ✅* | ✅* | ❌ |
 | Manage project secret vaults | ✅* | ❌ | ❌ |
 
-\* Requires **Enable external secrets for project roles** to be enabled by an instance owner or admin. Refer to [Access for project roles](../../manage-credentials/use-external-secret-stores.md#access-for-project-roles). This is available from n8n 2.13.0.
+\* Requires **Enable external secrets for project roles** to be enabled by an instance owner or admin. Refer to [Access for project roles](../../manage-credentials/use-external-secret-stores.md#access-for-project-roles). The **Enable external secrets for project roles** setting is available from n8n 2.13.0.
 
 [Variables](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/code-in-n8n/define-custom-variables) and [tags](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/tag-workflows) aren't affected by RBAC: they're global across the n8n instance.
 
@@ -20488,7 +20552,10 @@ n8n has two levels of roles. [Instance roles](../understand-instance-roles.md) c
 {% hint style="info" %}
 **Feature availability**
 
-Custom roles are available on Self-hosted Enterprise and Cloud Enterprise plans. Refer to n8n's [pricing page](https://n8n.io/pricing/) for plan details.
+Custom roles are available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
 {% endhint %}
 
 Custom roles let you define granular permissions beyond the built-in roles. Instead of giving users full Admin access, you can create a role with only the capabilities they need.
@@ -20510,7 +20577,12 @@ n8n has two types of custom roles:
 {% hint style="info" %}
 **Feature availability**
 
-RBAC is available on all plans except the Community edition. Different plans have different numbers of projects and roles. Refer to n8n's [pricing page](https://n8n.io/pricing/) for plan details.
+RBAC is available on:
+
+- **n8n Cloud:** All plans
+- **Self-hosted:** Registered Community, Business, Enterprise
+
+Different plans have different numbers of projects and roles.
 {% endhint %}
 
 n8n uses projects to group workflows and credentials[^1], and assigns [roles](see-available-roles.md) to users in each project. This means that a single user can have different roles in different projects, giving them different levels of access.
@@ -20587,11 +20659,12 @@ Moving workflows or credentials removes all existing sharing. Be aware that this
 {% hint style="info" %}
 **Feature availability**
 
-Custom roles are available on Self-hosted Enterprise and Cloud Enterprise plans. Refer to n8n's [pricing page](https://n8n.io/pricing/) for plan details.
+Custom project roles are available on:
 
-**Available from:** n8n 1.122.0 (released November 24, 2025)
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
 
-Secret vault scopes are available from n8n 2.13.0.
+Available from n8n 1.122.0.
 {% endhint %}
 
 {% hint style="info" %}
@@ -20736,6 +20809,13 @@ n8n pairs some scopes together, so they don't appear as separate checkboxes:
 * `execution:reveal` - Reveal redacted execution data (refer to [Execution data redaction](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/redact-execution-data))
 
 ### Secret vault scopes <a href="#secret-vault-scopes" id="secret-vault-scopes"></a>
+
+{% hint style="info" %}
+**Feature availability**
+
+Secret vault scopes are available from n8n 2.13.0.
+{% endhint %}
+
 The scope codes use the `externalSecretsProvider` prefix. The role editor lists this section as **Secrets vaults**.
 
 * `externalSecretsProvider:create` - Create new secret vaults in a project
@@ -20808,9 +20888,12 @@ You can combine any scopes to create roles that match your specific needs. Consi
 {% hint style="info" %}
 **Feature availability**
 
-Custom instance roles are available on Self-hosted Enterprise and Cloud Enterprise plans. Refer to n8n's [pricing page](https://n8n.io/pricing/) for plan details.
+Custom instance roles are available on:
 
-**Available from:** n8n 2.30.0 (released July 7, 2026)
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
+
+Available from n8n 2.30.0 (released July 7, 2026)
 {% endhint %}
 
 {% hint style="info" %}
@@ -20936,10 +21019,15 @@ Only assign these permissions to fully trusted users, and avoid combining them u
 {% hint style="info" %}
 **Feature availability**
 
-* Project roles are available on all plans except the Community edition.
-* Custom roles (instance and project) require an Enterprise plan.
+Project roles are available on:
 
-Refer to n8n's [pricing page](https://n8n.io/pricing/) for plan details.
+- **n8n Cloud:** All plans
+- **Self-hosted:** Registered Community, Business, Enterprise
+
+Custom roles (instance and project) are available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
 {% endhint %}
 
 RBAC in n8n lets you control access at two levels:
@@ -20984,9 +21072,9 @@ n8n plans on adding PKCE support in a future release
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3sB2Mxc1yXYEg1FeAYjK/" %}
 
 {% hint style="info" %}
-**Configure using environment variables**
+**Feature availability**
 
-You can also configure OIDC from environment variables instead of the UI. Available from n8n 2.18.0. See [SSO environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso).
+Configuring OIDC using environment variables instead of the UI is available from n8n 2.18.0. See [SSO environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso).
 {% endhint %}
 
 ## Setting up and enabling OIDC <a href="#setting-up-and-enabling-oidc" id="setting-up-and-enabling-oidc"></a>
@@ -21017,7 +21105,7 @@ You can also configure OIDC from environment variables instead of the UI. Availa
 
 n8n supports provisioning the instance role and project roles via SSO. When a user signs in via OIDC, n8n can assign their instance role and project access automatically based on claims in the IdP response.
 
-Role provisioning was introduced in n8n 1.122.2.
+Role provisioning is available from n8n 1.122.2.
 
 #### Choose how roles are assigned <a href="#choose-how-roles-are-assigned" id="choose-how-roles-are-assigned"></a>
 
@@ -21083,7 +21171,7 @@ For new projects, get the project ID from the URL when viewing the project in yo
 
 #### Map rules inside n8n <a href="#map-rules-inside-n8n" id="map-rules-inside-n8n"></a>
 
-**Map rules inside n8n** is available from n8n 2.19.0 upwards.
+**Map rules inside n8n** is available from n8n 2.19.0.
 
 Use this option to define group-to-role mappings inside n8n rather than in your IdP. Each rule is an expression that n8n evaluates against the OIDC claims in the IdP response.
 
@@ -21289,8 +21377,12 @@ Self-hosted users can configure their n8n instance to disable 2FA for all users 
 {% hint style="info" %}
 **Feature availability**
 
-* Available on Self-hosted Business and Enterprise, and Cloud Enterprise plans.
-* You need access to the n8n instance owner account.
+LDAP is available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Business, Enterprise
+
+You need access to the n8n instance owner account.
 {% endhint %}
 
 This page tells you how to enable LDAP in n8n. It assumes you're familiar with LDAP, and have an existing LDAP server set up.
@@ -21609,7 +21701,7 @@ This section tells you how to enable SAML SSO (single sign-on) in n8n. It assume
 {% hint style="info" %}
 **Configure using environment variables**
 
-You can also configure SAML from environment variables instead of the UI. Available from n8n 2.18.0. See [SSO environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso).
+Configuring SAML using environment variables instead of the UI is available from n8n 2.18.0. See [SSO environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso).
 {% endhint %}
 
 ## Enable SAML <a href="#enable-saml" id="enable-saml"></a>
@@ -21650,7 +21742,7 @@ The steps to configure the IdP vary depending on your chosen IdP. These are some
 
 n8n supports provisioning the instance role and project roles via SSO. When a user signs in via SAML, n8n can assign their instance role and project access automatically based on attributes in the SAML response.
 
-Role provisioning was introduced in n8n 1.122.2.
+Role provisioning is available from n8n 1.122.2.
 
 #### Choose how roles are assigned <a href="#choose-how-roles-are-assigned" id="choose-how-roles-are-assigned"></a>
 
@@ -21714,7 +21806,7 @@ For new projects, get the project ID from the URL when viewing the project in yo
 
 #### Map rules inside n8n <a href="#map-rules-inside-n8n" id="map-rules-inside-n8n"></a>
 
-**Map rules inside n8n** is available from n8n 2.19.0 upwards.
+**Map rules inside n8n** is available from n8n 2.19.0.
 
 Use this option to define group-to-role mappings inside n8n rather than in your IdP. Each rule is an expression that n8n evaluates against the SAML attributes in the IdP response.
 
@@ -21836,7 +21928,10 @@ Documentation links for common IdPs.
 {% hint style="info" %}
 **Feature availability**
 
-Log Streaming is available on all Enterprise plans.
+Log Streaming is available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
 {% endhint %}
 
 Log streaming allows you to send events from n8n to your own logging tools. This allows you to manage your n8n monitoring in your own alerting and logging processes.
@@ -22001,7 +22096,7 @@ n8n supports three destination types:
 
 ## Configure using environment variables <a href="#configure-using-environment-variables" id="configure-using-environment-variables"></a>
 
-If you self-host n8n, you can manage log streaming destinations from environment variables instead of the UI. Available from n8n 2.19.0. Set `N8N_LOG_STREAMING_MANAGED_BY_ENV` to `true` and provide your destinations as a JSON array in `N8N_LOG_STREAMING_DESTINATIONS`. n8n reapplies these on every startup and locks the **Log Streaming** UI as read-only. See [Manage instance settings using environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/manage-settings-using-environment-variables) for the full pattern.
+If you self-host n8n, you can manage log streaming destinations from environment variables instead of the UI. This is available from n8n 2.19.0. Set `N8N_LOG_STREAMING_MANAGED_BY_ENV` to `true` and provide your destinations as a JSON array in `N8N_LOG_STREAMING_DESTINATIONS`. n8n reapplies these on every startup and locks the **Log Streaming** UI as read-only. See [Manage instance settings using environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/manage-settings-using-environment-variables) for the full pattern.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/JvN9TDUUWTwpWaT83YrH/" %}
 
@@ -22181,7 +22276,15 @@ Insights gives instance owners and admins visibility into how workflows perform 
 {% hint style="info" %}
 **Feature availability**
 
-The insights summary banner displays activity from the last 7 days for all plans. The insights dashboard is only available on Pro, Business, and Enterprise plans.
+The insights summary banner, which displays activity from the last 7 days, is available on:
+
+- **n8n Cloud:** All plans
+- **Self-hosted:** All editions
+
+The insights dashboard is available on:
+
+- **n8n Cloud:** Pro, Enterprise
+- **Self-hosted:** Business, Enterprise
 {% endhint %}
 
 ## Insights summary banner <a href="#insights-summary-banner" id="insights-summary-banner"></a>
@@ -22204,9 +22307,9 @@ The insights dashboard also has a table showing individual insights from each wo
 
 By default, the insights summary banner and dashboard show a rolling 7 day window with a comparison to the previous period to identify increases or decreases for each metric. On the dashboard, paid plans also display data for other date ranges:
 
-- Pro: 7 and 14 days
-- Business: 24 hours, 7 days, 14 days, 30 days.
-- Enterprise: 24 hours, 7 days, 14 days, 30 days, 90 days, 6 months, 1 year
+- **n8n Cloud Pro:** 7 and 14 days
+- **Self-hosted Business:** 24 hours, 7 days, 14 days, and 30 days
+- **n8n Cloud Enterprise, self-hosted Enterprise:** 24 hours, 7 days, 14 days, 30 days, 90 days, 6 months, and 1 year
 
 ## Setting the time saved by a workflow <a href="#setting-the-time-saved-by-a-workflow" id="setting-the-time-saved-by-a-workflow"></a>
 
@@ -22287,7 +22390,11 @@ n8n only starts collecting data for insights once you update to n8n 1.89.0, the 
 {% hint style="info" %}
 **Feature availability**
 
-* External secrets are available on Enterprise Self-hosted and Enterprise Cloud plans.
+External secrets are available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
+
 * n8n supports the following secret providers: 1Password (via [Connect Server](https://developer.1password.com/docs/connect/get-started/)), AWS Secrets Manager, Azure Key Vault, GCP Secrets Manager, HashiCorp Vault, and Infisical.
 * From n8n 2.10.0 you can connect multiple vaults per secret provider. Older versions only support one vault per provider.
 * From n8n 2.13.0, if enabled, project editors can use external secrets within their projects, and project admins can also manage project vaults.
@@ -22415,7 +22522,7 @@ For more IAM permission policy examples, consult the [AWS documentation](https:/
 ### Azure Key Vault <a href="#azure-key-vault" id="azure-key-vault"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.35.0**
+**Feature availability**
 
 The **Azure Cloud** setting is available from n8n 2.35.0. Earlier versions connect to Azure Public Cloud only. Existing configurations are unaffected: they continue to use Azure Public Cloud.
 {% endhint %}
@@ -22480,9 +22587,9 @@ path "kv/*" {
 ### Infisical <a href="#infisical" id="infisical"></a>
 
 {% hint style="info" %}
-**n8n 2.26.0 and later**
+**Feature availability**
 
-Infisical secrets management support is only available from n8n 2.26.0.
+Infisical secrets management support is available from n8n 2.26.0.
 {% endhint %}
 
 
@@ -22544,9 +22651,9 @@ You can share a vault with a project so that only that project's credentials can
 ### Access for project roles <a href="#access-for-project-roles" id="access-for-project-roles"></a>
 
 {% hint style="info" %}
-**n8n 2.13.0 and later**
+**Feature availability**
 
-Before n8n 2.13.0, using external secrets in an [RBAC project](../manage-users-and-access/set-permissions-and-roles-rbac/README.md) required an [instance owner or instance admin](../manage-users-and-access/understand-instance-roles.md) as a member of the project.
+Granting project editors and project admins access to external secrets is available from n8n 2.13.0. Before n8n 2.13.0, using external secrets in an [RBAC project](../manage-users-and-access/set-permissions-and-roles-rbac/README.md) required an [instance owner or instance admin](../manage-users-and-access/understand-instance-roles.md) as a member of the project.
 {% endhint %}
 
 From n8n 2.13.0, instance owners and admins can grant [project editors](../manage-users-and-access/set-permissions-and-roles-rbac/see-available-roles.md#project-editor) and [project admins](../manage-users-and-access/set-permissions-and-roles-rbac/see-available-roles.md#project-admin) access to external secrets.
@@ -22586,12 +22693,12 @@ Both permissions are independent. For example, a role may need only the **Secret
 ### Secrets don't resolve in production <a href="#secrets-dont-resolve-in-production" id="secrets-dont-resolve-in-production"></a>
 
 {% hint style="info" %}
-**n8n 2.13.0 and later**
+**Feature availability**
 
-From n8n 2.13.0, project editors and admins with [secrets access enabled](#access-for-project-roles) can use external secrets in their own credentials. The restriction below applies only to older versions or when the opt-in toggle is off.
+Using external secrets in your own credentials, as a project editor or admin with [secrets access enabled](#access-for-project-roles), is available from n8n 2.13.0. The restriction below applies only to older versions or when the opt-in toggle is off.
 {% endhint %}
 
-In versions before `2.13.0` (or when **Enable external secrets for project roles** is off), only instance owners and admins can resolve secrets at runtime. If an owner or admin updates another user's credential with a secrets expression, it may appear to work in preview but fail in production.
+In versions before n8n 2.13.0 (or when **Enable external secrets for project roles** is off), only instance owners and admins can resolve secrets at runtime. If an owner or admin updates another user's credential with a secrets expression, it may appear to work in preview but fail in production.
 
 In this case, only use external secrets in credentials owned by an instance owner or admin.
 
@@ -22605,7 +22712,10 @@ In this case, only use external secrets in credentials owned by an instance owne
 {% hint style="info" %}
 **Feature availability**
 
-Available on all Cloud plans, and Business and Enterprise self-hosted plans.
+Credential sharing is available on:
+
+- **n8n Cloud:** All plans
+- **Self-hosted:** Business, Enterprise
 {% endhint %}
 
 You can share a credential directly with other users to use in their own workflows. Or share a credential in a project[^1] for all members of that project to use. Any users using a shared credential won't be able to view or edit the credential details.
@@ -22656,7 +22766,12 @@ End-user credentials let workflows run with the credentials of the person who tr
 With fixed credentials, everyone who runs a workflow uses the same account, which can expose one person's access and data to everyone else. End-user credentials give each user their own connection and isolate their execution data.
 
 {% hint style="info" %}
-**Available on Enterprise plans**
+**Feature availability**
+
+End-user credentials are available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
 {% endhint %}
 
 {% hint style="info" %}
@@ -22971,8 +23086,12 @@ Workflow diffs allow you to visually compare changes between the workflow you ha
 {% hint style="info" %}
 **Feature availability**
 
-- Available on Enterprise
-- Workflow diffs are only available when you [enable the environments features](set-up-source-control.md) on an instance
+Workflow diffs are available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
+
+Workflow diffs are only available when you [enable the environments features](set-up-source-control.md) on an instance.
 {% endhint %}
 
 ## Accessing workflow diffs <a href="#accessing-workflow-diffs" id="accessing-workflow-diffs"></a>
@@ -23693,7 +23812,7 @@ This page helps with both.
     />
     <img
       src=".gitbook/assets/choose-your-n8n-diag-light.png"
-      alt="Decision flowchart: n8n Cloud offers the Starter, Pro, and Enterprise plans; self-hosted offers the Community, registered Community, Business, and Enterprise editions"
+      alt="Decision flowchart: n8n Cloud offers the Starter, Pro, and Enterprise plans; self-hosted offers the Community, Registered Community, Business, and Enterprise editions"
     />
   </picture>
   <figcaption>Choosing your n8n deployment option, plan, and edition</figcaption>
@@ -23715,7 +23834,7 @@ Use this guide to choose a deployment option:
 |----------------|-------------------|---------|
 | Want to start quickly | **n8n Cloud** | No installation needed |
 | Don't have technical expertise | **n8n Cloud** | Fully managed, no setup or maintenance required |
-| Need production-ready deployment | **Both options work** | Both Cloud and self-hosted support production use |
+| Need production-ready deployment | **Both options work** | Both n8n Cloud and self-hosted support production use |
 | Don't want to manage infrastructure | **n8n Cloud** | n8n handles hosting, updates, and scaling |
 | Need full control over deployment | **Self-hosted** | You control the environment and configuration |
 | Have customized use cases | **Self-hosted** | Full control over deployment and configuration |
@@ -23763,7 +23882,7 @@ Every plan runs on the same underlying product with different features, usage li
 
 | Plan | Designed for |
 |------|--------------|
-| **Free trial** | Trying Cloud with Pro features for 14 days |
+| **Free trial** | Trying n8n Cloud with Pro features for 14 days |
 | **Starter** | Individuals and small projects getting started |
 | **Pro** | Power users and small teams that need higher limits, admin accounts, and insights |
 | **Enterprise** | Organizations that need advanced security, scaling, and dedicated support |
@@ -24216,8 +24335,8 @@ This is the best source for answers of all kinds, as both the n8n support team a
 
 n8n offers email support through the [help@n8n.io](mailto:help@n8n.io) for the following plans:
 
-* [Enterprise plans](https://n8n.io/enterprise/) can use email support with an SLA for technical, account, billing, and other inquiries.
-* Other [Cloud plans](https://n8n.io/pricing/) can use email support for admin and billing issues. For technical support, please refer to the forum.
+* [n8n Cloud Enterprise and self-hosted Enterprise](https://n8n.io/enterprise/) plans can use email support with an SLA for technical, account, billing, and other inquiries.
+* Other [n8n Cloud plans](https://n8n.io/pricing/) can use email support for admin and billing issues. For technical support, please refer to the forum.
 
 ## What to include in your message <a href="#what-to-include-in-your-message" id="what-to-include-in-your-message"></a>
 
@@ -25290,7 +25409,7 @@ Every self-hosted installation runs on the same underlying product. You can stic
 {% hint style="info" %}
 **Plan, edition, or license?**
 
-An **edition** is the variant of the self-hosted software you run: Community, registered Community, Business, or Enterprise. A **plan** is the paid subscription tier you buy, for self-hosted or [n8n Cloud](../use-n8n-cloud/start-your-free-trial.md). When you subscribe to a paid plan, you get a **license** key that unlocks the features for that plan. Registering a free Community edition also uses a license key. See the [glossary](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#edition-n8n) for definitions.
+An **edition** is the variant of the self-hosted software you run: Community, Registered Community, Business, or Enterprise. A **plan** is the paid subscription tier you buy, for self-hosted or [n8n Cloud](../use-n8n-cloud/start-your-free-trial.md). When you subscribe to a paid plan, you get a **license** key that unlocks the features for that plan. Registering a free Community edition also uses a license key. See the [glossary](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#edition-n8n) for definitions.
 {% endhint %}
 
 {% hint style="info" %}
@@ -25314,7 +25433,7 @@ The Community edition includes almost the complete feature set of n8n. It doesn'
 * Sharing ([workflows](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/share-with-others), [credentials](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-credentials/share-credentials-securely)) (Only the instance owner and the user who creates them can access workflows and credentials)
 * [Version control using Git](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/use-source-control-and-environments)
 
-These features are available on the Business and Enterprise plans. Some are also available on the Starter, Pro, and Enterprise n8n Cloud plans. See [pricing](https://n8n.io/pricing/) for the current breakdown.
+These features are available on self-hosted Business and Enterprise plans. Some are also available on n8n Cloud. See [pricing](https://n8n.io/pricing/) for the current breakdown.
 
 ## Registered Community edition <a href="#registered-community-edition" id="registered-community-edition"></a>
 
@@ -25606,7 +25725,11 @@ Enable the Prometheus metrics endpoint in n8n, then connect Grafana through a Pr
 {% hint style="info" %}
 **Feature availability**
 
-The `/metrics` endpoint isn't available on n8n Cloud.
+The `/metrics` endpoint is available on:
+
+- **Self-hosted:** All editions
+
+It isn't available on n8n Cloud.
 {% endhint %}
 
 ## Reusable dashboard templates <a href="#reusable-dashboard-templates" id="reusable-dashboard-templates"></a>
@@ -25647,7 +25770,12 @@ Grafana confirms the connection with a success message.
 
 ## Webhook observability <a href="#webhook-observability" id="webhook-observability"></a>
 
-Available from n8n 2.28.0.
+
+{% hint style="info" %}
+**Feature availability**
+
+Webhook observability is available from n8n 2.28.0.
+{% endhint %}
 
 n8n exposes a `n8n_webhook_request_duration_seconds` histogram for every webhook call. Enable these environment variables to collect it:
 
@@ -25689,7 +25817,11 @@ Each series carries these labels:
 
 ## Form submission observability <a href="#form-submission-observability" id="form-submission-observability"></a>
 
-Available from n8n 2.28.0.
+{% hint style="info" %}
+**Feature availability**
+
+Form submission observability is available from n8n 2.28.0.
+{% endhint %}
 
 n8n exposes a `n8n_form_submission_duration_seconds` histogram for every form submission. Enable these environment variables to collect it:
 
@@ -25736,7 +25868,11 @@ Form submissions don't include a `method` label because n8n only accepts form da
 
 ## Workflow name lookup <a href="#workflow-name-lookup" id="workflow-name-lookup"></a>
 
-Available from n8n 2.28.0.
+{% hint style="info" %}
+**Feature availability**
+
+Workflow name lookup is available from n8n 2.28.0.
+{% endhint %}
 
 When you enable `N8N_METRICS_INCLUDE_WORKFLOW_INFO`, n8n exposes one gauge per workflow:
 
@@ -25918,7 +26054,11 @@ Access the endpoint:
 {% hint style="info" %}
 **Feature availability**
 
-The `/metrics` endpoint isn't available on n8n Cloud.
+The `/metrics` endpoint is available on:
+
+- **Self-hosted:** All editions
+
+It isn't available on n8n Cloud.
 {% endhint %}
 
 
@@ -25940,11 +26080,10 @@ Refer to [Configuration methods](../configure-n8n/basic-configuration.md) for mo
 === https://docs.n8n.io/docs/deploy/host-n8n/keep-n8n-running/trace-executions-with-opentelemetry/
 
 # OpenTelemetry tracing <a href="#opentelemetry-tracing" id="opentelemetry-tracing"></a>
-{% hint style="warning" %}
-**This feature is still under development**
+{% hint style="info" %}
+**Feature availability**
 
-- Initially available from 2.19.0
-- Open telemetry formatted metrics will be coming soon
+OpenTelemetry tracing is in preview from n8n 2.19.0 and may change in future releases. Avoid relying on it in production workflows. n8n plans to add OpenTelemetry-formatted metrics in a later release.
 {% endhint %}
 
 n8n can emit [OpenTelemetry](https://opentelemetry.io/) traces for workflow and node executions. Use these traces to monitor execution latency, debug failures, and track requests across services in your observability stack.
@@ -25977,9 +26116,9 @@ n8n also handles trace context propagation:
 ## Enable tracing in the UI <a href="#enable-tracing-in-the-ui" id="enable-tracing-in-the-ui"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.27.0**
+**Feature availability**
 
-You need to be an instance owner or admin to configure OpenTelemetry in the UI.
+Configuring OpenTelemetry tracing from the UI is available from n8n 2.27.0. You need to be an instance owner or admin to configure OpenTelemetry in the UI.
 {% endhint %}
 
 Instead of setting environment variables, you can configure tracing from **Settings > OpenTelemetry**. n8n applies your changes without a restart, and reloads them across workers and webhook processors in [queue mode](../configure-n8n/scaling/enable-queue-mode.md).
@@ -26064,7 +26203,9 @@ export N8N_OTEL_TRACES_INJECT_OUTBOUND=false
 ## Agent tracing <a href="#agent-tracing" id="agent-tracing"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.33.0**
+**Feature availability**
+
+Agent tracing is available from n8n 2.33.0.
 {% endhint %}
 
 n8n can also emit spans for AI agent runs, using the same tracer as workflow tracing. This covers agent runs started from a workflow (for example, the AI Agent node), from chat integrations, and from scheduled tasks.
@@ -26099,7 +26240,13 @@ You can add custom attributes to project, workflow, and node spans. n8n exports 
 {% hint style="info" %}
 **Feature availability**
 
-Custom span attributes are available on Enterprise plans.
+Custom span attributes are available on:
+
+- **Self-hosted:** Enterprise
+
+They aren't available on n8n Cloud.
+
+Project and workflow custom span attributes are available from n8n 2.24.0. Node custom span attributes are available from n8n 2.22.0.
 {% endhint %}
 
 Don't include secrets, personal data, or other sensitive values in attribute values.
@@ -26111,8 +26258,6 @@ n8n supports the following custom attribute levels:
 | Project | **Project settings** | `workflow.execute` | `n8n.project.custom.<key>` |
 | Workflow | **Workflow settings** | `workflow.execute` | `n8n.workflow.custom.<key>` |
 | Node | Node **Settings** tab | `node.execute` | `n8n.node.custom.<key>` |
-
-Project and workflow custom span attributes are available from n8n 2.24.0. Node custom span attributes are available from n8n 2.22.0.
 
 ### Add project span attributes <a href="#add-project-span-attributes" id="add-project-span-attributes"></a>
 
@@ -26346,9 +26491,9 @@ Refer to [Environment variables reference](../use-environment-variables/endpoint
 You can add your own certificate authority (CA) or self-signed certificate to n8n. This means you are able to trust a certain SSL certificate instead of trusting all invalid certificates, which is a potential security risk.
 
 {% hint style="info" %}
-**Added in version 1.42.0**
+**Feature availability**
 
-This feature is available in version 1.42.0 and above.
+You can use your own certificate authority or self-signed certificate starting from n8n 1.42.0.
 {% endhint %}
 
 To use this feature you need to place your certificates in a folder and mount the folder to `/opt/custom-certificates` in the container. The external path that you map to `/opt/custom-certificates` must be writable by the container. 
@@ -27326,7 +27471,7 @@ n8n uses Git-based source control to support environments. Refer to [Source cont
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ASsLuMLGKMy2O0q7awMF/" %}
 
-By default, n8n uses SQLite. n8n also supports PostgreSQL. n8n [deprecated support for MySQL and MariaDB](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v10-migration-guide#mysql-and-mariadb) in v1.0.
+By default, n8n uses SQLite. n8n also supports PostgreSQL. n8n [deprecated support for MySQL and MariaDB](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v10-migration-guide#mysql-and-mariadb) from n8n 1.0.
 
 This page outlines environment variables to configure your chosen database for your self-hosted n8n instance.
 
@@ -27513,7 +27658,11 @@ Set `N8N_INSTANCE_OWNER_MANAGED_BY_ENV` to `true` to pre-provision the instance 
 {% hint style="info" %}
 **Feature availability**
 
-Single sign-on is available on Business and Enterprise plans.
+Single sign-on is available on:
+
+- **Self-hosted:** Business, Enterprise
+
+n8n Cloud Enterprise also supports single sign-on, but not through the environment variables on this page.
 {% endhint %}
 
 Refer to [Set up SSO](../../security/configure-sso.md) for in-app setup steps and identity provider guides. See [Manage instance settings using environment variables](../../manage-settings-using-environment-variables.md) for how the activation pattern works.
@@ -27595,9 +27744,13 @@ Refer to [External storage](../../scaling/use-external-storage.md) for more info
 ## Azure Blob Storage <a href="#azure-blob-storage" id="azure-blob-storage"></a>
 
 {% hint style="info" %}
-**Enterprise-tier feature**
+**Feature availability**
 
-You need an [Enterprise license key](../../manage-your-license.md) to store execution data or binary data in Azure Blob Storage.
+Storing execution data or binary data in Azure Blob Storage is available on:
+
+- **Self-hosted:** Enterprise
+
+It isn't available on n8n Cloud. Add an [Enterprise license key](../../manage-your-license.md) to unlock this feature.
 {% endhint %}
 
 To store execution data in Azure Blob Storage, set `N8N_EXECUTION_DATA_STORAGE_MODE` to `azure`. To store binary data in Azure Blob Storage, set `N8N_DEFAULT_BINARY_DATA_MODE` to `azure` (refer to [External storage](../../scaling/use-external-storage.md#storing-n8ns-binary-data-in-azure-blob-storage)). A single container can hold both. Configure the variables below; `N8N_EXTERNAL_STORAGE_AZURE_CONTAINER_NAME` is always required.
@@ -27796,7 +27949,7 @@ This page lists environment variables to configure workflow execution settings.
 | `EXECUTIONS_DATA_PRUNE_SOFT_DELETE_INTERVAL` | Number | `60` | How often (minutes) execution data should be soft-deleted. |
 | `EXECUTIONS_DATA_MAX_DISPLAY_SIZE` | Number | `104857600` | Maximum size (in bytes) of execution data that n8n loads when displaying an execution (editor, execution detail, and public API). For larger executions, n8n omits the data (shown as "too large to display") to avoid running low-resource instances out of memory. Doesn't affect retrying or resuming executions, which always load the full data. Set to `0` to disable the limit. |
 | `N8N_CONCURRENCY_PRODUCTION_LIMIT` | Number | `-1` | Max production executions allowed to run concurrently, in both regular and scaling modes. `-1` to disable in regular mode. |
-| `N8N_CONCURRENCY_EVALUATION_LIMIT` | Number | License-tier default | Max test cases that can run in parallel within a single [evaluation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/test-and-improve-ai-workflows/use-metrics-to-measure-quality#run-test-cases-in-parallel) test run. When unset, the limit follows the license tier (Community/Pro: 1, Business: 3, Enterprise: 5). Setting this overrides the tier default. |
+| `N8N_CONCURRENCY_EVALUATION_LIMIT` | Number | License-tier default | Max test cases that can run in parallel within a single [evaluation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/test-and-improve-ai-workflows/use-metrics-to-measure-quality#run-test-cases-in-parallel) test run. When unset, the limit follows the license tier: self-hosted Community: 1, n8n Cloud Pro: 1, self-hosted Business: 3, n8n Cloud Enterprise and self-hosted Enterprise: 5. Setting this overrides the tier default. |
 | `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` | Boolean | `false` | Whether workflows are automatically unpublished after repeated crashed executions. |
 | `N8N_WORKFLOW_AUTODEACTIVATION_MAX_LAST_EXECUTIONS` | Number | `3` | Number of crashed executions before unpublishing a workflow. |
 
@@ -27837,9 +27990,9 @@ This page lists the environment variables configuration options for managing nod
 ## Manage installed community packages <a href="#manage-installed-community-packages" id="manage-installed-community-packages"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.21.0**
+**Feature availability**
 
-
+Managing installed community packages from environment variables is available from n8n 2.21.0.
 {% endhint %}
 
 Pre-provision installed [community packages](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/community-nodes/installation-and-management) from environment variables. See [Manage instance settings using environment variables](../../manage-settings-using-environment-variables.md) for the `*_MANAGED_BY_ENV` pattern.
@@ -27941,7 +28094,7 @@ Unlike the main n8n image, you CANNOT use file-based configuration for secrets i
 
 | Variable | Type  | Default  | Description |
 | :------- | :---- | :------- | :---------- |
-| `N8N_RUNNERS_ENABLED` (**deprecated**) | Boolean | `false` | Are task runners enabled. **Deprecated** from v2.0. |
+| `N8N_RUNNERS_ENABLED` (**deprecated**) | Boolean | `false` | Are task runners enabled. **Deprecated** from n8n 2.0. |
 | `N8N_RUNNERS_MODE` | Enum string: `internal`, `external` | `internal` | How to launch and run the task runner. `internal` means n8n will launch a task runner as child process. `external` means an external orchestrator will launch the task runner. |
 | `N8N_RUNNERS_AUTH_TOKEN` | String | Random string | Shared secret used by a task runner to authenticate to n8n. Required when using `external` mode. |
 | `N8N_RUNNERS_BROKER_PORT` | Number | `5679` | Port the task broker listens on for task runner connections. |
@@ -28352,15 +28505,15 @@ There are three layers of configuration: the n8n container, the runners containe
 
 These are the main environment variables that you can set on the n8n container running in external mode:
 
-{% hint style="info" %}
-**`N8N_RUNNERS_ENABLED` is deprecated from version 2.0**
+{% hint style="warning" %}
+**Feature availability**
 
-From version 2.0 onwards, `N8N_RUNNERS_ENABLED` is deprecated and you no longer need to set it. It's still supported in version 1.x, where you must set it to `true` to enable task runners. Leaving task runners disabled on 1.x runs Code node scripts inside the main n8n process with no isolation at all. Don't do this on any instance that holds sensitive credentials or data.
+`N8N_RUNNERS_ENABLED` is deprecated from n8n 2.0. You no longer need to set it. It's still supported in n8n 1.x, where you must set it to `true` to enable task runners. Leaving task runners disabled on 1.x runs Code node scripts inside the main n8n process with no isolation at all. Don't do this on any instance that holds sensitive credentials or data.
 {% endhint %}
 
 | Environment variables                                  | Description                                                                                                                                                                   |
 | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `N8N_RUNNERS_ENABLED=true`                             | Enables task runners. Deprecated from n8n 2.0 onwards. Still supported in n8n 1.x.                                                                                    |
+| `N8N_RUNNERS_ENABLED=true`                             | Enables task runners. Deprecated from n8n 2.0. Still supported in n8n 1.x.                                                                                    |
 | `N8N_RUNNERS_MODE=external`                            | Use task runners in external mode.                                                                                                                                            |
 | `N8N_RUNNERS_AUTH_TOKEN=<random secure shared secret>` | A shared secret task runners use to connect to the broker.                                                                                                                    |
 | `N8N_RUNNERS_BROKER_LISTEN_ADDRESS=0.0.0.0`            | By default, the task broker only listens to localhost. When using multiple containers (for example, with Docker Compose), it needs to be able to accept external connections. |
@@ -28398,7 +28551,7 @@ path/to/n8n-task-runners.json:/etc/n8n-task-runners.json
 
 ### 1. Extend the `n8nio/runners` image <a href="#id-1-extend-the-n8niorunners-image" id="id-1-extend-the-n8niorunners-image"></a>
 
-You can extend the `n8nio/runners` image to add extra dependencies to the runners. You'll need `n8nio/runners:1.121.0` or later to do this.
+You can extend the `n8nio/runners` image to add extra dependencies to the runners. You'll need at least `n8nio/runners:1.121.0` to do this.
 
 ```dockerfile
 FROM n8nio/runners:1.121.0
@@ -28573,9 +28726,9 @@ n8n unpublish:workflow --all
 ### update:workflow (deprecated) <a href="#updateworkflow-deprecated" id="updateworkflow-deprecated"></a>
 
 {% hint style="warning" %}
-**Deprecated in n8n 2.0**
+**Feature availability**
 
-The `update:workflow` command is deprecated and will be removed. Use [`publish:workflow`](use-the-command-line.md#publish-a-workflow) and [`unpublish:workflow`](use-the-command-line.md#unpublish-a-workflow) instead. See the [n8n 2.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v20-breaking-changes) for details.
+The `update:workflow` command is deprecated from n8n 2.0 and will be removed. Use [`publish:workflow`](use-the-command-line.md#publish-a-workflow) and [`unpublish:workflow`](use-the-command-line.md#unpublish-a-workflow) instead. See the [n8n 2.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v20-breaking-changes) for details.
 {% endhint %}
 
 Set the active status of a workflow by its ID to false:
@@ -29396,9 +29549,9 @@ The other environment variables for an area have no effect unless `<AREA>_MANAGE
 ## Instance owner <a href="#instance-owner" id="instance-owner"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.17.0**
+**Feature availability**
 
-
+Instance owner management through environment variables is available from n8n 2.17.0.
 {% endhint %}
 
 Pre-provision the [instance owner](user-management.md) from environment variables instead of going through the in-app setup. To change the owner email after setup, see [Change the instance owner email for self-hosted n8n](change-instance-owner-email.md).
@@ -29414,15 +29567,15 @@ This variable expects a pre-hashed bcrypt value. Setting a plaintext password br
 ## SSO <a href="#sso" id="sso"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.18.0**
-
-
-{% endhint %}
-
-{% hint style="info" %}
 **Feature availability**
 
-Single sign-on is available on Business and Enterprise plans.
+Single sign-on is available on:
+
+- **Self-hosted:** Business, Enterprise
+
+n8n Cloud Enterprise also supports single sign-on, but not through the environment variables on this page.
+
+Managing SSO from environment variables is available from n8n 2.18.0.
 {% endhint %}
 
 Configure [single sign-on](security/configure-sso.md) from environment variables.
@@ -29448,9 +29601,9 @@ Set either `N8N_SSO_SAML_METADATA` (inline XML) or `N8N_SSO_SAML_METADATA_URL` (
 ## Security policy <a href="#security-policy" id="security-policy"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.18.0**
+**Feature availability**
 
-
+Managing the security policy from environment variables is available from n8n 2.18.0.
 {% endhint %}
 
 Manage the instance security policy from environment variables, including MFA enforcement and personal space restrictions.
@@ -29460,9 +29613,9 @@ Manage the instance security policy from environment variables, including MFA en
 ## Log streaming <a href="#log-streaming" id="log-streaming"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.19.0**
+**Feature availability**
 
-
+Managing log streaming from environment variables is available from n8n 2.19.0.
 {% endhint %}
 
 Manage [log streaming](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/observe-and-log/stream-logs-to-external-systems) destinations from environment variables. See [Configure using environment variables](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/observe-and-log/stream-logs-to-external-systems#configure-using-environment-variables) for the per-destination JSON shape.
@@ -29472,9 +29625,9 @@ Manage [log streaming](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/observe-an
 ## MCP <a href="#mcp" id="mcp"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.20.0**
+**Feature availability**
 
-
+Managing instance-level MCP access from environment variables is available from n8n 2.20.0.
 {% endhint %}
 
 Manage [instance-level MCP access](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server) from environment variables.
@@ -29484,9 +29637,9 @@ Manage [instance-level MCP access](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvc
 ## Community packages <a href="#community-packages" id="community-packages"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.21.0**
+**Feature availability**
 
-
+Managing installed community packages from environment variables is available from n8n 2.21.0.
 {% endhint %}
 
 Manage the set of installed [community packages](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/community-nodes/installation-and-management) from environment variables. n8n reconciles the installed packages against the list on every startup. Managed packages can't be uninstalled or updated through the UI.
@@ -29545,8 +29698,12 @@ For the supported ways to set environment variables, see [Configuration methods]
 {% hint style="info" %}
 **Feature availability**
 
-* Available on Business and Enterprise plans.
-* You need to be an instance owner or admin to enable and configure SAML or OIDC.
+Single sign-on is available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Business, Enterprise
+
+You need to be an instance owner or admin to enable and configure SAML or OIDC.
 {% endhint %}
 
 n8n supports the SAML and OIDC authentication protocols for single sign-on (SSO). See [OIDC vs SAML](https://www.onelogin.com/learn/oidc-vs-saml) for more general information on the two protocols, the differences between them, and their respective benefits.
@@ -29556,7 +29713,13 @@ n8n supports the SAML and OIDC authentication protocols for single sign-on (SSO)
 
 ## Configure SSO with environment variables <a href="#configure-sso-with-environment-variables" id="configure-sso-with-environment-variables"></a>
 
-You can also configure SSO from environment variables instead of through the UI. Available from n8n 2.18.0. See [SSO environment variables](../basic-configuration/use-environment-variables/sso.md) for the full list of variables, and [Manage instance settings using environment variables](../manage-settings-using-environment-variables.md) for how the activation pattern works.
+{% hint style="info" %}
+**Feature availability**
+
+Configuring SSO with environment variables is available from n8n 2.18.0.
+{% endhint %}
+
+You can also configure SSO from environment variables instead of through the UI. See [SSO environment variables](../basic-configuration/use-environment-variables/sso.md) for the full list of variables, and [Manage instance settings using environment variables](../manage-settings-using-environment-variables.md) for how the activation pattern works.
 
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/security/set-up-ssl/
 
@@ -29699,8 +29862,13 @@ To prevent all communication with n8n's servers, refer to [Isolate n8n](../basic
 {% hint style="info" %}
 **Feature availability**
 
-* Available on self-hosted n8n instances only.
-* You need to be the instance owner to enable the feature and rotate keys.
+Encryption key rotation is available on:
+
+- **Self-hosted:** All editions
+
+It isn't available on n8n Cloud.
+
+You need to be the instance owner to enable the feature and rotate keys.
 {% endhint %}
 
 Encryption key rotation lets you periodically replace the key that encrypts your n8n data, like credentials, OAuth tokens, and other sensitive content, without changing your instance's master encryption key.
@@ -29787,9 +29955,12 @@ There's no automated tool to convert data encrypted in the new format back to th
 {% hint style="info" %}
 **Feature availability**
 
-Data redaction is available on Enterprise Self-hosted and Enterprise Cloud plans.
+Data redaction is available on:
 
-**Available from:** n8n 2.16.0 (per-workflow redaction), n8n 2.26.0 (instance-level enforcement)
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
+
+Per-workflow execution data redaction is available from n8n 2.16.0. Instance-level enforcement of execution data redaction is available from n8n 2.26.0.
 {% endhint %}
 
 Execution data redaction lets you hide the input and output data of workflow executions. This helps protect sensitive information like personal data, authentication tokens, and financial records from users who can view the workflow but don't need to see the underlying data.
@@ -30027,9 +30198,9 @@ This report shows:
 # SSRF protection <a href="#ssrf-protection" id="ssrf-protection"></a>
 
 {% hint style="info" %}
-**Available since 2.12.0**
+**Feature availability**
 
-
+SSRF protection is available from n8n 2.12.0.
 {% endhint %}
 
 Server-Side Request Forgery (SSRF) attacks abuse workflow nodes to make requests to internal network resources, cloud metadata endpoints, or localhost services that shouldn't be accessible.
@@ -30093,7 +30264,12 @@ Refer to [Configuration methods](../basic-configuration.md) for more information
 {% hint style="info" %}
 **Feature availability**
 
-Security settings are available on Business and Enterprise plans. Some settings require specific license features. Settings that aren't available on your plan display an **Upgrade** badge.
+Security settings are available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Business, Enterprise
+
+Some settings require specific license features. Settings that aren't available on your plan display an **Upgrade** badge.
 {% endhint %}
 
 Security settings let you manage instance-wide security policies. You can enforce two-factor authentication for all users and control what users can do in their personal spaces.
@@ -30165,9 +30341,12 @@ You can enforce [execution data redaction](redact-execution-data.md) for all wor
 {% hint style="info" %}
 **Feature availability**
 
-Data redaction enforcement is available on Enterprise Self-hosted and Enterprise Cloud plans.
+Data redaction enforcement is available on:
 
-**Available from:** n8n 2.26.0
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
+
+Available from n8n 2.26.0.
 {% endhint %}
 
 To enforce data redaction:
@@ -30189,7 +30368,7 @@ Redaction enforcement requires an Enterprise license with the data redaction fea
 
 ## Configure security policy with environment variables <a href="#configure-security-policy-with-environment-variables" id="configure-security-policy-with-environment-variables"></a>
 
-You can also manage security policy settings from environment variables instead of through the UI. Available from n8n 2.18.0. Set `N8N_SECURITY_POLICY_MANAGED_BY_ENV` to `true` and provide the variables below. See [Manage instance settings using environment variables](../manage-settings-using-environment-variables.md) for how the activation pattern works.
+You can also manage security policy settings from environment variables instead of through the UI. This option is available from n8n 2.18.0. Set `N8N_SECURITY_POLICY_MANAGED_BY_ENV` to `true` and provide the variables below. See [Manage instance settings using environment variables](../manage-settings-using-environment-variables.md) for how the activation pattern works.
 
 When `N8N_SECURITY_POLICY_MANAGED_BY_ENV` is `true`, the **Enforce two-factor authentication** and **Personal Space** toggles on this page become read-only.
 
@@ -30202,7 +30381,7 @@ When `N8N_SECURITY_POLICY_MANAGED_BY_ENV` is `true`, the **Enforce two-factor au
 {% hint style="info" %}
 **Feature availability**
 
-* Available from n8n 2.21.0.
+* JWE token decryption is available from n8n 2.21.0.
 * Available on any n8n instance with the `N8N_ENV_FEAT_OAUTH2_JWE` environment variable set to `true`. Self-hosted instances can set it directly. On Cloud, contact n8n support to request it.
 * Requires an identity provider (IdP) that can encrypt tokens as JWE.
 {% endhint %}
@@ -30840,8 +31019,11 @@ You can customize the health check endpoint path using the [`N8N_ENDPOINT_HEALTH
 {% hint style="info" %}
 **Feature availability**
 
-* Available on Self-hosted Enterprise plans.
-* If you want access to this feature on Cloud Enterprise, [contact n8n](https://n8n-community.typeform.com/to/y9X2YuGa).
+Viewing running workers is available on:
+
+- **Self-hosted:** Enterprise
+
+On n8n Cloud Enterprise, [contact n8n](https://n8n-community.typeform.com/to/y9X2YuGa) to enable it.
 {% endhint %}
 
 You can view running workers and their performance metrics in n8n by selecting **Settings** > **Workers**.
@@ -30977,7 +31159,11 @@ n8n recommends setting concurrency to 5 or higher for your worker instances. Set
 {% hint style="info" %}
 **Feature availability**
 
-* Available on Self-hosted Enterprise plans.
+Multi-main setup is available on:
+
+- **Self-hosted:** Enterprise
+
+It isn't available on n8n Cloud.
 {% endhint %}
 
 In queue mode you can run more than one `main` process for high availability.
@@ -31131,7 +31317,12 @@ If you run n8n using the default SQLite database, the disk space of any pruned d
 {% hint style="info" %}
 **Feature availability**
 
-* Available on Self-hosted Enterprise plans
+External storage is available on:
+
+- **Self-hosted:** Enterprise
+
+It isn't available on n8n Cloud.
+
 {% endhint %}
 
 n8n can store binary data and execution data produced by workflow executions externally. This feature is useful to avoid relying on the database or filesystem for storing large amounts of data.
@@ -31141,7 +31332,13 @@ n8n can store binary data and execution data produced by workflow executions ext
 n8n supports [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) as an external store for binary data produced by workflow executions. You can use other S3-compatible services like Cloudflare R2 and Backblaze B2, but n8n doesn't officially support these.
 
 {% hint style="info" %}
-**Enterprise-tier feature**
+**Feature availability**
+
+S3 binary data storage is available on:
+
+- **Self-hosted:** Enterprise
+
+It isn't available on n8n Cloud.
 
 You will need an [Enterprise license key](../manage-your-license.md) for external storage. n8n won't start in `s3` binary data mode without a valid license: set `N8N_DEFAULT_BINARY_DATA_MODE` to another mode or upgrade your license.
 {% endhint %}
@@ -31182,7 +31379,7 @@ export N8N_EXTERNAL_STORAGE_S3_ACCESS_SECRET=...
 If your provider doesn't require a region, you can set `N8N_EXTERNAL_STORAGE_S3_BUCKET_REGION` to `'auto'`.
 {% endhint %}
 
-## Validate and update your S3 bucket region format (n8n 2.6.4 onward) <a href="#validate-and-update-your-s3-bucket-region-format-v264-onward" id="validate-and-update-your-s3-bucket-region-format-v264-onward"></a>
+## Validate and update your S3 bucket region format (from n8n 2.6.4) <a href="#validate-and-update-your-s3-bucket-region-format-v264-onward" id="validate-and-update-your-s3-bucket-region-format-v264-onward"></a>
 
 Starting from n8n 2.6.4, the value of the environment variable `N8N_EXTERNAL_STORAGE_S3_BUCKET_REGION` must meet these conditions:
 
@@ -31238,7 +31435,13 @@ Newer n8n versions have stricter validation and protocol handling. Older configu
 n8n supports [Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction) as an external store for binary data produced by workflow executions. This uses the same Azure Blob configuration as [external execution data storage](../basic-configuration/use-environment-variables/external-data-storage.md#azure-blob-storage), so a single container can hold both binary data and execution data.
 
 {% hint style="info" %}
-**Enterprise-tier feature**
+**Feature availability**
+
+Azure Blob Storage for binary data is available on:
+
+- **Self-hosted:** Enterprise
+
+It isn't available on n8n Cloud.
 
 You will need an [Enterprise license key](../manage-your-license.md) for external storage. n8n won't start in `azure` binary data mode without a valid license: set `N8N_DEFAULT_BINARY_DATA_MODE` to another mode or upgrade your license.
 {% endhint %}
@@ -31507,12 +31710,12 @@ For LDAP setup information, refer to [LDAP](https://app.gitbook.com/s/wMJrGrimpx
 
 For SAML setup information, refer to [SAML](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/verify-user-identity/use-saml).
 
-{% hint style="info" %}
-**Unsupported user management methods**
+{% hint style="warning" %}
+**Feature availability**
 
-In version 1.0, n8n:
-- Removed support for **basic auth** and **JWT** 
-- Removed the `N8N_USER_MANAGEMENT_DISABLED` environment variable. No supported way to disable the login screen exists in recent versions of n8n, including for local or development use. If you need to simplify login for local development, consider using a password manager, setting a simple local password, or scripting the standard login flow.
+Support for basic auth and JWT authentication was removed from n8n 1.0.
+
+The `N8N_USER_MANAGEMENT_DISABLED` environment variable was also removed from n8n 1.0. No supported way to disable the login screen exists in recent versions of n8n, including for local or development use. If you need to simplify login for local development, consider using a password manager, setting a simple local password, or scripting the standard login flow.
 {% endhint %}
 ## Setup <a href="#setup" id="setup"></a>
 
@@ -31527,9 +31730,9 @@ There are three stages to set up user management in n8n:
 n8n recommends setting up an SMTP server, for user invites and password resets. 
 
 {% hint style="info" %}
-**Optional from 0.210.1**
+**Feature availability**
 
-From version 0.210.1 onward, this step is optional. You can choose to manually copy and send invite links instead of setting up SMTP. Note that if you skip this step, users can't reset passwords.
+Setting up SMTP is optional from n8n 0.210.1. You can choose to manually copy and send invite links instead of setting up SMTP. Note that if you skip this step, users can't reset passwords.
 {% endhint %}
 Get the following information from your SMTP provider:
 
@@ -31579,9 +31782,9 @@ If you're not familiar with SMTP, this [blog post by SendGrid](https://sendgrid.
 #### Pre-provision the instance owner from environment variables <a href="#pre-provision-the-instance-owner-from-environment-variables" id="pre-provision-the-instance-owner-from-environment-variables"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.17.0**
+**Feature availability**
 
-
+Pre-provisioning the instance owner from environment variables is available from n8n 2.17.0.
 {% endhint %}
 
 You can pre-provision the instance owner from environment variables instead of going through the in-app setup. Set `N8N_INSTANCE_OWNER_MANAGED_BY_ENV` to `true` and provide the owner details. See [Manage instance settings using environment variables](manage-settings-using-environment-variables.md) for how the activation pattern works.
@@ -31697,7 +31900,7 @@ By default, self-hosted installations use **SQLite**. You can optionally configu
 
 n8n Cloud installations use different databases depending on your plan tier:
 
-- **SQLite**: Trial, Starter, and Pro plans, as well as legacy Enterprise plans
+- **SQLite**: Starter, Pro, and legacy Enterprise plans
 - **PostgreSQL**: Enterprise Scaling plans only
 
 ## Shared settings <a href="#shared-settings" id="shared-settings"></a>
@@ -34681,10 +34884,10 @@ This command creates a volume to store persistent data, downloads the required n
 * Enables [task runners](../configure-n8n/set-up-task-runners.md), the recommended way of executing tasks in n8n.
 * Mounts the `n8n_data` volume to the `/home/node/.n8n` directory to persist your data across container restarts.
 
-{% hint style="info" %}
-**`N8N_RUNNERS_ENABLED` is deprecated from version 2.0**
+{% hint style="warning" %}
+**Feature availability**
 
-From version 2.0 onwards, `N8N_RUNNERS_ENABLED` is deprecated and you no longer need to set it. It's still supported in version 1.x, where you must set it to `true` to enable task runners.
+`N8N_RUNNERS_ENABLED` is deprecated from n8n 2.0. You no longer need to set it. It's still supported in n8n 1.x, where you must set it to `true` to enable task runners.
 {% endhint %}
 
 Once running, you can access n8n by opening: [http://localhost:5678](http://localhost:5678)
@@ -35480,7 +35683,7 @@ If your instance is down or restarting, missed executions (for example, Cron or 
 
 n8n's OEM deployment option lets you embed and surface n8n's interface inside your own product's UI. This allows your users to build workflows, configure connections, and run workflow automation without leaving your product. n8n branding is required as part of an OEM integration.
 
-This is distinct from [using n8n as a backend](../README.md), where workflows execute behind the scenes and end users never see n8n. In that model, your product calls n8n using a webhook or the [API](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api) to trigger workflows, and n8n behaves like any other self-hosted service in your infrastructure - your users never see any n8n UI. This is available on all paid plans under the standard license, with no separate agreement needed. OEM deployment is only necessary when you want your users to interact with the n8n editor directly.
+This is distinct from [using n8n as a backend](../README.md), where workflows execute behind the scenes and end users never see n8n. In that model, your product calls n8n using a webhook or the [API](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api) to trigger workflows, and n8n behaves like any other self-hosted service in your infrastructure - your users never see any n8n UI. This is available on all paid plans, under the standard license, with no separate agreement needed. OEM deployment is only necessary when you want your users to interact with the n8n editor directly.
 
 ## What's covered <a href="#whats-covered" id="whats-covered"></a>
 
@@ -35502,9 +35705,14 @@ Contact [n8n support](mailto:support@n8n.io) using the email provided when you s
 {% hint style="info" %}
 **Feature availability**
 
-* Available on Enterprise plans.
-* Enabled with the `N8N_ENV_FEAT_TOKEN_EXCHANGE` environment variable set to `true`. Self-hosted instances can set it directly. On Cloud, contact n8n support to request it.
-* Intended for embedding partners who run an external identity provider (IdP) or backend that mints signed JWTs.
+Token exchange is available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
+
+Enabled with the `N8N_ENV_FEAT_TOKEN_EXCHANGE` environment variable set to `true`. Self-hosted instances can set it directly. On n8n Cloud, contact n8n support to request it.
+
+Intended for embedding partners who run an external identity provider (IdP) or backend that mints signed JWTs.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -36504,14 +36712,14 @@ You can change the timezone for your n8n instance. This affects the [Schedule Tr
 
 # Manage your data
 
-There are two concerns when managing data on Cloud:
+There are two concerns when managing data on n8n Cloud:
 
 * Memory usage: complex workflows processing large amounts of data can exceed n8n's memory limits. If this happens, the instance can crash and become inaccessible.
 * Data storage: depending on your execution settings and volume, your n8n database can grow in size and run out of storage.
 
 To avoid these issues, n8n recommends that you build your workflows with memory efficiency in mind, and don't save unnecessary data
 
-## Memory limits on each Cloud plan <a href="#memory-limits-on-each-cloud-plan" id="memory-limits-on-each-cloud-plan"></a>
+## Memory limits on each n8n Cloud plan <a href="#memory-limits-on-each-cloud-plan" id="memory-limits-on-each-cloud-plan"></a>
 
 Current plans:
 
@@ -36538,7 +36746,7 @@ Note that n8n itself consumes memory to run. On average, the software alone uses
 
 Interactions with the UI also consume memory. Playing around with the workflow UI while it performs heavy executions could also push the memory capacity over the limit.
 
-## How to manage execution data on Cloud <a href="#how-to-manage-execution-data-on-cloud" id="how-to-manage-execution-data-on-cloud"></a>
+## How to manage execution data on n8n Cloud <a href="#how-to-manage-execution-data-on-cloud" id="how-to-manage-execution-data-on-cloud"></a>
 
 Execution data includes node data, parameters, variables, execution context, and binary data references. It's text-based.
 
@@ -36560,11 +36768,11 @@ In your workflow settings:
 2. Select **Settings**. n8n opens the **Workflow settings** modal.
 3. Change **Save successful production executions** to **Do not save**.
 
-## Cloud data pruning and out of memory incident prevention <a href="#cloud-data-pruning-and-out-of-memory-incident-prevention" id="cloud-data-pruning-and-out-of-memory-incident-prevention"></a>
+## n8n Cloud data pruning and out of memory incident prevention <a href="#cloud-data-pruning-and-out-of-memory-incident-prevention" id="cloud-data-pruning-and-out-of-memory-incident-prevention"></a>
 
 ### Automatic data pruning <a href="#automatic-data-pruning" id="automatic-data-pruning"></a>
 
-n8n automatically prunes execution logs after a certain time or once you reach the max storage limit, whichever comes first. The pruning always happens from oldest to newest and the limits depend on your Could plan:
+n8n automatically prunes execution logs after a certain time or once you reach the max storage limit, whichever comes first. The pruning always happens from oldest to newest and the limits depend on your n8n Cloud plan:
 
 * Start and Starter plans: max 2500 executions saved and 7 days execution log retention;
 * Pro plans: max 25000 executions saved and 30 days execution log retention;
@@ -36796,7 +37004,7 @@ You can view the number of active executions and your plan's concurrency limit a
 Some other details about concurrency to keep in mind:
 
 - Concurrency control applies only to production executions: those started from a webhook or trigger node. It doesn't apply to any other kinds, such as manual executions, sub-workflow executions, or error executions.
-- [Test evaluations](#user-content-fn-1)[^1] don't count towards production concurrency limits. They use a separate per-plan limit for how many test cases can run in parallel within a single test run: Community and Pro 1 (sequential), Business 3, Enterprise 5. You can adjust the value for a given run from the **Run Test** popover. Refer to [Metric-based evaluations](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/test-and-improve-ai-workflows/use-metrics-to-measure-quality#run-test-cases-in-parallel) for details.
+- [Test evaluations](#user-content-fn-1)[^1] don't count towards production concurrency limits. They use a separate per-plan limit for how many test cases can run in parallel within a single test run: self-hosted Community and n8n Cloud Pro run 1 (sequential), self-hosted Business runs 3, and Enterprise (both n8n Cloud and self-hosted) runs 5. You can adjust the value for a given run from the **Run Test** popover. Refer to [Metric-based evaluations](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/test-and-improve-ai-workflows/use-metrics-to-measure-quality#run-test-cases-in-parallel) for details.
 - You can't retry queued executions. Cancelling or deleting a queued execution also removes it from the queue.
 - On instance startup, n8n resumes queued executions up to the concurrency limit and re-enqueues the rest.
 
@@ -36805,7 +37013,7 @@ Some other details about concurrency to keep in mind:
 {% hint style="info" %}
 **Feature availability**
 
-Queue mode is available for Cloud Enterprise plans. To enable it, [contact n8n](https://n8n-community.typeform.com/to/y9X2YuGa).
+Queue mode is available for n8n Cloud Enterprise plans. To enable it, [contact n8n](https://n8n-community.typeform.com/to/y9X2YuGa).
 {% endhint %}
 
 Concurrency in queue mode is a separate mechanism from concurrency in regular mode. In queue mode, the concurrency settings determine how many jobs each worker can run in parallel. In regular mode, concurrency limits apply to the entire instance.
@@ -55955,7 +56163,7 @@ n8n recommends self-hosting for expert users. Mistakes can lead to data loss, se
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.34.5
+Current `stable`: 2.34.6
 Current `beta`: 2.35.2
 {% endhint %}
 
@@ -56439,7 +56647,7 @@ On this page, you'll find a list of operations the Microsoft Teams node supports
 {% hint style="info" %}
 **Credentials**
 
-Refer to [Microsoft credentials](../credentials/microsoft.md) for guidance on setting up authentication. From version 2, this node also supports the [Microsoft Entra Service Principal credentials](../credentials/microsoftentraserviceprincipal.md) for app-only access with no signed-in user: select **Service Principal (App-Only)** in the **Authentication** dropdown.
+Refer to [Microsoft credentials](../credentials/microsoft.md) for guidance on setting up authentication. From version 2 of the node, this node also supports the [Microsoft Entra Service Principal credentials](../credentials/microsoftentraserviceprincipal.md) for app-only access with no signed-in user: select **Service Principal (App-Only)** in the **Authentication** dropdown.
 {% endhint %}
 
 {% hint style="info" %}
@@ -60239,10 +60447,10 @@ For common errors or issues and suggested resolution steps, refer to [Common Iss
 
 Use this operation to create, delete, list, message, or update an assistant in OpenAI. Refer to [OpenAI](README.md) for more information on the OpenAI node itself.
 
-{% hint style="info" %}
-**Assistant operations deprecated in OpenAI node V2**
+{% hint style="warning" %}
+**Feature availability**
 
-n8n 1.117.0 introduces V2 of the OpenAI node that supports the OpenAI Responses API and removes support for the [to-be-deprecated Assistants API](https://platform.openai.com/docs/assistants/migration).
+Assistant operations are deprecated in OpenAI node V2, introduced in n8n 1.117.0. OpenAI node V2 supports the OpenAI Responses API, and removes support for the [to-be-deprecated Assistants API](https://platform.openai.com/docs/assistants/migration).
 {% endhint %}
 
 ## Create an Assistant <a href="#create-an-assistant" id="create-an-assistant"></a>
@@ -60445,11 +60653,12 @@ Use the OpenAI node to automate work in OpenAI and integrate OpenAI with other a
 
 On this page, you'll find a list of operations the OpenAI node supports and links to more resources.
 
-{% hint style="info" %}
-**Previous node versions**
+{% hint style="warning" %}
+**Feature availability**
 
-The OpenAI node replaces the OpenAI assistant node from version 1.29.0 on.
-n8n 1.117.0 introduces V2 of the OpenAI node that supports the OpenAI Responses API and removes support for the [to-be-deprecated Assistants API](https://platform.openai.com/docs/assistants/migration).
+The OpenAI node V2 is available from n8n 1.117.0. It supports the OpenAI Responses API, and removes support for the [to-be-deprecated Assistants API](https://platform.openai.com/docs/assistants/migration).
+
+From n8n 1.29.0, the OpenAI node replaces the OpenAI assistant node.
 {% endhint %}
 
 {% hint style="info" %}
@@ -61197,9 +61406,9 @@ Refer to [Asana credentials](../credentials/asana.md) for guidance on setting up
 {% endhint %}
 
 {% hint style="info" %}
-**Update to 1.22.2 or above**
+**Feature availability**
 
-Due to changes in Asana's API, some operations in this node stopped working on 17th January 2023. Upgrade to n8n 1.22.2 or above.
+Due to changes in Asana's API, some operations in this node stopped working on January 17, 2023. The Asana node requires n8n 1.22.2 to support these operations.
 {% endhint %}
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/6vuTxJwns2nA8U7V56ij/" %}
@@ -65326,10 +65535,10 @@ Use the monday.com node to automate work in monday.com, and integrate monday.com
 
 On this page, you'll find a list of operations the monday.com node supports and links to more resources.
 
-{% hint style="warning" %}
-**Minimum required version**
+{% hint style="info" %}
+**Feature availability**
 
-This node requires n8n 1.22.6 or above.
+The monday.com node is available from n8n 1.22.6.
 {% endhint %}
 
 {% hint style="info" %}
@@ -67754,12 +67963,6 @@ Refer to [Microsoft's SharePoint documentation](https://learn.microsoft.com/en-u
 
 # Approvals in Slack
 
-{% hint style="info" %}
-**This feature is in preview**
-
-Preview features may change in future releases. Avoid relying on them in production workflows. n8n is rolling this feature out gradually, so it may not be available on your instance yet.
-{% endhint %}
-
 With the **Message** > **Send and Wait for Response** operation, approvers can approve or decline directly inside Slack. No browser page opens: the workflow resumes as soon as someone responds, and the output records who responded.
 
 ## How it differs from link buttons
@@ -67852,7 +68055,6 @@ With link buttons, the output contains only `approved` and `respondedAt`.
 
 The node behaves as before, sending buttons that open an n8n confirmation page, when any of these apply:
 
-- The feature isn't enabled on your instance yet.
 - **Response Type** is **Free Text** or **Custom Form**.
 - **Capture Who Responded** is off.
 
@@ -74687,7 +74889,11 @@ When enabled, select one of:
 
 ## Webhook authentication <a href="#webhook-authentication" id="webhook-authentication"></a>
 
-From n8n 2.25.7 and 2.26.2, the Microsoft Agent 365 Trigger node validates every incoming request before it runs your workflow. The node checks the Bot Framework token that Microsoft sends with each request and confirms Microsoft issued it for your agent. The node rejects any request without a valid token, so others can't inject forged activities even if they know your webhook URL.
+{% hint style="info" %}
+**Feature availability**
+
+From n8n 2.25.7 and n8n 2.26.2, the Microsoft Agent 365 Trigger node validates every incoming request before it runs your workflow. The node checks the Bot Framework token that Microsoft sends with each request and confirms Microsoft issued it for your agent. The node rejects any request without a valid token, so others can't inject forged activities even if they know your webhook URL.
+{% endhint %}
 
 This validation uses the **Client ID** from your [Microsoft Agent 365 credential](../../credentials/microsoftagent365.md). The Client ID must match the application (client) ID of your agent's app registration. If it doesn't, the node rejects legitimate requests from Microsoft.
 
@@ -79106,7 +79312,7 @@ The Local File Trigger node starts a workflow when it detects changes on the fil
 {% hint style="warning" %}
 **Security considerations**
 
-The Local File Trigger node can introduce significant security risks in environments that operate with untrusted users. Because of this, the node is [disabled](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/block-specific-nodes#exclude-nodes) by default starting from version 2.0.
+The Local File Trigger node can introduce significant security risks in environments that operate with untrusted users. Because of this, the node is [disabled](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/block-specific-nodes#exclude-nodes) by default from n8n 2.0.
 {% endhint %}
 
 {% hint style="info" %}
@@ -79936,6 +80142,12 @@ Select **Add Option** to view and set the options.
 
 ## How n8n secures HTML responses <a href="#how-n8n-secures-html-responses" id="how-n8n-secures-html-responses"></a>
 
+{% hint style="info" %}
+**Feature availability**
+
+Automatic wrapping of HTML responses to webhooks in `<iframe>` tags was introduced in n8n 1.103.0.
+{% endhint %}
+
 Starting with n8n 1.103.0, n8n automatically wraps HTML responses to webhooks in `<iframe>` tags. This is a security mechanism to protect the instance users.
 
 This has the following implications:
@@ -79971,10 +80183,10 @@ The node will now have two outputs:
 
 ## Return more than one data item (deprecated) <a href="#return-more-than-one-data-item-deprecated" id="return-more-than-one-data-item-deprecated"></a>
 
-{% hint style="info" %}
-**Deprecated in 1.22.0**
+{% hint style="warning" %}
+**Feature availability**
 
-n8n 1.22.0 added support for returning all data items using the **All Incoming Items** option. n8n recommends upgrading to the latest version of n8n, instead of using the workarounds described in this section.
+Returning more than one data item via the workarounds in this section is deprecated from n8n 1.22.0. In later versions, n8n added support for returning all data items using the **All Incoming Items** option.
 {% endhint %}
 
 The Respond to Webhook node runs once, using the first incoming data item. This includes when using [expressions](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/expressions-versus-data-nodes). You can't force looping using the Loop node: the workflow will run, but the webhook response will still only contain the results of the first execution.
@@ -79993,7 +80205,11 @@ Use the AI Transform node to generate code snippets based on your prompt. The AI
 {% hint style="info" %}
 **Feature availability**
 
-Available only on [Cloud plans](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud).
+The AI Transform node is available on:
+
+- **n8n Cloud:** All plans
+
+It isn't available on self-hosted n8n.
 {% endhint %}
 
 ## Node parameters <a href="#node-parameters" id="node-parameters"></a>
@@ -81168,9 +81384,9 @@ There are four output options:
 The HTML node provides operations to help you work with HTML in n8n.
 
 {% hint style="info" %}
-**HTML Extract node**
+**Feature availability**
 
-The HTML node replaces the HTML Extract node from n8n 0.213.0 on. If you're using an older version of n8n, you can still view the [HTML Extract node documentation](https://github.com/n8n-io/n8n-docs/blob/86fe33b681621e618e3adcab9a27e8605dbc23ad/docs/integrations/builtin/core-nodes/n8n-nodes-base.htmlextract.md).
+The HTML node is available from n8n 0.213.0, replacing the HTML Extract node. If you're using an older version of n8n, you can still view the [HTML Extract node documentation](https://github.com/n8n-io/n8n-docs/blob/86fe33b681621e618e3adcab9a27e8605dbc23ad/docs/integrations/builtin/core-nodes/n8n-nodes-base.htmlextract.md).
 {% endhint %}
 {% hint style="warning" %}
 **Cross-site scripting**
@@ -81332,7 +81548,7 @@ For persistent file handling on Cloud, use a cloud storage node such as [AWS S3]
 On self-hosted n8n, by default the node can access any path the n8n process can reach. To restrict access, set the [`N8N_RESTRICT_FILE_ACCESS_TO`](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/security) environment variable to one or more allowed directories (semicolon-separated).
 
 {% hint style="info" %}
-**Default changes in n8n 2.0**
+**Feature availability**
 
 Starting in n8n 2.0, `N8N_RESTRICT_FILE_ACCESS_TO` defaults to `~/.n8n-files`. To allow file operations elsewhere, set the variable explicitly. Refer to [n8n 2.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v20-breaking-changes#set-default-value-for-n8n_restrict_file_access_to) for details.
 {% endhint %}
@@ -81664,6 +81880,12 @@ Select **Add Option** to view more configuration options. The available options 
 
 ## How n8n secures HTML responses <a href="#how-n8n-secures-html-responses" id="how-n8n-secures-html-responses"></a>
 
+{% hint style="info" %}
+**Feature availability**
+
+Automatic wrapping of HTML responses to webhooks in `<iframe>` tags was introduced in n8n 1.103.0.
+{% endhint %}
+
 Starting with n8n 1.103.0, n8n automatically wraps HTML responses to webhooks in `<iframe>` tags. This is a security mechanism to protect the instance users.
 
 This has the following implications:
@@ -81814,17 +82036,11 @@ This section walks through setting up both the parent workflow and sub-workflow.
 Use the Merge node to combine data from multiple streams, once data of all streams is available.
 
 {% hint style="info" %}
-**Major changes in 0.194.0**
+**Feature availability**
 
-The n8n team overhauled this node in n8n 0.194.0. This document reflects the latest version of the node. If you're using an older version of n8n, you can find the previous version of this document [here](https://github.com/n8n-io/n8n-docs/blob/4ff688642cc9ee7ca7d00987847bf4e4515da59d/docs/integrations/builtin/core-nodes/n8n-nodes-base.merge.md).
-{% endhint %}
+The Merge node was overhauled in n8n 0.194.0. This document reflects the latest version of the node. Documentation for older versions of n8n is available in the [pre-overhaul Merge node docs](https://github.com/n8n-io/n8n-docs/blob/4ff688642cc9ee7ca7d00987847bf4e4515da59d/docs/integrations/builtin/core-nodes/n8n-nodes-base.merge.md).
 
-{% hint style="info" %}
-**Minor changes in 1.49.0**
-
-n8n 1.49.0 introduced the option to add more than two inputs. Older versions only support up to two inputs. If you're running an older version and want to combine multiple inputs in these versions, use the [Code node](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/).
-
-The **Mode > SQL Query** feature was also added in n8n 1.49.0 and isn't available in older versions.
+Using the Merge node with more than two inputs, and the **Mode > SQL Query** feature, are both available from n8n 1.49.0. Older versions only support up to two inputs and don't include **Mode > SQL Query**. If you're running an older version and want to combine multiple inputs, use the [Code node](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/).
 {% endhint %}
 
 ## Node parameters <a href="#node-parameters" id="node-parameters"></a>
@@ -82517,7 +82733,7 @@ The Execute Command node runs shell commands on the host machine that runs n8n.
 {% hint style="warning" %}
 **Security considerations**
 
-The Execute Command node can introduce significant security risks in environments that operate with untrusted users. Because of this, the node is [disabled](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/block-specific-nodes#exclude-nodes) by default starting from version 2.0.
+The Execute Command node can introduce significant security risks in environments that operate with untrusted users. Because of this, the node is [disabled](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/block-specific-nodes#exclude-nodes) by default from n8n 2.0.
 {% endhint %}
 
 {% hint style="info" %}
@@ -83163,9 +83379,9 @@ Every message to the Chat Trigger executes your workflow. This means that one co
 {% endhint %}
 
 {% hint style="info" %}
-**Manual Chat trigger**
+**Feature availability**
 
-This node replaces the Manual Chat Trigger node from version 1.24.0.
+The Chat Trigger node is available from n8n 1.24.0, replacing the Manual Chat Trigger node.
 {% endhint %}
 
 ## Node parameters <a href="#node-parameters" id="node-parameters"></a>
@@ -83251,13 +83467,7 @@ If you select any option other than **Off**, you must connect the Chat trigger a
 Use this option when building a workflow with steps after the agent or chain that's handling the chat. Choose from:
 
 * **When Last Node Finishes**: The Chat Trigger node returns the response code and the data output from the last node executed in the workflow.
-* **Using Response Nodes**: The Chat Trigger node responds as defined in a [Chat](../n8n-nodes-langchain.chat.md) node or [Respond to Webhook](../n8n-nodes-base.respondtowebhook.md) node. In this response mode, the Chat Trigger will solely show messages as defined in these nodes and not output the data from the last node executed in the workflow.
-
-{% hint style="info" %}
-**Using Response Nodes**
-
-This mode replaces the 'Using Respond to Webhook Node' mode from version 1.2 of the Chat Trigger node.
-{% endhint %}
+* **Using Response Nodes**: The Chat Trigger node responds as defined in a [Chat](../n8n-nodes-langchain.chat.md) node or [Respond to Webhook](../n8n-nodes-base.respondtowebhook.md) node. In this response mode, the Chat Trigger will solely show messages as defined in these nodes and not output the data from the last node executed in the workflow. This mode replaces the 'Using Respond to Webhook Node' mode from Chat Trigger node version 1.2.
 
 * **Streaming response**: Enables real-time data streaming back to the user as the workflow processes. Requires nodes with streaming support in the workflow (for example, the [AI agent](../../cluster-nodes/root-nodes/n8n-nodes-langchain.agent/README.md) node).
 
@@ -83300,13 +83510,7 @@ If you select any option other than **Off**, you must connect the Chat trigger a
 Use this option when building a workflow with steps after the agent or chain that's handling the chat. Choose from:
 
 * **When Last Node Finishes**: The Chat Trigger node returns the response code and the data output from the last node executed in the workflow.
-* **Using Response Nodes**: The Chat Trigger node responds as defined in a [Chat](../n8n-nodes-langchain.chat.md) node or [Respond to Webhook](../n8n-nodes-base.respondtowebhook.md) node. In this response mode, the Chat Trigger will solely show messages as defined in these nodes and not output the data from the last node executed in the workflow.
-
-{% hint style="info" %}
-**Using Response Nodes**
-
-This mode replaces the 'Using Respond to Webhook Node' mode from version 1.2 of the Chat Trigger node.
-{% endhint %}
+* **Using Response Nodes**: The Chat Trigger node responds as defined in a [Chat](../n8n-nodes-langchain.chat.md) node or [Respond to Webhook](../n8n-nodes-base.respondtowebhook.md) node. In this response mode, the Chat Trigger will solely show messages as defined in these nodes and not output the data from the last node executed in the workflow. This mode replaces the 'Using Respond to Webhook Node' mode from Chat Trigger node version 1.2.
 
 * **Streaming response**: Enables real-time data streaming back to the user as the workflow processes. Requires nodes with streaming support enabled.
 
@@ -87769,7 +87973,15 @@ Refer to Stripe's [Create a secret API key](https://docs.stripe.com/keys#create-
 
 ## Verify incoming requests <a href="#verify-incoming-requests" id="verify-incoming-requests"></a>
 
-From n8n 2.25.7 and 2.26.2, the [Stripe Trigger](../trigger-nodes/n8n-nodes-base.stripetrigger.md) node can verify that incoming webhook requests genuinely come from Stripe. n8n strongly recommends setting a **Signature Secret** so others can't send forged events to your workflow, even if they know your webhook URL.
+{% hint style="info" %}
+**Feature availability**
+
+Verification of incoming requests is available from n8n 2.25.7 and n8n 2.26.2.
+{% endhint %}
+
+The Stripe Trigger node can verify that incoming webhook requests genuinely come from Stripe.
+
+n8n strongly recommends setting a **Signature Secret** so others can't send forged events to your workflow, even if they know your webhook URL.
 
 n8n creates and manages the Stripe webhook endpoint for you when you publish a workflow, so you set the **Signature Secret** after the endpoint exists:
 
@@ -88588,10 +88800,10 @@ You can use these credentials to authenticate the following nodes:
 
 - OAuth2
 
-{% hint style="info" %}
-**Deprecation warning**
+{% hint style="warning" %}
+**Feature availability**
 
-n8n used to support an **OAuth** authentication method, which used X's [OAuth 1.0a](https://developer.x.com/en/docs/authentication/oauth-1-0a) authentication method. n8n deprecated this method with the release of V2 of the X node in n8n [0.236.0](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/release-notes-0.x#n8n02360).
+n8n used to support an **OAuth** authentication method, which used X's [OAuth 1.0a](https://developer.x.com/en/docs/authentication/oauth-1-0a) authentication method. n8n deprecated this method from n8n 0.236.0, with the release of V2 of the X node.
 {% endhint %}
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
@@ -88602,7 +88814,7 @@ Refer to [Application-only Authentication](https://developer.twitter.com/en/docs
 
 ## Using OAuth2 <a href="#using-oauth2" id="using-oauth2"></a>
 
-Use this method if you're using n8n 0.236.0 or later.
+This OAuth2 method is available from n8n 0.236.0.
 
 To configure this credential, you'll need:
 
@@ -90023,7 +90235,7 @@ You can use these credentials to authenticate the following nodes:
 {% hint style="info" %}
 **Node version requirements**
 
-The Microsoft Excel (OneDrive), Microsoft Outlook, and Microsoft Teams nodes support this credential from version 2 of the node. The Microsoft Excel (SharePoint) node supports it from version 1. n8n plans to support the Microsoft SharePoint node.
+The Microsoft Excel (OneDrive), Microsoft Outlook, and Microsoft Teams nodes support this credential from version 2 of the node. The Microsoft Excel (SharePoint) node supports it from node version 1. n8n plans to support the Microsoft SharePoint node.
 {% endhint %}
 
 ## Prerequisites
@@ -95883,7 +96095,7 @@ You can use these credentials to authenticate the following nodes:
 {% hint style="info" %}
 **Minimum required version**
 
-The monday.com node requires n8n 1.22.6 or above.
+The monday.com node requires n8n 1.22.6.
 {% endhint %}
 
 ## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
@@ -103035,7 +103247,15 @@ You can find authentication information for this node [here](../credentials/stri
 
 ## Webhook authentication <a href="#webhook-authentication" id="webhook-authentication"></a>
 
-From n8n 2.25.7 and 2.26.2, the Stripe Trigger node can verify that incoming requests genuinely come from Stripe. When you set a **Signature Secret** on your [Stripe credential](../credentials/stripe.md), the node checks the `Stripe-Signature` header on each request and rejects any request that's unsigned, forged, or more than five minutes old with a `401 Unauthorized` response. n8n doesn't run your workflow for rejected requests.
+{% hint style="info" %}
+**Feature availability**
+
+Verification of incoming requests is available from n8n 2.25.7 and n8n 2.26.2.
+{% endhint %}
+
+The Stripe Trigger node can verify that incoming webhook requests genuinely come from Stripe.
+
+When you set a **Signature Secret** on your [Stripe credential](../credentials/stripe.md), the node checks the `Stripe-Signature` header on each request and rejects any request that's unsigned, forged, or more than five minutes old with a `401 Unauthorized` response. n8n doesn't run your workflow for rejected requests.
 
 Without a **Signature Secret**, the node doesn't verify incoming requests, so anyone who knows your webhook URL could send forged events. n8n strongly recommends setting one. For setup steps, refer to [Verify incoming requests](../credentials/stripe.md#verify-incoming-requests).
 
@@ -104966,7 +105186,13 @@ The node requires scopes for the [conversations.list](https://api.slack.com/meth
 
 ## Verify the webhook <a href="#verify-the-webhook" id="verify-the-webhook"></a>
 
-From n8n 1.106.0, you can set a [Slack Signing Secret](https://api.slack.com/authentication/verifying-requests-from-slack#signing_secrets_admin_page) when configuring your [Slack credentials](../credentials/slack.md#slack-trigger-configuration). When set, the Slack trigger node automatically verifies that requests are from Slack and include a trusted signature. n8n recommends setting this to ensure you only process requests sent from Slack.
+{% hint style="info" %}
+**Feature availability**
+
+Verifying that incoming webhook requests come from Slack, using a Slack Signing Secret, is available from n8n 1.106.0.
+{% endhint %}
+
+You can set a [Slack Signing Secret](https://api.slack.com/authentication/verifying-requests-from-slack#signing_secrets_admin_page) when configuring your [Slack credentials](../credentials/slack.md#slack-trigger-configuration). When set, the Slack trigger node automatically verifies that requests are from Slack and include a trusted signature. n8n recommends setting this to ensure you only process requests sent from Slack.
 
 ## Common issues <a href="#common-issues" id="common-issues"></a>
 
@@ -106379,9 +106605,9 @@ Unverified community nodes aren't available on n8n cloud and require [self-hosti
 # Manage community packages from environment variables <a href="#manage-community-packages-from-environment-variables" id="manage-community-packages-from-environment-variables"></a>
 
 {% hint style="info" %}
-**Available from n8n 2.21.0**
+**Feature availability**
 
-
+Managing community packages from environment variables is available from n8n 2.21.0.
 {% endhint %}
 
 On self-hosted n8n, you can manage the set of installed community packages from environment variables. n8n reconciles the installed packages against the list on every startup, installing missing packages, correcting versions, and uninstalling packages not in the list. Use this method to bootstrap an instance with a fixed set of packages, for example through a deployment pipeline.
