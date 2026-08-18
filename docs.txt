@@ -768,9 +768,9 @@ Agents are available from n8n 2.34.0 and are a separate feature from workflows. 
 {% endhint %}
 
 {% hint style="info" %}
-**Feature availability**
+**Preview status**
 
-Agents are in preview and may change in future releases. Avoid relying on them in production workflows.
+Agents are in Preview and may change in future releases. Avoid relying on them in production workflows.
 {% endhint %}
 
 If your instance has the agents feature, the **Access** section also shows **Agents exposed**. As with workflows, MCP clients can't read or manage an agent unless you explicitly enable MCP access for it.
@@ -1183,9 +1183,9 @@ n8n-cli workflow transfer <id> --project=<projectId>
 ### Export and import packages <a href="#export-and-import-packages" id="export-and-import-packages"></a>
 
 {% hint style="info" %}
-**Feature availability**
+**Preview status**
 
-The `package` command is in preview and may change in future releases.
+The `package` command is in Preview and may change in future releases.
 {% endhint %}
 
 ```bash
@@ -7461,9 +7461,15 @@ n8n provides a workflow template with a basic example of [Rate limiting and wait
 An agent is an autonomous assistant you build in n8n. Each agent has a language model, instructions, and capabilities you configure, like tools, skills, and access to your knowledge base. Agents live alongside your workflows as first-class artifacts in your project. Use an agent when work is too open-ended for a fixed workflow, and you need an assistant that can reason about requests, pick the right tools, and adapt to responses.
 
 {% hint style="info" %}
-Agents are available on n8n Cloud and self-hosted n8n. Knowledge bases are available on n8n Cloud, and on self-hosted as a preview feature that needs a Daytona sandbox.
+**Feature availability**
 
-Agents are in Preview. They can make mistakes, and their behavior may change while the feature is in development.
+Agents are available on **n8n Cloud** and **self-hosted**. They aren't ready for self-hosted Enterprise yet. Support for self-hosted Enterprise is coming soon.
+{% endhint %}
+
+{% hint style="info" %}
+**Preview status**
+
+Agents are in Preview. They can make mistakes, and their behavior may change while the feature is in development. On self-hosted, knowledge bases are also in Preview.
 {% endhint %}
 
 ### What you can build with agents
@@ -7550,7 +7556,15 @@ The agent picks the right skill based on the description and the current request
 Add files the agent can search and read from the **Knowledge** tab. Supported file types: csv, pdf, markdown, txt.
 
 {% hint style="info" %}
-Knowledge bases are available on n8n Cloud. On self-hosted, they're a preview feature that needs a Daytona sandbox. See [Self-hosted](build-and-manage-agents.md#self-hosted).
+**Feature availability**
+
+Knowledge bases are available on n8n Cloud. On self-hosted, they need a Daytona sandbox. See [Self-hosted](build-and-manage-agents.md#self-hosted).
+{% endhint %}
+
+{% hint style="info" %}
+**Preview status**
+
+On self-hosted, knowledge bases are in Preview and may change in future releases.
 {% endhint %}
 
 Once you upload a file, the agent can search your knowledge base to answer questions and pull in context.
@@ -8813,7 +8827,15 @@ Describe what you want to automate. The AI Assistant can plan the workflow, buil
 The result is a normal n8n workflow. You can open it, inspect it, edit it, test it, and publish it like any other workflow.
 
 {% hint style="info" %}
-The AI Assistant is available on n8n Cloud only.
+**Feature availability**
+
+The AI Assistant is available on **n8n Cloud** and **self-hosted**. 
+
+It isn't ready for n8n Cloud Enterprise or self-hosted Enterprise yet. If you're an Enterprise customer, contact your Customer Success Manager about preview access.
+{% endhint %}
+
+{% hint style="info" %}
+**Preview status**
 
 The AI Assistant is in Preview. It can make mistakes, and behavior may change while the feature is in development. Always review generated workflows before using them in production.
 {% endhint %}
@@ -9382,7 +9404,7 @@ From the top navigation bar, select the three dots in the upper right <img src="
 
 ### Using the n8n CLI
 
-The `n8n-cli package` commands bundle workflows into a portable `.n8np` file you can import into another instance. See [n8n packages](n8n-packages/README.md), and [Export a package](n8n-packages/export-a-package.md) for the available options. n8n packages are in preview and may change in future releases.
+The `n8n-cli package` commands bundle workflows into a portable `.n8np` file you can import into another instance. See [n8n packages](n8n-packages/README.md), and [Export a package](n8n-packages/export-a-package.md) for the available options. n8n packages are in Preview and may change in future releases.
 
 {% hint style="info" %}
 The n8n CLI is the method n8n recommends for moving workflows between instances from the command line. It runs from any machine with network access, carries the folders, projects, and references a workflow needs, and checks an import before writing anything.
@@ -9401,7 +9423,7 @@ n8n plans to deprecate the Server CLI export and import commands. No deprecation
 
 ## From the n8n API
 
-The n8n API can export and import [n8n packages](n8n-packages/README.md), which carry workflows along with the folders, projects, and references they need. n8n packages are in preview and may change in future releases.
+The n8n API can export and import [n8n packages](n8n-packages/README.md), which carry workflows along with the folders, projects, and references they need. n8n packages are in Preview and may change in future releases.
 
 To move a single workflow as JSON instead, use the workflow endpoints in the [n8n API](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api).
 
@@ -9650,9 +9672,9 @@ Refer to [Credential sharing](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/man
 # How import works
 
 {% hint style="info" %}
-**Feature availability**
+**Preview status**
 
-n8n packages are in preview. Import behavior may change in future releases.
+n8n packages are in Preview. Import behavior may change in future releases.
 {% endhint %}
 
 This page covers what n8n does with an [n8n package](README.md) once you've called [import](import-a-package.md): how it decides whether the import can go ahead, and how it resolves each kind of entity.
@@ -9850,8 +9872,12 @@ Missing permission to create a tag or a data table isn't a `403`. It comes back 
 **Feature availability**
 
 n8n packages are available from n8n 2.27.0, and n8n has added options in most releases since, so check your version if an option here isn't recognized.
+{% endhint %}
 
-n8n packages are in preview. The package format and the API may change in future releases, so avoid relying on them for critical automation without a plan to update.
+{% hint style="info" %}
+**Preview status**
+
+n8n packages are in Preview. The package format and the API may change in future releases, so avoid relying on them for critical automation without a plan to update.
 {% endhint %}
 
 An n8n package is a single file that holds a slice of your n8n instance: some workflows, plus the structure and references those workflows need to run. Export a package from one instance, move the file, and import it into another. Think of it as an `npm` package for part of your n8n instance.
@@ -9946,9 +9972,9 @@ For other ways to move a workflow, including copy and paste and the editor's dow
 # Limits and permissions
 
 {% hint style="info" %}
-**Feature availability**
+**Preview status**
 
-n8n packages are in preview. These limits and requirements may change in future releases.
+n8n packages are in Preview. These limits and requirements may change in future releases.
 {% endhint %}
 
 Reference for what constrains [package](README.md) export and import: size caps, license features, API key scopes, and observability.
@@ -10067,9 +10093,9 @@ For what each event's payload holds, see [Events](export-a-package.md#events) on
 # Import a package
 
 {% hint style="info" %}
-**Feature availability**
+**Preview status**
 
-n8n packages are in preview. The import options may change in future releases.
+n8n packages are in Preview. The import options may change in future releases.
 {% endhint %}
 
 Import reads an [n8n package](README.md), a [.n8np archive](package-format.md), and writes its contents to the target instance. n8n checks the whole package first: if anything would block the import, it writes nothing and returns every problem at once. See [How import works](how-import-works.md) for the detail.
@@ -10338,9 +10364,9 @@ A refused import emits no success event. Log streaming events carry IDs but no c
 # Package format
 
 {% hint style="info" %}
-**Feature availability**
+**Preview status**
 
-n8n packages are in preview. The package format may change in future releases.
+n8n packages are in Preview. The package format may change in future releases.
 {% endhint %}
 
 An [n8n package](README.md) is a gzip-compressed tar archive. Standard tools read it, so you can inspect one without n8n:
@@ -10579,9 +10605,9 @@ The one exception is `manifest.json`, which carries a fresh `exportedAt` on ever
 # Export a package
 
 {% hint style="info" %}
-**Feature availability**
+**Preview status**
 
-n8n packages are in preview. The export options may change in future releases.
+n8n packages are in Preview. The export options may change in future releases.
 {% endhint %}
 
 Export writes an [n8n package](README.md), a [.n8np archive](package-format.md), containing what you asked for, plus references to everything those workflows need on the target instance. Export doesn't modify the source instance.
@@ -22775,9 +22801,9 @@ End-user credentials are available on:
 {% endhint %}
 
 {% hint style="info" %}
-**This feature is in preview**
+**Preview status**
 
-Preview features may change in future releases. Don't rely on them in production workflows.
+End-user credentials are in Preview and may change in future releases. Don't rely on them in production workflows.
 {% endhint %}
 
 ## What are end-user credentials
@@ -24826,19 +24852,19 @@ Follow the [numbers guidance](#numbers-dates-and-times), plus these rules for n8
 
 ### Preview status
 
-A preview feature is available but not yet complete or stable, and may change. "Preview" is a feature's maturity label. Use it, not "beta", to describe a feature's status.
+A feature in Preview is available but not yet complete or stable, and may change. "Preview" is a feature's maturity label, capitalized wherever it names that status: "is in Preview", "a Preview feature", "In Preview from n8n 2.20.0". Use "Preview", not "beta". This capitalization only applies to the maturity label — leave unrelated senses of the word (a link preview, a UI preview action) in lowercase. Frontmatter and tag values stay lowercase (`status: preview`, `tag: preview`); they're literal identifiers, not prose.
 
-**Page or section:** use the same `**Feature availability**` title as an availability hint. Name the node or feature in the sentence below it, not in the title. Hints get skimmed independently of the surrounding heading, so the sentence must carry the naming, not the title:
+**Page or section:** use a `**Preview status**` title, not `**Feature availability**`. Preview status is a different question from availability (how stable is this? vs. where/when does this exist?), so it gets its own title, not a second hint with the same label as the availability hint next to it. Name the node or feature in the sentence below it, not in the title. Hints get skimmed independently of the surrounding heading, so the sentence must carry the naming, not the title:
 
 ```
 {% hint style="info" %}
-**Feature availability**
+**Preview status**
 
-The Data table node is in preview and may change in future releases. Avoid relying on it in production workflows.
+The Data table node is in Preview and may change in future releases. Avoid relying on it in production workflows.
 {% endhint %}
 ```
 
-If the entire page is about a feature in preview, also set `status: preview` and add a primary `preview` tag (see [Tags](#tags), under Frontmatter, for how tags work):
+If the entire page is about a feature in Preview, also set `status: preview` and add a primary `preview` tag (see [Tags](#tags), under Frontmatter, for how tags work):
 
 ```
 ```
@@ -24848,16 +24874,16 @@ See [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/bui
 **Inline or passing mention:** for a small control, or a whole feature or node named in prose with no heading of its own:
 
 ```
-The **Streaming response** option is in preview and may change in future releases.
+The **Streaming response** option is in Preview and may change in future releases.
 ```
 
 ```
-The Data table node is in preview and may change in future releases.
+The Data table node is in Preview and may change in future releases.
 ```
 
-* **Tie it to a version when it helps**: "In preview from n8n 2.20.0".
-* **Keep it separate from the Feature availability hint or note.** If a feature also has a plan or version limit, stack both: a preview hint alongside an availability hint, or a preview sentence alongside an availability sentence, rather than folding the preview wording into the other one.
-* **If an inline preview note needs more than one sentence, promote it to a page- or section-level hint instead.**
+* **Tie it to a version when it helps**: "In Preview from n8n 2.20.0".
+* **Keep it separate from the Feature availability hint or note.** If a feature also has a plan or version limit, stack both: a Preview status hint alongside a Feature availability hint, or a Preview sentence alongside an availability sentence, rather than folding the Preview wording into the other one.
+* **If an inline Preview note needs more than one sentence, promote it to a page- or section-level hint instead.**
 
 ## Vale linting
 
@@ -24905,7 +24931,7 @@ In this example, only `tag: preview` is a visual tag. `release` is a plain strin
 
 * A visual tag must already be defined in the space's `.gitbook/tags.yaml` before you can apply it: check it exists, and add it if it's missing.
 * A visual tag is a label only. It doesn't replace the explanatory hint on the page. The hint is where you explain what the status means; the tag just flags it in the UI.
-* The current set of visual tags allowed in docs is: **Deprecated** (a whole page about a deprecated feature), **Preview** (a whole page about a feature in [preview](#preview-status)), and **Archived** (a page no longer updated). Don't create or use any visual tag other than these three.
+* The current set of visual tags allowed in docs is: **Deprecated** (a whole page about a deprecated feature), **Preview** (a whole page about a feature in [Preview](#preview-status)), and **Archived** (a page no longer updated). Don't create or use any visual tag other than these three.
 
 ## Page navigation
 
@@ -26082,9 +26108,9 @@ Refer to [Configuration methods](../configure-n8n/basic-configuration.md) for mo
 
 # OpenTelemetry tracing <a href="#opentelemetry-tracing" id="opentelemetry-tracing"></a>
 {% hint style="info" %}
-**Feature availability**
+**Preview status**
 
-OpenTelemetry tracing is in preview from n8n 2.19.0 and may change in future releases. Avoid relying on it in production workflows. n8n plans to add OpenTelemetry-formatted metrics in a later release.
+OpenTelemetry tracing is in Preview from n8n 2.19.0 and may change in future releases. Avoid relying on it in production workflows. n8n plans to add OpenTelemetry-formatted metrics in a later release.
 {% endhint %}
 
 n8n can emit [OpenTelemetry](https://opentelemetry.io/) traces for workflow and node executions. Use these traces to monitor execution latency, debug failures, and track requests across services in your observability stack.
@@ -27540,10 +27566,10 @@ The remaining settings (`DB_CONNECTION_ACQUISITION_TIMEOUT_MS`, `DB_POSTGRESDB_M
 
 These environment variables configure the durable scheduler, which runs time-based workflows from a database-backed queue instead of from each instance's memory. For what the durable scheduler changes, how to turn it on, and how it works, see [Durable scheduler](../../durable-scheduler.md).
 
-{% hint style="warning" %}
-**Preview feature**
+{% hint style="info" %}
+**Preview status**
 
-The durable scheduler is a preview feature behind an environment flag. The environment variables and default behavior can change before the feature reaches general availability.
+The durable scheduler is a Preview feature behind an environment flag. The environment variables and default behavior can change before the feature reaches general availability.
 {% endhint %}
 
 ## Enable the scheduler <a href="#enable-vars" id="enable-vars"></a>
@@ -29086,19 +29112,25 @@ n8n audit
 
 # Set up AI Assistant
 
-{% hint style="info" %}
-AI Assistant is a preview feature.
 {% endhint %}
 
-{% hint style="warning" %}
-AI Assistant isn't yet available for self-hosted Enterprise. Support for self-hosted Enterprise is coming soon.
+{% hint style="info" %}
+**Feature availability**
 
-If you're an Enterprise customer and want to try AI Assistant before then, contact your Customer Success Manager (CSM) about preview access.
+The AI Assistant is available on **n8n Cloud** and **self-hosted**. 
+
+It isn't ready for n8n Cloud Enterprise or self-hosted Enterprise yet. If you're an Enterprise customer, contact your Customer Success Manager about preview access.
+{% endhint %}
+
+{% hint style="info" %}
+**Preview status**
+
+The AI Assistant is in Preview. It can make mistakes, and behavior may change while the feature is in development. Always review generated workflows before using them in production.
 {% endhint %}
 
 ## What AI Assistant needs
 
-Every setup needs three things:
+Every self-hosted AI Assistant setup needs three things:
 
 * **A model provider:** An API key for Anthropic, OpenAI, or OpenRouter.
 * **A sandbox:** An isolated environment where AI Assistant runs code. This is required.
@@ -29369,7 +29401,15 @@ WEBHOOK_URL=https://your-public-url
 | `WEBHOOK_URL` | Public, secure URL for your instance. Required to connect agents to channels such as Slack, Telegram, and Linear. |
 
 {% hint style="info" %}
-The knowledge base is a preview feature on self-hosted and needs the Daytona sandbox. Without it, the rest of the agent still works.
+**Feature availability**
+
+The knowledge base needs the Daytona sandbox on self-hosted. Without it, the rest of the agent still works.
+{% endhint %}
+
+{% hint style="info" %}
+**Preview status**
+
+On self-hosted, the knowledge base is in Preview.
 {% endhint %}
 
 For a full deployment example, see [Installation options](../install-options/README.md). After you enable the module, see [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents).
@@ -29417,10 +29457,10 @@ If AI Assistant doesn't appear or doesn't work, check for these issues.
 
 The durable scheduler runs time-based workflows, such as those that start with a Schedule Trigger node, from a database-backed queue instead of from each instance's memory. This page explains what the durable scheduler changes, how to turn it on, and how it works. For the environment variables that configure it, see [Scheduler environment variables](basic-configuration/use-environment-variables/scheduler.md).
 
-{% hint style="warning" %}
-**Preview feature**
+{% hint style="info" %}
+**Preview status**
 
-The durable scheduler is a preview feature behind an environment flag. The environment variables and default behavior can change before the feature reaches general availability.
+The durable scheduler is a Preview feature behind an environment flag. The environment variables and default behavior can change before the feature reaches general availability.
 {% endhint %}
 
 {% hint style="info" %}
@@ -30388,10 +30428,10 @@ When `N8N_SECURITY_POLICY_MANAGED_BY_ENV` is `true`, the **Enforce two-factor au
 * Requires an identity provider (IdP) that can encrypt tokens as JWE.
 {% endhint %}
 
-{% hint style="warning" %}
-**Preview feature**
+{% hint style="info" %}
+**Preview status**
 
-JWE token decryption is in preview and gated by an environment flag. Field names, the environment variable, the JWKS endpoint path, and the supported algorithms can change before the feature reaches general availability. Pin your n8n version and retest your OAuth 2.0 credentials after each upgrade.
+JWE token decryption is in Preview and gated by an environment flag. Field names, the environment variable, the JWKS endpoint path, and the supported algorithms can change before the feature reaches general availability. Pin your n8n version and retest your OAuth 2.0 credentials after each upgrade.
 {% endhint %}
 
 JWE token decryption lets your identity provider return OAuth 2.0 access and ID tokens encrypted as [JWE](https://datatracker.ietf.org/doc/html/rfc7516). Your n8n instance decrypts the tokens on the OAuth callback using a private key that never leaves the instance. This protects token contents from anything that sits between your IdP and n8n, including reverse proxies, browsers, and logs.
@@ -35760,10 +35800,10 @@ Enabled with the `N8N_ENV_FEAT_TOKEN_EXCHANGE` environment variable set to `true
 Intended for embedding partners who run an external identity provider (IdP) or backend that mints signed JWTs.
 {% endhint %}
 
-{% hint style="warning" %}
-**Preview feature**
+{% hint style="info" %}
+**Preview status**
 
-Token exchange is a preview feature behind an environment flag. The environment variables, endpoint paths, and JWT claim contract can change before the feature reaches general availability. Pin your n8n version and retest your integration after each upgrade.
+Token exchange is a Preview feature behind an environment flag. The environment variables, endpoint paths, and JWT claim contract can change before the feature reaches general availability. Pin your n8n version and retest your integration after each upgrade.
 {% endhint %}
 
 OAuth 2.0 Token Exchange ([RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693)) lets embedding partners authenticate users and act on their behalf within an embedded n8n instance. Token exchange supports two use cases:
@@ -44015,7 +44055,7 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 * [Add instance role permission grouping config and selector](https://github.com/n8n-io/n8n/pull/32907): Added internal groundwork for a future instance role permission editor, introducing a grouping config that organizes permission scopes by resource (e.g. Members, Roles, API keys, Tags) into simpler options like View/Manage. Also reorganized the roles feature folder structure internally. This is not yet exposed in any user-facing screen and has no visible effect for users in this release.
 * [Add Microsoft Entra Service Principal credential](https://github.com/n8n-io/n8n/pull/32759): Added a new Microsoft Entra Service Principal credential for app-only authentication to Microsoft Graph using a client secret (OAuth2 client_credentials grant). It supports Global, US Gov, US Gov DOD, and China cloud environments, automatically requests the correct token host and scope, and caches/refreshes access tokens. This credential is not yet wired to any node; certificate-based sign-in is planned for a future release.
 * [Snowflake Node: Add optional origin hostname support](https://github.com/n8n-io/n8n/pull/29653): The Snowflake credential now supports an optional Origin Hostname field, letting users specify a custom host for connections that go through a proxy or require an explicit hostname instead of the default account-derived address. Existing connections are unaffected if the field is left blank, and standard Snowflake setups continue to work as before.
-* [Update AI Assistant input disclaimer copy](https://github.com/n8n-io/n8n/pull/33213): Updated the disclaimer text shown below the AI Assistant input field. It now reads "Preview version. AI can make mistakes; always verify responses." instead of the previous "AI can make mistakes. Check important info." This clarifies that the AI Assistant is a preview feature and encourages users to verify its responses.
+* [Update AI Assistant input disclaimer copy](https://github.com/n8n-io/n8n/pull/33213): Updated the disclaimer text shown below the AI Assistant input field. It now reads "Preview version. AI can make mistakes; always verify responses." instead of the previous "AI can make mistakes. Check important info." This clarifies that the AI Assistant is a Preview feature and encourages users to verify its responses.
 * [Slack Node: Add schedule message and look up user by email operations](https://github.com/n8n-io/n8n/pull/31243): The Slack node now supports four new operations: looking up a user by email address, scheduling a message to be sent at a future date/time, deleting a previously scheduled message, and retrieving a list of pending scheduled messages with optional channel/date filters. These are additive operations with no changes to existing workflows or node versioning.
 * [GitHub Node: Add GitHub App API credential](https://github.com/n8n-io/n8n/pull/31235): The GitHub and GitHub Trigger nodes now support authenticating via a GitHub App credential, in addition to the existing personal access token and OAuth2 options. Users can configure App ID, Installation ID, and a private key; n8n handles JWT signing and installation access token retrieval automatically, refreshing tokens as needed for API requests.
 * [Microsoft Outlook Node: Add Service Principal (app-only) authentication](https://github.com/n8n-io/n8n/pull/33098): The Microsoft Outlook node (v2) and Outlook Trigger now support Microsoft Entra Service Principal (app-only) authentication, alongside existing OAuth2 options. When selected, a required Mailbox field (UPN or object ID) specifies which mailbox to act on, since app-only Graph access has no '/me'. All resources—messages, drafts, contacts, calendars, events, folders, and attachments—work against the chosen mailbox, and the trigger polls it too. Existing OAuth2 workflows are unaffected.
@@ -44319,8 +44359,10 @@ AI Assistant supersedes the AI Workflow Builder, and the difference is autonomy.
 
 Every workflow it builds is a normal n8n workflow: a visible canvas you can open, inspect, edit, and publish, with step-by-step execution logs to audit, built on the 400+ integrations n8n already ships instead of rebuilt API connections. You stay in control throughout: high-impact actions such as publishing wait for your approval. This is an early first step, and we want your feedback on where to take it next.
 
-{% hint style="warning" %}
-This feature is in preview. It can make mistakes, and its behavior may change while it's in development. Always review generated workflows before using them in production.
+{% hint style="info" %}
+**Preview status**
+
+This feature is in Preview. It can make mistakes, and its behavior may change while it's in development. Always review generated workflows before using them in production.
 {% endhint %}
 
 Learn more in the [AI Assistant documentation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/ai-assistant).
@@ -44438,8 +44480,10 @@ Imports are checked up front. If a conflict or an unresolved credential would bl
 
 This makes it easy to promote workflows from development to production, back up and restore an instance, hand a workflow to a teammate without sharing secrets, or migrate between instances.
 
-{% hint style="warning" %}
-This feature is in preview. The package format and APIs are still under development, and breaking changes may occur without a major version bump.
+{% hint style="info" %}
+**Preview status**
+
+This feature is in Preview. The package format and APIs are still under development, and breaking changes may occur without a major version bump.
 {% endhint %}
 
 Learn more in the [n8n Packages documentation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/n8n-packages).
@@ -56209,7 +56253,7 @@ n8n recommends self-hosting for expert users. Mistakes can lead to data loss, se
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
 Current `stable`: 2.34.6
-Current `beta`: 2.35.2
+Current `beta`: 2.35.3
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/suggested-pod-resources/
@@ -63750,7 +63794,7 @@ Refer to [Harvest credentials](../credentials/harvest.md) for guidance on settin
 
 # Brandfetch node <a href="#brandfetch-node" id="brandfetch-node"></a>
 
-Use the Brandfetch node to automate work in Brandfetch, and integrate Brandfetch with other applications. n8n has built-in support for a wide range of Brandfetch features, including returning a company’s information.
+Use the Brandfetch node to automate work in Brandfetch, and integrate Brandfetch with other applications. n8n has built-in support for a wide range of Brandfetch features, including retrieving logos, and colors and brand data.
 
 On this page, you'll find a list of operations the Brandfetch node supports and links to more resources.
 
@@ -63762,11 +63806,23 @@ Refer to [Brandfetch credentials](../credentials/brandfetch.md) for guidance on 
 
 ## Operations <a href="#operations" id="operations"></a>
 
-* Return a company's colors
-* Return a company's data
-* Return a company's fonts
-* Return a company's industry
-* Return a company's logo & icon
+* **Return Logos, Symbols and Icon**: Get all logo variants for a brand, including symbols and icons.
+* **Return Accent and Brand Colors**: Get the accent and brand color palette for a brand.
+* **Return All of a Brand's Data**: Get all available Brandfetch attributes, including name, description, logos, colors, company data and more.
+* **Return Brand Context**: Get structured brand context for any company on the internet, including voice, mission, positioning, audience, competitors and more.
+
+## Identifier types
+
+All operations require you to identify the brand using a **Type** and an **Identifier**.
+
+Select a **Type** from the following options:
+
+* **Domain**: A company's website domain, for example `n8n.io`.
+* **Stock/ETF Ticker**: A stock or ETF ticker symbol, for example `AAPL`.
+* **Crypto Symbol**: A crypto symbol, for example `BTC`.
+* **ISIN**: An International Securities Identification Number, for example `US0378331005`.
+
+Enter the corresponding value in the **Identifier** field.
 
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
@@ -74893,8 +74949,8 @@ n8n provides these methods to make it easier to perform common tasks in the Lang
 
 # Microsoft Agent 365 Trigger node <a href="#microsoft-agent-365-trigger-node" id="microsoft-agent-365-trigger-node"></a>
 
-{% hint style="warning" %}
-**Early preview**
+{% hint style="info" %}
+**Preview status**
 
 This is an early preview for building agents with Microsoft Agent 365 and n8n. You need to be part of the [Frontier preview program](https://adoption.microsoft.com/copilot/frontier-program/) to get early access to Microsoft Agent 365.
 {% endhint %}
@@ -86979,7 +87035,7 @@ You can use these credentials to authenticate the following node:
 
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
 
-Create a [Brandfetch developer](https://docs.brandfetch.com/docs/apis#-create-an-account) developer account.
+Create a [Brandfetch developer](https://developers.brandfetch.com) developer account.
 
 ## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
 
@@ -86987,13 +87043,13 @@ Create a [Brandfetch developer](https://docs.brandfetch.com/docs/apis#-create-an
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Brandfetch's API documentation](https://docs.brandfetch.com/docs/apis) for more information about the service.
+Refer to [Brandfetch's API documentation](https://docs.brandfetch.com/get-started) for more information about the service.
 
 ## Using API key <a href="#using-api-key" id="using-api-key"></a>
 
 To configure this credential, you'll need:
 
-- An **API Key**: Refer to the [Brandfetch Create an Account documentation](https://docs.brandfetch.com/docs/apis#-create-an-account) to generate an API key.
+- An **API Key**: [Create an account](https://developers.brandfetch.com/dashboard/keys) to generate an API key.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/invoiceninja/
 
@@ -97339,8 +97395,8 @@ You can use these credentials to authenticate the following nodes:
 
 - [Microsoft Agent 365 Trigger](../cluster-nodes/root-nodes/n8n-nodes-langchain.microsoftagent365trigger.md)
 
-{% hint style="warning" %}
-**Early preview**
+{% hint style="info" %}
+**Preview status**
 
 Microsoft Agent 365 is an early preview feature. You need to be part of the [Frontier preview program](https://adoption.microsoft.com/copilot/frontier-program/) to get early access.
 {% endhint %}
@@ -107683,7 +107739,7 @@ different thing, not a second visual tag.
   `status:`; `deprecated` doesn't (see Feature availability, in the style guide).
 - The current set of visual tags allowed in docs is: **Deprecated** (a whole
   page about a deprecated feature), **Preview** (a whole page about a feature
-  in preview), and **Archived** (a page no longer updated). Don't create or
+  in Preview), and **Archived** (a page no longer updated). Don't create or
   use any visual tag other than these three.
 
 ## Page navigation (SUMMARY.md)
@@ -107993,7 +108049,7 @@ to `https://api.n8n.io/workflows/templates/`):
 ## Feature availability
 
 A feature's availability can be limited by plan/platform, by n8n version
-(introduced, deprecated, removed), or by preview status. Reference all three
+(introduced, deprecated, removed), or by Preview status. Reference all three
 consistently so readers can tell whether their install supports a feature, and
 so automated tools (search, docs assistants, chunk-based retrieval) can extract
 the facts reliably even without the surrounding page for context.
@@ -108131,24 +108187,30 @@ automatically updated from the codebase, so don't edit it by hand.
 
 ### Preview status
 
-A preview feature works but isn't complete or stable, and may change. "Preview"
-is a feature's maturity label. Use it, not "beta", to describe a feature's status.
+A feature in Preview works but isn't complete or stable, and may change. "Preview"
+is a feature's maturity label, capitalized wherever it names that status ("is in
+Preview", "a Preview feature"), same as "Deprecated"/"Archived". Use "Preview",
+not "beta". Frontmatter and tag values stay lowercase (`status: preview`,
+`tag: preview`) since they're literal identifiers, not prose.
 
-**Page or section:** same `**Feature availability**` title as an availability
-hint, above. Name the node or feature in the sentence below it, not in the
-title. Hints get skimmed independently of the surrounding heading, so the
-sentence must carry the naming:
+**Page or section:** a `**Preview status**` title, not `**Feature
+availability**`. Preview answers a different question than availability (how
+stable is this? vs. where/when does this exist?), so it always gets its own
+title and box — never a second hint titled "Feature availability" sitting
+next to the availability one. Name the node or feature in the sentence below
+it, not in the title. Hints get skimmed independently of the surrounding
+heading, so the sentence must carry the naming:
 
 ```markdown
 {% hint style="info" %}
-**Feature availability**
+**Preview status**
 
-The Data table node is in preview and may change in future releases. Avoid
+The Data table node is in Preview and may change in future releases. Avoid
 relying on it in production workflows.
 {% endhint %}
 ```
 
-If the whole page is about the preview feature, also set `status: preview` and
+If the whole page is about the feature in Preview, also set `status: preview` and
 add a primary `preview` tag (see [Tags](#tags) for how tags work):
 
 ```yaml
@@ -108157,13 +108219,15 @@ add a primary `preview` tag (see [Tags](#tags) for how tags work):
 **Inline or passing mention:**
 
 ```markdown
-The **Streaming response** option is in preview and may change in future releases.
+The **Streaming response** option is in Preview and may change in future releases.
 ```
 
-- Tie it to a version when it helps: "In preview from n8n 2.20.0".
-- Keep it in a separate sentence (or a separate hint) from any plan/version
-  availability note — don't fold preview wording into the availability sentence.
-- If an inline preview note needs more than one sentence, promote it to a
+- Tie it to a version when it helps: "In Preview from n8n 2.20.0".
+- Keep it in a separate sentence (or a separate hint titled "Preview status")
+  from any plan/version availability note — don't fold Preview wording into
+  the availability sentence, and don't title a Preview-only hint "Feature
+  availability".
+- If an inline Preview note needs more than one sentence, promote it to a
   page- or section-level hint instead.
 
 
