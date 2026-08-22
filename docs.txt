@@ -725,7 +725,7 @@ You can use the **Options** menu <img src=".gitbook/assets/three-dot-options-men
 2. Select the **Options** menu <img src=".gitbook/assets/three-dot-options-menu (1).png" alt="Options icon" data-size="line"> next to the name of the project or folder.
 3. Select **Manage MCP access**, then either **Enable MCP** or **Disable MCP**.
 
-![mcp\_bulk\_toggle.png](<.gitbook/assets/mcp_bulk_toggle (1).png>)
+![Options menu with Manage MCP access expanded, showing Enable MCP access and Disable MCP access](<.gitbook/assets/mcp_bulk_toggle (1).png>)
 
 {% hint style="info" %}
 **Note**
@@ -757,7 +757,7 @@ To help MCP clients identify workflows, you can add free-text descriptions as fo
     2. Click the main workflow menu (`...`) in the top-right corner.
     3. Select **Edit description**.
 
-    ![mcp\_workflow\_description.png](<.gitbook/assets/mcp_workflow_description (1).png>)
+    ![Workflow's main menu open, with Edit description highlighted](<.gitbook/assets/mcp_workflow_description (1).png>)
 
 ## Exposing agents to MCP clients <a href="#exposing-agents-to-mcp-clients" id="exposing-agents-to-mcp-clients"></a>
 
@@ -1539,7 +1539,7 @@ Execute a workflow by ID. Returns the execution ID immediately without waiting f
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| `method` | `"GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD" | "OPTIONS"` | No | `"GET"` | HTTP method |
+| `method` | `"GET" \| "POST" \| "PUT" \| "DELETE" \| "PATCH" \| "HEAD" \| "OPTIONS"` | No | `"GET"` | HTTP method |
 | `query` | `Record<string, string>` | No | | Query string parameters |
 | `body` | `Record<string, unknown>` | No | | Request body data |
 | `headers` | `Record<string, string>` | No | | HTTP headers |
@@ -1548,8 +1548,8 @@ Execute a workflow by ID. Returns the execution ID immediately without waiting f
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `executionId` | `string | null` | The execution ID, or `null` if execution couldn't be started |
-| `status` | `"started" | "error"` | Whether the workflow execution was started successfully |
+| `executionId` | `string \| null` | The execution ID, or `null` if execution couldn't be started |
+| `status` | `"started" \| "error"` | Whether the workflow execution was started successfully |
 | `error` | `string` | Error message if the execution couldn't be started |
 
 #### Notes <a href="#notes" id="notes"></a>
@@ -1639,7 +1639,7 @@ Search for projects accessible to the current user. Use this to resolve a projec
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `query` | `string` | No | Filter projects by name. Results are ranked with exact case-insensitive matches first, then partial matches. |
-| `type` | `"personal" | "team"` | No | Filter by project type |
+| `type` | `"personal" \| "team"` | No | Filter by project type |
 | `limit` | `integer` | No | Limit the number of results (max 100) |
 
 #### Output <a href="#output" id="output"></a>
@@ -1649,8 +1649,8 @@ Search for projects accessible to the current user. Use this to resolve a projec
 | `data` | `array` | List of matching projects, sorted with exact case-insensitive matches first |
 | `data[].id` | `string` | The unique identifier of the project |
 | `data[].name` | `string` | The name of the project |
-| `data[].type` | `"personal" | "team"` | The project type |
-| `data[].matchType` | `"exact" | "partial"` | Whether the project name matches the query exactly or partially. Only present when `query` is provided |
+| `data[].type` | `"personal" \| "team"` | The project type |
+| `data[].matchType` | `"exact" \| "partial"` | Whether the project name matches the query exactly or partially. Only present when `query` is provided |
 | `count` | `integer` | Total number of matching projects |
 | `teamProjectsEnabled` | `boolean` | Whether team projects are licensed on this instance. When `false`, `projectId` is omitted by default on `create_workflow_from_code`, so the workflow is created in the caller's personal project, unless the user explicitly selects one of the returned accessible projects. Omitted on error responses. Available from n8n 2.26.0. |
 | `hint` | `string` | Guidance for picking a result. Present when the match is ambiguous (for example, no exact match but multiple partial matches), or when team projects aren't licensed on this instance |
@@ -1731,9 +1731,9 @@ Search for workflow executions with optional filters. Returns execution metadata
 | `data[].workflowId` | `string` | The workflow this execution belongs to |
 | `data[].status` | `string` | The execution status |
 | `data[].mode` | `string` | How the execution was triggered. One of: `"cli"`, `"error"`, `"integrated"`, `"internal"`, `"manual"`, `"retry"`, `"trigger"`, `"webhook"`, `"evaluation"`, `"chat"` |
-| `data[].startedAt` | `string | null` | ISO timestamp when the execution started |
-| `data[].stoppedAt` | `string | null` | ISO timestamp when the execution stopped |
-| `data[].waitTill` | `string | null` | ISO timestamp until when the execution is waiting |
+| `data[].startedAt` | `string \| null` | ISO timestamp when the execution started |
+| `data[].stoppedAt` | `string \| null` | ISO timestamp when the execution stopped |
+| `data[].waitTill` | `string \| null` | ISO timestamp until when the execution is waiting |
 | `count` | `integer` | Total matching executions, or `-1` if the count is unavailable |
 | `estimated` | `boolean` | Whether the count is an estimate for large datasets |
 | `error` | `string` | Error message if the query failed |
@@ -1831,7 +1831,7 @@ Resolve the real values behind a node's resource locator or load-options dropdow
 | `nodeType` | `string` | Yes | Fully-qualified node type ID from `search_nodes` / `get_node_types`, for example `"n8n-nodes-base.slack"` |
 | `version` | `number` | Yes | Node version, for example `4.7`. Must match a version returned by `search_nodes`. |
 | `methodName` | `string` | Yes | The exact method name from the node's `@searchListMethod` or `@loadOptionsMethod` annotation in the type definition. Call `get_node_types` first to read the real method name — don't guess. |
-| `methodType` | `"listSearch" | "loadOptions"` | Yes | `"listSearch"` for `@searchListMethod` annotations (supports filter and pagination); `"loadOptions"` for `@loadOptionsMethod` annotations. |
+| `methodType` | `"listSearch" \| "loadOptions"` | Yes | `"listSearch"` for `@searchListMethod` annotations (supports filter and pagination); `"loadOptions"` for `@loadOptionsMethod` annotations. |
 | `credentialType` | `string` | Yes | Credential type key for the node, for example `"slackApi"` or `"googleSheetsOAuth2Api"` |
 | `credentialId` | `string` | Yes | ID of a credential the user can access, obtained from `list_credentials` |
 | `filter` | `string` | No | Optional search/filter text to narrow results |
@@ -1844,7 +1844,7 @@ Resolve the real values behind a node's resource locator or load-options dropdow
 |-------|------|-------------|
 | `results` | `array` | Resources returned by the node method |
 | `results[].name` | `string` | The display label of the resource |
-| `results[].value` | `string | number | boolean` | The ID to use in workflow code |
+| `results[].value` | `string \| number \| boolean` | The ID to use in workflow code |
 | `results[].url` | `string` | URL for the resource, when available |
 | `results[].description` | `string` | Description of the resource, when available |
 | `paginationToken` | `string` | Pass back as `paginationToken` to fetch the next page. Absent when there are no more results. |
@@ -1940,7 +1940,7 @@ Update an existing workflow in n8n by applying an ordered batch of targeted part
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `onError` | `"stopWorkflow" | "continueRegularOutput" | "continueErrorOutput"` | No | How the node behaves on error |
+| `onError` | `"stopWorkflow" \| "continueRegularOutput" \| "continueErrorOutput"` | No | How the node behaves on error |
 | `retryOnFail` | `boolean` | No | Whether to retry the node when it fails |
 | `maxTries` | `integer` | No | Number of attempts when `retryOnFail` is true. Must be 2-5 |
 | `waitBetweenTries` | `integer` | No | Milliseconds to wait between retry attempts. Must be 0-5000 |
@@ -2150,7 +2150,7 @@ Restore an agent draft from a published version, overwriting the draft's config,
 |-------|------|-------------|
 | `agentId` | `string` | The agent ID |
 | `versionId` | `string` | The draft's internal version pointer after reverting |
-| `activeVersionId` | `string | null` | The currently published version ID, unchanged by this call |
+| `activeVersionId` | `string \| null` | The currently published version ID, unchanged by this call |
 | `configHash` | `string` | The configuration hash after reverting. Pass as `baseConfigHash` to the next `mutate_agent` call. |
 | `url` | `string` | The URL to open the agent in the n8n editor |
 
@@ -2170,7 +2170,7 @@ Configure or disconnect a Slack, Telegram, or Linear conversation integration. T
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `agentId` | `string` | Yes | The ID of the agent |
-| `action` | `"connect" | "disconnect"` | Yes | Whether to connect or disconnect the integration |
+| `action` | `"connect" \| "disconnect"` | Yes | Whether to connect or disconnect the integration |
 | `type` | `string` | Yes | Integration type returned by `discover_agent_assets` (`"slack"`, `"telegram"`, or `"linear"`) |
 | `credentialId` | `string` | Yes | Accessible credential for this integration |
 | `settings` | `object` | No | Integration settings. Required for Telegram `connect` operations (`accessMode`: `"public"` with `allowedUsers: []`, or `"private"` with at least one allowed Telegram user). |
@@ -2184,7 +2184,7 @@ Configure or disconnect a Slack, Telegram, or Linear conversation integration. T
 | `configured` | `boolean` | Present on `connect`: `true` |
 | `connected` | `boolean` | Whether the channel is live right now |
 | `published` | `boolean` | Whether the agent has a published (active) version |
-| `activeVersionId` | `string | null` | The published version ID, or null if unpublished |
+| `activeVersionId` | `string \| null` | The published version ID, or null if unpublished |
 | `configHash` | `string` | The configuration hash after this change |
 
 #### Notes <a href="#notes" id="notes"></a>
@@ -3010,7 +3010,7 @@ Basic configuration:
 }
 ```
 
-![String](../../../.gitbook/assets/string.png)
+![String field example: a Name input with Fixed/Expression toggle and the value n8n typed in](../../../.gitbook/assets/string.png)
 
 String field for inputting passwords:
 
@@ -3038,7 +3038,7 @@ String field for inputting passwords:
 }
 ```
 
-![Password](../../../.gitbook/assets/password.png)
+![Password field example: a Password input showing masked dots instead of the typed value](../../../.gitbook/assets/password.png)
 
 String field with more than one row:
 
@@ -3066,7 +3066,7 @@ String field with more than one row:
 }
 ```
 
-![Multiple rows](../../../.gitbook/assets/multiple-rows.png)
+![Multi-row string field example: a Description textarea spanning several lines of text](../../../.gitbook/assets/multiple-rows.png)
 
 ### Support drag and drop for data keys <a href="#support-drag-and-drop-for-data-keys" id="support-drag-and-drop-for-data-keys"></a>
 
@@ -3109,7 +3109,7 @@ Number field with decimal points:
 }
 ```
 
-![Decimal](../../../.gitbook/assets/decimal.png)
+![Decimal number field example: an Amount input showing the value 10.00](../../../.gitbook/assets/decimal.png)
 
 ## Collection <a href="#collection" id="collection"></a>
 
@@ -3157,7 +3157,7 @@ Use the `collection` type when you need to display optional fields.
 }
 ```
 
-![Collection](../../../.gitbook/assets/collection.png)
+![Collection field example: a Filters group with an optional Type dropdown open, listing Automated, Past, and Upcoming](../../../.gitbook/assets/collection.png)
 
 ## DateTime <a href="#datetime" id="datetime"></a>
 
@@ -3183,7 +3183,7 @@ The `dateTime` type provides a date picker.
 }
 ```
 
-![DateTime](../../../.gitbook/assets/datetime.png)
+![DateTime field example: a date input opening a calendar picker to choose a date and time](../../../.gitbook/assets/datetime.png)
 
 ## Boolean <a href="#boolean" id="boolean"></a>
 
@@ -3209,7 +3209,7 @@ The `boolean` type adds a toggle for entering true or false.
 }
 ```
 
-![Boolean](../../../.gitbook/assets/boolean.png)
+![Boolean field example: a Wait for Image toggle switched on](../../../.gitbook/assets/boolean.png)
 
 ## Color <a href="#color" id="color"></a>
 
@@ -3234,7 +3234,7 @@ The `color` type provides a color selector.
 }
 ```
 
-![Color](../../../.gitbook/assets/color.png)
+![Color field example: a Background Color input with its picker swatch expanded](../../../.gitbook/assets/color.png)
 
 ## Options <a href="#options" id="options"></a>
 
@@ -3270,7 +3270,7 @@ The `options` type adds an options list. Users can select a single value.
 }
 ```
 
-![Options](../../../.gitbook/assets/options.png)
+![Options field example: a Resource dropdown open showing single-select choices Image and Template](../../../.gitbook/assets/options.png)
 
 ## Multi-options <a href="#multi-options" id="multi-options"></a>
 
@@ -3306,7 +3306,7 @@ The `multiOptions` type adds an options list. Users can select more than one val
 }
 ```
 
-![Multi-options](../../../.gitbook/assets/multioptions.png)
+![Multi-options field example: an Events field with Plan Created and Plan Deleted both selected as removable tags](../../../.gitbook/assets/multioptions.png)
 
 ## Filter <a href="#filter" id="filter"></a>
 
@@ -3354,7 +3354,7 @@ options: [
 },
 ```
 
-![Filter](../../../.gitbook/assets/filter.png)
+![Filter field example: a Conditions builder with two rules joined by OR, using ends with and contains operators](../../../.gitbook/assets/filter.png)
 
 ## Assignment collection (drag and drop) <a href="#assignment-collection-drag-and-drop" id="assignment-collection-drag-and-drop"></a>
 
@@ -3422,11 +3422,11 @@ Use the `fixedCollection` type to group fields that are semantically related.
 }
 ```
 
-![Fixed collection](../../../.gitbook/assets/fixed-collection.png)
+![Fixed collection example: a Metadata group with two repeated Name/Value field pairs and an Add Metadata button](../../../.gitbook/assets/fixed-collection.png)
 
 ## Resource locator <a href="#resource-locator" id="resource-locator"></a>
 
-![Resource locator](../../../.gitbook/assets/resource-locator.png)
+![Resource locator field example: a Card field with its mode dropdown open, offering By ID, By URL, and From list](../../../.gitbook/assets/resource-locator.png)
 
 The resource locator element helps users find a specific resource in an external service, such as a card or label in Trello.
 
@@ -3667,7 +3667,7 @@ Refer to the [Postgres resource mapping method](https://github.com/n8n-io/n8n/bl
 }
 ```
 
-![JSON](../../../.gitbook/assets/json.png)
+![JSON field example: a Content (JSON) code editor with syntax-highlighted keys and values](../../../.gitbook/assets/json.png)
 
 ## HTML <a href="#html" id="html"></a>
 
@@ -3702,7 +3702,7 @@ Display a yellow box with a hint or extra info. Refer to [Node UI design](../../
 },
 ```
 
-![Notice](../../../.gitbook/assets/notice.png)
+![Notice field example: a pale yellow info box displaying placeholder text](../../../.gitbook/assets/notice.png)
 
 ## Hints <a href="#hints" id="hints"></a>
 
@@ -5091,6 +5091,82 @@ for (let i = 0; i < items.length; i++) {
 }
 ```
 
+## Declaring why an operation failed
+
+{% hint style="info" %}
+**Feature availability**
+
+Failure declarations are available from n8n 3.37.
+{% endhint %}
+
+Both `NodeApiError` and `NodeOperationError` accept a `failure` option that states why the operation failed. Use it when the node can tell from the response what went wrong, such as a used-up quota or a credential that no longer works. The declaration lands on the error's `failure` property as plain data. The node states the cause, never what to do about it: n8n owns any behavior derived from the declaration, such as how a polling trigger backs off after a failed poll.
+
+Pass the declaration when you construct the error:
+
+```typescript
+throw new NodeApiError(this.getNode(), error as JsonObject, {
+	failure: { cause: 'rate-limited' },
+});
+```
+
+### Failure causes
+
+The `cause` field takes one of six values. The first three describe failures that resolve on their own. The other three need someone to act before the operation can succeed.
+
+| `cause` | Meaning |
+|---------|---------|
+| `rate-limited` | The service is throttling requests. |
+| `quota-exhausted` | A usage quota ran out and the operation fails until the quota resets. |
+| `temporarily-unavailable` | The service is down or degraded right now. |
+| `credential-invalid` | The credential no longer works. The user has to reconnect it. |
+| `configuration-invalid` | The node points at something that no longer exists or is no longer allowed. |
+| `node-defect` | A bug in the node itself. Neither the credential nor the configuration is to blame. |
+
+### Wait hints
+
+On `rate-limited`, `quota-exhausted`, and `temporarily-unavailable`, you can add optional hints about when the operation may work again. The other causes don't accept them, since there's nothing to wait for.
+
+| Field | Meaning |
+|-------|---------|
+| `retryAfterMs` | Minimum wait the service asked for, in milliseconds. |
+| `resetsAtEpochMs` | When the service says the operation works again, as Unix epoch milliseconds. |
+
+For example, a quota that resets at a known time declares when it comes back:
+
+```typescript
+throw new NodeApiError(this.getNode(), error as JsonObject, {
+	failure: { cause: 'quota-exhausted', resetsAtEpochMs: nextQuotaReset() },
+});
+```
+
+### Classifying API errors
+
+Only declare a cause the response proves. If you can't classify an error with confidence, throw it unchanged: an error without a declaration is still valid.
+
+```typescript
+try {
+	return await this.helpers.httpRequestWithAuthentication.call(
+		this,
+		credentialType,
+		options
+	);
+} catch (error) {
+	if (error.httpCode === "401") {
+		throw new NodeApiError(this.getNode(), error as JsonObject, {
+			failure: { cause: "credential-invalid" },
+		});
+	}
+
+	if (error.httpCode === "429") {
+		throw new NodeApiError(this.getNode(), error as JsonObject, {
+			failure: { cause: "rate-limited" },
+		});
+	}
+
+	throw new NodeApiError(this.getNode(), error as JsonObject);
+}
+```
+
 === https://docs.n8n.io/docs/connect/create-nodes/build-your-node/set-up-your-development-environment/
 
 # Set up your development environment <a href="#set-up-your-development-environment" id="set-up-your-development-environment"></a>
@@ -6318,7 +6394,7 @@ npm run dev
 
 Visit your `localhost:5678` to sign in to your n8n instance. If you open a workflow, your node appears in the nodes panel:
 
-![node in nodes panel](../../.gitbook/assets/node_in_nodes_panel.png)
+![Trigger search panel in the workflow editor, listing a matching node in the results](../../.gitbook/assets/node_in_nodes_panel.png)
 
 From there, you can add it to your workflow and test the node's functionality as you develop.
 
@@ -6617,7 +6693,7 @@ There are five types of help built in to the GUI:
     * Use info boxes for essential information. Don't over-use them. By making them rare, they stand out more and grab the user's attention.
 * Parameter hints: lines of text displayed beneath a user input field. Use this when there's something the user needs to know, but an info box would be excessive.
 * Node hints: provide help in the input panel, output panel, or node details view. Refer to [UI elements | Hints](../build-your-node/reference/node-ui-elements.md#hints) for more information.
-* Tooltips: callouts that appear when the user hovers over the tooltip icon !["Screenshot of the tooltip icon. The icon is a ? in a grey circle"](../../.gitbook/assets/help-tooltip.png). Use tooltips for extra information that the user might need.
+* Tooltips: callouts that appear when the user hovers over the tooltip icon ![The tooltip icon: a question mark in a grey circle](../../.gitbook/assets/help-tooltip.png). Use tooltips for extra information that the user might need.
     * You don't have to provide a tooltip for every field. Only add one if it contains useful information. 
     * When writing tooltips, think about what the user needs. Don't just copy-paste API parameter descriptions. If the description doesn't make sense, or has errors, improve it.
 * Placeholder text: n8n can display placeholder text in a field where the user hasn't entered a value. This can help the user know what's expected in that field.
@@ -6961,9 +7037,36 @@ export class FriendGrid implements INodeType {
 ### Error message: 'Credentials of type "*" aren't known' <a href="#error-message-credentials-of-type-arent-known" id="error-message-credentials-of-type-arent-known"></a>
 
 
-Check that the name in the credentials array matches the name used in the property name of the credentials' class.
+Check that the name in the credentials array matches the name used in the property name of the credentials' class. For example, this credential class sets `name` to `friendGridApi`:
 
-![Troubleshooting credentials](../../.gitbook/assets/troubleshooting-credentials-1.png)
+```typescript
+export class FriendGridApi implements ICredentialType {
+	name = 'friendGridApi';
+	displayName = 'FriendGrid API';
+	documentationUrl = 'friendGrid';
+	properties = [
+		{
+			displayName: 'API Key',
+			name: 'apiKey',
+			type: 'string' as NodePropertyTypes,
+			default: '',
+		},
+	];
+}
+```
+
+The node's `credentials` array must reference that same `name` value:
+
+```typescript
+credentials: [
+	{
+		name: 'friendGridApi',
+		required: true,
+	},
+],
+```
+
+![Code examples with arrows linking the credential class's name property to the matching name field in the node's credentials array](../../.gitbook/assets/troubleshooting-credentials-1.png)
 
 
 ## Editor UI <a href="#editor-ui" id="editor-ui"></a>
@@ -7248,7 +7351,7 @@ To create a loop in an n8n workflow, connect the output of one node to the input
 
 Here is an [example workflow](https://n8n.io/workflows/1130) that implements a loop with an `IF` node:
 
-![Editor UI view of sample workflow](../.gitbook/assets/example_workflow.png)
+![Workflow canvas showing an IF node connected back to a previous node to form a loop, checking a condition to stop it](../.gitbook/assets/example_workflow.png)
 
 ### Loop until all items are processed <a href="#loop-until-all-items-are-processed" id="loop-until-all-items-are-processed"></a>
 
@@ -7434,7 +7537,9 @@ Splitting uses the [IF](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/c
 
 Compare these workflows:
 
-!["Diagram representing two workflows. One has three steps and follows a linear process, with a user submitting a bug, and the workflow emailing a support team. The second workflow starts the same way, but then splits depending on whether the user marked the issue as urgent. It then splits again depending on the user's support plan"](../.gitbook/assets/single-multi-branch-workflow.png)
+![Diagram comparing a linear bug-report workflow with one that branches by urgency and support plan](../.gitbook/assets/single-multi-branch-workflow.png)
+
+The first workflow is linear: a user submits a bug and the workflow emails support. The second workflow starts the same way but splits depending on whether the user marked the issue urgent, then splits again by the user's support plan.
 
 This is the power of splitting and conditional nodes in n8n.
 
@@ -7706,11 +7811,11 @@ A **dirty node** is a node that executed successfully in the past, but whose out
 
 In the canvas of the workflow editor, you can identify dirty notes by their different-colored border and a yellow triangle in place of the previous green tick symbol. For example:
 
-!["Image of node displayed with yellow border"](../../.gitbook/assets/dirty-node-canvas.png)
+![A node on the canvas with a yellow border and a yellow triangle icon instead of the usual green success tick](../../.gitbook/assets/dirty-node-canvas.png)
 
 In the node editor view, the output panel also displays a yellow triangle on the output panel. If you hover over the triangle, a tooltip appears with more information about why n8n considers the data stale:
 
-!["Image of node displayed with yellow border"](../../.gitbook/assets/dirty-node-editor.png)
+![Node editor's output panel showing a yellow triangle icon with a tooltip explaining why the data is stale](../../.gitbook/assets/dirty-node-editor.png)
 
 ## Why n8n marks nodes dirty <a href="#why-n8n-marks-nodes-dirty" id="why-n8n-marks-nodes-dirty"></a>
 
@@ -7743,17 +7848,17 @@ For sub-nodes, also labels any executed parent nodes (up to and including the ro
 
 -   When deleting a connected node in a workflow:
 
-    !["Image of node displayed with yellow border"](../../.gitbook/assets/dirty-before.png)
+    ![Workflow canvas before you delete a connected node, with all nodes showing green success ticks](../../.gitbook/assets/dirty-before.png)
 
 -   The next node in the sequence becomes dirty:
 
-    !["Image of node displayed with yellow border"](../../.gitbook/assets/dirty-after.png)
+    ![Workflow canvas after you delete the node, with the next node in the sequence now marked dirty with a yellow border](../../.gitbook/assets/dirty-after.png)
 
 </div>
 
 When using loops (with the [Loop over Items](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.splitinbatches) node), when any node within the loop is dirty, the initial node of the loop is also considered dirty:
 
-!["Image of node displayed with yellow border"](../../.gitbook/assets/dirty-loop.png)
+![Loop Over Items node marked dirty because a node inside its loop is dirty](../../.gitbook/assets/dirty-loop.png)
 
 ## Resolving dirty nodes <a href="#resolving-dirty-nodes" id="resolving-dirty-nodes"></a>
 
@@ -8126,27 +8231,27 @@ Publishing makes your workflow live and locks it to a specific version. Producti
 
 **Initial state** When you open a workflow with no publishable changes, the Publish button is disabled.
 
-![](../.gitbook/assets/publish-initial.png)
+![Disabled, greyed-out Publish button because there are no unpublished changes](../.gitbook/assets/publish-initial.png)
 
 **Ready to publish** When the workflow is not yet published but has changes, the button becomes active.
 
-![](../.gitbook/assets/publish-ready.png)
+![Active Publish button for a workflow that has unpublished changes](../.gitbook/assets/publish-ready.png)
 
 **Published, up to date** The workflow is currently published and there are no new changes since the last publish.
 
-![](../.gitbook/assets/published.png)
+![Publish button showing the workflow is published and up to date, with no pending changes](../.gitbook/assets/published.png)
 
 **Published, has changes** The workflow is published, but you've made changes since the last publish that haven't gone live yet.
 
-![](../.gitbook/assets/published-changes.png)
+![Publish button showing the workflow is published but has changes not yet live](../.gitbook/assets/published-changes.png)
 
 **Published, invalid changes** The workflow is published, but it's not in a state to be republished (no trigger requires publishing).
 
-![](../.gitbook/assets/published-invalid.png)
+![Publish button showing the workflow can't be republished because no trigger requires publishing](../.gitbook/assets/published-invalid.png)
 
 **Published, error** The workflow is published, but there are errors in your recent changes that need to be fixed before you can publish again.
 
-![](../.gitbook/assets/published-error.png)
+![Publish button showing an error state because recent changes contain errors to fix](../.gitbook/assets/published-error.png)
 
 ## How collaboration works <a href="#how-collaboration-works" id="how-collaboration-works"></a>
 
@@ -8160,7 +8265,7 @@ Only one person can edit a workflow at a time. If someone else is currently edit
 
 On the **Workflows** page, if a workflow is published an indicator will be displayed on the card.
 
-![](../.gitbook/assets/published-indicator-wf-list.png)
+![Published indicator badge on a workflow card in the Workflows list](../.gitbook/assets/published-indicator-wf-list.png)
 
 ## Publishing a workflow <a href="#publishing-a-workflow" id="publishing-a-workflow"></a>
 
@@ -8174,7 +8279,7 @@ Each time you make a change to a workflow, n8n autosaves those changes to a new 
 
     If you only update workflow settings, n8n will re-publish the version without requiring you to take any action.
 
-![](../.gitbook/assets/publish-modal.png)
+![Publish modal with an editable version name (defaulting to a UUID) and description field](../.gitbook/assets/publish-modal.png)
 
 ## Naming versions <a href="#naming-versions" id="naming-versions"></a>
 
@@ -8196,7 +8301,7 @@ To name a version from the canvas header:
 3. Enter a name and optional description.
 4. Select **Save**.
 
-![](../.gitbook/assets/publish-dropdown.png)
+![Publish button's dropdown menu with the Name version option](../.gitbook/assets/publish-dropdown.png)
 
 To name a version from the version history page:
 
@@ -8363,7 +8468,7 @@ Sticky Notes allow you to annotate and comment on your workflows.
 
 n8n recommends using Sticky Notes heavily, especially on [template workflows](#user-content-fn-1)[^1], to help other users understand your workflow.
 
-![Screenshot of a basic workflow with an example sticky note](../../.gitbook/assets/example-sticky-note.png)
+![A basic workflow with a sticky note attached](../../.gitbook/assets/example-sticky-note.png)
 
 ## Create a Sticky Note <a href="#create-a-sticky-note" id="create-a-sticky-note"></a>
 
@@ -9174,9 +9279,9 @@ You can manage your AI usage settings by navigating to **Settings** > **AI Usage
 
 These settings are only available to the instance owners and administrators, and will apply to all users on the instance.
 
-![ai\_usage\_settings.png](../.gitbook/assets/ai_usage_settings.png)
+![AI Usage settings page with the Send actual data values checkbox](../.gitbook/assets/ai_usage_settings.png)
 
-Toggle whether to share actual workflow data (like node names, parameters, and structure) with Ask n8n AI. Disabling this option will limit the assistant's ability to provide context-aware help based on your workflows.
+Choose whether to share actual workflow data (like node names, parameters, and structure) with Ask n8n AI. Disabling this option will limit the assistant's ability to provide context-aware help based on your workflows.
 
 Since access to workflow data is essential for the AI Workflow builder to function, **disabling this option will also disable the AI Workflow builder feature**.
 
@@ -9218,7 +9323,7 @@ For details of pricing and availability of AI Workflow Builder, see [n8n Plans a
 2. **Monitor the build:** The builder provides real-time feedback through several phases.
 3.  **Review and refine the generated workflow:** Review required credentials and other parameters. Refine the workflow using prompts.
 
-    ![ai-workflow-builder.png](../.gitbook/assets/ai-workflow-builder.png)
+    ![AI Workflow Builder panel showing a generated workflow with a chat box for refining it](../.gitbook/assets/ai-workflow-builder.png)
 
 ### Commands you can run in the builder <a href="#commands-you-can-run-in-the-builder" id="commands-you-can-run-in-the-builder"></a>
 
@@ -9627,7 +9732,7 @@ Users can share workflows they created. Instance owners, and users with the admi
 
 **Note:** This option is only available when sharing a workflow that is inside a **Personal** workspace. When trying to use the "Add users" option for a workflow that's **inside a project**, you'll get this pop-up instead:
 
-![Screenshot of the sharing option within projects](../.gitbook/assets/sharing-within-projects.png)
+![Pop-up explaining that the project shares this workflow with everyone in it](../.gitbook/assets/sharing-within-projects.png)
 
 This is intended behavior, and it means that the workflow is shared with everyone inside that specific project. Instead of adding the user directly to the workflow, you need to add the user to the project in which the workflow is located.
 
@@ -10855,7 +10960,7 @@ You can map data in the following ways:
 * Using the expressions editor.
 * By dragging and dropping data from the **INPUT** pane into node parameters. This generates the expression for you.
 
-![Creating expressions in the UI](../../.gitbook/assets/expressionEditor.gif)
+![Dragging a field from the INPUT pane into a node parameter to generate an expression](../../.gitbook/assets/expressionEditor.gif)
 
 For information on errors with mapping and linking items, refer to [Item linking errors](link-data-items/item-linking-errors.md).
 
@@ -11401,9 +11506,9 @@ Given the following data:
 ]
 ```
 
-n8n displays it in table form like this:
+n8n displays it in table form like this, showing the `nested` field in bold to show that it contains nested data:
 
-!["Screenshot of a table in the INPUT panel. It includes a top level field named "nested." This field contains nested data, which is indicated in bold."](../.gitbook/assets/nested-data.png)
+![Table view of the example data, with the nested field shown in bold](../.gitbook/assets/nested-data.png)
 
 
 === https://docs.n8n.io/docs/build/work-with-data/filter-out-unwanted-data/
@@ -16929,7 +17034,9 @@ This keeps your workflow organized by separating data transformation from busine
 
 **Best practice**: Instead of adding complex expressions to multiple parameters across different nodes, use Edit Fields to prepare your data first, then pass the transformed data to subsequent nodes.
 
-![Creating expressions in the UI](../../.gitbook/assets/expressionDot.gif)
+To build an expression in the UI, switch the field to expression mode, then drag a value from the **INPUT** pane into it, or type the expression directly.
+
+![Toggling a field to Expression mode, then dragging a value from the INPUT pane to build the expression](../../.gitbook/assets/expressionDot.gif)
 
 See [Expression reference](expression-reference/README.md) for more information and examples.
 
@@ -18161,7 +18268,7 @@ To do so:
 
 n8n's internal chat reads the output data of the last executed node in the workflow. After adding an evaluation node with the ['set outputs' operation](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.evaluation#set-outputs), this data may not be in the expected format, or even contain the chat response.
 
-![Add second output branch](../../.gitbook/assets/add-second-output-branch.png)
+![Agent node with a second output branch wired to a No-op node, positioned to execute last](../../.gitbook/assets/add-second-output-branch.png)
 
 The solution is to add an extra branch coming out of your agent. [Lower branches execute later](../../flow-logic/understand-execution-order.md) in n8n, which means any node you attach to this branch will execute last. You can use a no-op node here since it only needs to pass the agent output through.
 
@@ -18740,7 +18847,7 @@ There are two ways to do this, and you can switch between them.
 
 Each appropriate parameter field in the tool's editing dialog has an extra button at the end:
 
-![image showing stars icon to the right of parameter field](../../.gitbook/assets/ai-stars.png)
+![A star icon button at the end of a parameter field, used to let the AI Agent fill in that value automatically](../../.gitbook/assets/ai-stars.png)
 
 On activating this button, the [AI Agent](#user-content-fn-2)[^2] will fill in the expression for you, with no need for any further user input.
 The field itself is filled in with a message indicating that the parameter has been defined automatically by the model.
@@ -19129,7 +19236,7 @@ return [{ json: { slackMessage } }];
 
 If your incoming data contains nested fields, using dot notation to reference them can help the AI understand what data you want.
 
-!["Screenshot of an n8n code node, highlighting how to reference data with dot notation in an AI query"](../.gitbook/assets/reference-data-dot-notation.png)
+![Code node with an AI prompt referencing nested data using dot notation, such as personal_info.first_name](../.gitbook/assets/reference-data-dot-notation.png)
 
 To try the example yourself, download the example workflow and import it into n8n:
 
@@ -23232,14 +23339,14 @@ Before setting up source control and environments, you need to plan your environ
 
 ### Multiple instances, multiple branches <a href="#multiple-instances-multiple-branches" id="multiple-instances-multiple-branches"></a>
 
-![Diagram](../.gitbook/assets/vc-multi-multi.png)
+![Development n8n instance linked to a development branch and production instance linked to a production branch](../.gitbook/assets/vc-multi-multi.png)
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/O5AqRfApNuiINXZOe5j1/" %}
 
 
 ### Multiple instances, one branch <a href="#multiple-instances-one-branch" id="multiple-instances-one-branch"></a>
 
-![Diagram](../.gitbook/assets/vc-multi-one.png)
+![Development and production n8n instances both connected to the same Git branch](../.gitbook/assets/vc-multi-one.png)
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Vo4DpZeEyTa0iuufMDB8/" %}
 
@@ -23495,7 +23602,7 @@ You can use this pattern for environments. For example, create two n8n instances
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/O5AqRfApNuiINXZOe5j1/" %}
 
-![Diagram](../.gitbook/assets/vc-multi-multi.png)
+![Development and production n8n instances, each connected to its own Git branch, with a pull request moving work between the branches](../.gitbook/assets/vc-multi-multi.png)
 
 ## Multiple instances, one branch <a href="#multiple-instances-one-branch" id="multiple-instances-one-branch"></a>
 
@@ -23507,7 +23614,7 @@ This pattern is also useful when testing a new version of n8n: you can create a 
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Vo4DpZeEyTa0iuufMDB8/" %}
 
-![Diagram](../.gitbook/assets/vc-multi-one.png)
+![Development and production n8n instances both connected to the same single Git branch](../.gitbook/assets/vc-multi-one.png)
 
 ## One instance, multiple branches <a href="#one-instance-multiple-branches" id="one-instance-multiple-branches"></a>
 
@@ -23520,13 +23627,14 @@ This is useful to review work. For example, different users could work on their 
 
 n8n doesn't clean up the existing contents of an instance when changing branches. Switching branches in this pattern results in all the workflows from each branch being in your instance.
 {% endhint %}
-![Diagram](../.gitbook/assets/vc-one-multi.png)
+
+![One n8n instance switching between several Git branches to review work pushed by different users](../.gitbook/assets/vc-one-multi.png)
 
 ## One instance, one branch <a href="#one-instance-one-branch" id="one-instance-one-branch"></a>
 
 This is the simplest pattern.
 
-![Diagram](../.gitbook/assets/vc-one-one.png)
+![Single n8n instance connected to a single Git branch](../.gitbook/assets/vc-one-one.png)
 
 === https://docs.n8n.io/docs/administer/use-source-control-and-environments/README/
 
@@ -23642,7 +23750,7 @@ Git is a complex topic. This section provides a brief introduction to the key te
 
 Git uses branches to maintain multiple copies of a document alongside each other. Every branch has its own version. A common pattern is to have a main branch, and then everyone who wants to contribute to the project works on their own branch (copy). When they finish their work, their branch is merged back into the main branch.
 
-![Diagram](../.gitbook/assets/simple-git-branch.png)
+![Main branch with two separate branches forked from it, each merged back into main at a different point](../.gitbook/assets/simple-git-branch.png)
 
 ## Local and remote: Moving work between your machine and a Git provider <a href="#local-and-remote-moving-work-between-your-machine-and-a-git-provider" id="local-and-remote-moving-work-between-your-machine-and-a-git-provider"></a>
 
@@ -24012,7 +24120,7 @@ This guide will show you how to construct a workflow[^1] in n8n, explaining key 
   * Representing logic in an n8n workflow
   * Using expressions[^3]
 
-!["Screenshot of the completed workflow"](.gitbook/assets/tutorial-first.png)
+![The completed workflow: Schedule Trigger connected to NASA, then an If node branching into two PostBin nodes](.gitbook/assets/tutorial-first.png)
 
 This quickstart uses [n8n Cloud](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud), which is recommended for new users. A free trial is available - if you haven't already done so, [sign up](https://app.n8n.cloud/register) for an account now.
 
@@ -24076,7 +24184,7 @@ Credentials are private pieces of information issued by apps and services to aut
 
     This generates a date in the correct format, seven days before the current date.
 
-    ![image showing the expression above generating a date](.gitbook/assets/tutorial-date.png)
+    ![Start Date expression editor, with the Result panel showing a resolved date one week before today](.gitbook/assets/tutorial-date.png)
 7. Close the **Edit Expression** modal to return to the NASA node.
 8. You can now check that the node is working and returning the expected date: select **Execute step** to run the node manually. n8n calls the NASA API and displays details of solar flares in the past seven days in the **OUTPUT** section.
 9. Close the NASA node to return to the workflow canvas.
@@ -24120,7 +24228,7 @@ The last step of the workflow is to send the two reports about solar flares. For
     There was a solar flare of class {{$json["classType"]}}
     ```
 
-    ![image showing the expression above generating output](.gitbook/assets/tutorial-expression.png)
+    ![Expression editor for Bin Content, with the Result panel showing the rendered message text](.gitbook/assets/tutorial-expression.png)
 11. Close the expressions editor to return to the node.
 12. Close the Postbin node to return to the canvas.
 13. Add another Postbin node, to handle the **false** output path from the If node:
@@ -25658,7 +25766,7 @@ Maps tags to workflows. [tag_entity](#tag_entity) contains tag details.
 
 ## Entity Relationship Diagram (ERD) <a href="#entity-relationship-diagram-erd" id="entity-relationship-diagram-erd"></a>
 
-!["n8n ERD"](../../.gitbook/assets/n8n-database-diagram.png)
+![Entity relationship diagram showing foreign-key connections between n8n's database tables, including user, workflow_entity, execution_entity, and credentials_entity](../../.gitbook/assets/n8n-database-diagram.png)
 
 [^1]: In n8n, credentials store authentication information to connect with specific apps and services. After creating credentials with your authentication information (username and password, API key, OAuth secrets, etc.), you can use the associated app node to interact with the service.
 
@@ -25938,6 +26046,10 @@ Form submissions don't include a `method` label because n8n only accepts form da
 ## Durable scheduler observability
 
 n8n exposes queue-depth, scheduling-lag, dispatch, retry, and dead-letter metrics for the [durable scheduler](../configure-n8n/durable-scheduler.md). Enable them with `N8N_METRICS_INCLUDE_SCHEDULER_METRICS`, then see [Durable scheduler observability](../configure-n8n/durable-scheduler.md#observability) for what each metric means. n8n publishes a [ready-to-use dashboard](https://github.com/n8n-io/n8n-observability/tree/main/dashboards/grafana/n8n-scheduler) for them.
+
+## Poll trigger observability
+
+n8n exposes poll-duration, poll-error, overlap, and cursor-commit metrics for [poll triggers](../configure-n8n/durable-scheduler.md#poll-triggers). Enable them with `N8N_METRICS_INCLUDE_POLL_TRIGGER_METRICS`, then see [Poll trigger metrics](../configure-n8n/durable-scheduler.md#poll-trigger-metrics) for what each metric means. n8n publishes a [ready-to-use dashboard](https://github.com/n8n-io/n8n-observability/tree/main/dashboards/grafana/n8n-poll-triggers) for them.
 
 ## Workflow name lookup <a href="#workflow-name-lookup" id="workflow-name-lookup"></a>
 
@@ -27634,6 +27746,14 @@ The durable scheduler is available from n8n 2.36.0. Earlier versions back to n8n
 Poll trigger support isn't 100% stable yet. Keep `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED` off in production unless you're prepared to keep a close watch on your polling workflows: check their execution lists for gaps or duplicate runs, and turn on scheduler metrics to watch scheduling lag, retries, and dead-letters (see [Durable scheduler observability](../../durable-scheduler.md#observability)). This doesn't affect Schedule Trigger support, which is stable.
 {% endhint %}
 
+## Poll triggers
+
+Controls how trigger nodes with a **Poll Times** parameter (such as Google Sheets Trigger or Airtable Trigger) store their cursor, the node's record of how far it has already read. To route these nodes through the durable scheduler, turn on `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED` (in the Enable the scheduler table). See [Poll triggers](../../durable-scheduler.md#poll-triggers).
+
+| Variable | Type | Default | Description |
+| :------- | :--- | :------ | :---------- |
+| `N8N_POLLER_DURABLE_CURSORS_ENABLED` | Boolean | `false` | Whether n8n stores a poll trigger node's cursor in a dedicated database table and commits it in the same transaction as the execution the poll produced, so a crash mid-poll can't drop or duplicate data. Available from n8n 2.36.0. From n8n 2.37.0, requires `N8N_SCHEDULER_ENABLED`, `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`, and `N8N_USE_WORKFLOW_PUBLICATION_SERVICE`. See [Durable poll cursors](../../durable-scheduler.md#durable-poll-cursors). |
+
 ## Materialization <a href="#materialization-vars" id="materialization-vars"></a>
 
 Controls how far ahead and how often the scheduler records upcoming runs to the database.
@@ -27798,6 +27918,7 @@ This page lists environment variables for customizing endpoints in n8n.
 | `N8N_METRICS_QUEUE_METRICS_INTERVAL` | Integer | `20` | How often (in seconds) to update queue metrics. |
 | `N8N_METRICS_INCLUDE_SCHEDULER_METRICS` | Boolean | `false` | Whether to include metrics for the durable scheduler, such as queue depth, scheduling lag, dispatch throughput, retries, and dead-letters. Main instances only. For what each metric means, see [Durable scheduler observability](../../durable-scheduler.md#observability). |
 | `N8N_METRICS_SCHEDULER_INTERVAL` | Integer | `20` | How often (in seconds) to refresh the queue-health gauges for the durable scheduler. See [Durable scheduler observability](../../durable-scheduler.md#observability). |
+| `N8N_METRICS_INCLUDE_POLL_TRIGGER_METRICS` | Boolean | `false` | Whether to include metrics for trigger nodes that poll, such as poll duration, poll errors, overlapping polls, and cursor commits. Main instances only. For what each metric means, see [Poll trigger metrics](../../durable-scheduler.md#poll-trigger-metrics). |
 | `N8N_METRICS_INCLUDE_SSRF_METRICS` | Boolean | `false` | Whether to include metrics for SSRF protection checks. |
 | `N8N_METRICS_INCLUDE_DNS_CACHE_METRICS` | Boolean | `false` | Whether to include metrics for the DNS cache (currently only used by SSRF protection). |
 | `N8N_ENDPOINT_REST` | String | `rest` | The path used for REST endpoint. |
@@ -28543,7 +28664,7 @@ Because the runner runs as the same user on the same host as n8n, code that esca
 
 ### External mode <a href="#external-mode" id="external-mode"></a>
 
-In external mode, a [launcher application](https://github.com/n8n-io/task-runner-launcher) launches task runners on demand and manages their lifecycle. Typically, this means that next to n8n you add a sidecar container running the [`n8nio/runners`](https://hub.docker.com/r/n8nio/runners) image containing the launcher, the JS task runner and the Python task runner. This sidecar container is independent from the n8n instance.
+In external mode, a [launcher application](https://github.com/n8n-io/task-runner-launcher) launches task runners on demand and manages their lifecycle. Typically, this means that next to n8n you add a sidecar container running the [`n8nio/runners`](https://hub.docker.com/r/n8nio/runners) image containing the launcher, the JS task runner and the Python task runner. This sidecar container is independent from the n8n instance. The launcher exposes a health-check endpoint that it uses to monitor the task runner processes.
 
 ![Task runner deployed as a side-car container](../../.gitbook/assets/task-runner-external-mode.png)
 
@@ -29550,7 +29671,7 @@ Set `N8N_SCHEDULER_ENABLED` to `true` to opt in.
 The durable scheduler only takes over Schedule Trigger nodes when the workflow publication service is also on. Set both `N8N_SCHEDULER_ENABLED` and `N8N_USE_WORKFLOW_PUBLICATION_SERVICE` to `true`. If you enable the scheduler without the publication service, n8n logs a warning and Schedule Trigger nodes keep running on the in-memory scheduler.
 {% endhint %}
 
-Poll triggers (trigger nodes with a **Poll Times** parameter, such as Google Sheets Trigger or Airtable Trigger) stay on the in-memory scheduler unless you also opt them in with [`N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`](basic-configuration/use-environment-variables/scheduler.md#enable-vars), available from n8n 2.33.0. Poll trigger support isn't 100% stable yet, so keep it off in production unless you're prepared to keep a close watch on your polling workflows.
+Poll triggers (trigger nodes with a **Poll Times** parameter, such as Google Sheets Trigger or Airtable Trigger) stay on the in-memory scheduler unless you also opt them in with [`N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`](basic-configuration/use-environment-variables/scheduler.md#enable-vars), available from n8n 2.33.0. Poll trigger support isn't 100% stable yet, so keep it off in production unless you're prepared to keep a close watch on your polling workflows. For how polls behave under the durable scheduler, and for the [durable poll cursors](#durable-poll-cursors) that n8n recommends turning on together with `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`, see [Poll triggers](#poll-triggers).
 
 To keep an individual Schedule Trigger node on the in-memory scheduler while the durable scheduler is on, set `N8N_ENV_FEAT_SKIP_DURABLE_SCHEDULER` to `true`; the node then shows a **Skip Durable Scheduler** setting. This escape hatch is temporary: a future release will remove it.
 
@@ -29608,6 +29729,32 @@ Under the durable scheduler, most Schedule Trigger schedules fire the same way t
 `N8N_SCHEDULER_TRIGGER_NODE_MODE` only affects "every N seconds" and "every N minutes" schedules. Every other cadence, including raw cron expressions, fires the same way under either value.
 {% endhint %}
 
+## Poll triggers
+
+When [`N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`](#turn-on) is on, each of a poll trigger's poll times runs as its own durable schedule: polls survive restarts and spread across instances like any other run. Two behaviors are specific to poll triggers:
+
+- **Missed polls are always skipped.** A poll fetches everything new since it last ran, so a catch-up poll would repeat the same fetch. See [Misfire policy](#misfire-policy).
+- **A poll can occasionally run twice.** The scheduler guarantees each dispatched poll runs at least once, not that it runs only once. A poll can repeat, for example when an instance stalls and another takes over. Turn on [durable poll cursors](#durable-poll-cursors) so a repeated poll can't drop or duplicate items.
+
+### Durable poll cursors
+
+Each poll trigger node keeps a cursor: its record of how far it has already read, so each poll only fetches what's new. By default, n8n stores the cursor in the workflow's static data and saves it separately from the execution the poll produced. If the instance crashes between the two saves, or two instances poll the same node at once, the cursor and the execution fall out of step, and the workflow either skips items or processes them twice.
+
+From n8n 2.36.0, set `N8N_POLLER_DURABLE_CURSORS_ENABLED` to `true` to prevent this. n8n then keeps each node's cursor in its own database table and saves it together with the execution, so a poll round either fully happened or didn't happen at all. n8n recommends turning it on whenever poll triggers run on the durable scheduler.
+
+From n8n 2.37.0, the setting only takes effect when `N8N_SCHEDULER_ENABLED`, `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`, and `N8N_USE_WORKFLOW_PUBLICATION_SERVICE` are all on. If any of them is off, n8n logs a warning at startup and cursors stay in workflow static data.
+
+What to expect when you turn it on:
+
+- **The switch is safe.** The node's next poll carries its current cursor over to the new table, so nothing is fetched twice or skipped.
+- **n8n checks your workflows first (n8n 2.36 only).** At startup, n8n scans every active workflow's published version for duplicate or missing trigger node ids. If it finds any, or can't scan a workflow, it turns off durable poll cursors, keeps poll triggers on the in-memory scheduler for the whole instance, and logs an error naming the affected workflows and how to fix them.
+- **Turning it back off doesn't undo it.** Cursors stay in their table; they just stop saving together with the execution.
+- **You can watch cursor saves.** Turn on the [poll trigger metrics](#poll-trigger-metrics) with `N8N_METRICS_INCLUDE_POLL_TRIGGER_METRICS`.
+
+{% hint style="warning" %}
+Turn on `N8N_POLLER_DURABLE_CURSORS_ENABLED` together with `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`. Running poll triggers on the durable scheduler while cursors still live in workflow static data risks dropped or duplicated items.
+{% endhint %}
+
 ## Observability
 
 The durable scheduler exposes Prometheus metrics on the `/metrics` endpoint, so you can tell whether runs start on time, whether they succeed, and whether the queue is draining. Turn them on with two environment variables:
@@ -29644,6 +29791,7 @@ Counters and the histogram record each main's own work, so sum them across your 
 | `n8n_scheduler_tasks_completed_total` | Counter | How many runs reached a final outcome, split by a `result` label of `success` or `failure`. A rising failure share points at the workflow or the database, not at the scheduler. |
 | `n8n_scheduler_task_retries_total` | Counter | How many failed runs the scheduler queued for another attempt. |
 | `n8n_scheduler_tasks_reclaimed_total` | Counter | How many runs the reaper took back from an instance that claimed one and stopped. A rising count means instances are crashing or losing their claim mid-run. |
+| `n8n_scheduler_tasks_lease_lost_total` | Counter | How many runs finished after another instance had already reclaimed their claim, so the same run may have executed twice. Split by `task_type`. For poll triggers this is the cross-instance overlap signal, and [durable poll cursors](#durable-poll-cursors) keep the cursor correct when it happens. |
 | `n8n_scheduler_tasks_dead_lettered_total` | Counter | How many runs n8n gave up on after `N8N_SCHEDULER_MAX_ATTEMPTS` attempts. Every one is a run that never happened, so treat any increase as an alert. |
 | `n8n_scheduler_dispatch_lag_seconds` | Histogram | How long each run waited between falling due and starting. Watch the high percentiles: a p99 pulling away from the p50 means a subset of runs stalls rather than the whole queue slowing down. |
 
@@ -29659,6 +29807,27 @@ These counters cover the [four stages](#how-it-works) that keep the queue moving
 | `n8n_scheduler_occurrences_retired_total` | Counter | How many recorded runs the scheduler dropped because a catch-up run superseded them. |
 | `n8n_scheduler_occurrences_missed_total` | Counter | How many recorded runs went past their deadline unclaimed and the reaper marked missed. |
 | `n8n_scheduler_tasks_pruned_total` | Counter | How many finished runs retention deleted. If it never rises, the scheduler tables keep growing. |
+
+### Poll trigger metrics
+
+Poll triggers have their own metric set behind a separate switch, `N8N_METRICS_INCLUDE_POLL_TRIGGER_METRICS`, independent of the scheduler metrics above:
+
+```bash
+export N8N_METRICS=true
+export N8N_METRICS_INCLUDE_POLL_TRIGGER_METRICS=true
+```
+
+Only main instances emit them. They come from the poll engine itself, not the scheduler, so they work even when the durable scheduler doesn't dispatch your polls. Like the scheduler counters, they record each main's own polls: sum across mains for cluster totals. n8n publishes a [ready-made poll triggers dashboard](https://github.com/n8n-io/n8n-observability/tree/main/dashboards/grafana/n8n-poll-triggers) for them.
+
+| Metric | Type | What it tells you |
+| :----- | :--- | :---------------- |
+| `n8n_poll_trigger_duration_seconds` | Histogram | How long each poll takes, split by `node_type` and `status`. A poll that grows slower over time is drifting toward its own interval. Once the duration crosses that interval, polls start overlapping. |
+| `n8n_poll_trigger_errors_total` | Counter | How many polls threw, split by `node_type` and a `kind` label of `auth`, `rate_limited`, or `thrown`. `auth` points at a broken credential, `rate_limited` at polling faster than the service allows. |
+| `n8n_poll_trigger_overlapping_ticks_total` | Counter | How many polls started while the previous poll for the same node was still running in the same process. Overlap across instances shows up in `n8n_scheduler_tasks_lease_lost_total` instead. |
+| `n8n_poll_trigger_cursor_commits_total` | Counter | How many cursor saves settled, split by `operation` (`with_execution` or `cursor_only`) and `result`. A `result` of `fence_rejected` means a stale poll lost its claim and wasn't allowed to advance the cursor, which is the protection doing its job. A `result` of `failure` means the save itself failed. |
+| `n8n_poll_trigger_cursor_commit_duration_seconds` | Histogram | How long each cursor save takes, with the same `operation` and `result` labels. |
+
+The two cursor metrics track the dedicated cursor table. A node starts reporting them with its first poll after you turn on [durable poll cursors](#durable-poll-cursors). It keeps reporting them after you turn the setting off, because its cursor stays in the table.
 
 All names above assume the default `n8n_` metrics prefix. If you set `N8N_METRICS_PREFIX`, substitute your own.
 
@@ -31107,7 +31276,7 @@ This is the process flow:
 1. Redis notifies the main instance.
 
 
-!["Diagram showing the flow of data between the main n8n instance, Redis, the n8n workers, and the n8n database"](../../../.gitbook/assets/queue-mode-flow.png)
+![Diagram showing the flow of data between the main n8n instance, Redis, the n8n workers, and the n8n database](../../../.gitbook/assets/queue-mode-flow.png)
 
 ## Configuring workers <a href="#configuring-workers" id="configuring-workers"></a>
 
@@ -35134,7 +35303,7 @@ You can find a complete `docker-compose` file for PostgreSQL in the [n8n hosting
 
 To update n8n, in Docker Desktop, navigate to the **Images** tab and select **Pull** from the context menu to download the latest n8n image:
 
-![Docker Desktop](../../.gitbook/assets/docker_desktop.png)
+![Docker Desktop Images tab with the row context menu open and Pull available](../../.gitbook/assets/docker_desktop.png)
 
 You can also use the command line to pull the latest, or a specific version:
 
@@ -47856,7 +48025,7 @@ Max from our DevRel team created an official walkthrough for you to get started:
 
 <br>
 
-[![Studio](.gitbook/assets/MCP-YouTube-thumb.jpg)](https://youtu.be/45WPU7P-1QQ?feature=shared)
+[![Thumbnail linking to a Studio video walkthrough of the new MCP Server Trigger and Client Tool nodes](.gitbook/assets/MCP-YouTube-thumb.jpg)](https://youtu.be/45WPU7P-1QQ?feature=shared)
 
 ### MCP Server Trigger <a href="#mcp-server-trigger" id="mcp-server-trigger"></a>
 
@@ -48608,7 +48777,7 @@ We build this on a web worker architecture so you won't have to suffer from perf
 \
 To get the full picture, check out our Studio update with Max and Elias, where they discuss and demo the new editing experience. 👇<br>
 
-[![Studio](.gitbook/assets/The_Studio_thumbnail_Code_node.jpg)](https://youtu.be/De1E58MPaMQ?t=645)
+[![Thumbnail linking to a Studio video demoing the overhauled Code node editing experience](.gitbook/assets/The_Studio_thumbnail_Code_node.jpg)](https://youtu.be/De1E58MPaMQ?t=645)
 {% endhint %}
 
 ### New node: Microsoft Entra ID <a href="#new-node-microsoft-entra-id" id="new-node-microsoft-entra-id"></a>
@@ -51761,7 +51930,7 @@ Although JavaScript remains the default language, you can now also select Python
 
 The migration tool helps you prepare your n8n instance for upgrading to n8n 2.0 by identifying workflows and configurations that need attention before the upgrade.
 
-![Migration tool](.gitbook/assets/migration-tool.png)
+![Migration compatibility report showing a workflow-compatible count and Workflow issues / Instance issues tabs](.gitbook/assets/migration-tool.png)
 
 You can see all breaking changes for n8n 2.0 [on this page](v20-breaking-changes.md).
 
@@ -53901,11 +54070,11 @@ With this release you can now:
 
 The new Time Saved node provides increased accuracy for complex workflows where different execution paths save different amounts of time.
 
-![time saved node example](.gitbook/assets/time_saved_node_1.png)
+![Workflow branching by lead score, with a Time Saved node on each branch set to a different time-saved value](.gitbook/assets/time_saved_node_1.png)
 
 n8n automatically totals the time from all Time Saved nodes executed during each workflow run and reports it within the insights dashboard.
 
-![insights dashboard](.gitbook/assets/time_saved_node_2.png)
+![Insights dashboard with the Time saved metric card highlighted alongside execution and run-time stats](.gitbook/assets/time_saved_node_2.png)
 
 ### Contributors <a href="#contributors" id="contributors"></a>
 
@@ -54047,10 +54216,10 @@ Previously, when an execution (parent) called a sub-execution (child) that conta
 Entering the waiting state would happen for example if the sub-execution contains a Wait node with a timeout higher than 65 seconds or a webhook call or a form submission, or a human-in-the-loop node, like the slack node.
 
 Parent-Workflow:
-![Parent-Workflow](.gitbook/assets/parentworkflow1.png)
+![Parent workflow with a Manual Trigger connected to an Execute Workflow node](.gitbook/assets/parentworkflow1.png)
 
 Sub-Workflow:
-![Sub-Workflow](.gitbook/assets/subworkflow.png)
+![Sub-workflow triggered by Execute Workflow Trigger, running a Wait node followed by an Edit Fields node](.gitbook/assets/subworkflow.png)
 
 n8n 1.0: The parent-execution reproduces the sub-execution's input as its output.:
 ![n8n 1.0: Parent execution won't receive the result of the child execution](.gitbook/assets/before1.png)
@@ -55391,7 +55560,7 @@ Entries with empty keys or values are ignored.
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/builtin/cluster-nodes/cluster-nodes-summary/
 [Cluster nodes](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#cluster-node-n8n) are node groups that work together to provide functionality in an n8n workflow. Instead of using a single node, you use a [root node](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#root-node-n8n) and one or more [sub-nodes](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#sub-node-n8n) that extend the functionality of the node.
 
-![Screenshot of a workflow with a root node and two sub-nodes](../../../../assets/root-sub-nodes.png)
+![A workflow diagram with one root node connected to two sub-nodes](../../../../assets/root-sub-nodes.png)
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/builtin/cluster-nodes/langchain-sub-nodes/chat-memory-manager-purpose/
 This node is useful when you:
@@ -55770,7 +55939,7 @@ One data stream triggers the Merge node, which then goes and executes the other 
 
 For example, in the screenshot below there's a workflow containing an Edit Fields node, If node, and Merge node. The standard If node behavior is to execute one data stream (in the screenshot, this is the **true** output). However, due to the Merge node, both data streams execute, despite the If node not sending any data down the **false** data stream.
 
-![Screenshot of a workflow. The workflow has an Edit Fields node, followed by an If node. It ends with a Merge node.](../../../../../assets/if-merge-node.png)
+![A workflow with an Edit Fields node, an If node, and a Merge node connected in sequence](../../../../../assets/if-merge-node.png)
 
 
 
@@ -56395,8 +56564,8 @@ n8n recommends self-hosting for expert users. Mistakes can lead to data loss, se
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.35.5
-Current `beta`: 2.36.3
+Current `stable`: 2.35.6
+Current `beta`: 2.36.4
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/suggested-pod-resources/
@@ -72733,11 +72902,11 @@ For example: you create an Asana credential, for use with the Asana node. Later,
 
 ### Credential scopes <a href="#credential-scopes" id="credential-scopes"></a>
 
-Some existing credential types have specific scopes: endpoints that they work with. n8n warns you about this when you select the credential type.
+Some existing credential types have specific scopes: the parts of the API they can access. n8n warns you about this when you select the credential type.
 
-For example, follow the steps in [Using predefined credential types](#using-predefined-credential-types), and select **Google Calendar OAuth2 API** as your **Credential Type**. n8n displays a box listing the two endpoints you can use this credential type with:
+For example, follow the steps in [Using predefined credential types](#using-predefined-credential-types), and select **Google Calendar OAuth2 API** as your **Credential Type**. n8n displays a box listing the two scopes this credential type covers: `calendar` and `calendar.events`.
 
-![The scopes box](../.gitbook/assets/scopes.png)
+![Scopes notice for the Google Calendar OAuth2 API credential type](../.gitbook/assets/scopes.png)
 
 
 === https://docs.n8n.io/docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorezep/
@@ -73020,7 +73189,7 @@ Refer to [LangChain's Pinecone documentation](https://js.langchain.com/docs/inte
 
 Your Pinecone index and namespace are available in your Pinecone account.
 
-![Screenshot of a Pinecone account, with the Pinecone index labelled](../../../.gitbook/assets/pinecone-index-namespace.png)
+![Pinecone console showing the index name and namespace location for a project](../../../.gitbook/assets/pinecone-index-namespace.png)
 
 [^1]: A vector store, or vector database, stores mathematical representations of information. Use with embeddings and retrievers to create a database that your AI can access when answering questions.
 [^2]: AI chains allow you to interact with large language models (LLMs) and other resources in sequences of calls to components. AI chains in n8n don't use persistent memory, so you can't use them to reference previous context (use AI agents for this).
@@ -73254,10 +73423,12 @@ For common questions or issues and suggested solutions, refer to [Common issues]
 
 # OpenAI Functions Agent
 
-{% hint style="info" %}
-**Feature deprecated**
+{% hint style="warning" %}
+**Feature availability**
 
-n8n deprecated this functionality in February 2025. New AI Agent nodes use the Tools Agent.
+The OpenAI Functions Agent is deprecated from n8n 1.82.0. New or updated AI Agent nodes use the [Tools Agent](tools-agent.md) instead. Only workflows still using node version 1 of the AI Agent node can select the OpenAI Functions Agent.
+
+Node version 1 of the AI Agent node is removed from n8n 3.0, so the OpenAI Functions Agent stops working for all workflows. See [n8n 3.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v30-breaking-changes) for details.
 {% endhint %}
 
 Use the OpenAI Functions Agent node to use an [OpenAI functions model](https://platform.openai.com/docs/guides/function-calling). These are models that detect when a function should be called and respond with the inputs that should be passed to the function.
@@ -73316,10 +73487,12 @@ For common questions or issues and suggested solutions, refer to [Common issues]
 
 # SQL AI Agent node <a href="#sql-ai-agent-node" id="sql-ai-agent-node"></a>
 
-{% hint style="info" %}
-**Feature removed**
+{% hint style="warning" %}
+**Feature availability**
 
-n8n removed this functionality in February 2025.
+The SQL Agent is deprecated from n8n 1.82.0. New or updated AI Agent nodes use the [Tools Agent](tools-agent.md) instead. Only workflows still using node version 1 of the AI Agent node can select the SQL Agent.
+
+Node version 1 of the AI Agent node is removed from n8n 3.0, so the SQL Agent stops working for all workflows. See [n8n 3.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v30-breaking-changes) for details.
 {% endhint %}
 
 The SQL Agent uses a SQL database as a data source. It can understand natural language questions, convert them into SQL queries, execute the queries, and present the results in a user-friendly format. This agent is valuable for building natural language interfaces to databases.
@@ -73416,10 +73589,12 @@ For common questions or issues and suggested solutions, refer to [Common issues]
 
 # Conversational AI Agent node <a href="#conversational-ai-agent-node" id="conversational-ai-agent-node"></a>
 
-{% hint style="info" %}
-**Feature removed**
+{% hint style="warning" %}
+**Feature availability**
 
-n8n removed this functionality in February 2025.
+The Conversational Agent is deprecated from n8n 1.82.0. New or updated AI Agent nodes use the [Tools Agent](tools-agent.md) instead. Only workflows still using node version 1 of the AI Agent node can select the Conversational Agent.
+
+Node version 1 of the AI Agent node is removed from n8n 3.0, so the Conversational Agent stops working for all workflows. See [n8n 3.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v30-breaking-changes) for details.
 {% endhint %}
 
 The Conversational Agent has human-like conversations. It can maintain context, understand user intent, and provide relevant answers. This agent is typically used for building chatbots, virtual assistants, and customer support systems.
@@ -73593,10 +73768,12 @@ For common errors or issues and suggested resolution steps, refer to [Common Iss
 
 # ReAct AI Agent node <a href="#react-ai-agent-node" id="react-ai-agent-node"></a>
 
-{% hint style="info" %}
-**Feature removed**
+{% hint style="warning" %}
+**Feature availability**
 
-n8n removed this functionality in February 2025.
+The ReAct Agent is deprecated from n8n 1.82.0. New or updated AI Agent nodes use the [Tools Agent](tools-agent.md) instead. Only workflows still using node version 1 of the AI Agent node can select the ReAct Agent.
+
+Node version 1 of the AI Agent node is removed from n8n 3.0, so the ReAct Agent stops working for all workflows. See [n8n 3.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v30-breaking-changes) for details.
 {% endhint %}
 
 The ReAct Agent node implements [ReAct](https://react-lm.github.io/) logic. ReAct (reasoning and acting) brings together the reasoning powers of chain-of-thought prompting and action plan generation.
@@ -73677,10 +73854,12 @@ For common questions or issues and suggested solutions, refer to [Common issues]
 
 # Plan and Execute Agent node <a href="#plan-and-execute-agent-node" id="plan-and-execute-agent-node"></a>
 
-{% hint style="info" %}
-**Feature removed**
+{% hint style="warning" %}
+**Feature availability**
 
-n8n removed this functionality in February 2025.
+The Plan and Execute Agent is deprecated from n8n 1.82.0. New or updated AI Agent nodes use the [Tools Agent](tools-agent.md) instead. Only workflows still using node version 1 of the AI Agent node can select the Plan and Execute Agent.
+
+Node version 1 of the AI Agent node is removed from n8n 3.0, so the Plan and Execute Agent stops working for all workflows. See [n8n 3.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v30-breaking-changes) for details.
 {% endhint %}
 
 The Plan and Execute Agent is like the [ReAct agent](react-agent.md) but with a focus on planning. It first creates a high-level plan to solve the given task and then executes the plan step by step. This agent is most useful for tasks that require a structured approach and careful planning.
@@ -75101,7 +75280,7 @@ The main output is the normal connector found in all n8n workflows. If you have 
 
 By configuring the LangChain Code node connectors (inputs and outputs) you can use it as an app node, root node or sub-node.
 
-![Screenshot of a workflow with four LangChain nodes, configured as different node types](../../../.gitbook/assets/create-node-types.png)
+![Four LangChain Code nodes in one workflow, each set up as a different node type: app, root, sub-node, and sub-node with sub-nodes](../../../.gitbook/assets/create-node-types.png)
 
 | Node type                                                                    | Inputs                        | Outputs                                                                   | Code mode   |
 | ---------------------------------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------- | ----------- |
@@ -77302,9 +77481,15 @@ Spaces in the node name are converted to underscores in the tool description.
 {% hint style="warning" %}
 **Avoid special characters in node names**
 
-Using special characters in the node name will cause errors when the agent runs:
+Using special characters in the node name will cause errors when the agent runs, for example:
 
-![model errors from special characters](../../../.gitbook/assets/name-characters-error.png)
+```
+Error in sub-node 'OpenAI Chat Model'
+
+Invalid 'tools[0].function.name': string does not match pattern. Expected a string that matches the pattern '^[a-zA-Z0-9_-]+$'.
+```
+
+![Error message shown when a tool name contains special characters](../../../.gitbook/assets/name-characters-error.png)
 
 Use only alphanumeric characters, spaces, dashes, and underscores in node names.
 {% endhint %}
@@ -83740,7 +83925,7 @@ Enter the text for these elements in the chat interface.
 
 <summary>View screenshot</summary>
 
-![Customizable text elements](../../../.gitbook/assets/hosted-text-elements.png)
+![Chat widget preview showing the Input Placeholder, Title, and Subtitle text fields](../../../.gitbook/assets/hosted-text-elements.png)
 
 </details>
 
@@ -83937,7 +84122,7 @@ If you don't want to use expressions:
 
 You can do this for both the name and value of the field.
 
-![A gif showing the drag and drop action, as well as changing a field to fixed](<../../.gitbook/assets/drag-drop-fixed-toggle (1).gif>)
+![A field being dragged from INPUT into Fields to Set, then its Value toggled from Expression to Fixed](<../../.gitbook/assets/drag-drop-fixed-toggle (1).gif>)
 
 ### Keep Only Set Fields <a href="#keep-only-set-fields" id="keep-only-set-fields"></a>
 
@@ -85587,7 +85772,7 @@ Only users logged in to this n8n instance can view or submit the form.
 
 The Form Trigger node has two URLs: **Test URL** and **Production URL**. n8n displays the URLs at the top of the node panel. Select **Test URL** or **Production URL** to toggle which URL n8n displays.
 
-![Screenshot of the form URLs](../../.gitbook/assets/form-urls.png)
+![Form Trigger node panel showing the Test URL and Production URL fields with the toggle between them](../../.gitbook/assets/form-urls.png)
 
 - **Test URL**: n8n registers a test webhook when you select **Execute Step** or **Execute Workflow**, if the workflow isn't active. When you call the URL, n8n displays the data in the workflow.
 - **Production URL**: n8n registers a production webhook when you publish the workflow. When using the production URL, n8n doesn't display the data in the workflow. You can still view workflow data for a production execution. Select the **Executions** tab in the workflow, then select the workflow execution you want to view.
@@ -99038,7 +99223,7 @@ n8n Cloud users can use **Managed OAuth2** for the following nodes:
 
 To use **Managed OAuth2**, just click **Sign in with Google** in the credentials screen. No more setup is required in the Google Cloud Console or elsewhere.
 
-![Managed OAuth2 credentials screen](../../../.gitbook/assets/managed-oauth.png)
+![n8n credential screen with a Sign in with Google button and a dropdown to switch to Custom OAuth2](../../../.gitbook/assets/managed-oauth.png)
 
 If you prefer to use Custom OAuth2, use the dropdown to change the authentication type.
 
@@ -105773,7 +105958,7 @@ Use the Loop Over Items node to batch the input items, and the Wait node to intr
 
 For example, to handle rate limits when using OpenAI:
 
-!["Screenshot of a workflow using the Loop Over Items node and Wait node to handle API rate limits for the OpenAI APIs"](../.gitbook/assets/loop-wait.png)
+![Workflow using Loop Over Items and Wait nodes to pace requests to the OpenAI API](../.gitbook/assets/loop-wait.png)
 
 ## Handle rate limits in the HTTP Request node <a href="#handle-rate-limits-in-the-http-request-node" id="handle-rate-limits-in-the-http-request-node"></a>
 
