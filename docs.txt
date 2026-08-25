@@ -319,7 +319,7 @@ Licensor: n8n GmbH
 | `sYWM3IB0LEL4RkPx8ndF` | hitl-tools | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/sYWM3IB0LEL4RkPx8ndF/" %}` | {% hint style="info" %} **Human-in-the-loop for AI tool calls**  This node can be used as a human review step for AI Age | docs/integrations/builtin/app-nodes/n8n-nodes-base.discord/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gmail/message-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlechat.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftoutlook.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftteams.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.slack/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/message-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.whatsapp/README.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md |
 | `D8oFoz7X85mQuXGFYlv9` | How to update n8n | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/D8oFoz7X85mQuXGFYlv9/" %}` | ## How to update n8n <a href="#how-to-update-n8n" id="how-to-update-n8n"></a>  The steps to update your n8n depend on wh | docs/changelog/release-notes-0.x.md, docs/changelog/release-notes-1.x.md, docs/changelog/release-notes-2.x.md, docs/changelog/release-notes.md |
 | `3EMfTKLe60rEZQ4dBdBw` | how-to-pin-data | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3EMfTKLe60rEZQ4dBdBw/" %}` | To pin data in a node:  1. Run the node to load data. 2. In the **OUTPUT** view, select **Pin data** <img src="../../ass | docs/build/work-with-data/pin-and-mock-data.md |
-| `o5sVhTw0cyO5aAAkAVDj` | if-merge-branch-execution | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/o5sVhTw0cyO5aAAkAVDj/" %}` | {% hint style="info" %} **0.236.0 and below**  n8n removed this execution behavior in version 1.0. This section applies  | docs/integrations/builtin/core-nodes/n8n-nodes-base.if.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.merge.md |
+| `o5sVhTw0cyO5aAAkAVDj` | if-merge-branch-execution | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/o5sVhTw0cyO5aAAkAVDj/" %}` | {% hint style="info" %} **0.236.0 and below**  n8n removed this execution behavior in n8n 1.0. This section applies to w | docs/integrations/builtin/core-nodes/n8n-nodes-base.if.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.merge.md |
 | `c0111xcskz1G8PKOQogB` | in-app-setup | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/c0111xcskz1G8PKOQogB/" %}` | When you set up user management for the first time, you create an owner account.  1. Open n8n. The app displays a signup | docs/administer/manage-users-and-access/set-up-for-cloud.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
 | `75cM0VtFejV1gnDTFOSV` | instance-owner | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/75cM0VtFejV1gnDTFOSV/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_INSTANCE_OWNER | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/user-management-and-2fa.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
 | `8qoOEjsLz4RnydVBogNy` | invite-users | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/8qoOEjsLz4RnydVBogNy/" %}` | You can now invite other people to your n8n instance.  1. Sign into your workspace with your owner account. (If you are  | docs/administer/manage-users-and-access/set-up-for-cloud.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
@@ -327,7 +327,7 @@ Licensor: n8n GmbH
 | `kXGDlwgR3wBuMfOWaSGE` | item-linking-node-creators | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/kXGDlwgR3wBuMfOWaSGE/" %}` | {% hint style="info" %} **Programmatic-style nodes only**  This guidance applies to programmatic-style nodes. If you're  | docs/build/work-with-data/reference-data/link-data-items/item-linking-for-node-creators.md, docs/connect/create-nodes/build-your-node/reference/item-linking.md |
 | `7MPhMVJM8wcmiOf5zn2m` | langchain-doc-loaders-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/7MPhMVJM8wcmiOf5zn2m/" %}` | Refer to [LangChain's documentation on document loaders](https://js.langchain.com/docs/modules/data_connection/document_ | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentgithubloader.md |
 | `mjXhKRIw98UJ5hk9LWBl` | langchain-overview-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}` | View n8n's [Advanced AI](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai) documentation. | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/README.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainllm.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainretrievalqa/README.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainsummarization.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.code.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.information-extractor.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.microsoftagent365trigger.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.sentimentanalysis.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.text-classifier.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreazureaisearch.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreinmemory.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremilvus.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremongodbatlas.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreoracledb.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepgvector.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepinecone.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreqdrant.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreredis.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoresupabase.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreweaviate.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorezep.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentgithubloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsawsbedrock.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsazureopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingscohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglegemini.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglepalm.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglevertex.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingshuggingfaceinference.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingslemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsmistralcloud.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsollama.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsoracledb.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatanthropic.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatawsbedrock.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatazureopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatcohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatdeepseek.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglegemini.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglevertex.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgroq.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatlemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatminimax.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatmistralcloud.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatnvidia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatollama/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenai/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenrouter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatvercel.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatxaigrok.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmcohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmlemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmollama/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmopenhuggingfaceinference.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorybufferwindow/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymanager.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymongochat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymotorhead.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorypostgreschat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryredischat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryxata.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryzep.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.modelselector.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserautofixing.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparseritemlist.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserstructured/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.rerankercohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievercontextualcompression.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievermultiquery.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievervectorstore.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrieverworkflow.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplittercharactertextsplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplitterrecursivecharactertextsplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplittertokensplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcalculator.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcode.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolsearxng.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolserpapi.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolthink.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolvectorstore.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwikipedia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwolframalpha.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/README.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.mcpClient.md, docs/integrations/builtin/credentials/alibaba.md, docs/integrations/builtin/credentials/anthropic.md, docs/integrations/builtin/credentials/chroma.md, docs/integrations/builtin/credentials/cohere.md, docs/integrations/builtin/credentials/googleai.md, docs/integrations/builtin/credentials/groq.md, docs/integrations/builtin/credentials/huggingface.md, docs/integrations/builtin/credentials/lemonade.md, docs/integrations/builtin/credentials/milvus.md, docs/integrations/builtin/credentials/minimax.md, docs/integrations/builtin/credentials/mistral.md, docs/integrations/builtin/credentials/moonshot.md, docs/integrations/builtin/credentials/motorhead.md, docs/integrations/builtin/credentials/ollama.md, docs/integrations/builtin/credentials/pinecone.md, docs/integrations/builtin/credentials/qdrant.md, docs/integrations/builtin/credentials/serp.md, docs/integrations/builtin/credentials/weaviate.md, docs/integrations/builtin/credentials/wolframalpha.md, docs/integrations/builtin/credentials/xata.md, docs/integrations/builtin/credentials/zep.md |
-| `iFLUKG9zJaouigaM7IOo` | latest-next-version | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}` | {% hint style="info" %} **Stable and Beta versions**  n8n releases a new minor version most weeks. The `stable` version  | docs/changelog/README.md, docs/changelog/release-notes-0.x.md, docs/changelog/release-notes-1.x.md, docs/changelog/release-notes-2.x.md, docs/deploy/host-n8n/install-options/install-with-docker.md, docs/deploy/host-n8n/install-options/install-with-npm.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-digital-ocean.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-google-cloud-run.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-google-kubernetes.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-heroku.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-hetzner.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/use-docker-compose.md |
+| `iFLUKG9zJaouigaM7IOo` | latest-next-version | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}` | {% hint style="info" %} **Stable and Beta versions**  n8n releases a new minor version most weeks. The `stable` version  | docs/changelog/README.md, docs/changelog/release-notes-0.x.md, docs/changelog/release-notes-1.x.md, docs/changelog/release-notes-2.x.md, docs/deploy/host-n8n/install-options/install-with-docker.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-digital-ocean.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-google-cloud-run.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-google-kubernetes.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-heroku.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-hetzner.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/use-docker-compose.md |
 | `JvN9TDUUWTwpWaT83YrH` | log-streaming | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/JvN9TDUUWTwpWaT83YrH/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_LOG_STREAMING_ | docs/administer/observe-and-log/stream-logs-to-external-systems.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/logs.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md |
 | `OI5s27oyRBdDvpwcuMQF` | managed-google-oauth | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/OI5s27oyRBdDvpwcuMQF/" %}` | * [Google Calendar](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.googlecalendar) * [G | docs/integrations/builtin/credentials/google/README.md, docs/integrations/builtin/credentials/google/oauth-generic.md, docs/integrations/builtin/credentials/google/oauth-single-service.md |
 | `8UflrA3Nx8LD5bKQn8Xc` | max-iterations | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/8UflrA3Nx8LD5bKQn8Xc/" %}` | Enter the number of times the model should run to try and generate a good answer from the user's prompt.  Defaults to `1 | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/openai-functions-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/tools-agent.md |
@@ -482,6 +482,78 @@ Body.
 
 === https://docs.n8n.io/.github/scripts/tests/fixtures/repo/docs/spacea/orphan/
 # Orphan not in SUMMARY
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/REUSABLE_CONTENT_INDEX/
+# Reusable content index (fixture)
+
+| ID | Name | Parent space | Include snippet | Preview | Used in |
+|----|------|--------------|-----------------|---------|---------|
+| `BLOCK1` | shared-block | `RS` | x | y | docs/spacea/with-include.md |
+| `BLOCK2` | Some Indexed Name | `RS` | x | y | docs/spacea/with-include.md |
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spaceb/other/
+# Other page
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/reusable-content/.gitbook/includes/frontmatter-named/
+
+## Frontmatter block heading <a href="#frontmatter-block-heading" id="frontmatter-block-heading"></a>
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/reusable-content/.gitbook/includes/shared-block/
+## Shared heading <a href="#shared-heading" id="shared-heading"></a>
+
+Reusable body.
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/bad-include/
+# With an unresolvable include
+
+{% include "https://app.gitbook.com/s/RS/~/reusable/NOTINDEXED/" %}
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/sub/page-two/
+# Page two
+
+## Target section <a href="#target-section" id="target-section"></a>
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/with-include/
+# With a resolvable include
+
+{% include "https://app.gitbook.com/s/RS/~/reusable/BLOCK1/" %}
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/documents-markup/
+# Page that documents markup in prose
+
+To pin an anchor, write `<a href="#example" id="example"></a>` in the heading.
+Pull in shared text with `{% include "https://app.gitbook.com/s/RS/~/reusable/BLOCK1/" %}`.
+
+## Real heading <a href="#real-heading" id="real-heading"></a>
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/page-one/
+# Page one
+
+## Section one <a href="#section-one" id="section-one"></a>
+
+Body text.
+
+## Plain heading with no explicit id
+
+Body text.
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/README/
+# Space A landing
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/id-in-code-heading/
+# Page documenting anchor markup in a heading
+
+## Write `<a id="example"></a>` to pin an anchor
+
+That id is an example inside backticks, not a real anchor, so this heading
+still needs its own slug computed.
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/code-heading/
+# Code heading page
+
+## Using `$if()` (advanced)
+
+No explicit id, so its anchor must be suppressed rather than flagged.
 
 === https://docs.n8n.io/CONTRIBUTING/
 # Contributing
@@ -730,7 +802,30 @@ You can use the **Options** menu <img src=".gitbook/assets/three-dot-options-men
 {% hint style="info" %}
 **Note**
 
-This will toggle MCP access for all workflows that are **currently** in the selected project or folder (skipping ones that are already in the selected state). You will still need to toggle access for any workflows added in the future.
+This will toggle MCP access for all workflows that are **currently** in the selected project or folder (skipping ones that are already in the selected state). To expose workflows you create later without toggling each one, use [Auto-expose new workflows](#auto-exposing-new-workflows).
+{% endhint %}
+
+### Auto-exposing new workflows <a href="#auto-exposing-new-workflows" id="auto-exposing-new-workflows"></a>
+
+{% hint style="info" %}
+**Feature availability**
+
+Auto-exposing new workflows is rolling out gradually from n8n 2.36.0. The setting may not be immediately visible on every instance.
+{% endhint %}
+
+Instead of enabling MCP access for each workflow individually, you can expose every newly created workflow automatically:
+
+1. Navigate to **Settings > Instance-level MCP**.
+2. Turn on **Auto-expose new workflows**.
+
+This setting is off by default. Turning it on only affects workflows created afterwards. Workflows that already exist keep their current setting, so use [Enabling access for individual workflows](#enabling-access-for-individual-workflows) or [Enabling access for projects/folders](#enabling-access-for-projectsfolders) to expose those.
+
+Only instance owners and admins can change this setting. It's read-only on instances where MCP access is managed through environment variables.
+
+{% hint style="info" %}
+**Note**
+
+Workflows still need to meet the [eligibility rules](#exposing-workflows-to-mcp-clients) to become available to MCP clients. Turning this setting on doesn't expose anything while MCP access is disabled for the instance.
 {% endhint %}
 
 ### Managing access <a href="#managing-access" id="managing-access"></a>
@@ -972,17 +1067,17 @@ The steps differ by tool, but each one needs a server URL from above. The follow
 The Kapa.ai server requires authentication. Your AI tool opens a browser-based sign-in flow when you first connect to it, or the first time you use it. Follow the prompts to authorize the connection.
 {% endhint %}
 
-{% tabs %}
-{% tab title="Claude Code" %}
+### Claude Code
+
 Run these commands in your terminal:
 
 ```bash
 claude mcp add --transport http n8n-docs https://docs.n8n.io/~gitbook/mcp
 claude mcp add --transport http n8n-kapa https://n8n.mcp.kapa.ai
 ```
-{% endtab %}
 
-{% tab title="Cursor" %}
+### Cursor
+
 Add the servers to your `mcp.json` file:
 
 ```json
@@ -997,9 +1092,9 @@ Add the servers to your `mcp.json` file:
 	}
 }
 ```
-{% endtab %}
 
-{% tab title="VS Code" %}
+### VS Code
+
 Add the servers to your `mcp.json` file:
 
 ```json
@@ -1016,17 +1111,15 @@ Add the servers to your `mcp.json` file:
 	}
 }
 ```
-{% endtab %}
 
-{% tab title="Other tools" %}
+### Other tools
+
 For any other MCP client, add a new remote (HTTP) server in its MCP settings and enter a server URL:
 
 ```
 https://docs.n8n.io/~gitbook/mcp
 https://n8n.mcp.kapa.ai
 ```
-{% endtab %}
-{% endtabs %}
 
 After you connect, your tool can search n8n's knowledge as you work.
 
@@ -9526,10 +9619,8 @@ The n8n CLI is the method n8n recommends for moving workflows between instances 
 * Export: See the [export commands](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/use-the-command-line#export-entities) for exporting workflows or credentials.
 * Import: See the [import commands](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/use-the-command-line#import-entities) for importing workflows or credentials.
 
-{% hint style="warning" %}
-**Feature availability**
-
-n8n plans to deprecate the Server CLI export and import commands. No deprecation or removal version is scheduled yet. Use the [n8n CLI](#using-the-n8n-cli) for new work.
+{% hint style="info" %}
+n8n recommends the [n8n CLI](#using-the-n8n-cli) over the Server CLI export and import commands for new work. We plan to deprecated Server CLI export and import commands, though this is not yet scheduled.
 {% endhint %}
 
 ## From the n8n API
@@ -11046,8 +11137,6 @@ You can use Python in the Code node. It isn't available in expressions.
 
 Methods for working with the output of other nodes. Some methods and variables aren't available in the Code node.
 
-{% tabs %}
-{% tab title="JavaScript" %}
 | Method | Description | Available in Code node? |
 | ------ | ----------- | :-------------------------: |
 | `$("<node-name>").all(branchIndex?, runIndex?)` | Returns all items from a given node. If `branchIndex` isn't given it will default to the output that connects `node-name` with the node where you use the expression or code. | ✅ |
@@ -11058,8 +11147,6 @@ Methods for working with the output of other nodes. Some methods and variables a
 | `$("<node-name>").params` | Object containing the query settings of the given node. This includes data such as the operation it ran, result limits, and so on. | ✅ |
 | `$("<node-name>").context` | Boolean. Only available when working with the Loop Over Items node. Provides information about what's happening in the node. Use this to determine whether the node is still processing items. | ✅ |
 | `$("<node-name>").itemMatching(currentNodeInputIndex)` | Use instead of `$("<node-name>").item` in the Code node if you need to trace back from an input item. | ✅ |
-{% endtab %}
-{% endtabs %}
 
 ## Reference binary data from a previous node
 
@@ -17894,32 +17981,20 @@ The scenario: you want a countdown to 25th December. Every day, it should tell y
 ```js
 {{"There are " + $today.diff(DateTime.fromISO($today.year + '-12-25'), 'days').toObject().days.toString().substring(1) + " days to Christmas!"}}
 ```
-
-This outputs `"There are <number of days> days to Christmas!"`. For example, on 9th March, it outputs "There are 291 days to Christmas!".
-
-A detailed explanation of what the expression does:
-
-* `{{`: indicates the start of the expression.
-* `"There are "`: a string. 
-* `+`: used to join two strings.
-* `$today.diff()`: This is similar to the example in [Get the time between two dates](#get-the-time-between-two-dates), but it uses n8n's custom `$today` variable.
-* `DateTime.fromISO($today.year + '-12-25'), 'days'`: this part gets the current year using `$today.year`, turns it into an ISO string along with the month and date, and then takes the whole ISO string and converts it to a Luxon DateTime data structure. It also tells Luxon that you want the duration in days.
-* `toObject()` turns the result of diff() into a more usable object. At this point, the expression returns `[Object: {"days":-<number-of-days>}]`. For example, on 9th March, `[Object: {"days":-291}]`.
-* `.days` uses JMESPath syntax to retrieve just the number of days from the object. For more information on using JMESPath with n8n, refer to our [JMESpath](query-json-data.md) documentation. This gives you the number of days to Christmas, as a negative number.
-* `.toString().substring(1)` turns the number into a string and removes the `-`.
-* `+ " days to Christmas!"`: another string, with a `+` to join it to the previous string.
-* `}}`: indicates the end of the expression.
 {% endtab %}
 
 {% tab title="Code node (JavaScript)" %}
 ```js
 let daysToChristmas = "There are " + $today.diff(DateTime.fromISO($today.year + '-12-25'), 'days').toObject().days.toString().substring(1) + " days to Christmas!";
 ```
+{% endtab %}
+{% endtabs %}
 
 This outputs `"There are <number of days> days to Christmas!"`. For example, on 9th March, it outputs "There are 291 days to Christmas!".
 
 A detailed explanation of what the code does:
 
+* `{{` and `}}`: in the expressions version, these indicate the start and end of the expression. The Code node version doesn't need them.
 * `"There are "`: a string. 
 * `+`: used to join two strings.
 * `$today.diff()`: This is similar to the example in [Get the time between two dates](#get-the-time-between-two-dates), but it uses n8n's custom `$today` variable.
@@ -17928,8 +18003,6 @@ A detailed explanation of what the code does:
 * `.days` uses JMESPath syntax to retrieve just the number of days from the object. For more information on using JMESPath with n8n, refer to our [JMESpath](query-json-data.md) documentation. This gives you the number of days to Christmas, as a negative number.
 * `.toString().substring(1)` turns the number into a string and removes the `-`.
 * `+ " days to Christmas!"`: another string, with a `+` to join it to the previous string.
-{% endtab %}
-{% endtabs %}
 
 === https://docs.n8n.io/docs/build/work-with-data/overview/
 
@@ -19939,8 +20012,9 @@ This includes:
 
 You can use Python in the Code node. It isn't available in expressions.
 {% endhint %}
-{% tabs %}
-{% tab title="JavaScript" %}
+
+## JavaScript
+
 | Method | Description | Available in Code node? |
 | ------ | ----------- | :-------------------------: |
 | `$env` | Contains n8n instance configuration [environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables). | ✅ |
@@ -19962,16 +20036,18 @@ You can use Python in the Code node. It isn't available in expressions.
 | `$workflow.active` | Whether the workflow is active (true) or not (false). | ✅ |
 | `$workflow.id` | The workflow ID. | ✅ |
 | `$workflow.name` | The workflow name. | ✅ |
-{% endtab %}
 
-{% tab title="Python (native)" %}
+## Python (native)
+
 | Method | Description |
 | ------ | ----------- |
 | `_items` | Contains incoming items in "Run once for all items" mode. |
 | `_item` | Contains the item being iterated on in "Run once for each item" mode. |
-{% endtab %}
 
-{% tab title="Python (Pyodide, deprecated)" %}
+## Python (Pyodide, deprecated)
+
+Python (Pyodide) support is deprecated from n8n 1.113.2. Use Python (native) instead.
+
 | Method | Description |
 | ------ | ----------- |
 | `_env` | Contains n8n instance configuration [environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables). |
@@ -19991,8 +20067,6 @@ You can use Python in the Code node. It isn't available in expressions.
 | `_workflow.active` | Whether the workflow is active (true) or not (false). |
 | `_workflow.id` | The workflow ID. | 
 | `_workflow.name` | The workflow name. |
-{% endtab %}
-{% endtabs %}
 
 === https://docs.n8n.io/docs/build/code-in-n8n/use-built-in-shortcuts/jmespath/
 
@@ -25208,6 +25282,8 @@ For example, to link from a page in the `administer` space to `docs/deploy/host-
 [link to a page](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/user-management)
 ```
 
+Use this form only for a page in a *different* space. For a page in the space you're already editing, use a relative `.md` link instead. GitBook renders both forms, but a space URL drops out of GitBook's rename tracking, so the link breaks when someone moves the target page. It also escapes the revision on a GitBook preview, resolving against published content instead of your changes. The `internal-links` CI check reports these as `same-space-absolute`.
+
 Each top-level folder under `docs/` is a separate space:
 
 | Space folder | Space ID |
@@ -25872,7 +25948,7 @@ Select the installation method that best fits your technical requirements and in
 	
 	**Requirements:** Node.js installed on your system.
 	
-	**Note:** This installation method is being deprecated in n8n 3.0. Consider using Docker Compose or one-line setup instead.
+	**Note:** npm installation is deprecated from n8n 3.0. Consider using Docker Compose or one-line setup instead.
 	
 	Installs n8n directly using Node Package Manager. Quick to set up but requires managing Node.js versions and dependencies yourself.
 
@@ -26656,7 +26732,7 @@ n8n creates the webhook URL by combining `N8N_PROTOCOL`, `N8N_HOST` and `N8N_POR
 
 When running n8n behind a reverse proxy, it's important to do the following:
 
-* set the webhook URL manually with the `N8N_WEBHOOK_URL` environment variable so that n8n can display it in the editor UI and register the correct webhook URLs with external services. (`N8N_WEBHOOK_URL` replaces the deprecated `WEBHOOK_URL`; n8n logs a deprecation warning if you still use `WEBHOOK_URL`.)
+* set the webhook URL manually with the `N8N_WEBHOOK_URL` environment variable so that n8n can display it in the editor UI and register the correct webhook URLs with external services. (`N8N_WEBHOOK_URL` replaces `WEBHOOK_URL`, which is deprecated from n8n 2.35.0; n8n logs a deprecation warning if you still use `WEBHOOK_URL`.)
 * Set the `N8N_PROXY_HOPS` environment variable to `1`.
 * On the last proxy on the request path, set the following headers to pass on information about the initial request:
     * [`X-Forwarded-For`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
@@ -27605,7 +27681,7 @@ You can run n8n in different modes depending on your needs. Queue mode provides 
 | `QUEUE_BULL_REDIS_CLUSTER_NODES` | String | - | Expects a comma-separated list of Redis Cluster nodes in the format `host:port`, for the Redis client to initially connect to. If running in queue mode (`EXECUTIONS_MODE = queue`), setting this variable will create a Redis Cluster client instead of a Redis client, and n8n will ignore `QUEUE_BULL_REDIS_HOST` and `QUEUE_BULL_REDIS_PORT`. |
 | `QUEUE_BULL_REDIS_TLS` | Boolean | `false` | Enable TLS on Redis connections. |
 | `QUEUE_BULL_REDIS_DUALSTACK` | Boolean | `false` | Enable dual-stack support (IPv4 and IPv6) on Redis connections. |
-| `QUEUE_WORKER_TIMEOUT` (**deprecated**) | Number | `30` | **Deprecated** Use `N8N_GRACEFUL_SHUTDOWN_TIMEOUT` instead. How long should n8n wait (seconds) for running executions before exiting worker process on shutdown. |
+| `QUEUE_WORKER_TIMEOUT` (**deprecated**) | Number | `30` | Deprecated from n8n 1.22.0. Use `N8N_GRACEFUL_SHUTDOWN_TIMEOUT` instead. How long should n8n wait (seconds) for running executions before exiting worker process on shutdown. |
 | `QUEUE_HEALTH_CHECK_ACTIVE` | Boolean | `false` | Whether to enable health checks (true) or disable (false). |
 | `QUEUE_HEALTH_CHECK_PORT` | Number | `5678` | The port to serve health checks on. If you experience a port conflict error when starting a worker server using its default port, change this. |
 | `QUEUE_WORKER_LOCK_DURATION` | Number | `60000` | How long (in ms) is the lease period for a worker to work on a message. |
@@ -27667,7 +27743,7 @@ This page outlines environment variables to configure your chosen database for y
 | `DB_TYPE`<br>/`_FILE` | Enum string:<br> `sqlite`, `postgresdb` | `sqlite` | The database to use. |
 | `DB_TABLE_PREFIX` | * | - | Prefix to use for table names. |
 | `DB_PING_INTERVAL_SECONDS` | Number | `2` | How often, in seconds, n8n pings the database to check that the connection is still alive. |
-| `DB_PING_TIMEOUT_MS` | Number | `5000` | How long, in milliseconds, n8n waits for a single ping to respond before counting it as a failure. Falls back to the deprecated `N8N_DB_PING_TIMEOUT` if that's set. |
+| `DB_PING_TIMEOUT_MS` | Number | `5000` | How long, in milliseconds, n8n waits for a single ping to respond before counting it as a failure. Falls back to `N8N_DB_PING_TIMEOUT`, deprecated from n8n 2.35.0, if that's set. |
 | `DB_PING_MAX_FAILURES_BEFORE_RECOVERY` | Number | `3` | How many pings in a row must fail before n8n treats the connection as lost and starts recovery. |
 | `DB_RECOVERY_BACKOFF_MIN_MS` | Number | `1000` | How long, in milliseconds, n8n waits before its first recovery attempt. Each retry waits longer (exponential backoff). |
 | `DB_RECOVERY_BACKOFF_MAX_MS` | Number | `30000` | The longest, in milliseconds, n8n waits between recovery attempts. This caps the backoff. Must be greater than or equal to `DB_RECOVERY_BACKOFF_MIN_MS`. |
@@ -27927,7 +28003,7 @@ This page lists environment variables for customizing endpoints in n8n.
 | `N8N_ENDPOINT_WEBHOOK_WAIT` | String | `webhook-waiting` | The path used for waiting-webhook endpoint. |
 | `N8N_ENDPOINT_HEALTH` | String | `healthz` | The path used for health check endpoint. |
 | `N8N_WEBHOOK_URL` | String | - | Sets the base URL for both test and production webhooks when running n8n behind a reverse proxy. Use this instead of the `N8N_ENDPOINT_*` variables above, which set only the endpoint _path_, not a URL. See [Configure webhook URLs with reverse proxy](../configuration-examples/configure-webhook-urls-with-reverse-proxy.md). |
-| `WEBHOOK_URL` | String | - | Deprecated alias of `N8N_WEBHOOK_URL`. Still works, but n8n logs a deprecation warning on startup. |
+| `WEBHOOK_URL` | String | - | Deprecated from n8n 2.35.0; alias of `N8N_WEBHOOK_URL`. Still works, but n8n logs a deprecation warning on startup. |
 | `N8N_DISABLE_PRODUCTION_MAIN_PROCESS` | Boolean | `false` | Disable production webhooks from main process. This helps ensure no HTTP traffic load to main process when using webhook-specific processes. |
 
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/external-data-storage/
@@ -32292,7 +32368,9 @@ n8n supports:
 
 Run the latest minor release within your major version.
 
-n8n doesn't officially support PostgreSQL-compatible derivatives, such as Amazon Aurora, AlloyDB, CockroachDB, or YugabyteDB.
+Amazon Aurora PostgreSQL is **experimental**. n8n's hosting templates offer it for high-availability setups, where Aurora recovers faster when the primary database goes down. n8n doesn't test or certify Aurora, and n8n's PostgreSQL version support doesn't extend to it. Use upstream PostgreSQL unless you specifically need what Aurora offers.
+
+n8n doesn't support other PostgreSQL-compatible derivatives, such as AlloyDB, CockroachDB, or YugabyteDB.
 
 The PostgreSQL project retires its oldest maintained major version and releases a new one every November, so n8n's supported version range shifts each year. Check this page for the current supported versions, rather than relying on a specific version number you've seen elsewhere.
 
@@ -34518,6 +34596,14 @@ Create an `n8n-secret.yaml` file. Refer to [Environment variables](../../configu
 
 The two deployment manifests (`n8n-deployment.yaml` and `postgres-deployment.yaml`) define the n8n and Postgres applications to Kubernetes.
 
+{% hint style="warning" %}
+The manifests run PostgreSQL 18. Setting up for the first time needs nothing extra.
+
+If you already have a database running an older PostgreSQL major version, don't apply this to it. PostgreSQL 18 can't open a data directory written by an older major version, and moving the folder doesn't help. The pod stays in `CrashLoopBackOff` with `database files are incompatible with server`. PostgreSQL leaves your data alone, and you can pin the image back to the version you were on.
+
+To move an existing database across, follow the official [PostgreSQL upgrade guide](https://www.postgresql.org/docs/18/upgrading.html) first.
+{% endhint %}
+
 The manifests define the following:
 
 - Send the environment variables defined to each application pod
@@ -34967,6 +35053,14 @@ Create an `n8n-secret.yaml` file. Refer to [Environment variables](../../configu
 
 The two deployment manifests (`n8n-deployment.yaml` and `postgres-deployment.yaml`) define the n8n and Postgres applications to Kubernetes.
 
+{% hint style="warning" %}
+The manifests run PostgreSQL 18. Setting up for the first time needs nothing extra.
+
+If you already have a database running an older PostgreSQL major version, don't apply this to it. PostgreSQL 18 can't open a data directory written by an older major version, and moving the folder doesn't help. The pod stays in `CrashLoopBackOff` with `database files are incompatible with server`. PostgreSQL leaves your data alone, and you can pin the image back to the version you were on.
+
+To move an existing database across, follow the official [PostgreSQL upgrade guide](https://www.postgresql.org/docs/18/upgrading.html) first.
+{% endhint %}
+
 The manifests define the following:
 
 - Send the environment variables defined to each application pod
@@ -35146,6 +35240,14 @@ Create an `n8n-secret.yaml` file. Refer to [Environment variables](../../configu
 ## Deployments <a href="#deployments" id="deployments"></a>
 
 The two deployment manifests (`n8n-deployment.yaml` and `postgres-deployment.yaml`) define the n8n and Postgres applications to Kubernetes.
+
+{% hint style="warning" %}
+The manifests run PostgreSQL 18. Setting up for the first time needs nothing extra.
+
+If you already have a database running an older PostgreSQL major version, don't apply this to it. PostgreSQL 18 can't open a data directory written by an older major version, and moving the folder doesn't help. The pod stays in `CrashLoopBackOff` with `database files are incompatible with server`. PostgreSQL leaves your data alone, and you can pin the image back to the version you were on.
+
+To move an existing database across, follow the official [PostgreSQL upgrade guide](https://www.postgresql.org/docs/18/upgrading.html) first.
+{% endhint %}
 
 The manifests define the following:
 
@@ -35758,12 +35860,13 @@ SQLite is fine for trying things out, but for a production instance that must ha
 
    services:
      postgres:
-       image: postgres:16
+       image: postgres:18
        restart: always
        environment:
          POSTGRES_USER: ${POSTGRES_USER}
          POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
          POSTGRES_DB: ${POSTGRES_DB}
+         PGDATA: /var/lib/postgresql/data
        volumes:
          - db-storage:/var/lib/postgresql/data
        healthcheck:
@@ -35772,6 +35875,12 @@ SQLite is fine for trying things out, but for a production instance that must ha
          timeout: 5s
          retries: 10
    ```
+
+   {% hint style="warning" %} Postgres 18 changed where it stores data by default. Setting `PGDATA` keeps it in the same folder as earlier versions, so the volume mount stays the same. Don't remove that line: without it, Postgres 18 writes somewhere the volume doesn't cover and your database starts empty.
+   {% endhint %}
+
+   {% hint style="warning" %} Already running an older Postgres? Moving straight to 18 is a major version upgrade, and Postgres can't open a data directory written by an older major. Bumping the image tag on an existing setup fails with `database files are incompatible with server`. Your data stays intact. Back up first with `pg_dumpall`, then follow the official [PostgreSQL upgrade guide](https://www.postgresql.org/docs/18/upgrading.html).
+   {% endhint %}
 
 3. Point n8n at it by adding these to the n8n service's environment block, and making it wait on Postgres too:
 
@@ -36166,7 +36275,7 @@ The embed login endpoint doesn't require `N8N_TOKEN_EXCHANGE_ENABLED`, and the t
 {% hint style="info" %}
 **File-based configuration**
 
-You can add `_FILE` to individual variables to provide their configuration in a separate file. Refer to [Keeping sensitive data in separate files](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration#keeping-sensitive-data-in-separate-files) for more details.
+You can add `_FILE` to individual variables to provide their configuration in a separate file. Refer to [Keeping sensitive data in separate files](../configure-n8n/basic-configuration.md#keeping-sensitive-data-in-separate-files) for more details.
 {% endhint %}
 
 For example, for large or multi-line JSON, store the trusted keys in a file and set `N8N_TOKEN_EXCHANGE_TRUSTED_KEYS_FILE=/path/to/trusted-keys.json`.
@@ -48337,7 +48446,7 @@ As of this release, **Tools Agent** is the only agent type available when adding
 * ReAct Agent
 * SQL Agent
 
-Existing workflows that use these agent types continue to run for now, but the underlying code will be removed in n8n 3. When that happens, workflows still using a deprecated agent type will fail. To prepare, replace affected AI Agent nodes with a new [AI Agent](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/) node, which uses Tools Agent.
+Existing workflows that use these agent types continue to run for now, but the underlying code will be removed from n8n 3. When that happens, workflows still using a deprecated agent type will fail. To prepare, replace affected AI Agent nodes with a new [AI Agent](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/) node, which uses Tools Agent.
 
 <br>
 
@@ -54332,7 +54441,7 @@ By default, the Git node will now block bare repositories for security reasons. 
 
 ### Drop MySQL/MariaDB support <a href="#drop-mysqlmariadb-support" id="drop-mysqlmariadb-support"></a>
 
-n8n will no longer support MySQL and MariaDB as storage backends. This support was deprecated in n8n 1.0. For best compatibility and long-term support, use PostgreSQL. MySQL node will continue to be supported as before.
+n8n will no longer support MySQL and MariaDB as storage backends. This support was deprecated from n8n 1.0. For best compatibility and long-term support, use PostgreSQL. MySQL node will continue to be supported as before.
 
 **Migration path:** Before upgrading to n8n 2.0, use the database migration tool to move your data from MySQL or MariaDB to PostgreSQL or SQLite.
 
@@ -54368,7 +54477,7 @@ n8n loads environment configuration from a `.env` file using the `dotenv` librar
 
 ### Remove `n8n --tunnel` option <a href="#remove-n8n-tunnel-option" id="remove-n8n-tunnel-option"></a>
 
-The `n8n --tunnel` command-line option will be removed in n8n 2.0.
+The `n8n --tunnel` command-line option will be removed from n8n 2.0.
 
 **Migration path:** If you currently use the `--tunnel` option for development or testing, switch to an alternative tunneling solution such as ngrok, localtunnel, or Cloudflare Tunnel. Update your workflow and documentation to reflect this change.
 
@@ -56564,8 +56673,8 @@ n8n recommends self-hosting for expert users. Mistakes can lead to data loss, se
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.35.6
-Current `beta`: 2.36.4
+Current `stable`: 2.35.7
+Current `beta`: 2.36.6
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/suggested-pod-resources/
@@ -57366,6 +57475,17 @@ Once you have the user or channel ID, you can format your message with the follo
 * **Channel**: `<#CHANNEL_ID>`
 * **Role**: `<@&ROLE_ID>`
 
+## Moderation actions fail with a permissions error
+
+The **Ban**, **Kick**, and **Timeout** operations on the **Member** resource need the bot to have the matching permission and to sit above the target member in the server's role hierarchy. When either check fails, Discord returns a `Missing Permissions` error.
+
+Make sure that:
+
+* The bot's role includes the required permission: **Ban Members** for Ban and Unban, **Kick Members** for Kick, and **Moderate Members** for Timeout.
+* The bot's highest role is above the target member's highest role. Discord blocks moderation actions against members with an equal or higher role, and against the server owner.
+
+You can review and reorder roles and their permissions in your Discord server settings, under **Roles**. After you update them, run the workflow again.
+
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.discord/README/
 
 # Discord node <a href="#discord-node" id="discord-node"></a>
@@ -57402,9 +57522,13 @@ Refer to [Discord credentials](../../credentials/discord.md) for guidance on set
 	- Send
 	* Send and Wait for Response
 - Member
+	- Ban
 	- Get Many
+	- Kick
 	- Role Add
 	- Role Remove
+	- Timeout
+	- Unban
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/c0Jp2CWNEFSR2IfIVdlL/" %}
 
@@ -61057,7 +61181,7 @@ On this page, you'll find a list of operations the OpenAI node supports and link
 {% hint style="warning" %}
 **Feature availability**
 
-The OpenAI node V2 is available from n8n 1.117.0. It supports the OpenAI Responses API, and removes support for the [to-be-deprecated Assistants API](https://platform.openai.com/docs/assistants/migration).
+The OpenAI node V2 is available from n8n 1.117.0. It supports the OpenAI Responses API, and removes support for [the Assistants API, which OpenAI has announced plans to retire](https://platform.openai.com/docs/assistants/migration).
 
 From n8n 1.29.0, the OpenAI node replaces the OpenAI assistant node.
 {% endhint %}
@@ -66387,9 +66511,9 @@ Refer to [Google Perspective credentials](../credentials/google/README.md) for g
 
 
 {% hint style="warning" %}
-**Deprecated: End of service**
+**Feature availability**
 
-LINE Notify is discontinuing service as of April 1st 2025 and this node will no longer work after that date. View LINE Notify's [end of service announement](https://notify-bot.line.me/closing-announce) for more information.
+The Line node is deprecated from n8n 1.64.0. LINE Notify ends its own service on April 1, 2025, after which the node stops working. View LINE Notify's [end of service announcement](https://notify-bot.line.me/closing-announce) for more information.
 {% endhint %}
 
 
@@ -68557,7 +68681,7 @@ On node version 2.7 and above:
 
 - **New options**: **Channel Types** (public, private, group DM, DM), **After** and **Before** (date filters), and **Keyword Search Only** (disables semantic search).
 - **Semantic search**: by default, Slack may apply semantic search to question-style queries (for example, queries that start with a question word or end with a question mark), so results aren't always strictly literal keyword matches. Enable **Keyword Search Only** to force literal matching. Semantic ranking requires Slack AI (a paid plan).
-- **Limit**: **Return All** is no longer available. Only **Limit** remains, capped at 50. The endpoint returns 20 results per request and rate limits aggressively (around 10 requests per minute per user), so it isn't built for exhaustive retrieval. Node version 2.6 and below keep **Return All**.
+- **Limit**: **Return All** is removed from node version 2.7 and above. Only **Limit** remains, capped at 50. The endpoint returns 20 results per request and rate limits aggressively (around 10 requests per minute per user), so it isn't built for exhaustive retrieval. Node version 2.6 and below keep **Return All**.
 - **Authentication**: the endpoint needs a user token, so use OAuth2 or supply a user token with Access Token authentication. A bot token can't call this endpoint, and the Slack app must have AI features enabled. If you use OAuth2, reconnect your existing credential so it picks up the new `search:read.*` scopes.
 - **Output fields**: results use `content`, `message_ts`, `channel_id`, `channel_name`, and `author_name`, instead of the previous `text`, `ts`, `channel`, and `username`.
 
@@ -72914,9 +73038,9 @@ For example, follow the steps in [Using predefined credential types](#using-pred
 # Zep Vector Store
 
 {% hint style="warning" %}
-**Deprecated**
+**Feature availability**
 
-This node is deprecated, and will be removed in a future version.
+The Zep Vector Store node is deprecated from n8n 1.108.0. Refer to [Deprecated and versioned nodes](../../deprecated-nodes.md) for more information.
 {% endhint %}
 
 Use the Zep Vector Store to interact with Zep vector databases. You can insert documents into a vector database, get documents from a vector database, retrieve documents to provide them to a retriever connected to a chain[^1], or connect it directly to an agent[^2] to use as a tool[^3].
@@ -75240,9 +75364,9 @@ Use the LangChain Code node to import LangChain. This means if there is function
 On this page, you'll find the node parameters, guidance on configuring the node, and links to more resources.
 
 {% hint style="warning" %}
-**Deprecated due to security issues**
+**Feature availability**
 
-This node has critical security issues and isn't safe to use. It's deprecated and hidden from the nodes panel. Avoid using it in your workflows.
+The LangChain Code node has critical security issues and isn't safe to use. It's deprecated from n8n 2.35.0 and hidden from the nodes panel. Avoid using it in your workflows.
 {% endhint %}
 
 {% hint style="info" %}
@@ -76225,9 +76349,9 @@ Refer to [LangChains's Cohere documentation](https://js.langchain.com/docs/integ
 # SerpApi (Google Search) node <a href="#serpapi-google-search-node" id="serpapi-google-search-node"></a>
 
 {% hint style="warning" %}
-**Deprecated**
+**Feature availability**
 
-This node is deprecated, and will be removed in a future version. Use the verified **SerpApi Official** community node instead.
+The SerpApi (Google Search) node is deprecated from n8n 2.35.0. Use the verified **SerpApi Official** community node instead. Refer to [Deprecated and versioned nodes](../../deprecated-nodes.md) for more information.
 {% endhint %}
 
 The SerpAPI node allows an agent[^1] in your workflow to call Google's Search API.
@@ -76268,9 +76392,9 @@ Refer to [Serp's documentation](https://serpapi.com/search-api) for more informa
 # GitHub Document Loader node <a href="#github-document-loader-node" id="github-document-loader-node"></a>
 
 {% hint style="warning" %}
-**Deprecated**
+**Feature availability**
 
-This node is deprecated, and will be removed in a future version.
+The GitHub Document Loader node is deprecated from n8n 1.122.0. Refer to [Deprecated and versioned nodes](../../deprecated-nodes.md) for more information.
 {% endhint %}
 
 Use the GitHub Document Loader node to load data from a GitHub repository for [vector stores](#user-content-fn-1)[^1] or summarization.
@@ -77229,9 +77353,9 @@ For common questions or issues and suggested solutions, refer to [Common issues]
 # Zep node <a href="#zep-node" id="zep-node"></a>
 
 {% hint style="warning" %}
-**Deprecated**
+**Feature availability**
 
-This node is deprecated, and will be removed in a future version.
+The Zep node is deprecated from n8n 1.108.0. Refer to [Deprecated and versioned nodes](../../deprecated-nodes.md) for more information.
 {% endhint %}
 
 Use the Zep node to use Zep as a memory[^1] server.
@@ -78599,6 +78723,10 @@ Tell n8n which workflow to call. You can choose either:
 * **Database** to select the workflow from a list or enter a workflow ID.
 * **Define Below** and copy in a complete [workflow JSON](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/export-and-import).
 
+{% hint style="warning" %}
+When using **Database** as the workflow source and running the agent in production (not the manual/chat test panel), the sub-workflow must be published. If it isn't, the tool call fails with the error `Workflow is not active and cannot be executed`. The error text is returned to the agent as the tool result. This can be easy to miss inside a longer agent response. If the agent reports it couldn't retrieve data, check that the sub-workflow has been published and that its execution list shows a run.
+{% endhint %}
+
 ### Workflow Inputs <a href="#workflow-inputs" id="workflow-inputs"></a>
 
 When using **Database** as workflow source, once you choose a sub-workflow (and define the **Workflow Input Schema** in the sub-workflow), you can define the **Workflow Inputs**.
@@ -79113,9 +79241,9 @@ Refer to [LangChain's retriever conceptual documentation](https://js.langchain.c
 # Motorhead node <a href="#motorhead-node" id="motorhead-node"></a>
 
 {% hint style="warning" %}
-**Deprecated**
+**Feature availability**
 
-The Motorhead project is no longer maintained. This node is deprecated, and will be removed in a future version.
+The Motorhead project is no longer maintained. The Motorhead node is deprecated from n8n 2.8.0. Refer to [Deprecated and versioned nodes](../../deprecated-nodes.md) for more information.
 {% endhint %}
 
 Use the Motorhead node to use Motorhead as a memory[^1] server.
@@ -81488,9 +81616,9 @@ Refer to the [MCP documentation](https://modelcontextprotocol.io/introduction) a
 The Workflow Trigger node gets triggered when a workflow is updated or activated.
 
 {% hint style="warning" %}
-**Deprecated**
+**Feature availability**
 
-n8n has deprecated the Workflow Trigger node and moved its functionality to the [n8n Trigger node](n8n-nodes-base.n8ntrigger.md).
+The Workflow Trigger node is deprecated from n8n 1.64.0. n8n moved its functionality to the [n8n Trigger node](n8n-nodes-base.n8ntrigger.md). Refer to [Deprecated and versioned nodes](../deprecated-nodes.md) for more information.
 {% endhint %}
 
 {% hint style="info" %}
@@ -82936,7 +83064,9 @@ location /mcp/ {
 The Activation Trigger node gets triggered when an event gets fired by n8n or a workflow.
 
 {% hint style="warning" %}
-n8n has deprecated the Activation Trigger node and replaced it with two new nodes: the [n8n Trigger node](n8n-nodes-base.n8ntrigger.md) and the [Workflow Trigger node](n8n-nodes-base.workflowtrigger.md). For more details, check out the entry in the [breaking changes](https://github.com/n8n-io/n8n/blob/master/packages/cli/BREAKING-CHANGES.md#01170) page.
+**Feature availability**
+
+The Activation Trigger node is deprecated from n8n 0.117.0. It was replaced with two new nodes: the [n8n Trigger node](n8n-nodes-base.n8ntrigger.md) and the [Workflow Trigger node](n8n-nodes-base.workflowtrigger.md). For more details, check out the entry in the [breaking changes](https://github.com/n8n-io/n8n/blob/master/packages/cli/BREAKING-CHANGES.md#01170) page, and see [Deprecated and versioned nodes](../deprecated-nodes.md).
 {% endhint %}
 
 {% hint style="info" %}
@@ -87813,10 +87943,10 @@ Create an [Airtable](https://airtable.com/) account.
 * Personal Access Token (PAT)
 * OAuth2
 
-{% hint style="info" %}
-**API Key deprecation**
+{% hint style="warning" %}
+**Feature availability**
 
-n8n used to offer an API key authentication method with Airtable. Airtable [fully deprecated these keys](https://support.airtable.com/v1/docs/airtable-api-deprecation-guidelines) as of February 2024. If you were using an Airtable API credential, replace it with an Airtable Personal Access Token or Airtable OAuth2 credential. n8n recommends using Personal Access Token instead.
+The API key authentication method that n8n used to offer with Airtable is deprecated. Airtable [fully deprecated these keys](https://support.airtable.com/v1/docs/airtable-api-deprecation-guidelines) as of February 2024. If you were using an Airtable API credential, replace it with an Airtable Personal Access Token or Airtable OAuth2 credential. n8n recommends using Personal Access Token instead.
 {% endhint %}
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
@@ -88937,7 +89067,7 @@ You can use these credentials to authenticate the following nodes with Shopify.
 
 - Access token (recommended): For private apps/single store use. Can be created by regular admins.
 - OAuth2: For public apps. Must be created by partner accounts.
-- API key: Deprecated.
+- API key: Deprecated. Use Access token instead.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
@@ -89010,7 +89140,7 @@ Shopify provides templates for creating new apps. The instructions below only co
 ## Using API key <a href="#using-api-key" id="using-api-key"></a>
 
 {% hint style="warning" %}
-**Method deprecated**
+**Feature availability**
 
 Shopify no longer generates API keys with passwords. Use the [Access token](#using-access-token) method instead.
 {% endhint %}
@@ -90102,10 +90232,10 @@ If your email provider isn't listed here, search for their `IMAP settings` or `I
 === https://docs.n8n.io/docs/integrations/builtin/credentials/imap/outlook/
 
 {% hint style="warning" %}
-**Microsoft has removed Basic Auth for Outlook.com IMAP**
+**Feature availability**
 
 Microsoft deprecated Basic Authentication for IMAP in Exchange Online and
-Outlook.com. As a result, the IMAP node **cannot connect to Outlook.com or
+Outlook.com from October 1, 2022. As a result, the IMAP node **can't connect to Outlook.com or
 Microsoft 365 accounts**. App passwords are not a workaround for this
 restriction.
 
@@ -90119,7 +90249,7 @@ for more information.
 
 # Outlook.com IMAP credentials <a href="#outlookcom-imap-credentials" id="outlookcom-imap-credentials"></a>
 
-IMAP access for Outlook.com and Microsoft 365 accounts is no longer supported in n8n due to Microsoft's deprecation of Basic Authentication. You cannot use IMAP (with a regular password or app password) to connect to Outlook.com or Microsoft 365 accounts.
+IMAP access for Outlook.com and Microsoft 365 accounts is no longer supported in n8n due to Microsoft's deprecation of Basic Authentication for Exchange Online and Outlook.com from October 1, 2022. You can't use IMAP (with a regular password or app password) to connect to Outlook.com or Microsoft 365 accounts.
 
 To replace IMAP triggers for incoming email, use the [Microsoft Outlook Trigger node](../../trigger-nodes/n8n-nodes-base.microsoftoutlooktrigger.md), which supports the Message Received event.
 
@@ -91630,9 +91760,9 @@ Refer to [Types of API keys](https://www.twilio.com/docs/iam/api-keys#types-of-a
 
 
 {% hint style="warning" %}
-**Deprecated: End of service**
+**Feature availability**
 
-LINE Notify is discontinuing service as of April 1st 2025 and this node will no longer work after that date. View LINE Notify's [end of service announement](https://notify-bot.line.me/closing-announce) for more information.
+The Line node is deprecated from n8n 1.64.0. LINE Notify ends its own service on April 1, 2025, after which the node stops working. View LINE Notify's [end of service announcement](https://notify-bot.line.me/closing-announce) for more information.
 {% endhint %}
 
 
@@ -92653,8 +92783,8 @@ Create a [HighLevel developer](https://marketplace.gohighlevel.com/) account.
 - API key: Use with API v1
 - OAuth2: Use with API v2
 
-{% hint style="info" %}
-**API 1.0 deprecation**
+{% hint style="warning" %}
+**Feature availability**
 
 HighLevel deprecated API v1.0 and no longer maintains it. Use OAuth2 to set up new credentials.
 {% endhint %}
@@ -94024,9 +94154,9 @@ To configure this credential, you'll need:
 # Motorhead credentials <a href="#motorhead-credentials" id="motorhead-credentials"></a>
 
 {% hint style="warning" %}
-**Deprecated**
+**Feature availability**
 
-The Motorhead project is no longer maintained. The [Motorhead node](../cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymotorhead.md) is deprecated, and will be removed in a future version.
+The Motorhead project is no longer maintained. The [Motorhead node](../cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymotorhead.md) is deprecated from n8n 2.8.0, and will be removed in a future version. See [Deprecated and versioned nodes](../deprecated-nodes.md) for details.
 {% endhint %}
 
 You can use these credentials to authenticate the following nodes:
@@ -95239,10 +95369,10 @@ You can use these credentials to authenticate the following nodes:
 
 Refer to [Salesforce's developer documentation](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm) for more information about the service.
 
-{% hint style="info" %}
-**Salesforce External Client Apps**
+{% hint style="warning" %}
+**Feature availability**
 
-Salesforce is deprecating Connected Apps in favor of External Client Apps. Both methods work with n8n. If you're creating a new integration, use External Client Apps. Existing Connected Apps will continue to work.
+Salesforce is deprecating Connected Apps in favor of External Client Apps. Check Salesforce's own documentation for the retirement timeline. Both methods work with n8n. If you're creating a new integration, use External Client Apps. Existing Connected Apps will continue to work.
 {% endhint %}
 
 ## Using JWT <a href="#using-jwt" id="using-jwt"></a>
@@ -95291,10 +95421,10 @@ Refer to Salesforce's [External Client App Basics](https://help.salesforce.com/s
 
 ### Create a Connected App (legacy) <a href="#create-a-connected-app-legacy" id="create-a-connected-app-legacy"></a>
 
-{% hint style="info" %}
-**Legacy method**
+{% hint style="warning" %}
+**Feature availability**
 
-Salesforce is deprecating Connected Apps. Use External Client Apps instead for new integrations.
+Salesforce is deprecating Connected Apps in favor of External Client Apps. Check Salesforce's own documentation for the retirement timeline. Use External Client Apps instead for new integrations.
 {% endhint %}
 
 To set things up, first you'll create a private key and certificate, then a connected app:
@@ -95374,10 +95504,10 @@ Refer to Salesforce's [External Client App Basics](https://help.salesforce.com/s
 
 ### Create a Connected App (legacy) <a href="#create-a-connected-app-legacy" id="create-a-connected-app-legacy"></a>
 
-{% hint style="info" %}
-**Legacy method**
+{% hint style="warning" %}
+**Feature availability**
 
-Salesforce is deprecating Connected Apps. Use External Client Apps instead for new integrations.
+Salesforce is deprecating Connected Apps in favor of External Client Apps. Check Salesforce's own documentation for the retirement timeline. Use External Client Apps instead for new integrations.
 {% endhint %}
 
 If you're [self-hosting](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n) n8n, you can also configure OAuth2 by creating a connected app:
@@ -95854,8 +95984,8 @@ To configure this credential, you'll need a [Slack](https://slack.com/) account 
 
 To generate an access token, create a Slack app. n8n recommends creating the app from a manifest, which configures all the scopes in one step:
 
-{% tabs %}
-{% tab title="From a manifest" %}
+### Create the app from a manifest for API access token
+
 1. Open your [Slack API Apps](https://api.slack.com/apps) page.
 2. Select **Create New App > From a manifest**.
 3. Select the **Workspace** where you'll be developing your app, then select **Next**.
@@ -95903,9 +96033,9 @@ To generate an access token, create a Slack app. n8n recommends creating the app
 	}
 }
 ```
-{% endtab %}
 
-{% tab title="From scratch" %}
+### Create the app from scratch for API access token
+
 1. Open your [Slack API Apps](https://api.slack.com/apps) page.
 2. Select **Create New App > From scratch**.
 3. Enter an **App Name**.
@@ -95913,8 +96043,6 @@ To generate an access token, create a Slack app. n8n recommends creating the app
 5. Select **Create App**. The app details open.
 6. In the left menu under **Features**, select **OAuth & Permissions**.
 7. In the **Scopes** section, select appropriate scopes for your app. Refer to [Scopes](#scopes) for a list of recommended scopes.
-{% endtab %}
-{% endtabs %}
 
 Then install the app and copy the token:
 
@@ -95966,8 +96094,8 @@ If you're [self-hosting n8n](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host
 
 To get both, create a Slack app. n8n recommends creating the app from a manifest, which configures the scopes and redirect URL in one step:
 
-{% tabs %}
-{% tab title="From a manifest" %}
+### Create the app from a manifest for OAuth2
+
 1. In n8n, copy the **OAuth Callback URL** from your Slack credential.
 2. Open your [Slack API Apps](https://api.slack.com/apps) page.
 3. Select **Create New App > From a manifest**.
@@ -96088,9 +96216,9 @@ Some Slack API endpoints, including Slack's MCP endpoints, only work with user t
 ```
 
 </details>
-{% endtab %}
 
-{% tab title="From scratch" %}
+### Create the app from scratch for OAuth2
+
 1. Open your [Slack API Apps](https://api.slack.com/apps) page.
 2. Select **Create New App > From scratch**.
 3. Enter an **App Name**.
@@ -96102,8 +96230,6 @@ Some Slack API endpoints, including Slack's MCP endpoints, only work with user t
 9. Select **Add**.
 10. Select **Save URLs**.
 11. In the **Scopes** section, select appropriate scopes for your app. Refer to [Scopes](#scopes) for a list of scopes.
-{% endtab %}
-{% endtabs %}
 
 Then finish connecting the app to n8n:
 
@@ -96391,9 +96517,9 @@ Follow these instructions if you're using [Zep Cloud](https://app.getzep.com):
 ### Self-hosted Zep Open Source setup <a href="#self-hosted-zep-open-source-setup" id="self-hosted-zep-open-source-setup"></a>
 
 {% hint style="warning" %}
-**Deprecated**
+**Feature availability**
 
-The Zep team [deprecated the open source Zep Community Edition](https://blog.getzep.com/announcing-a-new-direction-for-zeps-open-source-strategy/) in April, 2025. These instructions may not work in the future.
+The Zep team [deprecated the open source Zep Community Edition](https://blog.getzep.com/announcing-a-new-direction-for-zeps-open-source-strategy/) in April 2025. These instructions may not work after that date.
 {% endhint %}
 
 Follow these instructions if you're self-hosting Zep Open Source:
@@ -98308,7 +98434,7 @@ Create a [Zoom](https://zoom.us/) account. Your account must have one of the fol
 - OAuth2
 
 {% hint style="warning" %}
-**API JWT token deprecation**
+**Feature availability**
 
 Zoom removed support for JWT access tokens in June 2023. You must use OAuth2 for all new credentials.
 {% endhint %}
@@ -99017,7 +99143,7 @@ If your email provider isn't listed here, search for `SMTP settings` to find the
 # Outlook.com Send Email credentials <a href="#outlookcom-send-email-credentials" id="outlookcom-send-email-credentials"></a>
 
 {% hint style="warning" %}
-**Microsoft has removed Basic Auth and App Passwords for Outlook.com SMTP**
+**Feature availability**
 
 Microsoft deprecated Basic Authentication and app passwords for SMTP in Exchange Online and Outlook.com. As a result, the Send Email node **cannot connect to Outlook.com or Microsoft 365 accounts** using username/password or app password authentication.
 
@@ -99879,9 +100005,13 @@ You can use these credentials to authenticate the following nodes:
 ## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
 
 - API token (recommended)
-- User auth token<br>
+- User auth token
 
-    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>User auth token deprecation</strong></p><p>NocoDB deprecated user auth tokens in v0.205.1. Use <a href="#using-api-token">API tokens</a> instead.</p></div>
+{% hint style="warning" %}
+**Feature availability**
+
+NocoDB deprecated user auth tokens in v0.205.1. Use [API tokens](#using-api-token) instead.
+{% endhint %}
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
@@ -99911,8 +100041,8 @@ Refer to the NocoDB [API Tokens documentation](https://docs.nocodb.com/account-s
 
 Before NocoDB deprecated it, user auth token was a temporary token designed for quick experiments with the API, valid for a session until the user logs out or for 10 hours.
 
-{% hint style="info" %}
-**User auth token deprecation**
+{% hint style="warning" %}
+**Feature availability**
 
 NocoDB deprecated user auth tokens in v0.205.1. Use [API tokens](#using-api-token) instead.
 {% endhint %}
@@ -100059,7 +100189,7 @@ Use these settings for your application:
 
 - Copy the **OAuth callback URL** from n8n and add it as a **Redirect URI** in your application.
 - Once you've created your application, copy the **Client ID** and **Client Secret** and enter them in your n8n credential.
-- If you are using the Webflow Data API V1 (deprecated), enable the **Legacy** toggle. Otherwise, leave this inactive.
+- The Webflow Data API V1 is deprecated. If you're using it, enable the **Legacy** toggle. Otherwise, leave this inactive.
 
 Refer to [OAuth](https://developers.webflow.com/data/reference/oauth-app) for more information on Webflow's OAuth web flow.
 
