@@ -2198,150 +2198,199 @@ Validate an agent draft, its sidecar references, and user-accessible credentials
 - A valid agent is a completed draft. Validating doesn't imply the agent should be published.
 
 
-### publish_agent <a href="#publishagent" id="publishagent"></a>
+### verify_agent_mcp_server <a href="#verifyagentmcpserver" id="verifyagentmcpserver"></a>
 
-Publish a valid agent draft and activate its tasks and integrations. Pass `versionId` to republish a previously published version instead.
+Test an MCP server with a user-accessible credential and return its available tools. Call before writing an `mcpServers` config entry.
+
+#### Parameters <a href="#parameters" id="parameters"></a>
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `projectId` | `string` | Yes | | The project the agent belongs to |
+| `name` | `string` | Yes | | Server name (max 64 chars, letters, numbers, `_` and `-` only) |
+| `url` | `string` | Yes | | The HTTP(S) MCP server endpoint |
+| `transport` | `"sse" \| "streamableHttp"` | No | `"streamableHttp"` | The MCP transport to use |
+| `authentication` | `string` | No | `"none"` | Authentication method: `"none"`, `"bearerAuth"`, `"headerAuth"`, `"multipleHeadersAuth"`, `"mcpOAuth2Api"`, or any credential type name ending in `McpOAuth2Api`. Every value other than `"none"` requires `credential`. |
+| `credential` | `string` | No | | Accessible credential ID; required when `authentication` isn't `"none"` |
+| `connectionTimeoutMs` | `integer` | No | | Connection timeout in milliseconds (1–120,000) |
+
+#### Output <a href="#output" id="output"></a>
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `tools` | `array` | Tools the server exposes, each with `name` and `description` |
+
+#### Notes <a href="#notes" id="notes"></a>
+
+- Opens a temporary connection to verify the server; it doesn't need to be attached to the agent first.
+- `validate_agent` doesn't perform this live check, so an unverified `mcpServers` entry can pass validation and still fail at runtime.
+- Use the returned tool names to populate `toolFilter` in the agent's `mcpServers` config entry instead of guessing.
+
+
+### unpublish_agent <a href="#unpublishagent" id="unpublishagent"></a>
+
+Unpublish an agent and stop its live tasks and integrations.
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `agentId` | `string` | Yes | The ID of the agent to publish |
-| `versionId` | `string` | No | Republish a previously published version instead of the current draft. The draft is left untouched. |
+| `agentId` | `string` | Yes | The ID of the agent to unpublish |
 
 #### Output <a href="#output" id="output"></a>
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `agentId` | `string` | The agent ID |
-| `published` | `boolean` | `true` |
-| `versionId` | `string` | The published version's ID |
-| `activeVersionId` | `string` | The active (published) version ID |
-| `url` | `string` | The URL to open the agent in the n8n editor |
+| `published` | `boolean` | `false` |
+| `versionId` | `string` | The draft's internal version pointer |
+| `activeVersionId` | `string \| null` | `null` after unpublishing |
 
 #### Notes <a href="#notes" id="notes"></a>
 
-- Publishing the draft (no `versionId`) validates it first and fails if it isn't runnable. Republishing a version (`versionId` set) skips draft validation, since the draft isn't what goes live.
-- Only call this after the user explicitly requests or confirms publication, activation, or deployment. Completing a build doesn't imply approval to publish.
-- Activates the agent's scheduled tasks and any configured integrations.
+- Stops scheduled tasks and channel integrations from running until the agent is published again.
+- The draft is left untouched and remains editable.
 
 
-### revert_agent <a href="#revertagent" id="revertagent"></a>
+### list_agent_versions <a href="#listagentversions" id="listagentversions"></a>
 
-Restore an agent draft from a published version, overwriting the draft's config, skills, tasks, and custom tools. Doesn't publish.
+List the publish history of an agent, newest first.
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| `agentId` | `string` | Yes | The ID of the agent to revert |
-| `versionId` | `string` | No | The published version to restore the draft from. Defaults to the currently published version. |
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `agentId` | `string` | Yes | | The ID of the agent |
+| `limit` | `integer` | No | `20` | Limit the number of results (max 100) |
+| `offset` | `integer` | No | `0` | Number of versions to skip, for pagination |
 
 #### Output <a href="#output" id="output"></a>
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `agentId` | `string` | The agent ID |
-| `versionId` | `string` | The draft's internal version pointer after reverting |
-| `activeVersionId` | `string \| null` | The currently published version ID, unchanged by this call |
-| `configHash` | `string` | The configuration hash after reverting. Pass as `baseConfigHash` to the next `mutate_agent` call. |
-| `url` | `string` | The URL to open the agent in the n8n editor |
+| `data` | `array` | Publish history, newest first |
+| `data[].versionId` | `string` | The version ID |
+| `data[].agentId` | `string` | The agent ID |
+| `data[].createdAt` | `string` | ISO timestamp when this version was published |
+| `data[].updatedAt` | `string` | ISO timestamp when this version was last updated |
+| `data[].author` | `string` | Who published this version |
+| `data[].isActive` | `boolean` | Whether this version is the currently published one |
+| `count` | `integer` | Number of versions returned |
 
 #### Notes <a href="#notes" id="notes"></a>
 
-- Overwrites the current draft; unpublished changes made since the last publish are lost.
-- Doesn't publish the restored draft. Call `publish_agent` separately if needed.
-- Inspect the version with `get_agent` (passing `versionId`) before reverting to it.
+- Pass a `versionId` from this list to `get_agent` to inspect a version before `revert_agent` or `publish_agent`.
 
 
-### update_agent_integration <a href="#updateagentintegration" id="updateagentintegration"></a>
+### delete_agent <a href="#deleteagent" id="deleteagent"></a>
 
-Configure or disconnect a Slack, Telegram, or Linear conversation integration. This is the only way to manage integrations; `config.replace` and `config.patch` in `mutate_agent` can't change them.
+Permanently delete an agent and its associated resources.
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `agentId` | `string` | Yes | The ID of the agent |
-| `action` | `"connect" \| "disconnect"` | Yes | Whether to connect or disconnect the integration |
-| `type` | `string` | Yes | Integration type returned by `discover_agent_assets` (`"slack"`, `"telegram"`, or `"linear"`) |
-| `credentialId` | `string` | Yes | Accessible credential for this integration |
-| `settings` | `object` | No | Integration settings. Required for Telegram `connect` operations (`accessMode`: `"public"` with `allowedUsers: []`, or `"private"` with at least one allowed Telegram user). |
+| `agentId` | `string` | Yes | The ID of the agent to delete |
 
 #### Output <a href="#output" id="output"></a>
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `agentId` | `string` | The agent ID |
-| `integration` | `object` | `{ type, credentialId }` |
-| `configured` | `boolean` | Present on `connect`: `true` |
-| `connected` | `boolean` | Whether the channel is live right now |
-| `published` | `boolean` | Whether the agent has a published (active) version |
-| `activeVersionId` | `string \| null` | The published version ID, or null if unpublished |
-| `configHash` | `string` | The configuration hash after this change |
+| `deleted` | `boolean` | `true` |
+| `agentId` | `string` | The deleted agent's ID |
 
 #### Notes <a href="#notes" id="notes"></a>
 
-- Configuring an integration never publishes the agent. If the agent is already published, connecting starts the channel immediately; otherwise the channel stays inactive until `publish_agent` is called.
-- Disconnecting tears down the live channel immediately, whether or not the agent is published.
-- Confirm with the user before connecting a channel on an already-published agent, since it connects immediately.
+- This action can't be undone.
 
 
-### Agent builder reference resource <a href="#agent-builder-reference-resource" id="agent-builder-reference-resource"></a>
+## Data tables <a href="#data-tables" id="data-tables"></a>
 
-For MCP clients that support resources, n8n also exposes the agent builder reference as a resource, alongside the [get_agent_builder_reference](#getagentbuilderreference) tool for clients that don't.
-
-| Property | Value |
-|----------|-------|
-| URI | `n8n://agents/reference` |
-| MIME type | `text/markdown` |
-| Content | The same build-sequence guide, `mutate_agent` operation catalog, and canonical agent configuration JSON Schema returned by `get_agent_builder_reference` |
-
-
-### create_data_table <a href="#createdatatable" id="createdatatable"></a>
+### search_data_tables <a href="#searchdatatables" id="searchdatatables"></a>
 
 {% hint style="info" %}
 **Feature availability**
 
-`create_data_table` is available from n8n 2.16.0.
+`search_data_tables` is available from n8n 2.16.0.
 {% endhint %}
 
-Create a new data table with the specified columns.
+Search for data tables accessible to the current user. Use this to find a data table ID before modifying or adding data to it.
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `projectId` | `string` | Yes | The project ID where the data table will be created |
-| `name` | `string` | Yes | The name of the data table (min 1, max 128 chars, must be unique within the project) |
-| `columns` | `array` | Yes (min 1) | The columns to create in the data table |
-| `columns[].name` | `string` | Yes | Column name. Must start with a letter, contain only letters, numbers, and underscores (max 63 chars). |
-| `columns[].type` | `string` | Yes | The data type of the column. One of: `"string"`, `"number"`, `"boolean"`, `"date"` |
+| `query` | `string` | No | Filter data tables by name (case-insensitive partial match) |
+| `projectId` | `string` | No | Filter by project ID |
+| `limit` | `integer` | No | Limit the number of results (max 100) |
 
 #### Output <a href="#output" id="output"></a>
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `id` | `string` | The unique identifier of the created data table |
-| `name` | `string` | The name of the created data table |
-| `projectId` | `string` | The project ID of the created data table |
+| `data` | `array` | List of data tables matching the query |
+| `data[].id` | `string` | Unique identifier of the data table |
+| `data[].name` | `string` | The name of the data table |
+| `data[].projectId` | `string` | The project this data table belongs to |
+| `data[].createdAt` | `string` | ISO timestamp when the data table was created |
+| `data[].updatedAt` | `string` | ISO timestamp when the data table was last updated |
+| `data[].columns` | `array` | The columns defined in this data table |
+| `data[].columns[].id` | `string` | Column unique identifier |
+| `data[].columns[].name` | `string` | Column name |
+| `data[].columns[].type` | `string` | Column data type. One of: `"string"`, `"number"`, `"boolean"`, `"date"` |
+| `data[].columns[].index` | `integer` | Column position in the table |
+| `count` | `integer` | Total number of matching data tables |
 
 #### Notes <a href="#notes" id="notes"></a>
 
-- At least one column is required.
-- Table name must be unique within the project.
+- Maximum result limit is 100.
+
+
+### add_data_table_column <a href="#adddatatablecolumn" id="adddatatablecolumn"></a>
+
+{% hint style="info" %}
+**Feature availability**
+
+`add_data_table_column` is available from n8n 2.16.0.
+{% endhint %}
+
+Add a new column to an existing data table.
+
+#### Parameters <a href="#parameters" id="parameters"></a>
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `dataTableId` | `string` | Yes | The ID of the data table to add a column to |
+| `projectId` | `string` | Yes | The project ID the data table belongs to |
+| `name` | `string` | Yes | Column name. Must start with a letter, contain only letters, numbers, and underscores (max 63 chars). |
+| `type` | `string` | Yes | The data type of the new column. One of: `"string"`, `"number"`, `"boolean"`, `"date"` |
+
+#### Output <a href="#output" id="output"></a>
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `success` | `boolean` | Whether the operation succeeded |
+| `message` | `string` | Description of the result |
+| `column` | `object` | The created column |
+| `column.id` | `string` | Column unique identifier |
+| `column.name` | `string` | Column name |
+| `column.type` | `string` | Column data type |
+
+#### Notes <a href="#notes" id="notes"></a>
+
 - Column names must match the pattern: `^[a-zA-Z][a-zA-Z0-9_]*$` (max 63 chars).
+- Column type is immutable (through MCP) after creation.
 
 
-### rename_data_table_column <a href="#renamedatatablecolumn" id="renamedatatablecolumn"></a>
+### delete_data_table_column <a href="#deletedatatablecolumn" id="deletedatatablecolumn"></a>
 
 {% hint style="info" %}
 **Feature availability**
 
-`rename_data_table_column` is available from n8n 2.16.0.
+`delete_data_table_column` is available from n8n 2.16.0.
 {% endhint %}
 
-Rename a column in a data table.
+Delete a column from a data table. This permanently removes the column and all its data.
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
@@ -2349,8 +2398,7 @@ Rename a column in a data table.
 |------|------|----------|-------------|
 | `dataTableId` | `string` | Yes | The ID of the data table containing the column |
 | `projectId` | `string` | Yes | The project ID the data table belongs to |
-| `columnId` | `string` | Yes | The ID of the column to rename |
-| `name` | `string` | Yes | The new column name. Must follow column naming rules. |
+| `columnId` | `string` | Yes | The ID of the column to delete |
 
 #### Output <a href="#output" id="output"></a>
 
@@ -2358,45 +2406,42 @@ Rename a column in a data table.
 |-------|------|-------------|
 | `success` | `boolean` | Whether the operation succeeded |
 | `message` | `string` | Description of the result |
-| `column` | `object` | The renamed column |
-| `column.id` | `string` | Column unique identifier |
-| `column.name` | `string` | New column name |
-| `column.type` | `string` | Column data type |
 
 #### Notes <a href="#notes" id="notes"></a>
 
-- New name must follow column naming rules: `^[a-zA-Z][a-zA-Z0-9_]*$` (max 63 chars).
+- Deleting a column through MCP can't be undone.
 
 
-### rename_data_table <a href="#renamedatatable" id="renamedatatable"></a>
+### add_data_table_rows <a href="#adddatatablerows" id="adddatatablerows"></a>
 
 {% hint style="info" %}
 **Feature availability**
 
-`rename_data_table` is available from n8n 2.16.0.
+`add_data_table_rows` is available from n8n 2.16.0.
 {% endhint %}
 
-Rename an existing data table.
+Insert rows into an existing data table. Each row is an object mapping column names to values.
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `dataTableId` | `string` | Yes | The ID of the data table to rename |
+| `dataTableId` | `string` | Yes | The ID of the data table to insert rows into |
 | `projectId` | `string` | Yes | The project ID the data table belongs to |
-| `name` | `string` | Yes | The new name for the data table (min 1, max 128 chars) |
+| `rows` | `array` | Yes (min 1, max 1000) | Array of row objects. Each object maps column names to values (`string`, `number`, `boolean`, or `null`). |
 
 #### Output <a href="#output" id="output"></a>
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `success` | `boolean` | Whether the operation succeeded |
-| `message` | `string` | Description of the result |
+| `success` | `boolean` | Whether the insert operation succeeded |
+| `insertedCount` | `integer` | Number of rows successfully inserted |
 
 #### Notes <a href="#notes" id="notes"></a>
 
-- Name must be unique within the project.
-
+- Maximum 1000 rows per call.
+- Row values must be `string`, `number`, `boolean`, or `null`.
+- Column names in row objects must match existing column names in the data table.
 
 === https://docs.n8n.io/docs/connect/README/
 
@@ -8374,6 +8419,12 @@ Each time you make a change to a workflow, n8n autosaves those changes to a new 
 
 ![Publish modal with an editable version name (defaulting to a UUID) and description field](../.gitbook/assets/publish-modal.png)
 
+{% hint style="info" %}
+**Workflow reviews**
+
+If workflow reviews are enabled for your instance, you can submit a version for review instead of publishing immediately. While a review is open, n8n blocks publishing that workflow. Refer to [Workflow reviews](../manage-workflows/workflow-reviews.md) for plan availability and how reviews work.
+{% endhint %}
+
 ## Naming versions <a href="#naming-versions" id="naming-versions"></a>
 
 {% hint style="info" %}
@@ -8888,6 +8939,7 @@ You can use expressions[^2] to set credentials dynamically as your workflow runs
   * [Tag workflows](manage-workflows/tag-workflows.md)
   * [Favorite items](manage-workflows/favorite-items.md)
   * [View change history](manage-workflows/view-change-history.md)
+  * [Review workflows](manage-workflows/workflow-reviews.md)
   * [Export and import](manage-workflows/export-and-import.md)
   * [n8n packages](manage-workflows/n8n-packages/README.md)
     * [Package format](manage-workflows/n8n-packages/package-format.md)
@@ -9741,6 +9793,10 @@ Add custom key-value attributes to the workflow's OpenTelemetry span. Refer to [
 [view-change-history.md](view-change-history.md)
 {% endcontent-ref %}
 
+{% content-ref url="workflow-reviews.md" %}
+[workflow-reviews.md](workflow-reviews.md)
+{% endcontent-ref %}
+
 {% content-ref url="export-and-import.md" %}
 [export-and-import.md](export-and-import.md)
 {% endcontent-ref %}
@@ -9796,6 +9852,137 @@ Tags are global. If you edit or delete a tag, this affects all users of your n8n
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
 * [Favorite items](favorite-items.md): Pin workflows, folders, projects, and data tables for quick access.
+
+=== https://docs.n8n.io/docs/build/manage-workflows/workflow-reviews/
+
+# Workflow reviews
+
+{% hint style="info" %}
+**Feature availability**
+
+Workflow reviews are available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
+
+Workflow reviews are available from n8n 2.37.0. An instance admin must enable the feature in **Settings** > **Security & policies**.
+{% endhint %}
+
+{% hint style="info" %}
+**Preview status**
+
+Workflow reviews are in Preview and may change before general availability. Avoid relying on them in production workflows.
+{% endhint %}
+
+Workflow reviews let your team approve a specific [workflow version](view-change-history.md) before it's published. From the **Publish** menu, choose **Submit for review** instead of publishing directly, and assign a reviewer. On approval, n8n publishes that version automatically.
+
+Reviews are optional after you enable the feature. You can still publish directly unless that workflow already has an open review.
+
+n8n doesn't send email or other external notifications when you assign a reviewer or when a reviewer requests changes. Check **Reviews** in the left sidebar for requests that need your attention.
+
+## How reviews work
+
+A review is tied to one saved version of a workflow, the *pinned version*. You can keep editing while a review is open. New saves create newer versions and don't change the pinned version until someone submits those changes to the review.
+
+### What a review covers
+
+A review covers the contents of one workflow: its nodes and connections, as captured in the pinned saved version. The visual diff and the approval only apply to those contents.
+
+A review doesn't cover the resources the workflow depends on. These aren't part of the diff, aren't gated by approval, and apply to the published workflow as soon as you change them, even while a review is open:
+
+* **Workflow settings**, such as the timezone, error workflow, and execution order.
+* **Credentials** the workflow uses.
+* **Variables**.
+* **Data tables**.
+* **Sub-workflows** the workflow calls. Each sub-workflow is its own workflow with its own review, if any.
+
+### Review statuses
+
+* **Waiting for review**: the pinned version is waiting for a decision. n8n blocks publishing.
+* **Changes requested**: the reviewer asked for updates. n8n keeps publishing blocked until someone submits a newer version (the review returns to **Waiting for review**) and someone approves that version.
+* **Approved**: the reviewer or an admin approved. The review closes, publishing is unblocked. n8n publishes the pinned version as the **requester** (the user who submitted the workflow for review), so publish history and audit trails attribute the publish to them, not to the approving reviewer. In rare cases, n8n can't publish the version automatically: the review stays approved and closed. In these cases, publish the version yourself using the **Publish** button in the editor.
+* **Closed** (no approval): n8n can also close a review without approving it when there's nothing left to review, for example if the workflow is deleted, archived, or moved out of the project. Those reviews appear under **Reviews** > **Closed**, and **Activity** shows why the review closed.
+
+### Publishing while a review is open
+
+While a review is open (`Waiting for review` or `Changes requested`), n8n blocks publishing that workflow from the editor, the public API, and the n8n MCP server. You can still unpublish a workflow. That doesn't close the review or unblock publishing a new version.
+
+A workflow can have only one open review at a time. While that review is open, choosing **Publish** or **Submit for review** again doesn't start a new review. Submit your newer saved version to the existing review instead (see [Submit later changes to an open review](#submit-later-changes-to-an-open-review)).
+
+## Enable workflow reviews
+
+Instance admins enable workflow reviews for the whole instance in **Settings** > **Security & policies**, under **Workflow reviews**.
+
+For more about instance security policies, refer to [Manage security policies](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/manage-security-policies).
+
+## Submit or update a review
+
+A *version* is the snapshot of the workflow being reviewed and published. The *review* is the request and discussion around that version. You name each one separately, so the submit flow asks for both.
+
+1. Open the workflow and select **Publish** (or press `Shift`+`P`).
+2. Choose **Submit for review** instead of publishing directly.
+3. On the first step, enter a **Version name** for the snapshot (required). Optionally describe the version changes.
+4. On the next step, enter a **Review title** and assign a **Reviewer** (both required). Optionally add a **Review description**.
+5. Select **Submit**.
+
+The reviewer needs `workflow:read` on that workflow. They don't need `workflow:publish`.
+
+n8n creates a review for the current saved version. Open it from **Reviews** in the left sidebar.
+
+### Submit later changes to an open review
+
+1. Open the workflow.
+2. Select **Submit changes** from the review status in the editor header.
+3. Enter a **Version name** for the newer version (required). Optionally describe the version changes.
+4. Optionally update the **Review description**, then select **Submit**.
+
+n8n updates the open review to that newer version. If the review was in **Changes requested**, it returns to **Waiting for review**.
+
+### Review required preference
+
+In the **Publish** menu, you can turn on **Review required** for the current workflow. When it's on, choosing **Publish** opens the submit-for-review modal for you instead of publishing directly.
+
+Your browser stores this preference for that workflow. It isn't saved on the workflow itself, so it has no effect on other users. An open review still blocks publishing for everyone until that review closes.
+
+## Review a submission
+
+A review detail has two tabs:
+
+* **Activity**: description, activity feed, and comments. Comments stay visible after the review closes. Comments aren't anchored to a specific node in this release.
+* **Changes**: a visual workflow diff between the currently **Published** version and the version **In review**. The diff works like [workflow diffs for source control](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/use-source-control-and-environments/compare-versions).
+
+People who can open the review can comment on **Activity** without deciding. To decide, the assigned reviewer, or a project admin or instance admin, can choose:
+
+* **Approve**: closes the review and publishes the pinned version as the requester.
+* **Request changes**: keeps the review open so editors can update the workflow and resubmit.
+
+## Permissions
+
+| Action | Who can do it |
+| --- | --- |
+| Enable or disable workflow reviews for the instance | Instance admins with access to **Settings** > **Security & policies** |
+| Submit a workflow for review | Users with `workflow:publish` on that workflow |
+| Update an open review with a newer version | Users with `workflow:publish` on that workflow |
+| See that a review is in progress | Users who can open the workflow, including viewers and editors. They can't open review details unless they're listed below. |
+| Open review details and appear in **Reviews** | The requester, authors on the review, the assigned reviewer, and project or instance admins. Admins see all reviews. |
+| Appear as a reviewer | Users with at least `workflow:read` on that workflow |
+| Approve or request changes | The assigned reviewer, or a project admin or instance admin. Authors can't decide unless they also have one of those roles. |
+
+The **requester** is the user who submitted the workflow for review. **Authors** are the requester and anyone who later submitted a newer version to the same open review.
+
+{% hint style="info" %}
+**Cancelling reviews**
+
+You can't currently cancel or withdraw an open review. n8n plans to add this functionality in a future release.
+{% endhint %}
+
+## Related resources
+
+* [Save and publish workflows](../understand-workflows/save-and-publish-workflows.md)
+* [View change history](view-change-history.md)
+* [Compare changes with workflow diffs](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/use-source-control-and-environments/compare-versions)
+* [Manage security policies](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/manage-security-policies)
+* [See available roles](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/set-permissions-and-roles-rbac/see-available-roles)
 
 === https://docs.n8n.io/docs/build/manage-workflows/share-with-others/
 
@@ -24619,9 +24806,9 @@ It may also be helpful to include a [HAR (HTTP Archive) file](https://en.wikiped
 
 # Terminology and naming
 
-Use the same term for the same concept on every page, and prefer the official product term over a plausible synonym. Consistent terminology helps readers, and it directly improves how AI tools (search, the docs assistant, and coding agents) find and use the docs.
+This page is a companion to the [style guide](style-guide-for-n8n-docs.md): the style guide covers writing style, formatting, and structure, and this page is the source of truth for product terminology.
 
-This page is the source of truth for product terminology. Vale checks some pairs automatically. The rest rely on author and reviewer judgement.
+n8n Docs aims to use the same term for the same concept on every page, and to prefer the official product term over a plausible synonym. Consistent terminology helps our readers, and directly improves how AI tools (search, the docs assistant, and coding agents) find and use the docs.
 
 ## Casing
 
@@ -24653,23 +24840,77 @@ This page is the source of truth for product terminology. Vale checks some pairs
 | core node | system node |
 | cluster node; root node; sub-node | parent node, child node, super node |
 | community node (installable, community-published) | custom node, third-party node, plugin, add-on |
+| Execute Sub-workflow Trigger node; Execute Sub-workflow node | Execute Workflow Trigger node, Execute Workflow node (deprecated names) |
+| AI Agent node | Agent node (bare) |
+
+## Credentials and connections
+
+| Do use | Don't use |
+| --- | --- |
+| credential (stores authentication details for a service) | connection (as a synonym for a credential) |
+| connection (a link between two nodes on the canvas) | wire, link |
+
+n8n's own interface sometimes labels a credential's authentication link as a "connection" (for example, a private credential's sharing message). In docs, keep the two separate: a **credential** authenticates with a service; a **connection** joins nodes on the canvas.
 
 ## Canvas and editor
+
+Two casing rules: **bold** a term only when it's the direct target of a select/click/open instruction, not when it's just naming a location. **Capitalize** only the head word of a defined element's name (for example "Workflow menu", never "Workflow Menu").
 
 | Do use | Don't use |
 | --- | --- |
 | canvas | editor board, diagram, workspace, graph |
 | sticky note | comment, annotation, label, memo |
 | sub-workflow | subworkflow, sub workflow, subflow, child workflow, nested workflow |
+| left menu (app-wide left nav containing Overview, Projects, Favorites, etc.) | sidebar, left sidebar, navigation menu, main menu |
+| Canvas header (top bar of the canvas, containing project/workflow name, Workflow menu, editor/executions/evaluations toggle, Publish) | top navigation bar, top menu |
+| Workflow menu (horizontal ⋯ icon) situated in the Canvas header| three dots icon, the three dots, Options (reserved for the vertical icon) |
+| Options menu (vertical ⋮ icon; a per-row/per-item menu, not a canvas element) | three-dot menu (ambiguous orientation), three dots menu |
+| Nodes panel (opens from the canvas's **+** button) | Node Panel (capitalized singular), add node menu, "What happens next?" panel |
+| Node details view (opens by double-clicking a node) | node editor view, NDV (without defining it first) |
+| input panel; output panel (the Node details view's side panes) | Input panel/Output panel (capitalized), INPUT/OUTPUT pane |
+| Logs panel (bottom of canvas) | bottom panel, bottom menu, canvas footer |
+
++The Workflow menu icon is `three-dots-horizontal.png`; the Options menu icon is `three-dot-options-menu.png`. Use these inline when referring to these menus. See the [style guide](style-guide-for-n8n-docs.md#images) for how to format an inline icon.
+
+## AI and agents
+
+| Do use | Don't use |
+| --- | --- |
+| sub-agent | subagent, child agent |
+
+n8n has several distinct AI-powered features for building workflows. Each is a specific n8n product name, not a generic description, so don't use them interchangeably:
+
+| Do use | Don't use |
+| --- | --- |
+| AI Assistant (chat-based agent: creates, edits, tests, and publishes workflows and agents) | assistant, the AI, chatbot |
+| AI Workflow Builder (legacy, generates and refines a single workflow from a prompt) | workflow builder, builder |
+| Ask n8n AI (legacy help assistant, no longer actively developed, point readers to AI Assistant) | AI assistant (as a synonym for this), help assistant |
+
+## Feature maturity
+
+| Do use | Don't use |
+| --- | --- |
+| Preview (a feature's maturity label, capitalized) | beta, alpha, early access |
 
 ## Platform and deployment
 
 | Do use | Don't use |
 | --- | --- |
 | self-hosted | self hosted, on-premise, on-premises, on-prem |
-| n8n Cloud; Cloud | hosted version, SaaS, the cloud, managed n8n |
-| instance | server, deployment, box |
+| n8n Cloud | Cloud, hosted version, SaaS, the cloud, managed n8n |
+| instance (a running n8n system) | server, box, deployment (as a noun for the running system) |
 | Enterprise (plan) | enterprise edition, premium, paid tier |
+
+"Deployment" isn't banned outright: it's correct for the act of deploying ("deployment methods", "the deployment finishes") and for a Kubernetes `Deployment` resource. Only replace it with "instance" when it's used as a noun for the running n8n system itself.
+
+### Plans and tiers
+
+Use these exact, capitalized plan names, low to high. Don't invent alternate names for them (for example, "professional plan" or "team tier"):
+
+* **n8n Cloud:** Starter, Pro, Enterprise
+* **Self-hosted:** Community, Registered Community, Business, Enterprise
+
+To refer to every tier at once, write "All plans" or "All editions" rather than listing them.
 
 ## Features
 
@@ -25357,6 +25598,18 @@ Always write descriptive alt text. It supports accessibility and is displayed if
 * Keep file sizes reasonable — compress PNGs before committing. [Squoosh](https://squoosh.app/) is a free browser tool.
 * Use lowercase, hyphenated file names: `workflow-overview.png`, not `WorkflowOverview.PNG`.
 
+**Inline icons**
+
+When a UI element is only shown as an icon (for example, a menu with no visible text label), embed it inline with an HTML `<img>` tag and `data-size="line"`, so it renders at text height instead of as a block image:
+
+```
+select **Workflow menu** <img src="../.gitbook/assets/three-dots-horizontal.png" alt="Workflow menu icon" data-size="line">
+```
+
+* Bold the term; don't bold the `<img>` tag.
+* Set alt text to `"<Name> icon"`, matching the bolded term.
+* See [Terminology and naming](terminology.md) for which icon file maps to which named element.
+
 ### Videos
 
 Don't store video files in the n8n-docs repository. Host videos externally — for example on YouTube, Loom or another [supported domain](https://iframely.com/domains) — and embed them in the page.
@@ -25773,7 +26026,7 @@ Lists the [community nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/commu
 
 ### installed_packages <a href="#installedpackages" id="installedpackages"></a>
 
-Details of npm community nodes packages installed in your n8n instance. [installed_nodes](#installed_nodes) lists each individual node. `installed_packages` lists npm packages, which may contain more than one node.
+Details of npm community nodes packages installed in your n8n instance. [`installed_nodes`](#installednodes) lists each individual node. `installed_packages` lists npm packages, which may contain more than one node.
 
 ### migrations <a href="#migrations" id="migrations"></a>
 
@@ -25810,7 +26063,7 @@ Maps workflows to users.
 
 ### tag_entity <a href="#tagentity" id="tagentity"></a>
 
-All workflow tags created in the n8n instance. This table lists the tags. [workflows_tags](#workflows_tags) records which workflows have which tags.
+All workflow tags created in the n8n instance. This table lists the tags. [`workflows_tags`](#workflowstags) records which workflows have which tags.
 
 ### user <a href="#user" id="user"></a>
 
@@ -25838,7 +26091,7 @@ Counts workflow IDs and their status.
 
 ### workflows_tags <a href="#workflowstags" id="workflowstags"></a>
 
-Maps tags to workflows. [tag_entity](#tag_entity) contains tag details.
+Maps tags to workflows. [`tag_entity`](#tagentity) contains tag details.
 
 ## Entity Relationship Diagram (ERD) <a href="#entity-relationship-diagram-erd" id="entity-relationship-diagram-erd"></a>
 
@@ -26469,7 +26722,13 @@ export N8N_OTEL_TRACES_INJECT_OUTBOUND=false
 Agent tracing is available from n8n 2.33.0.
 {% endhint %}
 
-n8n can also emit spans for AI agent runs, using the same tracer as workflow tracing. This covers agent runs started from a workflow (for example, the AI Agent node), from chat integrations, and from scheduled tasks.
+n8n can also emit detailed spans for agent runs built with the Agents feature, using the same tracer as workflow tracing. This covers agent runs started from a workflow, from chat integrations, and from scheduled tasks.
+
+{% hint style="warning" %}
+**Legacy AI Agent node**
+
+This section covers tracing for the new Agents feature. The older AI Agent (LangChain) node only produces the standard `node.execute` span like any other node. It doesn't emit the `gen_ai.*` agent-run or tool-call spans.
+{% endhint %}
 
 Agent tracing rides along with the rest of the OTel module. With `N8N_OTEL_ENABLED` turned on, add:
 
@@ -27687,7 +27946,7 @@ You can run n8n in different modes depending on your needs. Queue mode provides 
 | `QUEUE_WORKER_LOCK_DURATION` | Number | `60000` | How long (in ms) is the lease period for a worker to work on a message. |
 | `QUEUE_WORKER_LOCK_RENEW_TIME` | Number | `10000` | How frequently (in ms) should a worker renew the lease time. |
 | `QUEUE_WORKER_STALLED_INTERVAL` | Number | `30000` | How often should a worker check for stalled jobs (use 0 for never). |
-| `QUEUE_WORKER_MAX_STALLED_COUNT` | Number | `1` | Maximum amount of times a stalled job will be re-processed. |
+| `QUEUE_WORKER_MAX_STALLED_COUNT` (**deprecated**) | Number | `1` | **Deprecated** Removed in n8n 2.0. Setting this has no effect. See [Remove QUEUE_WORKER_MAX_STALLED_COUNT](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v20-breaking-changes#remove-queueworkermaxstalledcount) for migration details. |
 
 ## Webhook responses
 
@@ -27824,11 +28083,12 @@ Poll trigger support isn't 100% stable yet. Keep `N8N_SCHEDULER_POLL_TRIGGERS_EN
 
 ## Poll triggers
 
-Controls how trigger nodes with a **Poll Times** parameter (such as Google Sheets Trigger or Airtable Trigger) store their cursor, the node's record of how far it has already read. To route these nodes through the durable scheduler, turn on `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED` (in the Enable the scheduler table). See [Poll triggers](../../durable-scheduler.md#poll-triggers).
+Controls trigger nodes with a **Poll Times** parameter (such as Google Sheets Trigger or Airtable Trigger): how they store their cursor, the node's record of how far it has already read, and how long a single poll may run. To route these nodes through the durable scheduler, turn on `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED` (in the Enable the scheduler table). See [Poll triggers](../../durable-scheduler.md#poll-triggers).
 
 | Variable | Type | Default | Description |
 | :------- | :--- | :------ | :---------- |
 | `N8N_POLLER_DURABLE_CURSORS_ENABLED` | Boolean | `false` | Whether n8n stores a poll trigger node's cursor in a dedicated database table and commits it in the same transaction as the execution the poll produced, so a crash mid-poll can't drop or duplicate data. Available from n8n 2.36.0. From n8n 2.37.0, requires `N8N_SCHEDULER_ENABLED`, `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`, and `N8N_USE_WORKFLOW_PUBLICATION_SERVICE`. See [Durable poll cursors](../../durable-scheduler.md#durable-poll-cursors). |
+| `N8N_SCHEDULER_POLL_TIMEOUT` | Number | `45` | How long, in seconds, a single poll may run before n8n abandons it. An abandoned poll records nothing: the cursor stays put and the next poll covers the same ground, so no data goes missing. A poll that keeps timing out counts as failing, so n8n re-polls it at a widening interval. Keep the timeout below `N8N_SCHEDULER_LEASE_DURATION`: the timeout clock only starts once the poll itself does, so a poll allowed the full lease can still be running when another instance takes its run over. n8n warns at startup when the timeout reaches the lease duration. Must be greater than 0. Available from n8n 2.37.0. |
 
 ## Materialization <a href="#materialization-vars" id="materialization-vars"></a>
 
@@ -29368,8 +29628,6 @@ n8n audit
 
 # Set up AI Assistant
 
-{% endhint %}
-
 {% hint style="info" %}
 **Feature availability**
 
@@ -29408,11 +29666,11 @@ Make sure you have:
 
 | Setup | Use this if... | Sandbox hosted by | Best for |
 | --- | --- | --- | --- |
-| [1. Already running the sandbox](#1-already-running-the-sandbox-recommended-for-local-development) | You installed with the one-line setup command or the Docker Compose guide. | You (already done) | Local development and testing |
-| [2. Self-host the sandbox manually](#2-self-host-the-sandbox-manually-advanced) | You're running n8n some other way and want to self-host the sandbox rather than use Daytona. | You | Local development and testing |
-| [3. Daytona (managed sandbox)](#3-daytona-managed-sandbox-recommended-for-production) | You're deploying to production, or don't want to run sandbox containers yourself. | Daytona | Production |
+| [1. Already running the sandbox](#setup-1-already-running-the-sandbox-recommended-for-local-development) | You installed with the one-line setup command or the Docker Compose guide. | You (already done) | Local development and testing |
+| [2. Self-host the sandbox manually](#setup-2-self-host-the-sandbox-manually-advanced) | You're running n8n some other way and want to self-host the sandbox rather than use Daytona. | You | Local development and testing |
+| [3. Daytona (managed sandbox)](#setup-3-daytona-managed-sandbox-recommended-for-production) | You're deploying to production, or don't want to run sandbox containers yourself. | Daytona | Production |
 
-### 1. Already running the sandbox (recommended for local development)
+### Setup 1: Already running the sandbox (recommended for local development)
 
 If you installed n8n with the [one-line setup command](../install-options/one-line-setup.md) or built it by hand with the [Docker Compose guide](../install-options/install-using-docker-compose.md), the sandbox and search, via bundled SearXNG, are already running. All that's left is a model key.
 
@@ -29433,12 +29691,12 @@ The quickest way: open the editor, go to the instance's AI settings, and add you
 
 `N8N_INSTANCE_AI_MODEL` defaults to `anthropic/claude-opus-4-8`. Set it explicitly only if you want a different model (see [Choose a model provider](#choose-a-model-provider)).
 
-### 2. Self-host the sandbox manually (advanced)
+### Setup 2: Self-host the sandbox manually (advanced)
 
 Use this if you're configuring n8n outside of the one-line setup command or Docker Compose guide, and you want to run the sandbox yourself rather than hand it to Daytona.
 
 {% hint style="warning" %}
-This means hosting two extra containers yourself: the sandbox API and a privileged Docker-in-Docker runner, plus mutual TLS between them. Like setup 1, this uses `n8n-sandbox`, which is best suited to local development and testing. For production, use [Daytona](#3-daytona-managed-sandbox-recommended-for-production) instead.
+This means hosting two extra containers yourself: the sandbox API and a privileged Docker-in-Docker runner, plus mutual TLS between them. Like setup 1, this uses `n8n-sandbox`, which is best suited to local development and testing. For production, use [Daytona](#setup-3-daytona-managed-sandbox-recommended-for-production) instead.
 {% endhint %}
 
 **What you need:**
@@ -29482,7 +29740,7 @@ Expected response: `{"status":"ok"}`
 * The runner pulls its sandbox image on first use. For air-gapped setups, preload that image into the runner's inner Docker.
 * Hostnames matter. The certificates are issued for `sandbox-api` and `sandbox-runner-<n>`, so keep those service names or regenerate certificates with matching SANs.
 
-### 3. Daytona (managed sandbox, recommended for production)
+### Setup 3: Daytona (managed sandbox, recommended for production)
 
 Daytona creates sandboxes on demand instead of you hosting the containers yourself. It's the sandbox provider n8n recommends for production use.
 
@@ -29807,10 +30065,11 @@ Under the durable scheduler, most Schedule Trigger schedules fire the same way t
 
 ## Poll triggers
 
-When [`N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`](#turn-on) is on, each of a poll trigger's poll times runs as its own durable schedule: polls survive restarts and spread across instances like any other run. Two behaviors are specific to poll triggers:
+When [`N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`](#turn-on) is on, each of a poll trigger's poll times runs as its own durable schedule: polls survive restarts and spread across instances like any other run. Three behaviors are specific to poll triggers:
 
 - **Missed polls are always skipped.** A poll fetches everything new since it last ran, so a catch-up poll would repeat the same fetch. See [Misfire policy](#misfire-policy).
 - **A poll can occasionally run twice.** The scheduler guarantees each dispatched poll runs at least once, not that it runs only once. A poll can repeat, for example when an instance stalls and another takes over. Turn on [durable poll cursors](#durable-poll-cursors) so a repeated poll can't drop or duplicate items.
+- **A poll that runs too long is abandoned.** From n8n 2.37.0, a poll that runs longer than [`N8N_SCHEDULER_POLL_TIMEOUT`](basic-configuration/use-environment-variables/scheduler.md#poll-triggers) (45 seconds by default) is abandoned. n8n stops waiting for it and records nothing: the cursor stays put, so the next poll covers the same ground and no data goes missing. This guards against a poll stuck on a service that never answers. A poll that keeps timing out counts as failing. n8n re-polls it at a widening interval instead of hammering a service that can't keep up. Keep the timeout below `N8N_SCHEDULER_LEASE_DURATION`, so an abandoned poll can't still be running when another instance takes its run over. n8n warns at startup when the timeout reaches the lease duration.
 
 ### Durable poll cursors
 
@@ -29900,6 +30159,7 @@ Only main instances emit them. They come from the poll engine itself, not the sc
 | `n8n_poll_trigger_duration_seconds` | Histogram | How long each poll takes, split by `node_type` and `status`. A poll that grows slower over time is drifting toward its own interval. Once the duration crosses that interval, polls start overlapping. |
 | `n8n_poll_trigger_errors_total` | Counter | How many polls threw, split by `node_type` and a `kind` label of `auth`, `rate_limited`, or `thrown`. `auth` points at a broken credential, `rate_limited` at polling faster than the service allows. |
 | `n8n_poll_trigger_overlapping_ticks_total` | Counter | How many polls started while the previous poll for the same node was still running in the same process. Overlap across instances shows up in `n8n_scheduler_tasks_lease_lost_total` instead. |
+| `n8n_poll_trigger_timeouts_total` | Counter | How many polls the durable scheduler abandoned because they ran longer than `N8N_SCHEDULER_POLL_TIMEOUT`, split by `node_type`. An abandoned poll records nothing, and the next poll covers the same window. Steady growth means a polled service answers slower than the timeout. Only the durable scheduler abandons polls, so this stays at zero on the in-memory scheduler. Available from n8n 2.37.0. |
 | `n8n_poll_trigger_cursor_commits_total` | Counter | How many cursor saves settled, split by `operation` (`with_execution` or `cursor_only`) and `result`. A `result` of `fence_rejected` means a stale poll lost its claim and wasn't allowed to advance the cursor, which is the protection doing its job. A `result` of `failure` means the save itself failed. |
 | `n8n_poll_trigger_cursor_commit_duration_seconds` | Histogram | How long each cursor save takes, with the same `operation` and `result` labels. |
 
@@ -30738,6 +30998,34 @@ When you disable publishing:
 
 - Currently published workflows remain published. The setting only affects new publish actions.
 - The number of currently published personal workflows is displayed below the toggle.
+
+## Workflow reviews <a href="#workflow-reviews" id="workflow-reviews"></a>
+
+{% hint style="info" %}
+**Preview status**
+
+Workflow reviews are in Preview and may change before general availability. Avoid relying on them in production workflows.
+{% endhint %}
+
+{% hint style="info" %}
+**Feature availability**
+
+Workflow reviews are available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
+
+Workflow reviews are available from n8n 2.37.0.
+{% endhint %}
+
+With workflow reviews, teams can submit a workflow version for approval before publishing. Instance admins enable the feature for the whole instance.
+
+To enable workflow reviews:
+
+1. Navigate to **Settings** > **Security & policies**.
+2. In the **Workflow reviews** section, turn on **Enable workflow reviews**.
+
+When the setting is off, users can't create or manage reviews. Turning the feature off also lifts the publish block for workflows that still have an open review. For how to submit, approve, and publish after you enable the feature, refer to [Workflow reviews](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/workflow-reviews).
 
 ## Enforce execution data redaction <a href="#enforce-execution-data-redaction" id="enforce-execution-data-redaction"></a>
 
@@ -56673,8 +56961,8 @@ n8n recommends self-hosting for expert users. Mistakes can lead to data loss, se
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.35.7
-Current `beta`: 2.36.6
+Current `stable`: 2.36.7
+Current `beta`: 2.37.1
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/suggested-pod-resources/
