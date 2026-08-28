@@ -672,7 +672,7 @@ The settings layout described below (**Connection details**, **Access**, **Conne
 1. Navigate to **Settings > Instance-level MCP**.
 2. Select **Enable MCP access** (requires instance owner or admin permissions).
 
-![The Instance-level MCP page before MCP is enabled, showing the Enable MCP access button](.gitbook/assets/mcp-enable-screen.png)
+![The Instance-level MCP page before you enable MCP access, showing the Enable MCP access button](.gitbook/assets/mcp-enable-screen.png)
 
 Once enabled, the page groups settings into three sections:
 
@@ -680,7 +680,7 @@ Once enabled, the page groups settings into three sections:
 * **Access**: shows how many workflows (and, if your instance has the agents feature, agents) are exposed to MCP clients, see [Exposing workflows to MCP clients](#exposing-workflows-to-mcp-clients) and [Exposing agents to MCP clients](#exposing-agents-to-mcp-clients). Instance owners and admins also see **Allowed callback URLs** here, see [Restricting OAuth callback URLs](#restricting-oauth-callback-urls).
 * **Connected clients**: shows how many clients currently have access, each with its own granted permissions. Select **View all** to review or revoke access for individual clients, see [Reviewing and revoking client access](#revoking-client-access).
 
-![The Instance-level MCP page after MCP is enabled, showing Connection details, Access, and Connected clients](.gitbook/assets/mcp-enabled-screen.png)
+![The Instance-level MCP page after you enable MCP access, showing Connection details, Access, and Connected clients](.gitbook/assets/mcp-enabled-screen.png)
 
 **To disable:** In **Connection details**, select the **MCP status** control and choose **Disable**. n8n asks you to confirm, since disabling disconnects every connected client and revokes its access. You can turn MCP access back on later.
 
@@ -712,7 +712,7 @@ In **Connection details**, select **Connect** to open the **Connect a client** d
 
 1. Navigate to **Settings > Instance-level MCP**.
 2. In **Connection details**, select **Connect** to open the **Connect a client** dialog.
-3. Make sure the **OAuth (recommended)** tab is selected.
+3. Confirm you're on the **OAuth (recommended)** tab.
 4. In the **Your client** dropdown, pick your AI assistant, IDE, or CLI. n8n groups clients into **CLI** (Claude Code, Codex, Gemini CLI), **Web** (Claude.ai, ChatGPT), and **IDE** (Cursor, VS Code, Windsurf), and shows setup steps tailored to your choice.
 5. Follow the steps shown for your client type:
    * **Web clients**: select **One-click setup** to add n8n to the client directly, or copy the **Server URL** and paste it into the client's own connector settings yourself.
@@ -734,7 +734,7 @@ Each connected client only has the permissions you granted it when it connected,
 1. Navigate to **Settings > Instance-level MCP**.
 2. In **Connection details**, select **Connect** to open the **Connect a client** dialog.
 3. Switch to the **API key** tab. n8n automatically generates a personal access token tied to your user account the first time you open it.
-4. Copy what you need: the **Configuration JSON** block, already filled in with your server URL and an `Authorization: Bearer` header carrying your token, or the individual **Server URL** and access token values if your client doesn't use that JSON format (for example, Codex's TOML config). Once you leave this tab, n8n only shows a redacted token value, and you won't be able to copy it again unless you [rotate it](#rotating-your-token).
+4. Copy what you need: the **Configuration JSON** block, already filled in with your server URL and an `Authorization: Bearer` header carrying your token, or the individual **Server URL** and access token values if your client doesn't use that JSON format (for example, Codex's TOML configuration). Once you leave this tab, n8n only shows a redacted token value, and you won't be able to copy it again unless you [rotate it](#rotating-your-token).
 5. Paste what you copied into your MCP client's configuration: drop the **Configuration JSON** straight in for clients that accept an `mcpServers` JSON snippet, or use the individual **Server URL** and token for clients that need a different format. This tab isn't client-specific, so the same values work no matter which client you're setting up (see [MCP client connection examples](connect-to-n8n-mcp-server/mcp-client-examples.md) for client-specific formats).
 
 #### Rotating your access token <a href="#rotating-your-token" id="rotating-your-token"></a>
@@ -751,12 +751,12 @@ If you lose your token or need to rotate it:
 
 ## Exposing workflows to MCP clients <a href="#exposing-workflows-to-mcp-clients" id="exposing-workflows-to-mcp-clients"></a>
 
-MCP clients can discover previews of all workflows the current user has access to using `search_workflows`. However, clients can't access full workflow data, nor execute or modify a workflow unless you explicitly enable MCP access for that workflow.
+MCP clients can discover previews of all workflows the current user has access to using `search_workflows`. Clients can't access full workflow data, execute, or modify a workflow unless you explicitly enable MCP access for that workflow.
 
 {% hint style="info" %}
 **Workflow eligibility** <a href="#workflow-eligibility" id="workflow-eligibility"></a>
 
-Only workflows that are published, and that contain a webhook, form, schedule, or chat trigger node, can be enabled for MCP access.
+You can only enable MCP access for published workflows that contain a webhook, form, schedule, or chat trigger node.
 {% endhint %}
 
 ### Enabling access for individual workflows <a href="#enabling-access-for-individual-workflows" id="enabling-access-for-individual-workflows"></a>
@@ -773,7 +773,7 @@ From the **Workflows exposed** page (available from n8n 2.2.0), you can enable a
 #### Option 2: From the workflow editor <a href="#option-2-from-the-workflow-editor" id="option-2-from-the-workflow-editor"></a>
 
 1. Open the workflow.
-2. Click the main workflow menu (`...`) in the top-right corner.
+2. Click the main **Workflow menu** (`...`) in the top-right corner.
 3. Select **Settings**.
 4. Toggle **Available in MCP**.
 
@@ -810,7 +810,7 @@ This will toggle MCP access for all workflows that are **currently** in the sele
 {% hint style="info" %}
 **Feature availability**
 
-Auto-exposing new workflows is rolling out gradually from n8n 2.36.0. The setting may not be immediately visible on every instance.
+Auto-exposing new workflows is rolling out gradually from n8n 2.36.0. The setting may not be visible on every instance yet.
 {% endhint %}
 
 Instead of enabling MCP access for each workflow individually, you can expose every newly created workflow automatically:
@@ -818,9 +818,9 @@ Instead of enabling MCP access for each workflow individually, you can expose ev
 1. Navigate to **Settings > Instance-level MCP**.
 2. Turn on **Auto-expose new workflows**.
 
-This setting is off by default. Turning it on only affects workflows created afterwards. Workflows that already exist keep their current setting, so use [Enabling access for individual workflows](#enabling-access-for-individual-workflows) or [Enabling access for projects/folders](#enabling-access-for-projectsfolders) to expose those.
+This setting is off by default. Turning it on only affects workflows created afterward. Workflows that already exist keep their current setting, so use [Enabling access for individual workflows](#enabling-access-for-individual-workflows) or [Enabling access for projects/folders](#enabling-access-for-projectsfolders) to expose those.
 
-Only instance owners and admins can change this setting. It's read-only on instances where MCP access is managed through environment variables.
+Only instance owners and admins can change this setting. It's read-only on instances that manage MCP access through environment variables.
 
 {% hint style="info" %}
 **Note**
@@ -849,7 +849,7 @@ To help MCP clients identify workflows, you can add free-text descriptions as fo
 2.  Option 2: From the workflow editor
 
     1. Open the workflow.
-    2. Click the main workflow menu (`...`) in the top-right corner.
+    2. Click the main **Workflow menu** (`...`) in the top-right corner.
     3. Select **Edit description**.
 
     ![Workflow's main menu open, with Edit description highlighted](<.gitbook/assets/mcp_workflow_description (1).png>)
@@ -859,7 +859,7 @@ To help MCP clients identify workflows, you can add free-text descriptions as fo
 {% hint style="info" %}
 **Feature availability**
 
-Agents are available from n8n 2.34.0 and are a separate feature from workflows. See [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents) for details. This section only applies if agents are enabled on your instance.
+Agents are available from n8n 2.34.0 and are a separate feature from workflows. See [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents) for details. This section only applies if you've enabled agents on your instance.
 {% endhint %}
 
 {% hint style="info" %}
@@ -891,7 +891,7 @@ If your instance has the agents feature, the **Access** section also shows **Age
 The **Agents exposed** page shows every agent enabled for MCP clients to access, with its name and its project or folder location. From this list you can:
 
 * Open an agent or its project directly.
-* Remove access for a single agent from its row, or select multiple agents and remove access for all of them at once.
+* Remove access for a single agent from its row, or select multiple agents and remove access for all at once.
 * Enable access for more agents using the **Enable agents** button.
 
 ## Restricting OAuth callback URLs <a href="#restricting-oauth-callback-urls" id="restricting-oauth-callback-urls"></a>
@@ -908,7 +908,7 @@ Instance owners and admins can restrict which URLs an OAuth client can redirect 
 ## Tools and resources <a href="#tools-and-resources" id="tools-and-resources"></a>
 
 {% hint style="info" %}
-Consider using coding agents (such as Claude Code or Google ADK agents) instead of chat clients as your MCP clients. Coding agents are optimized for generating and validating TypeScript code, making them ideal for building workflows programmatically.
+Consider using coding agents (such as Claude Code or Google ADK agents) instead of chat clients as your MCP clients. Coding agents specialize in generating and validating TypeScript code, making them ideal for building workflows programmatically.
 {% endhint %}
 
 The n8n MCP server exposes tools for workflow management, workflow building, agent management, and data tables. For a complete list of available tools and their parameters, refer to the [MCP server tools reference](connect-to-n8n-mcp-server/mcp-server-tools-reference.md).
@@ -1064,7 +1064,7 @@ Use the endpoint for the server you want:
 The steps differ by tool, but each one needs a server URL from above. The following examples set up both servers. To connect only one, keep the entry you want and remove the other.
 
 {% hint style="info" %}
-The Kapa.ai server requires authentication. Your AI tool opens a browser-based sign-in flow when you first connect to it, or the first time you use it. Follow the prompts to authorize the connection.
+The Kapa.ai server requires authentication. Your AI tool opens a browser-based sign-in flow when you first connect to it, or the first time you use it. Follow the prompts to approve the connection.
 {% endhint %}
 
 ### Claude Code
@@ -1126,6 +1126,8 @@ After you connect, your tool can search n8n's knowledge as you work.
 {% hint style="info" %}
 The exact configuration steps and file locations vary between tools and versions. Check your tool's documentation for how it adds a remote MCP server. For more on the Kapa.ai server, see the [Kapa.ai MCP documentation](https://docs.kapa.ai/overview/build-with-ai).
 {% endhint %}
+
+See [Connect](README.md) for other ways to connect to n8n.
 
 === https://docs.n8n.io/docs/connect/n8n-cli/
 
@@ -1325,7 +1327,7 @@ The examples below are useful if interactive steps aren't shown in n8n for your 
    * Navigate to your workspace **Settings > Integrations**.
    * In the **MCP Servers** section, find **n8n** and click **Connect**.
    * Enter your n8n server URL: the **Server URL** value shown in the **Connect a client** dialog.
-   * Save the connection. If successful, n8n redirects you to authorize Lovable.
+   * Save the connection. If successful, n8n redirects you to approve access for Lovable.
 2. Verify connectivity.
    * Once connected, Lovable can query for workflows with MCP access enabled.
    * **Example:** Asking Lovable to build a workflow UI that lists users and allows deleting them.
@@ -1340,7 +1342,7 @@ The examples below are useful if interactive steps aren't shown in n8n for your 
    * **Name:** n8n MCP
    * **Remote MCP Server URL**: the **Server URL** value shown in the **Connect a client** dialog
 4. Save the connector.
-5. When prompted, authorize Claude Desktop to access your n8n instance.
+5. When prompted, approve access for Claude Desktop.
 
 **Using API key**
 
@@ -1368,7 +1370,7 @@ Here, replace:
 
 ## Connecting Claude Code to n8n MCP server <a href="#connecting-claude-code-to-n8n-mcp-server" id="connecting-claude-code-to-n8n-mcp-server"></a>
 
-**OPTION 1: Authenticate using OAuth (recommended)**
+**Option 1: Authenticate using OAuth (recommended)**
 
 Use the following CLI command:
 
@@ -1376,7 +1378,7 @@ Use the following CLI command:
 claude mcp add --transport http n8n https://<your-n8n-domain>/mcp-server/http
 ```
 
-Alternatively, add the following entry to your `claude.json` file:
+Or add the following entry to your `claude.json` file:
 
 ```json
 {
@@ -1395,7 +1397,7 @@ Here, replace:
 
 Run `/mcp` in Claude Code and select **n8n** to complete the OAuth authorization.
 
-**OPTION 2: Authenticate using API key**
+**Option 2: Authenticate using API key**
 
 Use the following CLI command:
 
@@ -1404,7 +1406,7 @@ claude mcp add --transport http n8n-mcp https://<your-n8n-domain>/mcp-server/htt
   --header "Authorization: Bearer <YOUR_N8N_MCP_TOKEN>"
 ```
 
-Alternatively, add the following entry to your `claude.json` file:
+Or add the following entry to your `claude.json` file:
 
 ```json
 {
@@ -1427,7 +1429,7 @@ Here, replace:
 
 ## Connecting Codex CLI to n8n MCP server <a href="#connecting-codex-cli-to-n8n-mcp-server" id="connecting-codex-cli-to-n8n-mcp-server"></a>
 
-**OPTION 1: Authenticate using OAuth (recommended)**
+**Option 1: Authenticate using OAuth (recommended)**
 
 Use the following CLI command:
 
@@ -1435,7 +1437,7 @@ Use the following CLI command:
 codex mcp add n8n --url "https://<your-n8n-domain>/mcp-server/http"
 ```
 
-Alternatively, add the following entry to your `~/.codex/config.toml` file:
+Or add the following entry to your `~/.codex/config.toml` file:
 
 ```toml
 [features]
@@ -1455,7 +1457,7 @@ Here, replace:
 
 Run `codex mcp login n8n` to complete the OAuth authorization.
 
-**OPTION 2: Authenticate using API key**
+**Option 2: Authenticate using API key**
 
 Add the following entry to your `~/.codex/config.toml` file:
 
@@ -1481,7 +1483,7 @@ Use the following CLI command:
 gemini mcp add --transport http n8n https://<your-n8n-domain>/mcp-server/http
 ```
 
-Alternatively, add the following entry to your `~/.gemini/settings.json` file:
+Or add the following entry to your `~/.gemini/settings.json` file:
 
 ```json
 {
@@ -1503,7 +1505,7 @@ Run `/mcp` in Gemini CLI and select **n8n** to complete the OAuth authorization.
 
 In the **Connect a client** dialog, select **Cursor** from **Your client**, then select **One-click setup** to open Cursor and add the n8n server automatically. Approve access when Cursor redirects you back to n8n.
 
-Alternatively, add the following entry to your `~/.cursor/mcp.json` file (or the project's `.cursor/mcp.json`):
+Or add the following entry to your `~/.cursor/mcp.json` file (or the project's `.cursor/mcp.json`):
 
 ```json
 {
@@ -1524,7 +1526,7 @@ Here, replace:
 
 In the **Connect a client** dialog, select **VS Code** from **Your client**, then select **One-click setup** to open VS Code and add the n8n server automatically. Approve access when VS Code redirects you back to n8n.
 
-Alternatively, add the following entry to your workspace's `.vscode/mcp.json` file:
+Or add the following entry to your workspace's `.vscode/mcp.json` file:
 
 ```json
 {
@@ -2498,6 +2500,8 @@ Start with [Connect to n8n MCP server](connect-to-n8n-mcp-server.md).
 {% endtab %}
 {% endtabs %}
 
+You can also connect an MCP client to [the n8n docs MCP server](connect-to-n8n-docs-mcp-server.md) so AI tools can search the docs, or [create your own node](create-nodes/README.md) to add a custom integration to n8n.
+
 === https://docs.n8n.io/docs/connect/n8n-api/use-an-api-playground/
 
 # Using an API playground <a href="#using-an-api-playground" id="using-an-api-playground"></a>
@@ -2904,18 +2908,18 @@ n8n provides an [n8n API node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/bu
 
 ## Choose your interaction method <a href="#choose-your-interaction-method" id="choose-your-interaction-method"></a>
 
-### REST API (This section) <a href="#rest-api-this-section" id="rest-api-this-section"></a>
+### REST API (this section) <a href="#rest-api-this-section" id="rest-api-this-section"></a>
 Interact with n8n directly using HTTP requests. Ideal for:
-- Custom integrations and applications
-- Language-agnostic HTTP calls
-- Direct REST API usage in workflows
+* Custom integrations and applications
+* Language-agnostic HTTP calls
+* Direct REST API usage in workflows
 
-### n8n CLI (Recommended for developers) <a href="#n8n-cli-recommended-for-developers" id="n8n-cli-recommended-for-developers"></a>
-Use [n8n CLI](../README.md) for a command-line experience. It wraps the public API and is optimized for:
-- Command-line automation and scripting
-- CI/CD pipeline integration
-- AI agent integration (Claude Code, Cursor, etc.)
-- Developers who prefer CLI tools
+### n8n CLI (recommended for developers) <a href="#n8n-cli-recommended-for-developers" id="n8n-cli-recommended-for-developers"></a>
+Use [n8n CLI](../n8n-cli.md) for a command-line experience. It wraps the public API and is a good fit for:
+* Command-line automation and scripting
+* CI/CD pipeline integration
+* AI agent integration (Claude Code, Cursor, etc.)
+* Developers who prefer CLI tools
 
 ## Learn about REST APIs <a href="#learn-about-rest-apis" id="learn-about-rest-apis"></a>
 
@@ -2956,6 +2960,8 @@ Trying out the API in the [playground](use-an-api-playground.md) can help you un
 {% content-ref url="deploy-your-node/README.md" %}
 [deploy-your-node/README.md](deploy-your-node/README.md)
 {% endcontent-ref %}
+
+See [Connect](../README.md) for other ways to connect to n8n.
 
 === https://docs.n8n.io/docs/connect/create-nodes/build-your-node/reference/item-linking/
 
@@ -8436,7 +8442,7 @@ If workflow reviews are enabled for your instance, you can submit a version for 
 Named versions are available on:
 
 - **n8n Cloud:** Pro, Enterprise
-- **Self-hosted:** Enterprise
+- **Self-hosted:** Business, Enterprise
 {% endhint %}
 
 Named versions let you give a meaningful name and description to any workflow version. This helps you identify important milestones in your workflow's development. Named versions are also protected from automatic [version history pruning](../manage-workflows/view-change-history.md), so they persist indefinitely.
@@ -8523,11 +8529,11 @@ A workflow[^1] is a collection of nodes connected together to automate a process
 
 * [Create](create-and-run-workflows.md) a workflow.
 * Use [Workflow templates](../ways-of-building-workflows/use-templates.md) to help you get started.
-* Learn about the key [components](workflow-components/README.md) of an automation in n8n.
+* Learn about the key [components](workflow-components/README.md) of a workflow in n8n.
 * Debug using the [Executions](understand-executions/README.md) list.
 * [Share](../manage-workflows/share-with-others.md) workflows between users.
 
-If it's your first time building a workflow, you may want to use the [quickstart guides](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/build-your-first-workflow) to quickly try out n8n features.
+If it's your first time building a workflow, you may want to use the [quickstart guide](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/build-your-first-workflow) to quickly try out n8n features.
 
 [^1]: An n8n workflow is a collection of nodes that automate a process. Workflows begin execution when a trigger condition occurs and execute sequentially to achieve complex tasks.
 
@@ -8611,56 +8617,56 @@ You can document your workflow using node notes:
 
 # Add notes and documentation
 
-Sticky Notes allow you to annotate and comment on your workflows.
+Sticky notes let you annotate and comment on your workflows.
 
-n8n recommends using Sticky Notes heavily, especially on [template workflows](#user-content-fn-1)[^1], to help other users understand your workflow.
+n8n recommends using sticky notes on template workflows[^1] to help other users understand your workflow.
 
 ![A basic workflow with a sticky note attached](../../.gitbook/assets/example-sticky-note.png)
 
-## Create a Sticky Note <a href="#create-a-sticky-note" id="create-a-sticky-note"></a>
+## Create a sticky note <a href="#create-a-sticky-note" id="create-a-sticky-note"></a>
 
-Sticky Notes are a core node. To add a new Sticky Note:
+Sticky notes are a core node. To add a new sticky note:
 
 1. Open the nodes panel.
 2. Search for `note`.
-3. Click the **Sticky Note** node. n8n adds a new Sticky Note to the canvas.
+3. Click the **Sticky Note** node. n8n adds a new sticky note to the canvas.
 
-## Edit a Sticky Note <a href="#edit-a-sticky-note" id="edit-a-sticky-note"></a>
+## Edit a sticky note <a href="#edit-a-sticky-note" id="edit-a-sticky-note"></a>
 
-1. Double click the Sticky Note you want to edit.
+1. Double-click the sticky note you want to edit.
 2. Write your note. [This guide](https://commonmark.org/help/) explains how to format your text with Markdown. n8n uses [markdown-it](https://github.com/markdown-it/markdown-it), which implements the CommonMark specification.
 3. Click away from the note, or press `Esc`, to stop editing.
 
 ## Change the color <a href="#change-the-color" id="change-the-color"></a>
 
-To change the Sticky Note color:
+To change the sticky note color:
 
-1. Hover over the Sticky Note
-2. Select **Change color** <img src="../../.gitbook/assets/change-color.png" alt="Change Sticky Note color icon" data-size="line">
-3. Choose from seven preset colors, or click the rainbow gradient button to select a custom color
+1. Hover over the sticky note.
+2. Select **Change color** <img src="../../.gitbook/assets/change-color.png" alt="Change Sticky Note color icon" data-size="line">.
+3. Choose from seven preset colors, or click the rainbow gradient button to select a custom color.
 
 ![Color selector showing preset colors and custom color button](../../.gitbook/assets/color-picker-popover.png)
 
 ### Custom colors <a href="#custom-colors" id="custom-colors"></a>
 
-In addition to the seven preset colors, you can select any custom color for your sticky notes:
+Besides the seven preset colors, you can select any custom color for your sticky notes:
 
-1. Click the button with the rainbow gradient and plus icon
-2. Use the color picker to select your desired color, or enter a hex color code (for example, `#FF5733`)
-3. Click **Apply** to set the color
+1. Click the button with the rainbow gradient and plus icon.
+2. Use the color picker to select your desired color, or enter a hex color code (for example, `#FF5733`).
+3. Click **Apply** to set the color.
 
-Your recently used custom colors (up to 8) are automatically saved and displayed in the color picker for quick access.
+n8n automatically saves your last-used custom colors (up to eight) and displays them in the color picker for quick access.
 
 Custom colors feature theme-aware borders that automatically adjust for optimal visibility in both light and dark modes.
 
-## Sticky Note positioning <a href="#sticky-note-positioning" id="sticky-note-positioning"></a>
+## Sticky note positioning <a href="#sticky-note-positioning" id="sticky-note-positioning"></a>
 
 You can:
 
-* Drag a Sticky Note anywhere on the canvas.
-* Drag Sticky Notes behind nodes. You can use this to visually group nodes.
-* Resize Sticky Notes by hovering over the edge of the note and dragging to resize.
-* Change the color: select **Options** <img src="../../.gitbook/assets/three-dot-options-menu (1).png" alt="Options icon" data-size="line"> to open the color selector.
+* Drag a sticky note anywhere on the canvas.
+* Drag sticky notes behind nodes. You can use this to visually group nodes.
+* Resize sticky notes by hovering over the edge of the note and dragging to resize.
+* Change the color: select the **Options** menu <img src="../../.gitbook/assets/three-dot-options-menu (1).png" alt="Options icon" data-size="line"> to open the color selector.
 
 ## Writing in Markdown <a href="#writing-in-markdown" id="writing-in-markdown"></a>
 
@@ -8711,6 +8717,8 @@ For example:
 ```
 
 To embed your own video, copy the above syntax, replacing `ZCuL2e4zC_4` with your video ID. The YouTube video ID is the string that follows `v=` in the YouTube URL.
+
+See [Workflow components](README.md) for other elements you can add to a workflow.
 
 [^1]: n8n templates are pre-built workflows designed by n8n and community members that you can import into your n8n instance. When using templates, you may need to fill in credentials and adjust the configuration to suit your needs.
 
@@ -9089,7 +9097,10 @@ The result is a normal n8n workflow. You can open it, inspect it, edit it, test 
 {% hint style="info" %}
 **Feature availability**
 
-The AI Assistant is available on **n8n Cloud** and **self-hosted**. 
+The AI Assistant is available on:
+
+- **n8n Cloud:** Starter, Pro
+- **Self-hosted:** Community, Registered Community, Business
 
 It isn't ready for n8n Cloud Enterprise or self-hosted Enterprise yet. If you're an Enterprise customer, contact your Customer Success Manager about preview access.
 {% endhint %}
@@ -9117,7 +9128,7 @@ You can ask the AI Assistant to:
 
 ## Before you start
 
-To use the AI Assistant, you need access to an n8n instance where the feature is enabled.
+To use the AI Assistant, you need access to an n8n instance with the feature enabled.
 
 Make sure that:
 
@@ -9191,7 +9202,7 @@ If you create a new credential, you enter the secret in the standard n8n credent
 
 ## Web access
 
-When web research is enabled, the AI Assistant asks for permission before accessing an external domain.
+When you enable web access, the AI Assistant asks for permission before accessing an external domain.
 
 Review the requested domain before you approve access.
 
@@ -9217,7 +9228,7 @@ Depending on the task, this can include:
 - workflow structure and node configuration,
 - selected execution and error details used for troubleshooting,
 - credential names, credential types, or connection status,
-- approved web pages or domains, when web research is enabled.
+- approved web pages or domains, when you enable web access.
 
 The AI Assistant doesn't require you to paste secrets into chat. Enter API keys, passwords, and tokens through the standard n8n credential screens.
 
@@ -9240,7 +9251,9 @@ To reduce unnecessary usage:
 
 To get more credits during Preview, upgrade your plan. More ways to top up are coming.
 
-For current plan details, see [n8n Plans and Pricing](https://n8n.io/pricing/).
+For current plan details, see [n8n plans and pricing](https://n8n.io/pricing/).
+
+See [Ways of building workflows](README.md) for other approaches.
 
 === https://docs.n8n.io/docs/build/ways-of-building-workflows/connect-to-n8n-mcp-server/
 
@@ -9549,7 +9562,7 @@ Reference, transform, structure, and test the data moving through workflows.
 
 [**Code in n8n**](code-in-n8n/README.md)
 
-Use expressions, the Code node, and developer tools when low-code is not enough.
+Use expressions, the Code node, and developer tools when low-code isn't enough.
 
 <a href="code-in-n8n/" class="button secondary">Open</a>
 {% endcolumn %}
@@ -9637,7 +9650,7 @@ You can restore a previous workflow version, or make a copy of it:
    * **Clone to new workflow**: create a new workflow based on the selected version.
    * **Open version in new tab**: open a second tab displaying the selected version. Use this to compare versions.
    * **Download**: download the version as JSON.
-   * **Name version**: give the version a name and description. Named versions are protected from automatic pruning. Refer to [Naming versions](../understand-workflows/save-and-publish-workflows.md#naming-versions) for more details. Named versions are available on n8n Cloud Pro, Enterprise, and self-hosted Enterprise.
+   * **Name version**: give the version a name and description. n8n never prunes named versions automatically. Refer to [Naming versions](../understand-workflows/save-and-publish-workflows.md#naming-versions) for more details. Named versions are available on n8n Cloud Pro and Enterprise, and self-hosted Business and Enterprise.
 
 === https://docs.n8n.io/docs/build/manage-workflows/export-and-import/
 
@@ -9999,7 +10012,7 @@ You can't currently cancel or withdraw an open review. n8n plans to add this fun
 Workflow sharing is available on:
 
 - **n8n Cloud:** All plans
-- **Self-hosted:** Enterprise
+- **Self-hosted:** Business, Enterprise
 {% endhint %}
 
 Workflow sharing allows you to share workflows between users of the same n8n instance.
@@ -11875,21 +11888,21 @@ Expressions have the advantage of providing an immediate preview of the computed
 
 ### Code node <a href="#code-node" id="code-node"></a>
 
-The [Code node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) is a dedicated node where you write JavaScript or Python that runs as a workflow step. It gives you access to incoming data from previous nodes, which you can manipulate by adding, removing, or updating items. You can create any custom function you need and use n8n's built‑in methods and variables through `$` syntax.
+The [Code node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) is a dedicated node where you write JavaScript or Python that runs as a workflow step. It gives you access to incoming data from previous nodes, which you can manipulate by adding, removing, or updating items. You can create any custom function you need and use n8n's built-in methods and variables through `$` syntax.
 
 **When to use the Code node:**
 
 * You need more complex logic or data transformation than an expression can provide, such as restructuring arrays and objects, aggregating or splitting items, and custom algorithms.
 * You want to transform many items at once.
-* You want to use promises, `console.log`, or, in the case of self‑hosted setups, external npm modules.
+* You want to use promises, `console.log`, or, for self-hosted setups, external npm modules.
 
 ### AI Transform node <a href="#ai-transform-node" id="ai-transform-node"></a>
 
-This node generates code snippets based on a short natural‑language prompt. It's context‑aware and understands your workflow's nodes and data types. The generated code is read‑only in the node; you can copy it into a Code node to edit.
+This node generates code snippets based on a short natural-language prompt. It's context-aware and understands your workflow's nodes and data types. The generated code is read-only in the node. You can copy it into a Code node to edit.
 
 **When to use the AI Transform node:**
 
-* You know what transformation you want but don't want to hand‑write the code.
+* You know what transformation you want but don't want to hand-write the code.
 * You want AI to draft the transformation logic and then run it directly in the node, or copy into a Code node for further customization.
 
 ### Other data transformation nodes <a href="#other-data-transformation-nodes" id="other-data-transformation-nodes"></a>
@@ -11901,13 +11914,15 @@ n8n provides a collection of nodes to transform data:
 * [Remove Duplicates](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.removeduplicates): identify and delete items that are identical across all fields or a subset of fields.
 * [Sort](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.sort): organize lists in a desired ordering, or generate a random selection.
 * [Split Out](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.splitout): separate a single data item containing a list into multiple items.
-* [Summarize](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.summarize): aggregate items together, in a manner similar to Excel pivot tables. 
+* [Summarize](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.summarize): aggregate items together, like Excel pivot tables.
 
 **When to use data transformation nodes:**
 
 * The operation you need matches a specific transformation node's purpose.
 * You want a no-code solution with a guided UI.
 * You prefer visual workflow building over writing expressions or code.
+
+See [Work with data](README.md) for other ways to reference, transform, and structure data.
 
 
 === https://docs.n8n.io/docs/build/work-with-data/data-tables/
@@ -18613,6 +18628,10 @@ Both give an agent access to a service. A built-in tool gives you tighter contro
 
 n8n lets you build AI workflows that connect different LLM providers such as OpenAI, Anthropic, and Google, add tools and memory, and combine several models in one workflow.
 
+{% content-ref url="mcp-servers.md" %}
+[mcp-servers.md](mcp-servers.md)
+{% endcontent-ref %}
+
 {% content-ref url="understand-ai-components/README.md" %}
 [understand-ai-components/README.md](understand-ai-components/README.md)
 {% endcontent-ref %}
@@ -18628,6 +18647,8 @@ n8n lets you build AI workflows that connect different LLM providers such as Ope
 {% content-ref url="ai-examples.md" %}
 [ai-examples.md](ai-examples.md)
 {% endcontent-ref %}
+
+See [Build](../README.md) for other workflow-building topics.
 
 === https://docs.n8n.io/docs/build/integrate-ai/ai-examples/
 
@@ -19651,7 +19672,7 @@ for item in previousNodeData:
 `vars` is available on:
 
 - **n8n Cloud:** Pro, Enterprise
-- **Self-hosted:** Enterprise
+- **Self-hosted:** Business, Enterprise
 
 You need access to the n8n instance owner account to create variables.
 {% endhint %}
@@ -20360,7 +20381,7 @@ These variables are for use in expressions in the HTTP node. You can't use them 
 Custom variables are available on:
 
 - **n8n Cloud:** Pro, Enterprise
-- **Self-hosted:** Enterprise
+- **Self-hosted:** Business, Enterprise
 
 Only instance owners and admins can create variables.
 {% endhint %}
@@ -22856,15 +22877,14 @@ External secrets are available on:
 
 - **n8n Cloud:** Enterprise
 - **Self-hosted:** Enterprise
-
-* n8n supports the following secret providers: 1Password (via [Connect Server](https://developer.1password.com/docs/connect/get-started/)), AWS Secrets Manager, Azure Key Vault, GCP Secrets Manager, HashiCorp Vault, and Infisical.
-* From n8n 2.10.0 you can connect multiple vaults per secret provider. Older versions only support one vault per provider.
-* From n8n 2.13.0, if enabled, project editors can use external secrets within their projects, and project admins can also manage project vaults.
-* n8n doesn't support [HashiCorp Vault Secrets](https://developer.hashicorp.com/hcp/docs/vault-secrets).
 {% endhint %}
 
-* Credentials stored in External secrets stores only resolve in Credentials fields, not in any other fields supporting expressions.
+n8n supports the following secret providers: 1Password (using [Connect Server](https://developer.1password.com/docs/connect/get-started/)), AWS Secrets Manager, Azure Key Vault, GCP Secrets Manager, HashiCorp Vault, and Infisical. n8n doesn't support [HashiCorp Vault Secrets](https://developer.hashicorp.com/hcp/docs/vault-secrets).
 
+* From n8n 2.10.0 you can connect multiple vaults per secret provider. Older versions only support one vault per provider.
+* From n8n 2.13.0, if enabled, project editors can use external secrets within their projects, and project admins can also manage project vaults.
+
+Credentials stored in an external secrets store only resolve in credential fields, not in any other fields supporting expressions.
 
 You can use an external secrets store to manage credentials[^1] for n8n.
 
@@ -22904,7 +22924,7 @@ n8n only supports plaintext values for secrets, not JSON objects.
 1. Enter the credentials for your provider. Refer to the provider-specific sections below for details.
 1. **Save** your configuration.
 
-As long as this store is connected, you can reference its secrets in credentials.
+As long as you keep this store connected, you can reference its secrets in credentials.
 
 ### 1Password <a href="#1password" id="1password"></a>
 
@@ -22986,12 +23006,12 @@ For more IAM permission policy examples, consult the [AWS documentation](https:/
 {% hint style="info" %}
 **Feature availability**
 
-The **Azure Cloud** setting is available from n8n 2.35.0. Earlier versions connect to Azure Public Cloud only. Existing configurations are unaffected: they continue to use Azure Public Cloud.
+The **Azure Cloud** setting is available from n8n 2.35.0. Earlier versions connect to Azure Public Cloud only. Existing configurations continue to use Azure Public Cloud without changes.
 {% endhint %}
 
 Provide your **tenant ID**, **client ID**, and **client secret**. Refer to the Azure documentation to [register a Microsoft Entra ID app and create a service principal](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal). n8n supports only single-line values for secrets.
 
-Select the **Azure Cloud** environment your Key Vault is hosted in. This sets the vault URL and the Microsoft Entra authority host:
+Select the **Azure Cloud** environment that hosts your Key Vault. This sets the vault URL and the Microsoft Entra authority host:
 
 | Azure Cloud | Vault URL suffix | Entra authority host |
 |-------------|------------------|----------------------|
@@ -23163,6 +23183,8 @@ Using external secrets in your own credentials, as a project editor or admin wit
 In versions before n8n 2.13.0 (or when **Enable external secrets for project roles** is off), only instance owners and admins can resolve secrets at runtime. If an owner or admin updates another user's credential with a secrets expression, it may appear to work in preview but fail in production.
 
 In this case, only use external secrets in credentials owned by an instance owner or admin.
+
+See [Manage credentials](README.md) for other ways to secure and share credentials.
 
 [^1]: In n8n, credentials store authentication information to connect with specific apps and services. After creating credentials with your authentication information (username and password, API key, OAuth secrets, etc.), you can use the associated app node to interact with the service.
 [^2]: In n8n, expressions allow you to populate node parameters dynamically by executing JavaScript code. Instead of providing a static value, you can use the n8n expression syntax to define the value using data from previous nodes, other workflows, or your n8n environment.
@@ -23454,7 +23476,7 @@ Administer n8n by controlling access, securing credentials, managing changes, an
 This section helps you run n8n securely and reliably as usage grows.
 
 {% hint style="info" %}
-Enterprise teams often spend more time in this section. SSO, directory integration, change control, and centralized logging become more important at scale. Many features covered here are also useful outside Enterprise, including user management basics, credential security, and operational monitoring.
+Enterprise teams often spend more time in this section. SSO, directory integration, change control, and centralized logging become more important at scale. Many features covered here, including user management basics, credential security, and operational monitoring, are also useful outside Enterprise.
 {% endhint %}
 
 ### A typical administration workflow
@@ -23463,7 +23485,7 @@ Enterprise teams often spend more time in this section. SSO, directory integrati
 {% step %}
 ### Control access
 
-Decide who can sign in, what they can do, and how work is organized. Start with [Manage users and access](manage-users-and-access/README.md).
+Decide who can sign in, what they can do, and how you organize work. Start with [Manage users and access](manage-users-and-access/README.md).
 {% endstep %}
 
 {% step %}
@@ -23565,7 +23587,7 @@ Workflow diffs allow you to visually compare changes between the workflow you ha
 Workflow diffs are available on:
 
 - **n8n Cloud:** Enterprise
-- **Self-hosted:** Enterprise
+- **Self-hosted:** Business, Enterprise
 
 Workflow diffs are only available when you [enable the environments features](set-up-source-control.md) on an instance.
 {% endhint %}
@@ -37912,13 +37934,13 @@ The release of n8n 3.0 continues n8n's commitment to providing a secure, reliabl
 
 ### Docker-based deployment required for self-hosted n8n <a href="#docker-based-deployment-required-for-self-hosted-n8n" id="docker-based-deployment-required-for-self-hosted-n8n"></a>
 
-- Self-hosted n8n will require a Docker-based deployment. Installations run via `npm` / `npx n8n` will no longer be supported.
-- **What to do:** If you currently run n8n with `npm` or `npx n8n`, plan a move to a Docker-based deployment before upgrading to n8n 3.0. For local installations, Docker Compose is expected to be the easiest path.
+- Self-hosted n8n will require a Docker-based deployment. n8n 3.0 will no longer support installations run using `npm` or `npx n8n`.
+- **What to do:** If you run n8n with `npm` or `npx n8n`, plan a move to a Docker-based deployment before upgrading to n8n 3.0. For local installations, Docker Compose is expected to be the easiest path.
 - *Step-by-step migration guidance will be coming soon*
 
 ## Removed nodes and helpers <a href="#removed-nodes-and-helpers" id="removed-nodes-and-helpers"></a>
 
-Older nodes, modes, and helpers that have been replaced by newer patterns are being removed in n8n 3.0.
+n8n 3.0 removes older nodes, modes, and helpers that newer patterns have replaced.
 
 ### Removed nodes <a href="#removed-nodes" id="removed-nodes"></a>
 
@@ -37931,16 +37953,16 @@ Older nodes, modes, and helpers that have been replaced by newer patterns are be
 
 ### Changed node behavior <a href="#changed-node-behavior" id="changed-node-behavior"></a>
 
-- **Execute Workflow** node: older behavior is being removed.
+- **Execute Workflow** node: n8n 3.0 removes the older behavior.
 
-### AI Agent node: older agent modes removed <a href="#ai-agent-node-older-agent-modes-removed" id="ai-agent-node-older-agent-modes-removed"></a>
+### AI Agent node: Older agent modes removed <a href="#ai-agent-node-older-agent-modes-removed" id="ai-agent-node-older-agent-modes-removed"></a>
 
 - Version 1 of the **AI Agent** node supported several agent type modes, including **SQL Agent**, **Conversational Agent**, **OpenAI Functions Agent**, **Plan and Execute Agent**, and **ReAct Agent**. n8n 3.0 removes version 1 of the node, along with these modes.
 - **What to do:** Update any workflows and templates that use version 1 of the [AI Agent](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent) node to the latest version. Workflows already set to **Tools Agent** continue to behave the same after you update. For **SQL Agent** use cases, replace it with a [Postgres](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.postgres) or [MySQL](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.mysql) tool sub-node paired with a recent **AI Agent** node.
 
 ### Removed expression helpers <a href="#removed-expression-helpers" id="removed-expression-helpers"></a>
 
-- The deprecated `$getPairedItem` expression helper is being removed.
+- n8n 3.0 removes the deprecated `$getPairedItem` expression helper.
 - **What to do:** Use n8n's standard [item linking](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/reference-data/link-data-items/how-items-link-through-workflows) instead, for example the `pairedItem` property or `$("<node-name>").item`.
 
 ## Security <a href="#security" id="security"></a>
@@ -37955,11 +37977,11 @@ Security defaults are getting stronger to make n8n safer by default. These chang
 
 ## Retired capabilities <a href="#retired-capabilities" id="retired-capabilities"></a>
 
-Some legacy or lower-usage product capabilities are being retired in n8n 3.0. Guidance will be provided where a migration path or alternative exists.
+n8n 3.0 retires some legacy or lower-usage product capabilities. n8n will provide guidance where a migration path or alternative exists.
 
-- **Chat hub** — being retired.
-- **Workflow import from URL in the editor** — being removed. Other [import methods](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/export-and-import) remain supported: copy-paste, **Import from File** in the editor UI menu, the CLI, and the Public API.
-- **Non-functional nodes** — being removed.
+- **Chat Hub**: n8n 3.0 retires this feature.
+- **Workflow import from URL in the editor**: n8n 3.0 removes this. Other [import methods](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/export-and-import) remain supported: copy-paste, **Import from File** in the editor UI menu, the CLI, and the n8n API.
+- **Non-functional nodes**: n8n 3.0 removes these.
 
 
 === https://docs.n8n.io/docs/changelog/SUMMARY/
@@ -44733,6 +44755,7 @@ If you encounter any issues during the process of updating to n8n 1.0, please se
 We would like to take a moment to express our gratitude to all of our users for their continued support and feedback. Your contributions are invaluable in helping us make n8n the best possible automation tool. We're excited to continue working with you as we move forward with the release of n8n 1.0 and beyond. Thank you for being a part of our journey!
 
 === https://docs.n8n.io/docs/changelog/release-notes/
+
 # Release notes
 
 This page is a running log of feature-level updates from each n8n release: what shipped in the editor and the integration nodes, one line per feature, newest first.
@@ -44820,7 +44843,7 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 * [Merge Node: Add queryParameters option](https://github.com/n8n-io/n8n/pull/33385): The Merge node's Combine by SQL mode now supports a Query Parameters option, letting you bind values separately from the SQL query text using ? placeholders, similar to the Postgres and MySQL nodes. This helps avoid injecting expression values directly into the query string, improving safety and readability. A notice was added explaining how to use query parameters, with a link to documentation.
 * [Notion Node: Migrate to new API and overhaul the node](https://github.com/n8n-io/n8n/pull/33749): The Notion node has been overhauled with a new v3, migrating to Notion API 2026-03-11, which replaces database queries with data sources. It adds a Data Source resource (Get, Search), markdown get/update operations for pages and blocks, JSON block support, file downloads for database pages, and a reorderable block builder. The Notion Trigger now also supports data sources. Database IDs are no longer accepted for database-page query/create; a data source must be selected instead.
 * [Add Group/Ungroup context menu actions](https://github.com/n8n-io/n8n/pull/33839): You can now group and ungroup nodes directly from the canvas context menu. Right-clicking a valid node selection shows a new Group option (disabled when the selection can't form a valid group), and right-clicking a group shows Rename group and Ungroup nodes options, making it easier to organize workflows without keyboard shortcuts.
-* [Rocketchat Node: Add Subscriptions & IM ops](https://github.com/n8n-io/n8n/pull/31432): The Rocket.Chat node now supports a Subscriptions resource, letting you retrieve all subscriptions or mark a room as read, and a Direct Message (IM) resource to fetch messages from a direct message room, with optional pagination via Return All/Limit. These additions extend the node's API coverage beyond the existing Chat operations.
+* [RocketChat Node: Add Subscriptions & IM ops](https://github.com/n8n-io/n8n/pull/31432): The RocketChat node now supports a Subscriptions resource, letting you retrieve all subscriptions or mark a room as read, and a Direct Message (IM) resource to fetch messages from a direct message room, with optional pagination via Return All/Limit. These additions extend the node's API coverage beyond the existing Chat operations.
 * [Rename private credentials to end-user credentials](https://github.com/n8n-io/n8n/pull/33629): Renamed "private credentials" to "end-user credentials" throughout the app for consistency. Tooltips, dialogs, credential-type cards, connect-screen text, node/workflow issue messages, and backend errors now use the new terminology. "Private" pills are replaced with an identity icon across the credentials list, node picker, credential header, and canvas badges. Deleting or switching a connected end-user credential to Fixed now shows a type-to-confirm dialog with a correctly pluralized count of affected people, and unsupported-trigger warnings now name the specific trigger.
 * [Improve node group selection UX](https://github.com/n8n-io/n8n/pull/33893): Node groups on the canvas now behave like nodes for selection and context menus. Selecting a title bar or all members selects the whole group with a single selection ring, and selection persists through collapse/expand. Group context menus mirror multi-selection actions worded for the group, with new Expand/Collapse all groups and Expand/Collapse selected options, plus keyboard shortcuts. Selection rectangles now fully wrap groups.
 
@@ -45058,7 +45081,10 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 * [Add credentials resolvers list UI](https://github.com/n8n-io/n8n/pull/23082): Added a new Credential Resolvers settings page where users can view, create, edit, and delete credential resolvers used to map dynamic credentials to a triggering user's identity. The resolver editor now reuses shared logic with the new list view for consistent behavior. This is part of ongoing dynamic credentials support in workflow settings.
 
 
+For full per-release detail of earlier n8n 2.x releases, see the archived [Release notes 2.x](release-notes-2.x.md). For releases before n8n 2.0, see [Release notes 1.x](release-notes-1.x.md) and [Release notes 0.x](release-notes-0.x.md).
+
 === https://docs.n8n.io/docs/changelog/README/
+
 # Changelog
 
 Every n8n release moves the platform forward. The changelog is where we call out the changes that matter most to the technical teams who build on n8n: new capabilities, more control over how your workflows run, and clearer visibility into what they're actually doing. Each entry is tied to the version it shipped in, newest first, and written to stand on its own, so it's easy to share the one update your team has been waiting for.
@@ -45071,6 +45097,8 @@ Use this page alongside n8n's other release resources depending on what you need
 * [GitHub releases](https://github.com/n8n-io/n8n/releases): full change detail of each release, linked to commits, including bug fixes and minor changes.
 
 Old-style release notes pages for [2.x](release-notes-2.x.md), [1.x](release-notes-1.x.md), and [0.x](release-notes-0.x.md) remain archived. Everything in the 2.x archive is covered by this changelog and the Release notes.
+
+For guidance on major version upgrades, see [v3.0 breaking changes](v30-breaking-changes.md), [v2.0 breaking changes](v20-breaking-changes.md), [v2.0 migration tool](v20-migration-tool.md), and [v1.0 migration guide](v10-migration-guide.md).
 {% endhint %}
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}
@@ -52540,7 +52568,7 @@ After addressing all issues, you're ready to upgrade to n8n 2.0
 {% hint style="warning" %}
 **This page is no longer updated**
 
-These release notes are now archived and won't receive further updates. For the latest releases, including every patch version, see the [n8n releases on GitHub](https://github.com/n8n-io/n8n/releases).
+These release notes are now archived and won't receive further updates. For current feature-level updates, see [Release notes](release-notes.md). For every patch version, see the [n8n releases on GitHub](https://github.com/n8n-io/n8n/releases).
 
 For a curated summary of the changes that matter most, see the [Changelog](README.md).
 {% endhint %}
@@ -52723,7 +52751,7 @@ This release contains bug fixes.
 [corazzione](https://github.com/corazzione)\
 [Wujerry](https://github.com/Wujerry)\
 [davidangularme](https://github.com/davidangularme)\
-[SAY-5](https://github.com/SAY-5)\
+SAY-5\
 [legendik](https://github.com/legendik)\
 [petrusdemelo](https://github.com/petrusdemelo)\
 [envy](https://github.com/envy)
@@ -57066,8 +57094,8 @@ n8n recommends self-hosting for expert users. Mistakes can lead to data loss, se
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.36.7
-Current `beta`: 2.37.3
+Current `stable`: 2.36.8
+Current `beta`: 2.37.4
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/suggested-pod-resources/
@@ -67101,7 +67129,7 @@ Refer to [Google Sheets credentials](../../credentials/google/README.md) for gui
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
 
-[Browse n8n-nodes-base.googlesheets integration templates](https://n8n.io/integrations/google-sheets) or [search all templates](https://n8n.io/workflows/)
+[Browse Google Sheets integration templates](https://n8n.io/integrations/google-sheets) or [search all templates](https://n8n.io/workflows/)
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
@@ -71633,7 +71661,7 @@ Refer to [WhatsApp Business Cloud credentials](../../credentials/whatsapp.md) fo
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
 
-[Browse n8n-nodes-base.whatsapp integration templates](https://n8n.io/integrations/whatsapp-business-cloud) or [search all templates](https://n8n.io/workflows/)
+[Browse WhatsApp Business Cloud integration templates](https://n8n.io/integrations/whatsapp-business-cloud) or [search all templates](https://n8n.io/workflows/)
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
@@ -72173,7 +72201,7 @@ Try a **Get** operation with the ID to confirm it exists.
 
 # Gmail
 
-Use the Gmail node to automate work in Gmail, and integrate Gmail with other applications. n8n has built-in support for a wide range of Gmail features, including creating, updating, deleting, and getting drafts, messages, labels, thread.
+Use the Gmail node to automate work in Gmail, and integrate Gmail with other applications. n8n has built-in support for a wide range of Gmail features, including creating, updating, deleting, and getting drafts, messages, labels, and threads.
 
 On this page, you'll find a list of operations the Gmail node supports and links to more resources.
 
@@ -72219,13 +72247,13 @@ Refer to [Google credentials](../../credentials/google/README.md) for guidance o
 
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
-[Browse n8n-nodes-base.gmail integration templates](https://n8n.io/integrations/gmail) or [search all templates](https://n8n.io/workflows/)
+[Browse Gmail integration templates](https://n8n.io/integrations/gmail) or [search all templates](https://n8n.io/workflows/)
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
 Refer to Google's [Gmail API documentation](https://developers.google.com/gmail/api) for detailed information about the API that this node integrates with.
 
-n8n provides a trigger node for Gmail. You can find the trigger node docs [here](../../trigger-nodes/n8n-nodes-base.gmailtrigger/README.md).
+n8n provides a trigger node for Gmail. See the [Gmail Trigger node docs](../../trigger-nodes/n8n-nodes-base.gmailtrigger/README.md).
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/96ifDzfcUuwOyYrubZUt/" %}
 
@@ -79723,7 +79751,7 @@ Refer to [LangChains's Anthropic documentation](https://js.langchain.com/docs/in
 [^1]: AI agents are artificial intelligence systems capable of responding to requests, making decisions, and performing real-world tasks for users. They use large language models (LLMs) to interpret user input and make decisions about how to best process requests using the information and resources they have available.
 
 === https://docs.n8n.io/docs/integrations/builtin/README/
-# Builtin <a href="#builtin" id="builtin"></a>
+# Built-in nodes <a href="#builtin" id="builtin"></a>
 
 {% content-ref url="node-types.md" %}
 [node-types.md](node-types.md)
@@ -79760,6 +79788,8 @@ Refer to [LangChains's Anthropic documentation](https://js.langchain.com/docs/in
 {% content-ref url="deprecated-nodes.md" %}
 [deprecated-nodes.md](deprecated-nodes.md)
 {% endcontent-ref %}
+
+See [Nodes](../README.md) for other integration topics.
 
 === https://docs.n8n.io/docs/integrations/builtin/core-nodes/n8n-nodes-base.ldap/
 
@@ -79975,11 +80005,11 @@ Use this option to retry the node after a failed attempt.
 
 # HTTP Request node <a href="#http-request-node" id="http-request-node"></a>
 
-The HTTP Request node is one of the most versatile nodes in n8n. It allows you to make HTTP requests to query data from any app or service with a REST API. You can use the HTTP Request node a regular node or attached to an [AI agent](../../cluster-nodes/root-nodes/n8n-nodes-langchain.agent/tools-agent.md) to use as a [tool](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/understand-ai-components/how-tools-work){ data-preview }.
+The HTTP Request node is one of the most versatile nodes in n8n. It allows you to make HTTP requests to query data from any app or service with a REST API. You can use the HTTP Request node as a regular node or attached to an [AI agent](../../cluster-nodes/root-nodes/n8n-nodes-langchain.agent/tools-agent.md) to use as a [tool](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/understand-ai-components/how-tools-work){ data-preview }.
 
 When using this node, you're creating a REST API call. You need some understanding of basic API terminology and concepts.
 
-There are two ways to create an HTTP request: configure the [node parameters](#node-parameters) or [import a curl command](#import-curl-command).
+You can create an HTTP request two ways: configure the [node parameters](#node-parameters) or [import a curl command](#import-curl-command).
 
 {% hint style="info" %}
 **Credentials**
@@ -80263,7 +80293,7 @@ Import a curl command:
 {% hint style="info" %}
 **Import format**
 
-This option always imports any parameter values as strings. If you wish to preserve the type of numbers and booleans in your request, switch **Using Fields Below** to **Using JSON** and paste your JSON object containing the parameters.
+This option always imports any parameter values as strings. To keep numbers and booleans in their original types, switch **Using Fields Below** to **Using JSON** and paste your JSON object containing the parameters.
 {% endhint %}
 
 1. From the HTTP Request node's **Parameters** tab, select **Import cURL**. The **Import cURL command** modal opens.
@@ -80273,7 +80303,7 @@ This option always imports any parameter values as strings. If you wish to prese
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
 
-[Browse n8n-nodes-base.httprequest integration templates](https://n8n.io/integrations/http-request) or [search all templates](https://n8n.io/workflows/)
+[Browse HTTP Request integration templates](https://n8n.io/integrations/http-request) or [search all templates](https://n8n.io/workflows/)
 
 ## FAQ
 
@@ -87731,7 +87761,7 @@ You can use these credentials to authenticate the following nodes:
 {% hint style="info" %}
 **Choosing a credential type**
 
-Some nodes (such as Microsoft Excel (OneDrive) and Microsoft OneDrive) let you choose between the node-specific credential (for example, **Microsoft Excel OAuth2 API**) and this generic **Microsoft OAuth2 API** credential. The generic credential can be reused across multiple Microsoft nodes; when you use it, make sure it's granted the scopes each node needs. Nodes that don't show this dropdown use their node-specific credential. The Microsoft Excel (SharePoint) node only works with this generic credential (or the Microsoft Entra Service Principal credential for app-only access); it doesn't accept the node-specific Microsoft Excel or Microsoft SharePoint credentials.
+Some nodes (such as Microsoft Excel (OneDrive) and Microsoft OneDrive) let you choose between the node-specific credential (for example, **Microsoft Excel OAuth2 API**) and this generic **Microsoft OAuth2 API** credential. You can reuse the generic credential across multiple Microsoft nodes. When you use it, make sure you grant it the scopes each node needs. Nodes that don't show this dropdown use their node-specific credential. The Microsoft Excel (SharePoint) node only works with this generic credential (or the Microsoft Entra Service Principal credential for app-only access); it doesn't accept the node-specific Microsoft Excel or Microsoft SharePoint credentials.
 {% endhint %}
 
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
@@ -87762,7 +87792,7 @@ Refer to the linked Microsoft API documentation below for more information about
 
 Some Microsoft services require extra information for OAuth2. Refer to [Service-specific settings](#service-specific-settings) for more guidance on those services.
 
-For self-hosted users, there are two main steps to configure OAuth2 from scratch:
+Self-hosted users can configure OAuth2 from scratch in two main steps:
 
 1. [Register an application](#register-an-application) with the Microsoft Identity Platform.
 2. Add a credential to that application, either by [generating a client secret](#generate-a-client-secret) or [registering a certificate](#authenticate-with-a-certificate).
@@ -87910,7 +87940,7 @@ Microsoft SharePoint credentials use the following scopes by default:
 
 * `openid`
 * `offline_access`
-* `https://<subdomain>.sharepoint.com/.default`, where `<subdomain>` is replaced with the credential's **Subdomain** value
+* `https://<subdomain>.sharepoint.com/.default`, where you replace `<subdomain>` with the credential's **Subdomain** value
 
 #### Default scopes for Microsoft OneDrive
 
@@ -87966,7 +87996,7 @@ Delegated permissions:
 
 ## Common issues <a href="#common-issues" id="common-issues"></a>
 
-Here are the known common errors and issues with Microsoft OAuth2 credentials.
+Common errors and issues with Microsoft OAuth2 credentials:
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/fXYywkPyzPTxeGOEnYgb/" %}
 
@@ -88732,7 +88762,7 @@ To configure this credential, you'll need:
 
 To generate your API Key:
 
-1. Login to your OpenAI account or [create](https://platform.openai.com/signup/) an account.
+1. Log in to your OpenAI account or [create](https://platform.openai.com/signup/) an account.
 2. Open your [API keys](https://platform.openai.com/api-keys) page.
 3. Select **Create new secret key** to create an API key, optionally naming the key.
 4. Copy your key and add it as the **API Key** in n8n.
@@ -92825,7 +92855,7 @@ To create credentials for WhatsApp, you need the following Meta assets:
 
 </details>
 
-\- A Meta \[business portfolio]\(https://www.facebook.com/business/help/1710077379203657?id=180505742745347): WhatsApp messaging services require a Meta business portfolio, formerly called a Business Manager account. The UI may still show either option.
+* A Meta [business portfolio](https://www.facebook.com/business/help/1710077379203657?id=180505742745347): WhatsApp messaging services require a Meta business portfolio, formerly called a Business Manager account. The UI may still show either option.
 
 <details>
 
@@ -92841,7 +92871,7 @@ To create credentials for WhatsApp, you need the following Meta assets:
 
 </details>
 
-\- A Meta \[business app]\(https://developers.facebook.com/docs/development/create-an-app/) configured with WhatsApp: Once you have a developer account, you will create a Meta business app.
+* A Meta [business app](https://developers.facebook.com/docs/development/create-an-app/) configured with WhatsApp: Once you have a developer account, you will create a Meta business app.
 
 <details>
 
@@ -92867,7 +92897,7 @@ To create credentials for WhatsApp, you need the following Meta assets:
 
 Refer to [WhatsApp's API documentation](https://developers.facebook.com/docs/whatsapp/#platform-apis) for more information about the service.
 
-Meta classifies users who create WhatsApp business apps as Tech Providers; refer to Meta's [Get Started for Tech Providers](https://developers.facebook.com/docs/whatsapp/solution-providers/get-started-for-tech-providers) for more information.
+Meta classifies users who create WhatsApp business apps as Tech Providers. Refer to Meta's [Get Started for Tech Providers](https://developers.facebook.com/docs/whatsapp/solution-providers/get-started-for-tech-providers) for more information.
 
 ## Using API key <a href="#using-api-key" id="using-api-key"></a>
 
@@ -94946,7 +94976,7 @@ Use this generic authentication if your app or service supports OAuth1 authentic
 
 To configure this credential, enter:
 
-* An **Authorization URL**: Also known as the Resource Owner Authorization URI. This URL typically ends in `/oauth1/authorize`. The temporary credentials are sent here to prompt a user to complete authorization.
+* An **Authorization URL**: Also known as the Resource Owner Authorization URI. This URL typically ends in `/oauth1/authorize`. n8n sends the temporary credentials here to prompt a user to complete authorization.
 * An **Access Token URL**: This is the URI used for the initial request for temporary credentials. This URL typically ends in `/oauth1/request` or `/oauth1/token`.
 * A **Consumer Key**: Also known as the client key, like a username. This specifies the `oauth_consumer_key` to use for the call.
 * A **Consumer Secret**: Also known as the client secret, like a password.
@@ -95089,16 +95119,16 @@ The **Custom Auth** credential expects JSON data to define your credential. You 
 ## Using Simplified Custom Auth
 
 {% hint style="info" %}
-**Available from n8n 2.35.0**
+**Feature availability**
 
-In older versions, use [Custom auth](httprequest.md#using-custom-auth) instead.
+Simplified Custom Auth is available from n8n 2.35.0. In older versions, use [Custom auth](httprequest.md#using-custom-auth) instead.
 {% endhint %}
 
 Use this generic authentication if your app or service expects static authentication values in headers, query parameters, or the request body, and you want to keep the secret values separate from the request definition.
 
 Simplified Custom Auth works like [Custom auth](httprequest.md#using-custom-auth): JSON that n8n merges into every request that uses the credential. The difference is that the JSON is a template containing `{{placeholder}}` markers instead of the secrets themselves. The credential form shows one field per placeholder, and n8n replaces each marker with the field's value when it sends a request.
 
-This split exists so that the setup part can be prepared for you. When the [AI Assistant](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/ai-assistant) builds a workflow for a service that has no dedicated n8n credential, it creates this credential type: it prepares the template, the fields, and the test URL from the service's API documentation, and you only paste the secret values into the form. It also records the service's API host so that n8n only offers the credential to nodes calling the same service.
+This split exists so the AI Assistant can prepare the setup part for you. When the [AI Assistant](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/ai-assistant) builds a workflow for a service that has no dedicated n8n credential, it creates this credential type: it prepares the template, the fields, and the test URL from the service's API documentation, and you only paste the secret values into the form. It also records the service's API host so that n8n only offers the credential to nodes calling the same service.
 
 You can also set up the credential yourself. Select **Edit setup** in the credential modal and enter:
 
@@ -99744,7 +99774,7 @@ n8n Cloud users can use **Managed OAuth2** for the following nodes:
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/OI5s27oyRBdDvpwcuMQF/" %}
 
-To use **Managed OAuth2**, just click **Sign in with Google** in the credentials screen. No more setup is required in the Google Cloud Console or elsewhere.
+To use **Managed OAuth2**, click **Sign in with Google** in the credentials screen. You don't need any more setup in the Google Cloud Console or elsewhere.
 
 ![n8n credential screen with a Sign in with Google button and a dropdown to switch to Custom OAuth2](../../../.gitbook/assets/managed-oauth.png)
 
@@ -99758,7 +99788,7 @@ The rest of this document covers the full process.
 
 ## Set up Custom OAuth2 <a href="#set-up-custom-oauth2" id="set-up-custom-oauth2"></a>
 
-There are five steps to connecting your n8n credential to Google services:
+Follow five steps to connect your n8n credential to Google services:
 
 1. [Create a Google Cloud Console project](oauth-single-service.md#create-a-google-cloud-console-project).
 2. [Enable APIs](oauth-single-service.md#enable-apis).
@@ -99790,7 +99820,7 @@ If you haven't used OAuth in your Google Cloud project before, you'll need to [c
 4. Enter an **App name** and **User support email** to include on the Oauth screen. Select **Next** to continue.
 5.  For the **Audience**, select **Internal** for user access within your organization's Google workspace or **External** for any user with a Google account. Refer to Google's [User type documentation](https://support.google.com/cloud/answer/15549945?sjid=17061891731152303663-EU#user-type) for more information on user types. Select **Next** to continue.<br>
 
-    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>Testing mode and test users</strong></p><p>If you select <strong>External</strong>, your app will default to Testing mode. In this mode, only Google accounts you manually add as test users can complete the OAuth flow — everyone else will see an "access denied" screen. See <a href="oauth-single-service.md#google-hasnt-verified-this-app">Google hasn't verified this app</a> to learn how to add them.</p></div>
+    <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>Testing mode and test users</strong></p><p>If you select <strong>External</strong>, your app will default to Testing mode. In this mode, only Google accounts you manually add as test users can complete the OAuth flow. Everyone else sees an "access denied" screen. See <a href="oauth-single-service.md#google-hasnt-verified-this-app">Google hasn't verified this app</a> to learn how to add them.</p></div>
 6. Select the **Email addresses** Google should use to contact you about changes to your project. Select **Next** to continue.
 7. Read and accept the Google's User Data Policy. Select **Continue** and then select **Create**.
 8. In the left-hand menu, select **Branding**.
@@ -99844,7 +99874,7 @@ This error means the redirect URI n8n is sending doesn't match any of the URIs r
 
 ### Access denied / "app not verified" <a href="#access-denied-app-not-verified" id="access-denied-app-not-verified"></a>
 
-This usually happens when your app is still in Testing mode and the Google account you're trying to authenticate with hasn't been added as a test user.
+This usually happens when your app is still in Testing mode and you haven't added the Google account you're trying to authenticate with as a test user.
 
 **Fix:** Go to **APIs & Services** > **OAuth consent screen** > **Test users** and add the account you're trying to use.
 
@@ -99869,7 +99899,7 @@ This section contains:
 
 ## OAuth2 and Service Account <a href="#oauth2-and-service-account" id="oauth2-and-service-account"></a>
 
-There are two authentication methods available for Google services nodes:
+Google service nodes support two authentication methods:
 
 * [OAuth2](https://developers.google.com/identity/protocols/oauth2): Recommended because it's more widely available and easier to set up.
 * [Service Account](https://cloud.google.com/iam/docs/understanding-service-accounts): Refer to the [Google documentation: Understanding service accounts](https://cloud.google.com/iam/docs/understanding-service-accounts) for guidance on when you need a service account.
@@ -99882,7 +99912,7 @@ There are two authentication methods available for Google services nodes:
 
 ## Compatible nodes <a href="#compatible-nodes" id="compatible-nodes"></a>
 
-Once configured, you can use your credentials to authenticate the following nodes. Most nodes are compatible with OAuth2 authentication. Support for Service Account authentication is limited.
+Once configured, you can use your credentials to authenticate the following nodes. Most nodes are compatible with OAuth2 authentication. n8n has limited support for Service Account authentication.
 
 | Node                                                                                            | OAuth | Service Account |
 | ----------------------------------------------------------------------------------------------- | :---: | :-------------: |
@@ -106430,15 +106460,17 @@ External services need a way to identify and authenticate users. This data can r
 
 Nodes in n8n can then request that credential information. As another layer of security, only node types with specific access rights can access the credentials.
 
-To make sure that the data is secure, it gets saved to the database encrypted. n8n uses a random personal encryption key, which it automatically generates on the first run of n8n and then saved under `~/.n8n/config`.
+To make sure that the data is secure, it gets saved to the database encrypted. n8n uses a random personal encryption key, which it automatically generates on the first run of n8n and then saves under `~/.n8n/config`.
 
 To learn more about creating, managing, and sharing credentials, refer to [Manage credentials](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/create-and-edit-credentials).
 
 ## Community nodes <a href="#community-nodes" id="community-nodes"></a>
 
-n8n supports custom nodes built by the community. Refer to [Community nodes](../community-nodes/installation-and-management/README.md) for guidance on installing and using these nodes.
+n8n supports community nodes. Refer to [Community nodes](../community-nodes/installation-and-management/README.md) for guidance on installing and using these nodes.
 
-For help building your own custom nodes, and publish them to [npm](https://www.npmjs.com/), refer to [Creating nodes](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/overview) for more information.
+For help building and publishing your own community nodes to [npm](https://www.npmjs.com/), refer to [Create nodes](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/overview) for more information.
+
+See [Built-in nodes](./) for other integration topics.
 
 [^1]: In n8n, nodes are individual components that you compose to create workflows. Nodes define when the workflow should run, allow you to fetch, send, and process data, can define flow control logic, and connect with external services.
 [^2]: A trigger node is a special node responsible for executing the workflow in response to certain conditions. All production workflows need at least one trigger to determine when the workflow should run.
@@ -107486,7 +107518,7 @@ If you need to connect to a service where n8n doesn't have a node, or a credenti
 
 ## Where to go next <a href="#where-to-go-next" id="where-to-go-next"></a>
 
-* If you want to create your own node, head over to the [Creating Nodes](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/overview) section.
+* If you want to create your own node, head over to the [Create nodes](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/overview) section.
 * Check out [Community nodes](community-nodes/using-community-nodes.md) to learn about installing and managing community-built nodes.
 * If you'd like to learn more about the different nodes in n8n, their functionalities and example usage, check out n8n's node libraries: [Core nodes](builtin/core-nodes/README.md), [Actions](builtin/app-nodes/README.md), and [Triggers](builtin/trigger-nodes/README.md).
 * If you'd like to learn how to add the credentials for the different nodes, head over to the [Credentials](builtin/credentials/README.md) section.
