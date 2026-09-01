@@ -8358,6 +8358,76 @@ If your workflow execution fails, you can retry the execution. To retry a failed
 
 You can load data from a previous workflow back into the canvas. Refer to [Debug executions](debug-executions.md) for more information.
 
+=== https://docs.n8n.io/docs/build/understand-workflows/use-gateway-credits/
+
+# Use Gateway credits
+
+Gateway credits let you run supported AI models and third-party services in your workflows without creating provider accounts or setting up [credentials](create-and-edit-credentials.md). n8n routes the requests through its own gateway and bills the usage from your instance's prepaid credit balance. For how billing works, refer to [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits).
+
+{% hint style="info" %}
+**Feature availability**
+
+Gateway credits are available on:
+
+- **n8n Cloud:** Starter, Pro
+
+They aren't available on n8n Cloud Enterprise or self-hosted n8n. Gateway credits are available from n8n 2.36.0.
+{% endhint %}
+
+## Use Gateway credits on a node
+
+On a supported node, the credential field offers Gateway credits alongside your own credentials:
+
+1. Open the node's settings.
+1. In the credential field, select **Use Gateway credits**. The option shows your remaining balance.
+1. Configure the rest of the node as usual, then run it.
+
+That's the whole setup: no provider sign-up, no API key. n8n deducts the cost of each request from your balance at the rates on the [service pricing page](https://app.n8n.cloud/service-pricing).
+
+To use your own account instead, select **Use my own credential** and pick or create a credential. You choose per node, so one workflow can mix Gateway credits on one node with your own credentials on another.
+
+## Find supported nodes
+
+The nodes panel highlights what you can run with Gateway credits:
+
+- The **Included in n8n** section at the top of the AI model and tool lists shows supported nodes, with your remaining balance in the section header.
+- Supported nodes show a credits tag in search results.
+
+The tag and section header read either **Gateway credits** or **Free credits**, depending on whether you've already topped up.
+
+The catalogue of supported services and models grows over time. For the current list, check the [service pricing page](https://app.n8n.cloud/service-pricing).
+
+## Unsupported operations
+
+Some nodes support Gateway credits for part of what they do. When you use Gateway credits on such a node, n8n hides the unsupported operations. If a node already has an unsupported operation selected when you switch it to Gateway credits, n8n keeps the operation and shows a warning instead. If you need an operation that isn't supported, switch that node to **Use my own credential**.
+
+## When your balance runs out
+
+Nodes using Gateway credits fail when your instance's balance reaches zero. The instance owner can [top up the balance](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits/top-up-gateway-credits) or set up auto top-up, and can [track spend by model or workflow](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits/track-gateway-credit-spend) in the Cloud admin dashboard. You can also switch the affected nodes to your own credentials at any time.
+
+## Gateway credits versus your own API keys
+
+Both approaches run the same nodes. The differences are in setup, billing, and coverage:
+
+| | Gateway credits | Your own API keys |
+|---|---|---|
+| Setup | None: select and run | Create a provider account, generate a key, add a credential |
+| Billing | One prepaid balance across all supported services, billed by n8n | Separate billing per provider, at your own rates and terms |
+| Coverage | Supported services and models only | Any service or model n8n integrates with, including your own plan's rate limits and features |
+| Spend visibility | One [spend view](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits/track-gateway-credit-spend) by model and workflow in n8n | Each provider's own dashboard |
+
+You can switch a node between the two at any time without rebuilding the workflow.
+
+## Control Gateway credits on your instance
+
+Instance owners can turn Gateway credits off for everyone on the instance:
+
+1. Open the [Cloud admin dashboard](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/use-the-admin-dashboard) and open **Workspace settings**.
+1. Turn off **Enable Gateway credits**.
+1. Save your workspace settings. The instance goes offline for one to two minutes while the new settings apply.
+
+When it's off, the Gateway credits option doesn't appear on nodes for anyone on the instance.
+
 === https://docs.n8n.io/docs/build/understand-workflows/save-and-publish-workflows/
 
 # Save and publish workflows
@@ -8850,6 +8920,10 @@ When a workflow is shown read-only, such as in workflow history or a shared view
 
 Credentials are securely stored authentication information used to connect n8n workflows to external services such as APIs, or databases.
 
+{% hint style="info" %}
+On n8n Cloud, supported AI models and services don't need a credential at all: select **Use Gateway credits** on the node to run it with [Gateway credits](use-gateway-credits.md) instead of your own API key.
+{% endhint %}
+
 ## Create a credential <a href="#create-a-credential" id="create-a-credential"></a>
 
 1. Select the <img src="../.gitbook/assets/universal-resource-button (1).png" alt="universal create resource icon" data-size="line"> **Create** button in the upper-left corner of the side menu. Select credential.
@@ -8937,6 +9011,7 @@ You can use expressions[^2] to set credentials dynamically as your workflow runs
   * [Create and run workflows](understand-workflows/create-and-run-workflows.md)
   * [Save and publish workflows](understand-workflows/save-and-publish-workflows.md)
   * [Create and edit credentials](understand-workflows/create-and-edit-credentials.md)
+  * [Use Gateway credits](understand-workflows/use-gateway-credits.md)
 * [Build and manage agents](build-and-manage-agents.md)
 * [Ways of building workflows](ways-of-building-workflows/README.md)
   * [Use AI Assistant](ways-of-building-workflows/ai-assistant.md)
@@ -25870,6 +25945,9 @@ Find the template API URL by taking a published template's ID and adding it to `
     * [Manage your data](use-n8n-cloud/configure-cloud/manage-your-data.md)
     * [Change instance ownership or username](use-n8n-cloud/configure-cloud/change-instance-ownership-or-username.md)
   * [Understand concurrency](use-n8n-cloud/understand-concurrency.md)
+  * [Gateway credits](use-n8n-cloud/gateway-credits/README.md)
+    * [Top up Gateway credits](use-n8n-cloud/gateway-credits/top-up-gateway-credits.md)
+    * [Track Gateway credit spend](use-n8n-cloud/gateway-credits/track-gateway-credit-spend.md)
   * [Download workflows](use-n8n-cloud/download-workflows.md)
 * [Host n8n](host-n8n/README.md)
   * [Install options](host-n8n/install-options/README.md)
@@ -37753,6 +37831,10 @@ Outbound traffic may appear to originate from any of:
 [configure-cloud/README.md](configure-cloud/README.md)
 {% endcontent-ref %}
 
+{% content-ref url="gateway-credits/README.md" %}
+[gateway-credits/README.md](gateway-credits/README.md)
+{% endcontent-ref %}
+
 {% content-ref url="understand-concurrency.md" %}
 [understand-concurrency.md](understand-concurrency.md)
 {% endcontent-ref %}
@@ -37760,6 +37842,180 @@ Outbound traffic may appear to originate from any of:
 {% content-ref url="download-workflows.md" %}
 [download-workflows.md](download-workflows.md)
 {% endcontent-ref %}
+
+=== https://docs.n8n.io/docs/deploy/use-n8n-cloud/gateway-credits/README/
+
+# Gateway credits
+
+Gateway credits let you use supported AI models and third-party services in your workflows without creating provider accounts or managing API keys. Instead of setting up a credential, you select Gateway credits on a supported node, and n8n bills the usage from a prepaid credit balance.
+
+{% hint style="info" %}
+**Feature availability**
+
+Gateway credits are available on:
+
+- **n8n Cloud:** Starter, Pro
+
+They aren't available on n8n Cloud Enterprise or self-hosted n8n. Gateway credits are available from n8n 2.36.0.
+{% endhint %}
+
+## How Gateway credits work
+
+When you select **Use Gateway credits** on a supported node, n8n routes the node's requests through an n8n-managed gateway to the service provider. The gateway authenticates with the provider on n8n's behalf, so you don't need a provider account. n8n deducts the cost of each request from your credit balance.
+
+n8n bills usage per request at the rates listed on the [service pricing page](https://app.n8n.cloud/service-pricing). Rates vary by model and service, and change as providers update their pricing, so the service pricing page is always the source of truth for current rates.
+
+To learn how to select Gateway credits on a node and find supported nodes in the editor, see [Use Gateway credits](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/use-gateway-credits).
+
+## Supported services
+
+Gateway credits cover two categories of service:
+
+- **AI models**: large language model providers such as OpenAI, Anthropic, and Google Gemini.
+- **Tool services**: services for tasks like web search, web scraping, browser automation, and document parsing, such as Brave Search and Firecrawl.
+
+The catalogue grows over time. For the current list of supported services and models, check the [service pricing page](https://app.n8n.cloud/service-pricing). In the editor, the **Included in n8n** section of the nodes panel shows the nodes you can use with Gateway credits.
+
+Services that aren't in the catalogue still work in n8n the usual way: create a credential with your own API key. Refer to [Create and edit credentials](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/create-and-edit-credentials) for details.
+
+## Your credit balance
+
+Each Cloud instance has one credit balance, shared by everyone who uses Gateway credits on that instance. You can see the balance in the editor next to the Gateway credits option on a node, and on the **Gateway credits** tab in the [Cloud admin dashboard](../use-the-admin-dashboard.md), which also shows your spend over time. Refer to [Track Gateway credit spend](track-gateway-credit-spend.md) for details.
+
+New Cloud users receive a small amount of free credit at sign-up, so you can try supported services before you buy credits. Free trials include Gateway credits too: you can use them from your first workflow.
+
+When your balance reaches zero, nodes using Gateway credits stop working until you add credit. Nodes using your own credentials aren't affected. If the balance runs out in the middle of an execution, n8n lets the in-flight requests finish rather than stopping them partway through, and deducts the difference from your next top-up. On a paid plan, you can [top up your balance](top-up-gateway-credits.md) manually or automatically. Topping up isn't available during a free trial, so if you use up your free credit while trialing, upgrade to a paid plan to add more.
+
+### Credit expiry and forfeiture
+
+- n8n uses free credits before top-up credits, and uses the credits that expire soonest first.
+- Top-up credits expire 12 months after purchase.
+- Credits aren't cash and you can't transfer them to another account.
+- Top-ups are final. n8n doesn't refund unused credits except where required by law.
+- If you close your n8n account, you forfeit any remaining credits. Canceling your subscription doesn't forfeit credits while your account still exists.
+
+## Gateway credits and other credit types
+
+n8n has more than one kind of credit. They have separate balances and pay for different things:
+
+| Credit type | What it pays for | Where you see it |
+|---|---|---|
+| Gateway credits | AI models and tool services used by nodes in your workflows | On supported nodes, and on the **Gateway credits** tab in the Cloud admin dashboard |
+| AI Assistant credits | Your usage of [n8n's AI Assistant](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/ai-assistant) and AI Workflow Builder | In the AI Assistant panel in the editor |
+| Free OpenAI API credits | A legacy one-time OpenAI allowance for new Cloud users | Only on instances without Gateway credits |
+
+Topping up Gateway credits doesn't add AI Assistant credits, and using the AI Assistant doesn't spend your Gateway credit balance.
+
+## Data handling
+
+When a node runs on Gateway credits, n8n sends the request through its gateway to the service provider under n8n's own provider account. The provider receives the content of the request, such as the prompt you send to a model or the text you send to a parser, but not your identity or n8n account details. For more on how n8n handles your data, refer to [Privacy](https://app.gitbook.com/s/ukPPOMQ6NId4gpAIkPXa/privacy) and n8n's terms of service.
+
+## Related resources
+
+- [Use Gateway credits](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/use-gateway-credits): select Gateway credits on a node and find supported nodes.
+- [Top up Gateway credits](top-up-gateway-credits.md): add credit manually or automatically.
+- [Track Gateway credit spend](track-gateway-credit-spend.md): monitor your balance, spend, and top-up history.
+- [Service pricing page](https://app.n8n.cloud/service-pricing): current rates for all supported services and models.
+
+=== https://docs.n8n.io/docs/deploy/use-n8n-cloud/gateway-credits/top-up-gateway-credits/
+
+# Top up Gateway credits
+
+When your [Gateway credits](README.md) balance runs low, top it up from the Cloud admin dashboard. You can add credit manually whenever you need it, or turn on auto top-up so n8n refills your balance for you.
+
+Only the instance owner can top up, and topping up requires an active paid subscription. Free trials include Gateway credits, but not top-ups: if you use up your free credit during a trial, upgrade to a paid plan to add more.
+
+## Top up manually
+
+1. Open the [Cloud admin dashboard](../use-the-admin-dashboard.md) and select the **Gateway credits** tab.
+1. Select **Top up**.
+1. Choose an amount and complete the checkout. You can pay with the payment method saved on your subscription or with a different one. n8n emails you an invoice.
+
+Your new balance appears on the page once the payment completes.
+
+## Set up auto top-up
+
+Auto top-up refills your balance whenever it drops below a threshold you set, keeping it above zero so workflows that rely on Gateway credits keep running. Unlike manual top-ups, auto top-up always charges the payment method saved on your subscription.
+
+1. Open the [Cloud admin dashboard](../use-the-admin-dashboard.md) and select the **Gateway credits** tab.
+1. Turn on **Auto top-up**.
+1. Set **When balance drops to** (the balance that triggers a top-up) and **Top up to** (the balance to refill to).
+1. Optionally, turn on **Monthly auto top-up limit** to cap how much auto top-up can add per month.
+1. Select **Save changes**.
+
+{% hint style="info" %}
+If your balance is already below the threshold when you save, n8n triggers a one-time top-up straight away to reach your target balance. The page shows the estimated cost before you save.
+{% endhint %}
+
+How auto top-up behaves:
+
+- n8n emails you an invoice each time auto top-up adds credit.
+- If you set a monthly limit, auto top-up pauses once it adds that amount in the current month, and resumes the next month.
+- If a payment fails, n8n retries. If the retries also fail, n8n turns auto top-up off and emails you. Because auto top-up always charges the payment method saved on your subscription, fix that payment method before turning it back on.
+
+## Overspend
+
+Your balance can run out in the middle of an execution. When that happens, n8n lets the in-flight Gateway requests finish rather than stopping them partway through, so your balance can dip slightly below zero. n8n deducts the overspent amount from your next top-up, and the deduction appears in your [top-up history](track-gateway-credit-spend.md#top-up-history).
+
+## Refunds
+
+Top-ups are final. n8n doesn't refund unused credits except where required by law. If you think a charge is wrong, [contact n8n support](https://www.n8n.io/contact). For expiry and forfeiture rules, refer to [Credit expiry and forfeiture](README.md#credit-expiry-and-forfeiture).
+
+## Related resources
+
+- [Gateway credits](README.md): how Gateway credits work.
+- [Track Gateway credit spend](track-gateway-credit-spend.md): monitor your balance, spend, and top-up history.
+- [Service pricing page](https://app.n8n.cloud/service-pricing): current rates for all supported services and models.
+
+=== https://docs.n8n.io/docs/deploy/use-n8n-cloud/gateway-credits/track-gateway-credit-spend/
+
+# Track Gateway credit spend
+
+The **Gateway credits** tab in the Cloud admin dashboard shows your balance, your spend over time, and your top-up history. To open it, go to the [Cloud admin dashboard](../use-the-admin-dashboard.md) and select the **Gateway credits** tab.
+
+You can also see your current balance in the editor, next to the Gateway credits option on supported nodes.
+
+## Balance
+
+The balance card shows your remaining credit, including how much of your free sign-up credit is left. If you're on a paid plan, you can top up from here. Refer to [Top up Gateway credits](top-up-gateway-credits.md) for details.
+
+## Spend
+
+The spend chart shows how your credit usage breaks down over time. You can:
+
+- Change the time range to see recent or longer-term usage.
+- Group spend by model or service, to see which providers cost the most.
+- Group spend by workflow, to see which of your workflows consume the most credit.
+
+Grouping by workflow helps you find a workflow that's spending more than you expect, for example one that calls a model on a frequent schedule.
+
+## Top-up history
+
+The top-up history lists every credit added to your balance: your free sign-up credit, manual top-ups, and auto top-ups. Each entry shows the amount, the date, and when those credits expire. Refunded top-ups stay in the list, marked as refunded.
+
+If your balance dipped below zero because n8n let in-flight requests finish, the overspent amount is deducted from your next top-up and shown here. Refer to [Overspend](top-up-gateway-credits.md#overspend) for details.
+
+## Notifications
+
+n8n emails the instance owner about balance changes:
+
+- When your balance runs low, so you can top up before workflows stop.
+- When your balance is empty.
+- When an auto top-up adds credit, fails to charge your payment method, or pauses because it reached your monthly limit.
+
+## When your balance runs out
+
+When your balance reaches zero, nodes using Gateway credits fail until you add credit. Executions that don't use Gateway credits keep running as normal.
+
+- On a paid plan, [top up your balance](top-up-gateway-credits.md) or set up auto top-up to avoid interruptions.
+- On a free trial, top-ups aren't available: upgrade to a paid plan to add more credit.
+- On any plan, you can switch the affected nodes to your own credentials. Refer to [Use Gateway credits](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/use-gateway-credits) for how to switch.
+
+## Related resources
+
+- [Gateway credits](README.md): how Gateway credits work.
+- [Top up Gateway credits](top-up-gateway-credits.md): add credit manually or automatically.
+- [Service pricing page](https://app.n8n.cloud/service-pricing): current rates for all supported services and models.
 
 === https://docs.n8n.io/docs/deploy/use-n8n-cloud/use-the-admin-dashboard/
 
@@ -57106,8 +57362,8 @@ n8n recommends self-hosting for expert users. Mistakes can lead to data loss, se
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.36.8
-Current `beta`: 2.37.4
+Current `stable`: 2.36.9
+Current `beta`: 2.37.6
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/suggested-pod-resources/
@@ -59386,6 +59642,10 @@ Refer to [Kitemaker credentials](../credentials/kitemaker.md) for guidance on se
 
 # MiniMax
 
+{% hint style="info" %}
+On n8n Cloud, you can use the MiniMax node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own MiniMax API key. Select **Use Gateway credits** in the node's credential field to run the node without a MiniMax account.
+{% endhint %}
+
 The MiniMax node connects n8n workflows to MiniMax AI models. Use it to generate images from text prompts, synthesize speech, create videos from text or images, and send messages to MiniMax language models.
 
 {% hint style="info" %}
@@ -61630,6 +61890,10 @@ Here are some common errors and issues with the [OpenAI node](README.md) and ste
 
 # OpenAI node <a href="#openai-node" id="openai-node"></a>
 
+{% hint style="info" %}
+On n8n Cloud, you can use the OpenAI node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own OpenAI API key. Select **Use Gateway credits** in the node's credential field to run the node without an OpenAI account.
+{% endhint %}
+
 Use the OpenAI node to automate work in OpenAI and integrate OpenAI with other applications. n8n has built-in support for a wide range of OpenAI features, including creating images and assistants, as well as chatting with models. 
 
 On this page, you'll find a list of operations the OpenAI node supports and links to more resources.
@@ -61996,6 +62260,10 @@ Refer to [Bitly credentials](../credentials/bitly.md) for guidance on setting up
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-langchain.alibabacloud/
 
 # Qwen Cloud
+
+{% hint style="info" %}
+On n8n Cloud, you can use the Qwen Cloud node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own Qwen Cloud API key. Select **Use Gateway credits** in the node's credential field to run the node without a Qwen Cloud account.
+{% endhint %}
 
 The Qwen Cloud node lets you call models available on Qwen Cloud from n8n. Use it to generate completions, analyze or create images, and produce short videos from text or images.
 
@@ -65047,6 +65315,10 @@ To include custom fields, follow these steps:
 
 # Google Gemini node <a href="#google-gemini-node" id="google-gemini-node"></a>
 
+{% hint style="info" %}
+On n8n Cloud, you can use the Google Gemini node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own Google API key. Select **Use Gateway credits** in the node's credential field to run the node without a Google account.
+{% endhint %}
+
 Use the Google Gemini node to automate work in Google Gemini and integrate Google Gemini with other applications. n8n has built-in support for a wide range of Google Gemini features, including working with audio, videos, images, documents, and files to analyze, generate, and transcribe.
 
 On this page, you'll find a list of operations the Google Gemini node supports, and links to more resources.
@@ -66438,6 +66710,10 @@ Refer to [Elasticsearch credentials](../credentials/elasticsearch.md) for guidan
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-langchain.anthropic/
 
 # Anthropic node <a href="#anthropic-node" id="anthropic-node"></a>
+
+{% hint style="info" %}
+On n8n Cloud, you can use the Anthropic node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own Anthropic API key. Select **Use Gateway credits** in the node's credential field to run the node without an Anthropic account.
+{% endhint %}
 
 Use the Anthropic node to automate work in Anthropic and integrate Anthropic with other applications. n8n has built-in support for a wide range of Anthropic features, including analyzing, uploading, getting, and deleting documents, files, and images,  and generating, improving, or templatizing prompts.
 
@@ -68085,6 +68361,10 @@ Refer to [Flow credentials](../credentials/flow.md) for guidance on setting up a
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-langchain.moonshot/
 
 # Moonshot Kimi
+
+{% hint style="info" %}
+On n8n Cloud, you can use the Moonshot Kimi node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own Moonshot API key. Select **Use Gateway credits** in the node's credential field to run the node without a Moonshot account.
+{% endhint %}
 
 The Moonshot Kimi node connects n8n workflows to Moonshot Kimi AI models. Use it to send prompts and receive model responses, attach images to messages, or analyze images with an image-analysis model.
 
@@ -76600,6 +76880,10 @@ Refer to [LangChain's output parser documentation](https://js.langchain.com/docs
 
 # Moonshot Kimi Chat Model node
 
+{% hint style="info" %}
+On n8n Cloud, you can use the Moonshot Kimi Chat Model node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own Moonshot API key. Select **Use Gateway credits** in the node's credential field to run the node without a Moonshot account.
+{% endhint %}
+
 Use the Moonshot Kimi Chat Model node to send chat requests to the Kimi chat API and generate conversational responses. Use it when you need an AI chat model in a workflow. For example, you can power assistants, build multi-step AI chains, or produce model-driven content with tunable sampling and token settings.
 
 {% hint style="info" %}
@@ -76989,6 +77273,10 @@ In sub-nodes, the expression always resolves to the first item. For example, giv
 === https://docs.n8n.io/docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenai/README/
 
 # OpenAI Chat Model
+
+{% hint style="info" %}
+On n8n Cloud, you can use the OpenAI Chat Model node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own OpenAI API key. Select **Use Gateway credits** in the node's credential field to run the node without an OpenAI account.
+{% endhint %}
 
 Use the OpenAI Chat Model node to use OpenAI's chat models with conversational agents[^1].
 
@@ -78714,6 +79002,10 @@ If you add more than one MongoDB Chat Memory node to your workflow, all nodes ac
 
 # Qwen Cloud Chat Model
 
+{% hint style="info" %}
+On n8n Cloud, you can use the Qwen Cloud Chat Model node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own Qwen Cloud API key. Select **Use Gateway credits** in the node's credential field to run the node without a Qwen Cloud account.
+{% endhint %}
+
 The Qwen Cloud Chat Model node sends chat prompts to conversational models available on Qwen Cloud, for advanced AI chains and LangChain integrations. Use it to generate conversational responses, integrate model outputs into workflows, or run prompts with custom sampling, retry, and timeout settings.
 
 {% hint style="info" %}
@@ -78959,6 +79251,10 @@ For common questions or issues and suggested solutions, refer to [Common issues]
 
 # MiniMax Chat Model node <a href="#minimax-chat-model-node" id="minimax-chat-model-node"></a>
 
+{% hint style="info" %}
+On n8n Cloud, you can use the MiniMax Chat Model node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own MiniMax API key. Select **Use Gateway credits** in the node's credential field to run the node without a MiniMax account.
+{% endhint %}
+
 Use the MiniMax Chat Model node to use MiniMax's chat models with conversational agents[^1].
 
 On this page, you'll find the node parameters for the MiniMax Chat Model node, and links to more resources.
@@ -79000,6 +79296,10 @@ Refer to [MiniMax's documentation](https://platform.minimax.io/docs/guides/model
 === https://docs.n8n.io/docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglegemini/
 
 # Google Gemini Chat Model node <a href="#google-gemini-chat-model-node" id="google-gemini-chat-model-node"></a>
+
+{% hint style="info" %}
+On n8n Cloud, you can use the Google Gemini Chat Model node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own Google API key. Select **Use Gateway credits** in the node's credential field to run the node without a Google account.
+{% endhint %}
 
 Use the Google Gemini Chat Model node to use Google's Gemini chat models with conversational agents.
 
@@ -79755,6 +80055,10 @@ If you add more than one Motorhead node to your workflow, all nodes access the s
 === https://docs.n8n.io/docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatanthropic/
 
 # Anthropic Chat Model node <a href="#anthropic-chat-model-node" id="anthropic-chat-model-node"></a>
+
+{% hint style="info" %}
+On n8n Cloud, you can use the Anthropic Chat Model node with [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) instead of your own Anthropic API key. Select **Use Gateway credits** in the node's credential field to run the node without an Anthropic account.
+{% endhint %}
 
 Use the Anthropic Chat Model node to use Anthropic's Claude family of chat models with conversational agents[^1].
 
@@ -87425,6 +87729,10 @@ If you need to configure OAuth2 from scratch or need more detail on what's happe
 
 # Google Gemini(PaLM) credentials <a href="#google-geminipalm-credentials" id="google-geminipalm-credentials"></a>
 
+{% hint style="info" %}
+On n8n Cloud, you can skip setting up Google Gemini credentials by selecting **Use Gateway credits** in the credential field of nodes that support it. Refer to [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) for details.
+{% endhint %}
+
 You can use these credentials to authenticate the following nodes:
 
 * [Embeddings Google Gemini](../cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglegemini.md)
@@ -88778,6 +89086,10 @@ If you'd prefer to create a new key:
 === https://docs.n8n.io/docs/integrations/builtin/credentials/openai/
 
 # OpenAI credentials
+
+{% hint style="info" %}
+On n8n Cloud, you can skip setting up OpenAI credentials by selecting **Use Gateway credits** in the credential field of nodes that support it. Refer to [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) for details.
+{% endhint %}
 
 You can use these credentials to authenticate the following nodes:
 
@@ -97630,6 +97942,10 @@ To configure this credential, you'll need:
 
 # Brave Search credentials
 
+{% hint style="info" %}
+On n8n Cloud, you can skip setting up Brave Search credentials by selecting **Use Gateway credits** in the credential field of nodes that support it. Refer to [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) for details.
+{% endhint %}
+
 ## Prerequisites
 
 Create a [Brave Search API](https://api.search.brave.com/) account.
@@ -98061,6 +98377,10 @@ For community support, refer to [Weaviate Forums](https://forum.weaviate.io/).
 === https://docs.n8n.io/docs/integrations/builtin/credentials/minimax/
 
 # MiniMax credentials <a href="#minimax-credentials" id="minimax-credentials"></a>
+
+{% hint style="info" %}
+On n8n Cloud, you can skip setting up MiniMax credentials by selecting **Use Gateway credits** in the credential field of nodes that support it. Refer to [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) for details.
+{% endhint %}
 
 You can use these credentials to authenticate the following nodes:
 
@@ -99653,6 +99973,10 @@ Refer to [IMAP server settings for Yahoo Mail](https://help.yahoo.com/kb/sln4075
 === https://docs.n8n.io/docs/integrations/builtin/credentials/alibaba/
 
 # Qwen Cloud credentials <a href="#alibaba-cloud-credentials" id="alibaba-cloud-credentials"></a>
+
+{% hint style="info" %}
+On n8n Cloud, you can skip setting up Qwen Cloud credentials by selecting **Use Gateway credits** in the credential field of nodes that support it. Refer to [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) for details.
+{% endhint %}
 
 You can use these credentials to authenticate the following nodes:
 
@@ -101278,6 +101602,10 @@ To configure this credential, you'll need:
 
 # Moonshot credentials <a href="#moonshot-credentials" id="moonshot-credentials"></a>
 
+{% hint style="info" %}
+On n8n Cloud, you can skip setting up Moonshot credentials by selecting **Use Gateway credits** in the credential field of nodes that support it. Refer to [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) for details.
+{% endhint %}
+
 You can use these credentials to authenticate the following nodes:
 
 * [Moonshot Kimi](../app-nodes/n8n-nodes-langchain.moonshot.md)
@@ -102200,6 +102528,10 @@ To select different scopes for your credentials, enable the **Custom Scopes** sl
 === https://docs.n8n.io/docs/integrations/builtin/credentials/anthropic/
 
 # Anthropic credentials <a href="#anthropic-credentials" id="anthropic-credentials"></a>
+
+{% hint style="info" %}
+On n8n Cloud, you can skip setting up Anthropic credentials by selecting **Use Gateway credits** in the credential field of nodes that support it. Refer to [Gateway credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/gateway-credits) for details.
+{% endhint %}
 
 You can use these credentials to authenticate the following nodes:
 
