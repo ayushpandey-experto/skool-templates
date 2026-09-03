@@ -23379,9 +23379,10 @@ You can mix fixed and end-user credentials across nodes in one workflow. For exa
 
 * **Enterprise only:** End-user credentials require an Enterprise plan.
 * **Controlled creation:** By default, only [project admins](../manage-users-and-access/set-permissions-and-roles-rbac/see-available-roles.md) can create end-user credentials. Grant this permission to other users through [custom roles](../manage-users-and-access/set-permissions-and-roles-rbac/create-custom-roles.md). Limiting who can create them keeps credential management central: an admin sets up a template once and shares it to the projects that need it, rather than many users each setting up their own.
+* **Team projects only:** You can only create end-user credentials in team projects, not in personal projects. This keeps them centrally managed, where an admin sets up the credential template, rather than individual users creating their own in personal projects.
 * **OAuth credentials only:** End-user credentials support OAuth-based credential types only.
 * **One connection per user:** Each user can connect a single account per end-user credential template.
-* **Supported triggers:** End-user credential resolution works with the manual trigger, [Chat Hub](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/chat-hub), and the MCP Server Trigger.
+* **Supported triggers:** End-user credential resolution works with the manual trigger, [Chat Hub](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/chat-hub), the MCP Server Trigger, and the [n8n Form Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.formtrigger).
 
 ## Create an end-user credential
 
@@ -57362,8 +57363,8 @@ n8n recommends self-hosting for expert users. Mistakes can lead to data loss, se
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.36.9
-Current `beta`: 2.38.1
+Current `stable`: 2.37.7
+Current `beta`: 2.38.2
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/suggested-pod-resources/
@@ -86674,6 +86675,8 @@ Only users logged in to this n8n instance can view or submit the form.
 * Unauthenticated form submissions receive a 401 response.
 * By default, n8n adds the submitting user's ID, email, first name, and last name to the output data. Turn off **Include User in Output** in [Node options](#node-options) to exclude this.
 
+When you select **n8n User Auth**, a **Require Workflow Execute Permission** toggle appears. Turn it on to require that the triggering user also has permission to execute the workflow in the project it belongs to. Users who are logged in but lack execute permission on the workflow can't submit the form. This is useful with [end-user credentials](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-credentials/end-user-credentials), where each user runs the workflow with their own connected account.
+
 ### Form URLs <a href="#form-urls" id="form-urls"></a>
 
 The Form Trigger node has two URLs: **Test URL** and **Production URL**. n8n displays the URLs at the top of the node panel. Select **Test URL** or **Production URL** to toggle which URL n8n displays.
@@ -102851,9 +102854,21 @@ To get your Client ID and Client Secret, register a new Typeform app:
 8. Copy the **Client Secret** and enter it in your n8n credential.
 9. In Typeform, select **Got it** to close the Client Secret modal.
 10. The **Developer apps** panel displays your new app. Copy the **Client ID** and enter it in your n8n credential.
-10. Once you enter both the **Client ID** and **Client Secret** in n8n, select **Connect my account** and follow the on-screen prompts to finish authorizing the app.
+11. Once you enter both the **Client ID** and **Client Secret** in n8n, select **Connect my account** and follow the on-screen prompts to finish authorizing the app.
 
 Refer to [Create applications that integrate with Typeform's APIs](https://www.typeform.com/developers/get-started/applications/#1-create-an-application-in-the-typeform-admin-panel) for more information.
+
+## Setting custom scopes <a href="#setting-custom-scopes" id="setting-custom-scopes"></a>
+
+Typeform OAuth2 credentials use the following scopes by default:
+
+- `forms:read`
+- `webhooks:read`
+- `webhooks:write`
+
+To select different scopes for your credentials, enable the **Custom Scopes** toggle and edit the **Enabled Scopes** field. Take care when removing a default scope, as this can stop the [Typeform Trigger](../trigger-nodes/n8n-nodes-base.typeformtrigger.md) node from working.
+
+Refer to Typeform's [Scopes documentation](https://www.typeform.com/developers/get-started/scopes/) for the full list of available scopes.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/microsoftazuremonitor/
 # Microsoft Azure Monitor credentials <a href="#microsoft-azure-monitor-credentials" id="microsoft-azure-monitor-credentials"></a>
