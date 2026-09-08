@@ -34258,7 +34258,7 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
 Current `stable`: 2.37.10
-Current `beta`: 2.38.3
+Current `beta`: 2.38.4
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -34290,6 +34290,10 @@ Use this for local development and testing. It isn't safe to use it in productio
 
 The tunnel feature is a convenience tool for local development. The underlying implementation may change between n8n versions.
 {% endhint %}
+
+Watch a video guide to setting up the tunnel using Cloudflare or ngrok:
+
+{% embed url="https://www.youtube.com/embed/O9dpO81dEQ0" %}
 
 To use webhooks for trigger nodes of external services like GitHub, n8n has to be reachable from the web. n8n provides a tunnel service using [cloudflared](https://github.com/cloudflare/cloudflared) that redirects requests from the web to your local n8n instance. Docker must be installed for the tunnel to work.
 
