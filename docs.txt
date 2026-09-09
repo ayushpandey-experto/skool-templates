@@ -647,7 +647,7 @@ I give n8n permission to license my contributions on any terms they like.  I am 
 | `2T2SmMUgiLyck7FDDwRD` | feature-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/2T2SmMUgiLyck7FDDwRD/" %}` | {% hint style="info" %} **Feature availability**  * Available on Business and Enterprise plans. * You must be an n8n ins | docs/administer/use-source-control-and-environments/README.md, docs/administer/use-source-control-and-environments/tutorial-create-environments-with-source-control.md, docs/administer/use-source-control-and-environments/understand-source-control.md |
 | `VJPiDgC5Bx5FmuGODmCq` | field-value-clash | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/VJPiDgC5Bx5FmuGODmCq/" %}` | If multiple items at an index have a field with the same name, this is a clash. For example, if all items in both Input  | docs/integrations/builtin/core-nodes/n8n-nodes-base.merge.md |
 | `ASsLuMLGKMy2O0q7awMF` | file-based-configuration | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ASsLuMLGKMy2O0q7awMF/" %}` | {% hint style="info" %} **File-based configuration**  You can add `_FILE` to individual variables to provide their confi | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/binary-data.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/credentials.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/database.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/deployment.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/endpoints.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/executions.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/expression-engine.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/external-data-storage.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/external-hooks.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/external-secrets.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/insights.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/license.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/logs.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/nodes.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/opentelemetry.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/queue-mode.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/security.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/source-control.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/ssrf-protection.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/timezone-and-localization.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/user-management-and-2fa.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/workflows.md |
-| `iLayKGKnzGLWFd5VGZVk` | gdpr-self-hosted | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iLayKGKnzGLWFd5VGZVk/" %}` | If you self-host n8n, you are responsible for deleting user data. If you need to delete data on behalf of one of your us | docs/privacy-and-security/privacy.md, docs/privacy-and-security/what-you-can-do.md |
+| `iLayKGKnzGLWFd5VGZVk` | gdpr-self-hosted | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iLayKGKnzGLWFd5VGZVk/" %}` | If you self-host n8n, you are responsible for deleting user data. If you need to delete data on behalf of one of your us | docs/privacy-and-security/README.md, docs/privacy-and-security/what-you-can-do.md |
 | `niFQjDjbGJDJTKB57Z1s` | github-action | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/niFQjDjbGJDJTKB57Z1s/" %}` | A GitHub Action example:  ```yaml name: CI on:   # Trigger the workflow on push or pull request events for the "producti | docs/administer/use-source-control-and-environments/move-work-between-environments.md, docs/administer/use-source-control-and-environments/tutorial-create-environments-with-source-control.md |
 | `rJn9WooD0IwP7abKawNZ` | gmail-app-password | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/rJn9WooD0IwP7abKawNZ/" %}` | To generate an app password:  1. In your Google account, go to [App passwords](https://myaccount.google.com/apppasswords | docs/integrations/builtin/credentials/imap/gmail.md, docs/integrations/builtin/credentials/send-email/gmail.md |
 | `ysY7mHC9pN3kCUPncSi8` | gmail-two-step-verification | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ysY7mHC9pN3kCUPncSi8/" %}` | To enable 2-step Verification:  1. Log in to your [Google Account](https://myaccount.google.com/). 2. Select **Security* | docs/integrations/builtin/credentials/imap/gmail.md, docs/integrations/builtin/credentials/send-email/gmail.md |
@@ -2609,7 +2609,7 @@ n8n has several distinct AI-powered features for building workflows. Each is a s
 
 | Do use | Don't use |
 | --- | --- |
-| AI Assistant (chat-based agent: creates, edits, tests, and publishes workflows and agents) | assistant, the AI, chatbot |
+| n8n Assistant (chat-based agent: creates, edits, tests, and publishes workflows and agents) | assistant, the AI, chatbot, AI Assistant |
 | AI Workflow Builder (legacy, generates and refines a single workflow from a prompt) | workflow builder, builder |
 | Ask n8n AI (legacy help assistant, no longer actively developed, point readers to AI Assistant) | AI assistant (as a synonym for this), help assistant |
 
@@ -2741,7 +2741,7 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 * [Anthropic Chat Model Node: Add prompt caching support](https://github.com/n8n-io/n8n/pull/34482): The Anthropic Chat Model node (v1.6) now supports opt-in prompt caching. New Options fields let you enable caching and set a cache TTL of 5 minutes or 1 hour, allowing the system prompt, tool definitions, and conversation history to be reused across requests, reducing cost and latency for agents with large prompts or many tool calls. Caching is disabled by default, and existing workflows on earlier node versions are unaffected.
 * [Typeform Node: Allow custom OAuth2 scopes](https://github.com/n8n-io/n8n/pull/36486): The Typeform OAuth2 credential now supports custom scopes. By default it still requests the same three scopes needed by the Typeform Trigger node, but users can enable a 'Custom Scopes' toggle to edit the requested scope string and access additional Typeform API permissions. Custom scopes are now preserved when reconnecting the account instead of resetting to defaults.
 * [Hide convert to sub-workflow when Execute Workflow nodes are excluded](https://github.com/n8n-io/n8n/pull/36499): When an n8n instance excludes the Execute Workflow node type via NODES_EXCLUDE, the convert-to-sub-workflow action is now hidden from the canvas context menu, selection toolbar, group title bar, and the Alt+X shortcut, since conversion requires that node. Additionally, workflow settings' 'This workflow can be called by' option is locked to 'No other workflows' in this case. Default n8n behavior is unaffected since these nodes aren't excluded by default.
-* [Polish AI Assistant setup screen and connect modal](https://github.com/n8n-io/n8n/pull/36795): Refined the self-hosted AI Assistant setup experience: the setup screen now has a clearer title and offers "Get started" or "Set up later in Settings" on first visit, switching to "Turn off for this instance" on return visits. The connect modal hides its step-indicator dots when only one setup step remains, and connection test failures now show an additional sanitized "Error details" line to aid troubleshooting.
+* [Polish n8n Assistant setup screen and connect modal](https://github.com/n8n-io/n8n/pull/36795): Refined the self-hosted n8n Assistant setup experience: the setup screen now has a clearer title and offers "Get started" or "Set up later in Settings" on first visit, switching to "Turn off for this instance" on return visits. The connect modal hides its step-indicator dots when only one setup step remains, and connection test failures now show an additional sanitized "Error details" line to aid troubleshooting.
 * [Warn about self-escalation via Manage project roles scope](https://github.com/n8n-io/n8n/pull/36458): The custom instance role editor now warns when a role has only the Manage project roles permission, noting this lets a holder edit the scopes of any project-type custom role, including one they themselves hold, potentially self-escalating permissions. This joins existing warnings for Manage all roles and Members: Manage. No authorization behavior changed; this is a UI clarity improvement for admins managing custom roles under the Custom Roles enterprise feature.
 * [Add stop execution button to the NDV](https://github.com/n8n-io/n8n/pull/36444): You can now stop a node's test-step execution directly from the NDV header, without closing the panel. A stop button appears next to Execute step while a node runs; it cancels the running execution, or cancels the test webhook wait if the run is waiting for an incoming webhook call. This also fixes a race where a stop click issued right after starting could be dropped.
 * [Display success toast message on Browser Use connection](https://github.com/n8n-io/n8n/pull/36474): When connecting Browser Use automatically (via credential setup or the sidebar connect button), n8n now shows a success toast and closes the connect modal once your browser is connected. The connection modal was also streamlined: the external-link icon on the "Open Browser Use Extension" button was removed since it now opens in a popup, and the waiting-for-connection indicator was removed.
@@ -2753,7 +2753,7 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 * [Add streaming to Message an Agent workflows](https://github.com/n8n-io/n8n/pull/36734): Message an Agent workflows now support opt-in response streaming, with output streamed live through Chat and Webhook triggers. Active tool and skill calls made by the agent are shown as capability pills in the UI, giving users real-time visibility into what the agent is doing while it responds.
 * [Deprecate the "Any workflow" caller policy](https://github.com/n8n-io/n8n/pull/36350): The workflow setting "This workflow can be called by → Any workflow" is now deprecated ahead of removal in n8n v3, since it lets any project on the instance call a sub-workflow, bypassing project permissions. The workflow settings dropdown now labels it deprecated and shows a warning when selected, prompting a switch to another policy. MCP tool and public API descriptions were also updated to discourage new use of this value. No behavior or enum values change yet.
 * [Add role-aware n8n credits top-up flow](https://github.com/n8n-io/n8n/pull/35873): The n8n credits top-up flow is now role- and subscription-aware. Cloud instance owners on a paid plan are taken directly to the Cloud Admin Panel to top up. Members and admins instead see a modal explaining that only the instance owner can top up, with a list of connected services. Trial users see a modal noting a paid plan is required, and trial owners get an upgrade option.
-* [Move AI Assistant connections from the sidebar to a "+" button in the text input](https://github.com/n8n-io/n8n/pull/36585): AI Assistant connections (MCP servers, Computer Use, Browser Use) have moved from the sidebar Connections card into a new "+" button menu next to the chat input. The menu shows connected, connecting, and disconnected statuses, flags unexpected disconnects with a red indicator, and lets users reconnect Computer Use or Browser Use directly. Wording changed from "Tools" to "Connectors"/"Services".
+* [Move n8n Assistant connections from the sidebar to a "+" button in the text input](https://github.com/n8n-io/n8n/pull/36585): n8n Assistant connections (MCP servers, Computer Use, Browser Use) have moved from the sidebar Connections card into a new "+" button menu next to the chat input. The menu shows connected, connecting, and disconnected statuses, flags unexpected disconnects with a red indicator, and lets users reconnect Computer Use or Browser Use directly. Wording changed from "Tools" to "Connectors"/"Services".
 
 
 ## `n8n 2.35.4` Show scopes for managed OAuth credentials <a href="#n8n2354" id="n8n2354"></a>
@@ -2783,7 +2783,7 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 * [Inconsistent spacing of buttons on canvas (in top-right vs bottom-left)](https://github.com/n8n-io/n8n/pull/35319): Fixed inconsistent spacing between button groups on the canvas controls (top-right and bottom-left) by introducing a shared ButtonList layout component that applies uniform gaps to grouped buttons, both horizontally and vertically.
 * [Migrate API keys settings page to new instance settings UI](https://github.com/n8n-io/n8n/pull/34925): The API keys settings page has been redesigned with the new instance-settings layout. The keys table now has clearer owner filtering, Mine and All tabs, a working scopes dialog, and improved create and edit flows showing expiration states including Never, which explains keys stay active until manually revoked. Generated keys use a copy field with truncated display and copy-to-check feedback, and Revoke now uses a clearer danger-styled action.
 * [Add a guided setup view for Simplified Custom Auth credentials](https://github.com/n8n-io/n8n/pull/35324): Simplified Custom Auth credentials now offer a guided setup experience in the credential modal. Instead of raw JSON, a form shows one labeled input per template placeholder, with values masked and prefilled like native credential fields. An in-place "Edit setup" view exposes the auth template, field definitions, test URL, and status codes. Connection testing now probes the saved credential and reports that the service accepted it, rather than claiming full verification.
-* [HTTP Request Node: Add Simplified Custom Auth generic credential](https://github.com/n8n-io/n8n/pull/35068): Added a new generic credential type, Simplified Custom Auth, for the HTTP Request node. It lets users define a JSON auth template with placeholder values (headers, query, or body) to authenticate against custom APIs, with sensitive values redacted in previews. A new backend probe endpoint lets the credential test itself against its own saved test URL, reporting whether the service accepted it. This is the first of three planned PRs; a guided setup UI and AI Assistant integration will follow.
+* [HTTP Request Node: Add Simplified Custom Auth generic credential](https://github.com/n8n-io/n8n/pull/35068): Added a new generic credential type, Simplified Custom Auth, for the HTTP Request node. It lets users define a JSON auth template with placeholder values (headers, query, or body) to authenticate against custom APIs, with sensitive values redacted in previews. A new backend probe endpoint lets the credential test itself against its own saved test URL, reporting whether the service accepted it. This is the first of three planned PRs; a guided setup UI and n8n Assistant integration will follow.
 * [Add Require Workflow Execute Permission toggle for n8n User Auth (Webhook trigger)](https://github.com/n8n-io/n8n/pull/35195): The Webhook node now shows a "Require Workflow Execute Permission" toggle when using n8n User Auth (OAuth2) authentication. Enabled by default, it requires an authenticated caller to also hold workflow:execute permission before the webhook can run; disabling it allows any authenticated caller through. This mirrors the existing MCP Server Trigger behavior. The toggle is only visible behind the N8N_ENV_FEAT_WEBHOOK_PRIVATE_CREDENTIALS environment flag.
 * [Show the latest workflow review state in the canvas header](https://github.com/n8n-io/n8n/pull/35233): The canvas header now shows a compact pill indicating the latest workflow review status: in progress, needs action, or approved. Clicking it opens a popover explaining the state and offering the relevant action, such as retrying publish for an approved but unpublished version. The banner disappears once the approved version, or a newer one, is published. Requires an enterprise license with workflow reviews enabled.
 
@@ -2816,9 +2816,9 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 * [Deprecate $getPairedItem in the expression editor](https://github.com/n8n-io/n8n/pull/33549): The undocumented $getPairedItem expression helper is now flagged as deprecated in the expression editor, showing an error message when used. It continues to work as before during actual workflow execution, so existing workflows are unaffected; this change only warns users in the editor UI to discourage further use of the helper.
 * [Improve data table node](https://github.com/n8n-io/n8n/pull/28199): The Data Table node's "Update" table operation has been renamed to "Rename" to better reflect that it only renames a table. A new "Clear" operation lets you delete all rows from a data table while keeping its structure and ID intact. This clear action is also available via the public API as DELETE /data-tables/{dataTableId}/rows/clear.
 * [Microsoft To Do Node: Add Service Principal (app-only) authentication](https://github.com/n8n-io/n8n/pull/33081): The Microsoft To Do node now supports Microsoft Entra Service Principal (app-only) authentication, in addition to existing OAuth2 credentials. Since app-only Graph access has no personal '/me' context, a required User field (UPN or object ID) specifies whose task lists and tasks to manage. Existing OAuth2 workflows are unaffected and continue to work exactly as before.
-* [Make data table artifacts editable when AI is not running](https://github.com/n8n-io/n8n/pull/33210): Data table artifacts shown in the AI Assistant are now editable once the agent finishes working: you can edit cells, add or delete rows, and manage columns directly in the preview panel. The grid locks automatically while the agent is streaming, sending a message, or running in the background, and refreshes after each agent edit. Permissions follow the same rules as the main data table view, and read-only source-control branches remain uneditable. Also fixed two edge cases where paste and column dragging could bypass read-only restrictions.
+* [Make data table artifacts editable when AI is not running](https://github.com/n8n-io/n8n/pull/33210): Data table artifacts shown in n8n Assistant are now editable once the agent finishes working: you can edit cells, add or delete rows, and manage columns directly in the preview panel. The grid locks automatically while the agent is streaming, sending a message, or running in the background, and refreshes after each agent edit. Permissions follow the same rules as the main data table view, and read-only source-control branches remain uneditable. Also fixed two edge cases where paste and column dragging could bypass read-only restrictions.
 * [Microsoft Teams Node: Add Service Principal (app-only) authentication](https://github.com/n8n-io/n8n/pull/33105): The Microsoft Teams action node and Trigger node now support authenticating via a Microsoft Entra Service Principal (app-only) credential, alongside existing Teams OAuth2 and generic Microsoft Graph OAuth2 options. This enables app-only automation for listing teams, channel operations, Planner tasks, and channel message retrieval, plus New Channel/Channel Message/Team Member triggers. Chat-related resources and some operations remain unavailable under this credential, with clear in-node notices and friendly errors. Existing OAuth2 workflows are unaffected.
-* [Render AI Assistant reasoning as separate blocks in the run timeline](https://github.com/n8n-io/n8n/pull/33676): AI Assistant chat now shows reasoning as separate collapsible blocks placed where they actually occurred during a run, instead of merging all reasoning into one block at the top of the message. As the assistant streams through multiple steps and tool calls, each reasoning stage appears interleaved in order, both live and after reloading the page. Older conversations still display their reasoning as a single top block.
+* [Render n8n Assistant reasoning as separate blocks in the run timeline](https://github.com/n8n-io/n8n/pull/33676): n8n Assistant chat now shows reasoning as separate collapsible blocks placed where they actually occurred during a run, instead of merging all reasoning into one block at the top of the message. As the assistant streams through multiple steps and tool calls, each reasoning stage appears interleaved in order, both live and after reloading the page. Older conversations still display their reasoning as a single top block.
 * [Kafka Node: Add mTLS (client certificate) authentication](https://github.com/n8n-io/n8n/pull/33236): The Kafka credential now supports mutual TLS (mTLS) authentication, letting n8n connect to brokers that require a client certificate. When SSL is enabled, you can optionally provide a CA certificate, client certificate, and client private key, plus an 'Ignore SSL Issues' toggle for testing. This applies consistently to the Kafka node, Kafka Trigger, and credential test. Existing SSL and SASL credentials are unaffected, and invalid or incomplete certificate/key pairs now fail with a clear error instead of an opaque TLS handshake failure.
 * [Show private credential icon on execution list runs](https://github.com/n8n-io/n8n/pull/32957): Execution lists now show an icon when a run used a private (end-user-resolved) credential, even if the node using it errored. The icon appears in both the workflow-level executions sidebar and the global project executions table, with a tooltip explaining it ran using end-user credentials. This helps identify executions involving dynamically resolved credentials at a glance.
 * [NDV one-line credential row with connect/connected/disconnect states](https://github.com/n8n-io/n8n/pull/33371): The credential section in the node editing view (NDV) has been redesigned into a compact one-line row showing the credential name, a private-credential indicator, and a clear connection status. Users see a red dot with 'Not connected' and a Connect button, or a green dot with a 'Connected' dropdown offering Modify and Disconnect. Disconnecting now shows a confirmation dialog with a 'Don't show again' option, making it clearer to separate template editing from personal account connection.
@@ -2894,7 +2894,7 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 * [Microsoft SharePoint Node: Allow custom OAuth scopes](https://github.com/n8n-io/n8n/pull/31256): The Microsoft SharePoint OAuth2 credential now supports custom OAuth scopes. A new 'Custom Scopes' toggle reveals an editable 'Enabled Scopes' field, letting users add or modify scopes (e.g. Sites.Read.All) while preserving dynamic subdomain substitution. Default authentication behavior is unchanged when the toggle is off, matching existing functionality already available for Microsoft Excel and Entra credentials.
 * [Add private credential badge, callout, and not-connected validation in NDV](https://github.com/n8n-io/n8n/pull/31204): The NDV credential picker now shows a Private badge on credentials that use per-user (resolvable) authentication, both in the closed picker and dropdown. A notice below the picker indicates whether your account is connected, with a Connect link to open the credential edit modal if not. Nodes using a private credential that isn't connected for the current user now also show a canvas warning triangle with an explanatory tooltip. Static credentials are unaffected.
 * [Form Trigger Node: Add n8n user authentication option](https://github.com/n8n-io/n8n/pull/30539): Form Trigger nodes (typeVersion 2.6+) now support an 'n8n User Auth' option, requiring visitors to be logged into the same n8n instance to view or submit a form. Unauthenticated GET requests redirect to sign-in; POSTs are rejected with 401. Submitted data includes the logged-in user's id, email, first and last name by default, with a new 'Include User in Output' option to opt out. Works across all n8n login methods and multi-step forms.
-* [Refine plan review with chat-input edits](https://github.com/n8n-io/n8n/pull/31124): Refined the plan review experience in the AI assistant. Requesting changes to a plan now happens directly in the chat input, in a focused 'Plan edits' mode, instead of a separate textarea on the plan card. The plan card now shows three clear actions—Deny, Ask for edits, Approve—plus status indicators like 'Plan approved', 'Plan denied', 'Updating plan…', and a 'Building plan…' indicator while the plan is still generating.
+* [Refine plan review with chat-input edits](https://github.com/n8n-io/n8n/pull/31124): Refined the plan review experience in the n8n Assistant. Requesting changes to a plan now happens directly in the chat input, in a focused 'Plan edits' mode, instead of a separate textarea on the plan card. The plan card now shows three clear actions—Deny, Ask for edits, Approve—plus status indicators like 'Plan approved', 'Plan denied', 'Updating plan…', and a 'Building plan…' indicator while the plan is still generating.
 * [Show data redaction scope dropdown to unlicensed users](https://github.com/n8n-io/n8n/pull/30966): In Settings > Security & policies, the Redact executions scope dropdown now appears for unlicensed users, matching the Enforce data redaction toggle. It shows an Upgrade badge, is disabled, and includes a tooltip linking to the upgrade page. If a license expires, the dropdown still displays the previously saved scope value for admins, and no changes are sent while it's disabled.
 * [Validate private credentials only run under manual triggers](https://github.com/n8n-io/n8n/pull/31211): n8n now warns in the editor when a node uses a private (per-user) credential but the workflow contains a non-manual trigger, such as a webhook, schedule, form, or chat trigger. Since private credentials only resolve under a manual user identity, this would previously fail silently at runtime. The warning suggests switching to a Manual trigger or using a static credential instead.
 * [Add N8nMarkdown editor to @n8n/design-system and Agents](https://github.com/n8n-io/n8n/pull/29988): Added a new rich-text Markdown editor to the design system, with formatting toolbar controls for bold, italic, strikethrough, headings, lists, task lists, code blocks, blockquotes, and undo/redo, plus raw Markdown and readonly modes. The AI Agent instructions editor now uses this new component. Chat message Markdown rendering was also updated to share the same underlying styles for consistent formatting across the product.
@@ -19085,6 +19085,18 @@ For guidance on major version upgrades, see [v3.0 breaking changes](v30-breaking
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}
 
+## Error workflow executions no longer count towards your quota
+
+**Released:** 2026-09-01 in [n8n 2.38](release-notes.md#n8n2381)
+
+Runs of your error workflows are now excluded from your execution quota, on every plan. An error workflow is the one n8n runs when another workflow fails. It receives the details of the failure (which workflow, which node, what went wrong) and does something useful with them: post to a Slack channel, send an email, open a ticket, or retry the run.
+
+Until now each of those runs counted like any other execution. Handling a failure cost you an execution on top of the failure itself, and some people left error workflows out to protect their quota. Every production workflow should have one, so n8n stopped counting them.
+
+Attach an error workflow to a workflow in its **Workflow Settings** and its runs are excluded from the count. One error workflow can serve as many workflows as you like.
+
+On Cloud the change is already live. On self-hosted it applies from 2.38.0, or 1.123.60 if you're still on v1. If some of your workflows still run without an error workflow, refer to [Handle errors gracefully](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/flow-logic/handle-errors-gracefully) to set one up.
+
 ## Use AI models and tool services without setting up provider accounts or credentials
 
 **Released:** 2026-09-02 in [n8n 2.36](release-notes.md#n8n235)
@@ -19107,11 +19119,11 @@ You can continue using your own provider credentials as before. Gateway credits 
 
 For more details, see the [Forum post](https://community.n8n.io/t/310859).
 
-## AI Assistant on self-hosted n8n: set up in minutes
+## n8n Assistant on self-hosted n8n: set up in minutes
 
 **Released:** 2026-08-18 in [n8n 2.35](release-notes.md#n8n235)
 
-The AI Assistant [arrived on n8n Cloud in July](./#ai-assistant-describe-a-goal-get-a-working-automation) and has worked on self-hosted n8n since then, but getting there meant enabling the `instance-ai` module and configuring a sandbox, a model, and web search through environment variables. n8n 2.35 enables the module by default, adds a one-line install that pre-configures the pieces you would otherwise assemble yourself, and allows you to choose your model provider, sandbox, and search directly in the UI.
+n8n Assistant [arrived on n8n Cloud in July](./#n8n-assistant-describe-a-goal-get-a-working-automation) and has worked on self-hosted n8n since then, but getting there meant enabling the `instance-ai` module and configuring a sandbox, a model, and web search through environment variables. n8n 2.35 enables the module by default, adds a one-line install that pre-configures the pieces you would otherwise assemble yourself, and allows you to choose your model provider, sandbox, and search directly in the UI.
 
 Self-hosted setup needs two things, plus one worth adding:
 
@@ -19125,22 +19137,22 @@ On a brand-new instance, one command sets up everything except the model key:
 curl -fsSL https://get.n8n.io | sh
 ```
 
-It installs n8n with Docker Compose and pre-configures the sandbox and SearXNG web search, both free. Open the editor, add your model API key in the instance's AI settings, and start building. On an existing Docker install, the [AI Assistant setup guide](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-ai-assistant) covers the sandbox and search options for each deployment shape, in environment variables or in the UI.
+It installs n8n with Docker Compose and pre-configures the sandbox and SearXNG web search, both free. Open the editor, add your model API key in the instance's AI settings, and start building. On an existing Docker install, the [n8n Assistant setup guide](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-n8n-assistant) covers the sandbox and search options for each deployment shape, in environment variables or in the UI.
 
-AI Assistant requires Docker. npm installs will stop working with n8n 3.0 in October, so new installs should use the [one-line setup](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/one-line-setup) or [Docker Compose](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-using-docker-compose).
+n8n Assistant requires Docker. npm installs will stop working with n8n 3.0 in October, so new installs should use the [one-line setup](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/one-line-setup) or [Docker Compose](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-using-docker-compose).
 
 {% hint style="warning" %}
 **Preview status**
 
-AI Assistant is in Preview. It can make mistakes, and its behavior may change while it's in development. Always review generated workflows before using them in production.
+n8n Assistant is in Preview. It can make mistakes, and its behavior may change while it's in development. Always review generated workflows before using them in production.
 {% endhint %}
 
-Learn more in the [AI Assistant documentation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/ai-assistant).
+Learn more in the [n8n Assistant documentation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/n8n-assistant).
 
 {% hint style="info" %}
 **Feature availability**
 
-Self-hosted Enterprise support is coming. Enterprise customers who want to try AI Assistant before then can contact their Customer Success Manager about preview access.
+Self-hosted Enterprise support is coming. Enterprise customers who want to try n8n Assistant before then can contact their Customer Success Manager about preview access.
 {% endhint %}
 
 ## Return webhook responses of any size from your workers
@@ -19193,15 +19205,15 @@ _OneDrive and Outlook support released in n8n 2.29 (2026-06-30)._
 
 The [Kafka credential](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/credentials/kafka) now supports mutual TLS: provide a CA certificate, client certificate, and private key (PEM) to connect to brokers that require client-certificate authentication. mTLS applies to the Kafka node, the Kafka Trigger, and the credential test, and n8n validates that certificate and key match before you save.
 
-## AI Assistant: describe a goal, get a working automation
+## n8n Assistant: describe a goal, get a working automation
 
 **Released:** 2026-07-09 in [n8n 2.29.9](release-notes.md#n8n229)
 
-You can now describe an automation in plain language and have AI Assistant plan, build, test, and iterate on it until it actually runs. Open the chat from anywhere in your instance, or expand it into a side-by-side view with the workflow canvas, and tell it what you want to automate. It proposes a structured plan, asks clarifying questions, builds the workflow in your selected project, executes it as it goes, and fixes the errors it finds.
+You can now describe an automation in plain language and have n8n Assistant plan, build, test, and iterate on it until it actually runs. Open the chat from anywhere in your instance, or expand it into a side-by-side view with the workflow canvas, and tell it what you want to automate. It proposes a structured plan, asks clarifying questions, builds the workflow in your selected project, executes it as it goes, and fixes the errors it finds.
 
-<figure><img src=".gitbook/assets/ai-assistant-entry-point.png" alt="The AI Assistant entry point: a chat box asking what to automate, with suggestions like Score my leads."><figcaption><p>Describe what you want to automate, or start from a suggestion.</p></figcaption></figure>
+<figure><img src=".gitbook/assets/ai-assistant-entry-point.png" alt="The n8n Assistant entry point: a chat box asking what to automate, with suggestions like Score my leads."><figcaption><p>Describe what you want to automate, or start from a suggestion.</p></figcaption></figure>
 
-AI Assistant supersedes the AI Workflow Builder, and the difference is autonomy. The AI Workflow Builder generated a workflow and handed off, leaving you to run it and debug failures yourself. AI Assistant works toward your goal: it runs what it builds, detects failures, and retries until the automation works. Its scope is broader than building, too. It can manage executions, credentials, nodes, and Data Tables, run one-off tasks, and research the web when web access is enabled. Credential setup happens progressively as it builds: fill values in manually, let it fetch what it can, or mock and skip where needed, with secrets never exposed in the chat.
+n8n Assistant supersedes the AI Workflow Builder, and the difference is autonomy. The AI Workflow Builder generated a workflow and handed off, leaving you to run it and debug failures yourself. n8n Assistant works toward your goal: it runs what it builds, detects failures, and retries until the automation works. Its scope is broader than building, too. It can manage executions, credentials, nodes, and Data Tables, run one-off tasks, and research the web when web access is enabled. Credential setup happens progressively as it builds: fill values in manually, let it fetch what it can, or mock and skip where needed, with secrets never exposed in the chat.
 
 Every workflow it builds is a normal n8n workflow: a visible canvas you can open, inspect, edit, and publish, with step-by-step execution logs to audit, built on the 400+ integrations n8n already ships instead of rebuilt API connections. You stay in control throughout: high-impact actions such as publishing wait for your approval. This is an early first step, and we want your feedback on where to take it next.
 
@@ -19211,10 +19223,10 @@ Every workflow it builds is a normal n8n workflow: a visible canvas you can open
 This feature is in Preview. It can make mistakes, and its behavior may change while it's in development. Always review generated workflows before using them in production.
 {% endhint %}
 
-Learn more in the [AI Assistant documentation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/ai-assistant).
+Learn more in the [n8n Assistant documentation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/n8n-assistant).
 
 {% hint style="info" %}
-**Availability:** n8n Cloud at release. Self-hosted setup followed in n8n 2.35: refer to [AI Assistant on self-hosted n8n](./#ai-assistant-on-self-hosted-n8n-set-up-in-minutes).
+**Availability:** n8n Cloud at release. Self-hosted setup followed in n8n 2.35: refer to [n8n Assistant on self-hosted n8n](./#n8n-assistant-on-self-hosted-n8n-set-up-in-minutes).
 {% endhint %}
 
 ## MCP server updates
@@ -19380,11 +19392,11 @@ New [Oracle DB Vector Store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/buil
 
 **Released:** 2026-05-19 in [n8n 2.22](release-notes.md#n8n222)
 
-Connect your agent to select MCP servers without setting up an [MCP Client node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.mcpclient) and credential by hand. Pick a server from the nodes panel, sign in, and it's available to your agent.
+Connect your agent to select MCP servers without setting up an [MCP Client node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.mcpClient) and credential by hand. Pick a server from the nodes panel, sign in, and it's available to your agent.
 
 Initial coverage includes some of the most-used services in the official MCP registry (Apify, Linear, monday.com, Notion, and PostHog), and we'll expand the list to cover more services soon.
 
-If you need to connect to an MCP server that isn't in the list, you can still use the [MCP Client node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.mcpclient) with manual configuration.
+If you need to connect to an MCP server that isn't in the list, you can still use the [MCP Client node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.mcpClient) with manual configuration.
 
 {% embed url="https://youtu.be/RGhHFbLMXhQ" %}
 Connect to MCP servers with less setup
@@ -20150,11 +20162,11 @@ AI usage settings are available from n8n 2.7.0.
 
 You can manage your AI usage settings by navigating to **Settings** > **AI Usage** in your n8n instance.
 
-More details can be found on the [AI Assistant documentation page](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/use-the-ai-assistant#ai-usage-settings).
+More details can be found on the [n8n Assistant documentation page](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/use-the-ai-assistant#ai-usage-settings).
 
 #### When n8n shares data <a href="#when-n8n-shares-data" id="when-n8n-shares-data"></a>
 
-Data is only sent to AI services if workspaces have opted in to use the assistant. The Assistant is enabled by default for n8n Cloud users. When a workspace opts in to use the assistant, node-specific data is transmitted only during direct interactions and active sessions with the AI assistant, ensuring no unnecessary data sharing occurs.
+Data is only sent to AI services if workspaces have opted in to use the assistant. The Assistant is enabled by default for n8n Cloud users. When a workspace opts in to use the assistant, node-specific data is transmitted only during direct interactions and active sessions with the n8n Assistant, ensuring no unnecessary data sharing occurs.
 
 #### What n8n shares <a href="#what-n8n-shares" id="what-n8n-shares"></a>
 
@@ -21574,177 +21586,6 @@ The following data are not sent:
 * Details of any credentials you use
 * Past executions of the workflow
 
-=== https://docs.n8n.io/docs/build/ways-of-building-workflows/ai-assistant/
-
-# Use AI Assistant
-
-The AI Assistant is a chat-based agent in n8n that helps you create, edit, test, and troubleshoot workflows from natural language. It can also build agents and help with instance tasks, such as renaming or publishing workflows.
-
-Describe what you want to automate. The AI Assistant can plan the workflow, build it in your selected project, test it, and help you fix errors.
-
-The result is a normal n8n workflow. You can open it, inspect it, edit it, test it, and publish it like any other workflow.
-
-{% hint style="info" %}
-**Feature availability**
-
-The AI Assistant is available on:
-
-- **n8n Cloud:** Starter, Pro
-- **Self-hosted:** Community, Registered Community, Business
-
-It isn't ready for n8n Cloud Enterprise or self-hosted Enterprise yet. If you're an Enterprise customer, contact your Customer Success Manager about preview access.
-{% endhint %}
-
-{% hint style="info" %}
-**Preview status**
-
-The AI Assistant is in Preview. It can make mistakes, and behavior may change while the feature is in development. Always review generated workflows before using them in production.
-{% endhint %}
-
-## What the AI Assistant can help with
-
-You interact with the AI Assistant in a chat. It can use tools inside n8n to help you create and debug workflows.
-
-You can ask the AI Assistant to:
-
-- **Create workflows:** describe the automation you want, and the AI Assistant can generate a workflow.
-- **Build agents:** describe the agent you want, and the AI Assistant can suggest instructions, tools, and skills to add. Agents also run on self-hosted with the `agents` module. See [Build and manage agents](../build-and-manage-agents.md) and [Enable agents](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-ai-assistant#enable-agents).
-- **Connect MCP servers:** connect a server from the [MCP servers](../integrate-ai/mcp-servers.md) registry directly to the assistant, both to perform tasks and to gather context while it builds workflows for you.
-- **Edit workflows:** ask it to change a workflow, add nodes, update logic, or adjust configuration.
-- **Test and troubleshoot workflows:** ask it to run checks, inspect relevant errors, and suggest fixes.
-- **Help with credentials:** prompt you to select an existing credential or create a new one, without pasting secrets into chat.
-- **Use n8n resources:** create or update supporting resources such as [Data Tables](../work-with-data/data-tables.md) when needed.
-- **Research approved websites:** when web access is enabled, the AI Assistant asks for permission before accessing a domain.
-
-## Before you start
-
-To use the AI Assistant, you need access to an n8n instance with the feature enabled.
-
-Make sure that:
-
-- You can access the project where you want the AI Assistant to work.
-- You have permission to use the workflows, credentials, and resources needed for the task.
-- You know what you want the workflow to do.
-
-The AI Assistant uses the permissions of your n8n user. It can only access the workflows, credentials, and resources that you can access in the selected project.
-
-## Write effective prompts
-
-Specific prompts help the AI Assistant produce better results with fewer iterations.
-
-When you write a prompt, include:
-
-- what should trigger the workflow,
-- which apps or services the workflow should use,
-- what data the workflow should read, send, or update,
-- what should happen when the workflow succeeds,
-- what should happen when the workflow fails,
-- whether the AI Assistant should ask before publishing the workflow.
-
-## Example prompts
-
-### Create a workflow
-
-```text
-Create a workflow that checks Gmail every morning for invoices,
-saves PDF attachments to Google Drive, and adds a row to a Data Table.
-Ask me before publishing the workflow.
-```
-
-### Debug a failed execution
-
-```text
-Debug the latest failed execution of this workflow.
-Explain what failed, then suggest a fix before changing anything.
-```
-
-### Update an existing workflow
-
-```text
-Update this workflow so failed orders are sent to Slack,
-then retry the API request after 10 minutes.
-```
-
-## Review AI-generated changes
-
-The AI Assistant can take actions in your n8n instance, but you stay in control.
-
-Before you use an AI-generated workflow in production:
-
-- Review the workflow logic.
-- Check node configuration and credentials.
-- Test the workflow with expected input data.
-- Check execution results and error handling.
-- Confirm that the workflow doesn't perform unintended actions.
-
-The AI Assistant asks for confirmation before high-impact actions, such as publishing, deleting, or making other important changes.
-
-## Credential handling
-
-Your credential secrets are never sent to the AI, and the AI never sees them.
-
-When a workflow needs credentials, the AI Assistant prompts you with a credential card in the chat. From that card, you can:
-
-- Select an existing credential that you have access to in the project.
-- Create a new credential.
-
-If you create a new credential, you enter the secret in the standard n8n credential screen, not in the chat. Don't paste API keys, passwords, or tokens into the conversation.
-
-## Web access
-
-When you enable web access, the AI Assistant asks for permission before accessing an external domain.
-
-Review the requested domain before you approve access.
-
-## Preview limitations
-
-The AI Assistant is a Preview feature. Availability, supported actions, and behavior may change.
-
-During Preview:
-
-- The AI Assistant may not support some actions yet.
-- Some capabilities may roll out gradually.
-- The AI Assistant may ask for clarification more often than expected.
-- Generated workflows may need manual review and correction.
-- UI, credit usage, and supported resources may change.
-
-## Data and privacy
-
-The AI Assistant processes the information it needs to help build and troubleshoot workflows.
-
-Depending on the task, this can include:
-
-- your prompts and chat messages,
-- workflow structure and node configuration,
-- selected execution and error details used for troubleshooting,
-- credential names, credential types, or connection status,
-- approved web pages or domains, when you enable web access.
-
-The AI Assistant doesn't require you to paste secrets into chat. Enter API keys, passwords, and tokens through the standard n8n credential screens.
-
-{% hint style="warning" %}
-Don't paste sensitive data into chat unless it's necessary for the task. AI-generated outputs can be incorrect, so review workflows and configurations before using them in production.
-{% endhint %}
-
-## Credit usage
-
-The AI Assistant uses credits based on the tokens processed by the underlying AI model.
-
-Longer conversations, larger workflows, debugging sessions, and repeated iterations use more credits.
-
-To reduce unnecessary usage:
-
-- Be specific about the workflow goal and constraints.
-- Start a new conversation for unrelated tasks.
-- Review the AI Assistant's plan before asking it to build.
-- Avoid asking it to regenerate the same workflow without adding new guidance.
-
-To get more credits during Preview, upgrade your plan. More ways to top up are coming.
-
-For current plan details, see [n8n plans and pricing](https://n8n.io/pricing/).
-
-See [Ways of building workflows](README.md) for other approaches.
-
 === https://docs.n8n.io/docs/build/ways-of-building-workflows/connect-to-n8n-mcp-server/
 
 # Build with MCP
@@ -21936,12 +21777,183 @@ The underlying logic of the assistant is build with the advanced AI capabilities
 [^2]: AI agents are artificial intelligence systems capable of responding to requests, making decisions, and performing real-world tasks for users. They use large language models (LLMs) to interpret user input and make decisions about how to best process requests using the information and resources they have available.
 [^3]: In an AI context, memory allows AI tools to persist message context across interactions. This allows you to have a continuing conversations with AI agents, for example, without submitting ongoing context with each message. In n8n, AI agent nodes can use memory, but AI chains can't.
 
+=== https://docs.n8n.io/docs/build/ways-of-building-workflows/n8n-assistant/
+
+# Use n8n Assistant
+
+n8n Assistant is a chat-based agent in n8n that helps you create, edit, test, and troubleshoot workflows from natural language. It can also build agents and help with instance tasks, such as renaming or publishing workflows.
+
+Describe what you want to automate. n8n Assistant can plan the workflow, build it in your selected project, test it, and help you fix errors.
+
+The result is a normal n8n workflow. You can open it, inspect it, edit it, test it, and publish it like any other workflow.
+
+{% hint style="info" %}
+**Feature availability**
+
+n8n Assistant is available on:
+
+- **n8n Cloud:** Starter, Pro
+- **Self-hosted:** Community, Registered Community, Business
+
+It isn't ready for n8n Cloud Enterprise or self-hosted Enterprise yet. If you're an Enterprise customer, contact your Customer Success Manager about preview access.
+{% endhint %}
+
+{% hint style="info" %}
+**Preview status**
+
+n8n Assistant is in Preview. It can make mistakes, and behavior may change while the feature is in development. Always review generated workflows before using them in production.
+{% endhint %}
+
+## What n8n Assistant can help with
+
+You interact with n8n Assistant in a chat. It can use tools inside n8n to help you create and debug workflows.
+
+You can ask n8n Assistant to:
+
+- **Create workflows:** describe the automation you want, and n8n Assistant can generate a workflow.
+- **Build agents:** describe the agent you want, and n8n Assistant can suggest instructions, tools, and skills to add. Agents also run on self-hosted with the `agents` module. See [Build and manage agents](../build-and-manage-agents.md) and [Enable agents](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-n8n-assistant#enable-agents).
+- **Connect MCP servers:** connect a server from the [MCP servers](../integrate-ai/mcp-servers.md) registry directly to the assistant, both to perform tasks and to gather context while it builds workflows for you.
+- **Edit workflows:** ask it to change a workflow, add nodes, update logic, or adjust configuration.
+- **Test and troubleshoot workflows:** ask it to run checks, inspect relevant errors, and suggest fixes.
+- **Help with credentials:** prompt you to select an existing credential or create a new one, without pasting secrets into chat.
+- **Use n8n resources:** create or update supporting resources such as [Data Tables](../work-with-data/data-tables.md) when needed.
+- **Research approved websites:** when web access is enabled, n8n Assistant asks for permission before accessing a domain.
+
+## Before you start
+
+To use n8n Assistant, you need access to an n8n instance with the feature enabled.
+
+Make sure that:
+
+- You can access the project where you want n8n Assistant to work.
+- You have permission to use the workflows, credentials, and resources needed for the task.
+- You know what you want the workflow to do.
+
+n8n Assistant uses the permissions of your n8n user. It can only access the workflows, credentials, and resources that you can access in the selected project.
+
+## Write effective prompts
+
+Specific prompts help n8n Assistant produce better results with fewer iterations.
+
+When you write a prompt, include:
+
+- what should trigger the workflow,
+- which apps or services the workflow should use,
+- what data the workflow should read, send, or update,
+- what should happen when the workflow succeeds,
+- what should happen when the workflow fails,
+- whether n8n Assistant should ask before publishing the workflow.
+
+## Example prompts
+
+### Create a workflow
+
+```text
+Create a workflow that checks Gmail every morning for invoices,
+saves PDF attachments to Google Drive, and adds a row to a Data Table.
+Ask me before publishing the workflow.
+```
+
+### Debug a failed execution
+
+```text
+Debug the latest failed execution of this workflow.
+Explain what failed, then suggest a fix before changing anything.
+```
+
+### Update an existing workflow
+
+```text
+Update this workflow so failed orders are sent to Slack,
+then retry the API request after 10 minutes.
+```
+
+## Review AI-generated changes
+
+n8n Assistant can take actions in your n8n instance, but you stay in control.
+
+Before you use an AI-generated workflow in production:
+
+- Review the workflow logic.
+- Check node configuration and credentials.
+- Test the workflow with expected input data.
+- Check execution results and error handling.
+- Confirm that the workflow doesn't perform unintended actions.
+
+n8n Assistant asks for confirmation before high-impact actions, such as publishing, deleting, or making other important changes.
+
+## Credential handling
+
+Your credential secrets are never sent to the AI, and the AI never sees them.
+
+When a workflow needs credentials, n8n Assistant prompts you with a credential card in the chat. From that card, you can:
+
+- Select an existing credential that you have access to in the project.
+- Create a new credential.
+
+If you create a new credential, you enter the secret in the standard n8n credential screen, not in the chat. Don't paste API keys, passwords, or tokens into the conversation.
+
+## Web access
+
+When you enable web access, n8n Assistant asks for permission before accessing an external domain.
+
+Review the requested domain before you approve access.
+
+## Preview limitations
+
+n8n Assistant is a Preview feature. Availability, supported actions, and behavior may change.
+
+During Preview:
+
+- n8n Assistant may not support some actions yet.
+- Some capabilities may roll out gradually.
+- n8n Assistant may ask for clarification more often than expected.
+- Generated workflows may need manual review and correction.
+- UI, credit usage, and supported resources may change.
+
+## Data and privacy
+
+n8n Assistant processes the information it needs to help build and troubleshoot workflows.
+
+Depending on the task, this can include:
+
+- your prompts and chat messages,
+- workflow structure and node configuration,
+- selected execution and error details used for troubleshooting,
+- credential names, credential types, or connection status,
+- approved web pages or domains, when you enable web access.
+
+n8n Assistant doesn't require you to paste secrets into chat. Enter API keys, passwords, and tokens through the standard n8n credential screens.
+
+{% hint style="warning" %}
+Don't paste sensitive data into chat unless it's necessary for the task. AI-generated outputs can be incorrect, so review workflows and configurations before using them in production.
+{% endhint %}
+
+## Credit usage
+
+n8n Assistant uses credits based on the tokens processed by the underlying AI model.
+
+Longer conversations, larger workflows, debugging sessions, and repeated iterations use more credits.
+
+To reduce unnecessary usage:
+
+- Be specific about the workflow goal and constraints.
+- Start a new conversation for unrelated tasks.
+- Review n8n Assistant's plan before asking it to build.
+- Avoid asking it to regenerate the same workflow without adding new guidance.
+
+To get more credits during Preview, upgrade your plan. More ways to top up are coming.
+
+For current plan details, see [n8n plans and pricing](https://n8n.io/pricing/).
+
+See [Ways of building workflows](README.md) for other approaches.
+
 === https://docs.n8n.io/docs/build/ways-of-building-workflows/README/
 
 # Ways of building workflows
 
-{% content-ref url="ai-assistant.md" %}
-[ai-assistant.md](ai-assistant.md)
+{% content-ref url="n8n-assistant.md" %}
+[n8n-assistant.md](n8n-assistant.md)
 {% endcontent-ref %}
 
 {% content-ref url="connect-to-n8n-mcp-server.md" %}
@@ -22014,7 +22026,7 @@ If you use n8n's template library, this takes you to browse [Workflows on the n8
   * [Use Gateway credits](understand-workflows/use-gateway-credits.md)
 * [Build and manage agents](build-and-manage-agents.md)
 * [Ways of building workflows](ways-of-building-workflows/README.md)
-  * [Use AI Assistant](ways-of-building-workflows/ai-assistant.md)
+  * [Use n8n Assistant](ways-of-building-workflows/n8n-assistant.md)
   * [Use n8n MCP server](ways-of-building-workflows/connect-to-n8n-mcp-server.md)
   * [Use templates](ways-of-building-workflows/use-templates.md)
   * [Use AI Workflow Builder](ways-of-building-workflows/ai-workflow-builder.md)
@@ -22148,6 +22160,12 @@ Agents are available on **n8n Cloud** and **self-hosted**. They aren't ready for
 Agents are in Preview. They can make mistakes, and their behavior may change while the feature is in development. On self-hosted, knowledge bases are also in Preview.
 {% endhint %}
 
+### Video: how agents fit with workflows and AI
+
+Agents, fixed workflows, and workflows that use AI for specific steps each suit different kinds of work. Watch how the three compare, and how they work together in production-ready systems.
+
+{% embed url="https://www.youtube.com/embed/P5x0nsY8hCg" %}
+
 ### What you can build with agents
 
 Use agents to answer questions using your uploaded files and connected services, take actions in tools like Slack, Google Sheets, or Linear, and trigger or coordinate workflows to complete larger tasks. Agents can also delegate to other agents and run on a schedule. See [Sub-agents](build-and-manage-agents.md#add-sub-agents) and [Schedules](build-and-manage-agents.md#run-agents-on-a-schedule) below.
@@ -22193,9 +22211,9 @@ Build agents in the Agent Builder. Start with a name and a model, add instructio
 3. In the **Agent** tab, enter a name for the agent. Use the icon picker to change the icon.
 
 {% hint style="info" %}
-**Use the AI Assistant**
+**Use n8n Assistant**
 
-Describe what you want the agent to do to the [AI Assistant](ways-of-building-workflows/ai-assistant.md). It suggests instructions, tools, and skills to add. Refine the suggestions in the Agent Builder as you go.
+Describe what you want the agent to do to the [n8n Assistant](ways-of-building-workflows/n8n-assistant.md). It suggests instructions, tools, and skills to add. Refine the suggestions in the Agent Builder as you go.
 {% endhint %}
 
 #### Choose a model
@@ -22358,7 +22376,7 @@ You can use agents within your workflows in two ways:
 Agents run on self-hosted n8n from 2.32.3 (Beta). There are two ways to set them up:
 
 * **Build manually**: enable the `agents` module (add `agents` to `N8N_ENABLED_MODULES`). You pick the model, write the instructions, and attach tools and skills yourself. This is all you need to build and run agents.
-* **Full experience**: also set up [AI Assistant](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-ai-assistant) (`instance-ai`) for AI-assisted building, where you describe an agent and n8n scaffolds it. The knowledge base needs a Daytona sandbox, and connecting channels needs a public `WEBHOOK_URL`.
+* **Full experience**: also set up [n8n Assistant](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-n8n-assistant) (`instance-ai`) for AI-assisted building, where you describe an agent and n8n scaffolds it. The knowledge base needs a Daytona sandbox, and connecting channels needs a public `WEBHOOK_URL`.
 
 {% hint style="warning" %}
 Agents aren't ready for self-hosted Enterprise yet. Support for self-hosted Enterprise is coming soon.
@@ -22368,7 +22386,7 @@ Agents aren't ready for self-hosted Enterprise yet. Support for self-hosted Ente
 Queue mode isn't supported for agents yet, and connecting channels (such as Telegram) can fail. Run agents in regular mode for now.
 {% endhint %}
 
-For the environment variables and setup steps, see [Enable agents](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-ai-assistant#enable-agents).
+For the environment variables and setup steps, see [Enable agents](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-n8n-assistant#enable-agents).
 
 ### Agent executions and pricing
 
@@ -22428,6 +22446,7 @@ You can't change the workflow owner, except when deleting the user.
 
 Workflow sharing allows editors to use all credentials[^1] used in the workflow. This includes credentials that aren't explicitly shared with them using [credential sharing](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-credentials/share-credentials-securely).
 {% endhint %}
+
 ### Permissions <a href="#permissions" id="permissions"></a>
 
 | Permissions | Creator | Editor | 
@@ -24282,6 +24301,7 @@ You can convert date strings and other date formats to a Luxon DateTime object. 
 
 With vanilla JavaScript, you can convert a string to a date with `new Date('2019-06-23')`. In Luxon, you must use a function explicitly stating the format, such as `DateTime.fromISO('2019-06-23')` or `DateTime.fromFormat("23-06-2019", "dd-MM-yyyy")`.
 {% endhint %}
+
 #### If you have a date in a supported standard technical format: <a href="#if-you-have-a-date-in-a-supported-standard-technical-format" id="if-you-have-a-date-in-a-supported-standard-technical-format"></a>
 
 Most dates use `fromISO()`. This creates a Luxon DateTime from an ISO 8601 string. For example:
@@ -24499,19 +24519,15 @@ n8n provides a custom method, `jmespath()`. Use this method to perform a search 
 
 The basic syntax is: 
 
-{% tabs %}
-{% tab title="JavaScript" %}
 ```js
 $jmespath(object, searchString)
 ```
-{% endtab %}
 
-{% tab title="Python" %}
-```python
-_jmespath(object, searchString)
-```
-{% endtab %}
-{% endtabs %}
+{% hint style="info" %}
+**JavaScript only**
+
+The Python Code node doesn't provide `$jmespath()`. To get the same results in Python, use standard Python instead. Each example below includes a Python version.
+{% endhint %}
 
 To help understand what the method does, here is the equivalent longer JavaScript:
 
@@ -24629,8 +24645,9 @@ return {firstNames};
 
 {% tab title="Code node (Python)" %}
 ```python
-firstNames = _jmespath(_json.body.people, "[*].first" )
-return {"firstNames":firstNames}
+people = _item["json"]["body"]["people"]
+first_names = [person["first"] for person in people]
+return {"firstNames": first_names}
 """
 Returns:
 [
@@ -24677,8 +24694,9 @@ return {firstTwoNames};
 
 {% tab title="Code node (Python)" %}
 ```python
-firstTwoNames = _jmespath(_json.body.people, "[:2].first" )
-return {"firstTwoNames":firstTwoNames}
+people = _item["json"]["body"]["people"]
+first_two_names = [person["first"] for person in people[:2]]
+return {"firstTwoNames": first_two_names}
 """
 Returns:
 [
@@ -24723,8 +24741,9 @@ return {dogsAges};
 
 {% tab title="Code node (Python)" %}
 ```python
-dogsAges = _jmespath(_json.body.dogs, "*.age")
-return {"dogsAges": dogsAges}
+dogs = _item["json"]["body"]["dogs"]
+dogs_ages = [dog["age"] for dog in dogs.values()]
+return {"dogsAges": dogs_ages}
 """
 Returns:
 [
@@ -24827,8 +24846,9 @@ return {newList};
 
 {% tab title="Code node (Python)" %}
 ```python
-newList = _jmespath(_json.body.people, "[].[first, last]")
-return {"newList":newList}
+people = _item["json"]["body"]["people"]
+new_list = [[person["first"], person["last"]] for person in people]
+return {"newList": new_list}
 """
 Returns:
 [
@@ -31503,23 +31523,14 @@ The built-in methods and variables on this page are for use in expressions in th
 This is an n8n-provided method for working with the [JMESPath](../../work-with-data/handle-special-data-types/query-json-data.md) library.
 
 {% hint style="info" %}
-**Python support**
+**JavaScript only**
 
-You can use Python in the Code node. It isn't available in expressions.
+The Python Code node doesn't provide this method. To query JSON in Python, use standard Python instead. Refer to [Query JSON with JMESPath](../../work-with-data/handle-special-data-types/query-json-data.md) for a Python version of each example.
 {% endhint %}
-{% tabs %}
-{% tab title="JavaScript" %}
+
 | Method | Description | Available in Code node? |
 | ------ | ----------- | :-------------------------: |
 | `$jmespath()` | Perform a search on a JSON object using JMESPath. | ✅ |
-{% endtab %}
-
-{% tab title="Python" %}
-| Method | Description | 
-| ------ | ----------- | 
-| `_jmespath()` | Perform a search on a JSON object using JMESPath. | 
-{% endtab %}
-{% endtabs %}
 
 === https://docs.n8n.io/docs/build/code-in-n8n/use-built-in-shortcuts/http-node/
 
@@ -31565,7 +31576,7 @@ You can use Python in the Code node. It isn't available in expressions.
 | `$execution.id` | The unique ID of the current workflow execution. | ✅ |
 | `$execution.mode` | Whether the execution was triggered automatically, or by manually running the workflow. Possible values are `test` and `production`. | ✅ |
 | `$execution.resumeUrl` | The webhook URL to call to resume a workflow waiting at a [Wait node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.wait). | ✅ |
-| `$getWorkflowStaticData(type)` | View an [example](../cookbook/built-in-methods-and-variables-examples/getworkflowstaticdata.md). Static data doesn't persist when testing workflows. The workflow must be published and called by a trigger or webhook to save static data. This gives access to the static workflow data. | ✅ |
+| `$getWorkflowStaticData(type)` | This gives access to the static workflow data. Static data doesn't persist when testing workflows: publish the workflow and run it from a trigger or webhook to save static data. For persisting data between executions, consider [data tables](../../work-with-data/data-tables.md) instead. View an [example](../cookbook/built-in-methods-and-variables-examples/getworkflowstaticdata.md). | ✅ |
 | `$("<node-name>").isExecuted` | Check whether a node has already executed. | ✅ |
 | `$itemIndex` | The index of an item in a list of items. | ❌ |
 | `$nodeVersion` | Get the version of the current node. | ✅ |
@@ -31586,6 +31597,7 @@ You can use Python in the Code node. It isn't available in expressions.
 | ------ | ----------- |
 | `_items` | Contains incoming items in "Run once for all items" mode. |
 | `_item` | Contains the item being iterated on in "Run once for each item" mode. |
+| `_query` | In the Code Tool, contains the input string the AI Agent passes when it calls the tool. Available in "Run once for all items" mode. |
 
 ## Python (Pyodide, deprecated)
 
@@ -31598,7 +31610,7 @@ Python (Pyodide) support is deprecated from n8n 1.113.2. Use Python (native) ins
 | `_execution.id` | The unique ID of the current workflow execution. | 
 | `_execution.mode` | Whether the execution was triggered automatically, or by manually running the workflow. Possible values are `test` and `production`. | 
 | `_execution.resumeUrl` | The webhook URL to call to resume a workflow waiting at a [Wait node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.wait). |
-| `_getWorkflowStaticData(type)` | View an [example](../cookbook/built-in-methods-and-variables-examples/getworkflowstaticdata.md). Static data doesn't persist when testing workflows. The workflow must be published and called by a trigger or webhook to save static data. This gives access to the static workflow data. |
+| `_getWorkflowStaticData(type)` | This gives access to the static workflow data. Static data doesn't persist when testing workflows: publish the workflow and run it from a trigger or webhook to save static data. For persisting data between executions, consider [data tables](../../work-with-data/data-tables.md) instead. View an [example](../cookbook/built-in-methods-and-variables-examples/getworkflowstaticdata.md). |
 | `_("<node-name>").isExecuted` | Check whether a node has already executed. |
 | `_nodeVersion` | Get the version of the current node. | ✅ |
 | `_prevNode.name` | The name of the node that the current input came from. When using the Merge node, note that `_prevNode` always uses the first input connector. | 
@@ -31771,11 +31783,16 @@ Refer to [HTTP Request](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/c
 This gives access to the static workflow data.
 
 {% hint style="info" %}
-**Experimental feature**
+**Consider data tables**
+
+For persisting data between executions, consider [data tables](../../../work-with-data/data-tables.md). They work in test executions and don't require a Code node. Refer to [Use a data table instead](#use-a-data-table-instead).
+
+Static data is an experimental feature:
 
 - Static data isn't available when testing workflows. The workflow must be published and called by a trigger[^1] or webhook to save static data.
 - This feature may behave unreliably under high-frequency workflow executions.
 {% endhint %}
+
 You can save data directly in the workflow. This data should be small.
 
 As an example: you can save a timestamp of the last item processed from
@@ -31786,10 +31803,10 @@ has changed and saves it, if necessary.
 There are two types of static data, global and node. Global static data is the
 same in the whole workflow. Every node in the workflow can access it. The node static data is unique to the node. Only the node that set it can retrieve it again.
 
+You can only use static data in the JavaScript Code node. The Python Code node doesn't provide it.
+
 Example with global data:
 
-{% tabs %}
-{% tab title="JavaScript" %}
 ```javascript
 // Get the global workflow static data
 const workflowStaticData = $getWorkflowStaticData('global');
@@ -31803,30 +31820,10 @@ workflowStaticData.lastExecution = new Date().getTime();
 // Delete data
 delete workflowStaticData.lastExecution;
 ```
-{% endtab %}
-
-{% tab title="Python" %}
-```python
-# Get the global workflow static data
-workflowStaticData = _getWorkflowStaticData('global')
-
-# Access its data
-lastExecution = workflowStaticData.lastExecution
-
-# Update its data
-workflowStaticData.lastExecution = new Date().getTime()
-
-# Delete data
-delete workflowStaticData.lastExecution
-```
-{% endtab %}
-{% endtabs %}
 
 Example with node data:
 
-{% tabs %}
-{% tab title="JavaScript" %}
-```js
+```javascript
 // Get the static data of the node
 const nodeStaticData = $getWorkflowStaticData('node');
 
@@ -31839,29 +31836,23 @@ nodeStaticData.lastExecution = new Date().getTime();
 // Delete data
 delete nodeStaticData.lastExecution;
 ```
-{% endtab %}
-
-{% tab title="Python" %}
-```python
-# Get the static data of the node
-nodeStaticData = _getWorkflowStaticData('node')
-
-# Access its data
-lastExecution = nodeStaticData.lastExecution
-
-# Update its data
-nodeStaticData.lastExecution = new Date().getTime()
-
-# Delete data
-delete nodeStaticData.lastExecution
-```
-{% endtab %}
-{% endtabs %}
 
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
 
 {% @n8n-blocks/n8n-workflow-demo content="" url="https://api.n8n.io/workflows/templates/2538" %}
+
+## Use a data table instead <a href="#use-a-data-table-instead" id="use-a-data-table-instead"></a>
+
+[Data tables](../../../work-with-data/data-tables.md) store data inside n8n without a Code node, and they keep their data when you test a workflow.
+
+To store a marker such as the last processed item in a data table:
+
+1. Add a [Data Table node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.datatable/rows) at the start of your workflow, using the **Get row** operation to read the stored value.
+2. Reference the value in later nodes with an expression, such as `{{ $('Get row').item.json.lastExecution }}`.
+3. Add a second Data Table node at the end of your workflow, using the **Upsert row** operation to write the new value.
+
+Unlike static data, you can't read data table values directly in an expression or in the Code node. Read the row with a Data Table node first, then reference that node's output.
 
 [^1]: A trigger node is a special node responsible for executing the workflow in response to certain conditions. All production workflows need at least one trigger to determine when the workflow should run.
 
@@ -32102,30 +32093,19 @@ a = "apple"
 print(a)
 ```
 
-### Handling an output of `[object Object]` <a href="#handling-an-output-of-object-object" id="handling-an-output-of-object-object"></a>
+### Printing node data <a href="#printing-node-data" id="printing-node-data"></a>
 
-If the console displays `[object Object]` when you print, check the data type, then convert it as needed.
-
-To check the data type:
+`_items` and `_item` are standard Python objects, so you can print them directly:
 
 ```python
-print(type(myData))
+print(_items)
 ```
 
-#### JsProxy <a href="#jsproxy" id="jsproxy"></a>
+{% hint style="info" %}
+**`type()` isn't available**
 
-If `type()` outputs `<class 'pyodide.ffi.JsProxy'>`, you need to convert the JsProxy to a native Python object using `to_py()`. This occurs when working with data in the n8n node data structure, such as node inputs and outputs. For example, if you want to print the data from a previous node in the workflow:
-
-```python
-previousNodeData = _("<node-name>").all();
-for item in previousNodeData:
-	# item is of type <class 'pyodide.ffi.JsProxy'>
-	# You need to convert it to a Dict
-	itemDict = item.json.to_py()
-	print(itemDict)
-```
-
-Refer to the Pyodide documentation on [JsProxy](https://pyodide.org/en/stable/usage/api/python-api/ffi.html#pyodide.ffi.JsProxy) for more information on this class.
+The Python Code node denies some built-in functions by default, including `type()`. Refer to [task runners environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/task-runners) for the full list and how to change it when self-hosting.
+{% endhint %}
 
 
 
@@ -33325,7 +33305,7 @@ This workflow uses:
 
 n8n's node panel includes a registry of [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro) servers you can connect to an agent in one click. Select a server, sign in, and its tools are available to your agent.
 
-You can also connect MCP servers in the registry to the [AI Assistant](../ways-of-building-workflows/ai-assistant.md).
+You can also connect MCP servers in the registry to [n8n Assistant](../ways-of-building-workflows/n8n-assistant.md).
 
 ## Add a registry server to an agent
 
@@ -34257,8 +34237,8 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.37.10
-Current `beta`: 2.38.4
+Current `stable`: 2.38.1
+Current `beta`: 2.39.0
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -36324,8 +36304,9 @@ Select **Test URL** or **Production URL** to toggle which URL n8n displays.
 
 ### Authentication <a href="#authentication" id="authentication"></a>
 
-You can require authentication for clients connecting to your MCP URL. Choose from these authentication methods:
+You can require authentication for clients connecting to your MCP URL. Choose from:
 
+- None
 - Bearer auth
 - Header auth
 
@@ -36383,6 +36364,12 @@ The MCP Server Trigger node relies on Server-Sent Events (SSE) or streamable HTT
 
 If you run an MCP Server Trigger node with multiple webhook replicas and don't route all `/mcp*` requests to a single, dedicated webhook replica, your SSE and streamable HTTP connections will frequently break or fail to reliably deliver events.
 {% endhint %}
+
+### claude.ai asks users to sign in when Authentication is None <a href="#claudeai-asks-users-to-sign-in-when-authentication-is-none" id="claudeai-asks-users-to-sign-in-when-authentication-is-none"></a>
+
+claude.ai custom connectors ask you to sign in to n8n even when you set **Authentication** to **None**. claude.ai is the only client known to do this.
+
+Your instance offers n8n user authentication for other triggers. claude.ai assumes every MCP endpoint on your domain uses it.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
@@ -40811,6 +40798,8 @@ Choose whether and how to restrict access to the chat. Select from:
 * **Basic Auth**: The chat uses basic authentication.
   * Select or create a **Credential for Basic Auth** with a username and password. All users must use the same username and password.
 * **n8n User Auth**: Only users logged in to an n8n account can use the chat.
+
+When you select **n8n User Auth**, a **Require Workflow Execute Permission** toggle appears. Turn it on to require that the triggering user also has permission to execute the workflow in the project it belongs to. Users who are logged in but lack execute permission on the workflow can't use the chat. This is useful with [end-user credentials](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-credentials/end-user-credentials), where each user runs the workflow with their own connected account.
 
 #### Initial Message(s) <a href="#initial-messages" id="initial-messages"></a>
 
@@ -80791,7 +80780,7 @@ Use this generic authentication if your app or service expects static authentica
 
 Simplified Custom Auth works like [Custom auth](httprequest.md#using-custom-auth): JSON that n8n merges into every request that uses the credential. The difference is that the JSON is a template containing `{{placeholder}}` markers instead of the secrets themselves. The credential form shows one field per placeholder, and n8n replaces each marker with the field's value when it sends a request.
 
-This split exists so the AI Assistant can prepare the setup part for you. When the [AI Assistant](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/ai-assistant) builds a workflow for a service that has no dedicated n8n credential, it creates this credential type: it prepares the template, the fields, and the test URL from the service's API documentation, and you only paste the secret values into the form. It also records the service's API host so that n8n only offers the credential to nodes calling the same service.
+This split exists so n8n Assistant can prepare the setup part for you. When [n8n Assistant](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/n8n-assistant) builds a workflow for a service that has no dedicated n8n credential, it creates this credential type: it prepares the template, the fields, and the test URL from the service's API documentation, and you only paste the secret values into the form. It also records the service's API host so that n8n only offers the credential to nodes calling the same service.
 
 You can also set up the credential yourself. Select **Edit setup** in the credential modal and enter:
 
@@ -80799,7 +80788,7 @@ You can also set up the credential yourself. Select **Edit setup** in the creden
 * The **Fields** settings for each placeholder: a **Label**, whether the value is **Secret** (masked) or **Plain text**, whether it's **Required**, and an optional **Hint** clarifying the expected value, such as its format.
 * _Optional:_ A **Test URL**: A GET endpoint n8n calls with the authentication applied to check that the credential works when you save it. Pick a side-effect-free endpoint that never triggers billable work, such as an account or profile endpoint.
 * _Optional:_ **Accepted status codes**: Status codes to treat as success alongside 2xx responses when testing the credential, such as `403` for services that return 403 for a valid key with limited scopes.
-* _Optional:_ A **Documentation URL**: The provider page where you create or copy the secret. It doesn't appear in the credential form; the AI Assistant uses it to point you to the exact page.
+* _Optional:_ A **Documentation URL**: The provider page where you create or copy the secret. It doesn't appear in the credential form; n8n Assistant uses it to point you to the exact page.
 
 Then go back to the form and enter a value for each field. n8n redacts the values after saving.
 
@@ -87103,6 +87092,7 @@ If you need to connect to a service where n8n doesn't have a node, or a credenti
   * [Push and pull changes](use-source-control-and-environments/push-and-pull-changes.md)
   * [Compare versions](use-source-control-and-environments/compare-versions.md)
   * [Move work between environments](use-source-control-and-environments/move-work-between-environments.md)
+  * [Use environments programmatically with the public API](use-source-control-and-environments/use-environments-via-api.md)
   * [Tutorial: Create environments with source control](use-source-control-and-environments/tutorial-create-environments-with-source-control.md)
 * [Manage credentials](manage-credentials/README.md)
   * [Share credentials securely](manage-credentials/share-credentials-securely.md)
@@ -88439,6 +88429,7 @@ Set up SAML SSO in n8n with Okta.
 
 This guide covers setting up Workforce Identity. This is the original Okta product. Customer Identity is Okta's name for Auth0, which they've acquired.
 {% endhint %}
+
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
 
 You need an Okta Workforce Identity account, and the redirect URL and entity ID from n8n's SAML settings.
@@ -88579,6 +88570,7 @@ You must manage user details on the LDAP server, not in n8n. If you update or de
 
 If you remove a user from your LDAP server, they lose n8n access on the next sync.
 {% endhint %}
+
 ## Turn LDAP off <a href="#turn-ldap-off" id="turn-ldap-off"></a>
 
 To turn LDAP off:
@@ -89700,7 +89692,7 @@ You can mix fixed and end-user credentials across nodes in one workflow. For exa
 * **Team projects only:** You can only create end-user credentials in team projects, not in personal projects. This keeps them centrally managed, where an admin sets up the credential template, rather than individual users creating their own in personal projects.
 * **OAuth credentials only:** End-user credentials support OAuth-based credential types only.
 * **One connection per user:** Each user can connect a single account per end-user credential template.
-* **Supported triggers:** End-user credential resolution works with the manual trigger, [Chat Hub](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/chat-hub), the MCP Server Trigger, and the [n8n Form Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.formtrigger).
+* **Supported triggers:** End-user credential resolution works with the manual trigger, [Chat Hub](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/chat-hub), the MCP Server Trigger, the [n8n Form Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.formtrigger), and the [Chat Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.chattrigger) with **Hosted Chat** only, not Embedded Chat/webhook mode. The Form Trigger and Chat Trigger resolve end-user credentials when they use **n8n User Auth** authentication, so each user runs the workflow with their own connected account.
 
 ## Create an end-user credential
 
@@ -89714,6 +89706,7 @@ Users with project access can now connect their own account to this credential. 
 {% hint style="info" %}
 Some trigger nodes, such as the **MCP Server Trigger**, let you require that the triggering user has permission to execute the trigger. When you enable this, only users with a project role that allows workflow execution can trigger it. A user without that role can't connect their account.
 {% endhint %}
+
 ## Connect your account
 
 Before you can use an end-user credential in a workflow, connect your account to the template. You can do this from:
@@ -90141,6 +90134,235 @@ If a pulled data table has columns removed compared to your local version, n8n d
 If you need different credentials on different n8n environments, use [external secrets](../manage-credentials/use-external-secret-stores.md).
 {% endhint %}
 
+=== https://docs.n8n.io/docs/administer/use-source-control-and-environments/use-environments-via-api/
+
+# Use environments programmatically with the public API
+
+You can manage n8n environments from scripts and pipelines using the public API, without opening the n8n UI. This lets you automate promotion between instances, for example moving work from a development instance to production on a schedule or as part of a CI/CD pipeline.
+
+This page explains how the source control API endpoints work together. It assumes you've already connected your instances to Git and understand how push and pull behave in the UI. For that background, read [Push and pull](push-and-pull-changes.md) and [Copy work between environments](move-work-between-environments.md).
+
+{% hint style="info" %}
+**Feature availability**
+
+The Source Control `status` and `push` endpoints are available from n8n version `2.39.0`.
+* `GET /api/v1/source-control/status`
+* `POST /api/v1/source-control/push`
+
+Environments is an Enterprise feature.
+{% endhint %}
+
+## The endpoints
+
+The public API exposes three source control operations:
+
+| Endpoint | Method | What it does |
+|----------|--------|--------------|
+| `/source-control/status` | `GET` | Previews the pending changes between your instance and Git, in either direction. |
+| `/source-control/push` | `POST` | Commits and pushes local changes to the connected Git branch. |
+| `/source-control/pull` | `POST` | Fetches changes from the connected Git branch into the instance. |
+
+`push` and `pull` are the same actions as the **Push** and **Pull** buttons in the source control menu. `status` matches the file list the UI shows in the push and pull modals before you confirm. The API exposes it as its own endpoint so a script can do the same review the UI does inline.
+
+For the full request and response schemas, refer to the [Endpoint reference](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api/api-reference).
+
+### Authentication and scopes
+
+Every request needs an API key sent in the `X-N8N-API-KEY` header. On Enterprise plans, you can scope each key to the minimum it needs:
+
+| Scope | Grants |
+|-------|--------|
+| `sourceControl:pull` | Pull changes into the instance. |
+| `sourceControl:push` | Push local changes to Git. |
+| `sourceControl:read` | Read the status of pending changes. |
+
+Scoping keys this way is how you enforce direction. A production instance that should only ever receive changes gets a key with `sourceControl:pull`, so it can't push. Add `sourceControl:read` too if you also want that key to preview incoming changes with `status` before pulling them.
+
+## Check the status, then act
+
+Don't push blind. `push` requires a `fileNames` array and only commits the files you list there, so call `status` first to see what's eligible.
+
+The steps should be:
+
+1. Call `status` to see what's eligible.
+2. Decide what to include: every file to push everything, or a subset to push only some of it.
+3. Build `fileNames` from the files you picked, keeping only each file's `id` and `type`.
+4. Call `push` with that array.
+
+Call `status` with a `direction` query parameter to choose which side you're previewing:
+
+```curl
+curl --request GET \
+	--location '<YOUR-INSTANCE-URL>/api/v1/source-control/status?direction=push' \
+	--header 'X-N8N-API-KEY: <YOUR-API-KEY>'
+```
+
+Each file in the response includes its `id`, `name`, `type` (such as `workflow` or `credential`), and `status` (such as `modified` or `new`):
+
+```json
+{
+	"data": [
+		{
+			"id": "1a2b3c",
+			"name": "Daily sales report",
+			"type": "workflow",
+			"status": "modified",
+			"file": "workflows/1a2b3c.json"
+		}
+	]
+}
+```
+
+## Promotion flow from development to read-only production
+
+This is a common setup: you make changes on a development instance, then promote them to a production instance that only ever receives updates. This example uses a single Git branch shared by both instances.
+
+Give each instance a scoped API key:
+
+* The development instance API key has `sourceControl:read` and `sourceControl:push`.
+* The production instance API key has `sourceControl:read` and `sourceControl:pull`.
+
+**1. Preview the changes on development.** Call `status` with `direction=push` to see what n8n would commit:
+
+```curl
+curl --request GET \
+	--location '<DEV-INSTANCE-URL>/api/v1/source-control/status?direction=push' \
+	--header 'X-N8N-API-KEY: <DEV-API-KEY>'
+```
+
+**2. Push from development to Git.** Send a commit message and the files to promote, listed in `fileNames` as `id`/`type` pairs. Include every file from step 1's `status` response to promote in entirety, or a subset to promote part of it:
+
+```curl
+curl --request POST \
+	--location '<DEV-INSTANCE-URL>/api/v1/source-control/push' \
+	--header 'Content-Type: application/json' \
+	--header 'X-N8N-API-KEY: <DEV-API-KEY>' \
+	--data '{
+		"commitMessage": "Promote sales reporting workflows",
+		"fileNames": [
+			{
+				"id": "1a2b3c",
+				"type": "workflow"
+			}
+		]
+	}'
+```
+
+**3. Preview the changes on production.** Call `status` with `direction=pull` to see what n8n would apply, before it touches anything:
+
+```curl
+curl --request GET \
+	--location '<PROD-INSTANCE-URL>/api/v1/source-control/status?direction=pull' \
+	--header 'X-N8N-API-KEY: <PROD-API-KEY>'
+```
+
+**4. Pull into production.** The production instance reads the same branch and applies the changes. Use `force` to accept the incoming version, and set `autoPublish` to publish workflows as they arrive:
+
+```curl
+curl --request POST \
+	--location '<PROD-INSTANCE-URL>/api/v1/source-control/pull' \
+	--header 'Content-Type: application/json' \
+	--header 'X-N8N-API-KEY: <PROD-API-KEY>' \
+	--data '{
+		"force": true,
+		"autoPublish": "published"
+	}'
+```
+
+The `autoPublish` parameter accepts `none` (the default), `published` (only republish workflows that are already published on production), or `all` (publish every pulled workflow). For more details on each mode, refer to [Push and pull](push-and-pull-changes.md#auto-publish-workflows-on-pull).
+
+{% hint style="info" %}
+**Using multiple branches**
+
+If your instances use different Git branches, you can't promote directly. Push from development to its branch, merge that branch into the production branch in your Git provider, then pull on production. Refer to [Copy work between environments](move-work-between-environments.md) for the branch patterns.
+{% endhint %}
+
+## Scheduled backup flow
+
+To version your instance in Git on a schedule, fetch every eligible file and push everything on a timer. Run this from a cron job, a CI pipeline, or an n8n workflow on a [Schedule Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.scheduletrigger)
+
+**1. Get every eligible file.** Call `status` with `direction=push`:
+
+```curl
+curl --request GET \
+	--location '<YOUR-INSTANCE-URL>/api/v1/source-control/status?direction=push' \
+	--header 'X-N8N-API-KEY: <YOUR-API-KEY>'
+```
+
+**2. Push the full list.** Map every file the `status` response returned to its `id` and `type`, and pass that as `fileNames`. Unlike the promotion flow, this job runs unattended and sets `force` to `true`. This skips the conflict check and always overwrites the branch with the instance's current state. Make sure the instance holds the versions you want before each scheduled run, or you risk overwriting more recent changes in Git.
+
+```curl
+curl --request POST \
+	--location '<YOUR-INSTANCE-URL>/api/v1/source-control/push' \
+	--header 'Content-Type: application/json' \
+	--header 'X-N8N-API-KEY: <YOUR-API-KEY>' \
+	--data '{
+		"commitMessage": "Scheduled backup",
+		"force": true,
+		"fileNames": [
+			{
+				"id": "1a2b3c",
+				"type": "workflow"
+			},
+			{
+				"id": "4d5e6f",
+				"type": "workflow"
+			},
+			...
+		]
+	}'
+```
+
+## Handle push conflicts
+
+A file is in conflict when both the instance and Git have changed it since the last sync. `status` marks these files with `"conflict": true`. If you call `push` without `force` and any selected file is in conflict, n8n rejects the whole push with a `409` response:
+
+```json
+{
+	"message": "Push blocked by conflicting files. Pass `force: true` to push anyway.",
+	"conflicts": [
+		{
+			"id": "1a2b3c",
+			"name": "Daily sales report",
+			"type": "workflow",
+			"status": "modified",
+			"file": "workflows/1a2b3c.json",
+			"conflict": true
+		}
+	]
+}
+```
+
+To push anyway and overwrite the conflicting files in Git with the instance's version, set `force` to `true`:
+
+```curl
+curl --request POST \
+	--location '<YOUR-INSTANCE-URL>/api/v1/source-control/push' \
+	--header 'Content-Type: application/json' \
+	--header 'X-N8N-API-KEY: <YOUR-API-KEY>' \
+	--data '{
+		"commitMessage": "Push reviewed workflows only",
+		"force": true,
+		"fileNames": [
+			{
+				"id": "1a2b3c",
+				"type": "workflow"
+			}
+		]
+	}'
+```
+
+## What gets pushed and pulled
+
+The API commits and applies the same resources as the UI: workflows, credential stubs, variable stubs, data table schemas, projects, folders, and tags. For the full list and the merge behavior for each resource type, refer to [Push and pull](push-and-pull-changes.md#what-gets-committed).
+
+## Related
+
+* [Push and pull](push-and-pull-changes.md): How push and pull behave, and what gets committed.
+* [Copy work between environments](move-work-between-environments.md): Branch patterns for moving work between instances.
+* [Source control](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api/source-control): Request and response schemas for the source control endpoints.
+* [Endpoint reference](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api/api-reference): The complete public API schemas.
+
 === https://docs.n8n.io/docs/administer/use-source-control-and-environments/use-git-in-n8n/
 
 # Git and n8n <a href="#git-and-n8n" id="git-and-n8n"></a>
@@ -90166,6 +90388,7 @@ This page introduces the Git concepts and terminology used in n8n. It doesn't co
 
 Git is a complex topic. This section provides a brief introduction to the key terms you need when using environments in n8n. If you want to learn about Git in depth, refer to [GitHub | Git and GitHub learning resources](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources).
 {% endhint %}
+
 ## Git overview <a href="#git-overview" id="git-overview"></a>
 
 [Git](https://git-scm.com/) is a tool for managing, tracking, and collaborating on multiple versions of documents. It's the basis for widely used platforms such as [GitHub](https://github.com/) and [GitLab](https://about.gitlab.com/).
@@ -90476,7 +90699,7 @@ Required permissions for your token:
     * [Manage settings using environment variables](host-n8n/configure-n8n/manage-settings-using-environment-variables.md)
     * [Set up task runners](host-n8n/configure-n8n/set-up-task-runners.md)
     * [Durable scheduler](host-n8n/configure-n8n/durable-scheduler.md)
-    * [Set up AI Assistant](host-n8n/configure-n8n/set-up-ai-assistant.md)
+    * [Set up n8n Assistant](host-n8n/configure-n8n/set-up-n8n-assistant.md)
     * [Deploy n8n in canvas-only mode](host-n8n/configure-n8n/deploy-n8n-in-canvas-only-mode.md)
     * [Manage your license](host-n8n/configure-n8n/manage-your-license.md)
     * [Security](host-n8n/configure-n8n/security.md)
@@ -90963,14 +91186,14 @@ n8n has more than one kind of credit. They have separate balances and pay for di
 | Credit type | What it pays for | Where you see it |
 |---|---|---|
 | Gateway credits | AI models and tool services used by nodes in your workflows | On supported nodes, and on the **Gateway credits** tab in the Cloud admin dashboard |
-| AI Assistant credits | Your usage of [n8n's AI Assistant](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/ai-assistant) and AI Workflow Builder | In the AI Assistant panel in the editor |
+| n8n Assistant credits | Your usage of [n8n Assistant](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/n8n-assistant) and AI Workflow Builder | In the n8n Assistant panel in the editor |
 | Free OpenAI API credits | A legacy one-time OpenAI allowance for new Cloud users | Only on instances without Gateway credits |
 
-Topping up Gateway credits doesn't add AI Assistant credits, and using the AI Assistant doesn't spend your Gateway credit balance.
+Topping up Gateway credits doesn't add n8n Assistant credits, and using the n8n Assistant doesn't spend your Gateway credit balance.
 
 ## Data handling
 
-When a node runs on Gateway credits, n8n sends the request through its gateway to the service provider under n8n's own provider account. The provider receives the content of the request, such as the prompt you send to a model or the text you send to a parser, but not your identity or n8n account details. For more on how n8n handles your data, refer to [Privacy](https://app.gitbook.com/s/ukPPOMQ6NId4gpAIkPXa/privacy) and n8n's terms of service.
+When a node runs on Gateway credits, n8n sends the request through its gateway to the service provider under n8n's own provider account. The provider receives the content of the request, such as the prompt you send to a model or the text you send to a parser, but not your identity or n8n account details. For more on how n8n handles your data, refer to [Privacy](https://app.gitbook.com/s/ukPPOMQ6NId4gpAIkPXa) and n8n's terms of service.
 
 ## Related resources
 
@@ -91269,9 +91492,9 @@ pnpm --filter n8n-containers services:clean
 
 ## Who this is for
 
-This guide walks through building your own Docker Compose setup by hand, including the sandbox stack that powers the AI Assistant. Use it if you want full control over your configuration, or need to fold n8n into an existing Compose project.
+This guide walks through building your own Docker Compose setup by hand, including the sandbox stack that powers n8n Assistant. Use it if you want full control over your configuration, or need to fold n8n into an existing Compose project.
 
-If you just want n8n (and the AI Assistant) running quickly without writing any files yourself, use the [one-line setup](one-line-setup.md) instead. It sets up everything below automatically.
+If you just want n8n (and n8n Assistant) running quickly without writing any files yourself, use the [one-line setup](one-line-setup.md) instead. It sets up everything below automatically.
 
 ## What you need before you start
 
@@ -91306,7 +91529,7 @@ SEARXNG_SECRET=change-me-searxng-secret
 N8N_INSTANCE_AI_SEARXNG_URL=http://searxng:8080
 ```
 
-You don't need an AI provider key yet; see [Turn on the AI Assistant](install-using-docker-compose.md#optional-turn-on-the-ai-assistant) below once everything's running.
+You don't need an AI provider key yet; see [Turn on n8n Assistant](install-using-docker-compose.md#optional-turn-on-n8n-assistant) below once everything's running.
 
 ## Step 3: Create `searxng-settings.yml`
 
@@ -91322,7 +91545,7 @@ search:
 
 ## Step 4: Create `compose.yml`
 
-This defines every service you're setting up: n8n itself, the sandbox stack that lets the AI Assistant safely run code, and SearXNG for web search.
+This defines every service you're setting up: n8n itself, the sandbox stack that lets n8n Assistant safely run code, and SearXNG for web search.
 
 {% @github-files/github-code-block %}
 
@@ -91332,11 +91555,11 @@ This defines every service you're setting up: n8n itself, the sandbox stack that
 | -------------------- | -------------------------------------------------------------------------------------------------- |
 | **n8n**              | The workflow editor itself, available at `http://localhost:5678`.                                  |
 | **sandbox-certs**    | Runs once to generate the TLS certificates the other sandbox services need, then exits.            |
-| **sandbox-api**      | The control plane n8n talks to when the AI Assistant needs to run code.                            |
+| **sandbox-api**      | The control plane n8n talks to when n8n Assistant needs to run code.                            |
 | **sandbox-runner-1** | Does the actual work; a privileged Docker-in-Docker container that creates and runs the sandboxes. |
-| **searxng**          | Bundled web search backend for the AI Assistant.                                                   |
+| **searxng**          | Bundled web search backend for n8n Assistant.                                                   |
 
-This bundles n8n's own sandbox (`n8n-sandbox`), which is a good fit for local development and testing. For a production instance, n8n currently recommends Daytona as the sandbox provider instead. See [Set up the AI Assistant](../configure-n8n/set-up-ai-assistant.md) for how to configure a Daytona sandbox.
+This bundles n8n's own sandbox (`n8n-sandbox`), which is a good fit for local development and testing. For a production instance, n8n currently recommends Daytona as the sandbox provider instead. See [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md) for how to configure a Daytona sandbox.
 
 There's no database service defined here. n8n falls back to its built-in SQLite database, stored inside the container unless you mount a volume for it. For a production instance, swap in Postgres. See [Use PostgreSQL instead of SQLite](install-using-docker-compose.md#optional-use-postgresql-instead-of-sqlite) below.
 
@@ -91364,9 +91587,9 @@ curl -sf http://localhost:5678/healthz
 
 Launch n8n by pointing your web browser to `http://localhost:5678`
 
-## Optional: Turn on the AI Assistant
+## Optional: Turn on n8n Assistant
 
-Everything above runs the full sandbox stack, but the AI Assistant itself stays off until you give it a model to use. You can do this from the n8n UI (in the instance's AI settings) once n8n is running, or using `.env` if you'd rather configure it before first login:
+Everything above runs the full sandbox stack, but n8n Assistant itself stays off until you give it a model to use. You can do this from the n8n UI (in the instance's AI settings) once n8n is running, or using `.env` if you'd rather configure it before first login:
 
 1.  Add your AI provider key to `.env`:
 
@@ -91385,7 +91608,7 @@ Web search runs through the bundled SearXNG service by default. If you'd rather 
 INSTANCE_AI_BRAVE_SEARCH_API_KEY=BSA-xxx
 ```
 
-Full setup steps, including the supported model providers, are in [Set up the AI Assistant](../configure-n8n/set-up-ai-assistant.md).
+Full setup steps, including the supported model providers, are in [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md).
 
 ## Optional: Use PostgreSQL instead of SQLite
 
@@ -91530,7 +91753,7 @@ This hosting guide shows you how to self-host n8n on a DigitalOcean droplet with
 * [Caddy](https://caddyserver.com) (a reverse proxy) to allow access to the Droplet from the internet. Caddy also automatically creates and manages SSL/TLS certificates for your n8n instance.
 * [Docker Compose](https://docs.docker.com/compose/) to create and define the application components and how they work together.
 
-Once n8n is up and running, an optional last section covers adding the AI Assistant.
+Once n8n is up and running, an optional last section covers adding n8n Assistant.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/YLv7Cqg70tj1alDgktSX/" %}
 
@@ -91705,9 +91928,9 @@ You can stop n8n and Caddy with the following command:
 sudo docker compose stop
 ```
 
-## Optional: Add the AI Assistant <a href="#optional-add-the-ai-assistant" id="optional-add-the-ai-assistant"></a>
+## Optional: Add n8n Assistant <a href="#optional-add-n8n-assistant" id="optional-add-n8n-assistant"></a>
 
-The AI Assistant needs a sandbox to run code in. You can add the same sandbox stack used in the [Docker Compose guide](../install-using-docker-compose.md) to this setup. A few things are worth knowing before you start:
+n8n Assistant needs a sandbox to run code in. You can add the same sandbox stack used in the [Docker Compose guide](../install-using-docker-compose.md) to this setup. A few things are worth knowing before you start:
 
 * This sandbox is suitable for local development and testing. The stack below uses n8n's own bundled sandbox (`n8n-sandbox`). Since a DigitalOcean droplet with a public domain is often a real deployment, consider Daytona instead if this is going to production.
 * **Resize if needed.** The sandbox runner uses Docker-in-Docker, which needs more headroom than n8n alone. Make sure you provision at least 4 GB RAM / 2 vCPU.
@@ -91839,7 +92062,7 @@ The AI Assistant needs a sandbox to run code in. You can add the same sandbox st
    sudo docker compose up -d
    ```
 
-6. Add your model API key. See [Set up AI Assistant](../../configure-n8n/set-up-ai-assistant.md) for the full reference, including how to pick a model provider. Web search works out of the box via the bundled SearXNG service above; add a Brave Search key instead if you'd rather use that.
+6. Add your model API key. See [Set up n8n Assistant](../../configure-n8n/set-up-n8n-assistant.md) for the full reference, including how to pick a model provider. Web search works out of the box via the bundled SearXNG service above; add a Brave Search key instead if you'd rather use that.
 
 {% hint style="warning" %}
 Replace the `change-me-...` placeholders in `.env` with your own unique secrets before exposing this Droplet to the internet. `sandbox-runner-1` runs privileged Docker-in-Docker. Never publish its ports, and don't route Caddy to it.
@@ -91918,6 +92141,7 @@ To maintain data between pod restarts, the Postgres deployment needs a persisten
 
 If you have specialised or higher requirements for storage classes, [read more on the options Azure offers in the documentation](https://learn.microsoft.com/en-us/azure/aks/concepts-storage#storage-classes).
 {% endhint %}
+
 ### Postgres environment variables <a href="#postgres-environment-variables" id="postgres-environment-variables"></a>
 
 Postgres needs some environment variables set to pass to the application running in the containers.
@@ -92022,6 +92246,7 @@ n8n typically operates on a subdomain. Create a DNS record with your provider fo
 
 [Read this tutorial](https://learn.microsoft.com/en-us/azure/aks/static-ip) for more details on how to use a static IP address with AKS.
 {% endhint %}
+
 ## Delete resources <a href="#delete-resources" id="delete-resources"></a>
 
 Remove the resources created by the manifests with the following command:
@@ -92327,6 +92552,7 @@ After Heroku builds and deploys the app it provides links to **Manage App** or *
 
 Refer to the [Heroku documentation](https://devcenter.heroku.com/categories/networking-dns) to find out how to connect your domain to a Heroku application.
 {% endhint %}
+
 ## Changing the deployment template <a href="#changing-the-deployment-template" id="changing-the-deployment-template"></a>
 
 You can make changes to the deployment template by forking the [repository](https://github.com/n8n-io/n8n-heroku) and deploying from you fork.
@@ -92344,6 +92570,7 @@ Heroku doesn't allow Docker-based applications to define an exposed port with th
 
 [Read this guide](https://devcenter.heroku.com/articles/container-registry-and-runtime#unsupported-dockerfile-commands) for more details on the limitations of using Docker with Heroku.
 {% endhint %}
+
 ### Configuring Heroku <a href="#configuring-heroku" id="configuring-heroku"></a>
 
 The `heroku.yml` file defines the application you want to create on Heroku. It consists of two sections:
@@ -93639,7 +93866,7 @@ This hosting guide shows you how to self-host n8n on a Hetzner cloud server. It 
 * [Caddy](https://caddyserver.com) (a reverse proxy) to allow access to the Server from the internet.
 * [Docker Compose](https://docs.docker.com/compose/) to create and define the application components and how they work together.
 
-Once n8n is up and running, an optional last section covers adding the AI Assistant.
+Once n8n is up and running, an optional last section covers adding n8n Assistant.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/YLv7Cqg70tj1alDgktSX/" %}
 
@@ -93656,13 +93883,14 @@ You can change most of the settings to suit your needs, but as this guide uses D
 {% hint style="info" %}
 **Type**
 
-When creating the server, Hetzner asks you to choose a plan. For most usage levels, the CPX11 type is enough. If you plan to add the AI Assistant, choose a plan with at least 4 GB RAM / 2 vCPU instead. CPX11 doesn't have enough headroom once the sandbox is added.
+When creating the server, Hetzner asks you to choose a plan. For most usage levels, the CPX11 type is enough. If you plan to add n8n Assistant, choose a plan with at least 4 GB RAM / 2 vCPU instead. CPX11 doesn't have enough headroom once the sandbox is added.
 {% endhint %}
 {% hint style="info" %}
 **SSH keys**
 
 Hetzner lets you choose between SSH and password-based authentication. SSH is more secure. The rest of this guide assumes you are using SSH.
 {% endhint %}
+
 ## Log in to your server <a href="#log-in-to-your-server" id="log-in-to-your-server"></a>
 
 The rest of this guide requires you to log in to the server using a terminal with SSH. Refer to [Access with SSH/rsync/BorgBackup](https://docs.hetzner.com/robot/storage-box/access/access-ssh-rsync-borg) for more information. You can find the public IP in the listing of the servers in your project.
@@ -93728,7 +93956,7 @@ sudo ufw allow 80
 sudo ufw allow 443
 ```
 
-{% hint style="info" %} If you add the AI Assistant later, its sandbox services stay internal to the Compose network. You don't need to open any additional ports for them. {% endhint %}
+{% hint style="info" %} If you add n8n Assistant later, its sandbox services stay internal to the Compose network. You don't need to open any additional ports for them. {% endhint %}
 
 ## Configure n8n <a href="#configure-n8n" id="configure-n8n"></a>
 
@@ -93797,9 +94025,9 @@ You can stop n8n and Caddy with the following command:
 sudo docker compose stop
 ```
 
-## Optional: Add the AI Assistant <a href="#optional-add-the-ai-assistant" id="optional-add-the-ai-assistant"></a>
+## Optional: Add n8n Assistant <a href="#optional-add-n8n-assistant" id="optional-add-n8n-assistant"></a>
 
-The AI Assistant needs a sandbox to run code in. You can add the same sandbox stack used in the [Docker Compose guide](../install-using-docker-compose.md) to this setup. A few things are worth knowing before you start:
+n8n Assistant needs a sandbox to run code in. You can add the same sandbox stack used in the [Docker Compose guide](../install-using-docker-compose.md) to this setup. A few things are worth knowing before you start:
 
 * This sandbox is suitable for local development and testing. The stack below uses n8n's own bundled sandbox (`n8n-sandbox`). Since a DigitalOcean droplet with a public domain is often a real deployment, consider Daytona instead if this is going to production.
 * **Resize if needed.** The sandbox runner uses Docker-in-Docker, which needs more headroom than n8n alone. Make sure you provision at least 4 GB RAM / 2 vCPU.
@@ -93931,7 +94159,7 @@ The AI Assistant needs a sandbox to run code in. You can add the same sandbox st
    sudo docker compose up -d
    ```
 
-6. Add your model API key. See [Set up AI Assistant](../../configure-n8n/set-up-ai-assistant.md) for the full reference, including how to pick a model provider. Web search works out of the box via the bundled SearXNG service above; add a Brave Search key instead if you'd rather use that.
+6. Add your model API key. See [Set up n8n Assistant](../../configure-n8n/set-up-n8n-assistant.md) for the full reference, including how to pick a model provider. Web search works out of the box via the bundled SearXNG service above; add a Brave Search key instead if you'd rather use that.
 
 {% hint style="warning" %}
 Replace the `change-me-...` placeholders in `.env` with your own unique secrets before exposing this Droplet to the internet. `sandbox-runner-1` runs privileged Docker-in-Docker. Never publish its ports, and don't route Caddy to it.
@@ -94120,6 +94348,7 @@ n8n typically operates on a subdomain. Create a DNS record with your provider fo
 
 [Read this GKE tutorial](https://cloud.google.com/kubernetes-engine/docs/tutorials/configuring-domain-name-static-ip#configuring_your_domain_name_records) for more details on how reserved IP addresses work with GKE and Kubernetes resources.
 {% endhint %}
+
 ## Delete resources <a href="#delete-resources" id="delete-resources"></a>
 
 Remove the resources created by the manifests with the following command:
@@ -94337,6 +94566,7 @@ To find the address of the n8n service running on the instance:
 
 This guide uses HTTP connections for the services it defines, for example in `n8n-deployment.yaml`. However, if you click the **Load balancer URLs** value, EKS takes you to an "HTTPS" URL which results in an error. To solve this, when you open the n8n subdomain, make sure to use HTTP.
 {% endhint %}
+
 ## Delete resources <a href="#delete-resources" id="delete-resources"></a>
 
 If you need to delete the setup, you can remove the resources created by the manifests with the following command:
@@ -94358,9 +94588,9 @@ npm-based installs are deprecated from n8n 3.0.
 {% endhint %}
 
 {% hint style="info" %}
-**AI Assistant not available**
+**n8n Assistant not available**
 
-The AI Assistant feature isn't available when using the npm installation method.
+n8n Assistant isn't available when using the npm installation method.
 {% endhint %}
 
 npm is a quick way to get started with n8n on your local machine. You must have [Node.js](https://nodejs.org/en/) installed. n8n requires a Node.js version between 20.19 and 24.x, inclusive.
@@ -94491,7 +94721,7 @@ You don't need to know Docker to use this guide; just have it installed and runn
 The one-line setup command requires the `docker compose` v2 plugin specifically (not the older standalone `docker-compose` binary), and checks that the Docker daemon is running. If you're using Podman, Colima, or other Docker-compatible engines, install the `docker` CLI with the compose plugin and point `DOCKER_HOST` at their socket.
 {% endhint %}
 
-Watch a video guide covering this setup, from installing Docker to [turning on the AI Assistant](#optional-turn-on-the-ai-assistant):
+Watch a video guide covering this setup, from installing Docker to [turning on n8n Assistant](#optional-turn-on-n8n-assistant):
 
 {% embed url="https://www.youtube.com/embed/t5RBVTby9EU" %}
 
@@ -94547,23 +94777,23 @@ Running the command sets up everything below automatically. There's nothing extr
 |---|---|
 | **n8n** | The workflow editor itself, running at `http://localhost:5678`. |
 | **A built-in database** | Stores your workflows, credentials, and execution history. This is [SQLite](https://www.sqlite.org/), a lightweight database that lives in a file. You don't need to install or manage a separate database server. |
-| **AI Assistant support services** | A sandbox that safely runs the code the AI Assistant writes, and a bundled search tool so it can look things up on the web. These start automatically alongside n8n, but the assistant itself stays switched off until you add an AI provider key. See [Turn on the AI Assistant](#optional-turn-on-the-ai-assistant) |
+| **n8n Assistant support services** | A sandbox that safely runs the code n8n Assistant writes, and a bundled search tool so it can look things up on the web. These start automatically alongside n8n, but the assistant itself stays switched off until you add an AI provider key. See [Turn on n8n Assistant](#optional-turn-on-n8n-assistant) |
 
 If you're setting n8n up for a team or a production environment, consider a more robust database like Postgres rather than the built-in default. See [Install using Docker Compose](./install-using-docker-compose.md) for that setup.
 
-The same goes for the sandbox: this setup uses n8n's own bundled sandbox, which is a good fit for trying things out, but for production, n8n currently recommends Daytona instead. See [Set up the AI Assistant](../configure-n8n/set-up-ai-assistant.md) for how to configure it.
+The same goes for the sandbox: this setup uses n8n's own bundled sandbox, which is a good fit for trying things out, but for production, n8n currently recommends Daytona instead. See [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md) for how to configure it.
 
-## Optional: Turn on the AI Assistant
+## Optional: Turn on n8n Assistant
 
-n8n works fully without the AI Assistant, which is an optional extra. Once n8n is running, the easiest way to turn it on is from the UI in the instance's AI settings. Add your model API key there. Prefer to configure it before you ever log in? Edit `.env` instead:
+n8n works fully without n8n Assistant, which is an optional extra. Once n8n is running, the easiest way to turn it on is from the UI in the instance's AI settings. Add your model API key there. Prefer to configure it before you ever log in? Edit `.env` instead:
 
 1. Open the `.env` file the command created (in `./n8n/.env` by default).
 2. Add your AI provider key to the `N8N_INSTANCE_AI_MODEL_API_KEY` line.
 3. Restart n8n: `docker compose -f ./n8n/compose.yml up -d`
 
-Full setup steps, including the supported providers, are in [Set up the AI Assistant](../configure-n8n/set-up-ai-assistant.md).
+Full setup steps, including the supported providers, are in [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md).
 
-By default, the AI Assistant's web search runs through a bundled search tool with no setup needed. If you'd rather use Brave Search, add your Brave API key to `INSTANCE_AI_BRAVE_SEARCH_API_KEY` in the same `.env` file. It's used automatically once it's set.
+By default, n8n Assistant's web search runs through a bundled search tool with no setup needed. If you'd rather use Brave Search, add your Brave API key to `INSTANCE_AI_BRAVE_SEARCH_API_KEY` in the same `.env` file. It's used automatically once it's set.
 
 {% hint style="info" %}
 You don't need to open any extra ports or configure anything for these services. Only n8n itself (port `5678`) is ever reachable from outside your machine. Everything else stays private by default.
@@ -96080,6 +96310,7 @@ Logging is an important feature for debugging. n8n uses the [winston](https://ww
 
 n8n Self-hosted Enterprise tier includes [Log streaming](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/observe-and-log/stream-logs-to-external-systems), in addition to the logging options described in this document.
 {% endhint %}
+
 ## How do I set up logging in n8n? <a href="#setup" id="setup"></a>
 
 To set up logging in n8n, you need to set the following environment variables (you can also set the values in the [configuration file](../configure-n8n/basic-configuration/use-environment-variables/README.md))
@@ -96970,6 +97201,356 @@ Only main instances emit them. They come from the poll engine itself, not the sc
 The two cursor metrics track the dedicated cursor table. A node starts reporting them with its first poll after you turn on [durable poll cursors](#durable-poll-cursors). It keeps reporting them after you turn the setting off, because its cursor stays in the table.
 
 All names above assume the default `n8n_` metrics prefix. If you set `N8N_METRICS_PREFIX`, substitute your own.
+
+=== https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/set-up-n8n-assistant/
+
+# Set up n8n Assistant
+
+{% hint style="info" %}
+**Feature availability**
+
+n8n Assistant is available on:
+
+- **n8n Cloud:** Starter, Pro
+- **Self-hosted:** Community, Registered Community, Business
+
+It isn't ready for n8n Cloud Enterprise or self-hosted Enterprise yet. If you're an Enterprise customer, contact your Customer Success Manager about preview access.
+{% endhint %}
+
+{% hint style="info" %}
+**Preview status**
+
+n8n Assistant is in Preview. It can make mistakes, and behavior may change while the feature is in development. Always review generated workflows before using them in production.
+{% endhint %}
+
+## What n8n Assistant needs
+
+Every self-hosted n8n Assistant setup needs three things:
+
+* **A model provider:** An API key for Anthropic, OpenAI, or OpenRouter.
+* **A sandbox (required):** An isolated environment where n8n Assistant runs code.
+* **A search provider (optional):** Lets n8n Assistant look things up on the web.
+
+How you provide the sandbox is the main decision. n8n's own bundled sandbox (`n8n-sandbox`) is a good fit for local development and testing. It's what the [one-line setup command](../install-options/one-line-setup.md) and [Docker Compose guide](../install-options/install-using-docker-compose.md) set up automatically. For production, use Daytona instead.
+
+[Pick your setup](#pick-your-setup) below based on how you installed n8n and where you're running it.
+
+### Before you start
+
+Make sure you have:
+
+* Access to configure environment variables for the n8n instance.
+* A recent version of n8n. Run the latest stable release or later; older versions may work, but newer is better.
+* An API key for a supported LLM provider: Anthropic, OpenAI, or OpenRouter.
+
+## Pick your setup
+
+| Setup | When to use this | Sandbox hosted by | Best for |
+| --- | --- | --- | --- |
+| [1. Already running the sandbox](#setup-1-already-running-the-sandbox-recommended-for-local-development) | You installed with the one-line setup command or the Docker Compose guide. | You (already done) | Local development and testing |
+| [2. Self-host the sandbox manually](#setup-2-self-host-the-sandbox-manually-advanced) | You're running n8n some other way and want to self-host the sandbox rather than use Daytona. | You | Local development and testing |
+| [3. Daytona (managed sandbox)](#setup-3-daytona-managed-sandbox-recommended-for-production) | You're deploying to production, or don't want to run sandbox containers yourself. | Daytona | Production |
+
+### Setup 1: Already running the sandbox (recommended for local development)
+
+If you installed n8n with the [one-line setup command](../install-options/one-line-setup.md) or built it by hand with the [Docker Compose guide](../install-options/install-using-docker-compose.md), the sandbox and search, using bundled SearXNG, are already running. All that's left is a model key.
+
+**What you need:** an LLM API key. Nothing else.
+
+**Steps:**
+
+The quickest way: open the editor, go to the instance's AI settings, and add your model key there. Prefer `.env`?  Use the steps below.
+
+1. Add your model key to `.env`:
+
+   ```bash
+   N8N_INSTANCE_AI_MODEL_API_KEY=sk-ant-xxx
+   ```
+
+2. Restart n8n.
+3. Open the editor and confirm n8n Assistant appears and responds.
+
+`N8N_INSTANCE_AI_MODEL` defaults to `anthropic/claude-opus-4-8`. Set it explicitly only if you want a different model (see [Choose a model provider](#choose-a-model-provider)).
+
+Prefer to watch? This [video guide](https://go.n8n.io/RZZWq1) covers the setup end to end, from the one-line install to selecting a provider and model in the editor.
+
+### Setup 2: Self-host the sandbox manually (advanced)
+
+Use this if you're configuring n8n outside of the one-line setup command or Docker Compose guide, and you want to run the sandbox yourself rather than hand it to Daytona.
+
+{% hint style="warning" %}
+This means hosting two extra containers yourself: the sandbox API and a privileged Docker-in-Docker runner, plus mutual TLS between them. Like setup 1, this uses `n8n-sandbox`, which is best suited to local development and testing. For production, use [Daytona](#setup-3-daytona-managed-sandbox-recommended-for-production) instead.
+{% endhint %}
+
+**What you need:**
+
+* The n8n Sandbox Service running and reachable from n8n. See the [Docker Compose guide](../install-options/install-using-docker-compose.md) for the full stack (`sandbox-certs`, `sandbox-api`, `sandbox-runner-1`) and its secrets.
+* An LLM API key.
+
+**Steps:**
+
+1. Stand up the sandbox stack (Docker Compose guide linked above).
+2. Point n8n at it:
+
+   ```bash
+   N8N_INSTANCE_AI_SANDBOX_ENABLED=true
+   N8N_INSTANCE_AI_SANDBOX_PROVIDER=n8n-sandbox
+   N8N_SANDBOX_SERVICE_URL=http://sandbox-api:8080
+   N8N_SANDBOX_SERVICE_API_KEY=my-sandbox-api-key
+   ```
+
+   | Variable | Description |
+   | --- | --- |
+   | `N8N_INSTANCE_AI_SANDBOX_ENABLED` | Set to `true`. |
+   | `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Set to `n8n-sandbox`. |
+   | `N8N_SANDBOX_SERVICE_URL` | URL of the sandbox API, reachable from n8n. |
+   | `N8N_SANDBOX_SERVICE_API_KEY` | Must match `SANDBOX_API_KEYS` on the API container. |
+
+3. Add your model key (see [Choose a model provider](#choose-a-model-provider)) and restart n8n.
+
+**Verify:**
+
+```bash
+curl http://<sandbox-api-host>:8080/healthz
+```
+
+Expected response: `{"status":"ok"}`
+
+**Notes:**
+
+* Replace `my-sandbox-api-key` with your own secret, and set matching registration-token and runner-key secrets on the API and runner containers. See the [Docker Compose guide](../install-options/install-using-docker-compose.md) for the full set of variables and how they connect.
+* `N8N_SANDBOX_SERVICE_API_KEY` must match a value in `SANDBOX_API_KEYS` on the sandbox API container.
+* The runner pulls its sandbox image on first use. For air-gapped setups, preload that image into the runner's inner Docker.
+* Hostnames matter. The certificates are issued for `sandbox-api` and `sandbox-runner-<n>`, so keep those service names or regenerate certificates with matching SANs.
+
+### Setup 3: Daytona (managed sandbox, recommended for production)
+
+Daytona creates sandboxes on demand instead of you hosting the containers yourself. It's the sandbox provider n8n recommends for production use.
+
+**What you need:** a Daytona account and API key, plus an LLM API key.
+
+**Steps:**
+
+1. Set these environment variables on your n8n instance:
+
+   ```bash
+   # Enable the module and choose a model
+   N8N_ENABLED_MODULES=instance-ai
+   N8N_INSTANCE_AI_MODEL=anthropic/claude-opus-4-8
+   N8N_INSTANCE_AI_MODEL_API_KEY=sk-ant-xxx
+
+   # Sandbox, required
+   N8N_INSTANCE_AI_SANDBOX_ENABLED=true
+   N8N_INSTANCE_AI_SANDBOX_PROVIDER=daytona
+   N8N_INSTANCE_AI_SANDBOX_IMAGE=daytonaio/sandbox:0.5.3-slim
+
+   # Daytona
+   DAYTONA_API_URL=https://app.daytona.io/api
+   DAYTONA_API_KEY=dtn_xxx
+
+   # Web search, recommended
+   INSTANCE_AI_BRAVE_SEARCH_API_KEY=BSA-xxx
+   ```
+
+   | Variable | Description |
+   | --- | --- |
+   | `N8N_ENABLED_MODULES` | Must include `instance-ai` to enable the module. |
+   | `N8N_INSTANCE_AI_MODEL` | Selects the LLM in `provider/model` format. Has a default (`anthropic/claude-opus-4-8`). Set it explicitly only if you want a different model. |
+   | `N8N_INSTANCE_AI_MODEL_API_KEY` | API key for the selected provider. |
+   | `N8N_INSTANCE_AI_SANDBOX_ENABLED` | Set to `true`. n8n Assistant requires a sandbox. |
+   | `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Set to `daytona`. |
+   | `N8N_INSTANCE_AI_SANDBOX_IMAGE` | Base container image for Daytona sandboxes. |
+   | `DAYTONA_API_URL` | Daytona API endpoint. |
+   | `DAYTONA_API_KEY` | Your Daytona API key. |
+   | `INSTANCE_AI_BRAVE_SEARCH_API_KEY` | Brave Search API key for web search. This variable intentionally doesn't use the `N8N_` prefix. |
+
+   Docker Compose example:
+
+   ```yaml
+   services:
+     n8n:
+       image: n8nio/n8n
+       environment:
+         N8N_ENABLED_MODULES: instance-ai
+         N8N_INSTANCE_AI_MODEL: anthropic/claude-opus-4-8
+         N8N_INSTANCE_AI_MODEL_API_KEY: sk-ant-xxx
+         N8N_INSTANCE_AI_SANDBOX_ENABLED: 'true'
+         N8N_INSTANCE_AI_SANDBOX_PROVIDER: daytona
+         N8N_INSTANCE_AI_SANDBOX_IMAGE: daytonaio/sandbox:0.5.3-slim
+         DAYTONA_API_URL: https://app.daytona.io/api
+         DAYTONA_API_KEY: dtn_xxx
+         INSTANCE_AI_BRAVE_SEARCH_API_KEY: BSA-xxx
+   ```
+
+2. Restart n8n, open the editor, and confirm n8n Assistant appears and responds.
+
+**Optional: tune the sandbox lifecycle**
+
+```bash
+N8N_INSTANCE_AI_SANDBOX_AUTO_STOP_MINUTES=15
+N8N_INSTANCE_AI_SANDBOX_AUTO_ARCHIVE_MINUTES=60
+N8N_INSTANCE_AI_SANDBOX_AUTO_DELETE_MINUTES=10080
+```
+
+{% hint style="info" %}
+By default, Daytona stops an idle sandbox after 15 minutes, archives a stopped sandbox after one hour, and deletes it after seven days. Change these settings with the variables above.
+{% endhint %}
+
+## Choose a model provider
+
+`N8N_INSTANCE_AI_MODEL` uses this format:
+
+```
+provider/model
+```
+
+Supported providers are:
+
+* `anthropic`
+* `openai`
+* `openrouter`
+
+For a hosted provider, start with `anthropic/claude-opus-4-8` or `openai/gpt-5.5`.
+
+Examples:
+
+```bash
+# Anthropic
+N8N_INSTANCE_AI_MODEL=anthropic/claude-opus-4-8
+
+# OpenAI
+N8N_INSTANCE_AI_MODEL=openai/gpt-5.5
+
+# OpenRouter
+N8N_INSTANCE_AI_MODEL=openrouter/deepseek/deepseek-v4-pro
+```
+
+Set `N8N_INSTANCE_AI_MODEL_API_KEY` to the API key for the provider you choose.
+
+If `N8N_INSTANCE_AI_MODEL_API_KEY` isn't set, n8n uses the provider's standard environment variable as a fallback:
+
+* `ANTHROPIC_API_KEY`
+* `OPENAI_API_KEY`
+* `OPENROUTER_API_KEY`
+
+### Use a local or custom OpenAI-compatible endpoint
+
+To use a local or custom OpenAI-compatible endpoint, set `N8N_INSTANCE_AI_MODEL_URL`.
+
+```bash
+N8N_INSTANCE_AI_MODEL_URL=http://localhost:1234/v1
+N8N_INSTANCE_AI_MODEL_API_KEY=optional-key
+```
+
+Some local servers don't require an API key.
+
+## Enable web search
+
+Web search lets n8n Assistant look things up on the web. It's optional, and the rest of n8n Assistant works without it.
+
+If you used the [one-line setup](../install-options/one-line-setup.md) or the [Docker Compose guide](../install-options/install-using-docker-compose.md), SearXNG is already bundled and running. No setup is needed unless you'd rather use Brave Search instead.
+
+```bash
+# Brave Search
+INSTANCE_AI_BRAVE_SEARCH_API_KEY=BSA-xxx
+
+# SearXNG
+N8N_INSTANCE_AI_SEARXNG_URL=http://searxng:8080
+```
+
+{% hint style="info" %}
+`INSTANCE_AI_BRAVE_SEARCH_API_KEY` intentionally doesn't use the `N8N_` prefix. Use the variable exactly as shown.
+{% endhint %}
+
+If you configure both, Brave Search takes priority over SearXNG. Free or unauthenticated providers, including SearXNG, can hit rate limits, so use Brave Search for a more reliable setup.
+
+If an instance admin selects a Brave Search or SearXNG credential in the AI settings UI, n8n uses that credential instead of these environment variables.
+
+## Enable agents
+
+Agents run on the same self-hosted stack as n8n Assistant. Once n8n Assistant works, add the `agents` module to [build and run agents on your instance](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents). Agents are in Preview and available from n8n 2.32.3.
+
+{% hint style="info" %}
+**Feature availability**
+
+Agents aren't available on self-hosted Enterprise yet.
+{% endhint %}
+
+You build agents manually with just the `agents` module: you pick the model, write the instructions, and attach the tools and skills yourself. n8n Assistant (`instance-ai`) is optional and adds AI-assisted building, where you describe an agent and n8n scaffolds it for you.
+
+Add `agents` to `N8N_ENABLED_MODULES`, alongside `instance-ai` if you want AI-assisted building:
+
+```bash
+# Enable the agents module (keep instance-ai for AI-assisted building)
+N8N_ENABLED_MODULES=instance-ai,agents
+
+# Knowledge base, optional: reuses the Daytona sandbox you set up for n8n Assistant
+N8N_AGENTS_AI_SANDBOX_ENABLED=true
+N8N_AGENTS_AI_SANDBOX_PROVIDER=daytona
+
+# Channels, optional: public URL so Slack, Telegram, and Linear can reach your instance
+WEBHOOK_URL=https://your-public-url
+```
+
+| Variable | Description |
+| --- | --- |
+| `N8N_ENABLED_MODULES` | Include `agents` to enable the module. Keep `instance-ai` for AI-assisted building. |
+| `N8N_AGENTS_AI_SANDBOX_ENABLED` | Set to `true` to enable the knowledge base, so agents can search uploaded files. Requires a Daytona sandbox. |
+| `N8N_AGENTS_AI_SANDBOX_PROVIDER` | Sandbox provider for the knowledge base. Use `daytona`. Reuses the Daytona keys you set for n8n Assistant. |
+| `WEBHOOK_URL` | Public, secure URL for your instance. Required to connect agents to channels such as Slack, Telegram, and Linear. |
+
+{% hint style="info" %}
+**Feature availability**
+
+The knowledge base needs the Daytona sandbox on self-hosted. Without it, the rest of the agent still works.
+{% endhint %}
+
+{% hint style="info" %}
+**Preview status**
+
+On self-hosted, the knowledge base is in Preview.
+{% endhint %}
+
+For a full deployment example, see [Installation options](../install-options/README.md). After you enable the module, see [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents).
+
+## Disable n8n Assistant
+
+To disable n8n Assistant, remove `instance-ai` from `N8N_ENABLED_MODULES`.
+
+You can also disable the module explicitly:
+
+```bash
+N8N_DISABLED_MODULES=instance-ai
+```
+
+## Troubleshooting
+
+If n8n Assistant doesn't appear or doesn't work, check for these issues.
+
+**General**
+
+* `N8N_ENABLED_MODULES` includes `instance-ai`.
+* The model value uses `provider/model` format if you set `N8N_INSTANCE_AI_MODEL`.
+* The API key is valid for the selected provider.
+* `N8N_INSTANCE_AI_SANDBOX_ENABLED` is set to `true`.
+
+**Self-hosted sandbox (setup 2)**
+
+* `N8N_SANDBOX_SERVICE_API_KEY` matches `SANDBOX_API_KEYS` on the API container.
+* The sandbox health check returns `{"status":"ok"}`.
+* `N8N_SANDBOX_SERVICE_URL` is reachable from the n8n container.
+
+**Daytona (setup 3)**
+
+* `DAYTONA_API_URL` and `DAYTONA_API_KEY` are set.
+* Your Daytona account has capacity to create a new sandbox.
+
+**Web search**
+
+* `INSTANCE_AI_BRAVE_SEARCH_API_KEY` is set, or `N8N_INSTANCE_AI_SEARXNG_URL` is set.
+* If nothing is set, this is expected. Web search is optional and the rest of n8n Assistant still works.
+
+See [Configure n8n](./) for other configuration topics.
 
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/external-hooks/
 
@@ -100905,356 +101486,6 @@ n8n keeps the following visible:
 - **The logs panel** to display execution logs of individual nodes.
 - **The node creator panel.** The "Add a node" panel still opens from the canvas, repositioned to the top of the screen instead of below the header.
 
-=== https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/set-up-ai-assistant/
-
-# Set up AI Assistant
-
-{% hint style="info" %}
-**Feature availability**
-
-The AI Assistant is available on:
-
-- **n8n Cloud:** Starter, Pro
-- **Self-hosted:** Community, Registered Community, Business
-
-It isn't ready for n8n Cloud Enterprise or self-hosted Enterprise yet. If you're an Enterprise customer, contact your Customer Success Manager about preview access.
-{% endhint %}
-
-{% hint style="info" %}
-**Preview status**
-
-The AI Assistant is in Preview. It can make mistakes, and behavior may change while the feature is in development. Always review generated workflows before using them in production.
-{% endhint %}
-
-## What AI Assistant needs
-
-Every self-hosted AI Assistant setup needs three things:
-
-* **A model provider:** An API key for Anthropic, OpenAI, or OpenRouter.
-* **A sandbox (required):** An isolated environment where AI Assistant runs code.
-* **A search provider (optional):** Lets AI Assistant look things up on the web.
-
-How you provide the sandbox is the main decision. n8n's own bundled sandbox (`n8n-sandbox`) is a good fit for local development and testing. It's what the [one-line setup command](../install-options/one-line-setup.md) and [Docker Compose guide](../install-options/install-using-docker-compose.md) set up automatically. For production, use Daytona instead.
-
-[Pick your setup](#pick-your-setup) below based on how you installed n8n and where you're running it.
-
-### Before you start
-
-Make sure you have:
-
-* Access to configure environment variables for the n8n instance.
-* A recent version of n8n. Run the latest stable release or later; older versions may work, but newer is better.
-* An API key for a supported LLM provider: Anthropic, OpenAI, or OpenRouter.
-
-## Pick your setup
-
-| Setup | When to use this | Sandbox hosted by | Best for |
-| --- | --- | --- | --- |
-| [1. Already running the sandbox](#setup-1-already-running-the-sandbox-recommended-for-local-development) | You installed with the one-line setup command or the Docker Compose guide. | You (already done) | Local development and testing |
-| [2. Self-host the sandbox manually](#setup-2-self-host-the-sandbox-manually-advanced) | You're running n8n some other way and want to self-host the sandbox rather than use Daytona. | You | Local development and testing |
-| [3. Daytona (managed sandbox)](#setup-3-daytona-managed-sandbox-recommended-for-production) | You're deploying to production, or don't want to run sandbox containers yourself. | Daytona | Production |
-
-### Setup 1: Already running the sandbox (recommended for local development)
-
-If you installed n8n with the [one-line setup command](../install-options/one-line-setup.md) or built it by hand with the [Docker Compose guide](../install-options/install-using-docker-compose.md), the sandbox and search, using bundled SearXNG, are already running. All that's left is a model key.
-
-**What you need:** an LLM API key. Nothing else.
-
-**Steps:**
-
-The quickest way: open the editor, go to the instance's AI settings, and add your model key there. Prefer `.env`?  Use the steps below.
-
-1. Add your model key to `.env`:
-
-   ```bash
-   N8N_INSTANCE_AI_MODEL_API_KEY=sk-ant-xxx
-   ```
-
-2. Restart n8n.
-3. Open the editor and confirm AI Assistant appears and responds.
-
-`N8N_INSTANCE_AI_MODEL` defaults to `anthropic/claude-opus-4-8`. Set it explicitly only if you want a different model (see [Choose a model provider](#choose-a-model-provider)).
-
-Prefer to watch? This [video guide](https://go.n8n.io/RZZWq1) covers the setup end to end, from the one-line install to selecting a provider and model in the editor.
-
-### Setup 2: Self-host the sandbox manually (advanced)
-
-Use this if you're configuring n8n outside of the one-line setup command or Docker Compose guide, and you want to run the sandbox yourself rather than hand it to Daytona.
-
-{% hint style="warning" %}
-This means hosting two extra containers yourself: the sandbox API and a privileged Docker-in-Docker runner, plus mutual TLS between them. Like setup 1, this uses `n8n-sandbox`, which is best suited to local development and testing. For production, use [Daytona](#setup-3-daytona-managed-sandbox-recommended-for-production) instead.
-{% endhint %}
-
-**What you need:**
-
-* The n8n Sandbox Service running and reachable from n8n. See the [Docker Compose guide](../install-options/install-using-docker-compose.md) for the full stack (`sandbox-certs`, `sandbox-api`, `sandbox-runner-1`) and its secrets.
-* An LLM API key.
-
-**Steps:**
-
-1. Stand up the sandbox stack (Docker Compose guide linked above).
-2. Point n8n at it:
-
-   ```bash
-   N8N_INSTANCE_AI_SANDBOX_ENABLED=true
-   N8N_INSTANCE_AI_SANDBOX_PROVIDER=n8n-sandbox
-   N8N_SANDBOX_SERVICE_URL=http://sandbox-api:8080
-   N8N_SANDBOX_SERVICE_API_KEY=my-sandbox-api-key
-   ```
-
-   | Variable | Description |
-   | --- | --- |
-   | `N8N_INSTANCE_AI_SANDBOX_ENABLED` | Set to `true`. |
-   | `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Set to `n8n-sandbox`. |
-   | `N8N_SANDBOX_SERVICE_URL` | URL of the sandbox API, reachable from n8n. |
-   | `N8N_SANDBOX_SERVICE_API_KEY` | Must match `SANDBOX_API_KEYS` on the API container. |
-
-3. Add your model key (see [Choose a model provider](#choose-a-model-provider)) and restart n8n.
-
-**Verify:**
-
-```bash
-curl http://<sandbox-api-host>:8080/healthz
-```
-
-Expected response: `{"status":"ok"}`
-
-**Notes:**
-
-* Replace `my-sandbox-api-key` with your own secret, and set matching registration-token and runner-key secrets on the API and runner containers. See the [Docker Compose guide](../install-options/install-using-docker-compose.md) for the full set of variables and how they connect.
-* `N8N_SANDBOX_SERVICE_API_KEY` must match a value in `SANDBOX_API_KEYS` on the sandbox API container.
-* The runner pulls its sandbox image on first use. For air-gapped setups, preload that image into the runner's inner Docker.
-* Hostnames matter. The certificates are issued for `sandbox-api` and `sandbox-runner-<n>`, so keep those service names or regenerate certificates with matching SANs.
-
-### Setup 3: Daytona (managed sandbox, recommended for production)
-
-Daytona creates sandboxes on demand instead of you hosting the containers yourself. It's the sandbox provider n8n recommends for production use.
-
-**What you need:** a Daytona account and API key, plus an LLM API key.
-
-**Steps:**
-
-1. Set these environment variables on your n8n instance:
-
-   ```bash
-   # Enable the module and choose a model
-   N8N_ENABLED_MODULES=instance-ai
-   N8N_INSTANCE_AI_MODEL=anthropic/claude-opus-4-8
-   N8N_INSTANCE_AI_MODEL_API_KEY=sk-ant-xxx
-
-   # Sandbox, required
-   N8N_INSTANCE_AI_SANDBOX_ENABLED=true
-   N8N_INSTANCE_AI_SANDBOX_PROVIDER=daytona
-   N8N_INSTANCE_AI_SANDBOX_IMAGE=daytonaio/sandbox:0.5.3-slim
-
-   # Daytona
-   DAYTONA_API_URL=https://app.daytona.io/api
-   DAYTONA_API_KEY=dtn_xxx
-
-   # Web search, recommended
-   INSTANCE_AI_BRAVE_SEARCH_API_KEY=BSA-xxx
-   ```
-
-   | Variable | Description |
-   | --- | --- |
-   | `N8N_ENABLED_MODULES` | Must include `instance-ai` to enable the module. |
-   | `N8N_INSTANCE_AI_MODEL` | Selects the LLM in `provider/model` format. Has a default (`anthropic/claude-opus-4-8`). Set it explicitly only if you want a different model. |
-   | `N8N_INSTANCE_AI_MODEL_API_KEY` | API key for the selected provider. |
-   | `N8N_INSTANCE_AI_SANDBOX_ENABLED` | Set to `true`. AI Assistant requires a sandbox. |
-   | `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Set to `daytona`. |
-   | `N8N_INSTANCE_AI_SANDBOX_IMAGE` | Base container image for Daytona sandboxes. |
-   | `DAYTONA_API_URL` | Daytona API endpoint. |
-   | `DAYTONA_API_KEY` | Your Daytona API key. |
-   | `INSTANCE_AI_BRAVE_SEARCH_API_KEY` | Brave Search API key for web search. This variable intentionally doesn't use the `N8N_` prefix. |
-
-   Docker Compose example:
-
-   ```yaml
-   services:
-     n8n:
-       image: n8nio/n8n
-       environment:
-         N8N_ENABLED_MODULES: instance-ai
-         N8N_INSTANCE_AI_MODEL: anthropic/claude-opus-4-8
-         N8N_INSTANCE_AI_MODEL_API_KEY: sk-ant-xxx
-         N8N_INSTANCE_AI_SANDBOX_ENABLED: 'true'
-         N8N_INSTANCE_AI_SANDBOX_PROVIDER: daytona
-         N8N_INSTANCE_AI_SANDBOX_IMAGE: daytonaio/sandbox:0.5.3-slim
-         DAYTONA_API_URL: https://app.daytona.io/api
-         DAYTONA_API_KEY: dtn_xxx
-         INSTANCE_AI_BRAVE_SEARCH_API_KEY: BSA-xxx
-   ```
-
-2. Restart n8n, open the editor, and confirm AI Assistant appears and responds.
-
-**Optional: tune the sandbox lifecycle**
-
-```bash
-N8N_INSTANCE_AI_SANDBOX_AUTO_STOP_MINUTES=15
-N8N_INSTANCE_AI_SANDBOX_AUTO_ARCHIVE_MINUTES=60
-N8N_INSTANCE_AI_SANDBOX_AUTO_DELETE_MINUTES=10080
-```
-
-{% hint style="info" %}
-By default, Daytona stops an idle sandbox after 15 minutes, archives a stopped sandbox after one hour, and deletes it after seven days. Change these settings with the variables above.
-{% endhint %}
-
-## Choose a model provider
-
-`N8N_INSTANCE_AI_MODEL` uses this format:
-
-```
-provider/model
-```
-
-Supported providers are:
-
-* `anthropic`
-* `openai`
-* `openrouter`
-
-For a hosted provider, start with `anthropic/claude-opus-4-8` or `openai/gpt-5.5`.
-
-Examples:
-
-```bash
-# Anthropic
-N8N_INSTANCE_AI_MODEL=anthropic/claude-opus-4-8
-
-# OpenAI
-N8N_INSTANCE_AI_MODEL=openai/gpt-5.5
-
-# OpenRouter
-N8N_INSTANCE_AI_MODEL=openrouter/deepseek/deepseek-v4-pro
-```
-
-Set `N8N_INSTANCE_AI_MODEL_API_KEY` to the API key for the provider you choose.
-
-If `N8N_INSTANCE_AI_MODEL_API_KEY` isn't set, n8n uses the provider's standard environment variable as a fallback:
-
-* `ANTHROPIC_API_KEY`
-* `OPENAI_API_KEY`
-* `OPENROUTER_API_KEY`
-
-### Use a local or custom OpenAI-compatible endpoint
-
-To use a local or custom OpenAI-compatible endpoint, set `N8N_INSTANCE_AI_MODEL_URL`.
-
-```bash
-N8N_INSTANCE_AI_MODEL_URL=http://localhost:1234/v1
-N8N_INSTANCE_AI_MODEL_API_KEY=optional-key
-```
-
-Some local servers don't require an API key.
-
-## Enable web search
-
-Web search lets AI Assistant look things up on the web. It's optional, and the rest of AI Assistant works without it.
-
-If you used the [one-line setup](../install-options/one-line-setup.md) or the [Docker Compose guide](../install-options/install-using-docker-compose.md), SearXNG is already bundled and running. No setup is needed unless you'd rather use Brave Search instead.
-
-```bash
-# Brave Search
-INSTANCE_AI_BRAVE_SEARCH_API_KEY=BSA-xxx
-
-# SearXNG
-N8N_INSTANCE_AI_SEARXNG_URL=http://searxng:8080
-```
-
-{% hint style="info" %}
-`INSTANCE_AI_BRAVE_SEARCH_API_KEY` intentionally doesn't use the `N8N_` prefix. Use the variable exactly as shown.
-{% endhint %}
-
-If you configure both, Brave Search takes priority over SearXNG. Free or unauthenticated providers, including SearXNG, can hit rate limits, so use Brave Search for a more reliable setup.
-
-If an instance admin selects a Brave Search or SearXNG credential in the AI settings UI, n8n uses that credential instead of these environment variables.
-
-## Enable agents
-
-Agents run on the same self-hosted stack as AI Assistant. Once AI Assistant works, add the `agents` module to [build and run agents on your instance](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents). Agents are in Preview and available from n8n 2.32.3.
-
-{% hint style="info" %}
-**Feature availability**
-
-Agents aren't available on self-hosted Enterprise yet.
-{% endhint %}
-
-You build agents manually with just the `agents` module: you pick the model, write the instructions, and attach the tools and skills yourself. AI Assistant (`instance-ai`) is optional and adds AI-assisted building, where you describe an agent and n8n scaffolds it for you.
-
-Add `agents` to `N8N_ENABLED_MODULES`, alongside `instance-ai` if you want AI-assisted building:
-
-```bash
-# Enable the agents module (keep instance-ai for AI-assisted building)
-N8N_ENABLED_MODULES=instance-ai,agents
-
-# Knowledge base, optional: reuses the Daytona sandbox you set up for AI Assistant
-N8N_AGENTS_AI_SANDBOX_ENABLED=true
-N8N_AGENTS_AI_SANDBOX_PROVIDER=daytona
-
-# Channels, optional: public URL so Slack, Telegram, and Linear can reach your instance
-WEBHOOK_URL=https://your-public-url
-```
-
-| Variable | Description |
-| --- | --- |
-| `N8N_ENABLED_MODULES` | Include `agents` to enable the module. Keep `instance-ai` for AI-assisted building. |
-| `N8N_AGENTS_AI_SANDBOX_ENABLED` | Set to `true` to enable the knowledge base, so agents can search uploaded files. Requires a Daytona sandbox. |
-| `N8N_AGENTS_AI_SANDBOX_PROVIDER` | Sandbox provider for the knowledge base. Use `daytona`. Reuses the Daytona keys you set for AI Assistant. |
-| `WEBHOOK_URL` | Public, secure URL for your instance. Required to connect agents to channels such as Slack, Telegram, and Linear. |
-
-{% hint style="info" %}
-**Feature availability**
-
-The knowledge base needs the Daytona sandbox on self-hosted. Without it, the rest of the agent still works.
-{% endhint %}
-
-{% hint style="info" %}
-**Preview status**
-
-On self-hosted, the knowledge base is in Preview.
-{% endhint %}
-
-For a full deployment example, see [Installation options](../install-options/README.md). After you enable the module, see [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents).
-
-## Disable AI Assistant
-
-To disable AI Assistant, remove `instance-ai` from `N8N_ENABLED_MODULES`.
-
-You can also disable the module explicitly:
-
-```bash
-N8N_DISABLED_MODULES=instance-ai
-```
-
-## Troubleshooting
-
-If AI Assistant doesn't appear or doesn't work, check for these issues.
-
-**General**
-
-* `N8N_ENABLED_MODULES` includes `instance-ai`.
-* The model value uses `provider/model` format if you set `N8N_INSTANCE_AI_MODEL`.
-* The API key is valid for the selected provider.
-* `N8N_INSTANCE_AI_SANDBOX_ENABLED` is set to `true`.
-
-**Self-hosted sandbox (setup 2)**
-
-* `N8N_SANDBOX_SERVICE_API_KEY` matches `SANDBOX_API_KEYS` on the API container.
-* The sandbox health check returns `{"status":"ok"}`.
-* `N8N_SANDBOX_SERVICE_URL` is reachable from the n8n container.
-
-**Daytona (setup 3)**
-
-* `DAYTONA_API_URL` and `DAYTONA_API_KEY` are set.
-* Your Daytona account has capacity to create a new sandbox.
-
-**Web search**
-
-* `INSTANCE_AI_BRAVE_SEARCH_API_KEY` is set, or `N8N_INSTANCE_AI_SEARXNG_URL` is set.
-* If nothing is set, this is expected. Web search is optional and the rest of AI Assistant still works.
-
-See [Configure n8n](./) for other configuration topics.
-
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/README/
 
 # Configure n8n
@@ -101291,8 +101522,8 @@ See [Configure n8n](./) for other configuration topics.
 [set-up-task-runners.md](set-up-task-runners.md)
 {% endcontent-ref %}
 
-{% content-ref url="set-up-ai-assistant.md" %}
-[set-up-ai-assistant.md](set-up-ai-assistant.md)
+{% content-ref url="set-up-n8n-assistant.md" %}
+[set-up-n8n-assistant.md](set-up-n8n-assistant.md)
 {% endcontent-ref %}
 
 {% content-ref url="deploy-n8n-in-canvas-only-mode.md" %}
@@ -102451,6 +102682,7 @@ Support for basic auth and JWT authentication was removed from n8n 1.0.
 
 The `N8N_USER_MANAGEMENT_DISABLED` environment variable was also removed from n8n 1.0. No supported way to disable the login screen exists in recent versions of n8n, including for local or development use. If you need to simplify login for local development, consider using a password manager, setting a simple local password, or scripting the standard login flow.
 {% endhint %}
+
 ## Setup <a href="#setup" id="setup"></a>
 
 There are three stages to set up user management in n8n:
@@ -102697,6 +102929,16 @@ n8n's built-in MCP server lets supported clients, such as Lovable or Claude Desk
 * Interact with workflows marked as available in MCP
 * Trigger and test exposed workflows
 * Create and edit workflows and data tables
+
+{% hint style="info" %}
+**Connecting a chat client such as Claude Desktop?**
+
+1. [Enable MCP access](#enabling-mcp-access) on your instance.
+2. Copy the **Server URL** from **Settings > Instance-level MCP > Connect a client**. It ends in `/mcp-server/http`.
+3. Paste it into your client. For the exact steps per client, see [MCP client connection examples](connect-to-n8n-mcp-server/mcp-client-examples.md).
+
+The rest of this page covers the settings, permissions, and troubleshooting behind those steps.
+{% endhint %}
 
 ## Difference between instance-level MCP access and MCP Server Trigger node <a href="#difference-between-instance-level-mcp-access-and-mcp-server-trigger-node" id="difference-between-instance-level-mcp-access-and-mcp-server-trigger-node"></a>
 
@@ -103005,6 +103247,14 @@ If you encounter issues connecting MCP clients to your n8n instance, consider th
 * Confirm that the authentication method (OAuth or API key) is configured correctly in your MCP client.
 * If your instance runs behind a reverse proxy, load balancer, or web application firewall, make sure it doesn't strip the MCP request headers. See [MCP request headers](#mcp-request-headers).
 * Review n8n server logs for any error messages related to MCP connections.
+
+### Insufficient permissions when authorizing a client <a href="#insufficient-permissions-when-authorizing-a-client" id="insufficient-permissions-when-authorizing-a-client"></a>
+
+Your client sends you to n8n to approve access, and you land on a page reading **You do not have sufficient permissions to authorize this request**.
+
+For the instance MCP server, this means MCP access isn't on for your instance. The message doesn't say so, but there's no other cause. While the server runs, any signed-in user can approve a client. While it's off, n8n refuses everyone.
+
+Ask an instance owner or admin to turn it on, see [Enabling MCP access](#enabling-mcp-access), then connect the client again.
 
 ### MCP request headers <a href="#mcp-request-headers" id="mcp-request-headers"></a>
 
@@ -103961,7 +104211,7 @@ The examples below are useful if interactive steps aren't shown in n8n for your 
 2. Click on **Add custom connector**.
 3. Enter the following details:
    * **Name:** n8n MCP
-   * **Remote MCP Server URL**: the **Server URL** value shown in the **Connect a client** dialog
+   * **Remote MCP Server URL**: the **Server URL** value shown in the **Connect a client** dialog. It ends in `/mcp-server/http`, so it looks like `https://<your-n8n-domain>/mcp-server/http`. This isn't the address of your n8n editor. Don't paste the URL from your browser's address bar.
 4. Save the connector.
 5. When prompted, approve access for Claude Desktop.
 
@@ -105513,6 +105763,7 @@ In this section, you'll clone n8n's node starter repository, and build a node th
 
 n8n has a built-in SendGrid node. To avoid clashing with the existing node, you'll give your version a different name.
 {% endhint %}
+
 ### Step 1: Set up the project <a href="#step-1-set-up-the-project" id="step-1-set-up-the-project"></a>
 
 n8n provides a starter repository for node development. Using the starter ensures you have all necessary dependencies. It also provides a linter. 
@@ -106358,6 +106609,7 @@ Be aware of how n8n decides which node version to load:
 
 If you build a node using the declarative style, you can't use full versioning.
 {% endhint %}
+
 ## Light versioning <a href="#light-versioning" id="light-versioning"></a>
 
 This is available for all node types.
@@ -106739,6 +106991,7 @@ n8n provides a flexible helper for making HTTP requests, which abstracts away mo
 
 The information in this document is for node building using the programmatic style. It doesn't apply to declarative style nodes.
 {% endhint %}
+
 ## Usage <a href="#usage" id="usage"></a>
 
 Call the helper inside the `execute` function. 
@@ -108359,6 +108612,7 @@ In this section, you'll clone n8n's node starter repository, and build a node th
 
 n8n has a built-in NASA node. To avoid clashing with the existing node, you'll give your version a different name.
 {% endhint %}
+
 ### Step 1: Set up the project <a href="#step-1-set-up-the-project" id="step-1-set-up-the-project"></a>
 
 
