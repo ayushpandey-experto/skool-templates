@@ -19772,6 +19772,26 @@ n8n automatically totals the time from all Time Saved nodes executed during each
 
 <figure><img src=".gitbook/assets/time_saved_node_2.png" alt=""><figcaption><p>Total time saved calculation</p></figcaption></figure>
 
+
+### n8n 2.32 — Schedule Trigger runs survive restarts and scale across mains
+
+**Released:** 2026-07-21
+
+You can now run Schedule Trigger nodes from a database-backed queue instead of from each instance's memory. The durable scheduler records every upcoming run in the database before it's due, so a restart or crash no longer silently drops work. Any run whose time passed while an instance was down fires when the instance recovers rather than being skipped.
+
+In a multi-main setup, every main instance shares the same queue and claims runs from it. Only one instance picks up each run, so scheduling load spreads across your whole fleet instead of depending on a single leader instance. Dispatch fires at the exact scheduled instant: the scheduler claims each run ahead of time and holds it with a precision timer, so steady-state timing is not limited to a polling cadence.
+
+To opt in, set two environment variables and restart your instance:
+
+1. Set `N8N_SCHEDULER_ENABLED=true` to enable the durable scheduler.
+2. Set `N8N_USE_WORKFLOW_PUBLICATION_SERVICE=true` so the scheduler takes over Schedule Trigger nodes. Without this second flag, Schedule Trigger nodes keep running on the in-memory scheduler and n8n logs a warning.
+
+Your existing Schedule Trigger nodes switch automatically without republishing. The defaults suit most instances, but you can tune timing precision, storage, and load with additional environment variables including `N8N_SCHEDULER_MATERIALIZATION_WINDOW`, `N8N_SCHEDULER_EXECUTOR_INTERVAL`, `N8N_SCHEDULER_RETENTION`, `N8N_SCHEDULER_FAILED_RETENTION`, and `N8N_SCHEDULER_MISFIRE_GRACE`. See the Scheduler environment variables page for the full set. To monitor the scheduler, set `N8N_METRICS=true` and `N8N_METRICS_INCLUDE_SCHEDULER_METRICS=true` to expose Prometheus metrics, then import the n8n Durable Scheduler Health Grafana dashboard to track queue depth, scheduling lag, dispatch throughput, retries, and dead-letters.
+
+Note that this is a preview feature behind an environment flag, and the environment variables and default behavior can change before general availability. n8n recommends testing in a non-production environment first. If your instance is down for an extended period, missed runs are coalesced on recovery by default: only the most recent missed occurrence fires, instead of one run per missed occurrence. Tune this with `N8N_SCHEDULER_MISFIRE_GRACE` (how late a run may start and still count as on time before it's considered missed).
+
+Learn more in the [documentation](https://docs.n8n.io/deploy/host-n8n/configure-n8n/durable-scheduler).
+
 === https://docs.n8n.io/docs/changelog/v30-breaking-changes/
 
 # n8n 3.0 breaking changes <a href="#n8n-v30-breaking-changes" id="n8n-v30-breaking-changes"></a>
@@ -34237,8 +34257,8 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.38.1
-Current `beta`: 2.39.0
+Current `stable`: 2.38.5
+Current `beta`: 2.39.1
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -63694,7 +63714,6 @@ Replace deprecated nodes in your workflows before n8n removes them in a future r
 | Chat Messages Retriever | 1 |
 | Convert to/from binary data | 1.1 |
 | Cron | 1 |
-| Embedding Dimensions | 1 |
 | Function | 1 |
 | Function Item | 1 |
 | GitHub Document Loader | 1.1 |
@@ -63704,14 +63723,15 @@ Replace deprecated nodes in your workflows before n8n removes them in a future r
 | In Memory Vector Store Insert | 1 |
 | In Memory Vector Store Load | 1 |
 | Interval | 1 |
+| Item Lists | 3.1 |
 | JSON Input Loader | 1 |
+| LangChain Code | 1 |
+| Line | 1 |
 | Manual Chat Trigger | 1.1 |
-| MCP Registry Client (internal) | 1 |
-| Message an Agent | 1 |
+| MCP Registry Client (internal) | 1.1 |
 | Motorhead | 1.4 |
 | OpenAI Assistant | 1.1 |
 | OpenAI Model | 1 |
-| Options | 1 |
 | Orbit | 1 |
 | Pinecone: Insert | 1 |
 | Pinecone: Load | 1 |
@@ -63721,12 +63741,14 @@ Replace deprecated nodes in your workflows before n8n removes them in a future r
 | SerpApi (Google Search) | 1 |
 | Simulate | 1 |
 | Simulate Trigger | 1 |
+| Spreadsheet File | 2 |
 | Supabase: Insert | 1 |
 | Supabase: Load | 1 |
 | Tool Executor | 1 |
 | Workflow Trigger | 1 |
 | Write Binary File | 1 |
 | Zep | 1.4 |
+| Zep Vector Store | 1 |
 | Zep Vector Store: Insert | 1 |
 | Zep Vector Store: Load | 1 |
 
@@ -63759,17 +63781,17 @@ Always use the current version in new workflows to get the latest features and b
 | AI Agent Tool | 3 | 2.2 |
 | Airtable | 2.2 | 1, 2, 2.1 |
 | Airtop | 1.1 | 1 |
-| Anthropic Chat Model | 1.5 | 1, 1.1, 1.2, 1.3, 1.4 |
-| AWS Bedrock Chat Model | 1.1 | 1 |
+| Anthropic Chat Model | 1.6 | 1, 1.1, 1.2, 1.3, 1.4, 1.5 |
+| AWS Bedrock Chat Model | 1.2 | 1, 1.1 |
 | AwsS3 | 2 | 1 |
 | Baserow | 1.1 | 1 |
 | Basic LLM Chain | 1.9 | 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8 |
 | Bitbucket Trigger | 1.1 | 1 |
-| Cal.com Trigger | 2 | 1 |
+| Cal.com Trigger | 3 | 1, 2 |
 | Call n8n Sub-Workflow Tool | 2.2 | 1, 1.1, 1.2, 1.3, 2, 2.1 |
 | Chat | 1.3 | 1, 1.1, 1.2 |
 | Chat Memory Manager | 1.1 | 1 |
-| Chat Trigger | 1.4 | 1, 1.1, 1.2, 1.3 |
+| Chat Trigger | 1.5 | 1, 1.1, 1.2, 1.3, 1.4 |
 | Coda | 1.1 | 1 |
 | Code | 2 | 1 |
 | Code Tool | 1.3 | 1, 1.1, 1.2 |
@@ -63781,10 +63803,10 @@ Always use the current version in new workflows to get the latest features and b
 | Date & Time | 2 | 1 |
 | Default Data Loader | 1.1 | 1 |
 | Discord | 2 | 1 |
-| Email Trigger (IMAP) | 2.1 | 1, 2 |
+| Email Trigger (IMAP) | 2.2 | 1, 2, 2.1 |
 | Embeddings OpenAI | 1.2 | 1, 1.1 |
 | Execute Sub-workflow | 1.3 | 1, 1.1, 1.2 |
-| Execute Workflow Trigger | 1.1 | 1 |
+| Execute Workflow Trigger | 1.2 | 1, 1.1 |
 | Execution Data | 1.1 | 1 |
 | Extract from File | 1.1 | 1 |
 | Filter | 2.3 | 1, 2, 2.1, 2.2 |
@@ -63807,69 +63829,67 @@ Always use the current version in new workflows to get the latest features and b
 | Guardrails | 2 | 1 |
 | HighLevel | 2 | 1 |
 | HTML | 1.2 | 1, 1.1 |
-| HTTP Request | 4.4 | 1, 2, 3, 4, 4.1, 4.2, 4.3 |
+| HTTP Request | 4.5 | 1, 2, 3, 4, 4.1, 4.2, 4.3, 4.4 |
 | HubSpot | 2.2 | 1, 2, 2.1 |
 | If | 2.3 | 1, 2, 2.1, 2.2 |
 | Information Extractor | 1.2 | 1, 1.1 |
 | Invoice Ninja | 2 | 1 |
 | Invoice Ninja Trigger | 2 | 1 |
-| Item Lists | 3.1 | 1, 2, 2.1, 2.2, 3 |
 | Jira Trigger | 1.1 | 1 |
 | Kafka Trigger | 1.3 | 1, 1.1, 1.2 |
 | Lemlist | 2 | 1 |
 | Linear | 1.1 | 1 |
 | MailerLite | 2 | 1 |
 | MailerLite Trigger | 2 | 1 |
-| MCP Client Tool | 1.2 | 1, 1.1 |
-| MCP Server Trigger | 2 | 1, 1.1 |
+| MCP Client Tool | 1.4 | 1, 1.1, 1.2, 1.3 |
+| MCP Server Trigger | 2.1 | 1, 1.1, 2 |
 | Merge | 3.2 | 1, 2, 2.1, 3, 3.1 |
 | Microsoft Agent 365 Trigger | 1.1 | 1 |
 | Microsoft Excel (OneDrive) | 2.2 | 1, 2, 2.1 |
 | Microsoft OneDrive | 1.1 | 1 |
 | Microsoft Outlook | 2 | 1 |
-| Microsoft SQL | 1.1 | 1 |
+| Microsoft SQL | 1.2 | 1, 1.1 |
 | Microsoft Teams | 2 | 1, 1.1 |
 | Mindee | 3 | 1, 2 |
-| MongoDB | 1.3 | 1, 1.1, 1.2 |
+| MongoDB | 1.5 | 1, 1.1, 1.2, 1.3, 1.4 |
 | MongoDB Chat Memory | 1.1 | 1 |
 | Moonshot Kimi Chat Model | 1.1 | 1 |
 | MySQL | 2.5 | 1, 2, 2.1, 2.2, 2.3, 2.4 |
 | n8n Form | 2.5 | 1, 2.3, 2.4 |
-| n8n Form Trigger | 2.5 | 1, 2, 2.1, 2.2, 2.3, 2.4 |
+| n8n Form Trigger | 2.6 | 1, 2, 2.1, 2.2, 2.3, 2.4, 2.5 |
 | NocoDB | 4 | 1, 2, 3 |
-| Notion | 2.2 | 1, 2, 2.1 |
+| Notion | 3 | 1, 2, 2.1, 2.2 |
 | OpenAI | 2.3 | 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 2, 2.1, 2.2 |
 | OpenAI Chat Model | 1.3 | 1, 1.1, 1.2 |
-| Perplexity | 2 | 1 |
+| Perplexity | 3 | 1, 2 |
 | Pipedrive | 2 | 1 |
 | Pipedrive Trigger | 1.1 | 1 |
-| Postgres | 2.6 | 1, 2, 2.1, 2.2, 2.3, 2.4, 2.5 |
+| Postgres | 2.7 | 1, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 |
 | Postgres Chat Memory | 1.4 | 1, 1.1, 1.2, 1.3 |
 | Question and Answer Chain | 1.7 | 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6 |
-| RabbitMQ | 1.1 | 1 |
+| RabbitMQ | 1.2 | 1, 1.1 |
 | Read/Write Files from Disk | 1.1 | 1 |
 | Redis Chat Memory | 1.6 | 1, 1.1, 1.2, 1.3, 1.4, 1.5 |
 | Remove Duplicates | 2 | 1, 1.1 |
 | Respond to Webhook | 1.5 | 1, 1.1, 1.2, 1.3, 1.4 |
 | RSS Read | 1.2 | 1, 1.1 |
-| Schedule Trigger | 1.3 | 1, 1.1, 1.2 |
+| Schedule Trigger | 1.4 | 1, 1.1, 1.2, 1.3 |
 | SeaTable | 2 | 1 |
 | SeaTable Trigger | 2 | 1 |
 | Send Email | 2.1 | 1, 2 |
 | Sentiment Analysis | 1.1 | 1 |
-| Set | 3.4 | 1, 2, 3, 3.1, 3.2, 3.3 |
+| Set | 3.5 | 1, 2, 3, 3.1, 3.2, 3.3, 3.4 |
 | Simple Memory | 1.4 | 1, 1.1, 1.2, 1.3 |
-| Slack | 2.4 | 1, 2, 2.1, 2.2, 2.3 |
-| Split In Batches | 3 | 2 |
+| Slack | 2.7 | 1, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 |
+| Split In Batches | 3 | 1, 2 |
 | Splunk | 2 | 1 |
-| Spreadsheet File | 2 | 1 |
 | Strava | 1.1 | 1 |
 | Structured Output Parser | 1.3 | 1, 1.1, 1.2 |
 | Summarization Chain | 2.1 | 1, 2 |
 | Summarize | 1.1 | 1 |
 | Switch | 3.4 | 1, 2, 3, 3.1, 3.2, 3.3 |
 | Telegram | 1.2 | 1, 1.1 |
-| Telegram Trigger | 1.3 | 1, 1.1, 1.2 |
+| Telegram Trigger | 1.5 | 1, 1.1, 1.2, 1.3, 1.4 |
 | Text Classifier | 1.1 | 1 |
 | TheHive Trigger | 2 | 1 |
 | Think Tool | 1.1 | 1 |
@@ -96677,9 +96697,9 @@ export N8N_OTEL_ENABLED=true
 export N8N_OTEL_EXPORTER_OTLP_ENDPOINT=http://<your-collector-host>:4318
 ```
 
-Restart n8n. The instance starts exporting spans over OTLP HTTP using the Protobuf encoding.
+Restart n8n. The instance starts exporting spans over OTLP HTTP using the Protobuf encoding. To export over gRPC instead, refer to [Choose the OTLP protocol](#choose-the-otlp-protocol).
 
-n8n appends `/v1/traces` to the endpoint by default. Point `N8N_OTEL_EXPORTER_OTLP_ENDPOINT` at the base URL of your collector, not the traces path.
+n8n appends `/v1/traces` to the endpoint by default. Point `N8N_OTEL_EXPORTER_OTLP_ENDPOINT` at the base URL of your collector, not the traces path. The endpoint must be an `http://` or `https://` URL. If you set another scheme, or no scheme, n8n logs a warning and uses the default endpoint.
 
 If your collector needs authentication, set `N8N_OTEL_EXPORTER_OTLP_HEADERS` to a comma-separated list of `key=value` pairs:
 
@@ -96697,6 +96717,44 @@ For the full list of supported variables, refer to [OpenTelemetry environment va
 
 In [queue mode](../configure-n8n/scaling/enable-queue-mode.md), the OpenTelemetry variables must be set on all instances. Trace context is propagated between instances.
 {% endhint %}
+
+## Choose the OTLP protocol
+
+{% hint style="info" %}
+**Feature availability**
+
+The OTLP gRPC protocol, with the **Protocol** setting and the `N8N_OTEL_EXPORTER_OTLP_PROTOCOL` environment variable, is available from n8n 2.39.0.
+{% endhint %}
+
+n8n can export traces over two OTLP transports:
+
+- **`http/protobuf`** (default): OTLP over HTTP with Protobuf encoding. Collectors listen for it on port 4318 by convention. It works through proxies, ingresses, and firewalls that don't support HTTP/2, and it's simpler to debug.
+- **`grpc`**: OTLP over gRPC. Collectors listen for it on port 4317 by convention. HTTP/2 multiplexing and binary framing give it lower overhead per export. The difference matters most at high span volume. It needs HTTP/2 support end to end. Some proxies and load balancers require explicit configuration for HTTP/2.
+
+Keep the default `http/protobuf` unless your collector only accepts gRPC, or you export a high trace volume through infrastructure that supports HTTP/2.
+
+To select the protocol, set the **Protocol** field in **Settings > OpenTelemetry**, or set the environment variable:
+
+```bash
+export N8N_OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+```
+
+The variable name and its values (`http/protobuf` and `grpc`) match the upstream [`OTEL_EXPORTER_OTLP_PROTOCOL`](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) specification. As with the other fields in **Settings > OpenTelemetry**, n8n disables the **Protocol** field when you set the environment variable.
+
+### TLS
+
+The endpoint scheme controls TLS for both protocols. `https://` turns TLS on and `http://` turns it off. n8n doesn't accept a `grpc://` scheme.
+
+To trust a custom certificate authority, or to present a client certificate for mutual TLS (mTLS), use the upstream OpenTelemetry variables `OTEL_EXPORTER_OTLP_CERTIFICATE`, `OTEL_EXPORTER_OTLP_CLIENT_KEY`, and `OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE`. For the `http/protobuf` protocol, `NODE_EXTRA_CA_CERTS` also works. n8n has no setting of its own for certificates.
+
+### gRPC behavior
+
+The `grpc` protocol differs from `http/protobuf` in these ways:
+
+- **Include the port in the endpoint.** A gRPC endpoint without an explicit port connects to port 443, the gRPC default, not 4317. Write `http://<your-collector-host>:4317`.
+- **gRPC endpoints take no URL path.** n8n ignores the **Trace path** setting (`N8N_OTEL_EXPORTER_OTLP_TRACING_PATH`) and hides its row in the UI. n8n keeps the saved value and applies it again if you switch back to `http/protobuf`.
+- **Custom headers become gRPC metadata.** n8n converts the keys to lowercase. It skips entries that gRPC rejects, including `-bin`-suffixed keys with text values, and logs a warning instead of failing startup.
+- **The startup connectivity check waits for the gRPC channel to become ready.** A ready channel proves that n8n can open a TCP connection, complete the TLS handshake for `https://`, and establish an HTTP/2 connection. It doesn't prove that the endpoint serves OTLP. Use **Send test trace** in **Settings > OpenTelemetry** to confirm that the collector receives spans. The check doesn't block startup.
 
 ## Sampling <a href="#sampling" id="sampling"></a>
 
@@ -96965,7 +97023,13 @@ Check that:
 - The collector is reachable from the n8n container or host.
 - Any required `N8N_OTEL_EXPORTER_OTLP_HEADERS` (such as authentication tokens) are set.
 
+If you use the `grpc` protocol, also check that the endpoint includes an explicit port. Without one, n8n connects to port 443, not 4317.
+
 n8n logs OpenTelemetry diagnostics at `warn` level by default. Set `N8N_LOG_LEVEL=debug` to see more detail.
+
+### Startup connectivity error with gRPC and a private CA
+
+The startup connectivity check for the `grpc` protocol uses the default TLS trust store. It doesn't read `OTEL_EXPORTER_OTLP_CERTIFICATE`, `OTEL_EXPORTER_OTLP_CLIENT_KEY`, or `OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE`, while the exporter honors them. A collector behind a private certificate authority, or one that requires mTLS, can fail the check and log `Failed to connect to OpenTelemetry OTLP endpoint during startup` while exporting works. The check doesn't block startup. Use **Send test trace** in **Settings > OpenTelemetry** to confirm that the collector receives spans.
 
 ### Custom span attributes are missing <a href="#custom-span-attributes-are-missing" id="custom-span-attributes-are-missing"></a>
 
@@ -99487,15 +99551,16 @@ n8n can export workflow and node execution traces over OTLP to an OpenTelemetry 
 | Variable | Type | Default | Description | Available from | 
 | :------- | :--- | :------ | :---------- | :------
 | `N8N_OTEL_ENABLED` | Boolean | `false` | Whether to enable OpenTelemetry tracing. When set to `false`, n8n doesn't load the OpenTelemetry SDK. | 2.19.0 |
-| `N8N_OTEL_EXPORTER_OTLP_ENDPOINT` | String | `http://localhost:4318` | Base URL of the OTLP HTTP endpoint to export traces to. n8n appends the value of `N8N_OTEL_EXPORTER_OTLP_TRACING_PATH` to this URL. |  2.19.0 |
-| `N8N_OTEL_EXPORTER_OTLP_TRACING_PATH` | String | `/v1/traces` | Path appended to `N8N_OTEL_EXPORTER_OTLP_ENDPOINT` for exporting traces. | 2.19.0 |
-| `N8N_OTEL_EXPORTER_OTLP_HEADERS` | String | - | Comma-separated list of `key=value` pairs to send as HTTP headers with each OTLP request. Use this for authentication tokens or tenant headers. For example: `authorization=Bearer <token>,x-tenant=acme`. | 2.19.0 |
+| `N8N_OTEL_EXPORTER_OTLP_ENDPOINT` | String | `http://localhost:4318` | Base URL of the OTLP endpoint to export traces to. The value must be an `http://` or `https://` URL. If it isn't, n8n logs a warning and uses the default. For `http/protobuf`, n8n appends the value of `N8N_OTEL_EXPORTER_OTLP_TRACING_PATH` to this URL. |  2.19.0 |
+| `N8N_OTEL_EXPORTER_OTLP_PROTOCOL` | String | `http/protobuf` | OTLP transport for exporting traces. Valid values: `http/protobuf` and `grpc`. The name and values match the upstream [`OTEL_EXPORTER_OTLP_PROTOCOL`](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) specification. Refer to [Choose the OTLP protocol](../../../keep-n8n-running/trace-executions-with-opentelemetry.md#choose-the-otlp-protocol) for guidance. | 2.39.0 |
+| `N8N_OTEL_EXPORTER_OTLP_TRACING_PATH` | String | `/v1/traces` | Path appended to `N8N_OTEL_EXPORTER_OTLP_ENDPOINT` for exporting traces. n8n ignores this variable when `N8N_OTEL_EXPORTER_OTLP_PROTOCOL` is `grpc`, because gRPC endpoints take no URL path. | 2.19.0 |
+| `N8N_OTEL_EXPORTER_OTLP_HEADERS` | String | - | Comma-separated list of `key=value` pairs to send as HTTP headers with each OTLP request. Use this for authentication tokens or tenant headers. For example: `authorization=Bearer <token>,x-tenant=acme`. With the `grpc` protocol, n8n sends these as gRPC metadata and converts the keys to lowercase. | 2.19.0 |
 | `N8N_OTEL_EXPORTER_SERVICE_NAME` | String | `n8n` | Value of the `service.name` resource attribute on exported spans. | 2.19.0 |
 | `N8N_OTEL_TRACES_SAMPLE_RATE` | Number | `1.0` | Fraction of traces to export, between `0` and `1`. n8n uses a trace ID ratio sampler, so all spans in a trace are either sampled or dropped together. | 2.19.0 |
 | `N8N_OTEL_TRACES_INCLUDE_NODE_SPANS` | Boolean | `true` | Whether to emit a `node.execute` span for each node execution. Set to `false` to export workflow-level spans only. | 2.19.0 |
 | `N8N_OTEL_TRACES_PRODUCTION_ONLY` | Boolean | `true` | Whether to export traces for [production executions](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/understand-executions/types-of-executions) only. Set to `false` to export traces for all workflow executions. | 2.25.2 |
 | `N8N_OTEL_TRACES_INJECT_OUTBOUND` | Boolean | `true` | Whether to inject the W3C `traceparent`/`tracesstate` headers into outbound HTTP requests made by nodes that use n8n's HTTP helpers. | 2.19.0 |
-| `N8N_OTEL_STARTUP_CONNECTIVITY_TIMEOUT_MS` | Number | `2000` | Timeout (in milliseconds) for the startup connectivity check against the OTLP endpoint. n8n logs a warning if the endpoint isn't reachable within this period. | 2.19.0 |
+| `N8N_OTEL_STARTUP_CONNECTIVITY_TIMEOUT_MS` | Number | `2000` | Timeout (in milliseconds) for the startup connectivity check against the OTLP endpoint. n8n logs an error if the endpoint isn't reachable within this period. | 2.19.0 |
 | `N8N_AGENTS_TRACING_ENABLED` | Boolean | `true` | Whether agent runs emit OpenTelemetry spans. Inherits the endpoint, headers, sampling, and transport settings from `N8N_OTEL_*`. Spans have nowhere to go until you configure an OTel provider, so set this to `false` to run workflow tracing without agent spans. | 2.33.0 |
 | `N8N_AGENTS_TRACING_RECORD_INPUTS` | Boolean | `true` | Whether agent tracing records inputs, such as prompts and tool arguments. Set to `false` to exclude sensitive input data from traces. | 2.33.0 |
 | `N8N_AGENTS_TRACING_RECORD_OUTPUTS` | Boolean | `true` | Whether agent tracing records outputs, such as responses and tool results. Set to `false` to exclude sensitive output data from traces. | 2.33.0 |
@@ -104192,6 +104257,8 @@ The **Connect a client** dialog (available from n8n 2.33.0) provides one-click s
 The examples below are useful if interactive steps aren't shown in n8n for your chosen client, for reference purposes, or for manual configuration.
 {% endhint %}
 
+The examples below all use `https://`. If your instance serves plain HTTP, such as a local install at `http://localhost:5678`, use `http://` instead. Copying the full **Server URL** from n8n gives you the right prefix either way.
+
 ## Connecting Lovable to n8n MCP server <a href="#connecting-lovable-to-n8n-mcp-server" id="connecting-lovable-to-n8n-mcp-server"></a>
 
 1. Configure MCP Server in Lovable (OAuth).
@@ -104237,7 +104304,7 @@ Add the following entry to your `claude_desktop_config.json` file:
 
 Here, replace:
 
-* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<your-n8n-domain>`: Your n8n domain, without the `https://` prefix. On n8n Cloud this is `your-instance.app.n8n.cloud`. When self-hosted, it's the domain that serves your n8n editor, for example `n8n.example.com`. You can find your full server URL in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
 
 ## Connecting Claude Code to n8n MCP server <a href="#connecting-claude-code-to-n8n-mcp-server" id="connecting-claude-code-to-n8n-mcp-server"></a>
 
@@ -104264,7 +104331,7 @@ Or add the following entry to your `claude.json` file:
 
 Here, replace:
 
-* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<your-n8n-domain>`: Your n8n domain, without the `https://` prefix. On n8n Cloud this is `your-instance.app.n8n.cloud`. When self-hosted, it's the domain that serves your n8n editor, for example `n8n.example.com`. You can find your full server URL in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
 
 Run `/mcp` in Claude Code and select **n8n** to complete the OAuth authorization.
 
@@ -104295,7 +104362,7 @@ Or add the following entry to your `claude.json` file:
 
 Here, replace:
 
-* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<your-n8n-domain>`: Your n8n domain, without the `https://` prefix. On n8n Cloud this is `your-instance.app.n8n.cloud`. When self-hosted, it's the domain that serves your n8n editor, for example `n8n.example.com`. You can find your full server URL in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
 * `<YOUR_N8N_MCP_TOKEN>`: Your generated token
 
 ## Connecting Codex CLI to n8n MCP server <a href="#connecting-codex-cli-to-n8n-mcp-server" id="connecting-codex-cli-to-n8n-mcp-server"></a>
@@ -104324,7 +104391,7 @@ The `[features]` block enables Codex's HTTP MCP client. Older Codex builds requi
 
 Here, replace:
 
-* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<your-n8n-domain>`: Your n8n domain, without the `https://` prefix. On n8n Cloud this is `your-instance.app.n8n.cloud`. When self-hosted, it's the domain that serves your n8n editor, for example `n8n.example.com`. You can find your full server URL in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
 
 Run `codex mcp login n8n` to complete the OAuth authorization.
 
@@ -104343,7 +104410,7 @@ http_headers = { "authorization" = "Bearer <YOUR_N8N_MCP_TOKEN>" }
 
 Here, replace:
 
-* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<your-n8n-domain>`: Your n8n domain, without the `https://` prefix. On n8n Cloud this is `your-instance.app.n8n.cloud`. When self-hosted, it's the domain that serves your n8n editor, for example `n8n.example.com`. You can find your full server URL in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
 * `<YOUR_N8N_MCP_TOKEN>`: Your generated token
 
 ## Connecting Gemini CLI to n8n MCP server <a href="#connecting-gemini-cli-to-n8n-mcp-server" id="connecting-gemini-cli-to-n8n-mcp-server"></a>
@@ -104368,7 +104435,7 @@ Or add the following entry to your `~/.gemini/settings.json` file:
 
 Here, replace:
 
-* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<your-n8n-domain>`: Your n8n domain, without the `https://` prefix. On n8n Cloud this is `your-instance.app.n8n.cloud`. When self-hosted, it's the domain that serves your n8n editor, for example `n8n.example.com`. You can find your full server URL in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
 
 Run `/mcp` in Gemini CLI and select **n8n** to complete the OAuth authorization.
 
@@ -104391,7 +104458,7 @@ Or add the following entry to your `~/.cursor/mcp.json` file (or the project's `
 
 Here, replace:
 
-* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<your-n8n-domain>`: Your n8n domain, without the `https://` prefix. On n8n Cloud this is `your-instance.app.n8n.cloud`. When self-hosted, it's the domain that serves your n8n editor, for example `n8n.example.com`. You can find your full server URL in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
 
 ## Connecting VS Code to n8n MCP server <a href="#connecting-vs-code-to-n8n-mcp-server" id="connecting-vs-code-to-n8n-mcp-server"></a>
 
@@ -104412,7 +104479,7 @@ Or add the following entry to your workspace's `.vscode/mcp.json` file:
 
 Here, replace:
 
-* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<your-n8n-domain>`: Your n8n domain, without the `https://` prefix. On n8n Cloud this is `your-instance.app.n8n.cloud`. When self-hosted, it's the domain that serves your n8n editor, for example `n8n.example.com`. You can find your full server URL in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
 
 ## Connecting Windsurf to n8n MCP server <a href="#connecting-windsurf-to-n8n-mcp-server" id="connecting-windsurf-to-n8n-mcp-server"></a>
 
@@ -104430,7 +104497,7 @@ Add the following entry to your `~/.codeium/windsurf/mcp_config.json` file:
 
 Here, replace:
 
-* `<your-n8n-domain>`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `<your-n8n-domain>`: Your n8n domain, without the `https://` prefix. On n8n Cloud this is `your-instance.app.n8n.cloud`. When self-hosted, it's the domain that serves your n8n editor, for example `n8n.example.com`. You can find your full server URL in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
 
 Approve access when Windsurf redirects you to n8n on its first connection attempt.
 
@@ -104465,7 +104532,7 @@ root_agent = Agent(
 
 Here, replace:
 
-* `N8N_INSTANCE_URL`: Your n8n domain, for example `https://your-instance.app.n8n.cloud`, found in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
+* `N8N_INSTANCE_URL`: The base URL of your n8n instance. On n8n Cloud this is `https://your-instance.app.n8n.cloud`. When self-hosted, it's your own URL, for example `https://n8n.example.com`. You can find your full server URL in n8n under **Settings** > **Instance-level MCP > Connect a client > Server URL**.
 * `YOUR_N8N_MCP_TOKEN`: Your generated access token
 
 For more details, see [Connect ADK agent to n8n](https://google.github.io/adk-docs/tools/third-party/n8n/).
