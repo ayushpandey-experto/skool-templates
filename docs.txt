@@ -19817,6 +19817,7 @@ n8n 3.0 removes older nodes, modes, and helpers that newer patterns have replace
 - **Function** node (legacy)
 - **Function Item** node (legacy)
 - **Item Lists** node (legacy)
+- **LangChain Code** node (legacy)
 - **What to do:** Migrate affected workflows to the current recommended alternatives before upgrading:
   - Replace **Function** and **Function Item** nodes with the [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) node. Use **Run Once for All Items** mode in place of **Function**, and **Run Once for Each Item** mode in place of **Function Item**.
   - Replace the **Item Lists** node with the node matching the operation you use: [Split Out](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.splitout), [Aggregate](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.aggregate), [Sort](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.sort), [Limit](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.limit), [Remove Duplicates](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.removeduplicates), or [Summarize](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.summarize).
@@ -19852,6 +19853,7 @@ n8n 3.0 retires some legacy or lower-usage product capabilities. n8n will provid
 - **Chat Hub**: n8n 3.0 retires this feature.
 - **Workflow import from URL in the editor**: n8n 3.0 removes this. Other [import methods](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/export-and-import) remain supported: copy-paste, **Import from File** in the editor UI menu, the CLI, and the n8n API.
 - **Non-functional nodes**: n8n 3.0 removes these.
+- **Enable external secrets for project roles setting**: n8n 3.0 removes this. Project editors and admins now get external-secrets access in their projects by default. To keep restricting project roles, use [custom project roles](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/set-permissions-and-roles-rbac/create-custom-project-roles) instead. This applies to n8n Enterprise, where external secrets are available.
 
 
 === https://docs.n8n.io/docs/n8n-community-license/SUMMARY/
@@ -34257,8 +34259,8 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.38.5
-Current `beta`: 2.39.1
+Current `stable`: 2.38.6
+Current `beta`: 2.39.2
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -104805,20 +104807,27 @@ Action nodes perform operations as part of your workflow. These can include mani
 
 # Choose your node building approach <a href="#choose-your-node-building-approach" id="choose-your-node-building-approach"></a>
 
-n8n has two node-building styles, declarative and programmatic.
+n8n has two node-building styles, declarative and programmatic. Build your node in the declarative style. It's the default for new nodes.
 
-You should use the declarative style for most nodes. This style:
+The declarative style:
 
 * Uses a JSON-based syntax, making it simpler to write, with less risk of introducing bugs.
 * Is more future-proof.
 * Supports integration with REST APIs.
+* Needs no `execute()` method, so there's less code to write and maintain.
 
-The programmatic style is more verbose. You must use the programmatic style for:
+If you're not sure which style your node needs, start declarative. The [`n8n-node` tool](../build-your-node/using-the-n8n-node-tool.md) scaffolds a declarative node for you, and [Build a declarative-style node](../build-your-node/tutorial-build-a-declarative-style-node.md) walks through a complete example.
 
-* Trigger nodes
-* Any node that isn't REST-based. This includes nodes that need to call a GraphQL API and nodes that use external dependencies.
-* Any node that needs to transform incoming data.
-* Full versioning. Refer to [Node versioning](../build-your-node/reference/versioning.md) for more information on types of versioning.
+## When you need the programmatic style
+
+The programmatic style is more verbose, and it puts your node's behavior in code that you have to maintain. Treat it as the exception. Use the programmatic style when your node is one of these:
+
+* A trigger node.
+* A node that isn't REST-based. This includes nodes that need to call a GraphQL API and nodes that use external dependencies.
+* A node that needs to transform data beyond what routing handles. The declarative style can change the request with `routing.request.preSend` and the API response with `routing.output.postReceive`. Use the programmatic style when your node needs to work on incoming items independently of a single API call.
+* A node that needs feature-based versioning to branch its behavior in code, using `this.isNodeFeatureEnabled()`. Declarative nodes can still use light versioning, and can read feature flags with `@feature` in `displayOptions`. Refer to [Node versioning](../build-your-node/reference/versioning.md) for more information on types of versioning.
+
+If your node isn't on this list, build it in the declarative style.
 
 ## Data handling differences <a href="#data-handling-differences" id="data-handling-differences"></a>
 
@@ -104828,7 +104837,86 @@ The main difference between the declarative and programmatic styles is how they 
 
 To understand the difference between the declarative and programmatic styles, compare the two code snippets below. This example creates a simplified version of the SendGrid integration, called "FriendGrid." The following code snippets aren't complete: they emphasize the differences in the node building styles.
 
-In programmatic style:
+FriendGrid calls a REST API and doesn't transform its input, so the declarative style is the right choice for it. In declarative style:
+
+```js
+import { INodeType, INodeTypeDescription } from 'n8n-workflow';
+
+// Create the FriendGrid class
+export class FriendGrid implements INodeType {
+  description: INodeTypeDescription = {
+    displayName: 'FriendGrid',
+    name: 'friendGrid',
+    . . .
+    // Set up the basic request configuration
+    requestDefaults: {
+      baseURL: 'https://api.sendgrid.com/v3/marketing'
+    },
+    properties: [
+      {
+        displayName: 'Resource',
+        . . .
+      },
+      {
+        displayName: 'Operation',
+        name: 'operation',
+        type: 'options',
+        displayOptions: {
+          show: {
+            resource: [
+              'contact',
+            ],
+          },
+        },
+        options: [
+          {
+            name: 'Create',
+            value: 'create',
+            description: 'Create a contact',
+            // Add the routing object
+            routing: {
+              request: {
+                method: 'POST',
+                url: '=/contacts',
+                send: {
+                  type: 'body',
+                  properties: {
+                    email: '={{$parameter["email"]}}'
+                  }
+                }
+              },
+              // Handle the response to contact creation
+              output: {
+                postReceive: [
+                  {
+                    type: 'set',
+                    properties: {
+                      value: '={{ { "success": $response } }}'
+                    }
+                  }
+                ]
+              }
+            }
+          },
+        ],
+        default: 'create',
+        description: 'The operation to perform.',
+      },
+      {
+        displayName: 'Email',
+        . . .
+      },
+      {
+        displayName: 'Additional Fields',
+        // Sets up optional fields
+      },
+    ],
+  }
+  // No execute method needed
+}
+```
+
+The same node in programmatic style needs an `execute()` method to read the parameters and build the request by hand:
 
 ```js
 import {
@@ -104923,85 +105011,6 @@ export class FriendGrid implements INodeType {
     // Map data to n8n data
     return [this.helpers.returnJsonArray(responseData)];
   }
-}
-```
-
-In declarative style:
-
-```js
-import { INodeType, INodeTypeDescription } from 'n8n-workflow';
-
-// Create the FriendGrid class
-export class FriendGrid implements INodeType {
-  description: INodeTypeDescription = {
-    displayName: 'FriendGrid',
-    name: 'friendGrid',
-    . . .
-    // Set up the basic request configuration
-    requestDefaults: {
-      baseURL: 'https://api.sendgrid.com/v3/marketing'
-    },
-    properties: [
-      {
-        displayName: 'Resource',
-        . . .
-      },
-      {
-        displayName: 'Operation',
-        name: 'operation',
-        type: 'options',
-        displayOptions: {
-          show: {
-            resource: [
-              'contact',
-            ],
-          },
-        },
-        options: [
-          {
-            name: 'Create',
-            value: 'create',
-            description: 'Create a contact',
-            // Add the routing object
-            routing: {
-              request: {
-                method: 'POST',
-                url: '=/contacts',
-                send: {
-                  type: 'body',
-                  properties: {
-                    email: {{$parameter["email"]}}
-                  }
-                }
-              }
-            },
-            // Handle the response to contact creation
-            output: {
-              postReceive: [
-                {
-                  type: 'set',
-                  properties: {
-                    value: '={{ { "success": $response } }}'
-                  }
-                }
-              ]
-            }
-          },
-        ],
-        default: 'create',
-        description: 'The operation to perform.',
-      },
-      {
-        displayName: 'Email',
-        . . .
-      },
-      {
-        displayName: 'Additional Fields',
-        // Sets up optional fields
-      },
-    ],
-  }
-  // No execute method needed
 }
 ```
 
@@ -105665,7 +105674,7 @@ This will start an interactive prompt where you can define the details of your p
 * **What is your node called?** The name of your node. This impacts the name of your project directory, package name, and the n8n node itself. The name must use one of the following formats:
     * `n8n-nodes-<YOUR_NODE_NAME>`
     * `@<YOUR_ORG>/n8n-nodes-<YOUR_NODE_NAME>`
-* **What kind of node are you building?** The [node type](../plan-your-node/choose-a-node-building-style.md) you want to build:
+* **What kind of node are you building?** The [node building style](../plan-your-node/choose-a-node-building-style.md) you want to use:
     * **HTTP API**: A low-code, declarative node structure that's designed for faster approval for n8n Cloud.
     * **Other**: A programmatic style node with full flexibility.
 * **What template do you want to use?** When using the HTTP API, you can choose the template to start from:
@@ -106561,6 +106570,12 @@ The n8n node linter provides automatic checking for many of the node-building st
 ## Use the n8n-node tool <a href="#use-the-n8n-node-tool" id="use-the-n8n-node-tool"></a>
 
 n8n recommends using the [`n8n-node` CLI tool](../using-the-n8n-node-tool.md) to build and test your node. In particular, this is important if you plan on [submitting your node for verification](../../deploy-your-node/submit-community-nodes.md#submit-your-node-for-verification-by-n8n). This ensures that your node has the correct structure and follows community node requirements. It also simplifies linting and testing.
+
+## Use the declarative style
+
+Build your node in the declarative style. It's the default, and it keeps your node shorter and easier to maintain by describing requests in the `routing` key instead of an `execute()` method.
+
+Use the programmatic style only when your node needs it: trigger nodes, non-REST APIs, nodes that transform incoming data, or nodes that need feature-based versioning. Declarative nodes can still use light versioning. Refer to [Choose your node building approach](../../plan-your-node/choose-a-node-building-style.md) for the full list and for a side-by-side comparison of the two styles.
 
 ## Write in TypeScript <a href="#write-in-typescript" id="write-in-typescript"></a>
 
