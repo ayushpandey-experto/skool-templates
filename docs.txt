@@ -34259,8 +34259,8 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.38.6
-Current `beta`: 2.39.2
+Current `stable`: 2.38.7
+Current `beta`: 2.39.4
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -80119,13 +80119,23 @@ Then:
 	- `read:jira-work`
 	- `write:jira-work`
 	- `manage:jira-webhook`
-	- `manage:jira-user`
-	- `offline_access`
 10. Select **Settings** in the left sidebar.
 11. Copy the **Client ID** and paste it into n8n.
 12. Copy the **Secret** and paste it as the **Client Secret** in n8n.
-13. Enter the **Domain** you access Jira on, for example `https://example.atlassian.net`.
+13. Enter the **Site URL** you access Jira on, for example `https://example.atlassian.net`.
 14. Select **Connect to Jira SW Cloud** and follow the prompts to complete the OAuth2 flow.
+
+{% hint style="info" %}
+**Creating and deleting users needs an extra scope**
+
+The Jira node's **User > Create** and **User > Delete** operations call endpoints that require the `manage:jira-configuration` scope, which isn't part of the default scopes. To use them, enable `manage:jira-configuration` on your OAuth app in the Atlassian Developer Console, turn on **Custom Scopes** in the credential, add the scope to the list, and reconnect. All other Jira node operations work with the default scopes.
+{% endhint %}
+
+{% hint style="warning" %}
+**Enable every requested scope on your app**
+
+Atlassian rejects the authorization request if the credential requests a scope that isn't enabled on your OAuth app. Make sure you enable all the scopes listed above in the Atlassian Developer Console. The credential also requests `offline_access`, which Atlassian grants automatically when requested. It's needed to refresh tokens, so the connection keeps working without you signing in again.
+{% endhint %}
 
 Refer to [OAuth 2.0 (3LO) apps](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/) in Atlassian's documentation for more information.
 
@@ -83862,6 +83872,77 @@ To configure this credential, you'll need:
 
 Refer to the [Timescale connection settings documentation](https://docs.tigerdata.com/integrations/latest/find-connection-details/) for more information about the non-SSL fields. Refer to [Connect with a stricter SSL](https://docs.tigerdata.com/use-timescale/latest/security/strict-ssl/) for more information about the SSL options.
 
+=== https://docs.n8n.io/docs/integrations/builtin/credentials/confluence/
+
+# Confluence credentials
+
+Use the **Confluence Cloud OAuth2 API** credential to authenticate with [Confluence Cloud](https://www.atlassian.com/software/confluence) in n8n.
+
+## Prerequisites
+
+- A [Confluence Cloud](https://www.atlassian.com/software/confluence) site.
+- Access to the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/).
+
+## Supported authentication methods
+
+- OAuth2
+
+## Related resources
+
+Refer to [OAuth 2.0 (3LO) apps](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/) and [Confluence scopes for OAuth 2.0 (3LO) and Forge apps](https://developer.atlassian.com/cloud/confluence/scopes-for-oauth-2-3LO-and-forge-apps/) in Atlassian's documentation for more information about the service.
+
+## Using OAuth2
+
+To configure this credential, you'll need a [Confluence Cloud](https://www.atlassian.com/software/confluence) site and access to the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/).
+
+Then:
+
+1. Open the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/) and select **Create** > **OAuth 2.0 integration**.
+2. Enter a **Name** for your app and agree to the terms, then select **Create**.
+3. Select **Authorization** in the left sidebar.
+4. Next to **OAuth 2.0 (3LO)**, select **Add**.
+5. In n8n, copy the **OAuth Redirect URL**.
+6. Paste the URL into the **Callback URL** field in the Atlassian Developer Console.
+7. Select **Save changes**.
+8. Select **Permissions** in the left sidebar, then select **Add** next to **Confluence API**.
+9. Select **Configure** next to **Confluence API** > **Edit Scopes**. Under the granular scopes, enable these scopes, then save your edits:
+	- `read:page:confluence`
+	- `write:page:confluence`
+	- `read:hierarchical-content:confluence`
+	- `read:space:confluence`
+	- `read:attachment:confluence`
+	- `read:comment:confluence`
+	- `read:label:confluence`
+	- `read:content-details:confluence`
+	- `write:attachment:confluence`
+	- `delete:attachment:confluence`
+	- `write:comment:confluence`
+	- `delete:comment:confluence`
+	- `write:label:confluence`
+	- `delete:page:confluence`
+10. Select **Settings** in the left sidebar.
+11. Copy the **Client ID** and paste it into n8n.
+12. Copy the **Secret** and paste it as the **Client Secret** in n8n.
+13. Select **Connect my account** and follow the prompts to complete the OAuth2 flow.
+
+{% hint style="info" %}
+**Selecting a site**
+
+The credential doesn't store a Confluence site. You choose the site in the Confluence node's **Site** parameter instead: pick it from the list of sites the connection can access, or paste the site URL. If the connection has access to exactly one site, you can leave **Site** empty and the node uses it automatically.
+{% endhint %}
+
+{% hint style="warning" %}
+**Enable every requested scope on your app**
+
+Atlassian rejects the authorization request if the credential requests a scope that isn't enabled on your OAuth app. Make sure you enable all the scopes listed above in the Atlassian Developer Console. The credential also requests `offline_access`, which Atlassian grants automatically when requested. It's needed to refresh tokens, so the connection keeps working without you signing in again.
+{% endhint %}
+
+### Custom Scopes
+
+By default, the credential requests the scopes listed above. To change which scopes it requests, turn on **Custom Scopes** and edit the space-separated scope list. You must enable every scope you request on your OAuth app in the Atlassian Developer Console.
+
+Refer to [OAuth 2.0 (3LO) apps](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/) in Atlassian's documentation for more information.
+
 === https://docs.n8n.io/docs/integrations/builtin/credentials/todoist/
 
 # Todoist credentials <a href="#todoist-credentials" id="todoist-credentials"></a>
@@ -84356,6 +84437,60 @@ To set things up:
     2. One or more SSL **CA Certificates**.
 
 Refer to your MQTT broker provider's documentation for more detailed configuration instructions.
+
+=== https://docs.n8n.io/docs/integrations/builtin/credentials/atlassian/
+
+# Atlassian credentials
+
+The **Atlassian OAuth2 API** credential is a generic OAuth2 credential for [Atlassian Cloud](https://www.atlassian.com/).
+
+{% hint style="info" %}
+**Choosing a credential type**
+
+The product-specific credentials, [Jira SW Cloud OAuth2 API](jira.md) and [Confluence Cloud OAuth2 API](confluence.md), build on this credential and are the right choice for the Jira and Confluence nodes: they request the scopes those nodes need. Use the generic **Atlassian OAuth2 API** credential for advanced cases, for example with the HTTP Request node, where you define the scopes yourself.
+{% endhint %}
+
+## Prerequisites
+
+- An [Atlassian Cloud](https://www.atlassian.com/) site for the product you want to access, such as Jira or Confluence.
+- Access to the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/).
+
+## Supported authentication methods
+
+- OAuth2
+
+## Related resources
+
+Refer to [OAuth 2.0 (3LO) apps](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/) in Atlassian's documentation for more information about the service.
+
+## Using OAuth2
+
+To configure this credential, you'll need an [Atlassian Cloud](https://www.atlassian.com/) site and access to the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/).
+
+Then:
+
+1. Open the [Atlassian Developer Console](https://developer.atlassian.com/console/myapps/) and select **Create** > **OAuth 2.0 integration**.
+2. Enter a **Name** for your app and agree to the terms, then select **Create**.
+3. Select **Authorization** in the left sidebar.
+4. Next to **OAuth 2.0 (3LO)**, select **Add**.
+5. In n8n, copy the **OAuth Redirect URL**.
+6. Paste the URL into the **Callback URL** field in the Atlassian Developer Console.
+7. Select **Save changes**.
+8. Select **Permissions** in the left sidebar, then select **Add** next to the API of each product you want to access, such as **Jira API** or **Confluence API**.
+9. Select **Configure** next to each API you added, then select **Edit Scopes** and enable the scopes you plan to request.
+10. Select **Settings** in the left sidebar.
+11. Copy the **Client ID** and paste it into n8n.
+12. Copy the **Secret** and paste it as the **Client Secret** in n8n.
+13. Enter the **Scope** as a space-separated list of scopes to request, for example `read:jira-work read:page:confluence offline_access`.
+14. Select **Connect my account** and follow the prompts to complete the OAuth2 flow.
+
+{% hint style="warning" %}
+**Enable every requested scope on your app**
+
+Atlassian rejects the authorization request if the credential requests a scope that isn't enabled on your OAuth app. You must enable every scope you enter in n8n's **Scope** field on the app too, under **Permissions** > **Edit Scopes** in the Atlassian Developer Console. `offline_access` is the exception: Atlassian grants it automatically when requested, so it only needs to go in the **Scope** field. It's needed to refresh tokens, so the connection keeps working without you signing in again.
+{% endhint %}
+
+Refer to [Jira scopes](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/) and [Confluence scopes](https://developer.atlassian.com/cloud/confluence/scopes-for-oauth-2-3LO-and-forge-apps/) in Atlassian's documentation for the available scopes.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/bitbucket/
 
@@ -86714,6 +86849,7 @@ It's possible for several community nodes to have the same name. If you use two 
     * [Anthropic credentials](builtin/credentials/anthropic.md)
     * [APITemplate.io credentials](builtin/credentials/apitemplateio.md)
     * [Asana credentials](builtin/credentials/asana.md)
+    * [Atlassian credentials](builtin/credentials/atlassian.md)
     * [Auth0 Management credentials](builtin/credentials/auth0management.md)
     * [Autopilot credentials](builtin/credentials/autopilot.md)
     * [AWS credentials](builtin/credentials/aws.md)
@@ -86748,6 +86884,7 @@ It's possible for several community nodes to have the same name. If you use two 
     * [Cockpit credentials](builtin/credentials/cockpit.md)
     * [Coda credentials](builtin/credentials/coda.md)
     * [Cohere credentials](builtin/credentials/cohere.md)
+    * [Confluence credentials](builtin/credentials/confluence.md)
     * [Contentful credentials](builtin/credentials/contentful.md)
     * [ConvertAPI credentials](builtin/credentials/convertapi.md)
     * [ConvertKit credentials](builtin/credentials/convertkit.md)
@@ -89723,10 +89860,10 @@ You can mix fixed and end-user credentials across nodes in one workflow. For exa
 3. Configure the connection. For OAuth credentials, include the **Client ID**, **Client Secret**, and **OAuth Redirect URL** to register with the service.
 4. Select **Save**.
 
-Users with project access can now connect their own account to this credential. When a user runs a workflow that uses the credential, n8n prompts them to connect if they haven't already. They can also connect from the n8n UI, by opening a node on the canvas or from the project's **Credentials** list.
+Users can now connect their own account to this credential. When a user runs a workflow that uses the credential, n8n prompts them to connect if they haven't already. Users with project access can also connect ahead of time from the n8n UI, by opening a node on the canvas or from the project's **Credentials** list.
 
 {% hint style="info" %}
-Some trigger nodes, such as the **MCP Server Trigger**, let you require that the triggering user has permission to execute the trigger. When you enable this, only users with a project role that allows workflow execution can trigger it. A user without that role can't connect their account.
+Some trigger nodes, such as the **MCP Server Trigger**, **Chat Trigger**, and **Form Trigger**, let you require that the triggering user has permission to execute the trigger. When you enable this, only users with a project role that allows workflow execution can trigger it. A user without that role can't connect their account.
 {% endhint %}
 
 ## Connect your account
@@ -103617,7 +103754,7 @@ Search for workflow executions with optional filters. Returns execution metadata
 | `startedAfter` | `string` | No | ISO 8601 timestamp. Only return executions that started after this time. |
 | `startedBefore` | `string` | No | ISO 8601 timestamp. Only return executions that started before this time. |
 | `limit` | `integer` | No | Limit the number of results (max 200) |
-| `lastId` | `string` | No | Cursor for pagination. Pass the last execution ID from the previous page. |
+| `cursor` | `string` | No | Cursor for pagination. Pass the `nextCursor` from the previous page. Treat it as opaque. |
 
 #### Output <a href="#output" id="output"></a>
 
@@ -103633,11 +103770,13 @@ Search for workflow executions with optional filters. Returns execution metadata
 | `data[].waitTill` | `string \| null` | ISO timestamp until when the execution is waiting |
 | `count` | `integer` | Total matching executions, or `-1` if the count is unavailable |
 | `estimated` | `boolean` | Whether the count is an estimate for large datasets |
+| `nextCursor` | `string \| null` | Cursor for the next page, or `null` when no next page exists |
 | `error` | `string` | Error message if the query failed |
 
 #### Notes <a href="#notes" id="notes"></a>
 
 - Renamed from `search_executions` in n8n 2.34.0.
+- `cursor` replaces the earlier `lastId` parameter. Pass the `nextCursor` value from the previous response and treat it as an opaque string.
 
 
 ## Workflow builder <a href="#workflow-builder" id="workflow-builder"></a>
