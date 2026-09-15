@@ -1,5 +1,3 @@
-=== https://docs.n8n.io/_lychee/out/
-
 === https://docs.n8n.io/skills/n8n-docs-author/SKILL/
 
 # n8n docs author
@@ -19818,6 +19816,7 @@ n8n 3.0 removes older nodes, modes, and helpers that newer patterns have replace
 - **Function Item** node (legacy)
 - **Item Lists** node (legacy)
 - **LangChain Code** node (legacy)
+- **AI Transform** node: n8n automatically migrates existing nodes to [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) nodes on upgrade, keeping the same generated JavaScript, so existing workflows keep working without changes. You can no longer add an **AI Transform** node. Write JavaScript directly in the **Code** node instead.
 - **What to do:** Migrate affected workflows to the current recommended alternatives before upgrading:
   - Replace **Function** and **Function Item** nodes with the [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) node. Use **Run Once for All Items** mode in place of **Function**, and **Run Once for Each Item** mode in place of **Function Item**.
   - Replace the **Item Lists** node with the node matching the operation you use: [Split Out](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.splitout), [Aggregate](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.aggregate), [Sort](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.sort), [Limit](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.limit), [Remove Duplicates](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.removeduplicates), or [Summarize](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.summarize).
@@ -19850,10 +19849,12 @@ Security defaults are getting stronger to make n8n safer by default. These chang
 
 n8n 3.0 retires some legacy or lower-usage product capabilities. n8n will provide guidance where a migration path or alternative exists.
 
-- **Chat Hub**: n8n 3.0 retires this feature.
+- **Chat Hub**: n8n 3.0 turns off the Chat Hub module by default. The **Chat** section disappears from the navigation and the Chat Hub endpoints stop responding. Your chat sessions, agents, and messages stay in the database. n8n 4.0 removes the feature.
+  - **What to do:** If you still need Chat Hub, add `chat-hub` to the `N8N_ENABLED_MODULES` environment variable. The variable holds a comma-separated list, so keep the modules that you already enable, for example `N8N_ENABLED_MODULES=agents,chat-hub`. This keeps Chat Hub available for the n8n 3.x line only, and n8n prints a deprecation warning at startup. Before you update, **Settings > Migration Report** lists this change for every instance that uses Chat Hub.
 - **Workflow import from URL in the editor**: n8n 3.0 removes this. Other [import methods](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/export-and-import) remain supported: copy-paste, **Import from File** in the editor UI menu, the CLI, and the n8n API.
 - **Non-functional nodes**: n8n 3.0 removes these.
 - **Enable external secrets for project roles setting**: n8n 3.0 removes this. Project editors and admins now get external-secrets access in their projects by default. To keep restricting project roles, use [custom project roles](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/set-permissions-and-roles-rbac/create-custom-project-roles) instead. This applies to n8n Enterprise, where external secrets are available.
+- **Ask AI tab in the Code node**: n8n 3.0 removes this.
 
 
 === https://docs.n8n.io/docs/n8n-community-license/SUMMARY/
@@ -34260,7 +34261,7 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
 Current `stable`: 2.38.7
-Current `beta`: 2.39.4
+Current `beta`: 2.39.5
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -39712,6 +39713,38 @@ Use this option to retry the node after a failed attempt.
 1. Set **Max Tries** to the maximum number of times n8n should retry the node.
 1. Set **Wait Between Tries (ms)** to the desired delay in milliseconds between retries. For example, to wait one second before retrying the request again, set **Wait Between Tries (ms)** to `1000`.
 
+## Your uploaded file arrives with the wrong file name <a href="#your-uploaded-file-arrives-with-the-wrong-file-name" id="your-uploaded-file-arrives-with-the-wrong-file-name"></a>
+
+When you send a file with **Body Content Type** set to **Form-Data**, n8n takes the file name of the `multipart/form-data` part from the binary data, not from the **Name** field. **Name** sets the form field name only. If the binary data has no file name, n8n sends `file`.
+
+This matters when the receiving API identifies uploads by file name instead of by form field name, or when it requires a particular name or extension. The request arrives, but the API rejects it, often with a 400 error saying the file is missing. For example, the **Convert to Text File** operation of the [Convert to File node](../n8n-nodes-base.converttofile.md) names its output `file.txt` by default, so an API that expects `index.html` doesn't find it.
+
+To resolve, set the file name on the binary data before the HTTP Request node:
+
+* In the Convert to File node, set the **File Name** option to the name the API expects.
+* In a [Code node](../n8n-nodes-base.code/README.md), set the file name on the binary property:
+
+```javascript
+for (const item of $input.all()) {
+	item.binary.data.fileName = 'index.html';
+}
+return $input.all();
+```
+
+n8n copies the MIME type stored on the binary data into the `Content-Type` of the part, so set that too if your API checks it.
+
+## Unsupported media type (415) when you send a file <a href="#unsupported-media-type-415-when-you-send-a-file" id="unsupported-media-type-415-when-you-send-a-file"></a>
+
+This error displays when the API expects `multipart/form-data` but the request body isn't multipart.
+
+**Body Content Type > n8n Binary File** sends the file as the whole request body. n8n sets `Content-Type` to the MIME type stored on the binary data, or to `application/octet-stream` when it has none, and doesn't add a multipart envelope or a boundary. An API that only accepts multipart uploads rejects this.
+
+To send the same file as a multipart upload:
+
+1. Set **Body Content Type** to **Form-Data**.
+1. Add a **Body Parameters** entry and set its **Type** to **n8n Binary File**.
+1. Set **Name** to the form field name from the API documentation.
+1. Set **Input Data Field Name** to the binary property that holds the file, such as `data`.
 
 === https://docs.n8n.io/docs/integrations/builtin/core-nodes/n8n-nodes-base.n8n/
 
@@ -42966,7 +42999,7 @@ The HTML node is available from n8n 0.213.0, replacing the HTML Extract node. If
 {% hint style="warning" %}
 **Cross-site scripting**
 
-When using the HTML node to generate an HTML template you can introduce [XSS (cross-site scripting)](https://owasp.org/www-community/attacks/xss/). This is a security risk. Be careful with un-trusted inputs.
+When using the HTML node to generate an HTML template you can introduce [XSS (cross-site scripting)](https://community.owasp.org/attacks/xss/). This is a security risk. Be careful with un-trusted inputs.
 {% endhint %}
 
 ## Operations <a href="#operations" id="operations"></a>
@@ -44825,7 +44858,7 @@ Refer to [Netscaler ADC credentials](../credentials/netscaleradc.md) for guidanc
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
 
-[Browse Netscaler ADC node documentation integration templates](https://n8n.io/integrations/netscaler-adc) or [search all templates](https://n8n.io/workflows/)
+[Browse Netscaler ADC node documentation integration templates](https://n8n.io/integrations/citrix-adc/) or [search all templates](https://n8n.io/workflows/)
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
@@ -53808,14 +53841,22 @@ Refer to [Mandrill credentials](../credentials/mandrill.md) for guidance on sett
 
 # Microsoft Teams node <a href="#microsoft-teams-node" id="microsoft-teams-node"></a>
 
-Use the Microsoft Teams node to automate work in Microsoft Teams, and integrate Microsoft Teams with other applications. n8n has built-in support for a wide range of Microsoft Teams features, including creating and deleting, channels, messages, and tasks. 
+Use the Microsoft Teams node to automate work in Microsoft Teams, and integrate Microsoft Teams with other applications. n8n has built-in support for a wide range of Microsoft Teams features, including channels, channel and chat messages, chat members, online meetings, and tasks.
 
 On this page, you'll find a list of operations the Microsoft Teams node supports and links to more resources.
 
 {% hint style="info" %}
 **Credentials**
 
-Refer to [Microsoft credentials](../credentials/microsoft.md) for guidance on setting up authentication. From version 2 of the node, this node also supports the [Microsoft Entra Service Principal credentials](../credentials/microsoftentraserviceprincipal.md) for app-only access with no signed-in user: select **Service Principal (App-Only)** in the **Authentication** dropdown.
+From version 2 of the node, the **Authentication** dropdown offers three options:
+
+- **Teams OAuth2**: the Microsoft Teams-specific OAuth2 credential (default). Its default scopes cover every resource on this page, including `Chat.ReadWrite` for chat members and chat messages and, from n8n 2.39.0, `OnlineMeetings.ReadWrite` for online meetings.
+- **Microsoft OAuth2 (Graph)**: a generic Microsoft Graph credential that you can reuse across other Microsoft nodes. When you select this option, grant the credential the scopes this node needs. Refer to [Default scopes for Microsoft Teams](../credentials/microsoft.md#default-scopes-for-microsoft-teams) for the full list.
+- **Service Principal (App-Only)**: app-only access through a Microsoft Entra app registration, with no signed-in user. Some resources need a signed-in user and aren't available with this credential. Refer to [Service Principal credential support](#service-principal-credential-support) on this page, and to [Microsoft Entra Service Principal credentials](../credentials/microsoftentraserviceprincipal.md) for setup and the required application permissions.
+
+If you connected a Teams OAuth2 credential before n8n 2.39.0, reconnect it so it picks up `OnlineMeetings.ReadWrite`. If the credential uses **Custom Scopes**, add the scope to **Enabled Scopes** instead.
+
+Refer to [Microsoft credentials](../credentials/microsoft.md) for guidance on setting up authentication.
 {% endhint %}
 
 {% hint style="info" %}
@@ -53830,6 +53871,12 @@ If you're using a government cloud tenant (US Government, US Government DOD, or 
 
 ## Operations <a href="#operations" id="operations"></a>
 
+{% hint style="info" %}
+**Feature availability**
+
+The Chat Member and Online Meeting resources are available from n8n 2.39.0, together with the Channel Message **Get**, **Get Many Replies**, and **Reply** operations. The Chat Member **Add** operation and the Online Meeting **Create or Get**, **Delete**, and **Update** operations are available from n8n 2.40.0.
+{% endhint %}
+
 * Channel
     * Create
     * Delete
@@ -53842,11 +53889,20 @@ If you're using a government cloud tenant (US Government, US Government DOD, or 
     * Get Many
     * Get Many Replies
     * Reply
+* Chat Member
+    * Add
+    * Get Many
 * Chat Message
 	* Create
 	* Get
 	* Get Many
 	* Send and Wait for Response
+* Online Meeting
+    * Create
+    * Create or Get
+    * Delete
+    * Get
+    * Update
 * Task
     * Create
     * Delete
@@ -53854,15 +53910,20 @@ If you're using a government cloud tenant (US Government, US Government DOD, or 
     * Get Many
     * Update
 
-{% hint style="info" %}
-**Channel messages with Service Principal credentials**
-
-The **Create** and **Reply** operations for channel messages are not available with the Microsoft Entra Service Principal credentials. App-only Microsoft Graph supports only migration import for channel messages. Use an OAuth2 credential to send channel messages.
-
-The read operations stay available with the Service Principal credentials: **Get**, **Get Many**, and **Get Many Replies**.
-{% endhint %}
-
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/c0Jp2CWNEFSR2IfIVdlL/" %}
+
+## Service Principal credential support
+
+The **Service Principal (App-Only)** credential has no signed-in user, so the Microsoft Teams node can't run operations that act as one. The list below states what's available for each resource. For the unavailable resources and operations, the node hides their fields and shows a notice when you select this credential. A workflow that still uses one of them fails with an error before the node sends any request.
+
+- **Channel**: all operations.
+- **Channel Message**: Get, Get Many, and Get Many Replies. Create and Reply aren't available, because app-only Microsoft Graph only supports migration import for channel messages. Use an OAuth2 credential to send channel messages.
+- **Chat Member**: not available. The node's chat picker lists the signed-in user's chats, which app-only access can't do, so the node blocks the whole resource, including chats given by ID.
+- **Chat Message**: not available. The node sends and reads chat messages as the signed-in user.
+- **Online Meeting**: not available. The node creates and manages online meetings as the signed-in user.
+- **Task**: all operations. Get Many always lists the tasks of a plan: the node hides the **Tasks For** option, so **Group Member** isn't available. The node also hides the **Team** picker, and the **Plan**, **Bucket**, and **Assigned To** fields accept an ID only.
+
+Refer to [Microsoft Entra Service Principal credentials](../credentials/microsoftentraserviceprincipal.md) for the application permissions each operation needs.
 
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
@@ -56043,7 +56104,7 @@ To filter records from your Airtable base, use the **Filter By Formula** option.
 
 Similarly, if you want to return all the users that don't belong to the organization `n8n`, use the following formula: `NOT({Organization}='n8n')`.
 
-Refer to the Airtable [documentation](https://support.airtable.com/hc/en-us/articles/203255215-Formula-Field-Reference) to learn more about the formulas.
+Refer to the Airtable [documentation](https://support.airtable.com/docs/formula-field-reference) to learn more about the formulas.
 
 ## Common issues <a href="#common-issues" id="common-issues"></a>
 
@@ -58316,14 +58377,19 @@ Refer to [Airtop credentials](../credentials/airtop.md) for guidance on setting 
 
 ## Operations <a href="#operations" id="operations"></a>
 
+* Agent
+    * Run an agent
 * Session
     * Create session
     * Save profile on termination
     * Terminate session
+    * Wait for download
 * Window
     * Create a new browser window
     * Load URL
     * Take screenshot
+    * Get live view
+    * List windows
     * Close window
 * Extraction
     * Query page
@@ -58331,8 +58397,16 @@ Refer to [Airtop credentials](../credentials/airtop.md) for guidance on setting 
     * Smart scrape page
 * Interaction
     * Click an element
+    * Fill form
     * Hover on an element
+    * Scroll
     * Type
+* File
+    * Upload a file
+    * Get a file
+    * Get many files
+    * Load a file
+    * Delete a file
 
 
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
@@ -58351,9 +58425,23 @@ Contact [Airtop's Support](https://docs.airtop.ai/guides/misc/support) for assis
 
 ## Node reference <a href="#node-reference" id="node-reference"></a>
 
+### Run an agent
+
+Run a published Airtop agent. In the **Agent** field, select the agent to run, then map its input parameters. To run the agent against a specific browser profile, enter its ID in the optional **Browser Profile ID** field. Leave it empty to use the agent's default profile.
+
 ### Create a session and window <a href="#create-a-session-and-window" id="create-a-session-and-window"></a>
 
 Create an Airtop browser session to get a **Session ID**, then use it to create a new browser window. After this, you can use any extraction or interaction operation.
+
+### Manage windows
+
+Work with the browser windows in a session:
+
+- **Load URL**: Navigate a window to a page.
+- **Get live view**: Get a Live View URL to watch and control a window in real time.
+- **Take screenshot**: Capture an image of a window.
+- **List windows**: List the windows open in a session.
+- **Close window**: Close a specific window.
 
 ### Extract content <a href="#extract-content" id="extract-content"></a>
 
@@ -58367,7 +58455,24 @@ Get JSON responses by using the **JSON Output Schema** parameter in query operat
 
 ### Interacting with pages <a href="#interacting-with-pages" id="interacting-with-pages"></a>
 
-Click, hover, or type on elements by describing the element you want to interact with.
+Interact with a page in a session by describing the element you want to act on in natural language:
+
+- **Click an element**, **Hover on an element**, or **Type** text.
+- **Fill form**: Fill several fields at once from a plain-language description of the values.
+- **Scroll**: Scroll to a described element, or by a set amount toward a page edge.
+
+### Work with files
+
+Upload files to Airtop and use them in your browser automations:
+
+- **Upload a file**: Upload a file from a URL or binary data, and optionally attach it to a page's file input in a session.
+- **Load a file**: Attach a previously uploaded file to a page's file input in an existing session.
+- **Get a file** and **Get many files**: Retrieve file details, or download a ready file as binary data.
+- **Delete a file**: Permanently remove an uploaded file by its **File ID**.
+
+### Wait for a download
+
+After you trigger a download in a session, use **Wait for download** to wait until the file is ready, then get its file ID and download URL.
 
 ### Terminate a session <a href="#terminate-a-session" id="terminate-a-session"></a>
 
@@ -60739,7 +60844,7 @@ n8n provides an app node for AWS SNS. You can find the node docs [here](../app-n
 
 View [example workflows and related content](https://n8n.io/integrations/aws-sns-trigger/) on n8n's website.
 
-Refer to [AWS SNS's documentation](https://docs.aws.amazon.com/sns/latest/api/welcome.html) for details about their API.
+Refer to [AWS SNS's documentation](https://docs.aws.amazon.com/sns/latest/api/Welcome.html) for details about their API.
 
 === https://docs.n8n.io/docs/integrations/builtin/trigger-nodes/n8n-nodes-base.jotformtrigger/
 
@@ -65550,7 +65655,7 @@ To fix this, change the base URL in your [Ollama credentials](../../../credentia
 
 Ollama doesn't support custom HTTP agents in its configuration. This makes it difficult to use Ollama behind custom HTTP/HTTPS proxies. Depending on your proxy configuration, it might not work at all, despite setting the `HTTP_PROXY` or `HTTPS_PROXY` environment variables.
 
-Refer to [Ollama's FAQ](https://github.com/ollama/ollama/blob/main/docs/faq.md#how-do-i-use-ollama-behind-a-proxy) for more information.
+Refer to [Ollama's FAQ](https://docs.ollama.com/faq#how-do-i-use-ollama-behind-a-proxy) for more information.
 
 [^1]: n8n cluster nodes consist of one or more sub nodes connected to a root node. Sub nodes extend the functionality of the root node, providing access to specific services or resources or offering specific types of dedicated processing, like calculator functionality, for example.
 [^2]: Each n8n cluster node contains a single root nodes that defines the main functionality of the cluster. One or more sub nodes attach to the root node to extend its functionality.
@@ -65575,7 +65680,7 @@ You can find authentication information for this node [here](../../credentials/m
 
 * **Model**: Select the model to use to generate the embedding.
 
-Learn more about available models in [Mistral's models documentation](https://docs.mistral.ai/platform/pricing/).
+Learn more about available models in [Mistral's models documentation](https://docs.mistral.ai/models/).
 
 ## Node options <a href="#node-options" id="node-options"></a>
 
@@ -66499,7 +66604,7 @@ To fix this, change the base URL in your [Ollama credentials](../../../credentia
 
 Ollama doesn't support custom HTTP agents in its configuration. This makes it difficult to use Ollama behind custom HTTP/HTTPS proxies. Depending on your proxy configuration, it might not work at all, despite setting the `HTTP_PROXY` or `HTTPS_PROXY` environment variables.
 
-Refer to [Ollama's FAQ](https://github.com/ollama/ollama/blob/main/docs/faq.md#how-do-i-use-ollama-behind-a-proxy) for more information.
+Refer to [Ollama's FAQ](https://docs.ollama.com/faq#how-do-i-use-ollama-behind-a-proxy) for more information.
 
 [^1]: n8n cluster nodes consist of one or more sub nodes connected to a root node. Sub nodes extend the functionality of the root node, providing access to specific services or resources or offering specific types of dedicated processing, like calculator functionality, for example.
 [^2]: Each n8n cluster node contains a single root nodes that defines the main functionality of the cluster. One or more sub nodes attach to the root node to extend its functionality.
@@ -71794,7 +71899,7 @@ To generate both the API Key and API Token, create a Trello Power-Up:
 14. When prompted, select **Allow** to grant all the permissions asked for.
 15. Copy the Trello **Token** and enter it as the n8n **API Token**.
 
-Refer to Trello's [API Introduction](https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/#api-introduction) for more information on API keys and tokens. Refer to Trello's [Power-Up Admin Portal](https://developer.atlassian.com/cloud/trello/guides/power-ups/managing-power-ups/#power-up-admin-portal) for more information on creating Power-Ups.
+Refer to Trello's [API Introduction](https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/#api-introduction) for more information on API keys and tokens. Refer to Trello's [Power-Up Admin Portal](https://developer.atlassian.com/cloud/trello/guides/power-ups/managing-apps/) for more information on creating Power-Ups.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/brevo/
 
@@ -71815,7 +71920,7 @@ Create a [Brevo](https://www.brevo.com/) developer account.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Brevo's API documentation](https://developers.brevo.com/reference/getting-started-1) for more information about authenticating with the service.
+Refer to [Brevo's API documentation](https://developers.brevo.com/docs/api-key-authentication) for more information about authenticating with the service.
 
 ## API key <a href="#api-key" id="api-key"></a>
 
@@ -73028,7 +73133,7 @@ You can use these credentials to authenticate the following node:
         bin/magento config:set oauth/consumer/enable_integration_as_bearer 1
         ```
 
-This step is necessary until n8n updates the Magento 2 credentials to use OAuth. Refer to [Integration Tokens](https://developer.adobe.com/commerce/webapi/get-started/authentication/gs-authentication-token/#integration-tokens) for more information.
+This step is necessary until n8n updates the Magento 2 credentials to use OAuth. Refer to [Integration Tokens](https://developer.adobe.com/commerce/webapi/get-started/authentication/gs-authentication-token#integration-tokens) for more information.
 
 ## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
 
@@ -73115,11 +73220,11 @@ To configure this credential, you'll need:
     - If you're using a Wise test sandbox account, select **Test**.
     - Otherwise, select **Live**.
 - **Private Key (Optional)**: For live endpoints requiring Strong Customer Authentication (SCA), generate a public and private key. Enter the private key here. Refer to [Add a private key](#add-a-private-key) for more information.
-    - If you're using a **Test** environment, you'll only need to enter a Private Key if you've enabled Strong Customer Authentication on the [public keys management page](https://sandbox.transferwise.tech/public-keys).
+    - If you're using a **Test** environment, you'll only need to enter a Private Key if you've enabled Strong Customer Authentication on the [public keys management page](https://wise-sandbox.com/your-account/integrations-and-tools/api-tokens/public-keys).
 
 ## Add a private key <a href="#add-a-private-key" id="add-a-private-key"></a>
 
-Wise protects some live endpoints and operations with Strong Customer Authentication (SCA). Refer to [Strong Customer Authentication & 2FA](https://docs.wise.com/api-docs/features/strong-customer-authentication-2fa) for details.
+Wise protects some live endpoints and operations with Strong Customer Authentication (SCA). Refer to [Strong Customer Authentication & 2FA](https://docs.wise.com/guides/developer/auth-and-security/sca-and-2fa) for details.
 
 If you make a request to an endpoint that requires SCA, Wise returns a 403 Forbidden HTTP status code. The error returned will look like this:
 
@@ -73137,7 +73242,7 @@ To use endpoints requiring SCA, generate an RSA key pair and add the relevant ke
 2. Add the content of the public key `public.pem` to your Wise **user menu > Settings > API tokens > Manage public keys**.
 3. Add the content of the private key `private.pem` in n8n to the **Private Key (Optional)**.
 
-Refer to [Personal Token SCA](https://docs.wise.com/api-docs/guides/strong-customer-authentication-2fa/personal-token-sca) for more information.
+Refer to [Personal API tokens](https://docs.wise.com/guides/developer/auth-and-security/personal-api-token) for more information.
 
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/circleci/
@@ -73596,7 +73701,7 @@ You can use these credentials to authenticate the following nodes:
 
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
 
-Install an AMQP 1.0-compatible message broker like [ActiveMQ](https://activemq.apache.org/). Refer to [AMQP Products](https://www.amqp.org/about/examples) for a list of options.
+Install an AMQP 1.0-compatible message broker like [ActiveMQ](https://activemq.apache.org/). Refer to [AMQP Products](https://www.amqp.org/about/examples.html) for a list of options.
 
 ## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
 
@@ -75107,6 +75212,18 @@ Microsoft OneDrive credentials use the following scopes by default:
 * `offline_access`
 * `Files.ReadWrite.All`
 
+#### Default scopes for Microsoft Teams
+
+Microsoft Teams credentials use the following scopes by default:
+
+* `openid`
+* `offline_access`
+* `User.Read.All`
+* `Group.ReadWrite.All`
+* `Chat.ReadWrite`
+* `ChannelMessage.Read.All`
+* `OnlineMeetings.ReadWrite` (available from n8n 2.39.0)
+
 ### Service-specific settings <a href="#service-specific-settings" id="service-specific-settings"></a>
 
 The following services require extra information for OAuth2:
@@ -75974,7 +76091,7 @@ Sign up for a [Monica CRM](https://www.monicahq.com/) account or self-host an in
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Monica's API documentation](https://www.monicahq.com/api) for more information about the service.
+Refer to [Monica's documentation](https://docs.monicahq.com/) for more information about the service.
 
 ## Using API token <a href="#using-api-token" id="using-api-token"></a>
 
@@ -76837,19 +76954,19 @@ Create an [Eventbrite](https://www.eventbrite.com/) account.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Eventbrite's API documentation](https://www.eventbrite.com/platform/api) for more information about the service.
+Refer to [Eventbrite's API documentation](https://www.eventbrite.com/platform/new/api) for more information about the service.
 
 ## Using API private key <a href="#using-api-private-key" id="using-api-private-key"></a>
 
 To configure this credential, you'll need:
 
-- A **Private Key**: Refer to the [Eventbrite API Authentication Get a Private Token documentation](https://www.eventbrite.com/platform/api#/introduction/authentication/1.-get-a-private-token) for detailed steps to generate a Private Token. Use this private token as the **Private Key** in the n8n credential.
+- A **Private Key**: Refer to the [Eventbrite API Authentication Get a Private Token documentation](https://www.eventbrite.com/platform/new/api#/introduction/authentication/1.-get-a-private-token) for detailed steps to generate a Private Token. Use this private token as the **Private Key** in the n8n credential.
 
 ## Using OAuth2 <a href="#using-oauth2" id="using-oauth2"></a>
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/HoGXnGIfupVt81dGox48/" %}
 
-If you need to configure OAuth2 from scratch or need more detail on what's happening in the OAuth web flow, refer to the instructions in the [Eventbrite API authentication For App Partners documentation](https://www.eventbrite.com/platform/api#/introduction/authentication/2.-(for-app-partners)-authorize-your-users) to set up OAuth.
+If you need to configure OAuth2 from scratch or need more detail on what's happening in the OAuth web flow, refer to the instructions in the [Eventbrite API authentication For App Partners documentation](https://www.eventbrite.com/platform/new/api#/introduction/authentication/2.-(for-app-partners)-authorize-your-users) to set up OAuth.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/bannerbear/
 
@@ -76955,7 +77072,7 @@ You can use these credentials to authenticate the following nodes:
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
 
 - Create a hosted [Zammad](https://zammad.com/) account or set up your own Zammad instance.
-- For token authentication, enable **API Token Access** in **Settings > System > API**. Refer to [Setting up a Zammad](https://admin-docs.zammad.org/en/latest/system/integrations/zabbix.html?#setting-up-a-zammad) for more information.
+- For token authentication, enable **API Token Access** in **Settings > System > API**. Refer to [Zammad API introduction](https://docs.zammad.org/en/latest/api/intro.html) for more information.
 
 ## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
 
@@ -77668,7 +77785,7 @@ Refer to [Peekalink's API documentation](https://docs.peekalink.io/) for more in
 
 To configure this credential, you'll need:
 
-- An **API Key**: To get your API key, access your Peekalink [dashboard](https://www.peekalink.io/app/overview) and copy the key in the **Your API Key** section. Refer to [Get your API key](https://docs.peekalink.io/setup#get-your-api-key) for more information.
+- An **API Key**: To get your API key, access your Peekalink [dashboard](https://www.peekalink.io/app/overview) and copy the key in the **Your API Key** section. Refer to [Get your API key](https://docs.peekalink.io/quickstart#1-get-your-api-key) for more information.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/recordedfuture/
 
@@ -77779,7 +77896,7 @@ Refer to Microsoft's documentation for more information:
 
 With the OAuth2 Microsoft credentials, nodes act as the user who signed in. With the Service Principal credential, there's no signed-in user, which changes how you use the nodes:
 
-- **You choose who or what to act on.** Each node shows an extra required parameter when you select this credential: **Access As** (a user or drive) in Microsoft OneDrive, Microsoft OneDrive Trigger, and Microsoft Excel (OneDrive), **Mailbox** in Microsoft Outlook and Microsoft Outlook Trigger, and **User** in Microsoft To Do. Enter a user principal name (UPN), for example `jane@contoso.com`, or a user object ID. In the **Access As** field you can instead select **Drive** and enter a drive ID. There's no list picker for these fields: paste the value directly. In the Microsoft Teams nodes, the **Authentication** option is labelled **Service Principal (App-Only)**, and the **Task** operations replace the group, plan, bucket, and member pickers with plain ID fields.
+- **You choose who or what to act on.** Each node shows an extra required parameter when you select this credential: **Access As** (a user or drive) in Microsoft OneDrive, Microsoft OneDrive Trigger, and Microsoft Excel (OneDrive), **Mailbox** in Microsoft Outlook and Microsoft Outlook Trigger, and **User** in Microsoft To Do. Enter a user principal name (UPN), for example `jane@contoso.com`, or a user object ID. In the **Access As** field you can instead select **Drive** and enter a drive ID. There's no list picker for these fields: paste the value directly. In the Microsoft Teams nodes, the **Authentication** option is labelled **Service Principal (App-Only)**, and the **Task** operations hide the **Team** picker and replace the **Plan**, **Bucket**, and **Assigned To** pickers with plain ID fields.
 - **Permissions apply tenant-wide.** Application permissions aren't scoped to one user. For example, the `Mail.Send` application permission lets the app send as any mailbox in the tenant unless you restrict it with an [Exchange Online application access policy](https://learn.microsoft.com/en-us/graph/auth-limit-mailbox-access). n8n recommends scoping tenant-wide mail permissions with an application access policy.
 - **Pickers see the whole tenant.** For example, the Microsoft Teams **Team** picker lists every team in the organization, not just teams the app has joined.
 - **Some operations aren't available.** The nodes hide anything that only exists for a signed-in user, such as drive search or Teams chats, or block it with an explanatory error. Refer to [Operations not available with app-only access](#operations-not-available-with-app-only-access).
@@ -77860,19 +77977,13 @@ The Microsoft Teams node needs `Team.ReadBasic.All` to list teams, plus a permis
 | Channel: Create | `Channel.Create` |
 | Channel: Update | `ChannelSettings.ReadWrite.All` |
 | Channel: Delete | `Channel.Delete.All` |
-| Channel Message: Get Many | `ChannelMessage.Read.All` |
+| Channel Message: Get, Get Many, Get Many Replies | `ChannelMessage.Read.All` |
 | Task: all operations | `Tasks.ReadWrite.All` |
 | Trigger: New Channel | `Channel.ReadBasic.All` |
 | Trigger: New Channel Message | `ChannelMessage.Read.All` |
 | Trigger: New Team Member | `TeamMember.Read.All` |
 
 <!-- vale on -->
-
-{% hint style="info" %}
-**Reading Teams channel messages uses a metered API**
-
-Reading channel messages with this credential uses Microsoft's metered Teams API. Your tenant may need billing or evaluation-model configuration, and Microsoft returns HTTP 402 if it's missing. Refer to [Payment models for Microsoft Teams APIs](https://learn.microsoft.com/en-us/graph/teams-licenses) for details.
-{% endhint %}
 
 ## Operations not available with app-only access
 
@@ -77882,7 +77993,7 @@ Some Microsoft Graph operations only exist for a signed-in user. When you select
 
 - **Microsoft OneDrive**: File: Search and Folder: Search. Microsoft Graph only offers drive search to signed-in users.
 - **Microsoft Excel (OneDrive)**: Workbook: Get Many, and searching for a workbook by name in the **Workbook** field. Set the field to **By ID** instead.
-- **Microsoft Teams**: the whole Chat Message resource, Channel Message: Create, and Task: Get Many in Group Member mode.
+- **Microsoft Teams**: the whole Chat Member, Chat Message, and Online Meeting resources. Channel Message: Create and Reply. Task: Get Many in Group Member mode.
 - **Microsoft Teams Trigger**: the New Chat and New Chat Message events, and the watch-all options. Pick a specific team or channel instead.
 
 <!-- vale on -->
@@ -80199,7 +80310,7 @@ n8n supports Content API v1 only.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to Storyblok's [Content v1 API documentation](https://www.storyblok.com/docs/api/content-delivery/v1) and [Management API documentation](https://www.storyblok.com/docs/api/management/getting-started/introduction) for more information about the services.
+Refer to Storyblok's [Content v1 API documentation](https://www.storyblok.com/docs/api/content-delivery/v1) and [Management API documentation](https://www.storyblok.com/docs/api/management) for more information about the services.
 
 ## Using Content API key <a href="#using-content-api-key" id="using-content-api-key"></a>
 
@@ -81034,7 +81145,7 @@ Create a [Mailjet](https://www.mailjet.com/) account.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Mailjet's Email API documentation](https://dev.mailjet.com/email/guides/) and [Mailjet's SMS API documentation](https://dev.mailjet.com/sms/reference/send-message/) for more information about each service.
+Refer to [Mailjet's Email API documentation](https://dev.mailjet.com/email/guides/) and [Mailjet's SMS API documentation](https://dev.mailjet.com/guides-sms/) for more information about each service.
 
 ## Using Email API key <a href="#using-email-api-key" id="using-email-api-key"></a>
 
@@ -83448,7 +83559,7 @@ Refer to [Quick Base's API documentation](https://developer.quickbase.com/auth/)
 To configure this credential, you'll need:
 
 - A **Hostname**: The string of characters located between `https://` and `/db` in your Quick Base URL.
-- A **User Token**: To generate a token, select your **Profile > My preferences > My User Information > Manage my user tokens**. Refer to [Creating and using user tokens](https://helpv2.quickbase.com/hc/en-us/articles/4570374095124-Creating-and-using-user-tokens) for detailed instructions.
+- A **User Token**: To generate a token, select your **Profile > My preferences > My User Information > Manage my user tokens**. Refer to [Create and use user tokens](https://help.quickbase.com/docs/create-and-use-user-tokens) for detailed instructions.
 
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/oura/
@@ -83968,7 +84079,7 @@ To configure this credential, you'll need a [Todoist](https://todoist.com/) acco
 
 To get your **API Key**:
 
-1. In Todoist, open your [**Integration settings**](https://todoist.com/prefs/integrations).
+1. In Todoist, open your [**Settings > Integrations**](https://app.todoist.com/app/settings/integrations).
 2. Select the **Developer** tab.
 3. Copy your **API token** and enter it as the **API Key** in your n8n credential.
 
@@ -84049,7 +84160,7 @@ Create a [LoneScale](https://www.lonescale.com/) account.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LoneScale's API documentation](https://public-api.lonescale.com/api) for more information about the service.
+Refer to [LoneScale's API documentation](https://docs.lonescale.com/authentication) for more information about the service.
 
 ## Using API key <a href="#using-api-key" id="using-api-key"></a>
 
@@ -85075,7 +85186,7 @@ To configure this credential, you'll need:
 
 - An **API Key**: Get your API Key from your [**Profile Settings**](https://app.tapfiliate.com/a/profile/) **> API Key**.
 
-Refer to [Your API key](https://support.tapfiliate.com/en/articles/1441950-your-api-key) for more information.
+Refer to [How to find Account ID and API key](https://support.tapfiliate.com/en/articles/12793297-how-to-find-account-id-and-api-key) for more information.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/mailchimp/
 
@@ -85203,7 +85314,7 @@ Refer to [Cal.com's API documentation](https://cal.com/docs/enterprise-features/
 
 To configure this credential, you'll need:
 
-- An **API Key**: Refer to the [Cal API Quick Start documentation](https://cal.com/docs/enterprise-features/api/quick-start) for information on how to generate a new API key.
+- An **API Key**: Refer to the [Cal.com API documentation](https://cal.com/docs/api-reference/v2/introduction) for information on how to generate a new API key.
 - A **Host**: If you're using the cloud version of Cal.com, leave the Host as `https://api.cal.com`. If you're self-hosting Cal.com, enter the **Host** for your Cal.com instance.
 
 
@@ -99317,6 +99428,7 @@ To enable certain licensed features, you must first activate your license. You c
 | `N8N_HIDE_USAGE_PAGE`                     | boolean | `false`                        | Hide the usage and plans page in the app.                                                                                                                                                                                                                                                                                                                                                                                           |
 | `N8N_LICENSE_ACTIVATION_KEY`              | String  | `''`                           | Activation key to initialize license. Not applicable if the n8n instance was already activated.                                                                                                                                                                                                                                                                                                                                     |
 | `N8N_LICENSE_AUTO_RENEW_ENABLED`          | Boolean | `true`                         | <p>Enables (true) or disables (false) autorenewal for licenses.<br>If disabled, you need to manually renew the license every 10 days by navigating to <strong>Settings</strong> > <strong>Usage and plan</strong>, and pressing <code>F5</code>. Failure to renew the license will disable all licensed features.</p>                                                                                                               |
+| `N8N_LICENSE_CERT`                        | String  | `''`                           | Base64-encoded license certificate provided by n8n. Used instead of `N8N_LICENSE_ACTIVATION_KEY` for special use cases, e.g. air-gapped environments.                                                                                             |
 | `N8N_LICENSE_DETACH_FLOATING_ON_SHUTDOWN` | Boolean | `true`                         | <p>Controls whether the instance releases <a href="https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#entitlement-n8n">floating entitlements</a> back to the pool upon shutdown. Set to <code>true</code> to allow other instances to reuse the entitlements, or <code>false</code> to retain them.<br>For production instances that must always keep their licensed features, set this to <code>false</code>.</p> |
 | `N8N_LICENSE_SERVER_URL`                  | String  | `https://license.n8n.io/v1`    | Server URL to retrieve license.                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `N8N_LICENSE_TENANT_ID`                   | Number  | `1`                            | Tenant ID associated with the license. Only set this variable if explicitly instructed by n8n.                                                                                                                                                                                                                                                                                                                                      |
@@ -101641,15 +101753,29 @@ In your n8n instance:
 1. Paste in your license key.
 1. Select **Activate**.
 
-## Add a license key using an environment variables <a href="#add-a-license-key-using-an-environment-variables" id="add-a-license-key-using-an-environment-variables"></a>
+## Add a license key using an environment variable <a href="#add-a-license-key-using-an-environment-variables" id="add-a-license-key-using-an-environment-variables"></a>
 
 In your n8n configuration, set `N8N_LICENSE_ACTIVATION_KEY` to your license key. If the instance already has an activated license, this variable will have no effect.
 
 Refer to [Environment variables](basic-configuration.md) to learn more about configuring n8n.
 
-## Allowlist the license server IP addresses <a href="#allowlist-the-license-server-ip-addresses" id="allowlist-the-license-server-ip-addresses"></a>
+### Allowlist the license server IP addresses <a href="#allowlist-the-license-server-ip-addresses" id="allowlist-the-license-server-ip-addresses"></a>
 
 n8n uses Cloudflare to host the license server. As the specific IP addresses can change, you need to allowlist the [full range of Cloudflare IP addresses](https://www.cloudflare.com/ips/) to ensure n8n can always reach the license server.
+
+## Add a license certificate using an environment variable
+
+For certain use cases (for example air-gapped environments) n8n can issue a license certificate instead of a license key. A license certificate is a base64-encoded string that n8n provides.
+
+In your n8n configuration, set `N8N_LICENSE_CERT` to the string you received from n8n:
+
+```bash
+N8N_LICENSE_CERT=<base64-encoded-license-string>
+```
+
+Set either `N8N_LICENSE_CERT` or `N8N_LICENSE_ACTIVATION_KEY`, never both.
+
+
 
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/deploy-n8n-in-canvas-only-mode/
 
