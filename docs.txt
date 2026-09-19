@@ -1647,10 +1647,13 @@ Retrieved on its own, a section that leans on its neighbours arrives stripped of
 Connect each page to the others on its topic. Explicit, descriptive links let an agent follow a path directly instead of guessing a URL, and they group your pages into a topic cluster that AI search reads as a signal of depth.
 
 * **Always link the prerequisites and the next step**, at minimum.
-* **Link parents and children both ways.** An overview or section landing page lists and links to every child page; each child links back to its parent.
+* **Every section landing page links down to its children.** With two or more children, list them under an "In this section" heading as a plain bullet list (link plus a short description). With only one child, skip the list and link it inline at its first mention instead.
+* **Every child page links back up and sideways, in a "Related resources" section at the end.** List a link back to the parent, plus a link to each direct sibling in the same section. Link to the parent with `./` if the current page sits in the same folder as the parent's `README.md`, or `../` if the current page is itself a section landing page one level below its parent (see [Link to the current page's parent page](#link-to-the-current-pages-parent-page)). This is a plain link list, structural rather than curated — bare links, no descriptions. Unlike "In this section", the reader has already read a page from this cluster, so the descriptive anchor text alone carries enough signal; a repeated one-line description would just restate the title. Add other genuinely related pages at your discretion, even outside the current section.
+* **Past about eight to 10 siblings, drop the sibling list.** Beyond that size, a full sibling list is mostly boilerplate for the reader and turns into an O(n²) maintenance job (add, rename, or remove one page, and every other page in the section needs an edit). Link back to the parent only; the parent's "In this section" already carries the exhaustive list.
+* **A page that is itself a parent does both.** A section landing page one level down (for example, a subsection README) gets its own "In this section" for its children, plus a "Related resources" footer relating it to its own parent and its own siblings at its level. Reach only one level up and one level sideways — don't chain further up to a grandparent section; that connectivity already exists transitively through the parent's own links.
+* **Skip sibling links for flat reference collections** where every page follows the same one-fact template (for example, one page per expression data type). These pages still link back to the parent in "Related resources", just without a sibling list.
 * **Aim for a cluster of five or more interlinked pages** on the same topic. AI search cites connected clusters far more than standalone pages.
-* **Link in the body, at the first meaningful mention**, with descriptive anchor text that names the target: [Configure the Schedule Trigger](configure-schedule-trigger.md), not "click here". Link the first mention, not every mention.
-* **Link to separate topics; don't link for missing context.** A link can't stand in for context this section needs. If a section can't be understood without the linked page, restate the key fact instead (see [Keep each section self-contained](#keep-each-section-self-contained)).
+* **When you reference another page in prose, link it at its first meaningful mention** — not every mention. Use descriptive anchor text that names the target: [Configure the Schedule Trigger](configure-schedule-trigger.md), not "click here". If the page already names its topic in passing ("this workflow's flow logic"), link that phrase instead of adding a new sentence. A link points to a separate topic; it can't stand in for context this section needs, so if a section can't be understood without the linked page, restate the key fact instead (see [Keep each section self-contained](#keep-each-section-self-contained)).
 
 ## Feature availability
 
@@ -2030,6 +2033,12 @@ Use `./` only if the current folder's landing page is a `README.md`, it points t
 ```
 
 If the parent is a named page instead (no `README.md` in this folder, e.g. `connect-to-n8n-mcp-server.md`), link to that file directly rather than using `./`.
+
+If the current page is itself a section landing page (a `README.md`), `./` points at itself, not its parent — its actual parent is one level up. Step up with `../` instead, the same bare-directory reference one level higher:
+
+```
+[link to a parent page](../)
+```
 
 **Link to a page in a different subfolder in the same space**
 
@@ -19890,7 +19899,13 @@ Self-hosted n8n will require a Docker-based deployment. n8n 3.0 will no longer s
 
 ## Community node development
 
-These changes affect the [`n8n-node dev`](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/build-your-node/using-the-n8n-node-tool) test loop only. `n8n-node build`, `n8n-node lint`, `n8n-node release`, and `npm create @n8n/node` are unchanged.
+### `defaults.color` removed from the node description
+
+n8n 3.0 removes the deprecated `defaults.color` property from the node description type. It only tinted Font Awesome icons (`icon: 'fa:...'`). Community nodes that still set it keep working, but the editor shows a Font Awesome icon in a neutral color. Nodes with a file icon (`icon: 'file:...'`) aren't affected, because n8n never tints file icons.
+
+**What to do:** Remove `defaults.color`. If your node uses a Font Awesome icon, replace it with an SVG or PNG file icon, as the [standard parameters](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/build-your-node/reference/base-files/standard-parameters#icon) reference recommends.
+
+The remaining changes affect the [`n8n-node dev`](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/build-your-node/using-the-n8n-node-tool) test loop only. `n8n-node build`, `n8n-node lint`, `n8n-node release`, and `npm create @n8n/node` are unchanged.
 
 ### n8n-node dev requires Docker or Podman
 
@@ -19924,21 +19939,67 @@ n8n 3.0 removes older nodes, modes, and helpers that newer patterns have replace
 - **Function Item** node (legacy)
 - **Item Lists** node (legacy)
 - **LangChain Code** node (legacy)
+- **Cron** and **Interval** nodes
+- **HTML Extract** node
+- **iCalendar** node
+- **Convert to/from binary data** node
+- **Read Binary File**, **Read Binary Files**, and **Write Binary File** nodes
+- **Read PDF** node
+- **Workflow Trigger** node
+- **Orbit** node
+- **OpenAI** node (legacy). The current **OpenAI** node in the AI section stays.
+- **OpenAI Assistant** and **OpenAI Model** nodes
+- **HTTP Request Tool** node (legacy). Using the **HTTP Request** node as a tool stays.
+- **SerpApi (Google Search)** node
+- **Manual Chat Trigger** node
+- **Chat Messages Retriever** node
+- **Motorhead** and **Zep** memory nodes
+- **Binary Input Loader**, **JSON Input Loader**, and **GitHub Document Loader** nodes
+- **In Memory Vector Store Insert**, **In Memory Vector Store Load**, **Pinecone: Insert**, **Pinecone: Load**, **Supabase: Insert**, **Supabase: Load**, **Zep Vector Store**, **Zep Vector Store: Insert**, and **Zep Vector Store: Load** nodes
 - **AI Transform** node: n8n automatically migrates existing nodes to [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) nodes on upgrade, keeping the same generated JavaScript, so existing workflows keep working without changes. You can no longer add an **AI Transform** node. Write JavaScript directly in the **Code** node instead.
 - **What to do:** Migrate affected workflows to the current recommended alternatives before upgrading:
   - Replace **Function** and **Function Item** nodes with the [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) node. Use **Run Once for All Items** mode in place of **Function**, and **Run Once for Each Item** mode in place of **Function Item**.
   - Replace the **Item Lists** node with the node matching the operation you use: [Split Out](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.splitout), [Aggregate](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.aggregate), [Sort](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.sort), [Limit](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.limit), [Remove Duplicates](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.removeduplicates), or [Summarize](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.summarize).
+  - Replace **Cron** and **Interval** with the [Schedule Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.scheduletrigger) node.
+  - Replace **HTML Extract** with the [HTML](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.html) node's **Extract HTML Content** operation.
+  - Replace **iCalendar** with the [Convert to File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.converttofile) node's **Convert to ICS** operation.
+  - Replace **Convert to/from binary data** with the [Convert to File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.converttofile) or [Extract from File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.extractfromfile) node.
+  - Replace **Read Binary File**, **Read Binary Files**, and **Write Binary File** with the [Read/Write Files from Disk](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.readwritefile) node.
+  - Replace **Read PDF** with the [Extract from File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.extractfromfile) node's **Extract From PDF** operation.
+  - Replace **Workflow Trigger** with the [n8n Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.n8ntrigger) node.
+  - Replace the legacy **OpenAI** node and the **OpenAI Assistant** node with the [OpenAI](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-langchain.openai) node. For assistants, use its **Assistant** resource.
+  - Replace **OpenAI Model** with the [OpenAI Chat Model](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenai) node.
+  - Replace the legacy **HTTP Request Tool** with the **HTTP Request** node connected to the **Tool** input of the **AI Agent** node.
+  - Replace **Manual Chat Trigger** with the [Chat Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.chattrigger) node.
+  - Replace **Chat Messages Retriever** with the [Chat Memory Manager](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymanager) node, or load previous sessions in the **Chat Trigger** node.
+  - Replace **Binary Input Loader**, **JSON Input Loader**, and **GitHub Document Loader** with the [Default Data Loader](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader) node. For GitHub content, fetch it with the **GitHub** node first.
+  - Replace the **Insert** and **Load** vector store nodes with the single node for that store: [Simple Vector Store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreinmemory), [Pinecone Vector Store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepinecone), or [Supabase Vector Store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoresupabase). Pick the operation (**Insert Documents**, **Get Many**, or **Retrieve Documents**) in the node.
+  - **Motorhead**, **Zep**, and the **Zep Vector Store** nodes have no direct replacement. Use another supported [memory](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes) or [vector store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes) node.
+  - **SerpApi (Google Search)** has no direct replacement. Call the SerpApi REST API with the **HTTP Request** node connected as a tool, or use a verified community node.
+  - **Orbit** has no replacement. The Orbit service shut down.
 
 ### Removed expression helpers <a href="#removed-expression-helpers" id="removed-expression-helpers"></a>
 
 - n8n 3.0 removes the deprecated `$getPairedItem` expression helper.
   - **What to do:** Use n8n's standard [item linking](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/reference-data/link-data-items/how-items-link-through-workflows) instead, for example the `pairedItem` property or `$("<node-name>").item`.
 
-### Execute Workflow node: Run once for each item mode removed
+### Execute Sub-workflow node: Local File and URL sources removed
 
-n8n 3.0 removes the **Run once for each item** mode from the **Execute Workflow** node. Workflows that use it fail until you update them.
+n8n 3.0 removes the **Local File** and **URL** options from the **Source** parameter of the [Execute Sub-workflow](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflow) node. Only node versions 1.1 and older offered them. Nodes that still use one of these sources fail with an error.
 
-**What to do:** Use a **Loop Over Items** node before an **Execute Workflow** node in **Run once with all items** mode instead.
+**What to do:** Import the sub-workflow into your instance and select it with the **Database** source, or paste its JSON with the **Define Below** source (**Parameter** on node versions 1.1 and older). Before you update, **Settings > Migration Report** lists the affected nodes.
+
+### Any workflow caller policy removed
+
+n8n 3.0 removes the **Any workflow** option from the **This workflow can be called by** setting in the [workflow settings](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/configure-workflow-settings). This option let any project on the instance call the sub-workflow, which bypassed project permissions. Sub-workflows that still store this policy reject every call, including calls from the same project, until you save a supported policy. `N8N_WORKFLOW_CALLER_POLICY_DEFAULT_OPTION=any` logs a warning at startup and falls back to the default, the same-project option.
+
+**What to do:** Open the settings of each affected sub-workflow and select **Selected workflows** or the same-project option, then save. Before you update, **Settings > Migration Report** lists the affected workflows. If you set `N8N_WORKFLOW_CALLER_POLICY_DEFAULT_OPTION=any`, change or remove the variable.
+
+### Execute Sub-workflow node: Run once for each item mode removed
+
+n8n 3.0 removes the **Run once for each item** mode from the **Execute Sub-workflow** node. Workflows that use it fail until you update them.
+
+**What to do:** Use a **Loop Over Items** node before an **Execute Sub-workflow** node in **Run once with all items** mode instead.
 
 ### Always Output Data on nodes with several outputs
 
@@ -19951,6 +20012,30 @@ With **Always Output Data** on, nodes with several outputs, for example **If** a
 n8n 3.0 removes the `$evaluateExpression()` convenience method from the **Code** node (JavaScript). Only task runners in insecure mode (`N8N_RUNNERS_INSECURE_MODE=true`) are affected. Secure-mode runners, the default since n8n 2.0, already fail on this call.
 
 **What to do:** Evaluate the expression in a node field instead, for example in an **Edit Fields (Set)** node before the **Code** node, and read the result from the input item. `$evaluateExpression()` keeps working in `{{ }}` expression fields.
+
+### Gmail Trigger node: Older versions run as version 1.4
+
+n8n 3.0 removes the separate behavior of **Gmail Trigger** node versions 1 to 1.3. Workflows that use these versions keep loading, but the node runs with the version 1.4 behavior:
+
+- **Max Emails per Poll** applies to every poll. The default is 10 emails, and you can set up to 50. The node picks up the remaining emails in later polls.
+- The node skips drafts unless you turn on the **Include Drafts** filter. Versions 1 and 1.1 included drafts by default.
+- Sent emails that aren't in the inbox, and scheduled emails, no longer trigger the workflow.
+
+**What to do:** Review workflows with a **Gmail Trigger** node below version 1.4. If a workflow relies on drafts, turn on **Include Drafts**. If a workflow relies on sent or scheduled emails, replace the trigger with a **Schedule Trigger** node followed by the [Gmail](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.gmail) node's **Get Many** messages operation.
+
+### Webflow OAuth2 credential: Legacy toggle off by default
+
+The **Legacy** toggle on the **Webflow OAuth2 API** credential defaults to off. New credentials request the Webflow v2 API scopes (`cms:read cms:write sites:read forms:read`). Existing credentials that never saved an explicit **Legacy** value request these scopes the next time you reconnect them. Connected credentials keep working: n8n doesn't touch stored tokens, and token refresh doesn't send scopes.
+
+**What to do:** If you still use the deprecated Webflow v1 Data API, for example with a legacy Webflow OAuth app or the **Webflow** node at version 1, turn on **Legacy** on the credential before you reconnect it. Webflow rejects the connection if the requested scopes aren't configured on your app.
+
+### Chat Trigger node: WebSocket messages are JSON frames
+
+The chat WebSocket endpoint that the **Chat Trigger** node uses in the **Using Response Nodes** response mode, where the **Chat** node sends replies, now sends every frame as a JSON object with a `type` field: `heartbeat`, `continue`, `error`, `message`, or `with-buttons`. Before, control frames and plain text replies were raw strings. A text reply is now `{ "type": "message", "text": "..." }`. The client acknowledges heartbeats with `{ "type": "heartbeat-ack" }`, and n8n ignores incoming frames that aren't JSON.
+
+The n8n chat widget (`@n8n/chat`) understands both formats from version 1.31.0, and the hosted chat page always loads a current widget.
+
+**What to do:** If you built a custom chat client that talks to the chat WebSocket directly, parse every frame as JSON and switch on `type`. If you embed `@n8n/chat` yourself, update it to version 1.31.0 or later before you upgrade n8n.
 
 ### AI Agent node: Older agent modes removed <a href="#ai-agent-node-older-agent-modes-removed" id="ai-agent-node-older-agent-modes-removed"></a>
 
@@ -20012,7 +20097,6 @@ n8n 3.0 retires some legacy or lower-usage product capabilities. n8n will provid
 - **Chat Hub**: n8n 3.0 turns off the Chat Hub module by default. The **Chat** section disappears from the navigation and the Chat Hub endpoints stop responding. Your chat sessions, agents, and messages stay in the database. n8n 4.0 removes the feature.
   - **What to do:** If you still need Chat Hub, add `chat-hub` to the `N8N_ENABLED_MODULES` environment variable. The variable holds a comma-separated list, so keep the modules that you already enable, for example `N8N_ENABLED_MODULES=agents,chat-hub`. This keeps Chat Hub available for the n8n 3.x line only, and n8n prints a deprecation warning at startup. Before you update, **Settings > Migration Report** lists this change for every instance that uses Chat Hub.
 - **Workflow import from URL in the editor**: n8n 3.0 removes this. Other [import methods](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/export-and-import) remain supported: copy-paste, **Import from File** in the editor UI menu, the CLI, and the n8n API.
-- **Non-functional nodes**: n8n 3.0 removes these.
 - **Enable external secrets for project roles setting**: n8n 3.0 removes this. Project editors and admins now get external-secrets access in their projects by default. To keep restricting project roles, use [custom project roles](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/set-permissions-and-roles-rbac/create-custom-project-roles) instead. This applies to n8n Enterprise, where external secrets are available.
 - **Ask AI tab in the Code node**: n8n 3.0 removes this.
 
@@ -20519,6 +20603,15 @@ Unpublish a workflow from either:
 * In the workflow list
 * The version history page (unpublish action on published versions)
 
+## Related resources
+
+* [Understand workflows](./)
+* [Create and run workflows](create-and-run-workflows.md)
+* [Create and edit credentials](create-and-edit-credentials.md)
+* [Use Gateway credits](use-gateway-credits.md)
+* [Workflow components](workflow-components/README.md)
+* [Understand executions](understand-executions/README.md)
+
 === https://docs.n8n.io/docs/build/understand-workflows/understand-executions/customize-executions-data/
 
 # Custom executions data <a href="#custom-executions-data" id="custom-executions-data"></a>
@@ -20599,6 +20692,16 @@ customData = _execution.customData.get("key");
 {% endtab %}
 {% endtabs %}
 
+## Related resources
+
+* [Understand executions](./)
+* [Manual, partial, and production executions](types-of-executions.md)
+* [View all executions](view-all-executions.md)
+* [View executions for a single workflow](view-executions-for-a-single-workflow.md)
+* [Debug and re-run past executions](debug-executions.md)
+* [Stream real-time responses](stream-real-time-responses.md)
+* [Dirty nodes](understand-dirty-nodes.md)
+
 === https://docs.n8n.io/docs/build/understand-workflows/understand-executions/stream-real-time-responses/
 
 # Stream real-time responses
@@ -20633,6 +20736,16 @@ Keep in mind the following details when configuring streaming responses:
 
 * **Trigger**: Your trigger node must support streaming and have streaming configured. Without this, the workflow behaves according to your response mode settings.
 * **Node configuration**: Even with streaming enabled on the trigger, you need at least one node configured to stream data. Otherwise, your workflow will send no data.
+
+## Related resources
+
+* [Understand executions](./)
+* [Manual, partial, and production executions](types-of-executions.md)
+* [View all executions](view-all-executions.md)
+* [View executions for a single workflow](view-executions-for-a-single-workflow.md)
+* [Debug and re-run past executions](debug-executions.md)
+* [Customize executions data](customize-executions-data.md)
+* [Dirty nodes](understand-dirty-nodes.md)
 
 === https://docs.n8n.io/docs/build/understand-workflows/understand-executions/view-executions-for-a-single-workflow/
 
@@ -20688,6 +20801,16 @@ If your workflow execution fails, you can retry the execution. To retry a failed
 1. Open the **Executions** list.
 2. For the workflow execution you want to retry, select **Refresh** <img src="../../.gitbook/assets/refresh.png" alt="Refresh icon" data-size="line">.
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/yD2T5eTeZvZaPRV8P7MJ/" %}
+
+## Related resources
+
+* [Understand executions](./)
+* [Manual, partial, and production executions](types-of-executions.md)
+* [View all executions](view-all-executions.md)
+* [Debug and re-run past executions](debug-executions.md)
+* [Customize executions data](customize-executions-data.md)
+* [Stream real-time responses](stream-real-time-responses.md)
+* [Dirty nodes](understand-dirty-nodes.md)
 
 === https://docs.n8n.io/docs/build/understand-workflows/understand-executions/types-of-executions/
 
@@ -20745,6 +20868,16 @@ The execution flow for production executions doesn't display in the Editor tab o
 
 [^1]: The canvas is the main interface for building workflows in n8n's editor UI. You use the canvas to add and connect nodes to compose workflows.
 [^2]: A trigger node is a special node responsible for executing the workflow in response to certain conditions. All production workflows need at least one trigger to determine when the workflow should run.
+
+## Related resources
+
+* [Understand executions](./)
+* [View all executions](view-all-executions.md)
+* [View executions for a single workflow](view-executions-for-a-single-workflow.md)
+* [Debug and re-run past executions](debug-executions.md)
+* [Customize executions data](customize-executions-data.md)
+* [Stream real-time responses](stream-real-time-responses.md)
+* [Dirty nodes](understand-dirty-nodes.md)
 
 === https://docs.n8n.io/docs/build/understand-workflows/understand-executions/understand-dirty-nodes/
 
@@ -20809,11 +20942,31 @@ When using loops (with the [Loop over Items](https://app.gitbook.com/s/BKcbOzIWj
 
 Executing a node again clears its dirty status. You can do this manually by triggering the whole workflow, or by running a [partial execution](types-of-executions.md#partial-executions) with **Execute step** on the individual node or any node which follows it.
 
+## Related resources
+
+* [Understand executions](./)
+* [Manual, partial, and production executions](types-of-executions.md)
+* [View all executions](view-all-executions.md)
+* [View executions for a single workflow](view-executions-for-a-single-workflow.md)
+* [Debug and re-run past executions](debug-executions.md)
+* [Customize executions data](customize-executions-data.md)
+* [Stream real-time responses](stream-real-time-responses.md)
+
 === https://docs.n8n.io/docs/build/understand-workflows/understand-executions/README/
 
 # Executions <a href="#executions" id="executions"></a>
 
 An execution is a single run of a workflow.
+
+## In this section
+
+* [Manual, partial, and production executions](types-of-executions.md): how manual, partial, and production executions differ.
+* [View all executions](view-all-executions.md): view and filter all executions across all your workflows.
+* [View executions for a single workflow](view-executions-for-a-single-workflow.md): view and filter executions for the workflow currently open on the canvas.
+* [Debug and re-run past executions](debug-executions.md): copy data from a previous execution into your current workflow to debug it.
+* [Customize executions data](customize-executions-data.md): add custom data to your workflow executions using the Code node.
+* [Stream real-time responses](stream-real-time-responses.md): send data back to users as an AI Agent node generates it.
+* [Dirty nodes](understand-dirty-nodes.md): what dirty nodes are and how they affect workflow execution.
 
 ## Execution modes <a href="#execution-modes" id="execution-modes"></a>
 
@@ -20857,6 +21010,15 @@ n8n supports [adding custom data to executions](customize-executions-data.md).
 
 You can redact execution data to protect sensitive information. Redaction hides the input and output data of workflow executions while preserving execution metadata like status, timing, and node names. Refer to [Execution data redaction](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/redact-execution-data) for details.
 
+## Related resources
+
+* [Understand workflows](../)
+* [Create and run workflows](../create-and-run-workflows.md)
+* [Save and publish workflows](../save-and-publish-workflows.md)
+* [Create and edit credentials](../create-and-edit-credentials.md)
+* [Use Gateway credits](../use-gateway-credits.md)
+* [Workflow components](../workflow-components/README.md)
+
 === https://docs.n8n.io/docs/build/understand-workflows/understand-executions/debug-executions/
 
 # Debug and re-run past executions <a href="#debug-and-re-run-past-executions" id="debug-and-re-run-past-executions"></a>
@@ -20887,6 +21049,16 @@ To load data from a previous execution:
 
 The executions available on the **Executions** list depends on your [Workflow settings](../../manage-workflows/configure-workflow-settings.md).
 {% endhint %}
+
+## Related resources
+
+* [Understand executions](./)
+* [Manual, partial, and production executions](types-of-executions.md)
+* [View all executions](view-all-executions.md)
+* [View executions for a single workflow](view-executions-for-a-single-workflow.md)
+* [Customize executions data](customize-executions-data.md)
+* [Stream real-time responses](stream-real-time-responses.md)
+* [Dirty nodes](understand-dirty-nodes.md)
 
 === https://docs.n8n.io/docs/build/understand-workflows/understand-executions/view-all-executions/
 
@@ -20928,6 +21100,16 @@ If your workflow execution fails, you can retry the execution. To retry a failed
 ## Load data from previous executions into your current workflow <a href="#load-data-from-previous-executions-into-your-current-workflow" id="load-data-from-previous-executions-into-your-current-workflow"></a>
 
 You can load data from a previous workflow back into the canvas. Refer to [Debug executions](debug-executions.md) for more information.
+
+## Related resources
+
+* [Understand executions](./)
+* [Manual, partial, and production executions](types-of-executions.md)
+* [View executions for a single workflow](view-executions-for-a-single-workflow.md)
+* [Debug and re-run past executions](debug-executions.md)
+* [Customize executions data](customize-executions-data.md)
+* [Stream real-time responses](stream-real-time-responses.md)
+* [Dirty nodes](understand-dirty-nodes.md)
 
 === https://docs.n8n.io/docs/build/understand-workflows/use-gateway-credits/
 
@@ -20999,6 +21181,15 @@ Instance owners can turn Gateway credits off for everyone on the instance:
 
 When it's off, the Gateway credits option doesn't appear on nodes for anyone on the instance.
 
+## Related resources
+
+* [Understand workflows](./)
+* [Create and run workflows](create-and-run-workflows.md)
+* [Save and publish workflows](save-and-publish-workflows.md)
+* [Create and edit credentials](create-and-edit-credentials.md)
+* [Workflow components](workflow-components/README.md)
+* [Understand executions](understand-executions/README.md)
+
 === https://docs.n8n.io/docs/build/understand-workflows/create-and-run-workflows/
 
 # Create and run workflows
@@ -21037,6 +21228,15 @@ Published workflows run whenever its trigger conditions are met.
 
 [^1]: An n8n workflow is a collection of nodes that automate a process. Workflows begin execution when a trigger condition occurs and execute sequentially to achieve complex tasks.
 [^2]: The canvas is the main interface for building workflows in n8n's editor UI. You use the canvas to add and connect nodes to compose workflows.
+
+## Related resources
+
+* [Understand workflows](./)
+* [Save and publish workflows](save-and-publish-workflows.md)
+* [Create and edit credentials](create-and-edit-credentials.md)
+* [Use Gateway credits](use-gateway-credits.md)
+* [Workflow components](workflow-components/README.md)
+* [Understand executions](understand-executions/README.md)
 
 === https://docs.n8n.io/docs/build/understand-workflows/create-and-edit-credentials/
 
@@ -21112,6 +21312,15 @@ You can use expressions[^2] to set credentials dynamically as your workflow runs
 
 [^1]: n8n projects allow you to separate workflows, variables, and credentials into separate groups for easier management. Projects make it easier for teams to collaborate by sharing and compartmentalizing related resources.
 [^2]: In n8n, expressions allow you to populate node parameters dynamically by executing JavaScript code. Instead of providing a static value, you can use the n8n expression syntax to define the value using data from previous nodes, other workflows, or your n8n environment.
+
+## Related resources
+
+* [Understand workflows](./)
+* [Create and run workflows](create-and-run-workflows.md)
+* [Save and publish workflows](save-and-publish-workflows.md)
+* [Use Gateway credits](use-gateway-credits.md)
+* [Workflow components](workflow-components/README.md)
+* [Understand executions](understand-executions/README.md)
 
 === https://docs.n8n.io/docs/build/understand-workflows/workflow-components/add-notes-and-documentation/
 
@@ -21222,6 +21431,14 @@ See [Workflow components](README.md) for other elements you can add to a workflo
 
 [^1]: n8n templates are pre-built workflows designed by n8n and community members that you can import into your n8n instance. When using templates, you may need to fill in credentials and adjust the configuration to suit your needs.
 
+## Related resources
+
+* [Workflow components](./)
+* [Work with nodes](work-with-nodes.md)
+* [Connect nodes together](connect-nodes-together.md)
+* [Canvas Groups](canvas-groups.md)
+* [Find your workflow ID](find-your-workflow-id.md)
+
 === https://docs.n8n.io/docs/build/understand-workflows/workflow-components/find-your-workflow-id/
 
 # Find your workflow ID <a href="#find-your-workflow-id" id="find-your-workflow-id"></a>
@@ -21230,6 +21447,14 @@ Your workflow ID is available in:
 
 * The URL of the open workflow.
 * The workflow settings title.
+
+## Related resources
+
+* [Workflow components](./)
+* [Work with nodes](work-with-nodes.md)
+* [Connect nodes together](connect-nodes-together.md)
+* [Add notes and documentation](add-notes-and-documentation.md)
+* [Canvas Groups](canvas-groups.md)
 
 === https://docs.n8n.io/docs/build/understand-workflows/workflow-components/canvas-groups/
 
@@ -21317,6 +21542,14 @@ When a workflow is shown read-only, such as in workflow history or a shared view
 | Collapse Canvas Groups (selection, or all) | `Shift` + `Alt` + `G` |
 | Rename selected Canvas Group | `Space` |
 
+## Related resources
+
+* [Workflow components](./)
+* [Work with nodes](work-with-nodes.md)
+* [Connect nodes together](connect-nodes-together.md)
+* [Add notes and documentation](add-notes-and-documentation.md)
+* [Find your workflow ID](find-your-workflow-id.md)
+
 === https://docs.n8n.io/docs/build/understand-workflows/workflow-components/connect-nodes-together/
 
 # Connect nodes together
@@ -21333,16 +21566,36 @@ To create a connection between two nodes, select the grey dot or **Add node** <i
 
 Hover over the connection, then select **Delete** <img src="../../.gitbook/assets/delete-connector.png" alt="Delete connector icon" data-size="line">.
 
+## Related resources
+
+* [Workflow components](./)
+* [Work with nodes](work-with-nodes.md)
+* [Add notes and documentation](add-notes-and-documentation.md)
+* [Canvas Groups](canvas-groups.md)
+* [Find your workflow ID](find-your-workflow-id.md)
+
 === https://docs.n8n.io/docs/build/understand-workflows/workflow-components/README/
 
 # Workflow components <a href="#workflow-components" id="workflow-components"></a>
 
-This section contains:
+You build workflows from a small set of components that you connect together on the canvas.
 
-* [Nodes](work-with-nodes.md): integrations and operations.
-* [Connections](connect-nodes-together.md): node connectors.
-* [Sticky notes](add-notes-and-documentation.md): document your workflows.
-* [Canvas Groups](canvas-groups.md): organize related nodes.
+## In this section
+
+* [Work with nodes](work-with-nodes.md): add, configure, and control the nodes in your workflow.
+* [Connect nodes together](connect-nodes-together.md): link nodes together to route data through your workflow.
+* [Add notes and documentation](add-notes-and-documentation.md): annotate your workflows using sticky notes.
+* [Canvas Groups](canvas-groups.md): group related nodes together to keep large workflows readable.
+* [Find your workflow ID](find-your-workflow-id.md): locate your workflow's ID.
+
+## Related resources
+
+* [Understand workflows](../)
+* [Create and run workflows](../create-and-run-workflows.md)
+* [Save and publish workflows](../save-and-publish-workflows.md)
+* [Create and edit credentials](../create-and-edit-credentials.md)
+* [Use Gateway credits](../use-gateway-credits.md)
+* [Understand executions](../understand-executions/README.md)
 
 === https://docs.n8n.io/docs/build/understand-workflows/workflow-components/work-with-nodes/
 
@@ -21420,20 +21673,30 @@ You can document your workflow using node notes:
 [^2]: An n8n workflow is a collection of nodes that automate a process. Workflows begin execution when a trigger condition occurs and execute sequentially to achieve complex tasks.
 [^3]: A trigger node is a special node responsible for executing the workflow in response to certain conditions. All production workflows need at least one trigger to determine when the workflow should run.
 
+## Related resources
+
+* [Workflow components](./)
+* [Connect nodes together](connect-nodes-together.md)
+* [Add notes and documentation](add-notes-and-documentation.md)
+* [Canvas Groups](canvas-groups.md)
+* [Find your workflow ID](find-your-workflow-id.md)
+
 === https://docs.n8n.io/docs/build/understand-workflows/README/
 
 # Workflows <a href="#workflows" id="workflows"></a>
 
-A workflow[^1] is a collection of nodes connected together to automate a process.
-
-
-* [Create](create-and-run-workflows.md) a workflow.
-* Use [Workflow templates](../ways-of-building-workflows/use-templates.md) to help you get started.
-* Learn about the key [components](workflow-components/README.md) of a workflow in n8n.
-* Debug using the [Executions](understand-executions/README.md) list.
-* [Share](../manage-workflows/share-with-others.md) workflows between users.
+A workflow[^1] is a collection of nodes connected together to automate a process. [Create](create-and-run-workflows.md) a workflow, or use a [workflow template](../ways-of-building-workflows/use-templates.md) to help you get started. Once it's running, you can [share](../manage-workflows/share-with-others.md) it with others.
 
 If it's your first time building a workflow, you may want to use the [quickstart guide](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/build-your-first-workflow) to quickly try out n8n features.
+
+## In this section
+
+* [Create and run workflows](create-and-run-workflows.md): create, run, and publish workflows.
+* [Save and publish workflows](save-and-publish-workflows.md): save, publish, unpublish, and name workflow versions.
+* [Create and edit credentials](create-and-edit-credentials.md): securely store the authentication details your workflows need.
+* [Use Gateway credits](use-gateway-credits.md): run supported AI models and services without setting up your own credentials.
+* [Workflow components](workflow-components/README.md): the building blocks of a workflow, such as nodes and connections.
+* [Understand executions](understand-executions/README.md): what an execution is, and how to view, filter, and debug them.
 
 [^1]: An n8n workflow is a collection of nodes that automate a process. Workflows begin execution when a trigger condition occurs and execute sequentially to achieve complex tasks.
 
@@ -21441,7 +21704,7 @@ If it's your first time building a workflow, you may want to use the [quickstart
 
 # Splitting workflows with conditional nodes <a href="#splitting-workflows-with-conditional-nodes" id="splitting-workflows-with-conditional-nodes"></a>
 
-Splitting uses the [IF](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.if) or [Switch](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.switch) nodes. It turns a single-branch workflow into a multi-branch workflow. This is a key piece of representing complex logic in n8n.
+Splitting uses the [IF](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.if) or [Switch](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.switch) nodes. It turns a single-branch workflow into a multi-branch workflow. This is a key piece of n8n's [flow logic](./).
 
 Compare these workflows:
 
@@ -21453,11 +21716,24 @@ This is the power of splitting and conditional nodes in n8n.
 
 Refer to the [IF](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.if) or [Switch](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.switch) documentation for usage details.
 
+After splitting, you can [merge the branches back together](merge-data.md). The [execution order](understand-execution-order.md) of a multi-branch workflow depends on how you arrange the branches on the canvas.
+
+## Related resources
+
+* [Flow logic](./)
+* [Merge data](merge-data.md)
+* [Loop](loop.md)
+* [Wait](wait.md)
+* [Understand execution order](understand-execution-order.md)
+* [Break workflows into smaller parts](break-workflows-into-smaller-parts.md)
+* [Convert to sub-workflows](convert-to-sub-workflows.md)
+* [Handle errors gracefully](handle-errors-gracefully.md)
+
 === https://docs.n8n.io/docs/build/flow-logic/break-workflows-into-smaller-parts/
 
 # Sub-workflows <a href="#sub-workflows" id="sub-workflows"></a>
 
-You can call one workflow from another workflow. This allows you to build modular, microservice-like workflows. It can also help if your workflow grows large enough to encounter [memory issues](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/fix-memory-issues). Creating sub-workflows uses the [Execute Workflow](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflow) and [Execute Sub-workflow Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger) nodes.
+You can call one workflow from another workflow. This allows you to build modular, microservice-like workflows, as part of your workflow's [flow logic](./). It can also help if your workflow grows large enough to encounter [memory issues](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/fix-memory-issues). Creating sub-workflows uses the [Execute Workflow](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflow) and [Execute Sub-workflow Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger) nodes.
 
 Sub-wokflow executions don't count towards your plan's monthly execution or active workflow limits.
 
@@ -21475,6 +21751,17 @@ This section walks through setting up both the parent workflow and sub-workflow.
 
 See [sub-workflow conversion](convert-to-sub-workflows.md) for how to divide your existing workflows into sub-workflows.
 
+## Related resources
+
+* [Flow logic](./)
+* [Split with conditionals](split-with-conditionals.md)
+* [Merge data](merge-data.md)
+* [Loop](loop.md)
+* [Wait](wait.md)
+* [Understand execution order](understand-execution-order.md)
+* [Convert to sub-workflows](convert-to-sub-workflows.md)
+* [Handle errors gracefully](handle-errors-gracefully.md)
+
 === https://docs.n8n.io/docs/build/flow-logic/convert-to-sub-workflows/
 
 # Sub-workflow conversion <a href="#sub-workflow-conversion" id="sub-workflow-conversion"></a>
@@ -21485,7 +21772,7 @@ See [sub-workflow conversion](convert-to-sub-workflows.md) for how to divide you
 Sub-workflow conversion is available from n8n 1.97.0.
 {% endhint %}
 
-Use sub-workflow conversion to refactor your workflows into reusable parts. Expressions referencing other nodes are automatically updated and added as parameters in the [Execute Workflow Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger) node.
+Use sub-workflow conversion to refactor your workflows into reusable parts, as part of your workflow's [flow logic](./). Expressions referencing other nodes are automatically updated and added as parameters in the [Execute Workflow Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger) node.
 
 See [sub-workflows](break-workflows-into-smaller-parts.md) for a general introduction to the concept.
 
@@ -21522,22 +21809,44 @@ Most sub-workflow conversions work without issues, but there are some caveats an
 
 * **The `itemMatching` function requires a fixed index**: You can't use expressions for the index value when using the [`itemMatching` function](../work-with-data/reference-data/reference-previous-nodes.md). You must pass it a fixed number.
 
+## Related resources
+
+* [Flow logic](./)
+* [Split with conditionals](split-with-conditionals.md)
+* [Merge data](merge-data.md)
+* [Loop](loop.md)
+* [Wait](wait.md)
+* [Understand execution order](understand-execution-order.md)
+* [Break workflows into smaller parts](break-workflows-into-smaller-parts.md)
+* [Handle errors gracefully](handle-errors-gracefully.md)
+
 
 === https://docs.n8n.io/docs/build/flow-logic/wait/
 
 # Waiting <a href="#waiting" id="waiting"></a>
 
-Waiting allows you to pause a workflow mid-execution, then resume where the workflow left off, with the same data. This is useful if you need to rate limit your calls to a service, or wait for an external event to complete. You can wait for a specified duration, or until a webhook fires.
+Waiting allows you to pause a workflow mid-execution, then resume where the workflow left off, with the same data. This is useful if you need to rate limit your calls to a service, or wait for an external event to complete. You can wait for a specified duration, or until a webhook fires. Waiting is one part of n8n's [flow logic](./), and works well alongside [loops](loop.md) when you need to slow down batch processing, or as part of a [merge](merge-data.md) across multiple node executions.
 
 Making a workflow wait uses the [Wait](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.wait) node. Refer to the node documentation for usage details.
 
 n8n provides a workflow template with a basic example of [Rate limiting and waiting for external events](https://n8n.io/workflows/1749-rate-limiting-and-waiting-for-external-events/).
 
+## Related resources
+
+* [Flow logic](./)
+* [Split with conditionals](split-with-conditionals.md)
+* [Merge data](merge-data.md)
+* [Loop](loop.md)
+* [Understand execution order](understand-execution-order.md)
+* [Break workflows into smaller parts](break-workflows-into-smaller-parts.md)
+* [Convert to sub-workflows](convert-to-sub-workflows.md)
+* [Handle errors gracefully](handle-errors-gracefully.md)
+
 === https://docs.n8n.io/docs/build/flow-logic/handle-errors-gracefully/
 
 # Error handling <a href="#error-handling" id="error-handling"></a>
 
-When designing your flow logic, it's a good practice to consider potential errors, and set up methods to handle them gracefully. With an error workflow, you can control how n8n responds to a workflow execution failure.
+When designing your [flow logic](./), it's a good practice to consider potential errors, and set up methods to handle them gracefully. With an error workflow, you can control how n8n responds to a workflow execution failure.
 
 {% hint style="info" %}
 **Investigating errors**
@@ -21566,11 +21875,24 @@ When you create and set an error workflow, n8n runs it when an execution fails. 
 
 You can add the [Stop And Error](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.stopanderror) node to your workflow to force executions to fail under your chosen circumstances, and trigger the error workflow.
 
+## Related resources
+
+* [Flow logic](./)
+* [Split with conditionals](split-with-conditionals.md)
+* [Merge data](merge-data.md)
+* [Loop](loop.md)
+* [Wait](wait.md)
+* [Understand execution order](understand-execution-order.md)
+* [Break workflows into smaller parts](break-workflows-into-smaller-parts.md)
+* [Convert to sub-workflows](convert-to-sub-workflows.md)
+
 === https://docs.n8n.io/docs/build/flow-logic/loop/
 
 # Looping in n8n <a href="#looping-in-n8n" id="looping-in-n8n"></a>
 
 Looping is useful when you want to process multiple items or perform an action repeatedly, such as sending a message to every contact in your address book. n8n handles this repetitive processing automatically, meaning you don't need to specifically build loops into your workflows. There are [some nodes](#node-exceptions) where this isn't true.
+
+Looping is one part of n8n's [flow logic](./), alongside [splitting](split-with-conditionals.md) and [merging](merge-data.md) data streams, and [waiting](wait.md) between executions.
 
 ## Using loops in n8n <a href="#using-loops-in-n8n" id="using-loops-in-n8n"></a>
 
@@ -21609,7 +21931,7 @@ Here is an [example workflow](https://n8n.io/workflows/1130) that implements a l
 
 Use the [Loop Over Items](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.splitinbatches) node when you want to loop until all items are processed. To process each item individually, set **Batch Size** to `1`.
 
-You can batch the data in groups and process these batches. This approach is useful for avoiding API rate limits when processing large incoming data or when you want to process a specific group of returned items.
+You can batch the data in groups and process these batches. This approach is useful for avoiding API rate limits when processing large incoming data or when you want to process a specific group of returned items. Combine batching with a [Wait](wait.md) node between batches to slow down processing further.
 
 The Loop Over Items node stops executing after all the incoming items get divided into batches and passed on to the next node in the workflow so it's not necessary to add an IF node to stop the loop.
 
@@ -21629,11 +21951,22 @@ Nodes and operations where you need to design a loop into your workflow:
 * [RSS Read](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.rssfeedread) executes once for the requested URL.
 * [TimescaleDB](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.timescaledb) executes once for `insert` and `update`.
 
+## Related resources
+
+* [Flow logic](./)
+* [Split with conditionals](split-with-conditionals.md)
+* [Merge data](merge-data.md)
+* [Wait](wait.md)
+* [Understand execution order](understand-execution-order.md)
+* [Break workflows into smaller parts](break-workflows-into-smaller-parts.md)
+* [Convert to sub-workflows](convert-to-sub-workflows.md)
+* [Handle errors gracefully](handle-errors-gracefully.md)
+
 === https://docs.n8n.io/docs/build/flow-logic/merge-data/
 
 # Merging data <a href="#merging-data" id="merging-data"></a>
 
-Merging brings multiple data streams together. You can achieve this using different nodes depending on your workflow requirements.
+Merging brings multiple data streams together, as part of n8n's [flow logic](./). You can achieve this using different nodes depending on your workflow requirements.
 
 - Merge data from different data streams or nodes: Use the [Merge](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.merge) node to combine data from various sources into one.
 - Merge data from multiple node executions: Use the [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) node for complex scenarios where you need to merge data from multiple executions of a node or multiple nodes. 
@@ -21679,9 +22012,22 @@ Refer to this [example workflow](https://n8n.io/workflows/1943-comparing-data-wi
 
 {% @n8n-blocks/n8n-workflow-demo content="" url="https://api.n8n.io/workflows/templates/1943" %}
 
+## Related resources
+
+* [Flow logic](./)
+* [Split with conditionals](split-with-conditionals.md)
+* [Loop](loop.md)
+* [Wait](wait.md)
+* [Understand execution order](understand-execution-order.md)
+* [Break workflows into smaller parts](break-workflows-into-smaller-parts.md)
+* [Convert to sub-workflows](convert-to-sub-workflows.md)
+* [Handle errors gracefully](handle-errors-gracefully.md)
+
 === https://docs.n8n.io/docs/build/flow-logic/understand-execution-order/
 
 # Execution order in multi-branch workflows <a href="#execution-order-in-multi-branch-workflows" id="execution-order-in-multi-branch-workflows"></a>
+
+Execution order is part of your workflow's [flow logic](./), and matters most in workflows that [split into multiple branches](split-with-conditionals.md).
 
 n8n's node execution order depends on the version of n8n you're using:
 
@@ -21692,11 +22038,33 @@ You can change the execution order in your [workflow settings](../manage-workflo
 
 [^1]: The canvas is the main interface for building workflows in n8n's editor UI. You use the canvas to add and connect nodes to compose workflows.
 
+## Related resources
+
+* [Flow logic](./)
+* [Split with conditionals](split-with-conditionals.md)
+* [Merge data](merge-data.md)
+* [Loop](loop.md)
+* [Wait](wait.md)
+* [Break workflows into smaller parts](break-workflows-into-smaller-parts.md)
+* [Convert to sub-workflows](convert-to-sub-workflows.md)
+* [Handle errors gracefully](handle-errors-gracefully.md)
+
 === https://docs.n8n.io/docs/build/flow-logic/README/
 
 # Flow logic <a href="#flow-logic" id="flow-logic"></a>
 
 n8n allows you to represent complex logic in your workflows.
+
+## In this section <a href="#in-this-section" id="in-this-section"></a>
+
+* [Split with conditionals](split-with-conditionals.md): route items down different branches with the IF and Switch nodes.
+* [Merge data](merge-data.md): combine multiple data streams back into one.
+* [Loop](loop.md): repeat an action until a condition is met, or until all items are processed.
+* [Wait](wait.md): pause a workflow's execution and resume it later.
+* [Understand execution order](understand-execution-order.md): learn how n8n decides which branch runs first in a multi-branch workflow.
+* [Break workflows into smaller parts](break-workflows-into-smaller-parts.md): call one workflow from another to build modular, microservice-like workflows.
+* [Convert to sub-workflows](convert-to-sub-workflows.md): turn part of an existing workflow into a reusable sub-workflow.
+* [Handle errors gracefully](handle-errors-gracefully.md): set up an error workflow to respond to execution failures.
 
 ## Related sections <a href="#related-sections" id="related-sections"></a>
 
@@ -34550,8 +34918,8 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.39.7
-Current `beta`: 2.40.2
+Current `stable`: 2.39.8
+Current `beta`: 2.40.3
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -34714,49 +35082,32 @@ n8n recommends using an SVG for your node icon, but you can also use PNG. If usi
 {% hint style="info" %}
 **Don't reference Font Awesome**
 
-If you want to use a Font Awesome icon in your node, download and embed the image.
+If you want to use a Font Awesome icon in your node, download and embed the image. Don't set `defaults.color`: it only tints Font Awesome icons, and n8n 3.0 removes it.
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/creating-nodes/testing/
-You can test your node as you build it by running it in a local n8n instance.
+You can test your node as you build it by running it in a local n8n instance with the [`n8n-node` tool](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes/build-your-node/using-the-n8n-node-tool). `n8n-node` includes n8n, so you don't need a global n8n installation.
 
-1. Install n8n using npm:
-  ```shell
-  npm install n8n -g
-  ```
-2. When you are ready to test your node, publish it locally:
-  ```shell
-  # In your node directory
-  npm run build
-  npm link
-  ```
-3. Install the node into your local n8n instance:
+1. In your project's root directory, run the `dev` command:
 	```shell
-	# In the nodes directory within your n8n installation
-	# node-package-name is the name from the package.json
-	npm link <node-package-name>
+	npm run dev
 	```
+	This runs `n8n-node dev`, which builds your node, links it into the n8n custom nodes directory, starts a local n8n instance with your node loaded, and rebuilds your node when you change a file.
 
 	{% hint style="info" %}
-	**Check your directory**
+	**Custom nodes directory**
 
-	Make sure you run `npm link <node-name>` in the nodes directory within your n8n installation.
+	`n8n-node dev` uses its own n8n user folder, `.n8n-node-cli`, so it doesn't touch an existing n8n installation. The default location depends on your operating system:
+	- For Windows: `C:\Users\<username>\.n8n-node-cli\.n8n\custom`
+	- For Linux: `/home/<username>/.n8n-node-cli/.n8n/custom`
+	- For macOS: `/Users/<username>/.n8n-node-cli/.n8n/custom`
 
-	The default location depends on your operating system:
-	- For Windows: `C:\Users\<username>\.n8n\custom`
-	- For Linux: `/home/<username>/.n8n/custom`
-	- For MacOS: `/Users/<username>/.n8n/custom`
+	To test against an n8n instance you run yourself, pass `--external-n8n` and set `--custom-user-folder <path>` to that instance's user folder (the parent of its `.n8n` directory). Set `N8N_DEV_RELOAD=true` on that instance so it picks up your changes.
 
-	If your n8n installation set a different name using `N8N_CUSTOM_EXTENSIONS`, use that custom directory instead.
-
-	Note: The `.n8n` folder is a hidden folder so it may not appear in your file browser.
+	Note: `.n8n-node-cli` and `.n8n` are hidden folders, so your file browser may not show them.
 	{% endhint %}
-
-4. Start n8n:
-  ```
-  n8n start
-  ```
-5. Open n8n in your browser. You should see your nodes when you search for them in the nodes panel.
+2. Open `http://localhost:5678` in your browser and sign in to your n8n instance.
+3. Open a workflow and search for your node in the nodes panel.
 
 	{% hint style="info" %}
 	**Node names**
@@ -34764,23 +35115,7 @@ You can test your node as you build it by running it in a local n8n instance.
 	Make sure you search using the node name, not the package name. For example, if your npm package name is `n8n-nodes-weather-nodes`, and the package contains nodes named `rain`, `sun`, `snow`, you should search for `rain`, not `weather-nodes`.
 	{% endhint %}
 
-### Troubleshooting <a href="#troubleshooting" id="troubleshooting"></a>
-
-If there's no `custom` directory in your `.n8n` local installation, you have to create the `custom` directory manually and run `npm init`.
-
-The `.n8n` directory location depends on your operating system:
-- For Windows: `C:\Users\<username>\.n8n\custom`
-- For Linux: `/home/<username>/.n8n/custom`
-- For MacOS: `/Users/<username>/.n8n/custom`
-
-Note: The `.n8n` folder is a hidden folder so it may not appear in your file browser.
-
-```shell
-# Navigate to your .n8n directory and run:
-mkdir custom
-cd custom
-npm init
-```
+Add the node to your workflow and test it as you develop. To stop n8n, press `ctrl` + `c`.
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/creating-nodes/prerequisites/
 * [git](https://git-scm.com/downloads)
@@ -48233,6 +48568,220 @@ Refer to [SendGrid credentials](../credentials/sendgrid.md) for guidance on sett
 [Browse SendGrid node documentation integration templates](https://n8n.io/integrations/sendgrid) or [search all templates](https://n8n.io/workflows/)
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/96ifDzfcUuwOyYrubZUt/" %}
+
+=== https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftdataverse/
+
+# Microsoft Dataverse node
+
+Use the Microsoft Dataverse node to automate work in Microsoft Dataverse and integrate it with other applications. You can create, read, update, and delete rows in standard and custom tables using the Dataverse Web API.
+
+{% hint style="info" %}
+**Credentials**
+
+Refer to [Microsoft Dataverse credentials](../credentials/microsoftdataverse.md) for authentication setup. The node supports delegated user access and app-only access through the **Microsoft Dataverse OAuth2 API** credential.
+{% endhint %}
+
+## Operations
+
+* **Row**
+	* **Create**: Add a new row.
+	* **Create or Update**: Create a row or update an existing row using a row ID or alternate key.
+	* **Delete**: Delete a row.
+	* **Get**: Get a row by its ID.
+	* **Get Many**: Get multiple rows, with optional filtering and sorting.
+	* **Update**: Update an existing row. This operation doesn't create a missing row.
+
+## Select a table and row
+
+Set **Resource** to **Row**, then select an **Operation**.
+
+In **Table Name or ID**, choose **From List** to search your environment's tables. To enter a table manually, choose **By ID** and enter its Web API entity set name, such as `accounts` or `contacts`. This isn't the table's display name, singular logical name, or GUID.
+
+For **Get**, **Update**, and **Delete**, use **Row ID** to select a row **From List** or enter its GUID **By ID**. For example, `00000000-0000-0000-0000-000000000001` has the required format. Replace it with the ID of a row in your environment.
+
+Only **Create or Update** supports [alternate-key addressing](#create-or-update-a-row).
+
+## Create and update rows
+
+For **Create**, **Update**, and **Create or Update**, choose an **Input Mode**:
+
+| Input mode | How to enter values |
+| --- | --- |
+| **JSON** (default) | Enter an object in **Row Item (JSON)**. Use column logical names as keys and the data types the columns expect. |
+| **Fields (Key / Value Pairs)** | Under **Fields**, select **Add Field**, choose a **Field Name or ID**, and enter a **Field Value**. Repeat for each column. |
+
+Provide at least one field. The node rejects an empty row item. The field picker shows writable columns for the selected operation. For **Create or Update**, it shows columns that support both creating and updating rows.
+
+The **Field Value** input is a string field. The node doesn't automatically convert literal text to numbers or booleans. Use **JSON** when you need to preserve these types or send `null`.
+
+### Create an account
+
+To create an account, select **Create**, set **Table Name or ID** to `accounts`, and use **JSON** input. Enter this object in **Row Item (JSON)**:
+
+```json
+{
+	"name": "Contoso",
+	"accountnumber": "ACC-001",
+	"numberofemployees": 25,
+	"creditonhold": false
+}
+```
+
+For **Update**, select the existing account's **Row ID** and send only the fields you want to change. For example, `{"telephone1": "555-0100"}` updates the phone number without replacing the other fields.
+
+### Set lookup columns
+
+A lookup column refers to a row in another table. When relationship metadata is accessible, the node converts lookup values to the navigation-property bindings Dataverse requires.
+
+| Lookup type | Value to provide |
+| --- | --- |
+| One target table, such as `primarycontactid` on an account | A row GUID or a reference such as `/contacts(<contact-id>)`. |
+| Multiple target tables, such as a Customer column | An explicit reference such as `/accounts(<account-id>)` or `/contacts(<contact-id>)`. A bare GUID is ambiguous. |
+| Owner column | `/systemusers(<user-id>)` or `/teams(<team-id>)`. A bare GUID is ambiguous. |
+
+Replace the angle-bracket placeholders with row GUIDs from your environment. You can omit the leading slash in these references.
+
+For example, to set an account's primary contact and owner, include the following fields in **Row Item (JSON)**:
+
+```json
+{
+	"primarycontactid": "/contacts(<contact-id>)",
+	"ownerid": "/systemusers(<user-id>)"
+}
+```
+
+You can also supply an explicit binding, such as `{"primarycontactid@odata.bind": "/contacts(<contact-id>)"}`. The node passes explicit bindings through unchanged. Use the exact, case-sensitive navigation property name from your table's metadata, which can differ from the column logical name.
+
+To clear a single-target lookup, send `null`, for example `{"primarycontactid": null}`. For a multi-table lookup, clear the specific navigation property instead, if Dataverse permits clearing that relationship.
+
+## Create or update a row
+
+Select **Create or Update** to address a row using either of these **Identifier Type** values:
+
+* **Row ID (GUID)**: Select or enter a **Row ID**. If the row doesn't exist, Dataverse creates it with that GUID.
+* **Alternate Key**: Enter an **Alternate Key Predicate**, such as `accountnumber='ACC-001'`. Configure the alternate key on the table in Dataverse before using it.
+
+Enter only the predicate, without the table name or surrounding parentheses. For a string key, keep the single quotes around the value. The node rejects URL delimiters, path separators, and control characters in the predicate.
+
+Under **Options**, use **Behavior** to control the write:
+
+| Behavior | Result |
+| --- | --- |
+| **Create or Update** (default) | Create the row if it doesn't exist, or update it if it does. |
+| **Update Only** | Update an existing row. Fail if the row doesn't exist. |
+| **Create Only** | Create a new row. Fail if the row already exists. |
+
+For example, select the `accounts` table, choose **Alternate Key**, and enter `accountnumber='ACC-001'`. Send `{"name": "Contoso"}` in **Row Item (JSON)** to create or update the account with that account number.
+
+## Query rows
+
+The **Get** operation supports **Select Column Names or IDs** and **Expand Query** under **Options**. **Get Many** supports those options and additional filters, sorting, and result limits.
+
+### Get many rows with OData
+
+Select **Get Many** and configure the following parameters:
+
+| Parameter | Default | Description |
+| --- | --- | --- |
+| **Return All** | Off | Follow OData pagination links until no more results remain. |
+| **Limit** | `50` | Maximum number of rows to return when **Return All** is off. Minimum: `1`. |
+| **Select Column Names or IDs** | None selected | Choose the columns to retrieve. Leave empty to use Dataverse's default projection. |
+| **Filter Rows** | Empty | OData filter expression, such as `statecode eq 0`. Don't include the `$filter=` prefix. |
+| **Expand Query** | Empty | OData expression to retrieve related rows, such as `primarycontactid($select=fullname)`. |
+| **Sort Column Name or ID** | None selected | Column to sort by. |
+| **Sort Direction** | **Ascending** | Sort direction for the selected column. |
+| **Sort By Override** | Empty | Raw OData sort expression, such as `createdon desc, name asc`. Used only when **Sort Column Name or ID** is empty. |
+| **Row Count ($Top)** | Unset | Server-side cap on results. Overrides the `$top` value derived from **Limit** and disables server-driven paging. |
+
+For example, to retrieve up to 100 active accounts whose names start with `Contoso`:
+
+1. Set **Table Name or ID** to `accounts`.
+2. Leave **Return All** off and set **Limit** to `100`.
+3. Under **Options**, select `name` and `accountnumber` in **Select Column Names or IDs**.
+4. Set **Filter Rows** to `statecode eq 0 and startswith(name,'Contoso')`.
+5. Set **Sort Column Name or ID** to `name` and **Sort Direction** to **Ascending**.
+
+The read-column pickers use lookup property names such as `_primarycontactid_value` automatically. When writing raw filters or sort expressions, use that property form for lookup GUIDs. For example, filter by `_primarycontactid_value eq <contact-id>`, replacing `<contact-id>` with the GUID without quotes. Use navigation property names for **Expand Query**.
+
+### Pagination and result limits
+
+For OData queries, the node follows `@odata.nextLink` until it reaches **Limit** or retrieves all available results.
+
+When **Limit** is 5,000 or less, the node also sends it as `$top`. For larger limits, the node leaves `$top` unset so Dataverse can return multiple pages. An explicit **Row Count ($Top)** takes precedence and can restrict results even when **Return All** is on.
+
+To retrieve more than 5,000 rows, leave **Row Count ($Top)** unset and either enable **Return All** or set **Limit** above 5,000. These paging rules apply to OData queries, not FetchXML.
+
+### Use FetchXML
+
+Set **Options** > **FetchXML Query** to run a FetchXML query. It replaces the OData select, filter, sort, expand, and top options. Keep **Return All** off and set **Limit** to cap the returned rows.
+
+For example, select the `accounts` table and enter this query to retrieve up to 50 active accounts:
+
+```xml
+<fetch top="50">
+	<entity name="account">
+		<attribute name="name" />
+		<attribute name="accountnumber" />
+		<filter>
+			<condition attribute="statecode" operator="eq" value="0" />
+		</filter>
+	</entity>
+</fetch>
+```
+
+FetchXML uses the table's logical name, `account`, even though **Table Name or ID** uses the entity set name, `accounts`.
+
+{% hint style="warning" %}
+**FetchXML pagination**
+
+The Microsoft Dataverse node doesn't support FetchXML pagination. **FetchXML Query** with **Return All** produces an error. Turning off **Return All** avoids the error, but increasing **Limit** doesn't retrieve additional FetchXML pages. Use an OData query for automatic pagination.
+{% endhint %}
+
+## Work with elastic tables
+
+For **Get**, **Get Many**, and **Delete**, set **Options** > **Partition ID** when you need to target an elastic-table partition.
+
+**Create**, **Update**, and **Create or Update** don't expose a **Partition ID** option. For **Create**, include `partitionid` in the row JSON when creating a partitioned row.
+
+To update or upsert a partitioned row, use **Create or Update** with **Identifier Type** set to **Alternate Key**. Include the table's primary key and `partitionid` in **Alternate Key Predicate**:
+
+```text
+<primary-key-column>=<row-id>,partitionid='<partition-id>'
+```
+
+Replace the placeholders with your table's primary key column logical name, row GUID, and partition ID. Set **Behavior** to **Update Only** if the row must already exist. Refer to Microsoft's [elastic table documentation](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/use-elastic-tables) for table-specific behavior and restrictions.
+
+## Output and metadata
+
+* **Create**, **Update**, and **Create or Update** request the row after the write and return Dataverse's response.
+* **Get** returns a single row.
+* **Get Many** returns each row as a separate n8n item, rather than a collection inside a `value` field.
+* **Delete** returns `{"success": true, "id": "<row-id>"}` after a successful deletion.
+
+All operations except **Delete** offer **Options** > **Return Full Metadata**, which is off by default. Turn it on to request OData annotations, including formatted values where Dataverse provides them. The node doesn't rename columns or simplify annotations.
+
+## Common issues
+
+### Table or column options don't load
+
+Check the HTTP status and Dataverse error shown in the picker. Verify the environment URL and credential access, including access to table metadata. Refer to [Microsoft Dataverse credential troubleshooting](../credentials/microsoftdataverse.md#common-issues).
+
+If you know the table's entity set name, you can enter it using **Table Name or ID** > **By ID**. This doesn't bypass Dataverse permissions.
+
+### A lookup value is rejected
+
+Don't use a display name as a lookup value. Use a GUID for a single-target lookup, or a reference containing the entity set name and row ID. Customer and Owner columns need an explicit target table. Refer to [Set lookup columns](#set-lookup-columns) for examples.
+
+### A query returns fewer rows than expected
+
+Check **Limit**, remove **Row Count ($Top)** if you need paging, and confirm whether the query uses FetchXML. Refer to [Pagination and result limits](#pagination-and-result-limits) and [Use FetchXML](#use-fetchxml).
+
+## Related resources
+
+* [Microsoft Dataverse credentials](../credentials/microsoftdataverse.md)
+* [Dataverse Web API documentation](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview)
+* [Query data using the Web API](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/query/overview)
+* [Use alternate keys with the Web API](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/use-alternate-key-reference-record)
 
 === https://docs.n8n.io/docs/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/document-operations/
 
@@ -79179,6 +79728,156 @@ To generate all this information, register a new Airtable integration:
 
 Refer to the [Airtable Register a new integration documentation](https://airtable.com/developers/web/guides/oauth-integrations) for steps on registering a new Oauth integration.
 
+=== https://docs.n8n.io/docs/integrations/builtin/credentials/microsoftdataverse/
+
+# Microsoft Dataverse credentials
+
+You can use the **Microsoft Dataverse OAuth2 API** credential to authenticate the [Microsoft Dataverse node](../app-nodes/n8n-nodes-base.microsoftdataverse.md).
+
+## Prerequisites
+
+* A Microsoft Dataverse environment and its environment URL.
+* A Microsoft Entra ID app registration, or permission to create one.
+* Permission to configure API consent for delegated access, or an administrator who can grant consent.
+* A Dataverse user with suitable security roles for delegated access, or an administrator who can create an application user for app-only access.
+
+Use a security role with only the table privileges your workflows need. Authentication doesn't grant permission to read or change every table.
+
+## Supported authentication methods
+
+The credential supports OAuth2 with two **Grant Type** options:
+
+| Grant type | Access | Requirements |
+| --- | --- | --- |
+| **Authorization Code** (default) | Act as a signed-in user. n8n uses refresh tokens to renew access. | A web redirect URI, delegated Dataverse permission, and a user with access to the environment. |
+| **Client Credentials** | Act as the application without a signed-in user. n8n acquires new access tokens when needed. | A specific tenant ID and a Dataverse application user with a security role. No interactive sign-in or redirect URI is required. |
+
+The setup below uses **Client Secret** authentication. The credential also inherits **Certificate** authentication from the Microsoft OAuth2 credential. Refer to [Authenticate with a certificate](microsoft.md#authenticate-with-a-certificate) to configure a private key and certificate instead of a client secret.
+
+## Configure the credential
+
+Create a **Microsoft Dataverse OAuth2 API** credential in n8n. Register an app and configure the grant type you plan to use before connecting or saving the completed credential.
+
+### Register an application
+
+1. Open the [Microsoft Entra admin center](https://entra.microsoft.com/) and go to **App registrations** > **New registration**.
+2. Enter a name, such as `n8n Dataverse`.
+3. Select the supported account type for your organization. For access within one tenant, select **Accounts in this organizational directory only**.
+4. If you plan to use **Authorization Code**, copy the **OAuth Redirect URL** from the n8n credential editor. Under **Redirect URI**, choose **Web** and paste the URL exactly as shown. For **Client Credentials**, leave the redirect URI empty.
+5. Select **Register**.
+6. From the app's **Overview**, copy **Application (client) ID** into n8n's **Client ID**, and **Directory (tenant) ID** into n8n's **Tenant ID**.
+
+For an existing app, add the n8n redirect URL under the app registration's **Authentication** settings as a **Web** redirect URI.
+
+### Generate a client secret
+
+1. In the app registration, open **Certificates & secrets** > **Client secrets**.
+2. Select **New client secret**, enter a description, and choose an expiry that meets your organization's policy.
+3. Select **Add** and copy the secret's **Value**, not its **Secret ID**. Microsoft displays the value only once.
+4. In n8n, set **Authentication** to **Client Secret** and paste the value into **Client Secret**.
+
+Store the secret in the n8n credential, not in workflow fields. When you rotate the secret, update the credential before the old secret expires.
+
+### Set the environment and tenant
+
+Complete these fields in the n8n credential:
+
+| n8n field | Value |
+| --- | --- |
+| **Grant Type** | **Authorization Code** for user access, or **Client Credentials** for app-only access. |
+| **Client ID** | **Application (client) ID** from the Entra app registration. |
+| **Client Secret** | The secret's **Value**, when using **Client Secret** authentication. |
+| **Tenant ID** | **Directory (tenant) ID** from the app registration. Use the tenant GUID for **Client Credentials**. |
+| **Environment URL** | The environment's HTTPS base URL, such as `https://contoso.crm.dynamics.com`. Don't append `/api/data/v9.2`, a table name, or an application path. |
+| **National Cloud** | The Microsoft cloud hosting your Dataverse environment. The default is **Global (Public Cloud)**. |
+
+Find the environment URL in the [Power Platform admin center](https://admin.powerplatform.microsoft.com/) under your environment's details. The credential accepts a trailing slash and removes it when building scopes and requests.
+
+For **Authorization Code**, **Tenant ID** also accepts a verified tenant domain. The default value, `common`, is for multi-tenant Authorization Code apps. Replace it with a specific tenant GUID or domain for a single-tenant app. Don't use `common` for **Client Credentials**.
+
+### Configure delegated user access
+
+To use **Authorization Code**:
+
+1. In the Entra app registration, go to **API permissions** > **Add a permission**.
+2. Select **Dynamics CRM** > **Delegated permissions** and select **user_impersonation**. This is the **Access Dynamics 365 as organization users** permission.
+3. Select **Add permissions**. Ask an administrator to grant consent if your tenant requires it.
+4. Make sure the user who signs in has access to the Dataverse environment and a security role with the required table privileges.
+5. In n8n, set **Grant Type** to **Authorization Code** and confirm that the app's **Web** redirect URI matches the credential editor's **OAuth Redirect URL**.
+6. Select **Connect my account**, sign in, and accept the requested access or complete your organization's approval process.
+7. Save the credential.
+
+Refer to Microsoft's [Dataverse OAuth documentation](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/authenticate-oauth) for delegated permission requirements.
+
+### Configure app-only access
+
+To use **Client Credentials**, create an application user in the target Dataverse environment:
+
+1. In the [Power Platform admin center](https://admin.powerplatform.microsoft.com/), go to **Manage** > **Environments** and select your environment.
+2. Open **Settings** > **Users + permissions** > **Application users**.
+3. Select **New app user**, then **Add an app**. Find the Entra app registration using its application ID and select **Add**.
+4. Select the appropriate **Business Unit**, enter an email address if requested, and assign security roles with the privileges the workflow needs.
+5. Select **Create** to create the application user.
+6. In n8n, set **Grant Type** to **Client Credentials**. Enter the tenant GUID in **Tenant ID**, and confirm the app credentials, **Environment URL**, and **National Cloud**.
+7. Save the credential. This flow doesn't have an interactive account connection step.
+
+App-only Dataverse access uses the application user's security roles. It doesn't require the delegated `user_impersonation` permission or Microsoft Graph permissions. Refer to Microsoft's [application user setup](https://learn.microsoft.com/en-us/power-platform/admin/manage-application-users#create-an-application-user) for details.
+
+{% hint style="info" %}
+**Credential test**
+
+When you save the credential, n8n tests it with `GET /api/data/v9.2/WhoAmI` against the configured environment. Getting an access token alone doesn't prove that an application user exists or has access to Dataverse. A successful credential test also doesn't guarantee permission for every table operation.
+{% endhint %}
+
+## National clouds and scopes
+
+**National Cloud** controls the Microsoft Entra login host. Select the cloud that matches your environment:
+
+| National cloud | Login host |
+| --- | --- |
+| **Global (Public Cloud)** | `https://login.microsoftonline.com` |
+| **US Government (GCC High)** | `https://login.microsoftonline.us` |
+| **US Government (DoD)** | `https://login.microsoftonline.us` |
+| **China (21Vianet)** | `https://login.partner.microsoftonline.cn` |
+
+The credential builds the authorization and token URLs from **National Cloud** and **Tenant ID**. It builds the scope from **Environment URL**:
+
+* **Authorization Code**: `<environment-url>/.default offline_access`
+* **Client Credentials**: `<environment-url>/.default`
+
+For example, the Authorization Code scope for `https://contoso.crm.dynamics.com` is `https://contoso.crm.dynamics.com/.default offline_access`.
+
+You don't need to enter these URLs or scopes manually. The node calls the Dataverse environment, not Microsoft Graph, so the credential hides the Microsoft Graph base URL field.
+
+## Common issues
+
+### Redirect URI mismatch
+
+Copy the **OAuth Redirect URL** from n8n and register that exact URL as a **Web** redirect URI in Entra. Check the scheme, host, port, and path. Don't substitute the Dataverse environment URL. Redirect URIs apply to **Authorization Code**, not **Client Credentials**.
+
+### Admin approval required
+
+Ask an Entra administrator to review and grant the requested delegated Dataverse permission. Then reconnect the credential. Entra consent and Dataverse security roles are separate requirements: consent alone doesn't give the user access to the environment's rows.
+
+### Token request fails
+
+Check that **Client ID** belongs to the app registration and that **Client Secret** contains the current secret value, not its ID. For **Client Credentials**, replace `common` with the tenant GUID. Make sure **National Cloud** matches the environment and **Environment URL** is its HTTPS base URL.
+
+### Credential test or node requests return an access error
+
+For delegated access, verify that the signed-in user can access the environment and has the required Dataverse security roles.
+
+For app-only access, verify that an active application user exists in the same environment as **Environment URL**, uses the same application ID as **Client ID**, and has the required roles. Add only the missing privileges, rather than assigning broad administrator access.
+
+If the credential test succeeds but a table or column picker fails, check the metadata access required by the picker. If a write fails, check privileges for the target table and any related rows.
+
+## Related resources
+
+* [Microsoft Dataverse node](../app-nodes/n8n-nodes-base.microsoftdataverse.md)
+* [Register an app for Dataverse](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/walkthrough-register-app-azure-active-directory)
+* [Use OAuth with Dataverse](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/authenticate-oauth)
+* [Manage Dataverse application users](https://learn.microsoft.com/en-us/power-platform/admin/manage-application-users)
+
 === https://docs.n8n.io/docs/integrations/builtin/credentials/freshworkscrm/
 
 # Freshworks CRM credentials <a href="#freshworks-crm-credentials" id="freshworks-crm-credentials"></a>
@@ -87117,6 +87816,7 @@ It's possible for several community nodes to have the same name. If you use two 
     * [Medium](builtin/app-nodes/n8n-nodes-base.medium.md)
     * [MessageBird](builtin/app-nodes/n8n-nodes-base.messagebird.md)
     * [Metabase](builtin/app-nodes/n8n-nodes-base.metabase.md)
+    * [Microsoft Dataverse](builtin/app-nodes/n8n-nodes-base.microsoftdataverse.md)
     * [Microsoft Dynamics CRM](builtin/app-nodes/n8n-nodes-base.microsoftdynamicscrm.md)
     * [Microsoft Entra ID](builtin/app-nodes/n8n-nodes-base.microsoftentra.md)
     * [Microsoft Excel (OneDrive)](builtin/app-nodes/n8n-nodes-base.microsoftexcel.md)
@@ -87643,6 +88343,7 @@ It's possible for several community nodes to have the same name. If you use two 
     * [Metabase credentials](builtin/credentials/metabase.md)
     * [Microsoft credentials](builtin/credentials/microsoft.md)
     * [Microsoft Azure Monitor credentials](builtin/credentials/microsoftazuremonitor.md)
+    * [Microsoft Dataverse credentials](builtin/credentials/microsoftdataverse.md)
     * [Microsoft Entra ID credentials](builtin/credentials/microsoftentra.md)
     * [Microsoft Entra Service Principal credentials](builtin/credentials/microsoftentraserviceprincipal.md)
     * [Microsoft SQL credentials](builtin/credentials/microsoftsql.md)
@@ -91540,6 +92241,7 @@ The file or directory replaces the default trust store for Git. If the instance 
     * [Set up logging](host-n8n/keep-n8n-running/set-up-logging.md)
     * [Monitor n8n](host-n8n/keep-n8n-running/monitor-n8n.md)
     * [Visualize metrics with Grafana](host-n8n/keep-n8n-running/visualize-metrics-with-grafana.md)
+    * [Back up and restore](host-n8n/keep-n8n-running/backup-and-restore.md)
     * [Update n8n](host-n8n/keep-n8n-running/update-n8n.md)
     * [Trace executions with OpenTelemetry](host-n8n/keep-n8n-running/trace-executions-with-opentelemetry.md)
   * [Understand the architecture](host-n8n/understand-the-architecture/README.md)
@@ -92325,11 +93027,15 @@ mkdir n8n && cd n8n
 
 ## Step 2: Create `.env`
 
-This file holds the secrets the sandbox services use to talk to each other. Create a file named `.env` with your own values in place of the placeholders and keep this file out of version control.
+This file holds the versions to run and the secrets the sandbox services use to talk to each other. Create a file named `.env` with your own values in place of the placeholders and keep this file out of version control.
 
 ```
 # n8n version - get the version number of the latest stable release from https://github.com/n8n-io/n8n/releases
 N8N_VERSION=change-me-version-number
+
+# Sandbox service version - the API, runner, and sandbox images share one release.
+# Get the number of the latest stable "service" release (not a staging prerelease) from https://github.com/n8n-io/n8n-sandbox-service/releases
+N8N_SANDBOX_VERSION=change-me-sandbox-version-number
 
 # n8n task runner authentication. Use a random secret you generate.
 N8N_RUNNERS_AUTH_TOKEN=change-me-runner-auth-token
@@ -95626,6 +96332,12 @@ You don't need to open any extra ports or configure anything for these services.
 | Upgrade to the latest version | `curl -fsSL https://get.n8n.io \| sh -s -- --upgrade` |
 | Remove n8n and delete its data | `docker compose -f ./n8n/compose.yml down -v` then `rm -rf ./n8n` |
 
+### What an upgrade changes
+
+The upgrade command moves both n8n and the bundled sandbox services to newer versions. It edits two lines in `.env`: `N8N_VERSION` and `N8N_SANDBOX_VERSION`. Your data, secrets, and other settings stay as they are.
+
+If you installed before the sandbox version moved into `.env`, your `compose.yml` still names fixed sandbox image tags. The first upgrade rewrites those image lines to use `N8N_SANDBOX_VERSION`, switches the sandbox runner address (`SANDBOX_RUNNER_HTTP_BASE_URL`) from `http://` to `https://`, and prints a note that says so. Nothing else in `compose.yml` changes, so any edits you made stay in place.
+
 ## Flags (for more control)
 
 Adding these to the end of the install command changes what it does:
@@ -95634,7 +96346,7 @@ Adding these to the end of the install command changes what it does:
 |---|---|
 | `--version` | On its own, shows the script's version and the latest n8n version it would install. Followed by a version number (for example, `--version 2.31.4`), installs or upgrades to that specific version. |
 | `--no-start` | Sets up the configuration files without starting n8n yet. |
-| `--upgrade` | Upgrades an existing install to a newer n8n version. Only updates the version number. Your data, settings, and any customizations stay untouched. |
+| `--upgrade` | Upgrades an existing install to a newer n8n version and the matching sandbox service version. Only updates the version lines in `.env` and, on older installs, the sandbox image lines and runner address in `compose.yml`. See [What an upgrade changes](#what-an-upgrade-changes). Your data, settings, and any other customizations stay untouched. |
 | `--help` | Shows all available options. |
 
 ## Prefer not to run a script from the internet?
@@ -97035,6 +97747,105 @@ Select the installation method that best fits your technical requirements and in
 
 	[npm installation guide](install-options/install-with-npm.md)
 
+=== https://docs.n8n.io/docs/deploy/host-n8n/keep-n8n-running/backup-and-restore/
+
+# Back up and restore
+
+Back up a self-hosted n8n instance so you can recover from data loss, roll back a failed update, or move to a new server. A complete backup includes more than the CLI export commands produce on their own. This page explains what a complete backup contains, what the CLI `--backup` flag exports, and how to restore each kind of backup.
+
+## What a complete backup includes
+
+A complete backup of a self-hosted n8n instance consists of two parts:
+
+* The `.n8n` user folder, `~/.n8n` by default. It holds the `config` file, which stores the credential encryption key. With the default SQLite database, it also holds the database file itself. If binary data or execution data uses the `filesystem` storage mode, it holds that data too.
+
+You can change the folder's location with the `N8N_USER_FOLDER` environment variable: n8n uses the `.n8n` subfolder of the path you set.
+* Your external database, if you use PostgreSQL instead of the default SQLite. Back it up with your database's own tooling. The `.n8n` folder is still part of the backup, because credentials in the database are encrypted with the key it holds.
+
+If you configured external storage for binary data or execution data, such as S3 or Azure Blob Storage, back that storage up as well. If binary data or execution data is stored on a custom filesystem path, include that location in your backup too. If you load custom nodes from directories set in the `N8N_CUSTOM_EXTENSIONS` environment variable, back those directories up as well: a restored instance without them is missing the nodes its workflows reference.
+
+With the default SQLite database, stop n8n before copying the `.n8n` folder. Copying the database file while n8n is writing to it can produce an inconsistent backup. If you can't stop n8n, use a tool that takes a consistent snapshot of the SQLite file instead.
+
+If you run n8n in Docker, the `.n8n` folder lives in the `n8n_data` volume, mounted at `/home/node/.n8n`. For more information about persistent data in Docker, see [Install with Docker](../install-options/install-with-docker.md).
+
+{% hint style="info" %}
+**The encryption key is required to restore credentials**
+
+n8n saves credentials to the database in encrypted form. Without the encryption key from the `config` file, or a custom `N8N_ENCRYPTION_KEY`, a restored database or encrypted credential export can't be decrypted. For more information, see [Set a custom encryption key](../configure-n8n/basic-configuration/configuration-examples/set-a-custom-encryption-key.md).
+{% endhint %}
+
+n8n recommends taking a full backup before updating. For update procedures, see [Update n8n](update-n8n.md).
+
+## Back up workflows and credentials with the CLI
+
+You can export workflows and credentials to JSON files using the [Server CLI](../configure-n8n/use-the-command-line.md):
+
+```bash
+n8n export:workflow --backup --output=backups/workflows/
+n8n export:credentials --backup --output=backups/credentials/
+```
+
+The `--backup` flag sets `--all --pretty --separate`, so each workflow and credential is written as a separate, readable JSON file.
+
+Use a different output directory for each command. `import:credentials --separate` currently fails when the input directory also contains workflow files. This is a [known issue](https://github.com/n8n-io/n8n/issues/37814).
+
+If you run n8n in Docker, a `backups/` directory inside the container isn't persisted: only the `.n8n` folder is in a volume. Bind-mount a host directory for your backups, or copy the exported files out of the container before recreating it.
+
+### What a CLI backup doesn't contain
+
+The `--backup` exports contain workflows and credentials only. They don't include:
+
+* Users and their roles. After importing into a fresh instance, n8n shows the owner setup screen again, and the first person to complete it becomes the owner.
+* Execution history and logs.
+* Variables.
+* Instance settings, including the encryption key.
+
+This means a CLI backup is enough to move workflows between instances, but not enough to recover a full instance on its own. For that, keep a backup of the `.n8n` folder and the external database as described in [What a complete backup includes](#what-a-complete-backup-includes).
+
+## Restore
+
+### Restore workflows and credentials
+
+Import the files from your CLI backup. On a fresh instance, complete the owner setup first: the import commands need an existing user, and imported credentials need an owner. If your instance has multiple users or projects, use `--userId` or `--projectId` to assign the imported credentials.
+
+```bash
+n8n import:workflow --separate --input=backups/workflows/
+n8n import:credentials --separate --input=backups/credentials/
+```
+
+Exports include the original workflow and credential IDs. If the target instance already has items with the same IDs, they're overwritten. Imported workflows are deactivated by default. Activate them in the UI after importing, or pass `--activeState=fromJson` to restore each workflow's exported active state, which only works in queue or multi-main mode. For the full list of flags and caveats, see [Use the command line](../configure-n8n/use-the-command-line.md).
+
+To restore credentials, the importing instance must be able to decrypt them. You have two options:
+
+* Use the same encryption key as the exporting instance. Restore the `config` file to the `.n8n` folder, or set the same `N8N_ENCRYPTION_KEY` environment variable.
+* Export with the `--decrypted` flag, which writes credentials in plain text.
+
+{% hint style="warning" %}
+**Sensitive information**
+
+A `--decrypted` export contains all credential data in plain text. Store it with the same care as the credentials themselves, and delete it once the restore is complete.
+{% endhint %}
+
+### Restore the full instance
+
+To restore a complete instance:
+
+1. Stop n8n.
+2. Restore the `.n8n` folder to its original location, plus any custom-node directories you configured with `N8N_CUSTOM_EXTENSIONS`.
+3. Restore your PostgreSQL database from its backup, if you use one.
+4. Restore your deployment configuration: the environment variables for your database connection, a custom `N8N_ENCRYPTION_KEY` if you use one, and any external storage settings. Without them, a restored instance can't reach its database or decrypt its data.
+5. Start n8n.
+
+With the default SQLite database, the `.n8n` folder holds everything needed to recover the instance: the SQLite database file, which contains users, settings, and execution data, the encryption key, and, on filesystem storage modes, binary and execution data. With PostgreSQL, the `.n8n` folder still holds the encryption key, and the database backup holds the rest.
+
+## Related content
+
+* [Keep n8n running](README.md): guides for operating a self-hosted n8n instance.
+* [Use the command line](../configure-n8n/use-the-command-line.md): the full Server CLI reference, including all export and import flags.
+* [Set a custom encryption key](../configure-n8n/basic-configuration/configuration-examples/set-a-custom-encryption-key.md): how to provide `N8N_ENCRYPTION_KEY` explicitly.
+* [Choose n8n's database](../configure-n8n/choose-n8ns-database.md): SQLite and PostgreSQL configuration.
+* [Update n8n](update-n8n.md): update procedures for npm and Docker installations.
+
 === https://docs.n8n.io/docs/deploy/host-n8n/keep-n8n-running/monitor-n8n/
 
 # Monitoring <a href="#monitoring" id="monitoring"></a>
@@ -97228,6 +98039,10 @@ As of now, front-end logs aren't available. Using `Logger` or `LoggerProxy` woul
 
 {% content-ref url="visualize-metrics-with-grafana.md" %}
 [visualize-metrics-with-grafana.md](visualize-metrics-with-grafana.md)
+{% endcontent-ref %}
+
+{% content-ref url="backup-and-restore.md" %}
+[backup-and-restore.md](backup-and-restore.md)
 {% endcontent-ref %}
 
 {% content-ref url="update-n8n.md" %}
@@ -99053,6 +99868,12 @@ n8n export:entities --outputDir=./outputs --includeExecutionHistoryDataTables=tr
 ## Export workflows and credentials <a href="#export-workflows-and-credentials" id="export-workflows-and-credentials"></a>
 
 You can export your workflows and credentials from n8n using the CLI.
+
+{% hint style="info" %}
+**Planning a full backup**
+
+The `--backup` flag exports workflows and credentials only. For what a complete backup of a self-hosted instance includes, and how to restore it, see [Back up and restore](../keep-n8n-running/backup-and-restore.md).
+{% endhint %}
 
 Command flags:
 
@@ -106265,7 +107086,7 @@ Check that you registered the node in the `package.json` file in your project.
 ### Changes to the description properties don't show in the UI on refreshing <a href="#changes-to-the-description-properties-dont-show-in-the-ui-on-refreshing" id="changes-to-the-description-properties-dont-show-in-the-ui-on-refreshing"></a>
 
 
-Every time you change the description properties, you have to stop the current n8n process (`ctrl` + `c`) and run it again. You may also need to re-run `npm link`.
+Every time you change the description properties, you have to stop the current `n8n-node dev` process (`ctrl` + `c`) and run it again.
 
 ### Linter incorrectly warning about file name case <a href="#linter-incorrectly-warning-about-file-name-case" id="linter-incorrectly-warning-about-file-name-case"></a>
 
@@ -108219,7 +109040,7 @@ Contains essential brand and name settings.
 The object can include:
 
 * `name`: String. Used as the node name on the canvas if the `displayName` is too long.
-* `color`: String. Hex color code. Provide the brand color of the integration for use in n8n.
+* `color`: String. Deprecated since n8n 1.52.0 and removed in n8n 3.0. It only tinted Font Awesome icons. Use a file [icon](#icon) instead.
 
 ## `forceInputNodeExecution` <a href="#forceinputnodeexecution" id="forceinputnodeexecution"></a>
 
@@ -109984,10 +110805,9 @@ This document lists the essential dependencies for developing a node, as well as
 To build and test a node, you need: 
 
 * Node.js and npm. Minimum version Node 22.22.0. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL (Windows Subsystem for Linux) [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* A local instance of n8n. You can install n8n with `npm install n8n -g`, then follow the steps in [Run your node locally](../test-your-node/run-your-node-locally.md) to test your node.
-* When [building verified community nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/community-nodes/building-community-nodes), you must use the [`n8n-node` tool](using-the-n8n-node-tool.md) to create and test your node.
+* The [`n8n-node` tool](using-the-n8n-node-tool.md). Use it to create, build, and test your node. It includes n8n for local development, so you don't need a global n8n installation. Refer to [Run your node locally](../test-your-node/run-your-node-locally.md) for the testing workflow. When [building verified community nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/community-nodes/building-community-nodes), you must use `n8n-node`.
 
-You should also have [git](https://git-scm.com/) installed. This allows you to clone and use the [n8n-node-starter](https://github.com/n8n-io/n8n-nodes-starter).
+You should also have [git](https://git-scm.com/) installed. This allows you to clone and use the [n8n-nodes-starter](https://github.com/n8n-io/n8n-nodes-starter).
 
 ## Editor setup <a href="#editor-setup" id="editor-setup"></a>
 
@@ -110007,7 +110827,10 @@ By using VS Code and these extensions, you get access to the n8n node linter's w
 
 This section provides tutorials on building nodes. It covers:
 
+* [Set up your development environment](set-up-your-development-environment.md)
+* [Using the `n8n-node` tool](using-the-n8n-node-tool.md) to create, build, and test your node
 * [Tutorial: Build a declarative-style node](tutorial-build-a-declarative-style-node.md)
+* [Tutorial: Build a programmatic-style node](tutorial-build-a-programmatic-style-node.md)
 * [Reference](reference/README.md) material on [file structure](../plan-your-node/choose-node-file-structure.md), parameter definitions for [base](reference/base-files/README.md), [codex](reference/codex-files.md), and [credentials](reference/credentials-files.md) files, [node UI elements](reference/node-ui-elements.md), and more.
 
 Coming soon:
@@ -110873,6 +111696,9 @@ Body text.
 
 ## Target section <a href="#target-section" id="target-section"></a>
 
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/sub/README/
+# Sub landing
+
 === https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/with-include/
 # With a resolvable include
 
@@ -110911,6 +111737,9 @@ No explicit id, so its anchor must be suppressed rather than flagged.
 
 === https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spaceb/other/
 # Other page
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spaceb/README/
+# Space B landing
 
 === https://docs.n8n.io/.github/ISSUE_TEMPLATE/new-docs-request/
 
