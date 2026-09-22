@@ -706,7 +706,7 @@ I give n8n permission to license my contributions on any terms they like.  I am 
 | `wlwT5JcWyWTecnDN6aul` | subworkflow-usage | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/wlwT5JcWyWTecnDN6aul/" %}` | ### Create the sub-workflow <a href="#create-the-sub-workflow" id="create-the-sub-workflow"></a>   1. Create a new workf | docs/build/flow-logic/break-workflows-into-smaller-parts.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger.md |
 | `I9ftZ1V1rwx3OrFOh0bT` | suggested-pod-resources | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/I9ftZ1V1rwx3OrFOh0bT/" %}` | - **Start**: 320mb RAM, 10 millicore CPU burstable - **Pro (10k executions)**: 640mb RAM, 20 millicore CPU burstable - * | docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-google-kubernetes.md |
 | `Ci5NMdJiVoyT9dtdTE9w` | system-message | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Ci5NMdJiVoyT9dtdTE9w/" %}` | If you'd like to send a message to the agent before the conversation starts, enter the message you'd like to send.  Use  | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/conversational-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/openai-functions-agent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/tools-agent.md |
-| `WlCAEDxY4EZLDV85eB8C` | testing | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/WlCAEDxY4EZLDV85eB8C/" %}` | You can test your node as you build it by running it in a local n8n instance.  1. Install n8n using npm:   ```shell   np | docs/connect/create-nodes/build-your-node/tutorial-build-a-declarative-style-node.md, docs/connect/create-nodes/build-your-node/tutorial-build-a-programmatic-style-node.md, docs/connect/create-nodes/test-your-node/run-your-node-locally.md |
+| `WlCAEDxY4EZLDV85eB8C` | testing | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/WlCAEDxY4EZLDV85eB8C/" %}` | You can test your node as you build it by running it in a local n8n instance with the [`n8n-node` tool](https://app.gitb | docs/connect/create-nodes/build-your-node/tutorial-build-a-declarative-style-node.md, docs/connect/create-nodes/build-your-node/tutorial-build-a-programmatic-style-node.md, docs/connect/create-nodes/test-your-node/run-your-node-locally.md |
 | `ttmJg4aaEfjB4LyKpCzt` | timezone-settings | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/ttmJg4aaEfjB4LyKpCzt/" %}` | {% hint style="info" %} **Timezone settings**  The node relies on the timezone setting. n8n uses either:  1. The workflo | docs/integrations/builtin/core-nodes/n8n-nodes-base.datetime.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/README.md |
 | `aLQxqepKmNn7Oz3PDTB7` | token-rotation | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/aLQxqepKmNn7Oz3PDTB7/" %}` | Slack offers **token rotation** that you can turn on for bot and user tokens. This makes every tokens expire after 12 ho | docs/integrations/builtin/credentials/slack.md, docs/integrations/builtin/trigger-nodes/n8n-nodes-base.slacktrigger.md |
 | `Yl56nEscwQQAbBUeWfvp` | tools-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/Yl56nEscwQQAbBUeWfvp/" %}` | Refer to [LangChain's documentation on tools](https://langchain-ai.github.io/langgraphjs/how-tos/tool-calling/) for more | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcalculator.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcode.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolthink.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolvectorstore.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwikipedia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.mcpClient.md |
@@ -34918,8 +34918,8 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.39.8
-Current `beta`: 2.40.3
+Current `stable`: 2.39.10
+Current `beta`: 2.40.5
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/docker-compose-updating/
@@ -60845,7 +60845,7 @@ Refer to [Freshservice credentials](../credentials/freshservice.md) for guidance
 
 # Databricks node <a href="#databricks-node" id="databricks-node"></a>
 
-Use the Databricks node to automate work in Databricks, and integrate Databricks with other applications. n8n has built-in support for a wide range of Databricks features, including executing SQL queries, managing Unity Catalog objects, querying ML model serving endpoints, and working with vector search indexes.
+Use the Databricks node to automate work in Databricks, and integrate Databricks with other applications. n8n has built-in support for a wide range of Databricks features, including running jobs, executing SQL queries, managing Unity Catalog objects, querying ML model serving endpoints, and working with vector search indexes.
 
 On this page, you'll find a list of operations the Databricks node supports and links to more resources.
 
@@ -60876,6 +60876,11 @@ Refer to [Databricks credentials](../credentials/databricks.md) for guidance on 
 	* Get Genie Space
 	* Get Query Results
 	* Start Conversation
+* Job
+	* Get
+	* Get Run
+	* Get Run Output
+	* Run
 * Model Serving
 	* Query Endpoint
 * Unity Catalog
@@ -60899,6 +60904,130 @@ Refer to [Databricks credentials](../credentials/databricks.md) for guidance on 
 	* Get Index
 	* List Indexes
 	* Query Index
+
+## Job operations
+
+Use the **Job** resource to start a run of an existing job, read the status and output of a run, and read a job's definition. Every operation calls the Databricks Jobs API 2.2.
+
+### Jobs, runs, and tasks
+
+Databricks separates a job from its runs, and a run from its tasks:
+
+* A **job** is the definition: its name, tasks, clusters, and schedule. It has a job ID. **Get** and **Run** take a job.
+* A **run** is one execution of a job. It has its own run ID and a run page in Databricks. **Get Run** and **Get Run Output** take a run. **Run** returns the run ID of the run it started.
+* A **task** is one step inside a run. Each task has a task key and its own task run ID. **Get Run Output** reads every task of a run and returns one item per task.
+
+### Select a job or run
+
+The **Job** field (on **Get** and **Run**) and the **Run** field (on **Get Run** and **Get Run Output**) offer three modes:
+
+* **From list**: select a job from the workspace, or a run from the recent runs of all jobs. Type to filter. The run list shows the run name (or `Job <job-id>`), the result or the current state of a run that hasn't finished, the start time in UTC, and the run ID.
+* **By ID**: enter the numeric ID. The node rejects anything that isn't a whole number.
+* **By URL**: paste the page URL from Databricks. The node accepts `https://<your-workspace>/jobs/<job-id>` for a job and `https://<your-workspace>/jobs/<job-id>/runs/<run-id>` for a run. It also accepts the hash form of both pages, `https://<your-workspace>/?o=<workspace-id>#job/<job-id>` and `https://<your-workspace>/?o=<workspace-id>#job/<job-id>/run/<run-id>`, with or without `?o=<workspace-id>`.
+
+### Get
+
+**Get** reads the definition of the job in the **Job** field. It returns one item with the job as Databricks returns it, including `job_id`, `creator_user_name`, `run_as_user_name`, `created_time`, `settings`, and, when the job has a trigger, `trigger_state`. The node reads at most 2,000 tasks, job clusters, environments, or parameters of one job. Above that it fails with `Job <job-id> has more settings entries than the node can read`.
+
+### Get Run
+
+**Get Run** reads the run in the **Run** field and returns the run object from Databricks with five extra fields:
+
+| Field | Value |
+|-------|-------|
+| `run_state` | The life cycle state, for example `RUNNING` or `TERMINATED`. |
+| `run_finished` | `true` when the run has reached a final state. |
+| `run_result` | The termination code, for example `SUCCESS`, `SUCCESS_WITH_FAILURES`, `CANCELED`, or `RUN_EXECUTION_ERROR`. `null` until the run finishes. |
+| `run_succeeded` | `true` when `run_result` is `SUCCESS`, `false` for any other result. `null` until the run finishes. |
+| `run_error_message` | The termination message of a run that didn't succeed, cut at 500 characters. `null` otherwise. |
+
+Use these fields in an [If](../core-nodes/n8n-nodes-base.if.md) node to branch on the outcome without reading the nested `status` object.
+
+### Get Run Output
+
+**Get Run Output** reads what the tasks of a run produced. Set **Run** to the job run to get every task. A task run ID returns one item for that task only. The node reads the run's tasks, fetches the output of each task, and returns one item per task:
+
+| Field | Value |
+|-------|-------|
+| `run_id` | The run you asked for. |
+| `job_id` | The job the run belongs to. |
+| `task_key` | The key of the task in the job definition. Absent when you pass a task run ID. |
+| `task_run_id` | The run ID of this task. |
+| `truncated` | `true` when Databricks cut the notebook output or the logs. |
+| `notebook_output`, `sql_output`, `dbt_output`, `run_job_output`, `clean_rooms_notebook_output`, `logs`, `logs_truncated`, `error`, `error_trace`, `info`, `metadata` | The task output as Databricks returns it. Which fields appear depends on the task type. `notebook_output.result` holds the value a notebook returns with `dbutils.notebook.exit()`. `error` explains why a task failed or why its output isn't available. |
+
+A run with no tasks returns one item for the run itself. You can also read a run that hasn't finished, but tasks that are still running have no output yet. The node reads at most 2,000 tasks of one run. Above that it fails with `Run <run-id> has more tasks than the node can read`.
+
+### Run
+
+**Run** starts a run of the job, the same as **Run now** in Databricks.
+
+| Field | Description |
+|-------|-------------|
+| **Job** | The job to run. |
+| **Job Parameters** | Job-level parameters for this run. Select **Add Parameter** and enter a **Name** and a **Value** for each one. They override the default values defined on the job. The node sends every value as a string. |
+| **Wait for Completion** | Whether to wait until the run finishes and return the final run. Off by default. |
+| **Timeout** (in **Options**) | Maximum time in seconds to wait for the run to finish. Default `600`, minimum `1`. Shown only when **Wait for Completion** is on. |
+
+With **Wait for Completion** off, the node returns the new run ID right away and the job keeps running in Databricks:
+
+```json
+{
+	"run_id": 41847992357943,
+	"number_in_job": 41847992357943
+}
+```
+
+Pass `run_id` to **Get Run** or **Get Run Output** later to read the result.
+
+#### Wait for the run to finish
+
+With **Wait for Completion** on, the node checks the run every 5 seconds until it reaches a final state (`TERMINATED`, `SKIPPED`, or `INTERNAL_ERROR`) or until the **Timeout** passes. Canceling the execution stops the wait. Then:
+
+* If the run succeeds, the node returns the full run object from Databricks.
+* If the run ends with any other result, including `SUCCESS_WITH_FAILURES` and `CANCELED`, the node fails with `Job run <run-id> failed (<code>): <message>` (or the code again when Databricks gives no message) and the run page URL.
+* If the run is still going when the timeout passes, the node fails with `Job run <run-id> did not finish within <n> seconds`. The error names the last state and the run page URL. The node doesn't cancel the run in Databricks. Raise **Timeout**, or turn off **Wait for Completion** and read the run later with **Get Run**.
+
+Some jobs run longer than a workflow execution should wait. For those, start the run with **Wait for Completion** off. Let a **Databricks Trigger** node start a second workflow when the run ends.
+
+### Required job permissions
+
+The identity the credential authenticates as needs the **Workspace access** entitlement and a permission on the job:
+
+| Operations | Permission on the job |
+|------------|-----------------------|
+| **Get**, **Get Run**, **Get Run Output** | **CAN VIEW** |
+| **Run** | **CAN MANAGE RUN** |
+
+**CAN MANAGE** and **IS OWNER** include both permissions. Databricks returns only the jobs and runs the identity has **CAN VIEW** on, so the **Job** and **Run** lists offer only those. A run started with **Run** executes as the job's run-as identity, not as the credential. **Get** returns this identity as `run_as_user_name`. By default, this is the job owner. Refer to [Required Databricks privileges](../credentials/databricks.md#required-databricks-privileges) for the other resources of the node.
+
+When the permission is missing, Databricks rejects the request with `PERMISSION_DENIED`. n8n shows the Databricks message as the error. The message names the missing permission. n8n adds one of these hints as the error description:
+
+```text
+Grant at least Can View on the job to the signed-in user or service principal in Databricks, then retry.
+```
+
+```text
+Grant at least Can Manage Run on the job to the signed-in user or service principal in Databricks, then retry.
+```
+
+### Example: Notify when a job run fails
+
+This workflow posts one Slack message for each task of a failed run.
+
+1. Add a **Databricks Trigger** node. Set **Resource** to **Job**. Select the job in **Job**. Set **Events** to **Run Failed** only. Keep **Simplify** on. The trigger fires once for each run that ends with any result other than a full success, including canceled and skipped runs. Its output holds the run ID in `run.id`, the run page URL in `run.url`, and the termination code and message in `result.code` and `result.message`.
+2. Add a **Databricks** node. Set **Resource** to **Job** and **Operation** to **Get Run Output**. Set **Run** to **By ID** and enter the expression `{{ $json.run.id }}`. The node returns one item for each task of the failed run.
+3. Add a [Slack](n8n-nodes-base.slack/README.md) node. Set **Resource** to **Message** and **Operation** to **Send**. Select the channel. Use a message text like this:
+
+	```text
+	Databricks run {{ $('Databricks Trigger').item.json.run.name }} failed ({{ $('Databricks Trigger').item.json.result.code }}).
+	Task {{ $json.task_key }}: {{ $json.error ?? 'no error text' }}
+	{{ $('Databricks Trigger').item.json.run.url }}
+	```
+
+Both Databricks nodes can share one credential. It needs **CAN VIEW** on the job. Use a credential that belongs to a service principal, so the trigger keeps firing when a person leaves or revokes consent.
+
+To send one message for the whole run instead of one for each task, add an [Aggregate](../core-nodes/n8n-nodes-base.aggregate.md) node before the Slack node, or turn on **Execute Once** in the Slack node's settings.
 
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
@@ -63108,6 +63237,287 @@ View [example workflows and related content](https://n8n.io/integrations/github-
 
 Refer to [GitHub's documentation](https://docs.github.com/en/rest) for details about their API.
 
+=== https://docs.n8n.io/docs/integrations/builtin/trigger-nodes/n8n-nodes-base.databrickstrigger/
+
+# Databricks Trigger node
+
+<!-- ENT-424: before this page leaves draft, add a "Feature availability" info hint here with the sentence "The Databricks Trigger node is available from n8n X.Y.Z." Fill X.Y.Z from the first n8n release that contains the commit that un-hides the node. Do not invent a version. -->
+
+Use the Databricks Trigger node to respond to events in [Databricks](https://www.databricks.com/) and integrate Databricks with other applications. The node starts a workflow when a run of a Databricks job or an update of a Databricks pipeline starts, succeeds, or fails.
+
+{% hint style="info" %}
+**Credentials**
+
+Refer to [Databricks credentials](../credentials/databricks.md) for guidance on setting up authentication. The node accepts the **Databricks** (access token) and **Databricks OAuth2 API** credentials.
+{% endhint %}
+
+## Set up the trigger
+
+1. Add a **Databricks Trigger** node to a workflow.
+2. Set **Authentication** to **Access Token** or **OAuth2** and select the credential. For an **OAuth2** credential, set its **Grant Type** to **Client Credentials (Service Principal)** for a service principal, or to **Authorization Code (User)** for a signed-in user. Refer to [Use a service principal](#use-a-service-principal).
+3. Set **Resource** to **Job** to watch the runs of a job, or to **Pipeline** to watch the updates of a Databricks pipeline.
+4. Select the job in **Job**, or the pipeline in **Pipeline**. Each field offers three modes:
+	* **From List**: select from the workspace. Type to filter by name. The pipeline list also matches the ID. Databricks lists only the jobs the credential's identity has **CAN VIEW** on.
+	* **By ID**: enter the ID. A job ID is a whole number, for example `281874479417551`. A pipeline ID is a UUID, for example `8199cd89-e2f5-4169-a6aa-656a24c8886d`.
+	* **By URL**: paste the page URL from Databricks, for example `https://<your-workspace>/jobs/<job-id>` or `https://<your-workspace>/pipelines/<pipeline-id>`. The node also accepts the hash form of both pages, such as `https://<your-workspace>/?o=<workspace-id>#job/<job-id>` and `https://<your-workspace>/?o=<workspace-id>#joblist/pipelines/<pipeline-id>`.
+5. Select the **Events** that start the workflow. Refer to [Events](#events).
+6. Keep **Simplify** on to get the output described in [Output](#output). Turn it off to get the raw Databricks object.
+7. Under **Poll Times**, select a poll **Mode** to set how often the trigger checks Databricks. The default is **Every Minute**. Refer to [How the trigger polls](#how-the-trigger-polls).
+8. Select **Fetch Test Event** to check the setup. Refer to [Test the trigger](#test-the-trigger).
+9. Publish the workflow.
+
+## Events
+
+The trigger starts the workflow once for each event of each run or update. It doesn't report a run or update again after it has reported it as finished, for example after a repair of a job run.
+
+### Job events
+
+Available when **Resource** is **Job**. The default selection is **Run Failed** and **Run Succeeded**.
+
+* **Run Failed**: a run ended with any result other than a full success. This includes canceled, skipped, and partly failed runs (`SUCCESS_WITH_FAILURES`).
+* **Run Started**: the trigger saw a new run of the job.
+* **Run Succeeded**: a run ended with every task successful. The termination code is `SUCCESS`.
+
+A run that starts and ends between two polls produces two items in the same execution when you select both **Run Started** and its final event. Both items then carry the same finished timing.
+
+### Pipeline events
+
+Available when **Resource** is **Pipeline**. The default selection is **Update Completed** and **Update Failed**.
+
+* **Update Completed**: an update ran to completion.
+* **Update Failed**: an update failed, or Databricks canceled it. Stopping a pipeline cancels the running update, so a stop produces this event.
+* **Update Started**: the trigger saw a new update of the pipeline.
+
+{% hint style="info" %}
+**Continuous pipelines**
+
+A continuous pipeline runs one update until you stop it, so **Update Completed** never happens for it. **Update Started** happens when the pipeline starts or restarts. **Update Failed** happens when the update fails or when you stop the pipeline. Refer to [Watch a pipeline through a job](#watch-a-pipeline-through-a-job) for a way to get a completion signal.
+{% endhint %}
+
+## Output
+
+With **Simplify** on, each item has the same top-level keys for both resources: `event`, the watched object (`job` or `pipeline`), the run or update, `result`, and `timing`. `result` is absent on **Run Started** and **Update Started**. The node drops keys that have no value.
+
+### Job output
+
+| Field | Value |
+|-------|-------|
+| `event` | `runStarted`, `runSucceeded`, or `runFailed`. |
+| `job.id` | The job ID. |
+| `run.id` | The run ID. Pass it to the **Get Run** or **Get Run Output** operation of the Databricks node, as in [Example: Notify when a job run fails](../app-nodes/n8n-nodes-base.databricks.md#example-notify-when-a-job-run-fails). |
+| `run.name` | The run name. |
+| `run.url` | The run page URL in Databricks. |
+| `run.trigger` | What started the run, for example `ONE_TIME`. |
+| `run.creator` | The user or service principal that created the run. |
+| `run.parameters` | The job parameters of the run, as name and value pairs. A parameter without a value shows its default. |
+| `result.state` | The life cycle state. `TERMINATED` for a finished run. |
+| `result.code` | The termination code, for example `SUCCESS`, `SUCCESS_WITH_FAILURES`, `CANCELED`, or `RUN_EXECUTION_ERROR`. |
+| `result.type` | The termination type, for example `SUCCESS` or `CLIENT_ERROR`. |
+| `result.message` | The termination message. Absent when Databricks gives none. |
+| `timing.startedAt` | The start time in UTC. |
+| `timing.endedAt` | The end time in UTC. Absent while the run is still going. |
+| `timing.durationMs` | The run duration in milliseconds. Absent while the run is still going. |
+| `timing.queuedMs` | The time the run waited in the queue, in milliseconds. |
+
+A **Run Failed** item looks like this:
+
+```json
+{
+	"event": "runFailed",
+	"job": { "id": 281874479417551 },
+	"run": {
+		"id": 41847992357943,
+		"name": "nightly-etl",
+		"url": "https://adb-example.cloud.databricks.com/?o=1234567890#job/281874479417551/run/41847992357943",
+		"trigger": "ONE_TIME",
+		"creator": "service-principal@example.com",
+		"parameters": { "fail": "true" }
+	},
+	"result": {
+		"state": "TERMINATED",
+		"code": "RUN_EXECUTION_ERROR",
+		"type": "CLIENT_ERROR",
+		"message": "Task main failed with message: Workload failed, see run output for details."
+	},
+	"timing": {
+		"startedAt": "2026-09-01T13:37:18.171Z",
+		"endedAt": "2026-09-01T13:37:58.640Z",
+		"durationMs": 40469,
+		"queuedMs": 14111
+	}
+}
+```
+
+### Pipeline output
+
+| Field | Value |
+|-------|-------|
+| `event` | `updateStarted`, `updateCompleted`, or `updateFailed`. |
+| `pipeline.id` | The pipeline ID. |
+| `pipeline.name` | The pipeline name. Absent when the Databricks event carries none. |
+| `pipeline.url` | The pipeline page URL in Databricks. |
+| `update.id` | The update ID. |
+| `update.url` | The update page URL in Databricks. |
+| `result.state` | `COMPLETED`, `FAILED`, or `CANCELED`. |
+| `result.message` | The message of the Databricks event, for example `Update 01ee1d is COMPLETED.`. |
+| `result.errors` | The exceptions of a failed update. Each entry has `type`, `code`, `sqlState`, `message`, and `stack`, where `stack` lists `class`, `method`, `file`, and `line` for each frame. Absent when the event has no exceptions. |
+| `timing.startedAt` | The time of the first in-flight event the trigger saw for the update. Absent when the trigger saw only the final event, for example when the update was already running when you published the workflow. |
+| `timing.runningAt` | The time the update reached the `RUNNING` state. Absent when the trigger didn't see that event. |
+| `timing.endedAt` | The time of the final event. Absent on **Update Started**. |
+| `timing.durationMs` | `endedAt` minus `runningAt`, in milliseconds. Absent when `runningAt` is absent. |
+
+An **Update Completed** item looks like this:
+
+```json
+{
+	"event": "updateCompleted",
+	"pipeline": {
+		"id": "8199cd89-e2f5-4169-a6aa-656a24c8886d",
+		"name": "orders-ingest",
+		"url": "https://adb-example.cloud.databricks.com/pipelines/8199cd89-e2f5-4169-a6aa-656a24c8886d"
+	},
+	"update": {
+		"id": "01ee1dae-da54-415a-aba8-0c8b0de503f1",
+		"url": "https://adb-example.cloud.databricks.com/pipelines/8199cd89-e2f5-4169-a6aa-656a24c8886d/updates/01ee1dae-da54-415a-aba8-0c8b0de503f1"
+	},
+	"result": {
+		"state": "COMPLETED",
+		"message": "Update 01ee1d is COMPLETED."
+	},
+	"timing": {
+		"startedAt": "2026-09-01T14:20:31.066Z",
+		"runningAt": "2026-09-01T14:20:31.066Z",
+		"endedAt": "2026-09-01T14:20:35.738Z",
+		"durationMs": 4672
+	}
+}
+```
+
+### Raw output
+
+With **Simplify** off, each item is the object Databricks returns, plus the `event` key. For a job, this is a run as the Jobs API lists it. For a pipeline, this is an `update_progress` event as the Pipelines API lists it. Refer to [list runs](https://docs.databricks.com/api/jobs/v2/list-runs) and [list pipeline events](https://docs.databricks.com/api/pipelines/v2/events) in the Databricks API reference.
+
+## How the trigger polls
+
+The node checks Databricks on the schedule in **Poll Times**. An event reaches the workflow up to one poll interval after it happens. Refer to [Get events in seconds with a webhook](#get-events-in-seconds-with-a-webhook) if that's too slow.
+
+* The first time you publish the workflow, the trigger starts from that moment. For a job, it doesn't report runs that started earlier. For a pipeline, it still reports the end of an update that was already running when you published, without `timing.startedAt`, `timing.runningAt`, or `timing.durationMs`.
+* When you unpublish and publish again, the trigger continues from where it stopped and reports what happened while the workflow stayed unpublished. When you change the job or pipeline, or switch **Resource**, it starts fresh from that moment.
+* The trigger still reports a run or update that Databricks lists late, and reports it once. It reports a long run when the run ends, no matter how long the run takes.
+* If a job starts more than 1,000 runs between two polls, the trigger reports the most recent 1,000 and writes a warning to the n8n log.
+* Every poll makes at least one request to Databricks, so **Every Minute** is at least 1,440 requests a day for each trigger node. A poll that finds nothing doesn't create an execution. For a job that runs a few times a day, **Every X** with 10 or 15 minutes is enough. A pipeline poll reads every event in its window, not only update events, so a busy pipeline costs more for each poll than a job.
+
+## Test the trigger
+
+Select **Fetch Test Event** to run the trigger once by hand. For a job, the node reads the latest 25 runs. Each run gives one item: **Run Started** while it runs, or its final event once it has finished. For a pipeline, the node reads the latest 100 events and returns the update events among them. An update can give both its start and its end. The node lists items oldest first and keeps only the events in your **Events** selection. The test returns nothing when no run or update matches, for example when you select only **Run Started** and no run is going. A test doesn't change what the published workflow reports later.
+
+## Use a service principal
+
+The trigger runs unattended for as long as the workflow stays published, so use a credential that belongs to a service principal. That's an **OAuth2** credential with **Grant Type** set to **Client Credentials (Service Principal)**. A credential tied to a person stops working when that person leaves or revokes consent. Refer to [Using OAuth2 (service principal)](../credentials/databricks.md#using-oauth2-service-principal) for the setup steps. Track the expiry date of the secret. The trigger stops when the secret lapses.
+
+### Grant CAN VIEW
+
+The credential's identity needs **CAN VIEW** on each job or pipeline you watch. It's the lowest permission level for both. To grant it on a job, open the job in Databricks and select **Edit permissions** in the **Job details** pane. Pick the user or service principal, set the permission to **Can View**, then select **Add** and **Save**. For a pipeline, grant it in the pipeline's permissions settings. Refer to the Databricks documentation on [job permissions](https://docs.databricks.com/aws/en/jobs/privileges) and the [pipeline access control list](https://docs.databricks.com/aws/en/security/auth/access-control/#lakeflow-pipelines-acls). The [Required Databricks privileges](../credentials/databricks.md#required-databricks-privileges) table lists the other privileges the credential needs.
+
+## Get events in seconds with a webhook
+
+The trigger polls, so an event reaches the workflow up to one poll interval after it happens. If you need a job event within seconds, let Databricks push it to a [Webhook](../core-nodes/n8n-nodes-base.webhook/README.md) node instead. Databricks job notifications can call a webhook when a run starts, succeeds, or fails. Pipelines can't send webhooks. Refer to [Watch a pipeline through a job](#watch-a-pipeline-through-a-job).
+
+Before you start:
+
+* A Databricks workspace admin must create the notification destination. Databricks doesn't sign the payload, so the Basic Auth username and password on the Webhook node are the only check.
+* The payload holds only IDs, so the workflow reads the run with the Databricks node.
+* Databricks documents no retry, so keep a Databricks Trigger node as the fallback for missed events.
+* Databricks must reach your n8n instance over HTTPS. For a self-hosted instance behind a firewall, allow the Databricks outbound IP ranges listed under **Networking requirements** on the [notification destinations](https://docs.databricks.com/aws/en/admin/workspace-settings/notification-destinations) page.
+
+To set it up:
+
+1. In n8n, add a **Webhook** node. Set **HTTP Method** to **POST**. Set **Authentication** to **Basic Auth** and create a **Basic Auth** credential with a **User** and a **Password**. Keep **Respond** at **Immediately**. Copy the **Production URL**.
+2. Add a **Databricks** node after the Webhook node. Set **Resource** to **Job** and **Operation** to **Get Run**. Set **Run** to **By ID** and enter the expression `{{ $json.body.run.run_id }}`. The node returns the full run, with `run_state`, `run_result`, and `run_error_message`. Refer to [Get Run](../app-nodes/n8n-nodes-base.databricks.md#get-run).
+3. Publish the workflow.
+4. In Databricks, a workspace admin creates the destination. Select your username in the top bar, then **Settings**. In the **Workspace admin** section, open the **Notifications** tab and select **Manage**. Select **Add destination**, choose **Webhook**, enter the production URL, and enter the **User** and **Password** from step 1. Select **Create**. Refer to [Manage notification destinations](https://docs.databricks.com/aws/en/admin/workspace-settings/notification-destinations).
+5. In the job, open the **Job details** pane and select **Edit notifications** under **Job notifications**. Select **Add notification**, choose the destination in **Destination**, and check **Start**, **Success**, or **Failure**. Select **Save**. Refer to [Add notifications on a job](https://docs.databricks.com/aws/en/jobs/notifications).
+
+Databricks then sends one POST request for each event. The body arrives in `$json.body`:
+
+```json
+{
+	"event_type": "jobs.on_failure",
+	"workspace_id": 1234567890,
+	"run": { "run_id": 41847992357943 },
+	"job": { "job_id": 281874479417551, "name": "nightly-etl" }
+}
+```
+
+`event_type` is `jobs.on_start`, `jobs.on_success`, `jobs.on_failure`, or `jobs.on_duration_warning_threshold_exceeded`. Check only the boxes you need in Databricks, or branch on `$json.body.event_type` with an [If](../core-nodes/n8n-nodes-base.if.md) node. A job can notify up to three destinations for each event type.
+
+## Watch a pipeline through a job
+
+The **Pipeline** resource watches every update of a Databricks pipeline, whatever started it. In three cases, watch a job instead.
+
+### The pipeline runs as a task in a job
+
+Watch the job when you care about the job as a whole, for example when other tasks follow the pipeline task. The job sees only the updates it started. Watch the pipeline when you need the exceptions and stack of a failed update in `result.errors`.
+
+### The pipeline is continuous
+
+A continuous pipeline never produces **Update Completed**. To get a completion signal, run it from a triggered job with a pipeline task. The job runs the pipeline as a single update that completes, so **Run Succeeded** on the job and **Update Completed** on the pipeline both happen. The pipeline then processes data when the job runs, not continuously.
+
+### You need the event within seconds
+
+Jobs can send webhooks, but pipelines can't. A job with a pipeline task gives the pipeline the webhook path in [Get events in seconds with a webhook](#get-events-in-seconds-with-a-webhook).
+
+Refer to [Pipeline task for jobs](https://docs.databricks.com/aws/en/jobs/tasks/pipeline) and [Triggered vs. continuous pipeline mode](https://docs.databricks.com/aws/en/ldp/concepts/pipeline-mode) for more information.
+
+## Common issues
+
+### The trigger doesn't start the workflow
+
+* The first time you publish the workflow, the trigger starts from that moment and doesn't replay older runs. Start a new run or update to test it.
+* Open the **Executions** list. A failed poll shows there with the Databricks error.
+* Check the **Events** selection. **Run Started** and **Update Started** aren't selected by default.
+* A continuous pipeline never produces **Update Completed**. Refer to [Watch a pipeline through a job](#watch-a-pipeline-through-a-job).
+* A run that's still going produces only **Run Started**. Its final event follows once Databricks reports it as finished.
+* The credential expired. A service principal secret lasts at most 730 days, and a user-login connection ends when its refresh token expires. Refer to [OAuth secrets expire](../credentials/databricks.md#create-a-service-principal-and-oauth-secret) and [Configure token lifetimes](../credentials/databricks.md#configure-token-lifetimes).
+
+### The job or pipeline isn't in the list
+
+Databricks lists only the jobs the credential's identity has **CAN VIEW** on. The search scans at most the first 1,000 jobs or pipelines of the workspace. Use **By ID** or **By URL** instead, or grant **CAN VIEW** first.
+
+### Permission errors
+
+When the credential's identity lacks **CAN VIEW**, Databricks rejects the request with `PERMISSION_DENIED`. n8n shows the Databricks message as the error and adds one of these hints as the description:
+
+```text
+Grant Can View on the job to the user or service principal of the credential, then retry.
+```
+
+```text
+Grant Can View on the pipeline to the user or service principal of the credential, then retry.
+```
+
+You see the error in the node when you select **Fetch Test Event**. In a published workflow, each failed poll appears as a failed execution in the **Executions** list. Refer to [Grant CAN VIEW](#grant-can-view).
+
+### Invalid job or pipeline ID
+
+The node checks the ID before it calls Databricks:
+
+* `Job ID must be a whole number`: use the numeric ID shown in the job URL in Databricks.
+* `Job ID is too large to send exactly`: IDs above `9007199254740991` lose precision in JavaScript, so the node can't watch this job.
+* `Pipeline ID must be a UUID`: use the ID shown in the pipeline URL in Databricks, for example `8199cd89-e2f5-4169-a6aa-656a24c8886d`.
+
+### Unexpected response
+
+n8n shows `Databricks did not return a JSON list of job runs` or `Databricks did not return a JSON list of pipeline events` when the **Host** in the credential isn't a Databricks workspace URL. Check the **Host** and retry.
+
+## Related resources
+
+* [Databricks node](../app-nodes/n8n-nodes-base.databricks.md)
+* [Databricks credentials](../credentials/databricks.md)
+* [Jobs API: list runs](https://docs.databricks.com/api/jobs/v2/list-runs)
+* [Pipelines API: list pipeline events](https://docs.databricks.com/api/pipelines/v2/events)
+* [Databricks access control lists](https://docs.databricks.com/aws/en/security/auth/access-control/)
+
 === https://docs.n8n.io/docs/integrations/builtin/trigger-nodes/n8n-nodes-base.pushcuttrigger/
 
 # Pushcut Trigger node <a href="#pushcut-trigger-node" id="pushcut-trigger-node"></a>
@@ -64896,7 +65306,7 @@ Always use the current version in new workflows to get the latest features and b
 | Discord | 2 | 1 |
 | Email Trigger (IMAP) | 2.2 | 1, 2, 2.1 |
 | Embeddings OpenAI | 1.2 | 1, 1.1 |
-| Execute Sub-workflow | 1.3 | 1, 1.1, 1.2 |
+| Execute Sub-workflow | 1.4 | 1, 1.1, 1.2, 1.3 |
 | Execute Workflow Trigger | 1.2 | 1, 1.1 |
 | Execution Data | 1.1 | 1 |
 | Extract from File | 1.1 | 1 |
@@ -64912,7 +65322,7 @@ Always use the current version in new workflows to get the latest features and b
 | Google Cloud Firestore | 1.1 | 1 |
 | Google Docs | 2 | 1 |
 | Google Drive | 3 | 1, 2 |
-| Google Gemini Chat Model | 1.1 | 1 |
+| Google Gemini Chat Model | 1.2 | 1, 1.1 |
 | Google Sheets | 4.7 | 1, 2, 3, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6 |
 | Google Slides | 2 | 1 |
 | Google Translate | 2 | 1 |
@@ -86752,6 +87162,7 @@ To generate your OIDC token:
 You can use these credentials to authenticate the following nodes:
 
 - [Databricks](../app-nodes/n8n-nodes-base.databricks.md)
+- [Databricks Trigger](../trigger-nodes/n8n-nodes-base.databrickstrigger.md)
 
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
 
@@ -86774,9 +87185,12 @@ The identity the credential authenticates as (the signed-in user or the service 
 |------------|--------------------|
 | All | The **Workspace access** entitlement |
 | Databricks SQL (Execute Query) | The **Databricks SQL access** entitlement and **CAN USE** on the SQL warehouse |
+| Job (Get, Get Run, Get Run Output) | **CAN VIEW** on the job |
+| Job (Run) | **CAN MANAGE RUN** on the job |
 | Reading or writing Unity Catalog data | **USE CATALOG** on the catalog, **USE SCHEMA** on the schema, and **SELECT** on the tables or views you query. Functions and models also need **EXECUTE** |
 | Genie | **CAN RUN** on the Genie space and **CAN USE** on its SQL warehouse |
 | Model Serving (Query Endpoint) | **CAN QUERY** on the serving endpoint |
+| Watching a job or pipeline (Databricks Trigger) | **CAN VIEW** on the job or pipeline |
 
 {% hint style="info" %}
 **New service principals start with no privileges**
@@ -87983,6 +88397,7 @@ It's possible for several community nodes to have the same name. If you use two 
     * [ConvertKit Trigger](builtin/trigger-nodes/n8n-nodes-base.convertkittrigger.md)
     * [Copper Trigger](builtin/trigger-nodes/n8n-nodes-base.coppertrigger.md)
     * [Customer.io Trigger](builtin/trigger-nodes/n8n-nodes-base.customeriotrigger.md)
+    * [Databricks Trigger](builtin/trigger-nodes/n8n-nodes-base.databrickstrigger.md)
     * [Emelia Trigger](builtin/trigger-nodes/n8n-nodes-base.emeliatrigger.md)
     * [Eventbrite Trigger](builtin/trigger-nodes/n8n-nodes-base.eventbritetrigger.md)
     * [Facebook Lead Ads Trigger](builtin/trigger-nodes/n8n-nodes-base.facebookleadadstrigger.md)
@@ -92212,6 +92627,7 @@ The file or directory replaces the default trust store for Git. If the instance 
     * [Manage settings using environment variables](host-n8n/configure-n8n/manage-settings-using-environment-variables.md)
     * [Set up task runners](host-n8n/configure-n8n/set-up-task-runners.md)
     * [Durable scheduler](host-n8n/configure-n8n/durable-scheduler.md)
+    * [System tasks](host-n8n/configure-n8n/system-tasks.md)
     * [Set up n8n Assistant](host-n8n/configure-n8n/set-up-n8n-assistant.md)
     * [Deploy n8n in canvas-only mode](host-n8n/configure-n8n/deploy-n8n-in-canvas-only-mode.md)
     * [Manage your license](host-n8n/configure-n8n/manage-your-license.md)
@@ -98213,6 +98629,10 @@ n8n exposes queue-depth, scheduling-lag, dispatch, retry, and dead-letter metric
 
 n8n exposes poll-duration, poll-error, overlap, and cursor-commit metrics for [poll triggers](../configure-n8n/durable-scheduler.md#poll-triggers). Enable them with `N8N_METRICS_INCLUDE_POLL_TRIGGER_METRICS`, then see [Poll trigger metrics](../configure-n8n/durable-scheduler.md#poll-trigger-metrics) for what each metric means. n8n publishes a [ready-to-use dashboard](https://github.com/n8n-io/n8n-observability/tree/main/dashboards/grafana/n8n-poll-triggers) for them.
 
+## System task observability
+
+n8n exposes run-duration, last-success, in-flight, skip, and timer-lag metrics for its own [system tasks](../configure-n8n/system-tasks.md), the maintenance jobs that prune and compact your data. Enable them with `N8N_METRICS_INCLUDE_SYSTEM_TASK_METRICS`, then see [System task observability](../configure-n8n/system-tasks.md#observability) for what each metric means. n8n publishes a [ready-to-use dashboard](https://github.com/n8n-io/n8n-observability/tree/main/dashboards/grafana/n8n-system-tasks) for them.
+
 ## Workflow name lookup <a href="#workflow-name-lookup" id="workflow-name-lookup"></a>
 
 {% hint style="info" %}
@@ -98812,6 +99232,8 @@ export N8N_METRICS_INCLUDE_SCHEDULER_METRICS=true
 
 Only main instances emit scheduler metrics. To set up the endpoint itself, see [Enable Prometheus metrics](basic-configuration/configuration-examples/enable-prometheus-metrics.md). To chart the metrics, see [Visualize metrics with Grafana](../keep-n8n-running/visualize-metrics-with-grafana.md); n8n publishes a [ready-made durable scheduler dashboard](https://github.com/n8n-io/n8n-observability/tree/main/dashboards/grafana/n8n-scheduler) with a suggested action for each panel.
 
+n8n's own maintenance tasks have their own metric set, behind `N8N_METRICS_INCLUDE_SYSTEM_TASK_METRICS`. It covers them whether they run on the durable scheduler or on an in-memory timer. See [System tasks](system-tasks.md).
+
 Two words in the metric names need translating. A *task* is a run the scheduler recorded in the database. An *occurrence* is a run it computed from a schedule, which becomes a task once materialization records it. Most series carry a `task_type` label, either `workflow:schedule-trigger` or `workflow:poll-trigger`, so you can tell Schedule Trigger nodes and poll triggers apart.
 
 ### Queue health
@@ -98880,6 +99302,8 @@ Only main instances emit them. They come from the poll engine itself, not the sc
 The two cursor metrics track the dedicated cursor table. A node starts reporting them with its first poll after you turn on [durable poll cursors](#durable-poll-cursors). It keeps reporting them after you turn the setting off, because its cursor stays in the table.
 
 All names above assume the default `n8n_` metrics prefix. If you set `N8N_METRICS_PREFIX`, substitute your own.
+
+See [Configure n8n](./) for other configuration topics.
 
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/set-up-n8n-assistant/
 
@@ -100569,6 +100993,7 @@ This page lists environment variables for customizing endpoints in n8n.
 | `N8N_METRICS_INCLUDE_SCHEDULER_METRICS` | Boolean | `false` | Whether to include metrics for the durable scheduler, such as queue depth, scheduling lag, dispatch throughput, retries, and dead-letters. Main instances only. For what each metric means, see [Durable scheduler observability](../../durable-scheduler.md#observability). |
 | `N8N_METRICS_SCHEDULER_INTERVAL` | Integer | `20` | How often (in seconds) to refresh the queue-health gauges for the durable scheduler. See [Durable scheduler observability](../../durable-scheduler.md#observability). |
 | `N8N_METRICS_INCLUDE_POLL_TRIGGER_METRICS` | Boolean | `false` | Whether to include metrics for trigger nodes that poll, such as poll duration, poll errors, overlapping polls, and cursor commits. Main instances only. For what each metric means, see [Poll trigger metrics](../../durable-scheduler.md#poll-trigger-metrics). |
+| `N8N_METRICS_INCLUDE_SYSTEM_TASK_METRICS` | Boolean | `false` | Whether to include metrics for n8n's internal maintenance tasks, such as run duration, last success, skipped occurrences, and timer lag. Main instances only. For what each metric means, see [System task observability](../../system-tasks.md#observability). |
 | `N8N_METRICS_INCLUDE_SSRF_METRICS` | Boolean | `false` | Whether to include metrics for SSRF protection checks. |
 | `N8N_METRICS_INCLUDE_DNS_CACHE_METRICS` | Boolean | `false` | Whether to include metrics for the DNS cache (currently only used by SSRF protection). |
 | `N8N_ENDPOINT_REST` | String | `rest` | The path used for REST endpoint. |
@@ -103151,6 +103576,91 @@ Set either `N8N_LICENSE_CERT` or `N8N_LICENSE_ACTIVATION_KEY`, never both.
 
 
 
+=== https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/system-tasks/
+
+# System tasks
+
+System tasks are the recurring maintenance jobs n8n runs on itself: pruning old executions, compacting insights data, cleaning up stale records, renewing your license. They aren't workflows, they don't belong to a project, and they don't show up anywhere in the editor. When one of them stops running, nothing fails: your database just keeps growing, or your insights data goes stale.
+
+This page explains how system tasks run and which Prometheus metrics they expose, so you can tell that they still run, and how well.
+
+## How system tasks run
+
+Each system task declares its own cadence, either a fixed interval or a cron schedule, and runs in one of two modes. The `mode` label on the run and schedule series below tells you which one a task uses:
+
+- **In-memory mode**, `in_memory`: the task runs from a timer in the leader main instance's process. This is the default mode. Only the leader runs these timers: they stop when an instance steps down and start again on the instance that takes over. A run whose time passes while the instance is down doesn't happen. If the process runs but sleeps, a suspended container for example, the timer fires once for all the occurrences it slept through instead of replaying them one by one.
+- **Durable mode**, `durable`: the task runs from the [durable scheduler](durable-scheduler.md)'s database-backed queue, so any main instance can pick up the run and a restart doesn't drop it. Set both `N8N_SCHEDULER_ENABLED` and `N8N_SCHEDULER_SYSTEM_TASKS_ENABLED` to `true` to use this mode, and give every instance in your setup the same values. Only tasks that support durable mode move over; the rest stay on their in-memory timers. As of n8n 2.41.0, no system task supports durable mode, so every task runs from an in-memory timer.
+
+A durable system task is also a scheduler task, so the [durable scheduler metrics](durable-scheduler.md#observability) cover it under a `task_type` label of `system:<task-name>`, for example `system:insights-compaction`. The system task metrics on this page cover both modes with the same names, which the scheduler metrics can't do: they never see an in-memory run.
+
+## Observability
+
+{% hint style="info" %}
+**Feature availability**
+
+System task metrics are available from n8n 2.41.0.
+{% endhint %}
+
+Turn the metrics on with two environment variables:
+
+```bash
+export N8N_METRICS=true
+export N8N_METRICS_INCLUDE_SYSTEM_TASK_METRICS=true
+```
+
+Only main instances emit them, in both modes. To set up the endpoint itself, see [Enable Prometheus metrics](basic-configuration/configuration-examples/enable-prometheus-metrics.md). To chart the metrics, see [Visualize metrics with Grafana](../keep-n8n-running/visualize-metrics-with-grafana.md). n8n publishes a [ready-made system tasks dashboard](https://github.com/n8n-io/n8n-observability/tree/main/dashboards/grafana/n8n-system-tasks) with a suggested action for each panel.
+
+All names below assume the default `n8n_` metrics prefix. If you set `N8N_METRICS_PREFIX`, substitute your own.
+
+### Labels
+
+Every series carries a small, fixed set of labels:
+
+| Label | Values | What it means |
+| :---- | :----- | :------------ |
+| `task` | The task name, such as `execution-pruning-soft-delete`, `insights-compaction`, or `license-renewal` | Which system task the series describes. Which tasks exist depends on your version, your license, and your settings, so read the list off `n8n_system_task_info` rather than hard-coding it. |
+| `mode` | `in_memory`, `durable` | Where the task runs. See [How system tasks run](#how-system-tasks-run). |
+| `result` | `success`, `failure`, `aborted` | How a run ended. `aborted` means the run was still going when the instance stepped down or shut down, so it stopped without finishing its work. |
+| `reason` | `overlap`, `provisioned_elsewhere`, `aborted`, `coalesced` | Why an occurrence didn't run. See [In-memory scheduling](#in-memory-scheduling). |
+
+There's no instance label. Prometheus adds `instance` and `job` per scrape target, so aggregate with `max by (task)` for the gauges that describe a task, and `sum by (task)` for counters, histograms, and the in-flight gauge.
+
+### Run health
+
+These three series cover the runs themselves, in both modes.
+
+| Metric | Type | What it tells you |
+| :----- | :--- | :---------------- |
+| `n8n_system_task_run_duration_seconds` | Histogram | How long each run takes, split by `task`, `mode`, and `result`. The `_count` series doubles as your run count and failure count, so you don't need a separate counter. A duration creeping toward the task's own cadence means n8n is about to skip the next occurrence for overlap. |
+| `n8n_system_task_last_success_timestamp_seconds` | Gauge | The Unix timestamp of the task's last successful run on this instance. The clearest "is this task dead" signal, because it answers for a task that never ran at all, which a rate over a counter can't. |
+| `n8n_system_task_runs_in_flight` | Gauge | How many runs of the task are going right now on this instance, `0` or `1` in the normal case. A value stuck at `1` is a hung run, which also blocks the instance from stepping down or shutting down. |
+
+### Schedule health
+
+These series describe the schedule rather than a run, so they exist before the first run happens.
+
+| Metric | Type | What it tells you |
+| :----- | :--- | :---------------- |
+| `n8n_system_task_info` | Gauge | Always `1`, one series per task this instance can run, with its `mode`. Your inventory of system tasks: join against it to find a task that reports no runs. |
+| `n8n_system_task_interval_seconds` | Gauge | The task's declared cadence, for tasks on a fixed interval. This turns "late" into a query instead of a list of thresholds you maintain by hand. Tasks on a cron schedule don't report it. |
+| `n8n_system_task_next_run_timestamp_seconds` | Gauge | The Unix timestamp of the next occurrence the task is armed for. In-memory tasks only, but unlike the cadence it covers tasks on a cron schedule too. It moves forward each time the timer arms the following occurrence, so a timestamp that sits in the past means the timer stopped planning. |
+| `n8n_system_task_scheduled` | Gauge | `1` while n8n has the task scheduled, `0` once the task lost its schedule for good, because n8n couldn't plan its in-memory cadence or couldn't provision its durable job. A `0` here means the task stopped for good rather than running late: it takes an instance restart, or a leadership change for an in-memory task, to get it scheduled again. Alert on it. |
+| `n8n_system_task_provision_check_failures_total` | Counter | How many times n8n couldn't check whether a task's durable job exists and ran the task in memory instead. A rising count means database trouble, and a small risk of the same task running twice while both paths are live. |
+
+The series for a durable task appear as soon as n8n routes the task at startup, so a restart shows up as a reset rather than a gap. The `info`, `scheduled`, `runs_in_flight`, `last_success`, and `next_run_timestamp_seconds` series of an in-memory task exist only while this instance leads, and n8n removes them when the instance steps down: a former leader doesn't keep exporting frozen values for runs it no longer makes. Only `interval_seconds` stays, because the cadence doesn't depend on who leads.
+
+### In-memory scheduling
+
+These series only cover in-memory runs. The durable path has its own equivalents in the [durable scheduler metrics](durable-scheduler.md#observability): `n8n_scheduler_task_retries_total` for retries and `n8n_scheduler_dispatch_lag_seconds` for lag.
+
+| Metric | Type | What it tells you |
+| :----- | :--- | :---------------- |
+| `n8n_system_task_runs_skipped_total` | Counter | How many occurrences didn't run, split by `reason`. `overlap` means the previous run was still going. `provisioned_elsewhere` means the task has a durable job, so the in-memory timer stood down. `aborted` means the occurrence fired after the instance had already started stepping down. `coalesced` means the process slept through occurrences and the timer fired a single time for the whole batch, so the counter grows by the number of occurrences that fire stood in for. |
+| `n8n_system_task_retries_total` | Counter | How many retries n8n scheduled after a failed run. Only tasks that declare a retry delay retry at all, so a failing task with a flat count here isn't a bug. |
+| `n8n_system_task_fire_lag_seconds` | Histogram | How late each timer fires, in seconds. Small values mean a busy event loop. Large ones mean the process paused or slept, and its buckets reach a day because a coalesced fire is late by at least one full cadence. |
+
+See [Configure n8n](./) for other configuration topics.
+
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/deploy-n8n-in-canvas-only-mode/
 
 # Deploy n8n in canvas-only mode
@@ -103224,6 +103734,14 @@ n8n keeps the following visible:
 
 {% content-ref url="set-up-task-runners.md" %}
 [set-up-task-runners.md](set-up-task-runners.md)
+{% endcontent-ref %}
+
+{% content-ref url="durable-scheduler.md" %}
+[durable-scheduler.md](durable-scheduler.md)
+{% endcontent-ref %}
+
+{% content-ref url="system-tasks.md" %}
+[system-tasks.md](system-tasks.md)
 {% endcontent-ref %}
 
 {% content-ref url="set-up-n8n-assistant.md" %}
