@@ -94144,7 +94144,7 @@ from google.adk.agents import Agent
 from google.adk.tools.mcp_tool import McpToolset
 from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPServerParams
 
-N8N_INSTANCE_URL = "https://localhost:5678"
+N8N_INSTANCE_URL = "https://n8n.example.com"
 N8N_MCP_TOKEN = "YOUR_N8N_MCP_TOKEN"
 
 root_agent = Agent(
@@ -94511,7 +94511,7 @@ MCP clients that support resources can read the same content from the [instance 
 |-------|------|-------------|
 | `context` | `string` | The instance context, as prose. Absent when there is nothing to report |
 | `empty` | `boolean` | Set when there is nothing to report. Read `nothingExposed` for the reason |
-| `nothingExposed` | `boolean` | Present when the answer is empty. `true` means workflows exist here but none are exposed to MCP, so the estate is real and out of reach. `false` means the instance holds nothing yet |
+| `nothingExposed` | `boolean` | Present when the answer is empty. `true` means workflows exist here but none are available in MCP, so the estate is real and out of reach. `false` means the instance holds nothing yet |
 
 #### Notes <a href="#notes" id="notes"></a>
 
@@ -115378,8 +115378,8 @@ OEM deployment of n8n requires a separate commercial agreement with n8n. [Contac
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.41.4
-Current `beta`: 2.42.1
+Current `stable`: 2.41.5
+Current `beta`: 2.42.2
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/tunnel/
