@@ -501,6 +501,7 @@ Reusable body.
 
 | ID | Name | Parent space | Include snippet | Preview | Used in |
 |----|------|--------------|-----------------|---------|---------|
+| `KbKP88R2IFii1k97togq` | agent-search-endpoint | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/KbKP88R2IFii1k97togq/" %}` | {% if visitor.type === "agent" %} {% hint style="info" %} #### Searching these docs as an agent  Ask up-to-date n8n deve | docs/integrations/builtin/core-nodes/n8n-nodes-base.webhook/README.md |
 | `1MYzyKWyHTaQMU44vlTt` | ai-how-to | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/1MYzyKWyHTaQMU44vlTt/" %}` | {% hint style="info" %} **Feature availability**  AI assistance in the Code node is available to Cloud users. It isn't a | docs/build/code-in-n8n/get-coding-help-from-ai.md |
 | `6vuTxJwns2nA8U7V56ij` | ai-tools | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/6vuTxJwns2nA8U7V56ij/" %}` | {% hint style="info" %} **This node can be used as an AI tool**  This node can be used to enhance the capabilities of an | docs/integrations/builtin/app-nodes/n8n-nodes-base.actionnetwork.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.activecampaign.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.affinity.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.agilecrm.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.apitemplateio.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.asana.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.awslambda.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.awss3.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.awsses.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.awstextract.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.awstranscribe.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.baserow.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.bubble.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.clickup.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.coingecko.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.databricks.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.deepl.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.dhl.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.discord/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.dropbox.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.elasticsearch.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.erpnext.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.facebookgraphapi.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.filemaker.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.ghost.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.github.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gitlab.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gmail/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googleanalytics.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlebigquery.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlecalendar/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlechat.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlecloudfirestore.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlecloudrealtimedatabase.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlecontacts.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googledocs.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/file-folder-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/file-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/folder-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/shared-drive-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/document-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/sheet-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googleslides.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googletasks.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googletranslate.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gotify.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.grafana.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gsuiteadmin.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.hackernews.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.homeassistant.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.hubspot.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.jenkins.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.jira.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.kafka.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.line.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.linkedin.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mailcheck.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mailgun.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mattermost.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mautic.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.medium.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftexcel.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftonedrive.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftoutlook.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftsql.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftteams.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsofttodo.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mondaycom.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mongodb.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mqtt.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mysql/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.nasa.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.nextcloud.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.nocodb.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.notion/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.odoo.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.openweathermap.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.oracledb.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.pipedrive.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.postgres/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.pushover.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.quickbooks.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.quickchart.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.rabbitmq.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.reddit.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.redis.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.rocketchat.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.s3.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.salesforce.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.sendgrid.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.supabase/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/callback-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/chat-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/file-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/message-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.todoist.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.trello.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.twilio.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.twitter.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.urlscanio.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.webflow.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.woocommerce.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.wordpress.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.youtube.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.zendesk.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.zohocrm.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.zoom.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.compression.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.crypto.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.graphql.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.jwt.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.ldap.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.sendemail.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.totp.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md |
 | `PlbR0ntmBBE0DgjKiavq` | app-becoming-unauthorized | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/PlbR0ntmBBE0DgjKiavq/" %}` | For Google Cloud apps with **Publishing status** set to **Testing** and **User type** set to **External**, consent and t | docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/common-issues.md, docs/integrations/builtin/credentials/google/oauth-generic.md, docs/integrations/builtin/credentials/google/oauth-single-service.md |
@@ -649,17 +650,17 @@ SOFTWARE.
 
 | Folder | Space ID | Title | Visibility | Last synced |
 |--------|----------|-------|------------|-------------|
-| `administer` | `wMJrGrimpx3PxCJpUswm` | Administer | public | 2026-10-05 |
-| `build` | `rPN1zU5jaYNvwH7RzxqA` | Build | public | 2026-10-05 |
-| `changelog` | `hhM8Cox90Piiv0u0EgHM` | Release notes | public | 2026-10-05 |
-| `connect` | `r7wKI4I1BgdBCuq5Cvcx` | Connect | public | 2026-10-02 |
+| `administer` | `wMJrGrimpx3PxCJpUswm` | Administer | public | 2026-10-08 |
+| `build` | `rPN1zU5jaYNvwH7RzxqA` | Build | public | 2026-10-08 |
+| `changelog` | `hhM8Cox90Piiv0u0EgHM` | Release notes | public | 2026-10-08 |
+| `connect` | `r7wKI4I1BgdBCuq5Cvcx` | Connect | public | 2026-10-08 |
 | `contribute` | `6OmLnmci5kZDzdkzKREn` | Contribute | public | 2026-10-02 |
-| `deploy` | `jm0ZYRpZIPWge2ZSiDYO` | Deploy | public | 2026-10-05 |
+| `deploy` | `jm0ZYRpZIPWge2ZSiDYO` | Deploy | public | 2026-10-08 |
 | `get-started` | `CxSeOtVxqqhfxMSac0AV` | Get started | public | 2026-09-23 |
-| `integrations` | `BKcbOzIWja8NfqKDcqHc` | Integrations (Nodes) | public | 2026-10-05 |
+| `integrations` | `BKcbOzIWja8NfqKDcqHc` | Integrations (Nodes) | public | 2026-10-08 |
 | `n8n-community-license` | `WcrJOYW6B9JlV5aiivMA` | n8n Community license | public | 2026-09-22 |
 | `privacy-and-security` | `ukPPOMQ6NId4gpAIkPXa` | Privacy and security | public | 2026-10-05 |
-| `reusable-content` | `GixZThfitWP21x2gQFpD` | Reusable Content | private | 2026-10-05 |
+| `reusable-content` | `GixZThfitWP21x2gQFpD` | Reusable Content | private | 2026-10-08 |
 
 === https://docs.n8n.io/document-templates/cluster-nodes/
 
@@ -2733,6 +2734,7 @@ tabs, code blocks, link format) and linting guidance (Vale + Lexi targets).
       * [Google OAuth2 generic](builtin/credentials/google/oauth-generic.md)
       * [Google Service Account](builtin/credentials/google/service-account.md)
     * [Google Gemini(PaLM) credentials](builtin/credentials/googleai.md)
+    * [Google Vertex AI credentials](builtin/credentials/googlevertexai.md)
     * [Gotify credentials](builtin/credentials/gotify.md)
     * [GoToWebinar credentials](builtin/credentials/gotowebinar.md)
     * [Grafana credentials](builtin/credentials/grafana.md)
@@ -4647,15 +4649,17 @@ On this page, you'll find the node parameters for the Google Vertex AI Chat Mode
 {% hint style="info" %}
 **Credentials**
 
-Refer to the [Google Service Account documentation](../../credentials/google/service-account.md) for authentication information for this node.
+Use [Google Vertex AI credentials](../../credentials/googlevertexai.md) to store the project and region with your service account details. This node also supports [Google Service Account credentials](../../credentials/google/service-account.md).
 {% endhint %}
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/X6JM1Mgg5iwvZLDpGEB0/" %}
 
 ## Node parameters <a href="#node-parameters" id="node-parameters"></a>
 
-* **Project ID**: Select the project ID from your Google Cloud account to use. n8n dynamically loads projects from the Google Cloud account, but you can also enter it manually.
-* **Model Name**: Select the name of the model to use to generate the completion, for example `gemini-1.5-flash-001`, `gemini-1.5-pro-001`, etc. Refer to [Google models](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) for a list of available models.
+* **Authentication**: Select **Google Service Account** (the default) or **Google Vertex AI**.
+* **Project ID**: For **Google Service Account** authentication, n8n loads the project list using the service account's access. Select a listed project, or enter the project ID manually. For **Google Vertex AI** authentication, configure the project in the credential.
+* **Model Name**: Enter the name of the model to use for completions, for example `gemini-2.5-flash`. Refer to [Google models](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) for a list of available models.
+* **Region**: Select **Default (Use Credential Region)** to use the region set in the credential. To override it, select **Global**, **EU (Multi-Region)**, or **US (Multi-Region)**.
 
 ## Node options <a href="#node-options" id="node-options"></a>
 
@@ -5403,14 +5407,17 @@ On this page, you'll find the node parameters for the Embeddings Google Vertex n
 {% hint style="info" %}
 **Credentials**
 
-Refer to the [Google Service Account documentation](../../credentials/google/service-account.md) for authentication information for this node.
+Use [Google Vertex AI credentials](../../credentials/googlevertexai.md) to store the project and region with your service account details. This node also supports [Google Service Account credentials](../../credentials/google/service-account.md).
 {% endhint %}
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/X6JM1Mgg5iwvZLDpGEB0/" %}
 
 ## Node parameters <a href="#node-parameters" id="node-parameters"></a>
 
-- **Model**: Select the model to use to generate the embedding.
+- **Authentication**: Select **Google Service Account** (the default) or **Google Vertex AI**.
+- **Project ID**: For **Google Service Account** authentication, n8n loads the project list using the service account's access. Select a listed project, or enter the project ID manually. For **Google Vertex AI** authentication, configure the project in the credential.
+- **Model Name**: Enter the model name to use to generate the embedding.
+- **Region**: Select **Default (Use Credential Region)** to use the region set in the credential. To override it, select **Global**, **EU (Multi-Region)**, or **US (Multi-Region)**.
 
 Learn more about available embedding models in [Google VertexAI embeddings API documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/text-embeddings-api).
 
@@ -18950,9 +18957,9 @@ GetResponse doesn't accept the localhost callback URL. Follow the steps below to
 ```sh
 ngrok http 5678
 ```
-2. Run the following command in a new terminal. Replace `<YOUR-NGROK-URL>` with the URL that you got from the previous step.
+2. Run the following command in a new terminal. Replace `<YOUR-NGROK-URL>` with the URL that you got from the previous step. `N8N_WEBHOOK_URL` is available from n8n 2.30.0; on earlier versions, use `WEBHOOK_URL`.
 ```sh
-export WEBHOOK_URL=<YOUR-NGROK-URL>
+export N8N_WEBHOOK_URL=<YOUR-NGROK-URL>
 ```
 3. Follow the [Using OAuth2](#using-oauth2) instructions to configure your credentials, using this URL as your **Redirect URL**.
 
@@ -21277,9 +21284,9 @@ Twist doesn't accept a localhost callback URL. These steps should allow you to c
 ```sh
 ngrok http 5678
 ```
-2. Run the following command in a new terminal. Replace `<YOUR-NGROK-URL>` with the URL that you get from the previous step.
+2. Run the following command in a new terminal. Replace `<YOUR-NGROK-URL>` with the URL that you get from the previous step. `N8N_WEBHOOK_URL` is available from n8n 2.30.0; on earlier versions, use `WEBHOOK_URL`.
 ```sh
-export WEBHOOK_URL=<YOUR-NGROK-URL>
+export N8N_WEBHOOK_URL=<YOUR-NGROK-URL>
 ```
 3. Use the generated URL as your **OAuth 2 redirect URL** in Twist.
 
@@ -23193,19 +23200,19 @@ Refer to [Mailchimp's API documentation](https://mailchimp.com/developer/marketi
 
 To configure this credential, you'll need:
 
-- An **API Key**: Generate an API key in the [API keys section](https://us1.admin.mailchimp.com/account/api/) of your Mailchimp account. Refer to [Mailchimp's Generate your API key documentation](https://mailchimp.com/developer/marketing/guides/quick-start/#generate-your-api-key) for more detailed instructions.
+- An **API Key**: Generate an API key in the [API keys section](https://us1.admin.mailchimp.com/account/api/) of your Mailchimp account. Refer to [Mailchimp's Generate your API key documentation](https://mailchimp.com/developer/marketing/build/get-started/generate-your-api-key) for more detailed instructions.
 
 ## Using OAuth2 <a href="#using-oauth2" id="using-oauth2"></a>
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/HoGXnGIfupVt81dGox48/" %}
 
-If you need to configure OAuth2 from scratch, [register an application](https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/#register-your-application). Refer to the [Mailchimp OAuth2 documentation](https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/) for more information.
+If you need to configure OAuth2 from scratch, [register an application](https://mailchimp.com/developer/marketing/build/start-developing/set-up-an-oauth-app). Refer to the [Mailchimp OAuth2 documentation](https://mailchimp.com/developer/marketing/api-concepts/authentication/oauth-2) for more information.
 
 ## Selecting an authentication method <a href="#selecting-an-authentication-method" id="selecting-an-authentication-method"></a>
 
 Mailchimp suggests using an API key if you're only accessing your own Mailchimp account's data:
 
-> Use an API key if you're writing code that tightly couples _your_ application's data to _your_ Mailchimp account's data. If you ever need to access _someone else's_ Mailchimp account's data, you should be using OAuth 2 ([source](https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/#when-not-to-use-oauth-2))
+> Use an API key if you're writing code that tightly couples _your_ application's data to _your_ Mailchimp account's data. If you ever need to access _someone else's_ Mailchimp account's data, you should be using OAuth 2 ([source](https://mailchimp.com/developer/marketing/api-concepts/authentication))
 
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/cal/
@@ -24871,7 +24878,7 @@ Create a [Trellix ePolicy Orchestrator](https://www.trellix.com/products/epo/) a
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Trellix ePO's documentation](https://docs.trellix.com/bundle/epolicy-orchestrator-web-api-reference-guide/page/GUID-D87A6839-AED2-47B0-BE93-5BF83F710278.html) for more information about the service.
+Refer to [Trellix ePO's documentation](https://docs.trellix.com/docs/trellix-epolicy-orchestrator-on-prem-web-api-scripting-reference-guide) for more information about the service.
 
 This is a credential-only node. Refer to [Custom API operations](../custom-api-actions-for-existing-nodes.md) to learn more. View [example workflows and related content](https://n8n.io/integrations/trellix-epo/) on n8n's website.
 
@@ -24882,7 +24889,7 @@ To configure this credential, you'll need:
 - A **Username** to connect as.
 - A **Password** for that user account.
 
-n8n uses These fields to build the `-u` parameter in the format of `-u username:pw`. Refer to [Web API basics](https://docs.trellix.com/bundle/epolicy-orchestrator-web-api-reference-guide/page/GUID-2503B69D-2BCE-4491-9969-041838B39C1F.html) for more information.
+n8n uses these fields to build the `-u` parameter in the format of `-u username:pw`. Refer to [Web API basics](https://docs.trellix.com/docs/web-api-basics) for more information.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/facebookleadads/
 
@@ -27253,6 +27260,81 @@ To configure this credential, you'll need:
 The Client ID and Client Secret must be for an **Organization API Key**, not a Personal API Key. Refer to the [Bitwarden Public API Authentication documentation](https://bitwarden.com/help/public-api/#authentication) for instructions on generating an Organization API Key.
 
 
+=== https://docs.n8n.io/docs/integrations/builtin/credentials/googlevertexai/
+
+# Google Vertex AI credentials
+
+Use Google Vertex AI credentials to connect n8n to Vertex AI with a service account, project, and region.
+
+You can use these credentials with the following nodes:
+
+* [Google Vertex Chat Model](../cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglevertex.md)
+* [Embeddings Google Vertex](../cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglevertex.md)
+
+## Prerequisites
+
+* A [Google Cloud](https://cloud.google.com/) account.
+* A Google Cloud project with billing and the Vertex AI API (`aiplatform.googleapis.com`) enabled. Refer to [Google's project setup guide](https://cloud.google.com/vertex-ai/generative-ai/docs/start/quickstarts/quickstart-multimodal).
+* A service account with access to Vertex AI in that project. Grant the service account the `roles/aiplatform.user` role, or a custom role with the required Vertex permissions. Refer to [Google's access control documentation](https://cloud.google.com/vertex-ai/docs/general/access-control).
+* A JSON key for the service account. Your organization must allow service account keys. Refer to [Create a service account key](https://cloud.google.com/iam/docs/keys-create-delete#creating).
+
+The service account can belong to a different project. Grant its Vertex AI permissions in the project you select in the credential.
+
+## Supported authentication methods
+
+* Service account email and private key.
+
+## Related resources
+
+Refer to [Google's Vertex AI documentation](https://cloud.google.com/vertex-ai/generative-ai/docs) for more information about the service.
+
+## Using a service account
+
+Create a **Google Vertex AI** credential in n8n. Open your service account's JSON key file, then complete these fields:
+
+| Field | Value |
+| --- | --- |
+| **Region** | A location that supports your model. The default is **Global (multi-region) - global**. Refer to [Google's model locations](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/locations). |
+| **Service Account Email** | The `client_email` value from the JSON key file. |
+| **Private Key** | The complete `private_key` value from the JSON key file, including the `BEGIN PRIVATE KEY` and `END PRIVATE KEY` lines. Omit the surrounding JSON quotation marks. |
+| **Project** | Select a listed project, or select **Custom** to enter a project ID. The default is **Custom**. Enter the email and private key before loading the list. |
+| **Project ID** | The Google Cloud project ID, such as `my-project-id`. This field appears when **Project** is **Custom**. Use the project ID, rather than its display name or project number. |
+
+Select **Save** to save the credential.
+
+### Select a project
+
+The project list uses the service account's access, rather than your personal Google account. Google returns projects for which the service account has the `resourcemanager.projects.get` permission. Refer to [Google's project search documentation](https://cloud.google.com/resource-manager/reference/rest/v3/projects/search).
+
+If the project list is empty or fails to load, select **Custom** and enter the **Project ID**. Project lookup is optional. The service account still needs Vertex AI access in the selected project.
+
+A listed project doesn't confirm access to Vertex models. The project's enabled APIs, permissions, and model availability still apply.
+
+### Use the credential in a workflow
+
+1. Open a **Google Vertex Chat Model** or **Embeddings Google Vertex** node.
+2. Set **Authentication** to **Google Vertex AI**.
+3. Select your **Google Vertex AI** credential.
+4. Select a model available in your project and region.
+
+With this authentication method, the node reads the project from the credential. The credential also supplies the default region. A node's **Region** setting can override the credential's region.
+
+Existing workflows can continue to use **Google Service Account** authentication. With that method, the project stays in the node. Refer to [Google Service Account credentials](google/service-account.md) for that setup.
+
+## Common issues
+
+### Project lookup fails
+
+If Google reports a disabled [Cloud Resource Manager API](https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com), enable it in the project named in the error. Check that the service account has `resourcemanager.projects.get` on the project you want to select. You can use **Custom** project entry while you resolve lookup access.
+
+### Vertex returns a permission error
+
+Check the service account's role in the project selected in the credential. A role in the service account's own project doesn't grant access to another project. Also enable billing and the Vertex AI API for the selected project.
+
+### The model is unavailable
+
+Check that the model supports the credential's **Region**, or the node's **Region** override. Refer to [Google's model locations](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/locations) for supported endpoints. Project lookup doesn't check model availability.
+
 === https://docs.n8n.io/docs/integrations/builtin/credentials/databricks/
 
 # Databricks credentials <a href="#databricks-credentials" id="databricks-credentials"></a>
@@ -28608,7 +28690,7 @@ To get your access token:
 5. Select **Create token**.
 6. Select **Copy token** and enter it in your n8n credential.
 
-Refer to [Calendly's API authentication documentation](https://developer.calendly.com/how-to-authenticate-with-personal-access-tokens) for more information.
+Refer to [Calendly's API authentication documentation](https://developer.calendly.com/docs/authentication/how-to-authenticate-with-personal-access-tokens) for more information.
 
 ## Using OAuth2 <a href="#using-oauth2" id="using-oauth2"></a>
 
@@ -28636,7 +28718,7 @@ To get both, create a new OAuth app in Calendly:
 8. Copy the **Client secret** and enter this as your n8n **Client Secret**.
 9. Select **Connect my account** in n8n and follow the on-screen prompts to finish authorizing the credential.
 
-Refer to [Registering your application with Calendly](https://developer.calendly.com/create-a-developer-account) for more information.
+Refer to [Registering your application with Calendly](https://developer.calendly.com/docs/authentication/creating-an-oauth-app) for more information.
 
 {% hint style="info" %}
 **Local OAuth2 testing**
@@ -33104,8 +33186,6 @@ When using the Webhook node on localhost on a [self-hosted](https://app.gitbook.
 * [npm with tunnel](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-with-npm#n8n-with-tunnel)
 * [Docker with tunnel](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-with-docker#n8n-with-tunnel)
 
-<video src="/_video/integrations/builtin/core-nodes/webhook/webhook-node-intro.mp4" controls width="100%"></video>
-
 ## Production workflows <a href="#production-workflows" id="production-workflows"></a>
 
 When your workflow is ready, switch to using the **Production** webhook URL. You can then publish your workflow, and n8n runs it automatically when an external service calls the webhook URL.
@@ -33462,7 +33542,7 @@ Select **Add Option** under **Advanced** to add these options.
 
 Whether to stream the agent's response as it generates text, instead of waiting for the complete reply. Enabled by default.
 
-Streaming only reaches the caller if the trigger is set up for it. Set **Response Mode** to **Streaming** on the connected [Chat Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.chattrigger) or [Webhook](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.webhook) node. With any other response mode the workflow waits for the full reply, and turning this option on makes no visible difference.
+Streaming only reaches the caller if the trigger is set up for it. Set **Response Mode** to **Streaming** on the connected [Chat Trigger](n8n-nodes-langchain.chattrigger/README.md) or [Webhook](n8n-nodes-base.webhook/README.md) node. With any other response mode the workflow waits for the full reply, and turning this option on makes no visible difference.
 
 ### Invoke Agent
 
@@ -41783,7 +41863,7 @@ Refer to [Netscaler ADC credentials](../credentials/netscaleradc.md) for guidanc
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Netscaler ADC's documentation](https://docs.citrix.com/en-us/citrix-adc/current-release/) for more information about the service.
+Refer to the [Netscaler ADC documentation](https://docs.netscaler.com/en-us/citrix-adc/current-release) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/96ifDzfcUuwOyYrubZUt/" %}
 
@@ -66816,6 +66896,7 @@ When using `.item`, n8n displays an error when:
 
 - The thread is broken
 - The thread points to more than one item in the previous node (as it's unclear which one to use)
+- The node you reference is on a different branch from the current item
 
 To solve these errors, you can either avoid using `.item`, or fix the root cause.
 
@@ -66846,6 +66927,23 @@ When you use `.item` and there are multiple possible matches, n8n doesn't know w
 
 - Use `.first()`, `.last()` or `.all()[index]` instead. Refer to [Referencing previous nodes](../reference-previous-nodes.md) for more detail on these methods.
 - Reference a different node that contains the same information, but doesn't have multiple matching items.
+
+### Fix for 'Node is on another branch'
+
+This is the error message:
+
+> `ERROR: '<node-name>' is on another branch`
+
+The node you reference with `.item` is upstream of the current node, but the current item didn't come from it, so n8n can't match the current item to an item in that node. This happens when two branches come back together but their items stay separate.
+
+For example, a **Merge** node in **Append** mode outputs the items from **Input 1** first, then the items from **Input 2**. Each output item still links back to only one input. If **Input 2** comes from a node called **Get orders**, then `{{ $('Get orders').item.json.total }}` resolves for items that came from **Input 2** and fails for items that came from **Input 1**.
+
+The expression resolves to `null` and the node still succeeds, so the execution doesn't stop. n8n shows the error in the expression preview in the editor.
+
+To solve this, you can either:
+
+- Use `.first()`, `.last()` or `.all()[index]` instead of `.item`. Refer to [Referencing previous nodes](../reference-previous-nodes.md) for more detail on these methods.
+- If a **Merge** node brought the branches together, set it to **Combine** mode, so that each output item contains data from both branches.
 
 ## Related resources
 
@@ -71537,7 +71635,7 @@ Documentation links for common IdPs.
 
 | IdP | Documentation |
 | --- | ------------- |
-| Auth0 | [Configure Auth0 as SAML Identity Provider: Manually configure SSO integrations](https://auth0.com/docs/authenticate/protocols/saml/saml-sso-integrations/configure-auth0-saml-identity-provider#manually-configure-sso-integrations) |
+| Auth0 | [Configure Auth0 as SAML Identity Provider: Manually configure SSO integrations](https://auth0.com/docs/authenticate/single-sign-on/outbound-single-sign-on/configure-auth0-saml-identity-provider#manually-configure-sso-integrations) |
 | Authentik | [Applications](https://goauthentik.io/docs/applications) and the [SAML Provider](https://docs.goauthentik.io/add-secure-apps/providers/saml/) |
 | Azure AD | [SAML authentication with Azure Active Directory](https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/auth-saml) |
 | JumpCloud | [How to setup SAML (SSO) applications with JumpCloud](https://jumpcloud.com/support/integrate-with-zoom#configuring-the-sso-integration) (using `Zoom` as an example) |
@@ -78901,7 +78999,7 @@ services:
       - N8N_PORT=5678
       - N8N_PROTOCOL=https  
       - NODE_ENV=production
-      - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
+      - N8N_WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
       - TZ=${GENERIC_TIMEZONE}
       - N8N_RESTRICT_FILE_ACCESS_TO=/files
@@ -78913,6 +79011,8 @@ volumes:
   n8n_data:
   traefik_data:
 ```
+
+`N8N_WEBHOOK_URL` is available from n8n 2.30.0; on earlier versions, use `WEBHOOK_URL`.
 
 The Docker Compose file above configures two containers: one for n8n, and one to run [Traefik](https://github.com/traefik/traefik), an application proxy to manage TLS/SSL certificates and handle routing.
 
@@ -79196,8 +79296,10 @@ export SERVICE_URL="your-n8n-service-URL"
 
 gcloud run services update n8n \
     --region=$REGION \
-    --update-env-vars="N8N_HOST=$(echo $SERVICE_URL | sed 's/https:\/\///'),WEBHOOK_URL=$SERVICE_URL,N8N_EDITOR_BASE_URL=$SERVICE_URL"
+    --update-env-vars="N8N_HOST=$(echo $SERVICE_URL | sed 's/https:\/\///'),N8N_WEBHOOK_URL=$SERVICE_URL,N8N_EDITOR_BASE_URL=$SERVICE_URL"
 ```
+
+`N8N_WEBHOOK_URL` is available from n8n 2.30.0; on earlier versions, use `WEBHOOK_URL`.
 
 Lastly, you must setup OAuth for these services. Visit `https://console.cloud.google.com/auth` and follow these steps:
 
@@ -79719,12 +79821,12 @@ n8n sends code execution requests to `sandbox-api`, which hands them to `sandbox
 
 ## Who this is for
 
-This guide sets up a brand-new n8n instance with a single command that replaces the old `npm install n8n` / `npx n8n` approach, which no longer works from n8n 3.0 (launching October 2026). It's the fastest way to get n8n running, whether you've used Docker before or not.
+This guide sets up a brand-new n8n instance with a single command that replaces the old `npm install n8n` / `npx n8n` approach, which no longer works from n8n 3.0. It's the fastest way to get n8n running, whether you've used Docker before or not.
 
 It's meant for fresh installs, not for changing an existing setup:
 
 - **Already self-hosting with your own Docker Compose file?** You don't need to switch to this script, but feel free to take inspiration from [the Docker Compose setup process](./install-using-docker-compose.md).
-- **Currently installing n8n with npm?** From n8n 3.0, n8n is only distributed through Docker. Your existing npm install keeps working for now, but new installs (and future upgrades) should use this method instead. A step-by-step migration guide is coming soon.
+- **Currently installing n8n with npm?** From n8n 3.0, n8n is only distributed through Docker. Your existing npm install keeps working for now, but new installs (and future upgrades) should use this method instead.
 
 ## What you need before you start
 
@@ -80037,7 +80139,6 @@ docker run -it --rm \
  -e GENERIC_TIMEZONE="<YOUR_TIMEZONE>" \
  -e TZ="<YOUR_TIMEZONE>" \
  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true \
- -e N8N_RUNNERS_ENABLED=true \
  -v n8n_data:/home/node/.n8n \
  n8nio/n8n
 ```
@@ -80049,7 +80150,6 @@ This command creates a volume to store persistent data, downloads the required n
   * the `TZ` environment variable sets the system timezone to control what scripts and commands like `date` return.
   * the [`GENERIC_TIMEZONE` environment variable](../configure-n8n/basic-configuration/use-environment-variables/timezone-and-localization.md) sets the correct timezone for schedule-oriented nodes like the [Schedule Trigger node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.scheduletrigger).
 * Enforces secure file permissions for the n8n configuration file.
-* Enables [task runners](../configure-n8n/set-up-task-runners.md), the recommended way of executing tasks in n8n.
 * Mounts the `n8n_data` volume to the `/home/node/.n8n` directory to persist your data across container restarts.
 
 {% hint style="warning" %}
@@ -80081,7 +80181,6 @@ docker run -it --rm \
  -e GENERIC_TIMEZONE="<YOUR_TIMEZONE>" \
  -e TZ="<YOUR_TIMEZONE>" \
  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true \
- -e N8N_RUNNERS_ENABLED=true \
  -e DB_TYPE=postgresdb \
  -e DB_POSTGRESDB_DATABASE=<POSTGRES_DATABASE> \
  -e DB_POSTGRESDB_HOST=<POSTGRES_HOST> \
@@ -82079,14 +82178,14 @@ N8N_AGENTS_AI_SANDBOX_ENABLED=true
 N8N_INSTANCE_AI_SANDBOX_PROVIDER=daytona
 
 # Let channels reach your instance
-WEBHOOK_URL=https://<your-public-hostname>
+N8N_WEBHOOK_URL=https://<your-public-hostname>
 ```
 
 | Variable | Description |
 | --- | --- |
 | `N8N_AGENTS_AI_SANDBOX_ENABLED` | Set to `true` to enable the knowledge base when the shared sandbox isn't already enabled. Requires a configured sandbox. Default: `false`. |
 | `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Shared sandbox provider for agents and n8n Assistant. Use `n8n-sandbox` or `daytona`. Default: `n8n-sandbox`. |
-| `WEBHOOK_URL` | Public, secure URL for your instance. Required to connect agents to channels such as Slack, Telegram, and Linear. |
+| `N8N_WEBHOOK_URL` | Public, secure URL for your instance. Required to connect agents to channels such as Slack, Telegram, and Linear. Available from n8n 2.30.0; on earlier versions, use `WEBHOOK_URL`. |
 
 {% hint style="info" %}
 **Feature availability**
@@ -82827,7 +82926,9 @@ Encryption key rotation is available on:
 
 It isn't available on n8n Cloud.
 
-You need to be the instance owner to enable the feature and rotate keys.
+Encryption key rotation is on by default from n8n 3.0. On earlier versions, you turn it on with an environment variable.
+
+You need to be the instance owner to turn the feature on or off and to rotate keys.
 {% endhint %}
 
 Encryption key rotation lets you periodically replace the key that encrypts your n8n data, like credentials, OAuth tokens, and other sensitive content, without changing your instance's master encryption key.
@@ -82843,10 +82944,10 @@ When you rotate, n8n generates a new data encryption key and uses it for all fut
 
 ## Before you begin <a href="#before-you-begin" id="before-you-begin"></a>
 
-{% hint style="danger" %}
-**Take a full database backup before enabling this feature**
+{% hint style="warning" %}
+**Take a full database backup first**
 
-Enabling encryption key rotation is a one-way change. There's no rollback path. See [Backwards compatibility and rollback](#backwards-compatibility-and-rollback) for details.
+Once n8n writes data with a data encryption key, older n8n versions can't read it. Back up your database before you turn the feature on, and before you upgrade to n8n 3.0, which turns it on for you. See [Backwards compatibility and rollback](#backwards-compatibility-and-rollback) for details.
 {% endhint %}
 
 You also need to make sure that:
@@ -82856,6 +82957,10 @@ You also need to make sure that:
 
 ## Enable encryption key rotation <a href="#enable-encryption-key-rotation" id="enable-encryption-key-rotation"></a>
 
+From n8n 3.0, encryption key rotation is on by default. You don't need to set anything. On first startup after the upgrade, n8n generates the initial data encryption key and stores it, encrypted, in your database.
+
+On n8n 2.x, turn the feature on yourself:
+
 1. Set the following environment variable on **all** n8n instances, both main and workers:
 
     ```sh
@@ -82863,7 +82968,8 @@ You also need to make sure that:
     ```
 
 2. Restart all instances. On startup, n8n automatically generates the initial data encryption key and stores it, encrypted, in your database.
-3. To confirm the feature is active, go to **Settings** > **Data Encryption Keys**. You should see the active key listed.
+
+To confirm the feature is active, go to **Settings** > **Data Encryption Keys**. You should see the active key listed.
 
 ## Rotate the active key <a href="#rotate-the-active-key" id="rotate-the-active-key"></a>
 
@@ -82879,27 +82985,37 @@ Make a `POST` call to the `/encryption/keys` endpoint. The request requires the 
 
 After rotation, n8n uses the new active key for all new writes. Records encrypted with previous keys remain readable. n8n re-encrypts them to the new key the next time you update each record.
 
+## Turn off encryption key rotation
+
+From n8n 2.40.3, you can turn encryption key rotation off again. Set the following environment variable on **all** n8n instances, both main and workers, then restart them:
+
+```sh
+N8N_ENV_FEAT_ENCRYPTION_KEY_ROTATION=false
+```
+
+On versions earlier than n8n 2.40.3, turning the feature off after n8n has written data in the new format makes that data permanently inaccessible. Upgrade to n8n 2.40.3 first.
+
 ## Backwards compatibility and rollback <a href="#backwards-compatibility-and-rollback" id="backwards-compatibility-and-rollback"></a>
 
 {% hint style="danger" %}
-**This is a one-way migration**
+**Don't downgrade n8n after encryption key rotation writes data**
 
-Read this section carefully before enabling encryption key rotation.
+Read this section before you turn the feature on, and before you upgrade to n8n 3.0, which turns it on for you.
 {% endhint %}
 
-Once you enable encryption key rotation, n8n begins writing credentials and other sensitive data in a new format that includes a key identifier. Older versions of n8n, and instances running without the feature flag, can't read this format.
+Once encryption key rotation is on, n8n writes credentials and other sensitive data in a new format that includes a key identifier. Older versions of n8n can't read this format.
 
-* **Don't disable the feature flag** after any data has been written in the new format. Removing `N8N_ENV_FEAT_ENCRYPTION_KEY_ROTATION` or setting it to `false` makes all data encrypted after you enabled the feature permanently inaccessible.
-* **Don't downgrade your n8n version** after enabling. Older versions can't decrypt the new format.
+* **Don't downgrade your n8n version** after n8n writes data in the new format. Older versions can't decrypt it.
+* **Turning the feature off is safe from n8n 2.40.3.** On earlier versions, setting `N8N_ENV_FEAT_ENCRYPTION_KEY_ROTATION` to `false` makes all data encrypted since you turned the feature on permanently inaccessible.
 
-There's no automated tool to convert data encrypted in the new format back to the legacy format. The only recovery path is restoring from a database backup taken before you enabled the feature.
+There's no automated tool to convert data encrypted in the new format back to the legacy format. If you end up on an n8n version that can't read it, the only recovery path is restoring from a database backup.
 
 ## Recommended steps <a href="#recommended-steps" id="recommended-steps"></a>
 
-1. **Back up your database**. Take a full snapshot before any changes.
-2. **Enable on staging first**. Set `N8N_ENV_FEAT_ENCRYPTION_KEY_ROTATION=true` on a non-production environment, restart, and verify that credentials still decrypt correctly.
-3. **Enable on production**. Only do this after validating staging behavior.
-4. **Don't disable or downgrade**. Once production data has been written in the new format, keep the flag enabled and stay on the same or a newer n8n version.
+1. **Back up your database**. Take a full snapshot before any changes, including before you upgrade to n8n 3.0.
+2. **Try staging first**. Turn the feature on, or upgrade to n8n 3.0, in a non-production environment, restart, and verify that credentials still decrypt correctly.
+3. **Then do production**. Only do this after validating staging behavior.
+4. **Don't downgrade**. Once production data has been written in the new format, stay on the same or a newer n8n version.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
@@ -82907,6 +83023,7 @@ There's no automated tool to convert data encrypted in the new format back to th
 * [Set a custom encryption key](../basic-configuration/configuration-examples/set-a-custom-encryption-key.md): set the instance-level `N8N_ENCRYPTION_KEY` value.
 * [Deployment environment variables](../basic-configuration/use-environment-variables/deployment.md): reference for `N8N_ENCRYPTION_KEY` and `N8N_ENV_FEAT_ENCRYPTION_KEY_ROTATION`.
 * [Configuring queue mode](../scaling/enable-queue-mode.md): make sure all workers share the same instance encryption key.
+* [n8n 3.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v30-breaking-changes): what changes when you upgrade, including encryption key rotation.
 
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/security/harden-task-runners/
 
@@ -84795,7 +84912,8 @@ Protection is off by default so it doesn't break existing self-hosted setups tha
 | `N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS` | Boolean | `false` | Set to `true` to try to set 0600 permissions for the settings file, giving only the owner read and write access. |
 | `N8N_RESTRICT_FILE_ACCESS_TO` | String |  | Limits access to files in these directories. Provide multiple files as a semicolon-separated list ("`;`"). |
 | `N8N_SECURITY_AUDIT_DAYS_ABANDONED_WORKFLOW` | Number | 90 | Number of days to consider a workflow abandoned if it's not executed. |
-|`N8N_CONTENT_SECURITY_POLICY`| String | `{}` | Set [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) headers as [helmet.js](https://helmetjs.github.io/#content-security-policy) nested directives object. For example, `{ "frame-ancestors": ["http://localhost:3000"] }` |
+| `N8N_CONTENT_SECURITY_POLICY` | String | `script-src <nonce> 'strict-dynamic' 'unsafe-eval'; object-src 'none'; base-uri 'none'` | The [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) n8n serves on its own pages. Accepts a policy string, for example `frame-ancestors http://localhost:3000`, or a [helmet.js](https://helmetjs.github.io/#content-security-policy) directives object. Write `<nonce>` where n8n inserts the per-request nonce. Set to `default` for n8n's policy, or `{}` for no header. |
+| `N8N_CONTENT_SECURITY_POLICY_REPORT_ONLY` | String |  | The policy n8n serves as `Content-Security-Policy-Report-Only`, in the same formats as `N8N_CONTENT_SECURITY_POLICY`. The browser reports violations but doesn't block them, so use it to try a policy before enforcing it. |
 | `N8N_SECURE_COOKIE` | Boolean | `true` | Ensures that cookies are only sent over HTTPS, enhancing security.|
 | `N8N_SAMESITE_COOKIE` | Enum string: `strict`, `lax`, `none` | `lax` | Controls cross-site cookie behavior ([learn more](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite)):<ul><li>`strict`: Sent only for first-party requests.</li><li>`lax` (default): Sent with top-level navigation requests.</li><li>`none`: Sent in all contexts (requires HTTPS).</li></ul> |
 | `N8N_GIT_NODE_DISABLE_BARE_REPOS` | Boolean | `false` | Set to `true` to prevent the [Git node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.git) from working with bare repositories, enhancing security. |
@@ -86832,8 +86950,10 @@ docker run --name n8n-queue -p 5679:5678 -e "EXECUTIONS_MODE=queue" n8nio/n8n we
 To configure your webhook URL, execute the following command on the machine running the main n8n instance:
 
 ```bash
-export WEBHOOK_URL=https://your-webhook-url.com
+export N8N_WEBHOOK_URL=https://your-webhook-url.com
 ```
+
+`N8N_WEBHOOK_URL` is available from n8n 2.30.0; on earlier versions, use `WEBHOOK_URL`.
 
 You can also set this value in the configuration file.
 
@@ -113299,19 +113419,23 @@ n8n automatically totals the time from all Time Saved nodes executed during each
 
 # v3.0 Breaking changes
 
-This document highlights breaking changes and actions to prepare for the upcoming transition to n8n 3.0, scheduled for October 2026. These updates improve security, simplify configuration, and remove legacy features.
+n8n 3.0 has been released, and with it came some important changes. This document highlights breaking changes and actions you should take to prepare for the transition. These updates improve security, simplify configuration, and remove legacy features.
 
-The release of n8n 3.0 continues n8n's commitment to providing a secure, reliable, and production-ready automation platform. This major version includes important security enhancements and cleanup of deprecated features.
+Before you upgrade, open the Migration Report at **Settings > Migration Report**. It lists the workflows and instance settings on your own instance that need attention, so you don't have to check every change on this page by hand.
 
 ## Deployment <a href="#deployment" id="deployment"></a>
 
 ### Docker-based deployment required for self-hosted n8n <a href="#docker-based-deployment-required-for-self-hosted-n8n" id="docker-based-deployment-required-for-self-hosted-n8n"></a>
 
-Self-hosted n8n will require a Docker-based deployment. n8n 3.0 will no longer support installations run using `npm` or `npx n8n`.
+Self-hosted n8n requires a Docker-based deployment. n8n 3.0 no longer supports installations run using `npm` or `npx n8n`, and n8n 3.0 doesn't publish a runnable `n8n` package to npm.
 
-**What to do:** If you run n8n with `npm` or `npx n8n`, plan a move to a Docker-based deployment before upgrading to n8n 3.0. For local installations, Docker Compose is expected to be the easiest path.
+**What to do:** If you run n8n with [npm](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-with-npm) or `npx n8n`, move to a Docker-based deployment before you upgrade to n8n 3.0. The fastest path is the [one-line setup](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/one-line-setup), which checks Docker, writes the configuration files, and starts a new n8n instance with a single command:
 
-_Step-by-step migration guidance will be coming soon._
+```bash
+curl -fsSL https://get.n8n.io | sh
+```
+
+If you already run your own Docker Compose file, you don't need to switch. For a team or production instance, [Install using Docker Compose](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/install-using-docker-compose) covers running n8n with Postgres instead of the bundled SQLite database.
 
 ## Community node development
 
@@ -113325,25 +113449,27 @@ The remaining changes affect the [`n8n-node dev`](https://app.gitbook.com/s/r7wK
 
 ### n8n-node dev requires Docker or Podman
 
-* `n8n-node dev` started n8n with `npx n8n@latest`. n8n 3.0 doesn't publish a runnable `n8n` package to npm, so the command now runs the official image in a container.
-* **What to do:** Install Docker or Podman. To run n8n yourself instead, use `n8n-node dev --external-n8n` and start that instance with `N8N_DEV_RELOAD=true`. To pin an n8n version, pass the tag: `n8n-node dev --n8n-image docker.n8n.io/n8nio/n8n:<n8n-version>`. Hot reload only works on images that serve `POST /rest/dev/reload`, so older tags load your node but need a restart to pick up changes.
+`n8n-node dev` started n8n with `npx n8n@latest`. n8n 3.0 doesn't publish a runnable `n8n` package to npm, so the command now runs the official image in a container.
+
+**What to do:** For the default container path, install Docker or Podman. To use an externally managed instance instead, run `n8n-node dev --external-n8n` and start that instance with `N8N_DEV_RELOAD=true`. To pin a version on the container path, pass the tag: `n8n-node dev --n8n-image docker.n8n.io/n8nio/n8n:<n8n-version>`. Hot reload only works on images that serve `POST /rest/dev/reload`, so older tags load your node but need a restart to pick up changes.
 
 ### n8n-node dev test data moves to a per-image container volume
 
-* Workflows and credentials you create while testing your node now live in a `n8n-node-cli-data-<image>` container volume, not in `~/.n8n-node-cli/.n8n`. Data from earlier versions doesn't carry over. Each `--n8n-image` gets its own volume, because n8n only migrates a database forward: switching images gives you an empty instance rather than a database an older n8n can't read.
-* **What to do:** Export any test workflows you want to keep before you upgrade or change images. To list and reset the volumes, use `docker volume ls --filter name=n8n-node-cli-data` and `docker volume rm <volume>`, or the `podman` equivalents.
+Workflows and credentials you create while testing your node now live in a `n8n-node-cli-data-<image>` container volume, not in `~/.n8n-node-cli/.n8n`. Each `--n8n-image` gets its own volume, because n8n only migrates a database forward. Switching images gives you an empty instance rather than a database an older n8n version can't read.
+
+{% hint style="warning" %}
+**Test data from earlier versions doesn't carry over**
+
+Export any test workflows you want to keep before you upgrade the CLI or change images.
+{% endhint %}
+
+**What to do:** Export the test workflows you want to keep. To list and reset the volumes, use `docker volume ls --filter name=n8n-node-cli-data` and `docker volume rm <volume>`, or the `podman` equivalents.
 
 ### `--custom-user-folder` only applies with `--external-n8n`
 
-* The flag used to set where the CLI linked your node. It now names the `N8N_USER_FOLDER` of the instance you run yourself, and has no effect in container mode.
-* **What to do:** If you pass `--custom-user-folder`, add `--external-n8n` and start that instance with the same `N8N_USER_FOLDER`.
+The flag used to set where the CLI linked your node. It now names the `N8N_USER_FOLDER` of the instance you run yourself and has no effect in container mode.
 
-## Configuration
-
-### Remove N8N\_PRE\_EXECUTE\_ERROR\_CREATES\_EXECUTION
-
-* n8n 3.0 removes the `N8N_PRE_EXECUTE_ERROR_CREATES_EXECUTION` environment variable. If a `workflow.preExecute` [external hook](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/external-hooks) throws, n8n never creates an execution record. The run never starts, so it doesn't count toward Insights or license usage.
-* **What to do:** If you set `N8N_PRE_EXECUTE_ERROR_CREATES_EXECUTION=true` to still create a failed execution when the hook throws, remove the variable before you upgrade to n8n 3.0. After you upgrade, n8n ignores the variable. Check the n8n 3.0 migration report in **Settings** to see if this instance sets it.
+**What to do:** If you pass `--custom-user-folder`, add `--external-n8n` and start that instance with the same `N8N_USER_FOLDER`.
 
 ## Removed nodes and helpers <a href="#removed-nodes-and-helpers" id="removed-nodes-and-helpers"></a>
 
@@ -113351,71 +113477,89 @@ n8n 3.0 removes older nodes, modes, and helpers that newer patterns have replace
 
 ### Removed nodes <a href="#removed-nodes" id="removed-nodes"></a>
 
-* **Function** node (legacy)
-* **Function Item** node (legacy)
-* **Item Lists** node (legacy)
-* **LangChain Code** node (legacy)
-* **Cron** and **Interval** nodes
-* **HTML Extract** node
-* **iCalendar** node
-* **Convert to/from binary data** node
-* **Read Binary File**, **Read Binary Files**, and **Write Binary File** nodes
-* **Read PDF** node
-* **Workflow Trigger** node
-* **Orbit** node
-* **OpenAI** node (legacy). The current **OpenAI** node in the AI section stays.
-* **OpenAI Assistant** and **OpenAI Model** nodes
-* **HTTP Request Tool** node (legacy). Using the **HTTP Request** node as a tool stays.
-* **SerpApi (Google Search)** node
-* **Manual Chat Trigger** node
-* **Chat Messages Retriever** node
-* **Motorhead** and **Zep** memory nodes
-* **Binary Input Loader**, **JSON Input Loader**, and **GitHub Document Loader** nodes
-* **In Memory Vector Store Insert**, **In Memory Vector Store Load**, **Pinecone: Insert**, **Pinecone: Load**, **Supabase: Insert**, **Supabase: Load**, **Zep Vector Store**, **Zep Vector Store: Insert**, and **Zep Vector Store: Load** nodes
-* **AI Transform** node: n8n automatically migrates existing nodes to [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) nodes on upgrade, keeping the same generated JavaScript, so existing workflows keep working without changes. You can no longer add an **AI Transform** node. Write JavaScript directly in the **Code** node instead.
-* **What to do:** Migrate affected workflows to the current recommended alternatives before upgrading:
-  * Replace **Function** and **Function Item** nodes with the [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) node. Use **Run Once for All Items** mode in place of **Function**, and **Run Once for Each Item** mode in place of **Function Item**.
-  * Replace the **Item Lists** node with the node matching the operation you use: [Split Out](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.splitout), [Aggregate](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.aggregate), [Sort](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.sort), [Limit](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.limit), [Remove Duplicates](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.removeduplicates), or [Summarize](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.summarize).
-  * Replace **Cron** and **Interval** with the [Schedule Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.scheduletrigger) node.
-  * Replace **HTML Extract** with the [HTML](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.html) node's **Extract HTML Content** operation.
-  * Replace **iCalendar** with the [Convert to File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.converttofile) node's **Convert to ICS** operation.
-  * Replace **Convert to/from binary data** with the [Convert to File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.converttofile) or [Extract from File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.extractfromfile) node.
-  * Replace **Read Binary File**, **Read Binary Files**, and **Write Binary File** with the [Read/Write Files from Disk](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.readwritefile) node.
-  * Replace **Read PDF** with the [Extract from File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.extractfromfile) node's **Extract From PDF** operation.
-  * Replace **Workflow Trigger** with the [n8n Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.n8ntrigger) node.
-  * Replace the legacy **OpenAI** node and the **OpenAI Assistant** node with the [OpenAI](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-langchain.openai) node. For assistants, use its **Assistant** resource.
-  * Replace **OpenAI Model** with the [OpenAI Chat Model](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenai) node.
-  * Replace the legacy **HTTP Request Tool** with the **HTTP Request** node connected to the **Tool** input of the **AI Agent** node.
-  * Replace **Manual Chat Trigger** with the [Chat Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.chattrigger) node.
-  * Replace **Chat Messages Retriever** with the [Chat Memory Manager](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymanager) node, or load previous sessions in the **Chat Trigger** node.
-  * Replace **Binary Input Loader**, **JSON Input Loader**, and **GitHub Document Loader** with the [Default Data Loader](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader) node. For GitHub content, fetch it with the **GitHub** node first.
-  * Replace the **Insert** and **Load** vector store nodes with the single node for that store: [Simple Vector Store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreinmemory), [Pinecone Vector Store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepinecone), or [Supabase Vector Store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoresupabase). Pick the operation (**Insert Documents**, **Get Many**, or **Retrieve Documents**) in the node.
-  * **Motorhead**, **Zep**, and the **Zep Vector Store** nodes have no direct replacement. Use another supported [memory](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes) or [vector store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes) node.
-  * **SerpApi (Google Search)** has no direct replacement. Call the SerpApi REST API with the **HTTP Request** node connected as a tool, or use a verified community node.
-  * **Orbit** has no replacement. The Orbit service shut down.
+Workflows that use a removed node fail. Before you upgrade, **Settings > Migration Report** lists the affected workflows on your instance, and the [Deprecated and versioned nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/deprecated-nodes) page tracks the final version of every node listed here.
+
+- **Function** node (legacy)
+- **Function Item** node (legacy)
+- **Item Lists** node (legacy)
+- **LangChain Code** node (legacy)
+- **Cron** and **Interval** nodes
+- **HTML Extract** node
+- **iCalendar** node
+- **Convert to/from binary data** node
+- **Read Binary File**, **Read Binary Files**, and **Write Binary File** nodes
+- **Read PDF** node
+- **Workflow Trigger** node
+- **Orbit** node
+- **OpenAI** node (legacy). The current **OpenAI** node in the AI section stays.
+- **OpenAI Assistant** and **OpenAI Model** nodes
+- **HTTP Request Tool** node (legacy). Using the **HTTP Request** node as a tool stays.
+- **SerpApi (Google Search)** node
+- **Manual Chat Trigger** node
+- **Chat Messages Retriever** node
+- **Motorhead** and **Zep** memory nodes
+- **Binary Input Loader**, **JSON Input Loader**, and **GitHub Document Loader** nodes
+- **In Memory Vector Store Insert**, **In Memory Vector Store Load**, **Pinecone: Insert**, **Pinecone: Load**, **Supabase: Insert**, **Supabase: Load**, **Zep Vector Store**, **Zep Vector Store: Insert**, and **Zep Vector Store: Load** nodes
+- **AI Transform** node: n8n automatically migrates existing nodes to [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) nodes on upgrade, keeping the same generated JavaScript, so existing workflows keep working without changes. You can no longer add an **AI Transform** node. Write JavaScript directly in the **Code** node instead.
+- **What to do:** Migrate affected workflows to the current recommended alternatives before upgrading:
+  - Replace **Function** and **Function Item** nodes with the [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) node. Use **Run Once for All Items** mode in place of **Function**, and **Run Once for Each Item** mode in place of **Function Item**.
+  - Replace the **Item Lists** node with the node matching the operation you use: [Split Out](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.splitout), [Aggregate](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.aggregate), [Sort](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.sort), [Limit](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.limit), [Remove Duplicates](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.removeduplicates), or [Summarize](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.summarize).
+  - Replace **Cron** and **Interval** with the [Schedule Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.scheduletrigger) node.
+  - Replace **HTML Extract** with the [HTML](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.html) node's **Extract HTML Content** operation.
+  - Replace **iCalendar** with the [Convert to File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.converttofile) node's **Convert to ICS** operation.
+  - Replace **Convert to/from binary data** with the [Convert to File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.converttofile) or [Extract from File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.extractfromfile) node.
+  - Replace **Read Binary File**, **Read Binary Files**, and **Write Binary File** with the [Read/Write Files from Disk](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.readwritefile) node.
+  - Replace **Read PDF** with the [Extract from File](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.extractfromfile) node's **Extract From PDF** operation.
+  - Replace **Workflow Trigger** with the [n8n Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.n8ntrigger) node.
+  - Replace the legacy **OpenAI** node and the **OpenAI Assistant** node with the [OpenAI](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-langchain.openai) node. For assistants, use its **Assistant** resource.
+  - Replace **OpenAI Model** with the [OpenAI Chat Model](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenai) node.
+  - Replace the legacy **HTTP Request Tool** with the **HTTP Request** node connected to the **Tool** input of the **AI Agent** node.
+  - Replace **Manual Chat Trigger** with the [Chat Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.chattrigger) node.
+  - Replace **Chat Messages Retriever** with the [Chat Memory Manager](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymanager) node, or load previous sessions in the **Chat Trigger** node.
+  - Replace **Binary Input Loader**, **JSON Input Loader**, and **GitHub Document Loader** with the [Default Data Loader](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader) node. For GitHub content, fetch it with the **GitHub** node first.
+  - Replace the **Insert** and **Load** vector store nodes with the single node for that store: [Simple Vector Store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreinmemory), [Pinecone Vector Store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepinecone), or [Supabase Vector Store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoresupabase). Pick the operation (**Insert Documents**, **Get Many**, or **Retrieve Documents**) in the node.
+  - **[LangChain Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.code)** has no direct replacement.
+  - **Motorhead**, **Zep**, and the **Zep Vector Store** nodes have no direct replacement. Use another supported [memory](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes) or [vector store](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes) node.
+  - **SerpApi (Google Search)** has no direct replacement. Call the SerpApi REST API with the **HTTP Request** node connected as a tool, or use a verified [community node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/community-nodes/installation-and-management).
+  - **Orbit** has no replacement. The Orbit service shut down.
 
 ### Removed expression helpers <a href="#removed-expression-helpers" id="removed-expression-helpers"></a>
 
-* n8n 3.0 removes the deprecated `$getPairedItem` expression helper.
-  * **What to do:** Use n8n's standard [item linking](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/reference-data/link-data-items/how-items-link-through-workflows) instead, for example the `pairedItem` property or `$("<node-name>").item`.
+n8n 3.0 removes the deprecated `$getPairedItem` expression helper. Expressions that still call it fail when the node runs.
+
+**What to do:** Use n8n's standard [item linking](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/reference-data/link-data-items/how-items-link-through-workflows) instead. Three forms replace `$getPairedItem`:
+
+- `$('<node-name>').item` returns the item in `<node-name>` that the current item links back to.
+- `$('<node-name>').itemMatching(<item-index>)` returns the item in `<node-name>` that the input item at `<item-index>` links back to.
+- `$('<node-name>').pairedItem(<item-index>)` returns the paired item for `<item-index>` directly.
 
 ### Execute Sub-workflow node: Local File and URL sources removed
 
 n8n 3.0 removes the **Local File** and **URL** options from the **Source** parameter of the [Execute Sub-workflow](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflow) node. Only node versions 1.1 and older offered them. Nodes that still use one of these sources fail with an error.
 
-**What to do:** Import the sub-workflow into your instance and select it with the **Database** source, or paste its JSON with the **Define Below** source (**Parameter** on node versions 1.1 and older). Before you update, **Settings > Migration Report** lists the affected nodes.
-
-### Always Output Data on nodes with several outputs
-
-With **Always Output Data** on, nodes with several outputs, for example **If** and **Switch**, now add an empty item only when every output is empty. Before, each empty output got an empty item, so branches ran when they shouldn't have.
-
-**What to do:** Review flagged nodes and adjust the setting to match your intent.
+**What to do:** Import the sub-workflow into your instance and select it with the **Database** source, or paste its JSON with the **Define Below** source (**Parameter** on node versions 1.1 and older). Before you upgrade, go to **Settings > Migration Report** to identify the affected nodes.
 
 ### `$evaluateExpression()` removed from the Code node
 
-n8n 3.0 removes the `$evaluateExpression()` convenience method from the **Code** node (JavaScript). Only task runners in insecure mode (`N8N_RUNNERS_INSECURE_MODE=true`) are affected. Secure-mode runners, the default since n8n 2.0, already fail on this call.
+n8n 3.0 removes the `$evaluateExpression()` convenience method from the [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) node (JavaScript). Only [task runners](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-task-runners) in insecure mode (`N8N_RUNNERS_INSECURE_MODE=true`) are affected. Secure-mode runners, the default since n8n 2.0, already fail on this call.
 
-**What to do:** Evaluate the expression in a node field instead, for example in an **Edit Fields (Set)** node before the **Code** node, and read the result from the input item. `$evaluateExpression()` keeps working in `{{ }}` expression fields.
+**What to do:** Evaluate the expression in a node field instead, for example in an [Edit Fields (Set)](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.set) node before the **Code** node, and read the result from the input item. `$evaluateExpression()` continues to work in `{{ }}` expression fields.
+
+### AI Agent node: Older agent modes removed <a href="#ai-agent-node-older-agent-modes-removed" id="ai-agent-node-older-agent-modes-removed"></a>
+
+Version 1 of the **AI Agent** node supported several agent type modes, including **SQL Agent**, **Conversational Agent**, **OpenAI Functions Agent**, **Plan and Execute Agent**, and **ReAct Agent**. n8n 3.0 removes version 1 of the node, along with these modes.
+
+**What to do:** Update any workflows and templates that use version 1 of the [AI Agent](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent) node to the latest version. The latest version replaces all the removed modes with **Tools Agent**, and workflows already set to **Tools Agent** continue to behave the same after you update. For **SQL Agent** use cases, replace it with a [Postgres](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.postgres) or [MySQL](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.mysql) tool sub-node paired with a recent **AI Agent** node.
+
+## Behavior changes
+
+n8n 3.0 changes how some nodes and credentials behave. These nodes stay available, but existing workflows can produce different results.
+
+### Always Output Data on nodes with several outputs
+
+With **[Always Output Data](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/workflow-components/work-with-nodes)** on, nodes with multiple outputs, for example [If](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.if) and [Switch](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.switch), now add an empty item only when every output is empty. Previously, each empty output got an empty item, so branches ran when they shouldn't have.
+
+**What to do:** Before you upgrade, go to **Settings > Migration Report** to identify the nodes this change affects. Review each node and adjust the setting to match your intent.
 
 ### Gmail Trigger node: Older versions run as version 1.4
 
@@ -113425,88 +113569,127 @@ n8n 3.0 removes the separate behavior of **Gmail Trigger** node versions 1 to 1.
 * The node skips drafts unless you turn on the **Include Drafts** filter. Versions 1 and 1.1 included drafts by default.
 * Sent emails that aren't in the inbox, and scheduled emails, no longer trigger the workflow.
 
-**What to do:** Review workflows with a **Gmail Trigger** node below version 1.4. If a workflow relies on drafts, turn on **Include Drafts**. If a workflow relies on sent or scheduled emails, replace the trigger with a **Schedule Trigger** node followed by the [Gmail](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.gmail) node's **Get Many** messages operation.
+**What to do:** Review workflows with a **Gmail Trigger** node below version 1.4. Before you upgrade, go to **Settings > Migration Report** to identify the affected nodes. If a workflow relies on drafts, turn on **Include Drafts**. If a workflow relies on sent or scheduled emails, replace the trigger with a [Schedule Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.scheduletrigger) node followed by the [Gmail](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.gmail) node's **Get Many** messages operation.
 
 ### Webflow OAuth2 credential: Legacy toggle off by default
 
-The **Legacy** toggle on the **Webflow OAuth2 API** credential defaults to off. New credentials request the Webflow v2 API scopes (`cms:read cms:write sites:read forms:read`). Existing credentials that never saved an explicit **Legacy** value request these scopes the next time you reconnect them. Connected credentials keep working: n8n doesn't touch stored tokens, and token refresh doesn't send scopes.
+The **Legacy** toggle on the [Webflow OAuth2 API](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/credentials/webflow) credential defaults to off. New credentials request the Webflow v2 API scopes (`cms:read cms:write sites:read forms:read`). Existing credentials that never saved an explicit **Legacy** value request these scopes the next time you reconnect them. Connected credentials keep working. n8n doesn't touch stored tokens, and token refresh doesn't send scopes.
 
-**What to do:** If you still use the deprecated Webflow v1 Data API, for example with a legacy Webflow OAuth app or the **Webflow** node at version 1, turn on **Legacy** on the credential before you reconnect it. Webflow rejects the connection if the requested scopes aren't configured on your app.
+**What to do:** If you still use the deprecated Webflow v1 Data API, for example with a legacy Webflow OAuth app or the [Webflow](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.webflow) node at version 1, turn on **Legacy** on the credential before you reconnect it. Webflow rejects the connection if the requested scopes aren't configured on your app.
 
 ### Chat Trigger node: WebSocket messages are JSON frames
 
-The chat WebSocket endpoint that the **Chat Trigger** node uses in the **Using Response Nodes** response mode, where the **Chat** node sends replies, now sends every frame as a JSON object with a `type` field: `heartbeat`, `continue`, `error`, `message`, or `with-buttons`. Before, control frames and plain text replies were raw strings. A text reply is now `{ "type": "message", "text": "..." }`. The client acknowledges heartbeats with `{ "type": "heartbeat-ack" }`, and n8n ignores incoming frames that aren't JSON.
+The chat WebSocket endpoint that the [Chat Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.chattrigger) node uses in the **Using Response Nodes** response mode, where the **Chat** node sends replies, now sends every frame as a JSON object with a `type` field: `heartbeat`, `continue`, `error`, `message`, or `with-buttons`. Before, control frames and plain text replies were raw strings. A text reply is now `{ "type": "message", "text": "..." }`. The client acknowledges heartbeats with `{ "type": "heartbeat-ack" }`, and n8n ignores incoming frames that aren't JSON.
 
 The n8n chat widget (`@n8n/chat`) understands both formats from version 1.31.0, and the hosted chat page always loads a current widget.
 
 **What to do:** If you built a custom chat client that talks to the chat WebSocket directly, parse every frame as JSON and switch on `type`. If you embed `@n8n/chat` yourself, update it to version 1.31.0 or later before you upgrade n8n.
 
-### AI Agent node: Older agent modes removed <a href="#ai-agent-node-older-agent-modes-removed" id="ai-agent-node-older-agent-modes-removed"></a>
-
-Version 1 of the **AI Agent** node supported several agent type modes, including **SQL Agent**, **Conversational Agent**, **OpenAI Functions Agent**, **Plan and Execute Agent**, and **ReAct Agent**. n8n 3.0 removes version 1 of the node, along with these modes.
-
-**What to do:** Update any workflows and templates that use version 1 of the [AI Agent](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent) node to the latest version. Workflows already set to **Tools Agent** continue to behave the same after you update. For **SQL Agent** use cases, replace it with a [Postgres](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.postgres) or [MySQL](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/app-nodes/n8n-nodes-base.mysql) tool sub-node paired with a recent **AI Agent** node.
-
 ## Security <a href="#security" id="security"></a>
 
 Security defaults are getting stronger to make n8n safer by default. These changes may affect existing workflows or credentials.
 
-* **Tighter handling of risky resource names.**
-* **More secure credential behavior.**
-* **Key rotation enabled by default.**
+### Encryption key rotation on by default
+
+n8n 3.0 turns on [encryption key rotation](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/rotate-encryption-keys) by default. Before, self-hosted instances had to opt in to the feature. With it on, n8n keeps a data encryption key that you can rotate from **Settings > Data Encryption Keys**. Credentials and other data encrypted before the upgrade stay readable, and n8n re-encrypts each record to the current key the next time you update it.
+
+Turning the feature on used to be permanent. From n8n 2.40.3, you can turn it off again.
+
+**What to do:** Nothing. As with any upgrade, back up your database first.
+
+### Slack API credential requires the signing secret
+
+n8n 3.0 requires a signing secret on the **Slack API** credential. The [Slack Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/trigger-nodes/n8n-nodes-base.slacktrigger) node verifies incoming requests against it, and version 2 of the node makes the field required.
+
+When you need to act depends on how you use the credential:
+
+- **Workflows with a Slack Trigger node:** Add the secret before you upgrade. Until you do, the workflow fails to publish and the trigger responds with a 401 error.
+- **Every other Slack workflow:** Add the secret the next time you edit the credential.
+
+{% hint style="warning" %}
+**Add the secret before you upgrade**
+
+Workflows with a **Slack Trigger** node stop receiving events until the **Slack API** credential has a signing secret.
+{% endhint %}
+
+**What to do:**
+
+1. In your Slack app settings, open **Basic Information** and copy the **Signing Secret**.
+2. Paste it into the **Slack API** [credential](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/credentials/slack) in n8n.
+3. Publish the workflow again.
 
 ### Larger default SSRF block list
 
-When `N8N_SSRF_PROTECTION_ENABLED` is `true` and `N8N_SSRF_BLOCKED_IP_RANGES` contains `default`, n8n 3.0 also blocks the shared address space (`100.64.0.0/10`) and IPv6 transition ranges.
+When `N8N_SSRF_PROTECTION_ENABLED` is `true` and `N8N_SSRF_BLOCKED_IP_RANGES` contains `default`, n8n 3.0 adds four ranges to the built-in default list:
 
-**What to do:** If your workflows call hosts in these ranges, add their IP ranges to `N8N_SSRF_ALLOWED_IP_RANGES`, or their hostnames to `N8N_SSRF_ALLOWED_HOSTNAMES`. Keep `default` in `N8N_SSRF_BLOCKED_IP_RANGES`: it's the keyword for the whole built-in list, including localhost, private networks, and the cloud metadata endpoint. If you replace it with literal ranges, you must list every range from the current built-in list yourself.
+| Range | Description |
+|-------|-------------|
+| `::/128` | IPv6 unspecified address |
+| `100.64.0.0/10` | Shared address space (carrier-grade NAT) |
+| `2002::/16` | 6to4 |
+| `64:ff9b::/96` | NAT64 well-known prefix |
+
+Requests to hosts in these ranges fail.
+
+**What to do:** If your workflows call hosts in these ranges, add their IP ranges to `N8N_SSRF_ALLOWED_IP_RANGES`, or their hostnames to `N8N_SSRF_ALLOWED_HOSTNAMES`. Keep `default` in `N8N_SSRF_BLOCKED_IP_RANGES`: it's the keyword for the whole built-in list, including localhost, private networks, and the cloud metadata endpoint. If you replace it with literal ranges, you must list every range from the current built-in list yourself. See [Enable SSRF protection](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/enable-ssrf-protection) and the [SSRF protection environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/ssrf-protection).
 
 ### Lower Compression node decompression limits
 
-The default `N8N_COMPRESSION_NODE_MAX_DECOMPRESSED_SIZE_BYTES` drops from 2 GiB to 256 MiB, and the default `N8N_COMPRESSION_NODE_MAX_ZIP_ENTRIES` drops from 5,000 to 1,000.
+The default `N8N_COMPRESSION_NODE_MAX_DECOMPRESSED_SIZE_BYTES` drops from 2 GiB to 256 MiB, and the default `N8N_COMPRESSION_NODE_MAX_ZIP_ENTRIES` drops from 5,000 to 1,000. The [Compression](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.compression) node fails on archives above either limit.
 
-**What to do:** If your workflows decompress archives larger than 256 MiB or with more than 1,000 entries, set these variables explicitly to their previous values (2147483648 and 5000) before upgrading to n8n 3.0.
+**What to do:** If your workflows decompress archives larger than 256 MiB or with more than 1,000 entries, set these variables explicitly to their previous values (2147483648 and 5000) before upgrading to n8n 3.0. See the [node environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/nodes) reference.
 
 ## Configuration
 
 n8n 3.0 changes some defaults and removes settings that only kept older behavior alive. n8n logs a deprecation warning at startup on 2.x for each of these when your instance is affected.
 
+### Remove N8N_PRE_EXECUTE_ERROR_CREATES_EXECUTION
+
+n8n 3.0 removes the `N8N_PRE_EXECUTE_ERROR_CREATES_EXECUTION` environment variable. If a `workflow.preExecute` [external hook](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/external-hooks) throws, n8n never creates an execution record. The run never starts, so it doesn't count toward Insights or license usage. There's no way to keep the old behavior.
+
+**What to do:** If you set `N8N_PRE_EXECUTE_ERROR_CREATES_EXECUTION=true` to still create a failed execution when the hook throws, remove the variable before you upgrade to n8n 3.0. After you upgrade, n8n ignores the variable. If you rely on those failed execution records for alerting, move the alert to the external hook itself. Before you upgrade, **Settings > Migration Report** shows whether this instance sets the variable.
+
 ### Storage directory renamed
 
 On first start, n8n 3.0 renames `~/.n8n/binaryData` to `~/.n8n/storage` and removes `N8N_MIGRATE_FS_STORAGE_PATH`.
 
-**What to do:** If you mount a volume at `~/.n8n/binaryData`, mount it at `~/.n8n/storage` instead, or set `N8N_STORAGE_PATH` to the old path to keep it. If both directories exist, n8n doesn't start: move the contents of `~/.n8n/binaryData` into `~/.n8n/storage`, remove `~/.n8n/binaryData`, then start n8n again. Nothing to do if you use the default paths without a volume mount.
+{% hint style="warning" %}
+**n8n won't start if both directories exist**
+
+If `~/.n8n/binaryData` and `~/.n8n/storage` both exist, n8n 3.0 stops with an error instead of guessing which one to use.
+{% endhint %}
+
+**What to do:** If you mount a volume at `~/.n8n/binaryData`, mount it at `~/.n8n/storage` instead, or set `N8N_STORAGE_PATH` to the old path to keep it. If both directories exist, move the contents of `~/.n8n/binaryData` into `~/.n8n/storage`, remove `~/.n8n/binaryData`, then start n8n again. Nothing to do if you use the default paths without a volume mount. See [Handle binary data](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/handle-binary-data).
 
 ### In-memory binary data mode removed
 
 `N8N_DEFAULT_BINARY_DATA_MODE=default` is no longer valid. Instances that still use it switch to `filesystem` on upgrade.
 
-**What to do:** Set `N8N_DEFAULT_BINARY_DATA_MODE` to `filesystem`, `s3`, `azure`, or `database`, and check that your container's mounted disk has room for binary data.
+**What to do:** Set `N8N_DEFAULT_BINARY_DATA_MODE` to `filesystem`, `s3`, `azure`, or `database`, and check that your container's mounted disk has room for binary data. See the [binary data environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/binary-data) reference.
 
 ### Changed defaults and removed variables
 
-* **Unverified community packages off by default.** The default for `N8N_UNVERIFIED_PACKAGES_ENABLED` changes from `true` to `false`.
-  * **What to do:** Set `N8N_UNVERIFIED_PACKAGES_ENABLED=true` to keep installing unverified community nodes from npm.
-* **Shorter task runner timeout.** The default for `N8N_RUNNERS_TASK_TIMEOUT` drops from `300` (5 minutes) to `60` (1 minute). Code node tasks that run longer fail.
-  * **What to do:** Set `N8N_RUNNERS_TASK_TIMEOUT` explicitly if your tasks need more than a minute.
-* **Manual executions always run on workers in queue mode.** `OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS` is removed.
-  * **What to do:** Remove the variable. Review the memory you give to workers, which now also handle manual executions.
-* **`N8N_DB_PING_TIMEOUT` removed.** n8n no longer falls back to this variable.
-  * **What to do:** Set `DB_PING_TIMEOUT_MS` instead.
+- **Unverified community packages off by default.** The default for `N8N_UNVERIFIED_PACKAGES_ENABLED` changes from `true` to `false`. After the upgrade, you can't install unverified community nodes from npm, and installed ones stop loading.
+  - **What to do:** Set `N8N_UNVERIFIED_PACKAGES_ENABLED=true` to keep installing unverified community nodes from npm, or move to [verified community nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/community-nodes/installation-and-management/install-verified-community-nodes).
+- **Shorter task runner timeout.** The default for `N8N_RUNNERS_TASK_TIMEOUT` drops from `300` (5 minutes) to `60` (1 minute). Code node tasks that run longer fail.
+  - **What to do:** Set `N8N_RUNNERS_TASK_TIMEOUT` explicitly if your tasks need more than a minute. See the [task runner environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/task-runners).
+- **Manual executions always run on workers in queue mode.** `OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS` is removed.
+  - **What to do:** Remove the variable. Review the memory you give to workers, which now also handle manual executions. See [Enable queue mode](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/enable-queue-mode).
+- **`N8N_DB_PING_TIMEOUT` removed.** n8n no longer falls back to this variable.
+  - **What to do:** Set `DB_PING_TIMEOUT_MS` instead. See the [database environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/database).
 
 ## Retired capabilities <a href="#retired-capabilities" id="retired-capabilities"></a>
 
 n8n 3.0 retires some legacy or lower-usage product capabilities. n8n will provide guidance where a migration path or alternative exists.
 
-* **Chat Hub**: n8n 3.0 turns off the Chat Hub module by default. The **Chat** section disappears from the navigation and the Chat Hub endpoints stop responding. Your chat sessions, agents, and messages stay in the database. n8n 4.0 removes the feature.
-  * **What to do:** If you still need Chat Hub, add `chat-hub` to the `N8N_ENABLED_MODULES` environment variable. The variable holds a comma-separated list, so keep the modules that you already enable, for example `N8N_ENABLED_MODULES=agents,chat-hub`. This keeps Chat Hub available for the n8n 3.x line only, and n8n prints a deprecation warning at startup. Before you update, **Settings > Migration Report** lists this change for every instance that uses Chat Hub.
-* **Workflow import from URL in the editor**: n8n 3.0 removes this. Other [import methods](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/export-and-import) remain supported: copy-paste, **Import from File** in the editor UI menu, the CLI, and the n8n API.
-* **Enable external secrets for project roles setting**: n8n 3.0 removes this. Project editors and admins now get external-secrets access in their projects by default. To keep restricting project roles, use [custom project roles](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/set-permissions-and-roles-rbac/create-custom-roles/create-custom-project-roles) instead. This applies to n8n Enterprise, where external secrets are available.
-* **Ask AI tab in the Code node**: n8n 3.0 removes this.
-
-***
-
-_n8n will update this page with full details, migration guides, and links as n8n 3.0 approaches its release._
+- **Chat Hub**: n8n 3.0 turns off the [Chat Hub](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/chat-hub) module by default. The **Chat** section disappears from the navigation and the Chat Hub endpoints stop responding. Your chat sessions, agents, and messages stay in the database. n8n 4.0 removes the feature.
+  - **What to do:** If you still need Chat Hub, add `chat-hub` to the `N8N_ENABLED_MODULES` environment variable. The variable holds a comma-separated list, so keep the modules that you already enable, for example `N8N_ENABLED_MODULES=agents,chat-hub`. This keeps Chat Hub available for the n8n 3.x line only, and n8n prints a deprecation warning at startup. Before you upgrade, go to **Settings > Migration Report** and see how this change affects every instance that uses Chat Hub.
+- **Workflow import from URL in the editor**: n8n 3.0 removes this. The **Import from URL** option disappears from the editor UI menu.
+  - **What to do:** Use another [import method](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/export-and-import): copy-paste, **Import from File** in the editor UI menu, the CLI, or the n8n API. If you automate imports from a URL, fetch the workflow JSON with the **HTTP Request** node and create the workflow through the n8n API.
+- **Enable external secrets for project roles setting**: n8n 3.0 removes this. Project editors and admins now get external-secrets access in their projects by default. This applies to n8n Enterprise, where external secrets are available.
+  - **What to do:** If you used this setting to restrict which project roles reach external secrets, create [custom project roles](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/set-permissions-and-roles-rbac/create-custom-project-roles) with the access you want before you upgrade. Otherwise every project editor and admin gains external-secrets access on upgrade.
+- **Ask AI tab in the Code node**: n8n 3.0 removes the **Ask AI** tab from the [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) node. Code you already generated with it stays in the node and keeps running.
+  - **What to do:** Write JavaScript or Python directly in the **Code** tab.
 
 === https://docs.n8n.io/docs/get-started/SUMMARY/
 # Table of contents
@@ -113520,135 +113703,184 @@ _n8n will update this page with full details, migration guides, and links as n8n
 
 === https://docs.n8n.io/docs/get-started/key-concept-glossary/
 
-#### AI agent <a href="#ai-agent" id="ai-agent"></a>
+This glossary defines the terms n8n uses for building, running, and managing workflows and agents. Each entry links to the page that explains the concept in full.
 
-AI agents are artificial intelligence systems capable of responding to requests, making decisions, and performing real-world tasks for users. They use large language models (LLMs) to interpret user input and make decisions about how to best process requests using the information and resources they have available.
+## Workflow building blocks
 
-#### AI chain <a href="#ai-chain" id="ai-chain"></a>
+### canvas (n8n) <a href="#canvas-n8n" id="canvas-n8n"></a>
 
-AI chains allow you to interact with large language models (LLMs) and other resources in sequences of calls to components. AI chains in n8n don't use persistent memory, so you can't use them to reference previous context (use AI agents for this).
+The canvas is the main interface for building workflows in n8n's editor UI. You use the canvas to add and connect nodes to compose workflows. Learn more: [Create and run workflows](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/create-and-run-workflows).
 
-#### AI completion <a href="#ai-completion" id="ai-completion"></a>
+### community node (n8n) <a href="#community-node-n8n" id="community-node-n8n"></a>
 
-Completions are the responses generated by a model like GPT.
+A community node is a node built and shared by the community, not one of n8n's built-in nodes. You install community nodes on your instance to add integrations that n8n doesn't provide. Learn more: [Using community nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/community-nodes/using-community-nodes).
 
-#### AI embedding <a href="#ai-embedding" id="ai-embedding"></a>
+### credential (n8n) <a href="#credential-n8n" id="credential-n8n"></a>
 
-Embeddings are numerical representations of data using vectors. They're used by AI to interpret complex data and relationships by mapping values across many dimensions. Vector databases, or vector stores, are databases designed to store and access embeddings.
+In n8n, credentials store authentication information to connect with specific apps and services. After creating credentials with your authentication information (username and password, API key, OAuth secrets, and so on), you can use the associated app node to interact with the service. Learn more: [Create and edit credentials](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/create-and-edit-credentials).
 
-#### AI groundedness <a href="#ai-groundedness" id="ai-groundedness"></a>
+### editor (n8n) <a href="#editor-n8n" id="editor-n8n"></a>
 
-In AI, and specifically in retrieval-augmented generation (RAG) contexts, groundedness and ungroundedness are measures of how much a model's responses accurately reflect source information. The model uses its source documents to generate grounded responses, while ungrounded responses involve speculation or hallucination unsupported by those same sources.
+The n8n editor UI lets you create and manage workflows. The main area is the canvas, where you can compose workflows by adding, configuring, and connecting nodes. The side and top panels let you access other areas of the UI like credentials, templates, variables, executions, and more. Learn more: [Create and run workflows](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/create-and-run-workflows).
 
-#### AI hallucination <a href="#ai-hallucination" id="ai-hallucination"></a>
+### expression (n8n) <a href="#expression-n8n" id="expression-n8n"></a>
 
-Hallucination in AI is when an LLM (large language model) mistakenly perceives patterns or objects that don't exist.
+In n8n, expressions let you populate node parameters dynamically by executing JavaScript code. Instead of providing a static value, you can use the n8n expression syntax to define the value using data from previous nodes, other workflows, or your n8n environment. Learn more: [Expressions for data transformation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/transform-data/expressions-for-data-transformation).
 
-#### AI reranking <a href="#ai-reranking" id="ai-reranking"></a>
+### node (n8n) <a href="#node-n8n" id="node-n8n"></a>
 
-Reranking is a technique that refines the order of a list of candidate documents to improve the relevance of search results. Retrieval-Augmented Generation (RAG) and other applications use reranking to surface the most relevant information for generation or downstream tasks.
+In n8n, nodes are individual components that you compose to create workflows. Some nodes start workflows; others fetch, send, and process data, define flow control logic, or connect with external services. Learn more: [Work with nodes](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/workflow-components/work-with-nodes).
 
-#### AI memory <a href="#ai-memory" id="ai-memory"></a>
+### sub-workflow (n8n)
 
-In an AI context, memory allows AI tools to persist message context across interactions. This allows you to have a continuing conversations with AI agents, for example, without submitting ongoing context with each message. In n8n, AI agent nodes can use memory, but AI chains can't.
+A sub-workflow is a workflow that another workflow calls. Use sub-workflows to split a large workflow into smaller, reusable parts. Learn more: [Sub-workflows](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/flow-logic/break-workflows-into-smaller-parts).
 
-#### AI retrieval-augmented generation (RAG) <a href="#ai-retrieval-augmented-generation-rag" id="ai-retrieval-augmented-generation-rag"></a>
+### template (n8n) <a href="#template-n8n" id="template-n8n"></a>
 
-Retrieval-augmented generation, or RAG, is a technique for providing LLMs access to new information from external sources to improve AI responses. RAG systems retrieve relevant documents to ground responses in up-to-date, domain-specific, or proprietary knowledge to supplement their original training data. RAG systems often rely on vector stores to manage and search this external data efficiently.
+n8n templates are pre-built workflows designed by n8n and community members that you can import into your n8n instance. When using templates, you may need to fill in credentials and adjust the configuration to suit your needs. Learn more: [Workflow templates](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/use-templates).
 
-#### AI tool <a href="#ai-tool" id="ai-tool"></a>
+### trigger node (n8n) <a href="#trigger-node-n8n" id="trigger-node-n8n"></a>
 
-In an AI context, a tool is an add-on resource that the AI can refer to for specific information or functionality when responding to a request. The AI model can use a tool to interact with external systems or complete specific, focused tasks.
+A trigger node is a special node responsible for executing the workflow in response to certain conditions. All production workflows need at least one trigger to determine when the workflow should run. Learn more: [Trigger nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/trigger-nodes).
 
-#### AI vector store <a href="#ai-vector-store" id="ai-vector-store"></a>
+### workflow (n8n) <a href="#workflow-n8n" id="workflow-n8n"></a>
 
-A vector store, or vector database, stores mathematical representations of information. Use with embeddings and retrievers to create a database that your AI can access when answering questions.
+An n8n workflow is a collection of nodes that automate a process. Workflows begin execution when a trigger condition occurs, when you run them manually, or when another workflow calls them. They execute node by node, and can branch, merge, and loop to achieve complex tasks. Learn more: [Create and run workflows](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/create-and-run-workflows).
 
-#### API <a href="#api" id="api"></a>
+## Data
 
-APIs, or application programming interfaces, offer programmatic access to a service's data and functionality. APIs make it easier for software to interact with external systems. They're often offered as an alternative to traditional user-focused interfaces accessed through web browsers or UI.
+### binary data (n8n)
 
-#### canvas (n8n) <a href="#canvas-n8n" id="canvas-n8n"></a>
+Binary data is file-type data, such as images and documents. An item holds binary data in its `binary` object, separate from its `json` data. Learn more: [Binary data](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/handle-special-data-types/work-with-files-and-images).
 
-The canvas is the main interface for building workflows in n8n's editor UI. You use the canvas to add and connect nodes to compose workflows.
+### data pinning (n8n) <a href="#data-pinning-n8n" id="data-pinning-n8n"></a>
 
-#### cluster node (n8n) <a href="#cluster-node-n8n" id="cluster-node-n8n"></a>
+Data pinning lets you temporarily freeze the output data of a node during workflow development. This lets you develop workflows with predictable data without making repeated requests to external services. Production workflows ignore pinned data and request new data on each execution. Learn more: [Data mocking and pinning](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/pin-and-mock-data).
 
-In n8n, cluster nodes are groups of nodes that work together to provide functionality in a workflow. They consist of a root node and one or more sub-nodes that extend the node's functionality.
+### data table (n8n)
 
-#### credential (n8n) <a href="#credential-n8n" id="credential-n8n"></a>
+A data table stores structured, tabular data inside n8n, so you don't need an external database. Data tables are scoped to a [project](#project-n8n), and workflows in that project can read and write them with the [Data Table node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.datatable). You can also manage them in the Data tables tab and through the [n8n API](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api/api-reference). Data tables suit light to moderate storage. Learn more: [Data tables](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/data-tables) and [Data Table node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.datatable).
 
-In n8n, credentials store authentication information to connect with specific apps and services. After creating credentials with your authentication information (username and password, API key, OAuth secrets, etc.), you can use the associated app node to interact with the service.
+### variable (n8n)
 
-#### data pinning (n8n) <a href="#data-pinning-n8n" id="data-pinning-n8n"></a>
+A custom variable stores a read-only string that you reuse across workflows. A variable is either global, available across the whole instance, or scoped to a single project. Learn more: [Custom variables](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/code-in-n8n/define-custom-variables).
 
-Data pinning allows you to temporarily freeze the output data of a node during workflow development. This allows you to develop workflows with predictable data without making repeated requests to external services. Production workflows ignore pinned data and request new data on each execution.
+## Agents and AI in n8n
 
-#### edition (n8n) <a href="#edition-n8n" id="edition-n8n"></a>
+### agent (n8n)
 
-When you self-host n8n, the edition is the variant of the software you run: Community, Registered Community, Business, or Enterprise. All editions share the same underlying product. The free Community edition runs without a license key. When you subscribe to a paid Business or Enterprise plan, you get a license key that unlocks the features for that plan. See also [plan](#plan-n8n) and [license](#license-n8n).
+An agent is an autonomous assistant you build in n8n. Each agent has a language model, instructions, and capabilities you configure, such as tools, [skills](#skill-n8n), memory, a [knowledge base](#knowledge-base-n8n), and [sub-agents](#sub-agent-n8n). Agents are separate items in your project, not part of a workflow, and people reach them through chat, channels, and schedules. Agents are in Preview. Don't confuse an agent with the [AI Agent node](#ai-agent-node-n8n), which runs inside a workflow. Learn more: [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents).
 
-#### editor (n8n) <a href="#editor-n8n" id="editor-n8n"></a>
+### AI agent <a href="#ai-agent" id="ai-agent"></a>
 
-The n8n editor UI allows you to create and manage workflows. The main area is the canvas, where you can compose workflows by adding, configuring, and connecting nodes. The side and top panels allow you to access other areas of the UI like credentials, templates, variables, executions, and more.
+An AI agent is an AI system that uses a large language model (LLM) to interpret a request and decide which actions to take, such as calling tools, to complete it. In n8n you can build an AI agent in two ways: as an [agent](#agent-n8n), or with the [AI Agent node](#ai-agent-node-n8n) in a workflow. Learn more: [What's an agent in AI?](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/understand-ai-components/what-agents-do).
 
-#### entitlement (n8n) <a href="#entitlement-n8n" id="entitlement-n8n"></a>
+### AI Agent node (n8n)
+
+The AI Agent node adds an AI agent to a workflow. It's a cluster node: a root node that you extend with sub-nodes, such as a chat model, tools, and memory. It's a different feature from an [agent](#agent-n8n) built in the Agent Builder. Learn more: [AI Agent node](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent).
+
+### AI chain <a href="#ai-chain" id="ai-chain"></a>
+
+An AI chain calls an LLM and other components in a fixed sequence. Unlike an agent, a chain doesn't decide which steps to take. AI chains in n8n don't use persistent memory, so you can't use them to reference previous context (use AI agents for this). Learn more: [What's a chain in AI?](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/understand-ai-components/what-chains-do).
+
+### AI memory <a href="#ai-memory" id="ai-memory"></a>
+
+In an AI context, memory lets AI tools persist message context across interactions. This lets you have continuing conversations with AI agents, for example, without submitting ongoing context with each message. In n8n, agents and AI Agent nodes can use memory, but AI chains can't. Learn more: [What's memory in AI?](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/understand-ai-components/how-memory-works).
+
+### AI tool <a href="#ai-tool" id="ai-tool"></a>
+
+In an AI context, a tool is an add-on resource that the AI can refer to for specific information or features when responding to a request. The AI model can use a tool to interact with external systems or complete specific, focused tasks. Learn more: [What's a tool in AI?](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/understand-ai-components/how-tools-work).
+
+### cluster node (n8n) <a href="#cluster-node-n8n" id="cluster-node-n8n"></a>
+
+In n8n, cluster nodes are groups of nodes that work together to provide AI features in a workflow, such as agents, chains, and vector stores. They consist of a root node and one or more sub-nodes that extend the node's features. For example, the AI Agent root node uses sub-nodes for a chat model, memory, and tools. n8n represents most LangChain concepts as cluster nodes. Learn more: [Cluster nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes).
+
+### knowledge base (n8n)
+
+A knowledge base is a set of files that an [agent](#agent-n8n) can search and read for context when it answers. You upload files to the agent, such as CSV, PDF, Markdown, and text files. Knowledge bases are available on n8n Cloud, and in Preview on self-hosted instances. Learn more: [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents#upload-knowledge).
+
+### Model Context Protocol (MCP)
+
+Model Context Protocol (MCP) is an open standard that lets AI clients connect to external tools and data. n8n supports both sides of it:
+
+- **As an MCP client**, n8n lets agents and the AI Agent node use tools from MCP servers, either from the one-click server registry or through the MCP Client Tool node.
+- **As an MCP server**, n8n lets MCP clients such as Claude connect to your instance. The instance-level MCP server lets a client build, edit, run, and test workflows and manage data tables and agents. The MCP Server Trigger node exposes a single workflow's tools as its own MCP server.
+
+Learn more: [MCP servers](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/mcp-servers) and [Set up and use n8n MCP server](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server).
+
+### n8n Assistant
+
+n8n Assistant is a chat-based agent in n8n that helps you create, edit, test, and troubleshoot workflows from natural language. It can also build agents and help with instance tasks. n8n Assistant is in Preview. Learn more: [Use n8n Assistant](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/n8n-assistant).
+
+### root node (n8n) <a href="#root-node-n8n" id="root-node-n8n"></a>
+
+Each n8n cluster node contains a single root node that defines the main function of the cluster, such as running an AI agent or a chain. One or more sub-nodes attach to the root node to extend its features. Learn more: [Cluster nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes).
+
+### skill (n8n)
+
+A skill bundles instructions with the tools an agent needs for a specific task. Add a skill to an agent to reuse that behavior. Learn more: [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents#bundle-capabilities-with-skills).
+
+### sub-agent (n8n)
+
+A sub-agent is a published agent that another agent can hand work to. Use sub-agents when a task has separate parts and a specialized agent can handle each part better. Learn more: [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents#add-sub-agents).
+
+### sub-node (n8n) <a href="#sub-node-n8n" id="sub-node-n8n"></a>
+
+n8n cluster nodes consist of one or more sub-nodes connected to a root node. Sub-nodes extend the features of the root node, providing access to specific services or resources, such as chat models, memory, and vector stores, or offering specific types of dedicated processing, like a calculator. Learn more: [Sub-nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes).
+
+### tool approval (n8n)
+
+Tool approval is a human-in-the-loop check on an AI tool call. For a sensitive tool, the agent pauses and waits for a person to approve or reject the call before the tool runs. Learn more: [Build and manage agents](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/build-and-manage-agents#approve-tool-calls) and [Human-in-the-loop for AI tool calls](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/ai-examples/human-in-the-loop-for-tools).
+
+## Organize, run, and publish
+
+### draft (n8n)
+
+A draft is the working version of a workflow, or of an agent. n8n saves your edits to the draft automatically, and the draft doesn't run in production until you publish it. See also [publish](#publish-n8n). Learn more: [Save and publish workflows](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/save-and-publish-workflows).
+
+### evaluation (n8n) <a href="#evaluation-n8n" id="evaluation-n8n"></a>
+
+An evaluation tests a workflow by running a dataset of test cases through it and checking the results against expected outputs or metrics. Use evaluations to confirm that an AI workflow stays reliable as you change models, prompts, or logic. Learn more: [Evaluations](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/test-and-improve-ai-workflows/understand-why-to-test).
+
+### execution (n8n)
+
+An execution is a single run of a workflow. A manual execution starts when you run the workflow from the editor. A production execution starts automatically when a published workflow's trigger fires. Learn more: [Executions](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/understand-executions).
+
+### project (n8n) <a href="#project-n8n" id="project-n8n"></a>
+
+n8n projects let you separate workflows, variables, credentials, data tables, and agents into separate groups for easier management. Projects make it easier for teams to collaborate by sharing and compartmentalizing related resources. You assign each user a role in each project, so one person can have different access in different projects. Learn more: [RBAC projects](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/set-permissions-and-roles-rbac/organize-work-in-projects).
+
+### publish (n8n)
+
+n8n saves your changes to a workflow as you edit. When you're ready to put the workflow into production, you publish a version of it. The published version runs when its trigger fires. Learn more: [Save and publish workflows](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/save-and-publish-workflows).
+
+## Hosting, editions, and licensing
+
+### edition (n8n) <a href="#edition-n8n" id="edition-n8n"></a>
+
+When you self-host n8n, the edition is the variant of the software you run: Community, Registered Community, Business, or Enterprise. All editions share the same underlying product. The free Community edition runs without a license key. When you subscribe to a paid Business or Enterprise plan, you get a license key that unlocks the features for that plan. See also [plan](#plan-n8n) and [license](#license-n8n). Learn more: [Compare plans and editions](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/community-edition-features).
+
+### entitlement (n8n) <a href="#entitlement-n8n" id="entitlement-n8n"></a>
 
 In n8n, entitlements grant n8n instances access to plan-restricted features for a specific period of time.
 
-Floating entitlements are a pool of entitlements that you can distribute among various n8n instances. You can re-assign a floating entitlement to transfer its access to a different n8n instance. See also [license](#license-n8n) and [plan](#plan-n8n).
+Floating entitlements are a pool of entitlements that you can distribute among various n8n instances. You can reassign a floating entitlement to transfer its access to a different n8n instance. See also [license](#license-n8n) and [plan](#plan-n8n). Learn more: [License key](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/manage-your-license).
 
-#### evaluation (n8n) <a href="#evaluation-n8n" id="evaluation-n8n"></a>
+### instance (n8n)
 
-In n8n, evaluation allows you to tag and organize execution history and compare it against new executions. You can use this to understand how your workflow performs over time as you make changes. In particular, this is useful while developing AI-centered workflows.
+An instance is a single n8n installation, either hosted by n8n Cloud or self-hosted. Each instance has its own workflows, users, credentials, and settings. Learn more: [Choose how to use n8n](choose-how-to-use-n8n.md).
 
-#### expression (n8n) <a href="#expression-n8n" id="expression-n8n"></a>
+### license (n8n) <a href="#license-n8n" id="license-n8n"></a>
 
-In n8n, expressions allow you to populate node parameters dynamically by executing JavaScript code. Instead of providing a static value, you can use the n8n expression syntax to define the value using data from previous nodes, other workflows, or your n8n environment.
+License has two senses in n8n. First, it's the legal terms n8n uses to distribute its source code. Second, it's the license key that unlocks the features for a paid plan. When you self-host and subscribe to a paid Business or Enterprise plan, you add the license key to your instance to activate it. See also [entitlement](#entitlement-n8n) and [plan](#plan-n8n). Learn more: [License key](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/manage-your-license).
 
-#### LangChain <a href="#langchain" id="langchain"></a>
+### plan (n8n) <a href="#plan-n8n" id="plan-n8n"></a>
 
-LangChain is an AI-development framework used to work with large language models (LLMs). LangChain provides a standardized system for working with a wide variety of models and other resources and linking different components together to build complex applications.
+A plan is a commercial subscription tier, such as Starter, Pro, Business, or Enterprise. Your plan sets the features, usage limits, and price for your subscription, whether you use n8n Cloud or self-host. See also [edition](#edition-n8n) and [license](#license-n8n). Learn more: [Compare plans and editions](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/community-edition-features).
 
-#### Large language model (LLM) <a href="#large-language-model-llm" id="large-language-model-llm"></a>
+### queue mode (n8n)
 
-Large language models, or LLMs, are AI machine learning models designed to excel in natural language processing (NLP) tasks. They're built by training on large amounts of data to develop probabilistic models of language and other data.
-
-#### license (n8n) <a href="#license-n8n" id="license-n8n"></a>
-
-License has two senses in n8n. First, it's the legal terms n8n uses to distribute its source code. Second, it's the license key that unlocks the features for a paid plan. When you self-host and subscribe to a paid Business or Enterprise plan, you add the license key to your instance to activate it. See also [entitlement](#entitlement-n8n) and [plan](#plan-n8n).
-
-#### node (n8n) <a href="#node-n8n" id="node-n8n"></a>
-
-In n8n, nodes are individual components that you compose to create workflows. Nodes define when the workflow should run, allow you to fetch, send, and process data, can define flow control logic, and connect with external services.
-
-#### plan (n8n) <a href="#plan-n8n" id="plan-n8n"></a>
-
-A plan is a commercial subscription tier, such as Starter, Pro, Business, or Enterprise. Your plan sets the features, usage limits, and price for your subscription, whether you use n8n Cloud or self-host. See also [edition](#edition-n8n) and [license](#license-n8n).
-
-#### project (n8n) <a href="#project-n8n" id="project-n8n"></a>
-
-n8n projects allow you to separate workflows, variables, and credentials into separate groups for easier management. Projects make it easier for teams to collaborate by sharing and compartmentalizing related resources.
-
-#### root node (n8n) <a href="#root-node-n8n" id="root-node-n8n"></a>
-
-Each n8n cluster node contains a single root node that defines the main functionality of the cluster. One or more sub-nodes attach to the root node to extend its functionality.
-
-#### sub-node (n8n) <a href="#sub-node-n8n" id="sub-node-n8n"></a>
-
-n8n cluster nodes consist of one or more sub-nodes connected to a root node. Sub-nodes extend the functionality of the root node, providing access to specific services or resources or offering specific types of dedicated processing, like calculator functionality, for example.
-
-#### template (n8n) <a href="#template-n8n" id="template-n8n"></a>
-
-n8n templates are pre-built workflows designed by n8n and community members that you can import into your n8n instance. When using templates, you may need to fill in credentials and adjust the configuration to suit your needs.
-
-#### trigger node (n8n) <a href="#trigger-node-n8n" id="trigger-node-n8n"></a>
-
-A trigger node is a special node responsible for executing the workflow in response to certain conditions. All production workflows need at least one trigger to determine when the workflow should run.
-
-#### workflow (n8n) <a href="#workflow-n8n" id="workflow-n8n"></a>
-
-An n8n workflow is a collection of nodes that automate a process. Workflows begin execution when a trigger condition occurs and execute sequentially to achieve complex tasks.
+Queue mode is a self-hosted scaling setup. A main instance receives triggers and passes executions to worker instances, which run them in parallel. Learn more: [Queue mode](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/enable-queue-mode).
 
 ## Related resources
 
@@ -113656,8 +113888,6 @@ An n8n workflow is a collection of nodes that automate a process. Workflows begi
 * [Choose how to use n8n](choose-how-to-use-n8n.md)
 * [Build your first workflow](build-your-first-workflow.md)
 * [Learning paths](learning-paths.md)
-
-
 
 === https://docs.n8n.io/docs/get-started/build-your-first-workflow/
 
@@ -114378,7 +114608,7 @@ View n8n's [Advanced AI](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrat
 This Vector Store node has four modes: **Get Many**, **Insert Documents**, **Retrieve Documents (As Vector Store for Chain/Tool)**, and **Retrieve Documents (As Tool for AI Agent)**. The mode you select determines the operations you can perform with the node and what inputs and outputs are available.
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/builtin/cluster-nodes/vector-store-rerank-results/
-Enables [reranking](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#ai-reranking). If you enable this option, you must connect a reranking node to the vector store. That node will then rerank the results for queries. You can use this option with the `Get Many`, `Retrieve Documents (As Vector Store for Chain/Tool)` and `Retrieve Documents (As Tool for AI Agent)` modes.
+Enables reranking. If you enable this option, you must connect a reranking node, such as [Reranker Cohere](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.rerankercohere), to the vector store. That node will then rerank the results for queries. You can use this option with the `Get Many`, `Retrieve Documents (As Vector Store for Chain/Tool)` and `Retrieve Documents (As Tool for AI Agent)` modes.
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/builtin/cluster-nodes/tools-link/
 Refer to [LangChain's documentation on tools](https://langchain-ai.github.io/langgraphjs/how-tos/tool-calling/) for more information about tools in LangChain.
@@ -115236,7 +115466,7 @@ $("<node-name>").isExecuted
 ```
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/credential-only-intro/
-One of the most complex parts of setting up [API](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#api) calls is managing authentication. n8n provides [credentials](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#credential-n8n) support for operations and services beyond those supported by built-in nodes.
+One of the most complex parts of setting up API calls is managing authentication. n8n provides [credentials](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#credential-n8n) support for operations and services beyond those supported by built-in nodes.
 
 * Custom operations for existing nodes: n8n supplies hundreds of nodes to create workflows that link multiple products. However, some nodes don't include all the possible operations supported by a product's API. You can work around this by making a custom API call using the [HTTP Request](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.httprequest) node.
 * Credential-only nodes: n8n includes credential-only nodes. These are integrations where n8n supports setting up credentials for use in the HTTP Request node, but doesn't provide a standalone node. You can find a credential-only node in the nodes panel, as you would for any other integration.
@@ -115733,8 +115963,8 @@ OEM deployment of n8n requires a separate commercial agreement with n8n. [Contac
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.42.5
-Current `beta`: 2.43.2
+Current `stable`: 2.42.6
+Current `beta`: 2.43.3
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/tunnel/
