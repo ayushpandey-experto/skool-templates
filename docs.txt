@@ -546,7 +546,7 @@ Reusable body.
 | `8qoOEjsLz4RnydVBogNy` | invite-users | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/8qoOEjsLz4RnydVBogNy/" %}` | You can now invite other people to your n8n instance.  1. Sign in to your n8n instance with your owner account. On n8n C | docs/administer/manage-users-and-access/set-up-for-cloud.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
 | `XqCm6UXa2H3VaFURpo9h` | item-linking-code-node | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/XqCm6UXa2H3VaFURpo9h/" %}` | When referencing a previous node you need to know which item to use. This is solved by item linking. Most nodes automati | docs/build/work-with-data/reference-data/link-data-items/preserving-linking-in-the-code-node.md |
 | `kXGDlwgR3wBuMfOWaSGE` | item-linking-node-creators | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/kXGDlwgR3wBuMfOWaSGE/" %}` | {% hint style="info" %} **Programmatic-style nodes only**  This guidance applies to programmatic-style nodes. If you're  | docs/build/work-with-data/reference-data/link-data-items/item-linking-for-node-creators.md, docs/connect/create-nodes/build-your-node/reference/item-linking.md |
-| `7MPhMVJM8wcmiOf5zn2m` | langchain-doc-loaders-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/7MPhMVJM8wcmiOf5zn2m/" %}` | Refer to [LangChain's documentation on document loaders](https://js.langchain.com/docs/modules/data_connection/document_ | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentgithubloader.md |
+| `7MPhMVJM8wcmiOf5zn2m` | langchain-doc-loaders-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/7MPhMVJM8wcmiOf5zn2m/" %}` | Refer to [LangChain's documentation on document loaders](https://docs.langchain.com/oss/javascript/integrations/document | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentgithubloader.md |
 | `mjXhKRIw98UJ5hk9LWBl` | langchain-overview-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}` | View n8n's [Advanced AI](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai) documentation. | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/README.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainllm.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainretrievalqa/README.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainsummarization.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.code.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.databricksaiagent.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.information-extractor.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.microsoftagent365trigger.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.sentimentanalysis.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.text-classifier.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreazureaisearch.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoredatabricks/README.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreinmemory.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremilvus.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremongodbatlas.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreoracledb.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepgvector.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepinecone.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreqdrant.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreredis.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoresupabase.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreweaviate.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorezep.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentgithubloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsawsbedrock.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsazureopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingscohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsdatabricks.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglegemini.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglepalm.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglevertex.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingshuggingfaceinference.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingslemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsmistralcloud.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsollama.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsoracledb.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatanthropic.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatawsbedrock.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatazureopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatcohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatdatabricks.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatdeepseek.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglegemini.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglevertex.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgroq.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatlemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatminimax.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatmistralcloud.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatnvidia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatollama/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenai/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenrouter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatvercel.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatxaigrok.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmcohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmlemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmollama/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmopenhuggingfaceinference.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorybufferwindow/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymanager.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymongochat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymotorhead.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorypostgreschat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryredischat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryxata.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryzep.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.modelselector.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserautofixing.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparseritemlist.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserstructured/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.rerankercohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievercontextualcompression.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievermultiquery.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievervectorstore.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrieverworkflow.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplittercharactertextsplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplitterrecursivecharactertextsplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplittertokensplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcalculator.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcode.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolsearxng.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolserpapi.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolthink.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolvectorstore.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwikipedia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwolframalpha.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/README.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.mcpClient.md, docs/integrations/builtin/credentials/alibaba.md, docs/integrations/builtin/credentials/anthropic.md, docs/integrations/builtin/credentials/chroma.md, docs/integrations/builtin/credentials/cohere.md, docs/integrations/builtin/credentials/googleai.md, docs/integrations/builtin/credentials/groq.md, docs/integrations/builtin/credentials/huggingface.md, docs/integrations/builtin/credentials/lemonade.md, docs/integrations/builtin/credentials/milvus.md, docs/integrations/builtin/credentials/minimax.md, docs/integrations/builtin/credentials/mistral.md, docs/integrations/builtin/credentials/moonshot.md, docs/integrations/builtin/credentials/motorhead.md, docs/integrations/builtin/credentials/ollama.md, docs/integrations/builtin/credentials/pinecone.md, docs/integrations/builtin/credentials/qdrant.md, docs/integrations/builtin/credentials/serp.md, docs/integrations/builtin/credentials/weaviate.md, docs/integrations/builtin/credentials/wolframalpha.md, docs/integrations/builtin/credentials/xata.md, docs/integrations/builtin/credentials/zep.md |
 | `iFLUKG9zJaouigaM7IOo` | latest-next-version | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}` | {% hint style="info" %} **Stable and Beta versions**  n8n releases a new minor version most weeks. The `stable` version  | docs/changelog/README.md, docs/changelog/release-notes-0.x.md, docs/changelog/release-notes-1.x.md, docs/changelog/release-notes-2.x.md, docs/deploy/host-n8n/install-options/install-with-docker.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-digital-ocean.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-google-cloud-run.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-google-kubernetes.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-heroku.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-hetzner.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/use-docker-compose.md |
 | `JvN9TDUUWTwpWaT83YrH` | log-streaming | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/JvN9TDUUWTwpWaT83YrH/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_LOG_STREAMING_ | docs/administer/observe-and-log/stream-logs-to-external-systems.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/logs.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md |
@@ -3484,7 +3484,7 @@ This node doesn't support the [`NO_PROXY` environment variable](https://app.gitb
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's AWS Bedrock Chat Model documentation](https://js.langchain.com/docs/integrations/chat/bedrock/) for more information about the service.
+Refer to [LangChain's AWS Bedrock Chat Model documentation](https://docs.langchain.com/oss/javascript/integrations/chat/bedrock_converse) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -3530,8 +3530,6 @@ The Contextual Compression Retriever node improves the answers returned from [ve
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's contextual compression retriever documentation](https://js.langchain.com/docs/how_to/contextual_compression/) for more information about the service.
-
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
 [^1]: A vector store, or vector database, stores mathematical representations of information. Use with embeddings and retrievers to create a database that your AI can access when answering questions.
@@ -3564,8 +3562,6 @@ Refer to the [Xata credentials documentation](../../credentials/xata.md) for aut
 [Browse Xata node documentation integration templates](https://n8n.io/integrations/xata) or [search all templates](https://n8n.io/workflows/)
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
-
-Refer to [LangChain's Xata documentation](https://js.langchain.com/docs/integrations/memory/xata) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -3618,7 +3614,7 @@ Both options work with the **Classic** and the **Microsoft Foundry** endpoint ty
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's OpenAI embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/azure_openai/) for more information about the service.
+Refer to [LangChain's Azure OpenAI embeddings documentation](https://docs.langchain.com/oss/javascript/integrations/embeddings/azure_openai) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -3726,7 +3722,7 @@ This node doesn't support the [`NO_PROXY` environment variable](https://app.gitb
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's Azure OpenAI documentation](https://js.langchain.com/docs/integrations/chat/azure) for more information about the service.
+Refer to [LangChain's Azure OpenAI documentation](https://docs.langchain.com/oss/javascript/integrations/chat/azure) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -3849,7 +3845,7 @@ Refer to the [Cohere credentials documentation](../../credentials/cohere.md) for
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's Cohere documentation](https://js.langchain.com/docs/integrations/llms/cohere/) for more information about the service.
+Refer to [LangChain's Cohere documentation](https://docs.langchain.com/oss/javascript/integrations/llms/cohere) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -4057,7 +4053,7 @@ If you need to proxy your connection, as a work around, you can set up a dedicat
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's Google Gemini documentation](https://js.langchain.com/docs/integrations/chat/google_generativeai) for more information about the service.
+Refer to [LangChain's Google Gemini documentation](https://docs.langchain.com/oss/javascript/integrations/chat/google_generative_ai) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -4166,7 +4162,7 @@ Refer to the Ollama [Models Library documentation](https://ollama.com/library) f
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's Ollama documentation](https://js.langchain.com/docs/integrations/llms/ollama/) for more information about the service.
+Refer to [LangChain's Ollama documentation](https://docs.langchain.com/oss/javascript/integrations/llms/ollama) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -4290,7 +4286,7 @@ Refer to the [MongoDB credentials documentation](../../credentials/mongodb.md) f
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's MongoDB Chat Message History documentation](https://js.langchain.com/docs/integrations/memory/mongodb) for more information about the service.
+Refer to [LangChain's MongoDB short-term memory documentation](https://docs.langchain.com/oss/javascript/integrations/memory/mongodb-short-term-memory) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -4385,7 +4381,7 @@ Refer to the Ollama [Models Library documentation](https://ollama.com/library) f
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's Ollama Chat Model documentation](https://js.langchain.com/docs/integrations/chat/ollama/) for more information about the service.
+Refer to [LangChain's Ollama Chat Model documentation](https://docs.langchain.com/oss/javascript/integrations/chat/ollama) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -4459,11 +4455,33 @@ When configuring [Ollama credentials](../../../credentials/ollama.md), use `host
 
 ### If Ollama and n8n are running in separate Docker containers <a href="#if-ollama-and-n8n-are-running-in-separate-docker-containers" id="if-ollama-and-n8n-are-running-in-separate-docker-containers"></a>
 
-If both n8n and Ollama are running in Docker in separate containers, you can use Docker networking to connect them.
+Connect both containers to the same user-defined bridge network. For more information, refer to the Docker [bridge network driver documentation](https://docs.docker.com/engine/network/drivers/bridge/). The default Docker bridge network doesn't resolve container names. Using a container name on the default bridge can cause an `ENOTFOUND` error, even when Ollama is running.
 
-Configure Ollama to listen on all interfaces by binding to `0.0.0.0` inside of the container (the official images are already configured this way).
+Configure Ollama to listen on `0.0.0.0` inside its container. The official Ollama image already uses this setting.
 
-When configuring [Ollama credentials](../../../credentials/ollama.md), use the Ollama container's name as the host address instead of `localhost`. For example, if you call the Ollama container `my-ollama` and it listens on the default port 11434, you would set the base URL to `http://my-ollama:11434`.
+To connect existing containers, follow these steps. Replace `<ollama-container>` and `<n8n-container>` with the names of your existing containers. Run `docker ps` to find their names.
+
+1. Create a shared network:
+
+	```shell
+	docker network create n8n-ollama
+	```
+
+2. Connect the Ollama container:
+
+	```shell
+	docker network connect n8n-ollama <ollama-container>
+	```
+
+3. Connect the n8n container:
+
+	```shell
+	docker network connect n8n-ollama <n8n-container>
+	```
+
+4. In your [Ollama credentials](../../../credentials/ollama.md), set **Base URL** to `http://<ollama-container>:11434`. Replace `<ollama-container>` with your Ollama container's name. For example, for a container with the name `ollama`, use `http://ollama:11434`.
+
+Both containers must be running. Containers on the same network communicate directly, so you don't need to publish Ollama's port to the host.
 
 ### If Ollama and n8n are running in the same Docker container <a href="#if-ollama-and-n8n-are-running-in-the-same-docker-container" id="if-ollama-and-n8n-are-running-in-the-same-docker-container"></a>
 
@@ -4517,8 +4535,6 @@ Refer to the [Redis credentials documentation](../../credentials/redis.md) for a
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's Redis Chat Memory documentation](https://js.langchain.com/docs/integrations/memory/redis) for more information about the service.
-
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
 ## Single memory instance <a href="#single-memory-instance" id="single-memory-instance"></a>
@@ -4544,7 +4560,7 @@ The Auto-fixing Output Parser node wraps another output parser. If the first one
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's output parser documentation](https://js.langchain.com/docs/concepts/output_parsers/) for more information about the service.
+Refer to [LangChain's structured output documentation](https://docs.langchain.com/oss/javascript/langchain/structured-output) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -4585,8 +4601,6 @@ Refer to [HuggingFace's guide to inference](https://huggingface.co/inference-end
 [Browse Embeddings HuggingFace Inference node documentation integration templates](https://n8n.io/integrations/embeddings-hugging-face-inference) or [search all templates](https://n8n.io/workflows/)
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
-
-Refer to [Langchain's HuggingFace Inference embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/hugging_face_inference/) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -4721,7 +4735,7 @@ Configure the prompt filled with a unique ID, its version, and substitutable var
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's OpenAI documentation](https://js.langchain.com/docs/integrations/chat/openai/) for more information about the service.
+Refer to [LangChain's OpenAI documentation](https://docs.langchain.com/oss/javascript/integrations/chat/openai) for more information about the service.
 
 Refer to [OpenAI documentation](https://platform.openai.com/docs/api-reference/responses/create) for more information about the parameters.
 
@@ -4796,7 +4810,7 @@ Use [Google Vertex AI credentials](../../credentials/googlevertexai.md) to store
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
 
-Refer to [LangChain's Google Vertex AI documentation](https://js.langchain.com/docs/integrations/chat/google_vertex_ai/) for more information about the service.
+Refer to [LangChain's Google Vertex AI documentation](https://docs.langchain.com/oss/javascript/integrations/chat/google_vertex_ai) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -4946,8 +4960,6 @@ Refer to the [Zep credentials documentation](../../credentials/zep.md) for authe
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's Zep documentation](https://js.langchain.com/docs/integrations/memory/zep_memory) for more information about the service.
-
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
 ## Single memory instance <a href="#single-memory-instance" id="single-memory-instance"></a>
@@ -5025,7 +5037,7 @@ On this page, you'll find the node parameters for the Vector Store Retriever nod
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's vector store retriever documentation](https://js.langchain.com/docs/how_to/vectorstore_retriever/) for more information about the service.
+Refer to [LangChain's semantic search tutorial](https://docs.langchain.com/oss/javascript/langchain/knowledge-base) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -5178,7 +5190,7 @@ Refer to the [Anthropic credentials documentation](../../credentials/anthropic.m
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's Anthropic documentation](https://js.langchain.com/docs/integrations/chat/anthropic/) for more information about the service.
+Refer to [LangChain's Anthropic documentation](https://docs.langchain.com/oss/javascript/integrations/chat/anthropic) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -5209,7 +5221,7 @@ On this page, you'll find the node parameters for the Structured Output Parser n
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's output parser documentation](https://js.langchain.com/docs/concepts/output_parsers) for more information about the service.
+Refer to [LangChain's structured output documentation](https://docs.langchain.com/oss/javascript/langchain/structured-output) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -5336,8 +5348,6 @@ n8n dynamically loads models from the Google PaLM API and you'll only see the mo
 [Browse Embeddings Google PaLM node documentation integration templates](https://n8n.io/integrations/embeddings-google-palm) or [search all templates](https://n8n.io/workflows/)
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
-
-Refer to [Langchain's Google PaLM embeddings documentation](https://js.langchain.com/v0.2/docs/integrations/text_embedding/google_palm/) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -5485,7 +5495,7 @@ Tell n8n which workflow to call. You can choose either:
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's general retriever documentation](https://js.langchain.com/docs/concepts/retrievers/) for more information about the service.
+Refer to [LangChain's retriever documentation](https://docs.langchain.com/oss/javascript/integrations/retrievers) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -5515,7 +5525,7 @@ On this page, you'll find the node parameters for the Character Text Splitter no
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's text splitter documentation](https://js.langchain.com/docs/concepts/text_splitters) and [LangChain's API documentation for character text splitting](https://v03.api.js.langchain.com/classes/langchain.text_splitter.CharacterTextSplitter.html) for more information about the service.
+Refer to [LangChain's text splitter documentation](https://docs.langchain.com/oss/javascript/integrations/splitters) and [LangChain's API documentation for character text splitting](https://reference.langchain.com/javascript/langchain-textsplitters/CharacterTextSplitter) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -5691,7 +5701,7 @@ Learn more about available embedding models in [Google VertexAI embeddings API d
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's Google Generative AI embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/google_generativeai) for more information about the service.
+Refer to [LangChain's Google Vertex AI embeddings documentation](https://docs.langchain.com/oss/javascript/integrations/embeddings/google_vertex_ai) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -5755,7 +5765,7 @@ Learn more about available models in [Cohere's models documentation](https://doc
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Langchain's Cohere embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/cohere/) for more information about the service.
+Refer to [LangChain's Cohere embeddings documentation](https://docs.langchain.com/oss/javascript/integrations/embeddings/cohere) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -5934,7 +5944,7 @@ Use this option to set the probability the completion should use. Use a lower va
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [NVIDIA's build catalogue](https://build.nvidia.com/models) for the list of Nemotron models and to the [NIM documentation](https://docs.nvidia.com/nim/) for guidance on self-hosting. As the NVIDIA API is OpenAI-spec compatible, you can refer to [LangChain's OpenAI documentation](https://js.langchain.com/docs/integrations/chat/openai/) for more information about the underlying client.
+Refer to [NVIDIA's build catalogue](https://build.nvidia.com/models) for the list of Nemotron models and to the [NIM documentation](https://docs.nvidia.com/nim/) for guidance on self-hosting. As the NVIDIA API is OpenAI-spec compatible, you can refer to [LangChain's OpenAI documentation](https://docs.langchain.com/oss/javascript/integrations/chat/openai) for more information about the underlying client.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -5963,7 +5973,7 @@ On this page, you'll find the node parameters for the MultiQuery Retriever node,
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's retriever conceptual documentation](https://js.langchain.com/docs/concepts/retrievers) and [LangChain's multiquery retriever API documentation](https://v03.api.js.langchain.com/classes/langchain.retrievers_multi_query.MultiQueryRetriever.html) for more information about the service.
+Refer to [LangChain's retriever documentation](https://docs.langchain.com/oss/javascript/integrations/retrievers) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6162,7 +6172,7 @@ Refer to the [Serp credentials documentation](../../credentials/serp.md) for aut
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Serp's documentation](https://serpapi.com/search-api) for more information about the service. You can also view [LangChain's documentation on their Serp integration](https://js.langchain.com/docs/integrations/tools/serpapi/).
+Refer to [Serp's documentation](https://serpapi.com/search-api) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6191,7 +6201,7 @@ Refer to the [Wolfram|Alpha credentials documentation](../../credentials/wolfram
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Wolfram|Alpha's documentation](https://products.wolframalpha.com/api) for more information about the service. You can also view [LangChain's documentation on their WolframAlpha Tool](https://js.langchain.com/docs/integrations/tools/wolframalpha/).
+Refer to [Wolfram|Alpha's documentation](https://products.wolframalpha.com/api) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6281,7 +6291,7 @@ The quality and availability of search results depend on the configuration and h
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [SearXNG's documentation](https://docs.searxng.org/) for more information about the service. You can also view [LangChain's documentation on their SearXNG integration](https://python.langchain.com/docs/integrations/tools/searx_search/).
+Refer to [SearXNG's documentation](https://docs.searxng.org/) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6311,8 +6321,6 @@ Refer to the [Postgres credentials documentation](../../credentials/postgres.md)
 * **Context Window Length**: Enter the number of previous interactions to consider for context.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
-
-Refer to [LangChain's Postgres Chat Message History documentation](https://js.langchain.com/docs/integrations/memory/postgres) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6369,8 +6377,6 @@ Refer to the [Motorhead credentials documentation](../../credentials/motorhead.m
 [Browse Motorhead node documentation integration templates](https://n8n.io/integrations/motorhead) or [search all templates](https://n8n.io/workflows/)
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
-
-Refer to [LangChain's Motorhead documentation](https://js.langchain.com/docs/integrations/memory/motorhead_memory) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6456,7 +6462,7 @@ Learn more about available models in [Google Gemini's models documentation](http
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Langchain's Google Generative AI embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/google_generativeai) for more information about the service.
+Refer to [LangChain's Google Generative AI embeddings documentation](https://docs.langchain.com/oss/javascript/integrations/embeddings/google_generative_ai) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6495,7 +6501,7 @@ Learn more about available models in [Ollama's models documentation](https://oll
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Langchain's Ollama embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/ollama/) for more information about the service.
+Refer to [LangChain's Ollama embeddings documentation](https://docs.langchain.com/oss/javascript/integrations/embeddings/ollama) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6533,7 +6539,7 @@ Configure these parameters to configure the node:
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's Buffer Window Memory documentation](https://v03.api.js.langchain.com/classes/langchain.memory.BufferWindowMemory.html) for more information about the service.
+Refer to [LangChain's short-term memory documentation](https://docs.langchain.com/oss/javascript/langchain/short-term-memory) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6587,7 +6593,7 @@ Use the Item List Output Parser node to return a list of items with a specific l
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's output parser documentation](https://js.langchain.com/docs/concepts/output_parsers) for more information about the service.
+Refer to [LangChain's structured output documentation](https://docs.langchain.com/oss/javascript/langchain/structured-output) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6628,7 +6634,7 @@ Learn more about available models in [Mistral's models documentation](https://do
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Langchain's Mistral embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/mistralai) for more information about the service.
+Refer to [LangChain's Mistral embeddings documentation](https://docs.langchain.com/oss/javascript/integrations/embeddings/mistralai) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6658,7 +6664,7 @@ On this page, you'll find the node parameters for the Recursive Character Text S
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's text splitter documentation](https://js.langchain.com/docs/concepts/text_splitters) and [LangChain's recursively split by character documentation](https://v03.api.js.langchain.com/classes/langchain.text_splitter.RecursiveCharacterTextSplitter.html) for more information about the service.
+Refer to [LangChain's text splitter documentation](https://docs.langchain.com/oss/javascript/integrations/splitters) and [LangChain's recursively split by character documentation](https://reference.langchain.com/javascript/langchain-textsplitters/RecursiveCharacterTextSplitter) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6702,7 +6708,7 @@ Refer to the [Mistral Cloud credentials documentation](../../credentials/mistral
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's Mistral documentation](https://js.langchain.com/docs/integrations/chat/mistral) for more information about the service.
+Refer to [LangChain's Mistral documentation](https://docs.langchain.com/oss/javascript/integrations/chat/mistral) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -6849,8 +6855,6 @@ Refer to the [Hugging Face credentials documentation](../../credentials/huggingf
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's Hugging Face Inference Model documentation](https://js.langchain.com/docs/integrations/llms/huggingface_inference/) for more information about the service.
-
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
 === https://docs.n8n.io/docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatminimax/
@@ -6974,7 +6978,7 @@ Use this option to set the probability the completion should use. Use a lower va
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-As DeepSeek is API-compatible with OpenAI, you can refer to [LangChains's OpenAI documentation](https://js.langchain.com/docs/integrations/chat/openai/) for more information about the service.
+As DeepSeek is API-compatible with OpenAI, you can refer to [LangChain's OpenAI documentation](https://docs.langchain.com/oss/javascript/integrations/chat/openai) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -7049,7 +7053,7 @@ Use this option to set the probability the completion should use. Use a lower va
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-As the Vercel AI Gateway is API-compatible with OpenAI, you can refer to [LangChains's OpenAI documentation](https://js.langchain.com/docs/integrations/chat/openai/) for more information about the service.
+As the Vercel AI Gateway is API-compatible with OpenAI, you can refer to [LangChain's OpenAI documentation](https://docs.langchain.com/oss/javascript/integrations/chat/openai) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -7089,7 +7093,7 @@ Refer to the [OpenAI credentials documentation](../../credentials/openai.md) for
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's OpenAI embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/openai/) for more information about the service.
+Refer to [LangChain's OpenAI embeddings documentation](https://docs.langchain.com/oss/javascript/integrations/embeddings/openai) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -7119,7 +7123,7 @@ On this page, you'll find the node parameters for the Token Splitter node, and l
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's token documentation](https://js.langchain.com/docs/concepts/tokens/) and [LangChain's text splitter documentation](https://js.langchain.com/docs/concepts/text_splitters/) for more information about the service.
+Refer to [LangChain's split by token documentation](https://docs.langchain.com/oss/javascript/integrations/splitters/split_by_token) and [LangChain's text splitter documentation](https://docs.langchain.com/oss/javascript/integrations/splitters) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -7229,7 +7233,7 @@ Use this option to set the probability the completion should use. Use a lower va
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-As OpenRouter is API-compatible with OpenAI, you can refer to [LangChains's OpenAI documentation](https://js.langchain.com/docs/integrations/chat/openai/) for more information about the service.
+As OpenRouter is API-compatible with OpenAI, you can refer to [LangChain's OpenAI documentation](https://docs.langchain.com/oss/javascript/integrations/chat/openai) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -7339,7 +7343,7 @@ The following options specify the names of the columns to store the vectors and 
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's PGVector documentation](https://js.langchain.com/docs/integrations/vectorstores/pgvector) for more information about the service.
+Refer to [LangChain's PGVector documentation](https://docs.langchain.com/oss/javascript/integrations/vectorstores/pgvector) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -7464,7 +7468,7 @@ Connect the Pinecone Vector Store node to the AI agent's tool connector, so the 
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's Pinecone documentation](https://js.langchain.com/docs/integrations/vectorstores/pinecone/) for more information about the service.
+Refer to [LangChain's Pinecone documentation](https://docs.langchain.com/oss/javascript/integrations/vectorstores/pinecone) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -7599,7 +7603,7 @@ On n8n Cloud, these values are preset to 100MB (about 8,000 documents, depending
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChains's Memory Vector Store documentation](https://js.langchain.com/docs/integrations/vectorstores/memory/) for more information about the service.
+Refer to [LangChain's Memory Vector Store documentation](https://docs.langchain.com/oss/javascript/integrations/vectorstores/memory) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -7712,8 +7716,6 @@ The name of the matching function you set up in Supabase. If you follow the [Sup
 [Browse Supabase Vector Store node documentation integration templates](https://n8n.io/integrations/supabase-vector-store) or [search all templates](https://n8n.io/workflows/)
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
-
-Refer to [LangChain's Supabase documentation](https://js.langchain.com/docs/integrations/vectorstores/supabase/) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -7853,7 +7855,7 @@ Refer to:
 
 * [Redis Vector Search documentation](https://redis.io/docs/latest/develop/ai/search-and-query/vectors/) for more information about Redis vector capabilities.
 * [RediSearch documentation](https://redis.io/docs/latest/develop/interact/search-and-query/) for more information about RediSearch.
-* [LangChain's Redis Vector Store documentation](https://js.langchain.com/docs/integrations/vectorstores/redis) for more information about the service.
+* [LangChain's Redis Vector Store documentation](https://docs.langchain.com/oss/javascript/integrations/vectorstores/redis) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -8245,7 +8247,6 @@ For authentication troubleshooting including API key errors, refer to the [crede
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
 * [Azure AI Search Vector Search documentation](https://learn.microsoft.com/azure/search/vector-search-overview)
-* [LangChain Azure AI Search integration](https://js.langchain.com/docs/integrations/vectorstores/azure_aisearch)
 * [Azure AI Search REST API reference](https://learn.microsoft.com/rest/api/searchservice/)
 * [OData filter syntax for Azure AI Search](https://learn.microsoft.com/azure/search/search-query-odata-filter)
 
@@ -8279,9 +8280,9 @@ You can configure the summarization method and prompts. Select **Add Option** > 
 
 Options in **Summarization Method**:
 
-* **Map Reduce**: this is the recommended option. Learn more about [Map Reduce](https://js.langchain.com/v0.1/docs/modules/chains/document/map_reduce/) in the LangChain documentation.
-* **Refine**: learn more about [Refine](https://js.langchain.com/v0.1/docs/modules/chains/document/refine/) in the LangChain documentation.
-* **Stuff**: learn more about [Stuff](https://js.langchain.com/v0.1/docs/modules/chains/document/stuff/) in the LangChain documentation.
+* **Map Reduce**: summarizes each chunk on its own, then combines the summaries. This is the recommended option.
+* **Refine**: summarizes the first chunk, then updates that summary with each next chunk in turn.
+* **Stuff**: sends all the text to the model in one prompt. Use it for short text that fits in the model's context window.
 
 You can customize the **Individual Summary Prompts** and the **Final Prompt to Combine**. There are examples in the node. You must include the `"{text}"` placeholder.
 
@@ -8291,8 +8292,6 @@ You can customize the **Individual Summary Prompts** and the **Final Prompt to C
 [Browse Summarization Chain node documentation integration templates](https://n8n.io/integrations/summarization-chain) or [search all templates](https://n8n.io/workflows/)
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
-
-Refer to [LangChain's documentation on summarization](https://js.langchain.com/docs/tutorials/summarization/) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -8544,8 +8543,6 @@ Available in **Insert Documents** mode. Deletes all data from the collection bef
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's Milvus documentation](https://js.langchain.com/docs/integrations/vectorstores/milvus/) for more information about the service.
-
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
 [^1]: A vector store, or vector database, stores mathematical representations of information. Use with embeddings and retrievers to create a database that your AI can access when answering questions.
@@ -8629,7 +8626,7 @@ Add text to append after the tools list at the start of the conversation when th
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to LangChain's [ReAct Agents](https://js.langchain.com/docs/concepts/agents/) documentation for more information.
+Refer to LangChain's [ReAct Agents](https://docs.langchain.com/oss/javascript/langchain/agents) documentation for more information.
 
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
@@ -8971,7 +8968,7 @@ The Tools Agent uses external tools[^1] and APIs to perform actions and retrieve
 
 This agent has an enhanced ability to work with tools and can ensure a standard output format.
 
-The Tools Agent implements [Langchain's tool calling](https://js.langchain.com/docs/concepts/tool_calling/) interface. This interface describes available tools and their schemas. The agent also has improved output parsing capabilities, as it passes the parser to the model as a formatting tool.
+The Tools Agent implements [LangChain's tool calling](https://docs.langchain.com/oss/javascript/langchain/tools) interface. This interface describes available tools and their schemas. The agent also has improved output parsing capabilities, as it passes the parser to the model as a formatting tool.
 
 Refer to [AI Agent](./README.md) for more information on the AI Agent node itself.
 
@@ -9219,7 +9216,7 @@ The version of the node (v1) that has the agent type setting **will be removed f
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's documentation on agents](https://js.langchain.com/docs/concepts/agents/) for more information about the service.
+Refer to [LangChain's documentation on agents](https://docs.langchain.com/oss/javascript/langchain/agents) for more information about the service.
 
 New to AI Agents? Read the [n8n blog introduction to AI agents](https://blog.n8n.io/ai-agents/).
 
@@ -9531,7 +9528,7 @@ The [connections flow](https://n8n.io/workflows/2465-building-your-first-whatsap
 
 Refer to:
 
-* [LangChain's MongoDB Atlas Vector Search documentation](https://js.langchain.com/docs/integrations/vectorstores/mongodb_atlas) for more information about the service.
+* [LangChain's MongoDB Atlas Vector Search documentation](https://docs.langchain.com/oss/javascript/integrations/vectorstores/mongodb_atlas) for more information about the service.
 * [MongoDB Atlas Vector Search documentation](https://www.mongodb.com/docs/atlas/atlas-vector-search/) for more information about MongoDB Atlas Vector Search.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
@@ -9639,8 +9636,6 @@ This Operation Mode includes one **Node option**, the Metadata Filter
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9OWZ8hSpVqky4D4xRnYP/" %}
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
-
-Refer to [LangChain's Chroma documentation](https://js.langchain.com/oss/javascript/integrations/vectorstores/chroma) for more information about the service.
 
 View n8n's [Advanced AI](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai) documentation.
 
@@ -10257,8 +10252,6 @@ Disable this to configure your embeddings in Zep instead of in n8n.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's Zep documentation](https://js.langchain.com/docs/integrations/vectorstores/zep/) for more information about the service.
-
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
 [^1]: AI chains allow you to interact with large language models (LLMs) and other resources in sequences of calls to components. AI chains in n8n don't use persistent memory, so you can't use them to reference previous context (use AI agents for this).
@@ -10330,7 +10323,7 @@ For both the **Image** types, select the **Image Details** to control how the mo
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's documentation on Basic LLM Chains](https://js.langchain.com/docs/tutorials/llm_chain/) for more information about the service.
+Refer to [LangChain's models documentation](https://docs.langchain.com/oss/javascript/langchain/models) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -10373,7 +10366,7 @@ The question you want to ask.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's documentation on retrieval chains](https://js.langchain.com/docs/tutorials/rag/) for examples of how LangChain can use a vector store as a retriever.
+Refer to [LangChain's semantic search tutorial](https://docs.langchain.com/oss/javascript/langchain/knowledge-base) for an example of how LangChain uses a vector store as a retriever.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -10513,7 +10506,7 @@ This Operation Mode includes one **Node option**, the [Metadata Filter](n8n-node
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's Qdrant documentation](https://js.langchain.com/docs/integrations/vectorstores/qdrant) for more information about the service.
+Refer to [LangChain's Qdrant documentation](https://docs.langchain.com/oss/javascript/integrations/vectorstores/qdrant) for more information about the service.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mjXhKRIw98UJ5hk9LWBl/" %}
 
@@ -10731,7 +10724,7 @@ Whether to clear the collection or tenant before inserting new data.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [LangChain's Weaviate documentation](https://js.langchain.com/docs/integrations/vectorstores/weaviate/) for more information about the service.
+Refer to [LangChain's Weaviate documentation](https://docs.langchain.com/oss/javascript/integrations/vectorstores/weaviate) for more information about the service.
 
 Refer to [Weaviate Installation](https://docs.weaviate.io/deploy) for a self-hosted Weaviate Cluster.
 
@@ -15012,6 +15005,45 @@ This workaround temporarily disables your production workflow for testing. Your 
 3. Test your workflow using the test webhook URL.
 4. When you finish testing, click **Publish**. The production webhook URL should resume working.
 
+### Workflow doesn't run when WhatsApp messages arrive
+
+Meta sends WhatsApp webhooks for a WhatsApp Business Account (WABA) only to apps subscribed to that account. When you publish a workflow with a WhatsApp Trigger node, n8n registers your webhook URL on your Meta app. It doesn't subscribe your app to your WABA.
+
+If your app isn't subscribed to your WABA, messages sent to your WhatsApp number never reach n8n. The workflow doesn't start, and n8n shows no failed execution. A test event sent from the Meta App Dashboard can still reach n8n, so a passing test doesn't rule this out.
+
+To check the subscription and fix it:
+
+1. In the [Meta for Developers Apps dashboard](https://developers.facebook.com/apps/), select your app, then go to **WhatsApp** > **API Setup**. Copy the **WhatsApp Business Account ID**. Don't use the **Phone number ID**.
+2. Get an access token for the same Meta app as your n8n WhatsApp Trigger credential. The request in step 4 subscribes the app that the token belongs to. The token needs the `whatsapp_business_management` permission. For example, in Meta's [Graph API Explorer](https://developers.facebook.com/tools/explorer/), select your app under **Meta App**, add the permission, and generate a token.
+3. List the apps subscribed to your WABA:
+
+    ```bash
+    curl -X GET 'https://graph.facebook.com/<api-version>/<business-account-id>/subscribed_apps' \
+    	-H 'Authorization: Bearer <access-token>'
+    ```
+
+    Each subscribed app appears in the `data` array with its ID in `whatsapp_business_api_data.id`. Your app's ID is the **Client ID** in your n8n credential. If the response is `{"data": []}`, or none of the IDs match yours, your app isn't subscribed.
+
+    If your app's entry also has an `override_callback_uri`, Meta sends message webhooks for this WABA to that URL instead of to your app's webhook URL. An override set on the business phone number takes precedence over both. Check that the URL is the one you expect.
+4. Send this request only if your app isn't subscribed, or if its entry has an `override_callback_uri` you want to remove. A `POST` without a body subscribes your app and removes any `override_callback_uri` from its subscription. If your app is already subscribed and you want to keep its override, skip this step. This request doesn't need a body:
+
+    ```bash
+    curl -X POST 'https://graph.facebook.com/<api-version>/<business-account-id>/subscribed_apps' \
+    	-H 'Authorization: Bearer <access-token>'
+    ```
+
+    A successful request returns `{"success": true}`.
+5. If you sent the request in step 4, run the request from step 3 again. Check that your app's ID is in the list and that its entry has no `override_callback_uri`. If messages still go to the wrong URL, check for an override on the business phone number.
+6. Send a message to your WhatsApp number to test the published workflow.
+
+{% hint style="warning" %}
+**Don't delete the subscription to fix a webhook conflict**
+
+The `already has a webhook subscription` error refers to your app's webhook URL, not to your WABA subscription. Don't send a `DELETE` request to `subscribed_apps` to clear it. That request unsubscribes your app from your WABA, and Meta stops sending webhooks for that account.
+{% endhint %}
+
+Refer to Meta's [Subscribed Apps API](https://developers.facebook.com/documentation/business-messaging/whatsapp/reference/whatsapp-business-account/subscribed-apps-api/) reference and [Webhook overrides](https://developers.facebook.com/documentation/business-messaging/whatsapp/webhooks/override/) for more information.
+
 === https://docs.n8n.io/docs/integrations/builtin/trigger-nodes/n8n-nodes-base.toggltrigger/
 
 # Toggl Trigger node <a href="#toggl-trigger-node" id="toggl-trigger-node"></a>
@@ -16326,7 +16358,7 @@ You can use these credentials to authenticate the following nodes:
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
 
 - Create an [X developer](https://developer.x.com) account.
-- Create a [Twitter app](https://developer.x.com/en/docs/apps) or use the default project and app created when you sign up for the developer portal. Refer to each supported authentication method below for more details on the app's configuration.
+- Create a [Twitter app](https://docs.x.com/fundamentals/developer-apps) or use the default project and app created when you sign up for the developer portal. Refer to each supported authentication method below for more details on the app's configuration.
 
 ## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
 
@@ -16335,14 +16367,14 @@ You can use these credentials to authenticate the following nodes:
 {% hint style="warning" %}
 **Feature availability**
 
-n8n used to support an **OAuth** authentication method, which used X's [OAuth 1.0a](https://developer.x.com/en/docs/authentication/oauth-1-0a) authentication method. n8n deprecated this method from n8n 0.236.0, with the release of V2 of the X node.
+n8n used to support an **OAuth** authentication method, which used X's [OAuth 1.0a](https://docs.x.com/fundamentals/authentication/oauth-1-0a/overview) authentication method. n8n deprecated this method from n8n 0.236.0, with the release of V2 of the X node.
 {% endhint %}
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [X's API documentation](https://developer.x.com/en/docs/twitter-api) for more information about the service. Refer to [X's API authentication documentation](https://developer.x.com/en/docs/authentication/overview) for more information about authenticating with the service.
+Refer to [X's API documentation](https://docs.x.com/x-api/introduction) for more information about the service. Refer to [X's API authentication documentation](https://docs.x.com/fundamentals/authentication/overview) for more information about authenticating with the service.
 
-Refer to [Application-only Authentication](https://developer.twitter.com/en/docs/authentication/oauth-2-0/application-only) for more information about app-only authentication.
+Refer to [Application-only Authentication](https://docs.x.com/fundamentals/authentication/oauth-2-0/application-only) for more information about app-only authentication.
 
 ## Using OAuth2 <a href="#using-oauth2" id="using-oauth2"></a>
 
@@ -16368,7 +16400,7 @@ To generate your Client ID and Client Secret:
 8. Save your changes.
 1. Copy the **Client ID** and **Client Secret** displayed in X and add them to the corresponding fields in your n8n credential.
 
-Refer to X's [OAuth 2.0 Authentication documentation](https://developer.x.com/en/docs/authentication/oauth-2-0) for more information on working with this authentication method.
+Refer to X's [OAuth 2.0 Authentication documentation](https://docs.x.com/fundamentals/authentication/oauth-2-0/overview) for more information on working with this authentication method.
 
 {% hint style="info" %}
 **X rate limits**
@@ -16378,7 +16410,7 @@ This credential uses the OAuth 2.0 Bearer Token authentication method, so you'll
 
 ## X rate limits <a href="#x-rate-limits" id="x-rate-limits"></a>
 
-X has time-based rate limits per endpoint based on your developer access plan level. X calculates app rate limits and user rate limits independently. Refer to [Rate limits](https://developer.x.com/en/docs/twitter-api/rate-limits) for the access plan level rate limits and guidance on avoiding hitting them.
+X has time-based rate limits per endpoint based on your developer access plan level. X calculates app rate limits and user rate limits independently. Refer to [Rate limits](https://docs.x.com/fundamentals/rate-limits) for the access plan level rate limits and guidance on avoiding hitting them.
 
 Use the guidance below for calculating rate limits:
 
@@ -16387,7 +16419,7 @@ Use the guidance below for calculating rate limits:
 
 X calculates user rate limits and app rate limits independently.
 
-Refer to X's [Rate limits and authentication methods](https://developer.x.com/en/docs/twitter-api/rate-limits#auth) for more information about these rate limit types.
+Refer to X's [Rate limits and authentication methods](https://docs.x.com/fundamentals/rate-limits) for more information about these rate limit types.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/vercel/
 
@@ -22674,11 +22706,9 @@ Refer to [How do I configure Ollama server?](https://github.com/ollama/ollama/bl
 
 ### Ollama and self-hosted n8n <a href="#ollama-and-self-hosted-n8n" id="ollama-and-self-hosted-n8n"></a>
 
-If you're self-hosting n8n on the same machine as Ollama, you may run into issues if they're running in different containers.
+If Ollama and n8n run in separate Docker containers, connect both containers to the same user-defined bridge network. Set **Base URL** to `http://<ollama-container>:11434`. Replace `<ollama-container>` with your Ollama container's name. For example, for a container with the name `ollama`, use `http://ollama:11434`.
 
-For this setup, open a specific port for n8n to communicate with Ollama by setting the `OLLAMA_ORIGINS` variable or adjusting `OLLAMA_HOST` to an address the other container can access.
-
-Refer to Ollama's [How can I allow additional web origins to access Ollama?](https://docs.ollama.com/faq#how-can-i-allow-additional-web-origins-to-access-ollama) for more information.
+For the setup steps, refer to [Ollama Chat Model node common issues](../cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatollama/common-issues.md#if-ollama-and-n8n-are-running-in-separate-docker-containers).
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/monicacrm/
 
@@ -29182,7 +29212,7 @@ You can use these credentials to authenticate the following nodes:
 
 ## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
 
-- [Personal access token](#using-a-personal-access-token): a token tied to one Databricks user. Supported by the Databricks node only.
+- [Personal access token](#using-a-personal-access-token): a token tied to one Databricks user. Supported by the Databricks node only, and not by its **Lakebase** resource.
 - [OAuth2 with user login](#using-oauth2-with-user-login): the credential is connected by signing in to a Databricks account in the browser. Operations run with that user's permissions and appear in Databricks audit logs under their identity. Each user can create their own credential to run workflows under their own account. Databricks recommends this for attended, interactive use.
 - [OAuth2 with a service principal](#using-oauth2-service-principal): n8n authenticates as a service principal with a client ID and secret, without user interaction. Databricks recommends this for unattended scenarios, such as fully automated production workflows.
 
@@ -29196,6 +29226,7 @@ The identity the credential authenticates as (the signed-in user or the service 
 | Databricks SQL (Execute Query) | The **Databricks SQL access** entitlement and **CAN USE** on the SQL warehouse |
 | Job (Get, Get Run, Get Run Output) | **CAN VIEW** on the job |
 | Job (Run) | **CAN MANAGE RUN** on the job |
+| Lakebase | A Postgres role on the project's branch, granted to `authenticator`, with the table and function grants the operation needs. Refer to [Set up Lakebase for the Data API](#set-up-lakebase-for-the-data-api) |
 | Reading or writing Unity Catalog data | **USE CATALOG** on the catalog, **USE SCHEMA** on the schema, and **SELECT** on the tables or views you query. Functions and models also need **EXECUTE** |
 | Genie Agent (Databricks node) | **CAN RUN** on the Genie Agent and **CAN USE** on its SQL warehouse |
 | Genie One MCP server | **CAN RUN** on each Genie Agent that Genie One should answer from, and **CAN USE** on at least one SQL warehouse |
@@ -29374,6 +29405,76 @@ In your n8n credential:
 3. Set **Grant Type** to **Client Credentials (Service Principal)**. This is the default.
 4. Enter the **Client ID** you copied from the service principal.
 5. Enter the **Client Secret** you generated.
+
+## Set up Lakebase for the Data API
+
+The **Lakebase** resource on the [Databricks node](../app-nodes/n8n-nodes-base.databricks.md#lakebase-operations) reads and writes rows over the Lakebase Data API. The API is off by default, and the identity the credential authenticates as needs a Postgres role before any operation works. Do these steps in this order. The steps have different scopes. You turn on the Data API and the OpenAPI specification once for each project. You create the Postgres role and grant it to `authenticator` once for each branch. You install the `databricks_auth` extension and grant privileges on tables and functions once for each database the node reaches.
+
+{% hint style="info" %}
+**The Data API doesn't accept personal access tokens**
+
+The node checks this before it calls the Data API, so a personal access token fails with `Lakebase requires OAuth2 authentication` rather than anything from Databricks. Set the node's **Authentication** to **OAuth2** and use [OAuth2 with user login](#using-oauth2-with-user-login) or [OAuth2 with a service principal](#using-oauth2-service-principal).
+{% endhint %}
+
+### Enable the Data API
+
+In Databricks, open the Lakebase project, then select **App Backend** > **Data API** > **Enable Data API**. There's no API or CLI for this step. Databricks creates the `authenticator` role that the grant below needs.
+
+The API exposes only the `public` schema by default. Add any other schema you want to reach in the same settings.
+
+### Turn on the OpenAPI specification
+
+In the same project, select **Data API** > **API** > **Advanced settings** > **OpenAPI specification**, then select **Follow privileges**. Select **Save** to apply the change, which then takes effect right away.
+
+The node reads this document to list tables, functions, a table's columns, and a function's arguments. Without it, the **Table**, **Function**, and column lists show an error, and the **Columns** and **Arguments** mappers stay empty with a notice. Each message names the same setting:
+
+```text
+Data API > API > Advanced settings > OpenAPI specification
+```
+
+**Follow privileges** lists only the objects the connected identity can use. **Ignore privileges** lists everything, including the internal tables and functions Databricks creates.
+
+### Create a Postgres role for the n8n identity
+
+Run this in the Lakebase SQL editor, as an identity that can manage the project:
+
+```sql
+CREATE EXTENSION IF NOT EXISTS databricks_auth;
+SELECT databricks_create_role('<identity>', 'SERVICE_PRINCIPAL');
+```
+
+`<identity>` is the service principal's application ID. For a user identity, pass the email address and `'USER'` instead.
+
+A Postgres extension belongs to one database. Run `CREATE EXTENSION` in every database the node reaches. The role covers the whole branch, not one database. Run `databricks_create_role` again on any branch that has no role for the identity. Without a role there, the Data API returns `invalid token permissions` (`PGRST301`).
+
+Create the role this way even if the identity already appears in the Databricks UI. The next step works only on a role created with `databricks_create_role`.
+
+### Grant the role to authenticator
+
+`<role>` is the identity you passed to `databricks_create_role`. Use the application ID for a service principal, or the email address for a user.
+
+```sql
+GRANT "<role>" TO authenticator;
+```
+
+Run this as the identity that created the role. No role reaches the Data API without this grant. Operations fail with `permission denied to set role` until you run it.
+
+Then grant the role what it needs on your data, the same as any other Postgres role. Run these in each database that holds a table or function the node uses:
+
+```sql
+GRANT USAGE ON SCHEMA <schema> TO "<role>";
+GRANT SELECT, INSERT, UPDATE, DELETE ON <table> TO "<role>";
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA <schema> TO "<role>";
+GRANT EXECUTE ON FUNCTION <function>(<argument-types>) TO "<role>";
+```
+
+Schema `USAGE` matters for every schema except `public`. Without the sequence grant, an insert into a `serial` column fails with `permission denied for sequence`.
+
+{% hint style="warning" %}
+**Don't connect as the project owner**
+
+Databricks excludes the database owner from the Data API by design. The owner can't grant their own role to `authenticator`, and the grant fails with `permission denied to grant role`. Use an identity that doesn't own the project.
+{% endhint %}
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/formiotrigger/
 
@@ -57164,6 +57265,13 @@ Refer to [Databricks credentials](../credentials/databricks.md) for guidance on 
 	* Get Run
 	* Get Run Output
 	* Run
+* Lakebase
+	* Delete
+	* Execute Function
+	* Get Many
+	* Insert
+	* Insert or Update
+	* Update
 * Model Serving
 	* Query Endpoint
 * Unity Catalog
@@ -57317,6 +57425,203 @@ To send one message for the whole run instead of one for each task, add an [Aggr
 Every **Genie Agent** operation returns a `deep_link` field with the URL of the Genie Agent, or of the conversation, in your Databricks workspace. Use it to let users inspect the SQL and the results in Databricks.
 
 When the Databricks node runs as a tool of an [AI Agent](../cluster-nodes/root-nodes/n8n-nodes-langchain.agent/README.md) node (version 3 or later), the agent appends the **Powered by Databricks Genie** label after its reply. The agent skips the label when **Require Specific Output Format** is on. The label is required by Databricks for Genie-powered integrations. To make the reply link back to Databricks, tell the model in the system message to end its reply with a Markdown link whose text is **Explore in Databricks** and whose URL is the value of the `deep_link` field, for example `[Explore in Databricks](<deep_link value>)`.
+
+## Lakebase operations
+
+Use the **Lakebase** resource to read and write rows in a Lakebase database, the managed Postgres service inside Databricks. Every operation calls the [Lakebase Data API](https://docs.databricks.com/aws/en/oltp/projects/data-api) over HTTPS, so the node needs no connection string and no database driver.
+
+{% hint style="info" %}
+**One-time setup in Databricks**
+
+The Data API is off by default, and the identity the credential authenticates as needs a Postgres role on every branch the node reads or writes. Follow [Set up Lakebase for the Data API](../credentials/databricks.md#set-up-lakebase-for-the-data-api) before you use these operations. The Data API rejects personal access tokens, so set the node's **Authentication** to **OAuth2** and select a Databricks OAuth2 credential. **Authentication** defaults to **Access Token**.
+{% endhint %}
+
+### Select a table
+
+Every operation starts with the same five fields. Each offers a **From list** mode and a **By ID** mode.
+
+| Field | Value |
+|-------|-------|
+| **Project** | The Lakebase project. |
+| **Branch** | The branch of the project, for example `production`. Lakebase branches a database the way Git branches code. |
+| **Database** | The Postgres database on the branch, for example `databricks_postgres`. |
+| **Schema** | The schema that holds the table. `public` by default. The list offers only `public`, because Databricks has no endpoint that lists Postgres schemas. For another schema, select **By ID** and enter its name. The Data API has to expose that schema. |
+| **Table** | The table to work on. **Execute Function** takes a **Function** instead. |
+
+The table, column, and function lists, and the **Columns** and **Arguments** mappers, read the project's OpenAPI document. Until you turn on the **OpenAPI specification** setting of the Data API, the **Table**, **Function**, and column lists show an error, and the mappers stay empty with a notice. Select **By ID** and type the table or function name, enter column names with an expression under **Select Rows**, **Sort**, and **Output Columns**, and set **Specify Arguments** to **Using JSON**.
+
+The node reads and writes rows in tables that already exist. It doesn't create tables. Create the table in the Lakebase SQL editor first, and grant the credential's Postgres role access to it.
+
+The `orders` table in the examples below has an `id` primary key, plus `status` and `created_at` columns.
+
+### Get Many
+
+**Get Many** reads rows from the table and returns one item for each row.
+
+| Field | Description |
+|-------|-------------|
+| **Return All** | Whether to return every matching row. Off by default. |
+| **Limit** | Maximum number of rows to return. Default `50`. Shown only when **Return All** is off. |
+| **Select Rows** | The conditions a row has to meet. Select **Add Condition** and set a **Column Name or ID**, a **Condition**, and a **Value**. With no conditions, the node returns every row. |
+| **Combine Conditions** | **AND** requires every condition, **OR** requires any one of them. Default **AND**. |
+| **Sort** | The columns to order by. Select **Add Sort Rule** and set a **Column Name or ID** and a **Direction**. |
+| **Output Columns** (in **Options**) | The columns to return. Returns every column when empty. |
+
+The **Condition** list offers **Equals**, **Not Equals**, **Greater Than**, **Greater Than or Equal**, **Less Than**, **Less Than or Equal**, **Like**, **Like (Case-Insensitive)**, **Is Null**, and **Is Not Null**. The two **Like** conditions take `*` in place of `%`, and `_` for a single character. **Is Null** and **Is Not Null** take no value.
+
+The node reads up to 1,000 rows for each request and makes at most 100 requests. When 100 requests don't reach the end of the table, the node fails rather than hand back part of it:
+
+```text
+The table holds more rows than one run can read (100000)
+```
+
+Narrow the result with a condition under **Select Rows**, or turn off **Return All** and set a **Limit**. The cap counts requests, not rows, so a project's **Maximum rows** setting lowers the row count with it. At 500 rows for each request, the same error appears after 50,000 rows.
+
+Paging needs a total order. With **Return All** on, or a **Limit** above 1,000, the node adds the table's primary key after any **Sort** rules you set. Rows that tie on your sort then still come back in a fixed order, so no row arrives twice or gets skipped. A table with no primary key still pages, but in whatever order Postgres returns.
+
+#### Example: Read today's failed orders
+
+Set **Table** to `orders`. Under **Select Rows**, add `status` **Equals** `failed`, then add `created_at` **Greater Than or Equal** `{{ $now.startOf('day') }}`. Leave **Combine Conditions** as **AND**. Under **Sort**, add `created_at` **DESC**. Set **Limit** to `100`.
+
+### Insert
+
+**Insert** writes one row for each input item.
+
+Set **Mapping Column Mode** to choose where the values come from:
+
+* **Map Each Column Manually**: set each column in the node. A column you leave empty isn't sent, so Postgres applies its default.
+* **Map Automatically**: take the values from the input item, matching field names to column names. The node drops any field the table doesn't have, so an item carrying extra data from an earlier node still writes.
+
+The node returns the row as the database stored it, including values Postgres filled in, such as a serial ID or a `now()` default:
+
+```json
+{
+	"id": 42,
+	"sku": "SKU-1",
+	"name": "Widget",
+	"price": 9.5,
+	"created_at": "2026-10-08T09:14:22.418Z"
+}
+```
+
+The mapper marks a column required when it's `NOT NULL` and has no default.
+
+### Update
+
+**Update** changes the rows that match a column you choose.
+
+Set **Columns to match on** to the columns that identify the row, usually the primary key. The node matches rows where every one of those columns equals the value you give, and writes the other mapped columns to them. A composite primary key needs every one of its columns selected, or the update reaches more rows than you mean. A column you leave empty in **Map Each Column Manually** isn't sent, so it keeps its current value.
+
+The node returns one item for each updated row. A match that finds nothing returns no items, and isn't an error. The operation fails before sending anything when a matching column has no value, because that would update rows you didn't mean to.
+
+#### Example: Mark an order as shipped
+
+Set **Table** to `orders` and **Mapping Column Mode** to **Map Each Column Manually**. Set **Columns to match on** to `id`. Set `id` to `{{ $json.order_id }}` and `status` to `shipped`. Leave every other column empty, so only `status` changes.
+
+### Insert or Update
+
+**Insert or Update** writes the row, and updates the existing row instead when one already matches. It takes the same **Mapping Column Mode** field as **Insert**, so the values come from the node or from the input item.
+
+Set **Columns to match on** to the columns that decide whether the row is already there. Those columns have to carry a primary key or a unique constraint together, so a composite key needs every one of its columns selected. Without such a constraint the operation fails, and the node tells you to add one in Databricks.
+
+Unlike **Update**, the matching columns stay in the written row, because Postgres reads them from the row you send.
+
+A matching column with no value fails the operation. Postgres counts two nulls as different, so a null would never match an existing row and the operation would insert a duplicate on every run.
+
+The node returns one item for each row it wrote, new or updated.
+
+#### Example: Keep an orders table up to date
+
+Set **Table** to `orders` and **Columns to match on** to `id`, the table's primary key. Set **Mapping Column Mode** to **Map Automatically**, so each item's `id`, `status`, and `created_at` fields go to the columns of the same name. The node updates the row when the table already holds that `id`. The node writes a new row when it doesn't.
+
+### Delete
+
+**Delete** removes the rows that match the conditions. It takes the same **Select Rows** and **Combine Conditions** fields as **Get Many**.
+
+Delete needs at least one condition. The Data API applies no filter of its own, so an unfiltered request would empty the table with nothing to undo it. The node refuses to send one.
+
+The node returns one item for each deleted row, so a later node can record what the operation removed. When nothing matches, it returns one item, `{"success": true}`, because an empty response can't tell "nothing matched" apart from a project that doesn't echo the rows it removed. **Update** returns no items in the same case.
+
+{% hint style="warning" %}
+**Deleted rows don't come back**
+
+A delete through the Data API isn't wrapped in a transaction the workflow can roll back. Run the same conditions through **Get Many** first to see what the delete will match.
+{% endhint %}
+
+#### Example: Remove old canceled orders
+
+Set **Table** to `orders`. Under **Select Rows**, add `status` **Equals** `canceled`, then add `created_at` **Less Than** `{{ $now.minus({ days: 30 }) }}`. Leave **Combine Conditions** as **AND**.
+
+### Execute Function
+
+**Execute Function** calls a Postgres function in the schema and returns what it gives back. The role needs `EXECUTE` on the function.
+
+Set **Specify Arguments** to choose how to pass the arguments:
+
+* **Using Fields Below**: the node reads the function's signature and shows one field for each argument, with the required ones marked. Leave an optional argument blank to use the function's default. A boolean argument always sends its switch value, so it can't fall back to a default.
+* **Using JSON**: write a JSON object in **Arguments (JSON)** with one key for each argument, for example `{ "a": 1, "b": 2 }`.
+
+What the node returns depends on what the function returns:
+
+| The function returns | The node returns |
+|----------------------|------------------|
+| A single value | One item, with the value in `result` |
+| `TABLE (...)` or `SETOF <table>` | One item for each row, the same shape as **Get Many** |
+| `void` | One item, `{"success": true}` |
+
+#### Example: Call a function that returns a number
+
+For this function:
+
+```sql
+CREATE FUNCTION add_numbers(a integer, b integer)
+RETURNS integer
+LANGUAGE sql
+AS $$ SELECT a + b $$;
+```
+
+Select `add_numbers` in **Function**, keep **Specify Arguments** as **Using Fields Below**, and set `a` to `2` and `b` to `3`. The node returns:
+
+```json
+{
+	"result": 5
+}
+```
+
+### Row-level security
+
+Lakebase is real Postgres, so row-level security applies to the Data API. Postgres evaluates policies against the role of the connected Databricks identity, not against n8n.
+
+Two credentials pointed at the same table can return different rows, and both are correct. When you compare a workflow's output with what you see in the Databricks SQL editor, check which identity each one uses.
+
+Two things to know when a table returns nothing:
+
+* A table with row security turned on hides every row until a policy grants them. An empty result can mean no policy, not no data.
+* A role with `bypassrls` sees every row. The project owner holds `DATABRICKS_SUPERUSER`, so a query you run as the owner in the Databricks SQL editor shows every row even when no policy exists. The node runs as a different role, so the same table can look empty to it.
+
+### Common Lakebase issues
+
+| What you see | What to do |
+|--------------|------------|
+| `Lakebase requires OAuth2 authentication` | The node's **Authentication** is set to **Access Token**. The node checks this before it calls the Data API, so the **Table** and **Function** lists fail the same way. Set **Authentication** to **OAuth2** and select a Databricks OAuth2 credential. |
+| `invalid token permissions` (`PGRST301`) | The identity has no Postgres role on this branch. Create one with `databricks_create_role`. If the credential itself expired, reconnect it. |
+| `permission denied to set role` (`42501`) | The role isn't granted to the Data API. Run `GRANT "<role>" TO authenticator` as the role's creator. A project owner can't use the Data API at all, so connect a non-owner identity. |
+| `permission denied for table`, `for schema`, `for sequence`, or `for function` (`42501`) | The role reaches the Data API but holds no grant on the object. Run the data grants in [Set up Lakebase for the Data API](../credentials/databricks.md#set-up-lakebase-for-the-data-api). The node shows the same `authenticator` hint for every `42501`, so read the Postgres message rather than the hint. |
+| `new row violates row-level security policy` (`42501`) | A policy on the table rejects the write for this role. Add a policy that allows it, or write as a role the policy admits. |
+| A **Table**, **Function**, or column list that errors with `Turn on the "OpenAPI specification" setting of the Data API`, or an empty **Columns** mapper | The project doesn't serve its schema document. Turn on **Data API** > **API** > **Advanced settings** > **OpenAPI specification**. Until then, select **By ID** for **Table** and **Function**, and enter column names with an expression. |
+| An empty **Arguments** mapper | The schema document lists no arguments for the function. Either the function takes none, or the project doesn't serve the document. To pass arguments anyway, set **Specify Arguments** to **Using JSON**. |
+| `Could not find the table` (`PGRST205`) | Check the schema and table names, and that the Data API exposes the schema. Right after you create or alter a table, the same request can fail once and succeed on a retry while the API reloads its schema. |
+| `Could not find the '<column>' column of '<table>' in the schema cache` (`PGRST204`) | A mapped column isn't in the table. Reopen the node to refresh the column list. |
+| The schema isn't exposed (`PGRST106`) | Add the schema to the exposed schemas in the project's Data API settings. |
+| `there is no unique or exclusion constraint matching the ON CONFLICT specification` (`42P10`) | The columns in **Columns to match on** don't carry a unique constraint or primary key together. Select every column of the key, or add a constraint in Databricks. |
+| A duplicate key, a null in a `NOT NULL` column, a type mismatch, or a foreign key still in use | The write breaks a rule the table enforces. The node shows the Postgres message and names the column. Fix the value, or the table. |
+| `The branch has no read-write compute endpoint` | The branch serves reads only. Point the node at a branch with read-write compute. |
+| `At least one condition is required` | **Delete** refuses to run without a condition, because the Data API would empty the table. Add one under **Select Rows**. |
+| `The column to match on has no value: <columns>` | An item reached **Update** or **Insert or Update** with nothing in a match column. Check the field the mapper reads for those columns. |
+| `Could not find the function` (`PGRST202`) | **Execute Function** can't see the function. Check the name and that the role holds `EXECUTE` on it. |
+| A table missing from the **Table** list | With **Follow privileges** on, the schema document hides objects the role has no grant on. Grant the role access, or select **By ID** and type the name. |
+
+Refer to [Set up Lakebase for the Data API](../credentials/databricks.md#set-up-lakebase-for-the-data-api) for the role and grant steps these messages point at.
 
 ## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
 
@@ -59302,6 +59607,18 @@ If your workflow execution fails, you can retry the execution. To retry a failed
 2. On the execution you want to retry, select **Retry execution** <img src="../../.gitbook/assets/three-dot-options-menu (1).png" alt="Options menu icon" data-size="line">.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/yD2T5eTeZvZaPRV8P7MJ/" %}
+
+### What a retry runs
+
+When a node fails, a retry resumes from the saved execution state instead of starting the workflow again from the trigger:
+
+* n8n keeps the results of completed node runs. For example, if a workflow adds a row and then fails when sending a message, retrying the failed message node doesn't repeat the earlier row addition.
+* The failed node receives its saved input again and processes every item, including items it handled before it failed. For example, a node that sent some messages before it failed sends those messages again. Before you retry, check the target app for items the node already handled. To make retries safe, use operations that update existing records instead of creating new ones, such as **Append or Update Row** in the Google Sheets node or **Insert or Update** in the Postgres node.
+* If the failed node is an **Execute Sub-workflow** node, the retry runs the whole sub-workflow again from its start.
+* **Retry with original workflow** runs the workflow as it was when the execution ran. If you changed the workflow to fix the failure, choose **Retry with currently saved workflow**. Your changes apply only to nodes that haven't completed: completed nodes keep their saved results. Both options load your credentials when the retry runs, so if you only fixed a credential, **Retry with original workflow** already uses the fix.
+* Each retry is a new execution. If a retry fails, both the original execution and the failed retry show the retry option. Retry only one of them: retrying both can repeat work for the same data. To avoid extra failed retries, fix the cause before you retry.
+* You can't retry an execution that succeeded, even if it didn't do what you expected. For example, an **If** node may have sent every item to the false branch. Use **Copy to editor** to pin the saved data in the first node of your current workflow, then run the workflow again. That run repeats every node after the first, including actions such as adding rows or sending messages. Refer to [Debug and re-run past executions](debug-executions.md) for availability and steps.
+* You can retry an execution only while n8n still stores it. n8n doesn't store failed production executions if the workflow's [Save failed production executions](../../manage-workflows/configure-workflow-settings.md#save-failed-production-executions) setting is **Do not save**. For how long n8n keeps executions, refer to [Execution data](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/manage-execution-data) for self-hosted instances, or [Manage your data](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/configure-cloud/manage-your-data) for n8n Cloud.
 
 ## Load data from previous executions into your current workflow <a href="#load-data-from-previous-executions-into-your-current-workflow" id="load-data-from-previous-executions-into-your-current-workflow"></a>
 
@@ -72500,7 +72817,7 @@ If you need to do advanced AI memory management in your workflows, use the [Chat
 
 # LangChain in n8n
 
-n8n's AI nodes implement [LangChain](https://js.langchain.com/docs/get_started/introduction)'s JavaScript framework. Each node is configurable: choose your own agent, LLM, memory, and other components. You can connect any other n8n node to your LangChain nodes as normal, so you can combine LangChain logic with any other data source or service n8n supports.
+n8n's AI nodes use [LangChain](https://docs.langchain.com/oss/javascript/langchain/overview)'s JavaScript framework. Each node is configurable: choose your own agent, LLM, memory, and other components. You can connect any other n8n node to your LangChain nodes as normal, so you can combine LangChain logic with any other data source or service n8n supports.
 
 This page is for readers who already know LangChain and want to see how its concepts map onto n8n. If you're new to AI concepts, start with [Understand AI components](understand-ai-components/README.md) instead.
 
@@ -72565,7 +72882,7 @@ For information on using LangSmith itself, refer to [LangSmith's documentation](
 
 You don't need to know LangChain to use n8n, but these resources can help if you want to go deeper:
 
-* The [LangChain documentation](https://docs.langchain.com/docs/) covers key concepts and use cases. Choose [LangChain | Python](https://python.langchain.com/docs/get_started/introduction) or [LangChain | JavaScript](https://js.langchain.com/docs/get_started/introduction/) for quickstarts, code examples, and API documentation. LangChain also provides [code templates](https://github.com/langchain-ai/cookbooks) for Python and JavaScript, with ideas for common patterns and use cases.
+* The [LangChain documentation](https://docs.langchain.com/) covers key concepts and use cases. Choose [LangChain | Python](https://docs.langchain.com/oss/python/langchain/overview) or [LangChain | JavaScript](https://docs.langchain.com/oss/javascript/langchain/overview) for quickstarts, code examples, and API documentation. LangChain also provides [code templates](https://github.com/langchain-ai/cookbooks) for Python and JavaScript, with ideas for common patterns and use cases.
 * [What's LangChain?](https://www.ibm.com/think/topics/langchain) explains LangChain terminology in plain language, for a general audience.
 * This [YouTube series by Greg Kamradt](https://youtu.be/_v_fgW2SkkQ?si=8Z2tfAoXnN3lXU9s) works through the LangChain documentation with code examples.
 * Join the n8n [Discord](https://discord.gg/bAt54txhHg) to discuss LangChain and share your projects with the n8n community.
@@ -103428,7 +103745,7 @@ If you’ve ever accidentally removed a workflow, you’ll appreciate the new ar
 
 ### Contributors <a href="#contributors" id="contributors"></a>
 
-[LeaDevelop](https://github.com/LeaDevelop)\
+LeaDevelop\
 [ayhandoslu](https://github.com/ayhandoslu)\
 [valentina98](https://github.com/valentina98)
 
@@ -118932,7 +119249,7 @@ This node is useful when you:
 * Want to inject messages to the AI that look like user messages, to give the AI more context.
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/builtin/cluster-nodes/langchain-doc-loaders-link/
-Refer to [LangChain's documentation on document loaders](https://js.langchain.com/docs/modules/data_connection/document_loaders/integrations/file_loaders/) for more information about the service.
+Refer to [LangChain's documentation on document loaders](https://docs.langchain.com/oss/javascript/integrations/document_loaders/file_loaders) for more information about the service.
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/builtin/cluster-nodes/use-with-chat-trigger/
 You can use this agent with the [Chat Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.chattrigger) node. Attach a memory sub-node so that users can have an ongoing conversation with multiple queries. Memory doesn't persist between sessions.
@@ -118951,7 +119268,7 @@ You can use this agent with the [Chat Trigger](https://app.gitbook.com/s/BKcbOzI
 | `this.getInputData(inputIndex?, inputName?)` | Get data from the main input. |
 | `this.getNode()` | Get the current node. |
 | `this.getNodeOutputs()` | Get the outputs of the current node. |
-| `this.getExecutionCancelSignal()` | Use this to stop the execution of a function when the workflow stops. In most cases n8n handles this, but you may need to use it if building your own chains or agents. It replaces the [Cancelling a running LLMChain](https://js.langchain.com/docs/modules/chains/foundational/llm_chain#cancelling-a-running-llmchain) code that you'd use if building a LangChain application normally. |
+| `this.getExecutionCancelSignal()` | Use this to stop the execution of a function when the workflow stops. n8n handles this in most workflows, but you may need it if you build your own chains or agents. |
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/builtin/cluster-nodes/langchain-root-nodes/vector-store-metadata-filter/
 Available in **Get Many** mode. When searching for data, use this to match with metadata associated with the document.
@@ -120214,8 +120531,8 @@ OEM deployment of n8n requires a separate commercial agreement with n8n. [Contac
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.44.5
-Current `beta`: 2.45.1
+Current `stable`: 2.44.6
+Current `beta`: 2.45.2
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/tunnel/
