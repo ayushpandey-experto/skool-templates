@@ -63467,14 +63467,25 @@ n8n execute --id <ID>
 You can publish or unpublish a workflow using the CLI. In n8n 2.0, the [previous active/inactive toggle](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v20-breaking-changes) was replaced by a publish/unpublish model. Use `publish:workflow` and `unpublish:workflow` to change a workflow's published state from the CLI.
 
 {% hint style="info" %}
-**Restart required**
+**When changes take effect**
 
-These commands operate on your n8n database. If you execute them while n8n is running, the changes don't take effect until you restart n8n.
+These commands change your n8n database. When a running n8n applies the change depends on your setup:
+
+- If `N8N_USE_WORKFLOW_PUBLICATION_SERVICE` is on (the default), the running instance applies the change without a restart. It checks for changes every 15 seconds by default. If n8n isn't running, it applies the change when it starts.
+- Otherwise, restart n8n to apply the change.
 {% endhint %}
 
 ### Publish a workflow <a href="#publish-a-workflow" id="publish-a-workflow"></a>
 
 Use `publish:workflow` to publish a workflow by its ID. You can optionally publish a specific historical version by passing its `versionId`.
+
+`publish:workflow` runs the same checks as publishing from the editor, such as node validation and webhook path conflicts. If the workflow fails a check, the command doesn't publish it and prints the reason.
+
+{% hint style="warning" %}
+**Republishing a published workflow**
+
+If `N8N_USE_WORKFLOW_PUBLICATION_SERVICE` is `false`, `publish:workflow` refuses to publish a workflow that's already published. Unpublish the workflow first, publish it again, and then restart n8n.
+{% endhint %}
 
 Command flags:
 
@@ -63545,6 +63556,8 @@ Set the active status of a workflow by its ID to true:
 ```bash
 n8n update:workflow --id=<ID> --active=true
 ```
+
+This publishes the current version of the workflow, with the same checks and limits as [`publish:workflow`](#publish-a-workflow).
 
 Set the active status to false for all the workflows:
 
@@ -77051,7 +77064,11 @@ Before submitting your node for review by n8n, you must:
 * Publish your node to npm using a GitHub Actions workflow with provenance, as described in **Publishing to npm**. n8n will fetch it from there for final vetting.
 
 ## Ready to submit? <a href="#ready-to-submit" id="ready-to-submit"></a>
-If your node meets all the above requirements, sign up or log in to the [n8n Creator Portal](https://creators.n8n.io/nodes) and submit your node for verification. Note that n8n reserves the right to reject nodes that compete with any of n8n's paid features, especially enterprise functionality.
+If your node meets all the above requirements, sign up or log in to the [n8n Creator Portal](https://creators.n8n.io/nodes) and submit your node for verification.
+
+Reviews can take up to four weeks. n8n emails you as your submission moves through review.
+
+Note that n8n reserves the right to reject nodes that compete with any of n8n's paid features, especially enterprise functionality.
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/integrations/openai-api-issues/
 ## The service is receiving too many requests from you <a href="#the-service-is-receiving-too-many-requests-from-you" id="the-service-is-receiving-too-many-requests-from-you"></a>
@@ -77480,8 +77497,8 @@ newItem = {
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.45.5
-Current `beta`: 2.46.1
+Current `stable`: 2.45.6
+Current `beta`: 2.46.2
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/tunnel/
@@ -85570,6 +85587,13 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 * PATCH version when making backward-compatible bug fixes.
 
 
+## `n8n 2.45.4` Filter migration report workflows by project <a href="#n8n2454" id="n8n2454"></a>
+
+**Released:** 2026-10-26
+
+* [Filter migration report workflows by project](https://github.com/n8n-io/n8n/pull/41949): The migration report's rule detail page now includes a Project filter alongside existing filters like owner and status. Admins can filter affected workflows by a specific team project, or view all personal-project workflows together, making it easier to see which teams own workflows impacted by an upcoming breaking change.
+
+
 ## `n8n 2.44` Add Google Vertex AI credentials support, plus 21 other features <a href="#n8n244" id="n8n244"></a>
 
 **Released:** 2026-10-13
@@ -86029,6 +86053,10 @@ n8n uses [semantic versioning](https://semver.org/). All version numbers are in 
 
 **Released:** 2025-12-08
 
+{% hint style="warning" %}
+n8n 2.0 is a major release with breaking changes. Before you upgrade, read [n8n 2.0 breaking changes](v20-breaking-changes.md) and use the [migration tool](v20-migration-tool.md) to find the workflows and settings that need attention.
+{% endhint %}
+
 * [Automizy Node Remove Automizy node](https://github.com/n8n-io/n8n/pull/22471): The Automizy node and its credential type have been removed from n8n, as the Automizy service has been shut down. Workflows using the Automizy node will need to be updated to use an alternative service, since it is no longer available in n8n.
 * [Crowd.dev node Remove crowd.dev node](https://github.com/n8n-io/n8n/pull/22469): The crowd.dev node, crowd.dev Trigger node, and crowd.dev API credential have been removed from n8n, as the third-party crowd.dev service has been retired. Workflows using these nodes will no longer function and should be migrated away from crowd.dev integrations.
 * [Kitemaker node Remove Kitemaker node](https://github.com/n8n-io/n8n/pull/22470): The Kitemaker node and its credential have been removed from n8n, as the Kitemaker service has been retired by its provider. Workflows using the Kitemaker node will no longer function and should be migrated away from this integration.
@@ -86185,7 +86213,14 @@ We would like to take a moment to express our gratitude to all of our users for 
 
 # v3.0 Breaking changes
 
-n8n 3.0 is releasing soon, and with it come some important changes. This document highlights breaking changes and actions you should take to prepare for the transition. These updates improve security, simplify configuration, and remove legacy features.
+
+n8n 3.0 comes with some important changes. This document highlights breaking changes and actions you should take to prepare for the transition. These updates improve security, simplify configuration, and remove legacy features.
+
+{% hint style="info" %}
+**Early access release**
+
+n8n 3.0.0 is currently available as an early access release.
+{% endhint %}
 
 Before you upgrade, use the [n8n 3.0 migration tool](v30-migration-tool.md) at **Settings > Migration Report**. It lists the workflows and instance settings on your own instance that need attention, so you don't have to check every change on this page by hand.
 
@@ -86243,7 +86278,7 @@ n8n 3.0 removes older nodes, modes, and helpers that newer patterns have replace
 
 ### Removed nodes <a href="#removed-nodes" id="removed-nodes"></a>
 
-Workflows that use a removed node fail. Before you upgrade, **Settings > Migration Report** lists the affected workflows on your instance, and the [Deprecated and versioned nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/deprecated-nodes) page tracks the final version of every node listed here.
+Workflows that use a removed node fail when they run. If such a workflow is published, it doesn't activate when n8n 3.0 starts, so its triggers stop firing. Before you upgrade, **Settings > Migration Report** lists the affected workflows on your instance, and the [Deprecated and versioned nodes](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/deprecated-nodes) page tracks the final version of every node listed here.
 
 - **Function** node (legacy)
 - **Function Item** node (legacy)
@@ -86266,7 +86301,7 @@ Workflows that use a removed node fail. Before you upgrade, **Settings > Migrati
 - **Motorhead** and **Zep** memory nodes
 - **Binary Input Loader**, **JSON Input Loader**, and **GitHub Document Loader** nodes
 - **In Memory Vector Store Insert**, **In Memory Vector Store Load**, **Pinecone: Insert**, **Pinecone: Load**, **Supabase: Insert**, **Supabase: Load**, **Zep Vector Store**, **Zep Vector Store: Insert**, and **Zep Vector Store: Load** nodes
-- **AI Transform** node: n8n automatically migrates existing nodes to [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) nodes on upgrade, keeping the same generated JavaScript, so existing workflows keep working without changes. You can no longer add an **AI Transform** node. Write JavaScript directly in the **Code** node instead.
+- **AI Transform** node: You can no longer add or run an **AI Transform** node. To keep existing nodes working, migrate them to [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) nodes from **Settings > Migration Report**. The migration keeps the generated JavaScript, so the workflow runs the same code. n8n doesn't migrate these nodes on upgrade. If an **AI Transform** node never generated code, the report can't migrate it, so replace it with a **Code** node by hand.
 - **What to do:** Migrate affected workflows to the current recommended alternatives before upgrading:
   - Replace **Function** and **Function Item** nodes with the [Code](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.code) node. Use **Run Once for All Items** mode in place of **Function**, and **Run Once for Each Item** mode in place of **Function Item**.
   - Replace the **Item Lists** node with the node matching the operation you use: [Split Out](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.splitout), [Aggregate](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.aggregate), [Sort](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.sort), [Limit](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.limit), [Remove Duplicates](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.removeduplicates), or [Summarize](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.summarize).
@@ -86373,11 +86408,11 @@ Turning the feature on used to be permanent. From n8n 2.40.3, you can turn it of
 
 ### Slack API credential requires the signing secret
 
-n8n 3.0 requires a signing secret on the **Slack API** credential. The [Slack Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/trigger-nodes/n8n-nodes-base.slacktrigger) node verifies incoming requests against it, and version 2 of the node makes the field required.
+n8n 3.0 requires a signing secret on the **Slack API** credential. The [Slack Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/trigger-nodes/n8n-nodes-base.slacktrigger) node verifies incoming requests against it. When a workflow with a **Slack Trigger** node is published or n8n starts, n8n checks the credential and stops the activation if the secret is missing.
 
 When you need to act depends on how you use the credential:
 
-- **Workflows with a Slack Trigger node:** Add the secret before you upgrade. Until you do, the workflow fails to publish and the trigger responds with a 401 error.
+- **Workflows with a Slack Trigger node:** Add the secret before you upgrade. Until you do, the workflow fails to publish. Already published workflows don't activate after the upgrade and stop receiving events.
 - **Every other Slack workflow:** Add the secret the next time you edit the credential.
 
 {% hint style="warning" %}
@@ -86389,7 +86424,7 @@ Workflows with a **Slack Trigger** node stop receiving events until the **Slack 
 **What to do:**
 
 1. In your Slack app settings, open **Basic Information** and copy the **Signing Secret**.
-2. Paste it into the **Slack API** [credential](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/credentials/slack) in n8n.
+2. Paste it into the **Signature Secret** field of the **Slack API** [credential](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/credentials/slack) in n8n.
 3. Publish the workflow again.
 
 ### Larger default SSRF block list
@@ -86451,6 +86486,8 @@ If `~/.n8n/binaryData` and `~/.n8n/storage` both exist, n8n 3.0 stops with an er
   - **What to do:** Remove the variable. Review the memory you give to workers, which now also handle manual executions. See [Enable queue mode](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/enable-queue-mode).
 - **`N8N_DB_PING_TIMEOUT` removed.** n8n no longer falls back to this variable.
   - **What to do:** Set `DB_PING_TIMEOUT_MS` instead. See the [database environment variables](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/database).
+- **`N8N_WORKFLOW_TAGS_DISABLED` removed.** Workflow tags are always on, and n8n ignores the variable. n8n kept your tag data while tags were off, so existing tags appear again in the editor and API after the upgrade.
+  - **What to do:** Remove the variable from your configuration.
 
 ## Retired capabilities <a href="#retired-capabilities" id="retired-capabilities"></a>
 
@@ -97038,7 +97075,7 @@ Refer to this [example workflow](https://n8n.io/workflows/1943-comparing-data-wi
 
 You can call one workflow from another workflow. This allows you to build modular, microservice-like workflows, as part of your workflow's [flow logic](./). It can also help if your workflow grows large enough to encounter [memory issues](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/fix-memory-issues). Creating sub-workflows uses the [Execute Workflow](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflow) and [Execute Sub-workflow Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger) nodes.
 
-Sub-wokflow executions don't count towards your plan's monthly execution or active workflow limits.
+Sub-workflow executions don't count towards your plan's monthly execution or active workflow limits.
 
 ## Set up and use a sub-workflow <a href="#set-up-and-use-a-sub-workflow" id="set-up-and-use-a-sub-workflow"></a>
 
@@ -116791,6 +116828,8 @@ This section assumes the following:
 # Endpoint reference
 
 This section is the complete endpoint reference for n8n's public REST API, generated from the OpenAPI specification. Use it to explore every available operation and view the parameters, request bodies, and response schemas.
+
+The reference matches the latest stable n8n release. If you run a beta version, newer endpoints might not appear here yet.
 
 {% hint style="info" %}
 **Feature availability**
