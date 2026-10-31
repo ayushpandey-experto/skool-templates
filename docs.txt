@@ -117,7 +117,7 @@
 | `9DXSTQsxYGisAV8xk6p4` | sso-saml-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}` | {% hint style="info" %} **Feature availability**  * Available on Business and Enterprise plans. * You need to be an inst | docs/administer/manage-users-and-access/verify-user-identity/use-saml/README.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/manage-users-with-saml.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/set-up-saml.md |
 | `X6JM1Mgg5iwvZLDpGEB0` | sub-node-expression-resolution | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/X6JM1Mgg5iwvZLDpGEB0/" %}` | {% hint style="info" %} **Parameter resolution in sub-nodes**  Sub-nodes behave differently to other nodes when processi | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreazureaisearch.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoredatabricks/README.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreinmemory.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremilvus.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremongodbatlas.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreoracledb.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepgvector.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepinecone.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreqdrant.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreredis.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoresupabase.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreweaviate.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorezep.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentgithubloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsawsbedrock.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsazureopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingscohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsdatabricks.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglegemini.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglepalm.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglevertex.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingshuggingfaceinference.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingslemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsmistralcloud.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsollama.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsoracledb.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatalibabacloud.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatanthropic.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatawsbedrock.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatazureopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatcohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatdatabricks.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatdeepseek.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglegemini.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglevertex.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgroq.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatlemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatminimax.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatmistralcloud.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatmoonshot.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatnvidia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatollama/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenai/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenrouter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatvercel.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatxaigrok.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmcohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmlemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmollama/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmopenhuggingfaceinference.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorybufferwindow/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorylakebasechat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymanager.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymongochat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymotorhead.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorypostgreschat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryredischat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryxata.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryzep.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.modelselector.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserautofixing.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparseritemlist.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserstructured/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.rerankercohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievercontextualcompression.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievermultiquery.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievervectorstore.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrieverworkflow.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplittercharactertextsplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplitterrecursivecharactertextsplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplittertokensplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolaiagent.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcalculator.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcode.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolsearxng.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolserpapi.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolthink.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolvectorstore.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwikipedia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwolframalpha.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow.md |
 | `E552YKHiixJuJvzEdrBI` | submit-community-node | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/E552YKHiixJuJvzEdrBI/" %}` | Community nodes are npm packages, hosted in the npm registry.  When building a node to submit to the community node repo | docs/connect/create-nodes/deploy-your-node/submit-community-nodes.md, docs/integrations/community-nodes/building-community-nodes.md |
-| `mr8LBJxxxIAFYHNPNKU2` | submit-templates | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mr8LBJxxxIAFYHNPNKU2/" %}` | You can submit your workflows to n8n's template library.  n8n is working on a creator program, and developing a marketpl | docs/build/ways-of-building-workflows/use-templates.md, docs/contribute/README.md, docs/deploy/host-n8n/configure-n8n/basic-configuration/configuration-examples/configure-a-custom-workflow-templates-library.md |
+| `mr8LBJxxxIAFYHNPNKU2` | submit-templates | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mr8LBJxxxIAFYHNPNKU2/" %}` | You can submit your workflows to n8n's template library.  n8n is working on a creator program, and developing a marketpl | docs/deploy/host-n8n/configure-n8n/basic-configuration/configuration-examples/configure-a-custom-workflow-templates-library.md |
 | `edKlUxnfiRMq38CujuFv` | subworkflow-data-flow | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/edKlUxnfiRMq38CujuFv/" %}` | As an example, imagine you have an Execute Sub-workflow node in **Workflow A**. The Execute Sub-workflow node calls anot | docs/build/flow-logic/break-workflows-into-smaller-parts.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger.md |
 | `wlwT5JcWyWTecnDN6aul` | subworkflow-usage | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/wlwT5JcWyWTecnDN6aul/" %}` | ### Create the sub-workflow <a href="#create-the-sub-workflow" id="create-the-sub-workflow"></a>   1. Create a new workf | docs/build/flow-logic/break-workflows-into-smaller-parts.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger.md |
 | `I9ftZ1V1rwx3OrFOh0bT` | suggested-pod-resources | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/I9ftZ1V1rwx3OrFOh0bT/" %}` | \| Tier \| RAM \| CPU \| \| :--- \| :--- \| :--- \| \| Starter \| 320mb \| 10 millicore burstable \| \| Pro (10k executi | docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-azure.md, docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-google-kubernetes.md |
@@ -1290,7 +1290,7 @@ The following video demonstrates the steps of sharing workflows on the community
 
 ## Contribute a workflow template <a href="#contribute-a-workflow-template" id="contribute-a-workflow-template"></a>
 
-{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mr8LBJxxxIAFYHNPNKU2/" %}
+Share a workflow that solves a practical problem in the [n8n template library](https://n8n.io/workflows/). See [Create workflow templates](create-templates/README.md) for quality requirements, testing, and submission steps.
 
 ## Build a node <a href="#build-a-node" id="build-a-node"></a>
 
@@ -1329,6 +1329,318 @@ Here's how this works:
 
 If you run into a problem while using n8n, see [Where to get help](where-to-get-help.md) for the support options available for your plan.
 
+=== https://docs.n8n.io/docs/contribute/create-templates/workflow-template-ideas/
+
+# Workflow template ideas
+
+This page lists use cases and suggested scopes you can build into workflow templates for the n8n template library.
+
+Use these ideas as starting points. You can submit other use cases, roles, and app combinations. An idea's inclusion here doesn't guarantee approval.
+
+## Develop an idea into a template
+
+Search the [template library](https://n8n.io/workflows/) to see what already exists. Define the audience, expected input, useful output, and setup requirements before building.
+
+A generic prompt or a single API call needs context and reusable logic to become a useful template. Add the logic the use case needs, such as validation, matching, routing, duplicate handling, or review. Keep the workflow focused.
+
+For AI workflows, define what the model should do, how you check its output, and what happens when it can't produce a useful answer.
+
+## Explore use cases
+
+The examples describe possible scope, not tested workflows. Check service APIs, permissions, and dependencies before choosing apps. Build and test the implementation yourself.
+
+| Audience | Template idea | Suggested scope |
+| --- | --- | --- |
+| Product | Notify teams about matching database users | Filter users by documented criteria, send only new matches to Slack, and record which users you've already reported. |
+| Marketing, AI | Draft a blog post from a new YouTube video | Retrieve the transcript, create a source-linked draft, and route it for review before publishing. |
+| Product, Support, Sales | Classify support requests and create follow-up tasks | Classify tickets, route uncertain results for review, and create linked tasks without duplicates. |
+| Sales | Find decision-makers at listed companies | Read a company list, match relevant roles, record sources, and flag missing or uncertain matches. |
+| AI, Engineering | Generate code from a structured request | Check the request, generate code for a defined task, and return checks and limitations for human review. |
+| AI, Engineering | Convert vector files | Accept supported input formats, convert files through a configured service, and report unsupported formats or failures. |
+| AI, Engineering | Convert code between supported languages | Accept a defined source and target language, preserve input context, and return output with validation results for review. |
+| Support | Send a digest of n8n release notes | Track new releases, format relevant changes, and send a digest without repeating releases already reported. |
+| Sales, Marketing | Find companies from matching job postings | Filter new postings by role and location, deduplicate companies, and save source links to Google Sheets. |
+| IT Ops | Support employee account recovery | Verify an authorized recovery request, route it through the required approval, and record the outcome. |
+| Product | Collect product ideas through a Slack command | Check the submission, store its context in Notion, and return a confirmation with a link to the idea. |
+| Sales | Find competitors for a list of companies | Resolve company identities, gather sourced competitor suggestions, and flag uncertain matches for review. |
+| Marketing | Monitor competitor reviews | Collect new reviews, group them by theme, and send a source-linked summary without repeating older reviews. |
+| Sales, AI | Draft outreach from a lead's social activity | Collect relevant source material, draft a message grounded in it, and require review before sending. |
+| Sales | Sync Calendly meetings with a CRM | Match attendees to contacts, create meeting records, and handle reschedules or cancellations without duplicate events. |
+| Marketing, AI | Turn customer reviews into follow-up tasks | Identify actionable feedback, link each task to its source, and avoid creating repeated tasks. |
+| Sales | Sync Notion call notes with Pipedrive | Match the contact or deal, map note fields, and report notes without a matching record. |
+| Marketing, Sales | Score newsletter subscribers and route leads | Enrich subscribers, apply documented scoring rules, and sync qualifying contacts without duplicate records. |
+| Sales, Product, Support | Look up CRM contacts through Slack | Check the requester's access, resolve ambiguous matches, and return only the permitted contact fields. |
+| Engineering | Sync Freshdesk tickets with Linear | Map ticket status and ownership, link corresponding records, and prevent updates from looping between systems. |
+| Marketing, AI | Draft social posts and queue them in Buffer | Generate posts from defined source material, send them for review, and queue approved versions. |
+| Sales | Review inactive CRM deals | Check deal activity against a defined period, flag stale records, and confirm which deals should close. |
+| Marketing, Engineering, Product | Combine data sources in Google Sheets | Normalize source fields, merge by stable keys, and report conflicts or missing records. |
+| IT Ops | Remove a departing employee's access | Process an approved departure, revoke the intended access, and record each completed or failed action. |
+| IT Ops | Onboard an employee | Use an approved employee record to provision the required resources and report incomplete setup. |
+| Marketing | Republish approved WordPress content | Map content to the destination format, preserve source attribution, and prevent duplicate publication. |
+| Product | Send a product signup summary | Apply a clear reporting window and timezone, calculate signup totals, and send a summary including zero-signup days. |
+| Product, Customer Success, Support | Manage subscription changes | Process subscription events, update the relevant CRM records, and handle repeated or out-of-order notifications. |
+| Sales | Update CRM contacts through Slack | Check permissions, show the proposed change for confirmation, and record the update result. |
+| Sales, Marketing, AI | Score new CRM contacts with AI | Use defined criteria and source fields, check structured scores, and route uncertain results for review. |
+| Sales, AI | Enrich Typeform leads with AI | Use reliable source data, preserve its provenance, and flag unsupported information instead of inventing contact details. |
+| Sales, Marketing, AI | Draft replies to social comments | Classify incoming comments, draft relevant replies, and route sensitive or uncertain replies for review. |
+| Sales | Respond to high-priority form submissions | Check required fields, apply priority rules, and route the response while handling duplicate submissions. |
+| Sales, Support, Marketing | Prepare personalized follow-ups and reminders | Draft messages from recorded interactions, schedule reminders, and stop reminders when the contact responds. |
+| Sales, Marketing | Verify and enrich email addresses in a spreadsheet | Check addresses, record enrichment sources and confidence, and separate failures from confirmed results. |
+| Product, Sales, Customer Success, Ops | Answer database questions through Slack | Restrict queries to permitted read operations, enforce access, and return traceable results or a clear failure. |
+| Marketing, Product, Sales | Route website interest to the relevant sales owner | Match permitted visitor signals to CRM records, apply routing rules, and prepare relevant outreach for review. |
+| Sales, AI | Classify contacts by function and seniority | Use defined categories, keep source fields, and flag low-confidence classifications for review. |
+| Sales | Track companies that raise funding | Collect sourced funding events, resolve company identities, and add only new matches to the tracking sheet. |
+| Marketing | Enrich a company list with traffic estimates | Match domains, retrieve estimates for a defined period, and report missing data and service limits. |
+| Sales | Notify sales about high-priority leads | Check incoming form data, apply explicit priority rules, and send the owner a notification with the CRM record. |
+| Product, Sales, AI | Turn lead responses into follow-up tasks | Classify incoming replies, map them to the right deal, and create the next action with a source link. |
+| Sales | Enrich a company list with AI | Use sourced company information, check the output schema, and separate missing data from confirmed facts. |
+| Engineering, Product | Route bug reports to the right team | Classify issue content, apply explicit routing rules, and leave uncertain reports for triage. |
+| Ops, Engineering | Transfer files from FTP to Google Drive | Track transferred files, handle naming conflicts, and report incomplete uploads without re-uploading completed files. |
+| Sales | Analyze hiring activity for target companies | Match job postings to listed companies, summarize relevant needs, and save source links with the analysis. |
+| Marketing, AI | Draft pages from structured content records | Create useful drafts from distinct source records, detect duplicates, and require editorial review before publication. |
+| Marketing | Draft a post from a new product record | Select relevant source fields, create a grounded draft, and send it for review with a link to the original record. |
+| Product | Sync product feedback requests with Linear | Map request fields and status, link corresponding records, and prevent repeated updates or sync loops. |
+| Sales | Enrich a list of professional profile URLs | Resolve permitted profile data, record sources, and flag unavailable or ambiguous profiles. |
+| Sales | Verify email addresses with fallback providers | Try providers in a defined order, normalize results, and stop once the workflow reaches a documented confidence level. |
+| Marketing | Send a newsletter subscriber summary | Calculate additions for a defined period, handle empty results, and send totals without exposing subscriber details. |
+| Marketing | Sync incoming leads to HubSpot | Check lead fields, match existing contacts, and create or update records while recording sync failures. |
+| Sales, Customer Success | Sync HubSpot contacts with Google Sheets | Map fields by stable contact IDs, document sync direction, and handle updates without adding duplicate rows. |
+
+## Prepare your submission
+
+Use the [submission guidelines](submission-guidelines.md) to check originality, testing, and setup requirements. Add [sticky notes](sticky-note-guidelines.md) that explain the workflow you tested, then [submit your template](README.md#submit-a-template). The Creator portal generates the title and description automatically.
+
+## Related resources
+
+* [Create workflow templates](./)
+* [Template submission guidelines](submission-guidelines.md)
+* [Add sticky notes to templates](sticky-note-guidelines.md)
+
+=== https://docs.n8n.io/docs/contribute/create-templates/README/
+
+# Create workflow templates
+
+Share workflows that solve practical problems by submitting them to the [n8n template library](https://n8n.io/workflows/).
+
+A template includes a workflow and setup instructions. Someone else should be able to import it, follow your instructions, and get the expected result. The Creator portal generates the title and description automatically, so you don't need to write them.
+
+## In this section
+
+* [Template submission guidelines](submission-guidelines.md): Choose a useful problem, review your work, and test the workflow before submitting it.
+* [Add sticky notes to templates](sticky-note-guidelines.md): Explain the workflow and its setup on the canvas.
+* [Workflow template ideas](workflow-template-ideas.md): Find a use case and develop it into a complete solution.
+
+## Submit a template
+
+You need a [creator account](https://creators.n8n.io/register) to submit templates.
+
+1. Check the [submission guidelines](submission-guidelines.md) and choose a use case that adds value to the library.
+2. Build your workflow. Give nodes descriptive names and add the required sticky notes.
+3. Test the workflow from start to finish, including the paths and inputs your instructions cover.
+4. [Export the workflow as JSON](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/export-and-import). Remove secrets, personal data, and references to your accounts or resources.
+5. Import that JSON into a fresh workflow. Follow your own setup instructions and check the output. Fix any missing setup steps or dependencies.
+6. Sign in to the [Creator portal](https://creators.n8n.io/login) and submit the JSON.
+
+{% hint style="info" %}
+**AI assistance is welcome**
+
+You can use AI to build workflows and write setup instructions. Review every part, test the exported workflow, and correct the instructions before submitting. You're responsible for the result.
+{% endhint %}
+
+## Template review
+
+n8n reviews submissions against the template guidelines. If your template meets the requirements, n8n publishes it and sends you a confirmation email. If it needs changes, n8n sends feedback by email.
+
+New creators can submit one template at a time. Wait until n8n approves your submission before submitting another.
+
+After n8n approves three of your templates, you become a verified creator. Verified creators receive a badge on the website, can submit batches of up to four templates, and can offer paid templates.
+
+## Offer paid templates
+
+You must become a verified creator before you can offer paid templates. The same quality, testing, and documentation requirements apply to free and paid templates.
+
+You're responsible for tracking payments, delivering the template after someone buys it, and keeping it accessible to the buyer. Failure to deliver a paid template may result in account suspension or a ban.
+
+## Related resources
+
+* [Contribute to n8n](../)
+* [Create nodes](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/create-nodes)
+* [Contribution guide for n8n Docs](../contribution-guide-for-n8n-docs/README.md)
+* [Where to get help](../where-to-get-help.md)
+* [Use workflow templates](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/use-templates)
+
+=== https://docs.n8n.io/docs/contribute/create-templates/submission-guidelines/
+
+# Template submission guidelines
+
+Submit an original workflow that solves a practical problem, works after import, and includes the instructions someone else needs to use it.
+
+## Solve a useful problem
+
+Choose a specific audience and outcome. Explain the task your template handles and why that result helps someone.
+
+Search the [template library](https://n8n.io/workflows/) before building. Your submission should fill a gap or make a meaningful improvement to an existing approach.
+
+Templates need enough substance to save someone work. A trigger connected to a single action, a default chatbot, or an isolated API request needs more context or reusable logic to qualify. Develop the use case into a complete solution with the data handling, decisions, and setup it needs.
+
+For example, a lead intake template could check required fields, match existing contacts, route qualified leads, and explain what happens to incomplete records.
+
+Keep the design as simple as the problem allows. Extra nodes don't make a template more useful. A focused workflow can qualify when it handles a specific problem well and provides reusable logic or knowledge.
+
+## Review AI-assisted submissions
+
+{% hint style="info" %}
+**You can submit AI-assisted work**
+
+AI-generated workflows, code, expressions, and setup instructions are welcome when you've reviewed and tested them. You must understand how the workflow works and verify its claims before submitting it.
+{% endhint %}
+
+Review generated content before submitting:
+
+* Check every node, expression, code snippet, API endpoint, and dependency. Replace invented or unsupported settings.
+* Run the workflow with representative inputs. Inspect its output, including AI responses, for accuracy and usefulness.
+* Make setup instructions match the workflow. Remove invented features, unsupported claims, generic filler, and instructions that don't apply.
+* Check links, spelling, and formatting. Rewrite text that repeats information without helping someone set up or use the template.
+
+Don't submit unreviewed AI output, batches of near-identical workflows, or generic examples with only names, prompts, or app choices changed. These are low-effort submissions and don't meet the quality requirements.
+
+## Submit original work
+
+Create your own templates. Don't copy, repost, or resell someone else's workflow. Plagiarism will result in an account ban.
+
+If you build on an existing approach, explain your contribution and respect the original author's license and permissions.
+
+## Make the workflow understandable
+
+* Rename nodes to describe their purpose, such as **Find existing contact** or **Route incomplete submissions**.
+* Arrange nodes so someone can follow the execution path.
+* Follow the [sticky note guidelines](sticky-note-guidelines.md). Include one overview note and section notes where required.
+* Group values that someone needs to change in an **Edit Fields (Set)** node where practical. Explain each value and use clear placeholders.
+* Document required credentials, permissions, external resources, and dependencies such as sub-workflows or community nodes.
+* Include the error handling the use case needs. Explain any limitations or failures that need manual attention.
+
+Assume someone may be new to n8n. Keep required instructions with the template. You can link to detailed setup guides or add a walkthrough video as a supplement.
+
+## Remove secrets and personal data
+
+Use n8n credentials for authentication. Don't put API keys, tokens, passwords, or authorization headers directly in node parameters, code, expressions, or notes.
+
+Review the exported JSON before submitting. Remove credential names and IDs that identify your accounts, personal email addresses, chat IDs, spreadsheet IDs, webhook URLs, and other private resource identifiers. Replace configurable resource values with placeholders and explain how to set them.
+
+Remove sensitive sample data and pinned execution data. If the workflow needs example input, include synthetic data that demonstrates the expected structure.
+
+## Test the template before submitting
+
+Test the exact JSON file you plan to submit. A workflow that works only in your original instance isn't ready to share.
+
+1. Export the workflow and import it into a fresh workflow.
+2. Follow your setup instructions. Configure credentials and replace placeholders without relying on resources that only exist in your original workflow.
+3. Run the complete workflow with representative input. Check the final result in the destination service, not just the execution status.
+4. Exercise each documented branch. Test missing or empty input, multiple records, and failed service calls where they apply.
+5. Check repeated executions. If the workflow creates records or sends notifications, verify its duplicate handling or explain when repeats can occur.
+6. Confirm that it doesn't depend on pinned data, missing sub-workflows, local files, or undocumented resources.
+7. For AI workflows, try varied inputs and review the responses. Confirm that downstream nodes handle the output format and expected failure cases.
+8. Check that sticky notes, screenshots, and setup links match the tested workflow.
+
+State the n8n release you tested when the workflow depends on version-specific behavior. Document required node or package versions and any platform restrictions. Don't claim compatibility you haven't checked.
+
+## Templates with community nodes
+
+Name each community node package, document the version you tested, and link to its installation instructions.
+
+Verified community nodes can be available on n8n Cloud and self-hosted instances. Unverified community nodes require self-hosting. Check the specific package and describe the supported setup. See [community node installation](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/community-nodes/installation-and-management).
+
+Include an image of the workflow when it uses community nodes, so someone can inspect the workflow if its preview doesn't render. Include the setup instructions in text as well.
+
+## Submission checklist
+
+Before you [submit your template](README.md#submit-a-template), confirm that:
+
+* It solves a practical problem and adds value to the library.
+* It's your work, and you've reviewed any AI-generated content.
+* The exported JSON works after import using the documented setup steps.
+* You've checked the expected output and relevant failure cases.
+* You've removed secrets, private identifiers, and sensitive data.
+* Nodes have descriptive names, and the required sticky notes are present.
+* The workflow's sticky notes state requirements, setup steps, behavior, and limitations.
+
+## Related resources
+
+* [Create workflow templates](./)
+* [Add sticky notes to templates](sticky-note-guidelines.md)
+* [Workflow template ideas](workflow-template-ideas.md)
+
+=== https://docs.n8n.io/docs/contribute/create-templates/sticky-note-guidelines/
+
+# Add sticky notes to templates
+
+Add sticky notes so someone can understand and set up your template from the workflow canvas.
+
+Every template needs one main overview note. Workflows with four or more nodes also need section notes to group related nodes.
+
+## Add the main overview note
+
+Use one yellow note in the top-left corner of the canvas. Write from 100 to 300 words, using these headings:
+
+* `### How it works`: Describe the workflow's purpose, trigger, main stages, and result.
+* `### Setup`: List required accounts, credentials, resources, and values to configure.
+* `### Customization`: Optionally explain useful changes someone can make.
+
+Include enough context to use the workflow without returning to its library page. Explain who the workflow helps, what result it produces, and any limitations.
+
+The following example shows the structure for a lead intake workflow. Adapt it to your own workflow and verify every step:
+
+```markdown
+### How it works
+This workflow helps sales teams process incoming lead submissions. It checks
+required fields, looks for an existing contact in HubSpot, and creates or updates
+the matching record. It sends qualified leads to a Slack channel and routes
+incomplete submissions for manual review. Matching by email avoids creating a
+new contact for each submission from the same person.
+
+### Setup
+Connect your HubSpot and Slack credentials. In the configuration node, set the
+destination channel and qualification rules. Configure your form to send the
+expected name, email, and company fields to the workflow. Send a test submission,
+then check the HubSpot record and Slack message. Also test an existing contact
+and a submission with a missing email address before publishing the workflow.
+
+### Customization
+Change the qualification rules to match your sales process. Update the Slack
+message to include the fields your team uses when reviewing a lead.
+```
+
+## Group nodes with section notes
+
+For workflows with four or more nodes, use white notes, which appear gray in dark mode, to identify related sections.
+
+Stretch each note to cover or label multiple nodes. Use a short heading, such as `## Validate lead data`, and up to two short lines if needed. Keep each note under 50 words.
+
+Explain the purpose of a section rather than repeating every node's name. For example, describe which records qualify for a branch or why the workflow transforms a field.
+
+## Highlight a critical setup step
+
+You can use a red warning note to draw attention to a critical setup step or risk. Place it over the single node it concerns. Use warning notes sparingly.
+
+For example, explain that someone must change a destination before running a node that sends a message.
+
+## Add a walkthrough video
+
+For a complex workflow or one aimed at beginners, consider adding a setup video. Keep the written instructions complete so someone can use the template without watching it.
+
+To embed a YouTube video in a sticky note, use `@[youtube](RScKsGfrhs4)`, replacing `RScKsGfrhs4` with your video's ID.
+
+You can use the [sticky note generation workflow](https://n8n.io/workflows/13868-auto-generate-sticky-notes-and-rename-nodes/) as a starting point. Review generated notes and node names against these requirements before submitting.
+
+After adding notes, follow the [submission guidelines](submission-guidelines.md) to test and prepare your template.
+
+## Related resources
+
+* [Create workflow templates](./)
+* [Template submission guidelines](submission-guidelines.md)
+* [Workflow template ideas](workflow-template-ideas.md)
+* [Add notes and documentation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/workflow-components/add-notes-and-documentation)
+
 === https://docs.n8n.io/docs/contribute/SUMMARY/
 # Table of contents
 
@@ -1337,6 +1649,10 @@ If you run into a problem while using n8n, see [Where to get help](where-to-get-
   * [Style guide for n8n Docs](contribution-guide-for-n8n-docs/style-guide-for-n8n-docs.md)
   * [Terminology and naming](contribution-guide-for-n8n-docs/terminology.md)
   * [Agent-friendly docs](contribution-guide-for-n8n-docs/agent-friendly-docs.md)
+* [Create workflow templates](create-templates/README.md)
+  * [Template submission guidelines](create-templates/submission-guidelines.md)
+  * [Add sticky notes to templates](create-templates/sticky-note-guidelines.md)
+  * [Workflow template ideas](create-templates/workflow-template-ideas.md)
 * [Where to get help](where-to-get-help.md)
 
 === https://docs.n8n.io/docs/contribute/contribution-guide-for-n8n-docs/terminology/
@@ -33639,7 +33955,7 @@ Use user login when the agent should run with your own Databricks permissions an
 
 1. Have a Databricks account admin [create a custom OAuth app connection](../../credentials/databricks.md#create-a-custom-oauth-app-connection) and share its client ID and secret with you.
 2. In the n8n credential, enter the workspace URL as the **Host**, set **Grant Type** to **Authorization Code (User)**, and enter the **Client ID** and **Client Secret**.
-3. Select **Connect my account** and sign in to Databricks.
+3. Select **Connect** and sign in to Databricks.
 4. Select the credential in the node. n8n refreshes the access token during long executions, so agents can run past the one-hour token lifetime.
 
 ## Node parameters
@@ -33701,7 +34017,7 @@ The node fails with `Databricks host must use https` because the credential's **
 
 ### Requests fail with 403 after the credential worked before
 
-For user-login credentials, the refresh token or the OAuth app's absolute session lifetime has expired. Open the credential in n8n and select **Connect my account** again. To avoid this for scheduled workflows, use a service principal or ask your admin to [extend the token lifetimes](../../credentials/databricks.md#configure-token-lifetimes).
+For user-login credentials, the refresh token or the OAuth app's absolute session lifetime has expired. Open the credential in n8n, select **Switch account**, and sign in again. To avoid this for scheduled workflows, use a service principal or ask your admin to [extend the token lifetimes](../../credentials/databricks.md#configure-token-lifetimes).
 
 === https://docs.n8n.io/docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentgithubloader/
 
@@ -35220,7 +35536,7 @@ Refer to [HuggingFace's guide to inference](https://huggingface.co/inference-end
 
 # Databricks Genie One MCP server
 
-The **Databricks Genie One** tile in n8n's [MCP servers](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/mcp-servers) registry connects an AI agent to the [Genie One MCP server](https://docs.databricks.com/aws/en/agents/mcp-tools/genie-mcp) in your Databricks workspace. Genie One is the Databricks assistant for business users. It routes each question to the relevant Genie Agent in your workspace, or to other governed data assets when no agent matches, then generates and runs SQL to answer it. To call one specific Genie Agent (formerly a Genie space) by its **Agent ID**, use the [Databricks node](../../app-nodes/n8n-nodes-base.databricks.md) instead. The agent appends the **Powered by Databricks Genie** label to replies that used Genie One, and every answer links back to the conversation in Databricks. Refer to [Genie attribution](#genie-attribution) for which agents add the label and when they skip it.
+The **Databricks Genie One** tile in n8n's [MCP servers](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/mcp-servers) registry connects an AI agent to the [Genie One MCP server](https://docs.databricks.com/aws/en/agents/mcp-tools/genie-mcp) in your Databricks workspace, through the AI Gateway endpoint of the workspace. Genie One is the Databricks assistant for business users. It routes each question to the relevant Genie Agent in your workspace, or to other governed data assets when no agent matches, then generates and runs SQL to answer it. To call one specific Genie Agent (formerly a Genie space) by its **Agent ID**, use the [Databricks node](../../app-nodes/n8n-nodes-base.databricks.md) instead. The agent appends the **Powered by Databricks Genie** label to replies that used Genie One, and every answer links back to the conversation in Databricks. Refer to [Genie attribution](#genie-attribution) for which agents add the label and when they skip it.
 
 On this page, you'll find the prerequisites, setup steps, agent settings, and known issues for using Genie with an n8n agent.
 
@@ -35232,9 +35548,17 @@ The tile uses a [Databricks OAuth2 credential](../../credentials/databricks.md#u
 
 ## Prerequisites
 
-- A Databricks account admin has [created a custom OAuth app connection](../../credentials/databricks.md#create-a-custom-oauth-app-connection) whose scopes cover the tile's request. The tile requests the `genie` and `offline_access` scopes. An app connection with just those two scopes is the narrowest setup and n8n recommends it when the connection serves only Genie. **All APIs** also covers the request in n8n's testing. Use it only when the same app connection serves the Databricks node or the Databricks Chat Model node, which need it. If connecting fails with a `genie` scope error, the admin [adds the `genie` scope](../../credentials/databricks.md#add-the-genie-scope-for-the-genie-mcp-server) to the app connection.
-- You have **CAN RUN** on each Genie Agent that Genie One should answer from, and **CAN USE** on at least one SQL warehouse. Refer to [Required Databricks privileges](../../credentials/databricks.md#required-databricks-privileges).
+- A Databricks account admin has [created a custom OAuth app connection](../../credentials/databricks.md#create-a-custom-oauth-app-connection) whose scopes cover the tile's request. The tile requests the `ai-gateway` and `offline_access` scopes. An app connection with just those two scopes is the narrowest setup and n8n recommends it when the connection serves only Genie. The **All APIs** option doesn't cover `ai-gateway` in n8n's testing, so an app connection that also serves the Databricks node or the Databricks Chat Model node needs **All APIs** and `ai-gateway`. If connecting or running the agent fails with an `ai-gateway` scope error, the admin [adds the `ai-gateway` scope](../../credentials/databricks.md#add-the-ai-gateway-scope-for-the-genie-one-mcp-server) to the app connection, and you reconnect the credential.
+- You have **CAN RUN** on each Genie Agent that Genie One should answer from, **CAN USE** on at least one SQL warehouse, and **EXECUTE** on `system.ai.genie_one_mcp`. Refer to [Required Databricks privileges](../../credentials/databricks.md#required-databricks-privileges).
 - A chat model that calls tools reliably. n8n recommends the [Databricks Chat Model](n8n-nodes-langchain.lmchatdatabricks.md) node with Llama 3.3 70B or Qwen 3.5. Refer to [Choose a model for agents](n8n-nodes-langchain.lmchatdatabricks.md#choose-a-model-for-agents).
+
+{% hint style="warning" %}
+**Endpoint change on October 30, 2026**
+
+Databricks retires the beta Genie MCP endpoint on November 30, 2026, and serves Genie One through its AI Gateway endpoint instead. From October 30, 2026, the tile calls the AI Gateway endpoint, which needs the `ai-gateway` scope in place of `genie`. This applies to n8n Cloud and self-hosted instances alike, because the tile's endpoint comes from the MCP registry and not from the n8n version you run. Each instance picks up the change at its next registry refresh, within eight hours, or when it restarts. A credential connected before the change keeps a `genie` token that the new endpoint rejects with `Invalid scope, required scopes: ai-gateway`.
+
+**What to do:** A Databricks account admin adds the `ai-gateway` scope to the app connection. Then each user opens their credential, selects **Switch account**, and signs in with the same Databricks account. Refer to [Existing credential fails with an ai-gateway scope error](#existing-credential-fails-with-an-ai-gateway-scope-error).
+{% endhint %}
 
 ## Connect Genie to an agent
 
@@ -35246,7 +35570,7 @@ The Genie MCP server uses one authentication type, user login. The agent asks Ge
 4. Under **Credential to connect with**, select **Create new credential**.
 5. Enter your workspace URL as the **Host**, for example `https://adb-1234567890123456.7.azuredatabricks.net`.
 6. Enter the **Client ID** and **Client Secret** from the custom OAuth app connection your admin created.
-7. Select **Connect my account** and sign in to Databricks.
+7. Select **Connect** and sign in to Databricks.
 8. In **Tools to Include**, keep **All** so the agent can ask, poll, fetch results, and cancel. Refer to [Tools](#tools).
 9. Set the agent's **Max Iterations** option to 30 or more. Refer to [Configure the agent for Genie](#configure-the-agent-for-genie).
 
@@ -35254,7 +35578,7 @@ Send the agent a question about your data, for example "How many trips are in th
 
 ## Tools
 
-Genie One exposes four tools. Databricks routes each question to a Genie Agent, or to other workspace data when none matches, so there's no agent parameter. The table shows Databricks' short tool names. In n8n, the agent sees each name prefixed with the node's name, for example `Databricks_Genie_One_MCP_genie_ask` for the default node name. A node you renamed, or added before the tile was renamed, keeps its own name as the prefix, for example `Databricks_Genie_MCP_genie_ask`. Don't reference the short names in prompts.
+Genie One exposes four tools to n8n. Databricks routes each question to a Genie Agent, or to other workspace data when none matches, so there's no agent parameter. The table shows Databricks' short tool names. In n8n, the agent sees each name prefixed with the node's name, for example `Databricks_Genie_One_MCP_genie_ask` for the default node name. A node you renamed, or added before the tile was renamed, keeps its own name as the prefix, for example `Databricks_Genie_MCP_genie_ask`. Don't reference the short names in prompts.
 
 | Tool | What it does |
 |------|--------------|
@@ -35262,6 +35586,8 @@ Genie One exposes four tools. Databricks routes each question to a Genie Agent, 
 | `genie_poll_response` | Checks whether Genie has finished. Databricks recommends waiting 2 to 5 seconds between polls. |
 | `genie_get_query_result` | Fetches the full result rows of the SQL Genie ran, when the answer summary isn't enough. |
 | `genie_cancel_response` | Cancels a running Genie turn. |
+
+Databricks also lists `view_ask`, which it offers only to MCP Apps clients in place of `genie_ask`, so n8n's agent doesn't see it.
 
 ## Configure the agent for Genie
 
@@ -35290,7 +35616,7 @@ Databricks requires Genie-powered integrations to identify Genie. In n8n:
 
 ## Related resources
 
-- [Databricks credentials](../../credentials/databricks.md), including the `genie` scope setup for admins
+- [Databricks credentials](../../credentials/databricks.md), including the `ai-gateway` scope setup for admins
 - [Databricks Chat Model node](n8n-nodes-langchain.lmchatdatabricks.md)
 - [Databricks node](../../app-nodes/n8n-nodes-base.databricks.md) for calling a Genie Agent's REST API directly without an AI agent
 - [MCP servers](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/mcp-servers) for how the registry works
@@ -35298,15 +35624,25 @@ Databricks requires Genie-powered integrations to identify Genie. In n8n:
 
 ## Common issues
 
-### Connect fails with a genie scope error
+### New credential fails with an ai-gateway scope error
 
-Selecting **Connect my account** fails with:
+On some Databricks accounts, selecting **Connect** in the credential fails with:
 
 ```text
-access_denied: Scopes 'genie' are not assigned to the client <client-id>
+access_denied: Scopes 'ai-gateway' are not assigned to the client <client-id>
 ```
 
-The custom OAuth app connection doesn't have the `genie` scope, and on this Databricks account **All APIs** doesn't stand in for it. A Databricks account admin needs to [add the `genie` scope](../../credentials/databricks.md#add-the-genie-scope-for-the-genie-mcp-server) to the app connection, in the account console's scope picker or with the Databricks CLI.
+On other Databricks accounts, connecting succeeds, but the agent fails as soon as it runs with `Invalid scope, required scopes: ai-gateway`, because n8n connects to Genie One to load its tools. In both cases the custom OAuth app connection doesn't have the `ai-gateway` scope, and the **All APIs** option doesn't stand in for it. A Databricks account admin needs to [add the `ai-gateway` scope](../../credentials/databricks.md#add-the-ai-gateway-scope-for-the-genie-one-mcp-server) to the app connection, in the account console's scope picker or with the Databricks CLI. Then reconnect the credential, so n8n receives a token with the new scope.
+
+### Existing credential fails with an ai-gateway scope error
+
+A credential that worked before makes the agent fail as soon as it runs, with:
+
+```text
+Could not connect to your MCP server. Authentication failed. Streamable HTTP error: Error POSTing to endpoint: Invalid scope, required scopes: ai-gateway
+```
+
+The credential holds a token with the `genie` scope from before the tile moved to the AI Gateway endpoint. Databricks issues only the scopes the app connection allows, so the fix has two parts: a Databricks account admin [adds the `ai-gateway` scope](../../credentials/databricks.md#add-the-ai-gateway-scope-for-the-genie-one-mcp-server) to the app connection, then you open the credential in n8n, select **Switch account**, and sign in again. Reconnecting before the admin adds the scope doesn't help: the consent screen can show `ai-gateway`, but the token n8n receives still lacks it and the same error returns.
 
 ### Max iterations reached
 
@@ -46525,7 +46861,7 @@ The identity the credential authenticates as (the signed-in user or the service 
 | Lakebase | A Postgres role on the project's branch, granted to `authenticator`, with the table and function grants the operation needs. Refer to [Set up Lakebase for the Data API](#set-up-lakebase-for-the-data-api) |
 | Reading or writing Unity Catalog data | **USE CATALOG** on the catalog, **USE SCHEMA** on the schema, and **SELECT** on the tables or views you query. Functions and models also need **EXECUTE** |
 | Genie Agent (Databricks node) | **CAN RUN** on the Genie Agent and **CAN USE** on its SQL warehouse |
-| Genie One MCP server | **CAN RUN** on each Genie Agent that Genie One should answer from, and **CAN USE** on at least one SQL warehouse |
+| Genie One MCP server | **CAN RUN** on each Genie Agent that Genie One should answer from, **CAN USE** on at least one SQL warehouse, and **EXECUTE** on `system.ai.genie_one_mcp`. Databricks grants **EXECUTE** on the `system.ai` services to all users by default |
 | Model Serving (Query Endpoint) | **CAN QUERY** on the serving endpoint |
 | Unity AI Gateway model services (Databricks Chat Model, Embeddings Databricks) | **USE CATALOG** and **USE SCHEMA** on the catalog and schema that hold the model service, and **EXECUTE** on the model service. Databricks grants **EXECUTE** on the `system.ai` services to all users by default |
 | Searching a vector search index (Databricks Vector Store: Get Many, Retrieve Documents, Retrieve as Tool) | **USE CATALOG** on the catalog, **USE SCHEMA** on the schema, and **SELECT** on the index. **SELECT** on the source table of a Delta Sync index that syncs all of its columns lets the node list those columns. A self-managed index also needs the model service privileges above for the Embeddings Databricks node. **Metadata Filter** needs read access on the Vector Search endpoint |
@@ -46600,7 +46936,7 @@ A Databricks account admin needs to complete these steps:
 3. On the **App connections** tab, select **Add connection**.
 4. Enter a name for the connection, for example `n8n`.
 5. Add the **OAuth Redirect URL** you copied from n8n as a redirect URL.
-6. Select the access scopes the connection needs. The **Databricks** node and the **Databricks Chat Model** node need **All APIs**. If the connection serves only the [Genie One MCP server](../cluster-nodes/sub-nodes/n8n-mcp-registry.databricksgenie.md), select `genie` instead: the connection then can't reach other Databricks APIs, and users consent to a narrower grant. Databricks automatically allows the `offline_access` scope that n8n needs to stay connected. In n8n's testing, **All APIs** also covers the `genie` scope; if connecting the tile fails with a scope error, [add the `genie` scope](#add-the-genie-scope-for-the-genie-mcp-server).
+6. Select the access scopes the connection needs. The **Databricks** node and the **Databricks Chat Model** node need **All APIs**. If the connection serves only the [Genie One MCP server](../cluster-nodes/sub-nodes/n8n-mcp-registry.databricksgenie.md), select `ai-gateway` instead: the connection then can't call the Databricks REST APIs that **All APIs** covers, and users consent to a narrower grant. The `ai-gateway` scope still covers other AI Gateway services, such as the Databricks SQL MCP server, within the user's Unity Catalog permissions. Databricks automatically allows the `offline_access` scope that n8n needs to stay connected. The **All APIs** option doesn't cover the `ai-gateway` scope, so a connection that serves the tile and the other nodes needs both. Refer to [Add the `ai-gateway` scope](#add-the-ai-gateway-scope-for-the-genie-one-mcp-server).
 7. Enable client secret generation. n8n is a confidential client, so it needs a secret.
 8. Save the connection, then copy the **Client ID** and **Client Secret**. Databricks shows the secret only once.
 
@@ -46608,26 +46944,40 @@ Share the client ID and secret with the n8n users who'll create credentials. All
 
 Refer to [Enable or disable partner OAuth applications](https://docs.databricks.com/aws/en/integrations/enable-disable-oauth) for more information.
 
-### Add the genie scope for the Genie MCP server
+### Add the ai-gateway scope for the Genie One MCP server
 
-The [Databricks Genie One MCP server](../cluster-nodes/sub-nodes/n8n-mcp-registry.databricksgenie.md) tile requests the `genie` and `offline_access` scopes. In n8n's testing, an app connection with **All APIs** satisfies the request without an explicit `genie` scope. On accounts where it doesn't, users see this error when they select **Connect my account** on the tile:
+The [Databricks Genie One MCP server](../cluster-nodes/sub-nodes/n8n-mcp-registry.databricksgenie.md) tile calls Genie One through the AI Gateway endpoint of the workspace and requests the `ai-gateway` and `offline_access` scopes. The **All APIs** option doesn't cover `ai-gateway`: in n8n's testing, an app connection with **All APIs** returned a token without the `ai-gateway` scope until the admin added that scope to the connection. Depending on the Databricks account, users see one of two errors. Either connecting the credential fails with:
 
 ```text
-access_denied: Scopes 'genie' are not assigned to the client <client-id>
+access_denied: Scopes 'ai-gateway' are not assigned to the client <client-id>
 ```
 
-To fix it, a Databricks account admin adds the `genie` scope to the app connection. If the connection's page in the account console offers `genie` in the **Add scope** picker, add it there. Otherwise, use the [Databricks CLI](https://docs.databricks.com/aws/en/dev-tools/cli/) authenticated against the account. The CLI update replaces the whole scope list, so include every scope the app needs. One app connection that serves the Databricks node, the Databricks Chat Model node, and the Genie One MCP server needs all three:
+Or connecting succeeds, and the agent fails as soon as it runs with:
+
+```text
+Invalid scope, required scopes: ai-gateway
+```
+
+To fix either error, a Databricks account admin adds the `ai-gateway` scope to the app connection. If the connection's page in the account console offers `ai-gateway` in the **Add scope** picker, add it there. Otherwise, use the [Databricks CLI](https://docs.databricks.com/aws/en/dev-tools/cli/) authenticated against the account. The CLI update replaces the whole scope list, so include every scope the app needs. One app connection that serves the Databricks node, the Databricks Chat Model node, and the Genie One MCP server needs all three:
 
 ```bash
 databricks account custom-app-integration update <integration-id> \
-	--json '{"scopes": ["all-apis", "genie", "offline_access"]}'
+	--json '{"scopes": ["all-apis", "ai-gateway", "offline_access"]}'
 ```
 
 Find `<integration-id>` with `databricks account custom-app-integration list`, or on the connection's detail page in the account console. Refer to [Update Custom OAuth App Integration](https://docs.databricks.com/api/account/customappintegration/update) for the API reference.
 
-The Databricks consent screen shows the scopes assigned to the app connection, not the narrower set n8n requests. Users connecting the Genie One MCP server through an **All APIs** app see **All APIs** on the consent screen, even though the token n8n receives is scoped to `genie offline_access`.
+After the admin adds the scope, each user reconnects the credential they use with the tile, so n8n receives a token with the new scope. Refreshing the old token doesn't add it.
 
-If the app connection serves only the Genie One MCP server, set the scopes to `["genie", "offline_access"]` instead. Users then see and consent to a narrower grant. The client also can't reach other Databricks APIs.
+The Databricks consent screen doesn't show which scopes the token gets. In n8n's testing, it listed `ai-gateway` while the app connection didn't have that scope, and the token n8n received lacked it. To check the setup, look at the app connection's scopes in the account console.
+
+If the app connection serves only the Genie One MCP server, set the scopes to `["ai-gateway", "offline_access"]` instead. Users then see and consent to a narrower grant, which leaves out the Databricks REST APIs but not other AI Gateway services.
+
+{% hint style="warning" %}
+**App connections without the ai-gateway scope**
+
+Before the tile moved to the AI Gateway endpoint on October 30, 2026, it requested the `genie` scope. An app connection set up for the `genie` scope keeps working for the nodes it already served, but the tile needs `ai-gateway` added. After the admin adds the scope, each user reconnects their Genie One credential so n8n receives a token with the new scope. Once every user has reconnected, remove `genie` from the connection, unless another integration still calls the beta endpoint, which Databricks retires on November 30, 2026.
+{% endhint %}
 
 ### Configure token lifetimes
 
@@ -46649,7 +46999,7 @@ A short refresh token TTL or absolute session lifetime means users must periodic
 1. Enter your workspace URL as the **Host**.
 2. Set **Grant Type** to **Authorization Code (User)**.
 3. Enter the **Client ID** and **Client Secret** from the custom OAuth app connection.
-4. Select **Connect my account** and sign in with your Databricks account.
+4. Select **Connect** and sign in with your Databricks account.
 
 By default the credential requests the `all-apis` and `offline_access` scopes. The `offline_access` scope keeps the connection alive past one hour, so it's always included: if you enable **Custom Scopes** and remove it from the list, n8n adds it back automatically.
 
@@ -47672,6 +48022,7 @@ You can use these credentials to authenticate the following nodes:
 Create an account on an S3-compatible server. Use the S3 node for generic or non-AWS S3 like:
 
 * [DigitalOcean Spaces](https://www.digitalocean.com/products/spaces)
+* [Google Cloud Storage](https://cloud.google.com/storage/docs/interoperability)
 * [MinIO](https://min.io/)
 * [Tigris](https://www.tigrisdata.com/)
 * [Wasabi](https://wasabi.com/)
@@ -47695,7 +48046,7 @@ To configure this credential, you'll need:
 - **Force Path Style**: When turned on, the connection uses path-style addressing for buckets.
 - **Ignore SSL Issues**: When turned on, n8n will connect even if SSL certificate validation fails.
 
-More detailed instructions for DigitalOcean Spaces, Tigris, and Wasabi follow. If you're using a different provider, refer to their documentation for more information. 
+More detailed instructions for DigitalOcean Spaces, Google Cloud Storage, Tigris, and Wasabi follow. If you're using a different provider, refer to their documentation for more information. 
 
 ### Using DigitalOcean Spaces <a href="#using-digitalocean-spaces" id="using-digitalocean-spaces"></a>
 
@@ -47718,6 +48069,31 @@ To configure the credential for use with DigitalOcean spaces:
     - To connect even if SSL certificate validation fails, turn on **Ignore SSL Issues**.
 
 Refer to DigitalOcean's [Spaces API Reference Documentation](https://docs.digitalocean.com/reference/api/spaces-api/) for more information.
+
+### Using Google Cloud Storage
+
+n8n also has a dedicated [Google Cloud Storage](../app-nodes/n8n-nodes-base.googlecloudstorage.md) node. Use the S3 node with Google Cloud Storage's XML API if you want to keep existing S3 workflows or authenticate with HMAC keys.
+
+To configure the credential for use with Google Cloud Storage:
+
+1. For the **S3 Endpoint**, enter `https://storage.googleapis.com`.
+2. For the **Region**, enter `auto`.
+3. In the Google Cloud console, go to **Cloud Storage** > **Settings** and open the **Interoperability** tab.
+4. Select **Create a key for a service account**, choose the service account n8n should use, and select **Create key**.
+5. Copy the **Access key** and enter it in n8n as the **Access Key ID**.
+6. Copy the **Secret** and enter it in n8n as the **Secret Access Key**.
+    - The secret is only shown once. Refer to [Manage HMAC keys for service accounts](https://cloud.google.com/storage/docs/authentication/managing-hmackeys) for more information.
+7. Turn on the **Force Path Style** toggle.
+8. Decide how you want the n8n credential to handle SSL:
+    - To respect SSL certificate validation, keep the default of **Ignore SSL Issues** turned off.
+    - To connect even if SSL certificate validation fails, turn on **Ignore SSL Issues**.
+
+Grant the service account access to the bucket:
+
+* An object role such as **Storage Object Admin** for uploads, downloads, and deletes.
+* The `storage.buckets.get` permission, for example through the **Storage Legacy Bucket Reader** role. The S3 node looks up the bucket's location before each file or folder operation, and before **Bucket > Search**. That request fails without this permission.
+
+If the bucket uses uniform bucket-level access, leave the S3 node's **ACL** option empty. Google Cloud Storage rejects requests that set an object ACL on these buckets.
 
 ### Using Tigris <a href="#using-tigris" id="using-tigris"></a>
 
@@ -61876,60 +62252,141 @@ For a complete list of courses, see [n8n Academy courses](https://learn.n8n.io/c
 
 In this quick start, you’ll build a workflow that fetches the weather for Berlin every morning and turns it into a short report anyone can read at a glance. The workflow saves each report to a data table, so you build up a weather log over time.
 
-![8 AM schedule trigger connected to Get Berlin Weather, Format Weather Message, and Save Weather Report](.gitbook/assets/build-your-first-workflow.png)
+![8 AM schedule trigger connected to Get Berlin weather, Add weather report, and Save weather log](.gitbook/assets/build-your-first-workflow.png)
 
 When it runs, your workflow produces a report like this:
 
 ```
-The temperature in berlin is 7.4°C. It's currently overcast.
+The temperature in Berlin is 6.8 degrees C and it's currently cloudy.
 ```
 
-The build takes about 15 minutes. Apart from n8n, you don’t need any accounts, API keys, or coding experience. The weather data comes from Mockingbird, a sample-data service n8n provides for tutorials, so you’ll get similar results to this guide.
+You’ll build it with n8n Assistant, which turns a prompt into a working workflow. That takes less than five minutes. If you’d rather build it node by node, an optional section at the end walks you through the same workflow by hand.
+
+You can also follow along with this video:
+
+{% embed url="https://www.youtube.com/embed/0BzaIm7Fwyo" %}
+
+Apart from n8n, you don’t need any coding experience. The weather data comes from Mockingbird, a sample-data service n8n provides for tutorials, so you’ll get similar results to this guide.
 
 ## Before you start
 
 You need an n8n instance. Either:
 
 - **n8n Cloud**: [sign up for a free trial](https://go.n8n.io/ekXKXJ), or
-- **Self-hosted**: follow the [host n8n](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n) guide
+- **Self-hosted**: follow the [host n8n](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n) guide, then [set up n8n Assistant](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-n8n-assistant) with your own AI provider account
 
-## 1. Create the workflow
+## Build the workflow with n8n Assistant
 
-Log in to your n8n instance, then:
+{% hint style="info" %}
+**Feature availability**
 
-1. Select **Personal** in the left menu. This is where your workflows live.
+n8n Assistant is available on:
 
-    ![Personal in the left menu](.gitbook/assets/build-your-first-workflow-create-workflow-01.png)
+- **n8n Cloud:** Starter, Pro
+- **Self-hosted:** Community, Registered Community, Business
 
-2. Select **Create workflow** at the top right. This opens the canvas, where you’ll build your workflow and spend most of this tutorial.
+On n8n Cloud Enterprise and self-hosted Enterprise, contact your Customer Success Manager about preview access.
+{% endhint %}
 
-    ![Create workflow button](.gitbook/assets/build-your-first-workflow-create-workflow-02.png)
+{% hint style="info" %}
+**Preview status**
 
-3. Select the workflow’s name and change it to `Weather Log`. Select anywhere on the canvas to save the name.
+n8n Assistant is in Preview and may change in future releases.
 
-## 2. Run it at 8 AM every day
+Your results may differ from the screenshots in this guide.
+{% endhint %}
+
+n8n Assistant builds workflows from prompts. You describe what you want, approve each step, and end up with a workflow you can open, edit, and publish.
+
+1. Log in to your n8n instance and select **New chat** in the left menu to talk to the n8n Assistant.
+
+    ![New chat selected in the left menu, with the n8n Assistant chat box open](.gitbook/assets/build-your-first-workflow-assistant-01.png)
+
+2. Enter this prompt, or dictate it, and select the send arrow:
+
+    ```
+    Build a workflow called Weather Log that runs every day at 8 AM:
+    - Get the weather for Berlin from https://mockingbird.n8n.io/v1/weather/berlin
+    - Add a report field that contains the city, temperature, and conditions e.g. The temperature in Berlin is 10°C. It's currently overcast.
+    - Save the report to a new data table
+    ```
+
+    ![The weather workflow prompt entered in the n8n Assistant chat box](.gitbook/assets/build-your-first-workflow-assistant-02.png)
+
+    {% hint style="info" %}
+    Mockingbird is a sample API with weather for about 40 European cities. Other cities return an error.
+    {% endhint %}
+
+3. Approve any prompts from n8n Assistant with **Allow once**. As it builds the workflow, you'll see the progress on the canvas to the right of the chat.
+
+    ![n8n Assistant asking the user for permission](.gitbook/assets/build-your-first-workflow-assistant-03.png)
+
+4. Approve a run if prompted by n8n Assistant. Otherwise, ask n8n Assistant to run a test for you.
+
+    ![n8n Assistant asking to run a live test, with the finished workflow on the canvas](.gitbook/assets/build-your-first-workflow-assistant-04.png)
+
+5. Select **Publish and enable the schedule** if prompted by n8n Assistant, as the workflow only runs at 8 AM every day once you publish it. Otherwise, ask n8n Assistant to publish it for you.
+
+    ![User asking assistant to publish workflow](.gitbook/assets/build-your-first-workflow-assistant-05.png)
+
+6. Select the `weather log` data table at the top of the right-hand pane to check the workflow ran as intended. Otherwise, ask n8n Assistant to show you the data table.
+
+    ![weather log tab selected at the top of the right-hand pane](.gitbook/assets/build-your-first-workflow-assistant-06.png)
+
+7. Select **Personal** in the left menu to see the workflow. n8n Assistant saves all workflows under **Personal**.
+
+    ![weather log listed under Personal, marked as Published](.gitbook/assets/build-your-first-workflow-assistant-07.png)
+
+## What your workflow does
+
+Open **weather log** on the canvas and you'll see four [nodes](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/workflow-components/work-with-nodes), each doing one job and passing its result to the next:
+
+| Node | What it does |
+| --- | --- |
+| **Every day at 8 AM** | A [Schedule Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.scheduletrigger) that starts the workflow at 8 AM every day. |
+| **Get Berlin weather** | An [HTTP Request](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.httprequest) node that fetches the weather from the Mockingbird API. |
+| **Add weather report** | An [Edit Fields (Set)](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.set) node that builds the `report` text, using an [expression](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/transform-data/expressions-for-data-transformation) to pull in the live weather values. |
+| **Save weather log** | A [Data table](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.datatable) node that inserts the report as a new row in the table. |
+
+{% hint style="info" %}
+n8n Assistant chooses the node names itself, so yours may differ from the ones above.
+{% endhint %}
+
+## Optional: Build the workflow yourself
+
+This section builds the weather log workflow by hand, one node at a time, without n8n Assistant.
+
+You'll end up with a second workflow built from the same four nodes: **Every day at 8 AM**, **Get Berlin weather**, **Add weather report**, and **Save weather log**. You'll also create a new data table in the process.
+
+### 1. Create the workflow
+
+1. Select **Personal** in the left menu followed by **Create workflow**. This opens the canvas, where you’ll build your workflow and spend most of this section.
+
+    ![Personal in the left menu and the create workflow button](.gitbook/assets/build-your-first-workflow-optional-01-01.png)
+
+2. Select the workflow’s name and change it to `Weather Log 2` (or something more creative). Select anywhere on the canvas to save the name.
+
+### 2. Run it at 8 AM every day
 
 You’ll use: **Schedule Trigger**
 
 When building a workflow, the first question to answer is: “How should this workflow start?” On a schedule, for example 8 AM every day? When a user submits a form? When an application like Telegram sends a message?
 
-For this first build, you’ll set it to run at 8 AM every day. While you build, you’ll run the workflow yourself to test it. Once you publish it at the end, the schedule runs it for you:
+For this build, you'll set it to run at 8 AM every day. While you build, you’ll run the workflow yourself to test it. Once you publish it at the end, the schedule runs it for you:
 
 1. Select **Add first step**, then select **On a schedule**.
 
-    ![On a schedule option](.gitbook/assets/build-your-first-workflow-schedule-01.png)
+    ![On a schedule option](.gitbook/assets/build-your-first-workflow-optional-02-01.png)
 
-2. In the Node details view, select `8am` from the **Trigger at Hour** field.
+2. Select `8am` from the **Trigger at Hour** field in the Node details view. Select the close button in the top right to close the window.
 
-    ![Trigger at Hour set to 8 AM](.gitbook/assets/build-your-first-workflow-schedule-02.png)
+    ![Trigger at Hour set to 8 AM](.gitbook/assets/build-your-first-workflow-optional-02-02.png)
 
-3. Select **Schedule Trigger** at the top left and rename it to `Every day at 8am`.
+3. Select the **Schedule Trigger** node and press space bar to open up the rename dialog box. Rename it to `Every day at 8 AM`.
 
-    ![Renamed Schedule Trigger](.gitbook/assets/build-your-first-workflow-schedule-03.png)
+    ![Renamed Schedule Trigger](.gitbook/assets/build-your-first-workflow-optional-02-03.png)
 
-4. Select the **x** at the top right to close the Node details view and return to the canvas.
-
-## 3. Get the weather for Berlin
+### 3. Get the weather for Berlin
 
 You’ll use: **HTTP Request**
 
@@ -61937,48 +62394,50 @@ You’ve got your trigger, so it’s time to fetch the weather. The **HTTP Reque
 
 1. Select **+** after the trigger, type `http` in the **Search nodes** box, and select **HTTP Request**.
 
-    ![HTTP Request in the search results](.gitbook/assets/build-your-first-workflow-get-weather-01.png)
+    ![HTTP Request in the search results](.gitbook/assets/build-your-first-workflow-optional-03-01.png)
 
-2. In the Node details view, paste `https://mockingbird.n8n.io/v1/weather/berlin` into the **URL** field.
+2. Paste `https://mockingbird.n8n.io/v1/weather/berlin` into the **URL** field in the Node details view.
 
-    ![Mockingbird URL in the URL field](.gitbook/assets/build-your-first-workflow-get-weather-02.png)
+    ![Mockingbird URL in the URL field](.gitbook/assets/build-your-first-workflow-optional-03-02.png)
 
     {% hint style="info" %}
     Mockingbird is a sample API with weather for about 40 European cities. Other cities return an error.
     {% endhint %}
 
-3. Select the node’s name at the top left and rename it to `Get Berlin Weather`, then select **Execute step**. You should see the weather for Berlin in the output, including the `city`, `temp_c`, and `condition` fields you’ll use in the next step.
+3. Press **Execute step**. You should see the weather for Berlin in the output, including the `city`, `temp_c`, and `condition` fields you’ll use in the next step.
 
-    ![Berlin weather output](.gitbook/assets/build-your-first-workflow-get-weather-03.png)
+    ![Berlin weather output](.gitbook/assets/build-your-first-workflow-optional-03-03.png)
 
-## 4. Turn the weather into a report
+4. Rename the node to be `Get Berlin weather`.
+
+### 4. Turn the weather into a report
 
 You’ll use: **Edit Fields (Set)**
 
 Next, you’ll turn the weather data into a short report that anyone can read at a glance.
 
-1. Select **+** after **Get Berlin Weather**, select **Data transformation**, then select **Edit Fields (Set)**.
+1. Select **+** after **Get Berlin weather**, select **Data transformation**, then select **Edit Fields (Set)**.
 
-    ![Edit Fields (Set) under Data transformation](.gitbook/assets/build-your-first-workflow-report-01.png)
+    ![Edit Fields (Set) under Data transformation](.gitbook/assets/build-your-first-workflow-optional-04-01.png)
 
 2. Select **Add Field** in the middle of the Node details view. For **Name**, enter `report`.
 
-    ![Add Field button](.gitbook/assets/build-your-first-workflow-report-02.png)
+    ![Add Field button](.gitbook/assets/build-your-first-workflow-optional-04-02-01.png)
 
-    ![Field named report](.gitbook/assets/build-your-first-workflow-report-03.png)
+    ![Field named report](.gitbook/assets/build-your-first-workflow-optional-04-02-02.png)
 
-3. For **Value**, enter `The temperature in`, then drag `city` from the input panel on the left. When you drop a field in, n8n switches **Value** to **Expression** mode, and you see:
+3. Enter `The temperature in` for **Value**, then drag `city` from the input panel on the left. When you drop a field in, n8n switches **Value** to **Expression** mode, and you see:
 
     ```
     The temperature in {{ $json.city }}
     ```
 
-    ![city dragged into the Value field](.gitbook/assets/build-your-first-workflow-report-04.png)
+    ![city dragged into the Value field](.gitbook/assets/build-your-first-workflow-optional-04-03.png)
 
     {% hint style="info" %}
     **What's an expression?**
 
-    `{{ $json.city }}` is a placeholder, called an expression. When the workflow runs, n8n swaps it for the real value. The input panel shows the output from **Get Berlin Weather**, which becomes the input to this node. You drag fields in rather than typing them, and the preview under the field shows you the finished sentence. To learn more, see [Expressions](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/expressions-versus-data-nodes#expressions).
+    `{{ $json.city }}` is a placeholder, called an expression. When the workflow runs, n8n swaps it for the real value. The input panel shows the output from **Get Berlin weather**, which becomes the input to this node. You drag fields in rather than typing them, and the preview under the field shows you the finished sentence. To learn more, see [Expressions](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/expressions-versus-data-nodes#expressions).
     {% endhint %}
 
 4. Drag `temp_c` in and update the wording to:
@@ -61987,7 +62446,7 @@ Next, you’ll turn the weather data into a short report that anyone can read at
     The temperature in {{ $json.city }} is {{ $json.temp_c }}°C.
     ```
 
-    ![Value with city and temperature](.gitbook/assets/build-your-first-workflow-report-05.png)
+    ![Value with city and temperature](.gitbook/assets/build-your-first-workflow-optional-04-04-01.png)
 
     Add `It's currently` to the end, then drag `condition` in:
 
@@ -61995,110 +62454,55 @@ Next, you’ll turn the weather data into a short report that anyone can read at
     The temperature in {{ $json.city }} is {{ $json.temp_c }}°C. It's currently {{ $json.condition }}.
     ```
 
-    ![Value with city, temperature, and condition](.gitbook/assets/build-your-first-workflow-report-06.png)
+    ![Value with city, temperature, and condition](.gitbook/assets/build-your-first-workflow-optional-04-04-02.png)
 
-5. Rename the node to `Format Weather Message` and select **Execute step**. You should see output like:
+5. Rename the node to `Add weather report` and select **Execute step**.
 
-    ```
-    The temperature in berlin is 7.4°C. It's currently overcast.
-    ```
-
-    ![Finished weather report output](.gitbook/assets/build-your-first-workflow-report-07.png)
-
-## 5. Save the data
+### 5. Save the data
 
 You’ll use: **Data table**
 
-You’ve fetched the data and formatted it, so now it’s time to store it. For this, you’ll use n8n’s [data tables](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/data-tables).
+You’ve fetched the data and formatted it, so now it’s time to store it. You'll create a data table in the process.
 
-1. Select **Personal** in the left menu, then select **Data tables**.
+1. Add a **Data table** node after **Add weather report** and select **Insert row** as the action.
 
-    ![Data tables tab](.gitbook/assets/build-your-first-workflow-save-data-01.png)
+    ![Insert row action](.gitbook/assets/build-your-first-workflow-optional-05-01.png)
 
-2. Select **Create data table**, name it `weather_data`, and select **Create**.
+2. Open the node, select the drop down under **Data table**, then select **Create new data table**:
 
-    ![New, empty data table](.gitbook/assets/build-your-first-workflow-save-data-02.png)
+    ![Create a new data table](.gitbook/assets/build-your-first-workflow-optional-05-02.png)
 
-3. Select **Add Column**, enter `report` for **Name**, then select **Add Column** again. This gives you a column to store the weather report in.
+    A new browser tab will open.
 
-    ![report column in the new data table](.gitbook/assets/build-your-first-workflow-save-data-03.png)
+3. Enter `weather log 2` for the name of your data table (or something creative!), and select **Create**:
 
-4. Open your **Weather Log** workflow (**Personal** > **Weather Log**). Add a **Data table** node after **Format Weather Message** and select **Insert row** as the action.
+    ![Name the new data table](.gitbook/assets/build-your-first-workflow-optional-05-03.png)
 
-    ![Insert row action](.gitbook/assets/build-your-first-workflow-save-data-04.png)
+4. Select **Add Column** on the top right and enter `report` before selecting **Add Column**. This will be the column the data from the `Add weather report` node gets saved to.
 
-5. Rename the node to `Save Weather Report`.
-6. Select `weather_data` from the **Data table** list and change **Mapping Column Mode** to **Map Automatically**. The `report` field from **Format Weather Message** has the same name as the column in the data table, so n8n maps them for you.
+    ![Add a column to the new data table](.gitbook/assets/build-your-first-workflow-optional-05-04.png)
 
-    ![Save Weather Report node with the data table selected and Map Automatically set](.gitbook/assets/build-your-first-workflow-save-data-05.png)
+    Navigate back to the workflow tab.
 
-## 6. Test and publish the workflow
+5. Select the data table you just created from the **Data table** list and change **Mapping Column Mode** to **Map Automatically**. The `report` field from **Add weather report** has the same name as the column in the data table, so n8n maps them for you.
+
+    ![Data table node with the data table selected and Map Automatically set](.gitbook/assets/build-your-first-workflow-optional-05-05.png)
+
+6. Rename the node to `Save weather log`.
+
+### 6. Test and publish the workflow
 
 Your workflow is complete. Test it, then publish it so it runs every day at 8 AM.
 
-1. Select **Execute workflow** to test it, then open the `weather_data` table to check that n8n inserted a row.
+1. Select **Execute** under the canvas to test it. You should see green check marks on all four nodes:
 
-    ![Successful workflow run](.gitbook/assets/build-your-first-workflow-test-and-publish-01.png)
+    ![Successful workflow run after execution](.gitbook/assets/build-your-first-workflow-optional-06-01.png)
 
-    ![New row in the data table](.gitbook/assets/build-your-first-workflow-test-and-publish-02.png)
+2. Navigate to **Personal** > **Data tables** to see the new row.
 
-2. Select **Publish** in the Canvas header and follow the prompts to publish the workflow.
+3. Select **Publish** in the Canvas header and follow the prompts to publish the workflow.
 
-    ![Publish button](.gitbook/assets/build-your-first-workflow-test-and-publish-03.png)
-
-## What you learned
-
-Congratulations, your workflow now runs at 8 AM every day. Along the way, you’ve learned how to:
-
-- **Start a workflow with a trigger.** Yours runs on a schedule. [Schedule Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.scheduletrigger)
-- **Add and connect nodes.** Each node does one job and passes its result to the next. [Work with nodes](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/workflow-components/work-with-nodes)
-- **Fetch data from an API.** You used the HTTP Request node to get weather data from a web address. [HTTP Request](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.httprequest)
-- **Work with data between nodes.** The output of one node becomes the input of the next. [Understand n8n's data structure](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/understand-n8ns-data-structure)
-- **Use expressions.** Dragging fields in builds an expression for you, so you can use live data without writing code. [Expressions for data transformation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/transform-data/expressions-for-data-transformation)
-- **Store data.** Each run saves a new row to your data table, so you keep every report after the workflow finishes. [Data tables](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/data-tables)
-
-## Optional: Build with n8n Assistant
-
-{% hint style="info" %}
-**Preview status**
-
-n8n Assistant is in Preview and may change in future releases. See [Use the n8n Assistant](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/n8n-assistant) page for availability.
-{% endhint %}
-
-n8n Assistant is another way to build workflows, using prompts. Now that you’ve built **Weather Log** yourself, you’ll understand what n8n Assistant creates.
-
-1. Open your **Weather Log** workflow, select **Published** at the top right, and select **Unpublish**. Otherwise your workflow and the one n8n Assistant creates both run at 8 AM.
-
-    ![Unpublish option](.gitbook/assets/build-your-first-workflow-assistant-01.png)
-
-2. Select **n8n Assistant** in the left menu.
-
-    ![n8n Assistant in the left menu](.gitbook/assets/build-your-first-workflow-assistant-02.png)
-
-3. Enter this prompt:
-
-    ```
-    Every day at 8am:
-    - Get the weather for Berlin from https://mockingbird.n8n.io/v1/weather/berlin
-    - Add a report field that contains the city, temperature, and conditions
-    - Save the report to a data table called weather_data
-    ```
-
-    ![Prompt entered in n8n Assistant](.gitbook/assets/build-your-first-workflow-assistant-03.png)
-
-    {% hint style="info" %}
-    n8n Assistant may detect your existing **Weather Log** workflow. Ask it to “build a fresh, separate copy”.
-    {% endhint %}
-
-4. Approve each step when n8n Assistant asks. When it finishes, you should see a workflow like this:
-
-    ![Workflow built by n8n Assistant](.gitbook/assets/build-your-first-workflow-assistant-04.png)
-
-5. Select **Execute workflow**, then check the data table for a new row:
-
-    ![Successful run of the copied workflow](.gitbook/assets/build-your-first-workflow-assistant-05.png)
-
-    ![Second row in the data table](.gitbook/assets/build-your-first-workflow-assistant-06.png)
+    ![Publish the workflow](.gitbook/assets/build-your-first-workflow-optional-06-03.png)
 
 ## Next steps
 
@@ -62109,6 +62513,7 @@ n8n Assistant is another way to build workflows, using prompts. Now that you’v
 
 * [n8n Docs](./)
 * [Choose how to use n8n](choose-how-to-use-n8n.md)
+* [Use n8n Assistant](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/ways-of-building-workflows/n8n-assistant)
 * [Learning paths](learning-paths.md)
 * [Key concept glossary](key-concept-glossary.md)
 
@@ -77497,8 +77902,8 @@ newItem = {
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.45.6
-Current `beta`: 2.46.2
+Current `stable`: 2.45.7
+Current `beta`: 2.46.3
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/tunnel/
@@ -110088,7 +110493,7 @@ If you use n8n's template library, this takes you to browse [Workflows on the n8
 
 ## Add your workflow to the n8n library <a href="#add-your-workflow-to-the-n8n-library" id="add-your-workflow-to-the-n8n-library"></a>
 
-{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mr8LBJxxxIAFYHNPNKU2/" %}
+To share your own workflow in the template library, follow [Create workflow templates](https://app.gitbook.com/s/6OmLnmci5kZDzdkzKREn/create-templates). The guide covers quality requirements, testing, documentation, and submission through the Creator Dashboard.
 
 ## Self-hosted n8n: Use your own library <a href="#self-hosted-n8n-use-your-own-library" id="self-hosted-n8n-use-your-own-library"></a>
 
