@@ -10660,19 +10660,22 @@ Ask n8n AI offers a range of tools to support you:
 AI usage settings are available from n8n 2.7.0.
 {% endhint %}
 
-You can manage your AI usage settings by navigating to **Settings** > **AI Usage** in your n8n instance. Here, you can control what data is shared with Ask n8n AI.
+AI usage settings control what data n8n sends to Ask n8n AI and to [n8n Assistant](n8n-assistant.md). Where you find them depends on your instance:
 
-These settings are only available to the instance owners and administrators, and will apply to all users on the instance.
+* If your instance has the **Assistant** settings page, navigate to **Settings** > **Assistant** and go to the **Data sent to the model** section.
+* Otherwise, navigate to **Settings** > **AI usage**.
 
-![AI Usage settings page with the Send actual data values checkbox](../.gitbook/assets/ai_usage_settings.png)
+These settings are only available to the instance owners and administrators, and apply to all users on the instance.
 
-Choose whether to share actual workflow data (like node names, parameters, and structure) with Ask n8n AI. Disabling this option will limit the assistant's ability to provide context-aware help based on your workflows.
+![The Data sent to the model section on the Assistant settings page, with the Send field names and types and Send actual data values switches](../.gitbook/assets/ai_usage_settings.png)
 
-Since access to workflow data is essential for the AI Workflow builder to function, **disabling this option will also disable the AI Workflow builder feature**.
+n8n always sends field names and types (the schema) of your data. **Send actual data values** controls whether n8n also sends real values from your workflows and executions (like node parameters). While it's off, Ask n8n AI can't give context-aware help based on your workflows.
+
+Since access to workflow data is essential for the AI Workflow builder and n8n Assistant to function, **keeping this option off also disables the AI Workflow builder** and puts n8n Assistant in a limited mode, where it can't create or edit workflows.
 
 ### Disable sending data <a href="#disable-sending-data" id="disable-sending-data"></a>
 
-To stop sending actual data values to Ask n8n AI, turn off the **Send actual data values** checkbox on the **AI Usage** settings page.
+The **Send actual data values** option is deprecated. Once it's on, you can't turn it off in the settings. To keep it off on a self-hosted instance, set the `N8N_AI_ALLOW_SENDING_PARAMETER_VALUES` environment variable to `false` and restart n8n. The variable is deprecated too and will be removed in n8n 4.
 
 ## FAQs <a href="#faqs" id="faqs"></a>
 
@@ -11383,7 +11386,7 @@ Workflow reviews are available on:
 - **n8n Cloud:** Enterprise
 - **Self-hosted:** Enterprise
 
-Workflow reviews are available from n8n 2.37.0. An instance admin must enable the feature in **Settings** > **Security & policies**.
+Workflow reviews are available from n8n 2.37.0. An instance admin must enable the feature in **Settings** > **Policies**.
 {% endhint %}
 
 {% hint style="info" %}
@@ -11429,7 +11432,7 @@ A workflow can have only one open review at a time. While that review is open, c
 
 ## Enable workflow reviews
 
-Instance admins enable workflow reviews for the whole instance in **Settings** > **Security & policies**, under **Workflow reviews**.
+Instance admins enable workflow reviews for the whole instance in **Settings** > **Policies**, under **Workflow reviews**.
 
 For more about instance security policies, refer to [Manage security policies](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/manage-security-policies).
 
@@ -11478,7 +11481,7 @@ People who can open the review can comment on **Activity** without deciding. To 
 
 | Action | Who can do it |
 | --- | --- |
-| Enable or disable workflow reviews for the instance | Instance admins with access to **Settings** > **Security & policies** |
+| Enable or disable workflow reviews for the instance | Instance admins with access to **Settings** > **Policies** |
 | Submit a workflow for review | Users with `workflow:publish` on that workflow |
 | Update an open review with a newer version | Users with `workflow:publish` on that workflow |
 | See that a review is in progress | Users who can open the workflow, including viewers and editors. They can't open review details unless they're listed below. |
@@ -92552,7 +92555,7 @@ Configure timezone, IP addresses, data management, and ownership settings for yo
 
 ## Change instance ownership <a href="#change-instance-ownership" id="change-instance-ownership"></a>
 
-You can change the ownership of an instance by navigating to the **Settings > Personal** page in the owner's account and editing the **Email** field. After making the changes, scroll down and press **Save**.
+You can change the ownership of an instance by navigating to the **Settings > Profile & preferences** page in the owner's account and editing the **Email** field. After making the changes, scroll down and press **Save**.
 Note that for the change to be effective, the new email address must not be associated with any other n8n account, as each instance can have only one **unique owner email**. If the intended email is already linked to an existing user, change or delete that user first so the email becomes available.
 
 Changing emails will change the owner of the instance, the email you log in with, and the email your invoices and general communication gets sent to.
@@ -99921,7 +99924,7 @@ There are two independent toggles that control redaction:
 
 Instance owners and admins can enforce redaction for all workflows on the instance instead of relying on each workflow's individual settings. Enforcement sets a minimum redaction policy (a "floor") that applies everywhere.
 
-To enable enforcement, navigate to **Settings** > **Security** and configure the **Data redaction** section. Refer to [Security settings](manage-security-policies.md#enforce-execution-data-redaction) for the step-by-step instructions.
+To enable enforcement, navigate to **Settings** > **Policies** and configure the **Data redaction** section. Refer to [Security settings](manage-security-policies.md#enforce-execution-data-redaction) for the step-by-step instructions.
 
 ### Enforcement scope <a href="#enforcement-scope" id="enforcement-scope"></a>
 
@@ -100061,7 +100064,7 @@ Some settings require specific license features. Settings that aren't available 
 
 Security settings let you manage instance-wide security policies. You can enforce two-factor authentication for all users and control what users can do in their personal spaces.
 
-To access security settings, navigate to **Settings** > **Security**.
+To access security settings, navigate to **Settings** > **Policies**.
 
 ## Enforce two-factor authentication <a href="#enforce-two-factor-authentication" id="enforce-two-factor-authentication"></a>
 
@@ -100075,7 +100078,7 @@ You can require all users on your instance to set up two-factor authentication (
 
 To enforce 2FA:
 
-1. Navigate to **Settings** > **Security**.
+1. Navigate to **Settings** > **Policies**.
 2. In the **Enforce two-factor authentication** section, toggle the switch on.
 
 When you enable this setting:
@@ -100097,7 +100100,7 @@ Controls whether users can share workflows and credentials from their personal s
 
 To manage sharing:
 
-1. Navigate to **Settings** > **Security**.
+1. Navigate to **Settings** > **Policies**.
 2. In the **Personal Space** section, find **Sharing workflows and credentials**.
 3. Toggle the switch to enable or disable sharing.
 
@@ -100112,7 +100115,7 @@ Controls whether users can publish workflows from their personal space to make t
 
 To manage publishing:
 
-1. Navigate to **Settings** > **Security**.
+1. Navigate to **Settings** > **Policies**.
 2. In the **Personal Space** section, find **Publishing workflows**.
 3. Toggle the switch to enable or disable publishing.
 
@@ -100144,7 +100147,7 @@ With workflow reviews, teams can submit a workflow version for approval before p
 
 To enable workflow reviews:
 
-1. Navigate to **Settings** > **Security & policies**.
+1. Navigate to **Settings** > **Policies**.
 2. In the **Workflow reviews** section, turn on **Enable workflow reviews**.
 
 When the setting is off, users can't create or manage reviews. Turning the feature off also lifts the publish block for workflows that still have an open review. For how to submit, approve, and publish after you enable the feature, refer to [Workflow reviews](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/workflow-reviews).
@@ -100166,7 +100169,7 @@ Available from n8n 2.26.0.
 
 To enforce data redaction:
 
-1. Navigate to **Settings** > **Security**.
+1. Navigate to **Settings** > **Policies**.
 2. In the **Data redaction** section, toggle **Enforce data redaction** on.
 3. Under **Redact executions**, select the enforcement scope:
 	- **Production executions (Recommended)**: n8n redacts data from production executions in all workflows.
@@ -100661,7 +100664,7 @@ Changing the owner email updates the existing instance owner account. It doesn't
 ## Change the owner email in the UI <a href="#change-the-owner-email-in-the-ui" id="change-the-owner-email-in-the-ui"></a>
 
 1. Log in as the instance owner.
-2. Go to **Settings** > **Personal**.
+2. Go to **Settings** > **Profile & preferences**.
 3. Update the **Email** field.
 4. Select **Save**.
 
@@ -103422,9 +103425,9 @@ To enable certain licensed features, you must first activate your license. You c
 
 | Variable                                  | Type    | Default                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ----------------------------------------- | ------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `N8N_HIDE_USAGE_PAGE`                     | boolean | `false`                        | Hide the usage and plans page in the app.                                                                                                                                                                                                                                                                                                                                                                                           |
+| `N8N_HIDE_USAGE_PAGE`                     | boolean | `false`                        | Hide the **Plan & usage** page in the app.                                                                                                                                                                                                                                                                                                                                                                                       |
 | `N8N_LICENSE_ACTIVATION_KEY`              | String  | `''`                           | Activation key to initialize license. Not applicable if the n8n instance was already activated.                                                                                                                                                                                                                                                                                                                                     |
-| `N8N_LICENSE_AUTO_RENEW_ENABLED`          | Boolean | `true`                         | <p>Enables (true) or disables (false) autorenewal for licenses.<br>If disabled, you need to manually renew the license every 10 days by navigating to <strong>Settings</strong> > <strong>Usage and plan</strong>, and pressing <code>F5</code>. Failure to renew the license will disable all licensed features.</p>                                                                                                               |
+| `N8N_LICENSE_AUTO_RENEW_ENABLED`          | Boolean | `true`                         | <p>Enables (true) or disables (false) autorenewal for licenses.<br>If disabled, you need to manually renew the license every 10 days by navigating to <strong>Settings</strong> > <strong>Plan & usage</strong>, and pressing <code>F5</code>. Failure to renew the license will disable all licensed features.</p>                                                                                                               |
 | `N8N_LICENSE_CERT`                        | String  | `''`                           | Base64-encoded license certificate provided by n8n. Used instead of `N8N_LICENSE_ACTIVATION_KEY` for special use cases, e.g. air-gapped environments.                                                                                             |
 | `N8N_LICENSE_DETACH_FLOATING_ON_SHUTDOWN` | Boolean | `true`                         | <p>Controls whether the instance releases <a href="https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/key-concept-glossary#entitlement-n8n">floating entitlements</a> back to the pool upon shutdown. Set to <code>true</code> to allow other instances to reuse the entitlements, or <code>false</code> to retain them.<br>For production instances that must always keep their licensed features, set this to <code>false</code>.<br>Ignored when multi-main mode is enabled: all main instances share one seat, and a main instance that shuts down does not release it.</p> |
 | `N8N_LICENSE_SERVER_URL`                  | String  | `https://license.n8n.io/v1`    | Server URL to retrieve license.                                                                                                                                                                                                                                                                                                                                                                                                     |
@@ -104784,7 +104787,7 @@ To enable certain licensed features, you must first activate your license. You c
 In your n8n instance:
 
 1. Log in as **Admin** or **Owner**.
-1. Select **Settings** > **Usage and plan**.
+1. Select **Settings** > **Plan & usage**.
 1. Select **Enter activation key**.
 1. Paste in your license key.
 1. Select **Activate**.
@@ -105918,11 +105921,11 @@ To register a new Community edition instance, select the option during your init
 To register an existing Community edition instance:
 
 1. Select the **three dots icon** <img src="../.gitbook/assets/three-dots-horizontal (1).png" alt="three dots icon" data-size="line"> in the lower-left corner.
-2. Select **Settings** and then **Usage and plan**.
+2. Select **Settings** and then **Plan & usage**.
 3. Select **Unlock** to enter your email and then select **Send me a free license key**.
 4. Check your email for the account you entered.
 
-Once you have a license key, activate it by selecting the button in the license email, or by going to **Options > Settings > Usage and plan** and selecting **Enter activation key**.
+Once you have a license key, activate it by selecting the button in the license email, or by going to **Options > Settings > Plan & usage** and selecting **Enter activation key**.
 
 ## Business and Enterprise plans <a href="#business-and-enterprise-editions" id="business-and-enterprise-editions"></a>
 
@@ -108241,7 +108244,7 @@ As an example, imagine you have an Execute Sub-workflow node in **Workflow A**. 
 You can now invite other people to your n8n instance.
 
 1. Sign in to your n8n instance with your owner account. On n8n Cloud, if you're in the n8n Cloud console, select **Open instance** on the **Overview** page.
-2. Click the three dots next to your user icon at the bottom left and click **Settings**. n8n opens your **Personal settings** page.
+2. Click the three dots next to your user icon at the bottom left and click **Settings**.
 3. Click **Users** to go to the **Users** page.
 4. Click **Invite**.
 5. Enter the new user's email address.
@@ -110570,6 +110573,8 @@ This section includes guides to configuring [LDAP](verify-user-identity/connect-
 
 Confirm who's signing in to your n8n instance, from two-factor auth to directory-backed single sign-on.
 
+In n8n, go to **Settings** > **Authentication** to see the sign-in methods for your instance. The page lists single sign-on (SSO) and LDAP, marks the active method, and shows whether two-factor auth is enforced.
+
 ## In this section
 
 * [Require two-factor auth](require-two-factor-auth.md): enable 2FA for your n8n account.
@@ -110623,7 +110628,7 @@ Configuring OIDC using environment variables instead of the UI is available from
 ## Setting up and enabling OIDC <a href="#setting-up-and-enabling-oidc" id="setting-up-and-enabling-oidc"></a>
 
 
-1. In n8n, go to **Settings** > **SSO**.
+1. In n8n, go to **Settings** > **Authentication** > **Single sign-on (SSO)**.
 1. Under **Select Authentication Protocol**, choose **OIDC** from the dropdown.
 1. Copy the **redirect URL** shown (for example, `https://yourworkspace.app.n8n.cloud/rest/sso/oidc/callback`).<br>
 
@@ -110652,7 +110657,7 @@ Role provisioning is available from n8n 1.122.2.
 
 #### Choose how roles are assigned <a href="#choose-how-roles-are-assigned" id="choose-how-roles-are-assigned"></a>
 
-In n8n, go to **Settings** > **SSO**. Use the **Role assignment** dropdown to choose how n8n assigns roles to users who sign in via SSO. The default is **Assigned manually in n8n**.
+In n8n, go to **Settings** > **Authentication** > **Single sign-on (SSO)**. Use the **Role assignment** dropdown to choose how n8n assigns roles to users who sign in via SSO. The default is **Assigned manually in n8n**.
 
 The options are:
 
@@ -110820,7 +110825,7 @@ Visual step-by-step guide for setting up OIDC with Okta
 	- Click **Create**.
 1. **Configure the application**:
 	- Go to the **Settings** tab of your new application.
-	- **Allowed Callback URLs**: Add your n8n redirect URL from **Settings** > **SSO** > **OIDC**.
+	- **Allowed Callback URLs**: Add your n8n redirect URL from **Settings** > **Authentication** > **Single sign-on (SSO)** > **OIDC**.
 	- **Allowed Web Origins**: Add your n8n base URL (for example, `https://yourworkspace.app.n8n.cloud`).
 	- Click **Save Changes**.
 1. **Get your credentials**:
@@ -111049,7 +111054,7 @@ Configuring SAML using environment variables instead of the UI is available from
 
 ## Enable SAML <a href="#enable-saml" id="enable-saml"></a>
 
-1. In n8n, go to **Settings** > **SSO**.
+1. In n8n, go to **Settings** > **Authentication** > **Single sign-on (SSO)**.
 1. Make a note of the n8n **Redirect URL** and **Entity ID**.
 	* **Optional**: If your IdP allows you to set up SAML from imported metadata, navigate to the **Entity ID** URL and save the XML. 
 	* **Optional**: If you are running n8n behind a load balancer make sure you have `N8N_EDITOR_BASE_URL` configured. 
@@ -111095,7 +111100,7 @@ Role provisioning is available from n8n 1.122.2.
 
 #### Choose how roles are assigned <a href="#choose-how-roles-are-assigned" id="choose-how-roles-are-assigned"></a>
 
-In n8n, go to **Settings** > **SSO**. Use the **Role assignment** dropdown to choose how n8n assigns roles to users who sign in via SSO. The default is **Assigned manually in n8n**.
+In n8n, go to **Settings** > **Authentication** > **Single sign-on (SSO)**. Use the **Role assignment** dropdown to choose how n8n assigns roles to users who sign in via SSO. The default is **Assigned manually in n8n**.
 
 The options are:
 
@@ -111330,7 +111335,7 @@ Conditions are evaluated in order. Place the most privileged group (owners) at t
 
 ### Testing the configuration <a href="#testing-the-configuration" id="testing-the-configuration"></a>
 
-1. In n8n, go to **Settings** > **SSO**.
+1. In n8n, go to **Settings** > **Authentication** > **Single sign-on (SSO)**.
 1. Set **Role assignment** to **Instance roles via SSO**.
 1. Set **Role mapping method** to **Map rules on your IdP**.
 1. Click **Test settings**.
@@ -111418,7 +111423,7 @@ You need an authenticator app on your phone.
 
 To enable 2FA in n8n:
 
-1. Go to you **Settings** > **Personal**.
+1. Go to **Settings** > **Profile & preferences**.
 2. Select **Enable 2FA**. n8n opens a modal with a QR code.
 3. Scan the QR code in your authenticator app.
 4. Enter the code from your app in **Code from authenticator app**.
@@ -111458,7 +111463,7 @@ LDAP allows users to sign in to n8n with their organization credentials, instead
 ## Enable LDAP <a href="#enable-ldap" id="enable-ldap"></a>
 
 1. Log in to n8n as the instance owner.
-2. Select **Settings** <img src="../../.gitbook/assets/settings.png" alt="Settings icon" data-size="line"> > **LDAP**.
+2. Select **Settings** <img src="../../.gitbook/assets/settings.png" alt="Settings icon" data-size="line"> > **Authentication** > **LDAP**.
 3. Toggle on **Enable LDAP Login**.
 4. Complete the fields with details from your LDAP server. Refer to [Connection settings](#connection-settings).
 5. Select **Test connection** to check your connection setup, or **Save connection** to create the connection.
@@ -111520,7 +111525,7 @@ If you remove a user from your LDAP server, they lose n8n access on the next syn
 To turn LDAP off:
 
 1. Log in to n8n as the instance owner.
-2. Select **Settings** <img src="../../.gitbook/assets/settings.png" alt="Settings icon" data-size="line"> > **LDAP**.
+2. Select **Settings** <img src="../../.gitbook/assets/settings.png" alt="Settings icon" data-size="line"> > **Authentication** > **LDAP**.
 3. Toggle off **Enable LDAP Login**.
 
 If you turn LDAP off, n8n converts existing LDAP users to email users on their next login. The users must reset their password.
@@ -113866,7 +113871,7 @@ Every self-hosted installation runs on the same underlying product. You can stic
 
 For the differences between editions and how to register or license an instance, see [Compare plans and editions](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/community-edition-features). For what each plan includes, see the [pricing page](https://n8n.io/pricing/).
 
-To register a Community edition instance for the extra free features, go to **Settings > Usage and plan** and select **Unlock**.
+To register a Community edition instance for the extra free features, go to **Settings > Plan & usage** and select **Unlock**.
 
 ## Which features need a paid plan or edition <a href="#which-features-need-a-paid-plan-or-edition" id="which-features-need-a-paid-plan-or-edition"></a>
 
