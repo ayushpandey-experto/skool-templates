@@ -11631,7 +11631,7 @@ If you're importing large packages, raise `N8N_PAYLOAD_SIZE_MAX` first. Raising 
 
 A few more limits apply to an import request and aren't configurable: exactly one file per request, and 64 KB per option field, which is the practical cap on a `--bindings` value.
 
-Export caps IDs at 300 per group, counted separately for workflow, folder, and project IDs. See [Choose what to export](export-a-package.md#choose-what-to-export).
+Export caps IDs at 300 per group, counted separately for workflow, agent, folder, and project IDs. See [Choose what to export](export-a-package.md#choose-what-to-export).
 
 ## Archive validation
 
@@ -11651,34 +11651,42 @@ There's no license feature for packages themselves. The feature is available on 
 
 Import checks two license features, and only for what it would actually do:
 
-* **Folders**, whenever the package contains folders. This is judged from what the package declares, so it applies even if every folder already exists on the target.
+* **Folders**, when the import actually creates or removes a folder. A folder package always needs it, even when its folders already exist on the target.
 * **Variables**, only when the import would actually create or overwrite a variable. A package whose variables all resolve on the target writes none, so it needs neither the license nor a variable scope.
 
 Importing a project package also needs a license that supports team projects.
 
 A missing license feature returns a `403` naming the feature.
 
-Packages are only reachable through the [n8n API](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api), so the API has to be enabled on the instance. To stop packages moving in or out of an instance, [disable the public API](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/disable-the-public-api), or don't issue API keys carrying the `workflow:export` and `workflow:import` scopes.
+Packages are only reachable through the [n8n API](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api), so the API has to be enabled on the instance. To stop packages moving in or out of an instance, [disable the public API](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/disable-the-public-api), or don't issue API keys carrying the `workflow:export`, `agent:export`, `project:export`, `workflow:import`, and `agent:import` scopes.
 
 ## API key scopes
 
-Both endpoints authenticate with an API key, and the import is attributed to that key's user.
+The package endpoints authenticate with an API key, and the import is attributed to that key's user.
 
 ### Export
 
 | Scope | Needed when |
 |-------|-------------|
 | `workflow:export` | You name workflow or folder IDs. Folders use the workflow scope |
-| `project:export` | You name project IDs |
+| `agent:export` | You name agent IDs |
+| `project:export` | You name project IDs, including for the agents in those projects |
 | `variable:list` | Variable values are bundled and the workflows reference at least one variable |
 
 ### Import
 
 | Scope | Needed when |
 |-------|-------------|
-| `workflow:import` | Always |
-| `folder:create` and `folder:update` | The package contains folders |
-| `project:create` and `project:update` | The package is a project package, whether or not it creates a project |
+| `workflow:import` | The package contains workflows |
+| `folder:create` and `folder:update` | The package is a folder package. A project package needs only `folder:create`, and only when the import actually creates a folder |
+| `workflow:delete` | The import archives or restores an existing workflow, the folder conflict policy `overwrite` actually removes a workflow, or `--deleted-workflow-ids` names a workflow |
+| `folder:delete` | The folder conflict policy `overwrite`, set directly or through `--project-conflict-policy=overwrite`, actually removes a folder |
+| `workflow:activate` | The import plans to publish a workflow, including a republish under the default `--publishing-policy=preserve-published-state` |
+| `workflow:deactivate` | The import plans to unpublish a workflow under `--publishing-policy=match-source` or `unpublish-all` |
+| `project:create` | The import actually creates a project |
+| `project:update` | The import actually changes a project's details under `--project-conflict-policy=overwrite` |
+| `credential:create` | The import actually creates a credential under `--credential-missing-mode=create-with-values` |
+| `credential:update` | The import actually changes a credential under `--credential-conflict-policy=overwrite` |
 | `dataTable:create` | The package references data tables and `--data-table-missing-mode` is `create` |
 | `dataTable:update` | The import actually changes a data table under `--data-table-schema-conflict-policy=overwrite` or `overwrite-non-destructive` |
 | `variable:create` | The import actually creates a variable |
@@ -11686,13 +11694,17 @@ Both endpoints authenticate with an API key, and the import is attributed to tha
 | `tag:create` | The import actually creates a tag |
 | `tag:update` | The import actually renames or reconciles a tag |
 
-`dataTable:update` and the last four are judged from what the import will really write, so a package that references tags or variables which all already match needs neither scope. The rest are judged from what the package declares, which means `dataTable:create` is required even when every referenced table already exists.
+An import with agents also needs agent and skill scopes, depending on what it creates, updates, and publishes.
 
-A member-role API key can't import a project package, can't import a package containing folders, and can't create or overwrite variables: `project:create`, `project:update`, `folder:create`, `folder:update`, `variable:create`, and `variable:update` are owner and admin scopes. Members can hold `workflow:export`, `workflow:import`, `project:export`, `variable:list`, `dataTable:create`, `dataTable:update`, `tag:create`, and `tag:update`, so a member can bundle variable values on export.
+The same scopes apply when you [import a selection from a project package](import-a-package.md#import-a-selection-from-a-project-package).
+
+Most scopes are judged from what the import will really write, so a package whose tags or variables all already match on the target needs no tag or variable scope. The exceptions are `workflow:import`, `workflow:delete` for `--deleted-workflow-ids`, the folder scopes for a folder package, and `dataTable:create` for a workflow or folder package. These are judged from what the package declares and the options you pass, so a workflow or folder package needs `dataTable:create` even when every referenced table already exists.
+
+A member-role API key can't import a project package that creates a project or changes its details, because `project:create` and `project:update` are owner and admin scopes. Members can hold every other scope in these tables.
 
 API key scopes are checked on top of your own permissions, not instead of them. On export you can only take what you can read, so n8n checks your access to each workflow, folder, project, and credential. On import it checks your permission to write to the target project. A credential you can't read is recorded as a requirement rather than bundled, so a partial view of an instance produces a package that says plainly what the target has to supply.
 
-Missing permission to create a tag, or to create or change a data table, is reported as a blocking issue rather than a `403`. See [Why an import is refused](how-import-works.md#why-an-import-is-refused).
+If your role doesn't let you create a tag, or create or change a data table, n8n reports a blocking issue rather than a `403`. A missing API key scope is a `403`. See [Why an import is refused](how-import-works.md#why-an-import-is-refused).
 
 ## Variable limit
 
@@ -11761,23 +11773,30 @@ Exporting by workflow ID gives you loose workflows, with everything they depend 
 triage.n8np
 ├── manifest.json
 ├── workflows/
-│   ├── triage-inbound/
-│   │   └── workflow.json
-│   └── send-email/
-│       └── workflow.json
+│   ├── triage-inbound-wf7Kq2/
+│   │   ├── workflow.json
+│   │   └── workflow-metadata.json
+│   └── send-email-wf9Zx1/
+│       ├── workflow.json
+│       └── workflow-metadata.json
 ├── credentials/
-│   └── linear-api/
+│   └── linear-api-crLin44/
 │       └── credential.json
 ├── variables/
-│   └── slackchannelid/
+│   └── slackchannelid-vaSl03/
 │       └── variable.json
 ├── data-tables/
-│   └── countries/
+│   └── countries-dtCn12/
 │       └── data-table.json
 └── tags/
-    └── prod/
+    └── prod-tgPr01/
         └── tag.json
 ```
+
+Each workflow directory holds two files:
+
+* `workflow.json`: the workflow itself.
+* `workflow-metadata.json`: the ID of the exported version, and of the version published on the source if there is one. Import uses it to apply the [publishing policy](import-a-package.md#publishing).
 
 ### Folder package
 
@@ -11787,23 +11806,25 @@ Exporting by folder ID keeps the folder tree. A folder's workflows sit in a `wor
 in-progress.n8np
 ├── manifest.json
 ├── folders/
-│   ├── to-production/
+│   ├── to-production-fdToProd/
 │   │   └── folder.json            # an empty folder is just the shell
-│   └── in-progress/
+│   └── in-progress-fdInProg/
 │       ├── folder.json
 │       ├── workflows/
-│       │   └── triage-inbound/
-│       │       └── workflow.json
-│       └── nested/
+│       │   └── triage-inbound-wf7Kq2/
+│       │       ├── workflow.json
+│       │       └── workflow-metadata.json
+│       └── nested-fdNest01/
 │           ├── folder.json
 │           └── workflows/
-│               └── playground/
-│                   └── workflow.json
+│               └── playground-wfPlay1/
+│                   ├── workflow.json
+│                   └── workflow-metadata.json
 ├── credentials/
-│   └── linear-api/
+│   └── linear-api-crLin44/
 │       └── credential.json
 └── tags/
-    └── prod/
+    └── prod-tgPr01/
         └── tag.json
 ```
 
@@ -11815,54 +11836,79 @@ Exporting by project ID adds a namespacing layer. Several projects can travel in
 team-ligo.n8np
 ├── manifest.json
 ├── projects/
-│   └── team-ligo/
+│   └── team-ligo-prTeam9/
 │       ├── project.json
 │       ├── workflows/                    # workflows at the project root
-│       │   └── triage-inbound/
-│       │       └── workflow.json
+│       │   └── triage-inbound-wf7Kq2/
+│       │       ├── workflow.json
+│       │       └── workflow-metadata.json
 │       ├── folders/
-│       │   └── in-progress/
+│       │   └── in-progress-fdInProg/
 │       │       ├── folder.json
 │       │       └── workflows/
-│       │           └── send-email/
-│       │               └── workflow.json
+│       │           └── send-email-wf9Zx1/
+│       │               ├── workflow.json
+│       │               └── workflow-metadata.json
 │       ├── credentials/                  # owned by this project
-│       │   └── linear-api/
+│       │   └── linear-api-crLin44/
 │       │       └── credential.json
 │       ├── variables/                    # scoped to this project
-│       │   └── slackchannelid/
+│       │   └── slackchannelid-vaSl03/
 │       │       └── variable.json
 │       └── data-tables/
-│           └── countries/
+│           └── countries-dtCn12/
 │               └── data-table.json
 ├── credentials/                          # a global credential
-│   └── shared-smtp/
+│   └── shared-smtp-crSmtp1/
 │       └── credential.json
 ├── variables/                            # a global variable
-│   └── region/
+│   └── region-vaRg02/
 │       └── variable.json
 └── tags/                                 # always global
-    └── prod/
+    └── prod-tgPr01/
         └── tag.json
 ```
 
 {% hint style="info" %}
-In a project package, where a variable sits decides where it's created. A variable under `projects/<project-slug>/variables/` is created in that project. One at the top level is created globally. This is why `--variable-parent-policy` is rejected for project packages: the layout already decided.
+In a project package, where a variable sits decides where it's created. A variable under `projects/<project-directory>/variables/` is created in that project. One at the top level is created globally. This is why `--variable-parent-policy` is rejected for project packages: the layout already decided.
 {% endhint %}
+
+## Agents and skills
+
+[Agents](../../build-and-manage-agents/README.md) sit next to workflows. In a workflow or folder package, each agent has a directory under the top-level `agents/`. In a project package, an agent sits under its project, in `projects/<project-directory>/agents/`. Each agent directory holds two files:
+
+* `agent.json`: the agent's definition, with its custom tools and schedules.
+* `agent-metadata.json`: the ID of the exported version, and of the version published on the source if there is one. Import uses it to apply the [publishing policy](import-a-package.md#publishing).
+
+Each skill an exported agent uses gets its own directory with a `skill.json`, holding the skill's content and whether it's a project or an instance skill. A project skill sits under its project when that project is in the package. Every other skill sits in the top-level `skills/`:
+
+```
+support.n8np
+├── manifest.json
+├── agents/
+│   └── support-triage-agSup01/
+│       ├── agent.json
+│       └── agent-metadata.json
+├── skills/
+│   └── refund-policy-skRf01/
+│       └── skill.json
+└── credentials/
+    └── openai-account-crOai01/
+        └── credential.json
+```
 
 ## Directory naming
 
-Each entity gets a directory named after a slug of its name, holding one JSON file. Slugging lowercases the name, drops every character that isn't a letter a to z, a digit, whitespace, or a hyphen, then turns whitespace runs into single hyphens:
+Each entity gets a directory named `<slug>-<id>`: a slug of its name, then a hyphen, then its ID on the source instance. Slugging lowercases the name, drops every character that isn't a letter a to z, a digit, whitespace, or a hyphen, turns whitespace runs and repeated hyphens into a single hyphen, and trims hyphens from both ends:
 
-| Entity name | Directory |
-|-------------|-----------|
-| `Triage inbound` | `triage-inbound` |
-| `Linear api` | `linear-api` |
-| `slackChannelId` | `slackchannelid` |
-| `Q4 报告` | `q4` |
-| `報告` | `workflow` |
+| Entity name | ID | Directory |
+|-------------|----|-----------|
+| `Triage inbound` | `wf7Kq2` | `triage-inbound-wf7Kq2` |
+| `slackChannelId` | `vaSl03` | `slackchannelid-vaSl03` |
+| `Q4 报告` | `wfQ4r1` | `q4-wfQ4r1` |
+| `報告` | `wfBg02` | `workflow-wfBg02` |
 
-The last row shows the fallback: when nothing survives slugging, n8n uses the entity type as the name (`workflow`, `folder`, `project`, `credential`, `variable`, `data-table`, or `tag`). Names that slug identically get a numeric suffix starting at 2, so a second `Triage inbound` becomes `triage-inbound-2`.
+The last row shows the fallback: when nothing survives slugging, n8n uses the entity type as the slug (`workflow`, `agent`, `skill`, `folder`, `project`, `credential`, `variable`, `data-table`, or `tag`). Because the ID is part of the directory name, two entities with the same name still get separate directories.
 
 Directory names are for humans reading the archive. n8n identifies entities by the IDs in the manifest and the JSON files, never by the directory name.
 
@@ -11870,32 +11916,34 @@ Directory names are for humans reading the archive. n8n identifies entities by t
 
 The manifest is an index. It tells n8n what's in the package and what the target instance has to supply, so an import can fail fast without reading every file.
 
-These four fields are always present:
+These three fields are always present:
 
 * `packageFormatVersion`: the version of the package format, currently the string `"1"`.
-* `exportedAt`: when n8n created the package, as an ISO 8601 timestamp.
 * `sourceN8nVersion`: the n8n version that created the package.
 * `sourceId`: an identifier for the instance that created the package.
 
-Then come the entry lists, one per entity type that's present: `workflows`, `folders`, `projects`, `credentials`, `dataTables`, `variables`, and `tags`. A list is left out entirely when it would be empty. Every entry has the same three fields:
+Then come the entry lists, one per entity type that's present: `workflows`, `agents`, `skills`, `folders`, `projects`, `credentials`, `dataTables`, `variables`, and `tags`. A list is left out entirely when it would be empty. Every entry has the same three fields:
 
 * `id`: the entity's ID on the source instance.
 * `name`: the entity's name.
 * `target`: the directory holding the entity's JSON file, relative to the package root.
 
-Last comes `requirements`, which lists what the workflows need to run on the target instance. It has up to six sections, and each entry carries `usedByWorkflows`, the IDs of the workflows that need it:
+Workflow entries also carry `isArchived`, whether the workflow is archived on the source.
+
+Last comes `requirements`, which lists what the workflows and agents need to run on the target instance. It has up to seven sections. Each entry carries `usedBy`, the workflows and agents that need it, each as `{ "kind": "workflow", "id": "<id>" }` or `{ "kind": "agent", "id": "<id>" }`:
 
 | Section | Entry shape | Notes |
 |---------|-------------|-------|
-| `credentials` | `{ id, name, type, usedByWorkflows }` | n8n never exports credential data, so a credential requirement always means the target has to supply it |
-| `dataTables` | `{ id, name, usedByWorkflows }` | The schema itself is in the bundled `data-table.json` |
-| `workflows` | `{ id, name, usedByWorkflows }` | Sub-workflow and error workflow references. `name` is optional, because a referenced workflow may not be one the exporting user can see |
-| `variables` | `{ name, usedByWorkflows }` | Name only. There's no ID, because `$vars.<name>` resolves by name at runtime |
-| `tags` | `{ id, name, usedByWorkflows }` | |
-| `nodeTypes` | `{ type, typeVersion, usedByWorkflows }` | Every node type and version the workflows use. Read it to tell whether a target instance can import the package, since it needs all of them installed. n8n re-derives the same list from the workflows on import rather than trusting this one |
+| `credentials` | `{ id, name, type, usedBy }` | A bundled credential carries at most its [expression values](export-a-package.md#credential-values), so the target has to supply the credential unless the import creates it from those values |
+| `dataTables` | `{ id, name, usedBy }` | The schema itself is in the bundled `data-table.json` |
+| `workflows` | `{ id, name, usedBy }` | Sub-workflow and error workflow references, and workflows an agent uses as tools. `name` is optional, because a referenced workflow may not be one the exporting user can see |
+| `agents` | `{ id, name, usedBy }` | Sub-agents an agent uses. `name` is only present when the sub-agent is in the package |
+| `variables` | `{ name, usedBy }` | Name only. There's no ID, because `$vars.<name>` resolves by name at runtime |
+| `tags` | `{ id, name, usedBy }` | Only workflows use tags |
+| `nodeTypes` | `{ type, typeVersion, usedBy }` | Every node type and version the workflows and agents' node tools use. Read it to tell whether a target instance can import the package, since it needs all of them installed. n8n re-derives the same list on import rather than trusting this one |
 
 {% hint style="warning" %}
-`requirements` lists what the workflows need, which isn't the same as what the package contains. `requirements.workflows` lists every static workflow reference, including sub-workflows that are bundled in the package. A credential the exporting user can't read appears in `requirements.credentials` with no matching file. Don't read `requirements` as an inventory of the archive; read the entry lists for that.
+`requirements` lists what the workflows and agents need, which isn't the same as what the package contains. `requirements.workflows` lists every static workflow reference, including sub-workflows that are bundled in the package. A credential the exporting user can't read appears in `requirements.credentials` with no matching file. Don't read `requirements` as an inventory of the archive; read the entry lists for that.
 {% endhint %}
 
 A full manifest for a workflow package holding two workflows:
@@ -11903,49 +11951,48 @@ A full manifest for a workflow package holding two workflows:
 ```json
 {
 	"packageFormatVersion": "1",
-	"exportedAt": "2026-08-04T09:14:02.117Z",
 	"sourceN8nVersion": "2.34.0",
 	"sourceId": "f9e1e962bba26edf357042c12f367dab17f4c63ec368e1f39cbf7ce43c8b9f8b",
 
 	"workflows": [
-		{ "id": "wf7Kq2", "name": "Triage inbound", "target": "workflows/triage-inbound" },
-		{ "id": "wf9Zx1", "name": "Send email", "target": "workflows/send-email" }
+		{ "id": "wf7Kq2", "name": "Triage inbound", "target": "workflows/triage-inbound-wf7Kq2", "isArchived": false },
+		{ "id": "wf9Zx1", "name": "Send email", "target": "workflows/send-email-wf9Zx1", "isArchived": false }
 	],
 	"credentials": [
-		{ "id": "crLin44", "name": "Linear api", "target": "credentials/linear-api" }
+		{ "id": "crLin44", "name": "Linear api", "target": "credentials/linear-api-crLin44" }
 	],
 	"dataTables": [
-		{ "id": "dtCn12", "name": "countries", "target": "data-tables/countries" }
+		{ "id": "dtCn12", "name": "countries", "target": "data-tables/countries-dtCn12" }
 	],
 	"variables": [
-		{ "id": "vaSl03", "name": "slackChannelId", "target": "variables/slackchannelid" }
+		{ "id": "vaSl03", "name": "slackChannelId", "target": "variables/slackchannelid-vaSl03" }
 	],
 	"tags": [
-		{ "id": "tgPr01", "name": "prod", "target": "tags/prod" }
+		{ "id": "tgPr01", "name": "prod", "target": "tags/prod-tgPr01" }
 	],
 
 	"requirements": {
 		"credentials": [
-			{ "id": "crLin44", "name": "Linear api", "type": "linearApi", "usedByWorkflows": ["wf7Kq2"] }
+			{ "id": "crLin44", "name": "Linear api", "type": "linearApi", "usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] }
 		],
 		"dataTables": [
-			{ "id": "dtCn12", "name": "countries", "usedByWorkflows": ["wf7Kq2"] }
+			{ "id": "dtCn12", "name": "countries", "usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] }
 		],
 		"workflows": [
-			{ "id": "wf9Zx1", "name": "Send email", "usedByWorkflows": ["wf7Kq2"] }
+			{ "id": "wf9Zx1", "name": "Send email", "usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] }
 		],
 		"variables": [
-			{ "name": "slackChannelId", "usedByWorkflows": ["wf7Kq2"] }
+			{ "name": "slackChannelId", "usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] }
 		],
 		"tags": [
-			{ "id": "tgPr01", "name": "prod", "usedByWorkflows": ["wf7Kq2"] }
+			{ "id": "tgPr01", "name": "prod", "usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] }
 		],
 		"nodeTypes": [
-			{ "type": "n8n-nodes-base.formTrigger", "typeVersion": 2.5, "usedByWorkflows": ["wf7Kq2"] },
-			{ "type": "n8n-nodes-base.linear", "typeVersion": 1, "usedByWorkflows": ["wf7Kq2"] },
-			{ "type": "n8n-nodes-base.executeWorkflow", "typeVersion": 1.2, "usedByWorkflows": ["wf7Kq2"] },
-			{ "type": "n8n-nodes-base.dataTable", "typeVersion": 1, "usedByWorkflows": ["wf7Kq2"] },
-			{ "type": "n8n-nodes-base.emailSend", "typeVersion": 2.1, "usedByWorkflows": ["wf9Zx1"] }
+			{ "type": "n8n-nodes-base.formTrigger", "typeVersion": 2.5, "usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] },
+			{ "type": "n8n-nodes-base.linear", "typeVersion": 1, "usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] },
+			{ "type": "n8n-nodes-base.executeWorkflow", "typeVersion": 1.2, "usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] },
+			{ "type": "n8n-nodes-base.dataTable", "typeVersion": 1, "usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] },
+			{ "type": "n8n-nodes-base.emailSend", "typeVersion": 2.1, "usedBy": [{ "kind": "workflow", "id": "wf9Zx1" }] }
 		]
 	}
 }
@@ -11985,9 +12032,7 @@ The exception is data table column IDs. From n8n 2.44.0, an exported data table 
 
 ## Comparing packages in a pipeline
 
-The archive is deterministic: file timestamps are fixed at the Unix epoch, permissions are fixed, and gzip runs in portable mode. Two exports of identical content produce identical bytes in the container.
-
-The one exception is `manifest.json`, which carries a fresh `exportedAt` on every export. Two exports of unchanged content aren't byte-identical because of that field alone. If you checksum packages to detect change in a pipeline, exclude `exportedAt` from the comparison, or you'll see drift on every run.
+The archive is deterministic: file timestamps are fixed at the Unix epoch, permissions are fixed, and gzip runs in portable mode. Two exports of identical content from the same instance and n8n version produce identical bytes, so you can checksum packages to detect change in a pipeline.
 
 ## Read next
 
@@ -12027,7 +12072,7 @@ An import runs in two phases. First n8n plans it: it reads the package, works ou
 There's no rollback. n8n has no database transaction around an import, so its promise that a refused import writes nothing covers the problems it can predict, not every possible failure. If something unexpected goes wrong while an import is being written, such as a dropped database connection, whatever was already written stays on the instance, and there's no cleanup afterward. Checking first makes this rare, not impossible.
 {% endhint %}
 
-Import never deletes a workflow, folder, project, data table, or tag. Under `--data-table-schema-conflict-policy=overwrite`, it can remove columns from a data table. See [Data tables](#data-tables).
+Import never deletes a project, data table, or tag. It only removes workflows and folders under `--folder-conflict-policy=overwrite`, and workflows you name in `--deleted-workflow-ids` when you [import a selection](import-a-package.md#import-a-selection-from-a-project-package). See [Folders and projects](#folders-and-projects). Under `--data-table-schema-conflict-policy=overwrite`, it can remove columns from a data table. See [Data tables](#data-tables).
 
 ## Write order
 
@@ -12058,11 +12103,11 @@ Two things aren't rewritten. A reference set by an expression is left untouched,
 
 ## Credentials
 
-No credential data travels in a package, so every credential reference has to be resolved against the target instance. n8n resolves each one in this order:
+A package carries at most a credential's [expression values](export-a-package.md#credential-values), never its secrets, so every credential reference has to be resolved against the target instance. n8n resolves each one in this order:
 
 1. An explicit [binding](import-a-package.md#bindings), if you gave one for that credential.
 2. Otherwise, the `--credential-matching-mode` rules.
-3. Otherwise, `--credential-missing-mode` decides whether to create an empty placeholder or refuse the import.
+3. Otherwise, `--credential-missing-mode` decides whether to create an empty placeholder, create the credential from the package's expression values, or refuse the import.
 
 Whichever route it takes, n8n checks the type. A credential of the wrong type refuses the import, and tells you both the type the node needs and the type the credential actually is. That applies to explicit bindings too.
 
@@ -12088,7 +12133,17 @@ Under the default `--credential-missing-mode=create-stub`, a reference n8n can't
 
 A workflow using a placeholder credential is never published, whatever the publishing policy says. Fill in the credential, then publish the workflow.
 
+Under `--credential-missing-mode=create-with-values`, n8n creates the credential from the expression values bundled in the package instead. A credential the package carries no values for still becomes an empty placeholder. When the package confirms it carries all the source credential's data, n8n lists the credential under `credentials.seeded`. Otherwise, it lists it under `credentials.incomplete`, and the workflows using it aren't published until you fill it in.
+
 Some credential problems refuse the import even under `create-stub`, because a placeholder wouldn't help: a credential type the instance doesn't have installed, a binding pointing at a credential of the wrong type, and a binding for a credential the package doesn't declare.
+
+### Existing credentials
+
+By default, n8n never changes a credential it matched. With `--credential-conflict-policy=overwrite`, it writes the package's name and expression values to the matched credential, and keeps every other stored value, such as secrets. It lists the credential under `credentials.updated`. With `fail`, n8n refuses the import when `overwrite` would change a credential.
+
+`overwrite` only changes credentials owned by a project the import writes to: the target project, or every project in a project package. Any other matched credential, such as one shared into the project or owned by another project, is used as it is. Managed credentials, credentials resolved per end user, and instance-level credentials never change.
+
+Under `overwrite` and `fail`, you need permission to update every matched credential the import could change, even when its values are the same, because n8n compares the stored values. To reuse such a credential without that permission, use `keep-existing`. Every policy leaves a credential alone when the package's values match.
 
 ## Variables
 
@@ -12148,7 +12203,13 @@ Import never deletes a tag. If tags are switched off on the target instance, all
 
 Two folder conflicts refuse the import whatever the policy, because both would mean moving a folder rather than merging into it: a folder ID that exists in a different project, and an existing folder sitting under a different parent than the import would place it.
 
+`--folder-conflict-policy=overwrite` makes each project match the package. n8n removes the workflows the package neither contains nor references as a sub-workflow, from the project root and from the folders the package defines. Then it removes the folders the package doesn't define, but only once they're empty, so workflows in a folder that only exists on the target stay. By default, n8n archives a removed workflow, so you can restore it. With `--overwrite-deletion-policy=hard-delete`, it deletes the workflow and its executions permanently. If you can't delete something the import would remove, n8n refuses the import rather than removing only part of it.
+
 For project packages, n8n creates the project shells first, then runs the same machinery once per project. If a package project's ID matches a personal project on the target, the import is refused with a `403`: that's never something a conflict policy can merge.
+
+## Archived workflows
+
+A workflow travels with its archived state. n8n creates a new workflow archived when it's archived in the package. Under `--conflict-policy=new-version`, n8n archives or restores an existing workflow to match the package, which needs permission to delete that workflow. Under `skip`, an existing workflow keeps its state. An archived workflow is never published.
 
 ## Node types
 
@@ -12168,7 +12229,7 @@ Every workflow in the response carries a `publishing.state`:
 | `blocked` | n8n refused to publish it. `blockedReason` says why |
 | `failed` | Publishing was attempted and failed. `error` says why |
 
-`blockedReason` is either `stub-credential` or `missing-node-type`. A workflow blocked for both reports `missing-node-type`, because that one means it physically can't run.
+`blockedReason` is `stub-credential`, `incomplete-credential`, or `missing-node-type`. A workflow blocked for a credential and a missing node type reports `missing-node-type`, because that one means it physically can't run.
 
 `blocked` means nothing is live. If the workflow already had a published version and the new one can't be published, you get `unchanged` with a `skippedPublishReason` instead, and the older version keeps serving traffic. So "never published" refers to the version you just imported, not to the workflow.
 
@@ -12182,28 +12243,39 @@ n8n only compares paths it can read literally: the node has to be enabled, and i
 
 ## Why an import is refused
 
-There are 12 reasons an import can be blocked. Each appears in the `issues` array with a `type`, and some carry a `kind` narrowing it further:
+Each reason an import can be blocked appears in the `issues` array with a `type`, and some carry a `kind` narrowing it further:
 
 | Type | Kinds | What it means |
 |------|-------|---------------|
-| `workflow-conflict` | | The workflow exists on the target and `--workflow-conflict-policy` is `fail` |
-| `workflow-id-conflict` | | Under `--workflow-id-policy=source`, that workflow ID is already used somewhere on the instance, including in another project and including archived workflows |
-| `workflow-folder-conflict` | | The existing workflow lives in a different folder than the import would put it in. This refuses the import even under `--workflow-conflict-policy=skip` |
+| `workflow-conflict` | | The workflow exists on the target and `--conflict-policy` is `fail` |
+| `workflow-lineage-conflict` | | The target project has more than one workflow imported from the same package workflow, so n8n can't tell which one to update. If only one of them isn't archived, n8n updates that one |
+| `workflow-id-conflict` | | The package ID of a new workflow is already used somewhere on the instance, including in another project and including archived workflows |
+| `workflow-archive-forbidden` | | The import would archive or restore an existing workflow, and you don't have permission to delete it |
+| `workflow-removal-forbidden` | | `--folder-conflict-policy=overwrite` or `--deleted-workflow-ids` would remove a workflow you don't have permission to delete |
+| `workflow-removal-conflict` | | In a selection import, a selected workflow's target ID is also in `--deleted-workflow-ids` |
+| `folder-removal-forbidden` | | `--folder-conflict-policy=overwrite` would remove a folder you don't have permission to delete |
+| `workflow-folder-conflict` | | The existing workflow lives in a different folder than the import would put it in, and `--conflict-policy=new-version` would update it |
 | `project-conflict` | `fail-policy` | The project exists and `--project-conflict-policy` is `fail` |
 | `folder-conflict` | `parent-mismatch`, `id-in-other-project`, `fail-policy` | The first two refuse whatever the policy |
 | `credential-unresolved` | `not_found`, `unknown_type`, `source_not_found`, `type_mismatch` | Only `not_found` can be resolved by a placeholder credential |
+| `credential-conflict` | `differs`, `divergent` | `differs`: the package would change a matched credential and `--credential-conflict-policy` is `fail`. `divergent`: under `overwrite`, two package credentials with different names or values match the same credential |
+| `credential-update-forbidden` | | Under `--credential-conflict-policy=overwrite` or `fail`, you don't have permission to update a matched credential |
+| `credential-policy-violation` | | An instance policy refuses a credential the import would create or update, such as a credential type the instance doesn't allow |
 | `data-table-unresolved` | `missing`, `id-conflict`, `name-conflict`, `schema-incompatible`, `module-disabled`, `permission-denied` | Under `overwrite-non-destructive`, `schema-incompatible` means a change would remove or retype a column, and lists those columns |
 | `tag-unresolved` | `rename-drift`, `name-collision`, `invalid-name`, `invalid-id`, `permission-denied` | |
 | `variable-unresolved` | | A referenced variable doesn't resolve and `--variable-missing-mode` is `must-preexist` |
 | `variable-conflict` | | A resolved variable's value differs and `--variable-conflict-policy` is `fail` |
 | `variable-limit-exceeded` | | The new variables would exceed the instance's variable limit |
+| `policy-violation` | | An instance policy refuses a workflow in the package. n8n refuses the whole import rather than skipping the workflow, because other workflows may reference it |
 | `missing-node-type` | | A workflow uses a node type or version the instance doesn't have, under `--missing-node-type-mode=fail` |
 
-The HTTP status depends on the kind of problem. The response is a `409` if any issue is conflict-shaped: a workflow, project, folder, or variable conflict, a data table ID or name conflict, or tag rename drift or name collision. Everything else is a `422`. A mixed set containing one conflict returns `409` for the whole response.
+Imports with agents can also return `agent-conflict`, `agent-invalid`, `agent-dependency-unresolved`, and `agent-policy-violation`.
+
+The HTTP status depends on the kind of problem. The response is a `409` if any issue is conflict-shaped: any type ending in `-conflict`, a data table ID or name conflict, or tag rename drift or name collision. Everything else is a `422`. A mixed set containing one conflict returns `409` for the whole response.
 
 Some failures are reported on their own rather than batched with the rest, because they stop n8n before it can plan: a missing license feature, a missing API key scope, and a malformed package.
 
-Missing permission to create a tag, or to create or change a data table, isn't a `403`. It comes back as a `permission-denied` blocking issue naming the scope it needed.
+If your role doesn't let you create a tag, or create or change a data table, that's not a `403`. It comes back as a `permission-denied` blocking issue naming the permission it needed. A missing API key scope is always a `403`.
 
 ## Read next
 
@@ -12235,11 +12307,11 @@ n8n packages are available from n8n 2.27.0, and n8n has added options in most re
 n8n packages are in Preview. The package format and the API may change in future releases, so avoid relying on them for critical automation without a plan to update.
 {% endhint %}
 
-An n8n package is a single file that holds a slice of your n8n instance: some workflows, plus the structure and references those workflows need to run. Export a package from one instance, move the file, and import it into another. Think of it as an `npm` package for part of your n8n instance.
+An n8n package is a single file that holds a slice of your n8n instance: some workflows or agents, plus the structure and references they need to run. Export a package from one instance, move the file, and import it into another. Think of it as an `npm` package for part of your n8n instance.
 
 A package is a gzipped tar archive with the `.n8np` extension. Inside it, each entity is a small JSON file, and a `manifest.json` lists what's in the package and what the target instance has to supply. See [Package format](package-format.md) for the full layout.
 
-Packages are an API feature. You export and import them through the [n8n API](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api), or through the [n8n CLI](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-cli), which wraps the same two endpoints. There's no way to export or import a package from the n8n editor.
+Packages are an API feature. You export and import them through the [n8n API](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api), or through the [n8n CLI](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-cli), which wraps the same endpoints. There's no way to export or import a package from the n8n editor.
 
 ## Three package shapes
 
@@ -12249,21 +12321,22 @@ What you export decides the shape of the package, and the shape decides how the 
 * **Folder package**: one or more folders, always including everything nested inside them. On import, the folder tree lands in the project you choose.
 * **Project package**: one or more whole projects. The package carries its own projects, so it decides where its contents land and ignores any target project you pass.
 
-You can combine workflows and folders in one export. You can't combine either with projects.
+You can combine workflows, agents, and folders in one export, and a project package includes the agents in its projects. You can't combine workflows, agents, or folders with projects.
 
 ## What travels in a package
 
 | Travels | Doesn't travel |
 |---------|----------------|
-| Workflows: nodes, connections, settings, published state, archived state | Credential secrets and configuration |
+| Workflows: nodes, connections, settings, published state, archived state | Credential secrets and most values typed in directly |
 | Folders and their nesting | Data table rows |
 | Projects: name, description, icon | Executions and execution history |
-| Credential references: ID, name, and type only | Users, project members, roles, and sharing |
+| Credential references: ID, name, type, and fields set by an expression | Users, project members, roles, and sharing |
 | Data table schemas: column IDs, names, and types | Pinned data and workflow static data |
 | Variables: name and type, and the value unless you exclude it | Workflow version history |
 | Tags | Whether a workflow is marked as a favorite |
+| Agents: definition, custom tools, schedules, skills, and channel settings | Agent channel connections, sessions, and knowledge base files |
 
-**Credential secrets never travel.** A credential file in a package holds exactly three fields: ID, name, and type. Non-secret configuration such as a host, base URL, or region lives in the same encrypted store as the secret, so it doesn't travel either. On import, n8n matches each reference to a credential that already exists on the target instance, or creates an empty placeholder for you to fill in.
+**Credential secrets never travel.** A credential file in a package holds the credential's ID, name, and type. By default, it also holds the fields set by an n8n expression, such as `={{ $secrets.apiKey }}`, and the settings those fields depend on. It never holds a secret or another value typed in directly, such as a host or region. See [Credential values](export-a-package.md#credential-values). On import, n8n matches each reference to a credential that already exists on the target instance, or creates one for you to fill in.
 
 **Data table rows never travel.** Only the schema does. An imported data table starts empty.
 
@@ -12273,7 +12346,7 @@ Use packages when you need a repeatable, automatable way to move work between in
 
 * **Promote between environments.** Push workflows from development to staging to production as part of a pipeline. Repeated imports update in place rather than creating duplicates, so the same command works the first time and every time after.
 * **Migrate to a new instance.** Move a project, its folders, and its workflows in one file.
-* **Share work without sharing secrets.** Hand a workflow to another team knowing no credential data is in the file.
+* **Share work without sharing secrets.** Hand a workflow to another team knowing no credential secrets are in the file.
 * **Back up structure.** Keep a copy of the workflows and structure you'd need to rebuild, though a package isn't a full backup: no execution data travels.
 
 ## Quick start
@@ -12343,16 +12416,16 @@ Or call the endpoint directly. The archive goes in a multipart field named `pack
 curl -X POST 'https://n8n.example.com/api/v1/n8n-packages/import' \
 	-H "X-N8N-API-KEY: <your-api-key>" \
 	-F 'package=@triage.n8np' \
-	-F 'workflowConflictPolicy=new-version' \
+	-F 'conflictPolicy=new-version' \
 	-F 'projectId=<target-project-id>'
 ```
 
 For the full request and response schema, see the `N8nPackage` section of the [endpoint reference](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api/api-reference).
 
 {% hint style="info" %}
-If you call the endpoint rather than using the CLI, the request must be `multipart/form-data`. Any other content type returns a `415`. `workflowConflictPolicy` is a required field, even though the CLI supplies it for you.
+If you call the endpoint rather than using the CLI, the request must be `multipart/form-data`. Any other content type returns a `415`. `conflictPolicy` is a required field, even though the CLI supplies it for you.
 
-Omit an option you don't want to set rather than sending it empty. A blank value for one of the policy or mode fields is rejected with a `400`. Only `projectId`, `folderId`, and `bindings` accept a blank value, which n8n treats as omitted.
+n8n treats a blank value as omitted and uses the default. The exception is `conflictPolicy`: a blank value is rejected with a `400`.
 {% endhint %}
 
 ## Where the contents land
@@ -12370,19 +12443,19 @@ For a project package, `--project-id` and `--folder-id` are ignored without warn
 {% endhint %}
 
 {% hint style="info" %}
-Flags are shown in kebab-case throughout this page. `n8n-cli package import --help` prints the equivalent camelCase names (`--projectId`, `--workflowConflictPolicy`, `--tagConflictPolicy`), and error messages use them too. Both spellings work.
+Flags are shown in kebab-case throughout this page. `n8n-cli package import --help` prints the equivalent camelCase names (`--projectId`, `--conflictPolicy`, `--tagConflictPolicy`), and error messages use them too. Both spellings work.
 
-There's no `--conflict-policy`, no `--force`, and no `--dry-run`. The flag for workflow conflicts is `--workflow-conflict-policy`.
+There's no `--force` and no `--dry-run`.
 {% endhint %}
 
-## Workflow options
+## Workflow and agent options
 
 | Flag | Values | Description |
 |------|--------|-------------|
-| `--workflow-conflict-policy` | `new-version` (default), `fail`, `skip` | What to do when the workflow already exists on the target. `new-version` saves a new version of the existing workflow, `fail` refuses the whole import, `skip` leaves it alone and carries on. |
-| `--workflow-id-policy` | `source` (default), `new` | Whether an imported workflow keeps the package's ID or gets a fresh one. `source` suits promotion between instances. `new` suits importing the same package repeatedly into one instance, and records the package ID as the workflow's source ID. |
-| `--workflow-publishing-policy` | `preserve-published-state` (default), `match-source`, `publish-all`, `unpublish-all` | Whether imported workflows end up published. See [Publishing](#publishing). |
-| `--missing-node-type-mode` | `fail` (default), `import-anyway` | What to do when a workflow uses a node type, or a node version, the target instance doesn't have. `fail` refuses before writing anything and lists every missing type with the workflows using it. `import-anyway` imports them, but they're never published. |
+| `--conflict-policy` | `new-version` (default), `fail`, `skip` | What to do when a workflow or agent already exists on the target. `new-version` saves a new version of the existing workflow, or updates the existing agent, `fail` refuses the whole import, `skip` leaves it alone and carries on. `new-version` also archives or restores a workflow to match the package. |
+| `--id-policy` | `source` (default and only value) | A new workflow or agent keeps the package's ID. If a workflow or agent that doesn't match already uses that ID anywhere on the instance, n8n refuses the import. A matched workflow or agent keeps its ID on the target. |
+| `--publishing-policy` | `preserve-published-state` (default), `match-source`, `publish-all`, `unpublish-all` | Whether imported workflows and agents end up published. See [Publishing](#publishing). |
+| `--missing-node-type-mode` | `fail` (default), `import-anyway` | What to do when a workflow, or an agent's node tool, uses a node type or node version the target instance doesn't have. `fail` refuses before writing anything and lists every missing type with the workflows and agents using it. `import-anyway` imports them, but they're never published. |
 
 n8n matches a package workflow to an existing one by the source workflow ID recorded on the target, falling back to a target workflow whose own ID equals the package's ID. That's what makes repeated promotion converge: the second import updates the workflow rather than creating a duplicate.
 
@@ -12397,7 +12470,9 @@ n8n always writes imported workflows unpublished, then applies the publishing po
 | `publish-all` | Publish every imported workflow. Needs `workflow:publish` on the target project. |
 | `unpublish-all` | New workflows stay drafts, and updated workflows are unpublished. |
 
-Two things override the policy. A workflow that uses a placeholder credential is never published, and neither is one using a node type the instance doesn't have. n8n reports those as `blocked` with the reason. An archived workflow is never published either.
+Two things override the policy. A workflow that uses a placeholder or incomplete credential is never published, and neither is one using a node type the instance doesn't have. n8n reports those as `blocked` with the reason. An archived workflow is never published either.
+
+Agents follow the same policy, and a channel that still needs setup also stops an agent from being published.
 
 Publishing can also fail without failing the import, most often when two workflows want the same webhook path. See [Publishing outcomes](how-import-works.md#publishing-outcomes).
 
@@ -12405,21 +12480,23 @@ Publishing can also fail without failing the import, most often when two workflo
 
 | Flag | Values | Description |
 |------|--------|-------------|
-| `--folder-conflict-policy` | `merge` (default), `fail` | What to do when a folder in the package already exists in the target project. `merge` reuses the existing folder and merges the package's contents into it, leaving its name as it is. `fail` refuses the import. |
-| `--project-conflict-policy` | `merge` (default), `fail`, `overwrite` | Project packages only. What to do when a project in the package already exists. `merge` leaves the project's details alone and adds the package's contents. `overwrite` also replaces its name, description, and icon, leaving anything the package doesn't carry as it is. `fail` refuses the import. |
+| `--folder-conflict-policy` | `merge`, `fail`, `overwrite` | What to do when a folder in the package already exists in the target project. Defaults to the `--project-conflict-policy` value, and to `merge` for workflow and folder packages. `merge` reuses the existing folder and merges the package's contents into it, leaving its name as it is. `fail` refuses the import. `overwrite` also removes what the package doesn't contain. See [Folders and projects](how-import-works.md#folders-and-projects). |
+| `--project-conflict-policy` | `merge` (default), `fail`, `overwrite` | Project packages only. What to do when a project in the package already exists. `merge` leaves the project's details alone and adds the package's contents. `overwrite` also replaces its name, description, and icon, leaving anything the package doesn't carry as it is. Because `--folder-conflict-policy` defaults to this value, `overwrite` also removes workflows the package doesn't contain, unless you set `--folder-conflict-policy=merge`. `fail` refuses the import. |
+| `--overwrite-deletion-policy` | `archive` (default), `hard-delete` | How `--folder-conflict-policy=overwrite` removes a workflow. `archive` archives it, so you can restore it. `hard-delete` deletes it and its executions permanently. |
 
-`--project-conflict-policy` is ignored for workflow and folder packages.
+`--project-conflict-policy` is ignored for workflow and folder packages. `--folder-conflict-policy=overwrite` only works on project packages, together with `--project-conflict-policy=overwrite`.
 
 Two folder conflicts refuse the import even under `merge`: a folder ID that exists in a different project, and an existing folder that sits under a different parent than the import would place it. Neither is something a policy can resolve, because both would mean moving a folder.
 
-A package containing folders needs a license that supports folders.
+The import needs a license that supports folders when it actually creates or removes a folder, or when the package is a folder package.
 
 ## Credential options
 
 | Flag | Values | Description |
 |------|--------|-------------|
 | `--credential-matching-mode` | `id-only` (default), `name-and-type`, `type-only` | How n8n finds the target credential for a reference in the package. |
-| `--credential-missing-mode` | `create-stub` (default), `must-preexist` | What to do when a reference can't be resolved. `create-stub` creates an empty placeholder credential in the target project, and the workflow imports but can't be published. `must-preexist` refuses the import. |
+| `--credential-missing-mode` | `create-stub` (default), `create-with-values`, `must-preexist` | What to do when a reference can't be resolved. `create-stub` creates an empty placeholder credential in the target project, and the workflow imports but can't be published. `create-with-values` creates the credential from the [expression values](export-a-package.md#credential-values) bundled in the package. `must-preexist` refuses the import. |
+| `--credential-conflict-policy` | `keep-existing` (default), `overwrite`, `fail` | What to do when a reference matches an existing credential and the package has a different name or different values for it. `keep-existing` leaves the credential alone. `overwrite` writes the package's name and expression values to it. `fail` refuses the import. See [Existing credentials](how-import-works.md#existing-credentials). |
 
 In every mode, n8n only considers credentials you can read and that the target project can use, plus global credentials. A credential you can't read is never a candidate, including under `id-only`, which is the usual reason a matching ID doesn't match.
 
@@ -12495,32 +12572,77 @@ A bound credential that can't be resolved always refuses the import, even under 
 
 n8n returns the bindings it used in the response. Save the `credentials` map and pass it back as `--bindings='{"credentials":{...}}'` on a later import to keep the mapping stable. The response also carries a `workflows` map, which is informational: sending it back is rejected with a `400`.
 
+## Import a selection from a project package
+
+`import-selection` imports chosen workflows from one project in a package, and can remove workflows from the target project in the same call. It only accepts a [project package](package-format.md#project-package), the kind you get by exporting with `--project-id`, and refuses a package with agents.
+
+```bash
+# Import two workflows from the project
+n8n-cli package import-selection --file=team-ligo.n8np \
+	--selected-project-id=prTeam9 \
+	--selected-workflow-ids=wf7Kq2,wf9Zx1
+
+# Import one workflow and remove another
+n8n-cli package import-selection --file=team-ligo.n8np \
+	--selected-project-id=prTeam9 \
+	--selected-workflow-ids=wf7Kq2 \
+	--deleted-workflow-ids=wfOld01
+```
+
+Or call `POST /api/v1/n8n-packages/import-selection` with a multipart form, with the archive in `package`. It only accepts the fields for the flags below, and rejects the other `/import` fields with a `400`. Send `selectedWorkflowIds` and `deletedWorkflowIds` as JSON arrays in text fields, such as `["wf7Kq2","wf9Zx1"]`.
+
+A project package can hold several projects, so `--selected-project-id` names the one to take workflows from. n8n writes them into the project with the same ID on the target, and creates that project if it doesn't exist. Workflows in neither list, and other projects, stay as they are.
+
+| Flag | Description |
+|------|-------------|
+| `--selected-project-id` | The project in the package to take workflows from. Required. |
+| `--selected-workflow-ids` | Workflow IDs in the package to import. Comma-separate them, or repeat the flag. |
+| `--deleted-workflow-ids` | Workflow IDs in the target project to remove. n8n ignores an ID that isn't in that project. |
+| `--conflict-policy` | `new-version` (default), `fail`, or `skip`. Works as on a full import. |
+| `--overwrite-deletion-policy` | `archive` (default) or `hard-delete`. How n8n removes the workflows in `--deleted-workflow-ids`. |
+
+The other options have fixed values:
+
+* **Folders:** n8n creates or merges only the folders that hold a selected workflow, and the folders above them. Other folders stay as they are.
+* **Credentials and variables:** they must already exist on the target, credentials with the same ID, and n8n doesn't change them.
+* **Data tables:** n8n matches them by ID and creates missing ones. Any schema difference refuses the import.
+* **Tags:** n8n creates missing tags and skips conflicting ones.
+* **Publishing:** n8n follows `match-source`.
+
+The response has the same shape as a full import, with removed workflows in `removedWorkflows`.
+
+For the scopes it needs, see [Limits and permissions](limits-and-permissions.md#import).
+
 ## The import response
 
-A successful import returns `200` with nine keys:
+A successful import returns `200` with a summary of what it did:
 
 ```json
 {
 	"package": {
 		"sourceN8nVersion": "2.34.0",
-		"sourceId": "f9e1e962bba26edf357042c12f367dab17f4c63ec368e1f39cbf7ce43c8b9f8b",
-		"exportedAt": "2026-08-04T09:14:02.117Z"
+		"sourceId": "f9e1e962bba26edf357042c12f367dab17f4c63ec368e1f39cbf7ce43c8b9f8b"
 	},
+	"agents": [],
+	"counts": { "agents": { "created": 0, "updated": 0, "skipped": 0 } },
 	"workflows": [
 		{ "sourceWorkflowId": "wf9Zx1", "localId": "wf9Zx1", "name": "Send email",
 			"projectId": "prProd4", "parentFolderId": null,
-			"activeVersionId": null, "publishing": { "state": "unchanged" }, "status": "created" },
+			"activeVersionId": null, "isArchived": false, "publishing": { "state": "unchanged" }, "status": "created" },
 		{ "sourceWorkflowId": "wf7Kq2", "localId": "wf7Kq2", "name": "Triage inbound",
 			"projectId": "prProd4", "parentFolderId": null,
-			"activeVersionId": null, "publishing": { "state": "unchanged" }, "status": "created" }
+			"activeVersionId": null, "isArchived": false, "publishing": { "state": "unchanged" }, "status": "created" }
 	],
+	"removedWorkflows": [],
+	"removedFolders": [],
 	"folders": [],
 	"projects": [],
 	"bindings": {
+		"agents": {},
 		"workflows": { "wf7Kq2": "wf7Kq2", "wf9Zx1": "wf9Zx1" },
 		"credentials": { "crLin44": "crLin44" }
 	},
-	"credentials": { "matched": ["crLin44"], "stubbed": [] },
+	"credentials": { "matched": ["crLin44"], "stubbed": [], "seeded": [], "incomplete": [], "updated": [] },
 	"dataTables": { "matched": 0, "created": 1, "updated": 0 },
 	"variables": { "matched": [], "missing": [], "created": ["slackChannelId"], "stubbed": [], "updated": [] },
 	"tags": { "matched": [], "created": ["prod"], "renamed": [], "reconciled": [], "skipped": [] }
@@ -12529,21 +12651,25 @@ A successful import returns `200` with nine keys:
 
 | Key | What it holds |
 |-----|---------------|
-| `package` | The source instance's n8n version, instance ID, and export timestamp, copied from the manifest |
-| `workflows` | One row per workflow, with its `status` of `created`, `updated`, or `skipped`, and its `publishing` outcome |
+| `package` | The source instance's n8n version and instance ID, copied from the manifest |
+| `agents` | One row per agent. Empty for a package without agents. |
+| `counts` | The number of agents `created`, `updated`, and `skipped` |
+| `workflows` | One row per workflow, with its `status` of `created`, `updated`, or `skipped`, whether it's archived, and its `publishing` outcome |
+| `removedWorkflows` | Workflows the import removed under `--folder-conflict-policy=overwrite` or `--deleted-workflow-ids`, each with a `deletion` of `archived` or `deleted`. A `hard-delete` n8n can't finish yet reports `archived` |
+| `removedFolders` | Folders that `--folder-conflict-policy=overwrite` removed |
 | `folders` | One row per folder, with a `status` of `created` or `skipped` |
 | `projects` | One row per project, with a `status` of `created`, `updated`, or `skipped`. Empty for workflow and folder packages |
-| `bindings` | Source ID to target ID maps for workflows and credentials. Only the `credentials` map can be passed back on a later import |
-| `credentials` | Source credential IDs, split into `matched` and `stubbed` |
+| `bindings` | Source ID to target ID maps for workflows, agents, and credentials. Only the `credentials` map can be passed back on a later import |
+| `credentials` | Source credential IDs, split into `matched`, `stubbed`, `seeded`, `incomplete`, and `updated` |
 | `dataTables` | The number of data tables `matched`, `created`, and `updated`. `updated` counts tables changed under `overwrite` or `overwrite-non-destructive` |
 | `variables` | Variable names, split into `matched`, `missing`, `created`, `stubbed`, and `updated`. Values never appear |
 | `tags` | Tag names, split into `matched`, `created`, `renamed`, `reconciled`, and `skipped` |
 
-A workflow's `localId` is its ID on the target instance: the package's ID under `--workflow-id-policy=source`, a fresh ID under `new`, and the existing workflow's ID when it was updated or skipped.
+A workflow's `localId` is its ID on the target instance: the package's ID for a new workflow, and the existing workflow's ID when it was updated or skipped.
 
 `publishing.state` is one of `published`, `unpublished`, `unchanged`, `blocked`, or `failed`. For what each means, see [Publishing outcomes](how-import-works.md#publishing-outcomes).
 
-Both workflows in the example are new, and the default `preserve-published-state` never publishes a new workflow, so each reports `unchanged`. To have new workflows arrive published, use `--workflow-publishing-policy=publish-all`, or `match-source` when they are specified as `published` in the package.
+Both workflows in the example are new, and the default `preserve-published-state` never publishes a new workflow, so each reports `unchanged`. To have new workflows arrive published, use `--publishing-policy=publish-all`, or `match-source` when they are specified as `published` in the package.
 
 ## Errors
 
@@ -12554,9 +12680,9 @@ A refused import returns every problem it found, not just the first:
 	"message": "Import blocked: 2 issue(s) must be resolved before the package can be imported.",
 	"issues": [
 		{ "type": "missing-node-type", "nodeType": "@acme/cool-node", "typeVersion": 3,
-			"usedByWorkflows": ["wf7Kq2"] },
+			"usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] },
 		{ "type": "credential-unresolved", "kind": "not_found", "sourceId": "crLin44",
-			"usedByWorkflows": ["wf7Kq2"] }
+			"usedBy": [{ "kind": "workflow", "id": "wf7Kq2" }] }
 	]
 }
 ```
@@ -12584,7 +12710,7 @@ Every import emits an event on both the log streaming and telemetry paths, so yo
 | `n8n.audit.n8n-package.import.success` | The import succeeded |
 | `n8n.audit.n8n-package.import.failed` | The import failed |
 
-The success event carries the user, the projects and folder the contents landed in, the workflows that were written, every option the import ran with, the source instance ID and format version from the package, and the credential IDs split into matched, created, and updated. Skipped workflows are left out. A package holding several projects still emits one event.
+The success event carries the user, the projects and folder the contents landed in, the workflows and agents that were written, every option the import ran with, the source instance ID and format version from the package, and the credential IDs split into matched, created, and updated. Skipped workflows and agents are left out. A package holding several projects still emits one event.
 
 The failure event carries the user, a `reason` of `access-denied`, `entity-not-found`, `blocked`, or `validation`, and the target project and folder if the import got far enough to resolve them. It carries no workflow IDs, because many failures happen before n8n reads the package.
 
@@ -12648,15 +12774,18 @@ n8n-cli package export --folder-id=fdInProg --output=in-progress.n8np
 # A workflow and a folder together
 n8n-cli package export --workflow-id=wf7Kq2 --folder-id=fdInProg --output=mixed.n8np
 
+# A workflow and an agent together
+n8n-cli package export --workflow-id=wf7Kq2 --agent-id=agSup01 --output=support.n8np
+
 # Two whole projects
 n8n-cli package export --project-id=prTeam9 --project-id=prOps3 --output=teams.n8np
 ```
 
-Workflow and folder IDs can be combined. Project IDs can't be combined with either, because a project package has a different shape. Mixing the two groups returns a `400`.
+Workflow, agent, and folder IDs can be combined. Project IDs can't be combined with any of them, because a project package has a different shape. Mixing the two groups returns a `400`.
 
-A folder always brings its nested folders and their workflows. If you name a workflow that's also inside a folder you named, it's exported once, inside the folder.
+A folder always brings its nested folders and their workflows. Folder and project exports leave out archived workflows, unless you set `--include-archived-workflows=true`. A workflow you name by ID always exports, even when it's archived. If you name a workflow that's also inside a folder you named, it's exported once, inside the folder.
 
-n8n caps each group of IDs at 300. That's per group, so one export can name 300 workflows and 300 folders. Exceeding the cap returns a `400`, and the CLI doesn't catch it before sending the request.
+n8n caps each group of IDs at 300. That's per group, so one export can name 300 workflows, 300 agents, and 300 folders. Exceeding the cap returns a `400`, and the CLI doesn't catch it before sending the request.
 
 An empty project exports as project metadata only, with no `workflows` list in the manifest.
 
@@ -12665,28 +12794,34 @@ An empty project exports as project metadata only, with no `workflows` list in t
 | Flag | Description |
 |------|-------------|
 | `--workflow-id`, `-w` | Workflow ID to include. Repeat to export several. |
+| `--agent-id` | Agent ID to include. Repeat to export several. |
 | `--folder-id` | Folder ID to include, with everything nested inside it. Repeat to export several. |
-| `--project-id`, `-p` | Project ID to include. Repeat to export several. Can't be combined with `--workflow-id` or `--folder-id`. |
+| `--project-id`, `-p` | Project ID to include. Repeat to export several. Can't be combined with `--workflow-id`, `--agent-id`, or `--folder-id`. |
 | `--output`, `-o` | File to write the package to. Defaults to `export.n8np` in the current directory. |
+| `--version-policy` | `latest` (default), `published-strict`, `prefer-published`, or `ignore-unpublished`. Which version of each workflow and agent n8n exports. See [Workflow versions](#workflow-versions). |
 | `--include-variable-values` | `true` (default) or `false`. Whether variable values are bundled. See [Variable values](#variable-values). |
 | `--include-tags` | `true` (default) or `false`. Whether the tags on the exported workflows are bundled. |
-| `--missing-workflow-dependency-policy` | `fail` (default), `include-in-package`, or `reference-only`. How n8n handles a sub-workflow you didn't name. See [Sub-workflow dependencies](#sub-workflow-dependencies). |
+| `--include-archived-workflows` | `false` (default) or `true`. Whether folder and project exports include their archived workflows. |
+| `--credential-export-policy` | `expression-values-only` (default) or `no-values`. Whether credential fields set by an expression are bundled. See [Credential values](#credential-values). |
+| `--dependency-policy` | `fail` (default), `include-in-package`, or `reference-only`. How n8n handles a workflow or agent the package depends on that you didn't name, such as a sub-workflow, an error workflow, or a sub-agent. See [Workflow dependencies](#workflow-dependencies). |
 
 {% hint style="info" %}
-The `n8n-cli package export` flags are shown here in kebab-case. `--help` prints the equivalent camelCase names (`--workflowId`, `--includeTags`, `--missingWorkflowDependencyPolicy`), and error messages use them too. Both spellings work.
+The `n8n-cli package export` flags are shown here in kebab-case. `--help` prints the equivalent camelCase names (`--workflowId`, `--includeTags`, `--dependencyPolicy`), and error messages use them too. Both spellings work.
 {% endhint %}
 
 `--output` overwrites an existing file without warning. n8n writes nothing when the export fails, so a failed run leaves the previous file in place.
 
-## Sub-workflow dependencies
+## Workflow dependencies
 
-If a workflow calls a sub-workflow, or names an error workflow, that's a dependency of the package. `--missing-workflow-dependency-policy` decides what n8n does when a dependency isn't in the set of IDs you named.
+If a workflow calls a sub-workflow, or names an error workflow, that's a dependency of the package. `--dependency-policy` decides what n8n does when a dependency isn't in the set of IDs you named.
+
+The policy only applies to workflows and agents. It doesn't affect the credentials, data tables, variables, or tags they use. An agent's sub-agents and the workflows it uses as tools count as dependencies too.
 
 | Value | What it does |
 |-------|--------------|
 | `fail` (default) | Abort the export and list what's missing, up to 20 IDs |
-| `include-in-package` | Walk the dependency graph and add the missing workflows to the package |
-| `reference-only` | Leave them out, and record them in `requirements.workflows` as workflows the target instance must already have |
+| `include-in-package` | Walk the dependency graph and add the missing workflows and agents to the package |
+| `reference-only` | Leave them out, and record them in `requirements.workflows` or `requirements.agents` as entities the target instance must already have |
 
 **`fail` and `include-in-package` follow the whole chain.** If workflow A calls B and B calls C, exporting A and B still fails on C. Only `reference-only` stops at direct references, on the assumption that a referenced workflow and its own dependencies already exist on the target together.
 
@@ -12702,13 +12837,30 @@ n8n-cli package export --workflow-id=wf7Kq2 --workflow-id=wf9Zx1 --output=triage
 
 # Or let n8n work it out
 n8n-cli package export --workflow-id=wf7Kq2 \
-	--missing-workflow-dependency-policy=include-in-package \
+	--dependency-policy=include-in-package \
 	--output=triage.n8np
 ```
 
 {% hint style="warning" %}
 On a project export, `include-in-package` can pull in projects you didn't ask for. A dependency owned by another project brings that project's shell and folder chain into the archive. The CLI's summary counts the projects you named rather than the projects in the archive, so it under-reports when this happens. Extract the archive or read the manifest to see what you actually got.
 {% endhint %}
+
+## Workflow versions
+
+`--version-policy` decides which version of each workflow travels in the package:
+
+| Value | What it does |
+|-------|--------------|
+| `latest` (default) | Export the current draft |
+| `published-strict` | Export the published version. Abort the export if a workflow has none, and list up to 20 of them |
+| `prefer-published` | Export the published version, or the draft for a workflow that isn't published |
+| `ignore-unpublished` | Export the published version, and leave out workflows that aren't published |
+
+For a workflow, the policy only picks the nodes and connections. Its name, settings, and tags always come from its current draft. The policy applies to agents too.
+
+An archived workflow has no published version, so it always exports its draft, whatever the policy.
+
+A dependency that `ignore-unpublished` leaves out counts as missing. Under `--dependency-policy=fail` or `include-in-package`, the export aborts. Under `reference-only`, n8n records it in the manifest's `requirements`.
 
 ## Variable values
 
@@ -12721,6 +12873,12 @@ Bundling values needs the `variable:list` API key scope, but only when the expor
 n8n finds variable references by scanning node parameters and workflow settings for `$vars.NAME`, `$vars['NAME']`, and `$vars["NAME"]`.
 
 An export is blocked when one variable name would resolve to two different variables in the same package, because the package can only carry one of them.
+
+## Credential values
+
+By default, a bundled credential carries the fields whose value is an n8n expression, such as `={{ $secrets.apiKey }}`. It also carries the settings those fields depend on. For example, the CA certificate field only appears in the credential form when SSL is enabled, so if it holds an expression, the SSL setting travels too. Other values you typed in, such as a host or a password, never travel, and neither do OAuth tokens, for security reasons. With `--credential-export-policy=no-values`, each credential file holds only the credential's ID, name, and type.
+
+Expression values let the target instance create a working credential that reads its secrets from its own store. To use them, import with `--credential-missing-mode=create-with-values`. See [Credentials](how-import-works.md#credentials).
 
 ## Tags
 
@@ -12735,10 +12893,10 @@ If the source instance sets `N8N_WORKFLOW_TAGS_DISABLED=true`, tags are left out
 A successful export returns the archive as `application/gzip`, with an `X-N8n-Export-Counts` header carrying the real per-entity counts:
 
 ```
-X-N8n-Export-Counts: {"workflows":2,"folders":0,"credentials":1,"dataTables":1,"variables":1,"tags":1}
+X-N8n-Export-Counts: {"agents":0,"workflows":2,"folders":0,"credentials":1,"dataTables":1,"variables":1,"tags":1}
 ```
 
-These are the counts of what ended up in the archive, after folder contents and any auto-included sub-workflows, so they don't have to match the number of IDs you asked for. The header has no `projects` key. The CLI prints a summary built from it.
+These are the counts of what ended up in the archive, after folder contents and any auto-included sub-workflows and sub-agents, so they don't have to match the number of IDs you asked for. The header has no `projects` key. The CLI prints a summary built from it.
 
 `credentials` counts bundled credential files, so a credential you can't read is recorded as a requirement without adding to the count. `variables` counts bundled variable files rather than referenced names.
 
@@ -12749,10 +12907,11 @@ The download file name is always `export.n8np`, whatever you exported. The CLI w
 Export needs an API key with:
 
 * `workflow:export`, when you name workflow or folder IDs. Folders use the workflow scope.
-* `project:export`, when you name project IDs.
+* `agent:export`, when you name agent IDs.
+* `project:export`, when you name project IDs, including for the agents in those projects.
 * `variable:list`, when values are bundled and the workflows reference at least one variable.
 
-On top of the API key, you can only export what you can read: n8n checks your own access to each workflow, folder, project, and credential as it builds the package. A credential you can't read is recorded as a requirement rather than bundled.
+On top of the API key, you can only export what you can read: n8n checks your own access to each workflow, agent, folder, project, and credential as it builds the package. A credential you can't read is recorded as a requirement rather than bundled.
 
 Export needs no license feature. For the full matrix, see [Limits and permissions](limits-and-permissions.md).
 
@@ -12760,7 +12919,7 @@ Export needs no license feature. For the full matrix, see [Limits and permission
 
 | Status | Cause |
 |--------|-------|
-| `400` | A requested workflow, folder, or project doesn't exist, or you can't access it. Also mixing ID groups, passing no IDs, exceeding 300 IDs in a group, or a blocked export under `--missing-workflow-dependency-policy=fail` |
+| `400` | A requested workflow, agent, folder, or project doesn't exist, or you can't access it. Also mixing ID groups, passing no IDs, exceeding 300 IDs in a group, or an export blocked by `--dependency-policy` or `--version-policy=published-strict` |
 | `403` | The API key is missing a scope it needs |
 
 A missing entity and an inaccessible one return the same `400` with the same message, so you can't use export to test whether an ID exists. Export never returns a `404`.
@@ -12776,7 +12935,7 @@ Every export emits an event on both the log streaming and telemetry paths, so yo
 | `n8n.audit.n8n-package.export.success` | The export succeeded |
 | `n8n.audit.n8n-package.export.failed` | The export failed |
 
-The success event carries the user and the `workflowIds`, `folderIds`, and `projectIds` that actually ended up in the package, so it reflects folder contents and auto-included sub-workflows rather than what you asked for. Each list is present only when it isn't empty.
+The success event carries the user and the `workflowIds`, `agentIds`, `folderIds`, and `projectIds` that actually ended up in the package, so it reflects folder contents and auto-included dependencies rather than what you asked for. Each list is present only when it isn't empty.
 
 The failure event carries the user, the IDs requested, and a `reason` of `access-denied`, `entity-not-found`, `blocked`, or `validation`.
 
@@ -98366,8 +98525,8 @@ Each span includes resource attributes that identify the n8n instance:
 
 n8n also handles trace context propagation:
 
-- **Inbound**: If a webhook request includes a [W3C `traceparent` header](https://www.w3.org/TR/trace-context/), n8n uses it as the parent for the workflow span. This links the n8n workflow trace to the upstream caller.
-- **Outbound**: HTTP Request nodes (and other nodes that use the n8n HTTP helpers) can inject a `traceparent` header into outbound requests. Downstream services that support W3C trace context can therefore continue the trace.
+- **Inbound**: If a webhook request includes a [W3C `traceparent` header](https://www.w3.org/TR/trace-context/), n8n uses it as the parent for the workflow span. This links the n8n workflow trace to the upstream caller. From n8n 2.47.0, n8n also reads a [`baggage` header](https://www.w3.org/TR/baggage/). It reads the header only to forward it, so **Send outbound trace headers** has to be on. Refer to [Forward caller baggage](#forward-caller-baggage).
+- **Outbound**: HTTP Request nodes (and other nodes that use the n8n HTTP helpers) can add `traceparent`, `tracestate`, and `baggage` headers to outbound requests. Downstream services that support W3C trace context can continue the trace. Refer to [Outbound trace headers](#outbound-trace-headers).
 - **Sub-workflows**: A sub-workflow's span uses the parent workflow's span as its parent.
 - **Resumed workflows**: When a workflow resumes after a wait, the new span links back to the previous span using a span link.
 
@@ -98490,11 +98649,65 @@ Each node in a workflow produces its own span. For workflows with lots of nodes,
 export N8N_OTEL_TRACES_INCLUDE_NODE_SPANS=false
 ```
 
-To stop n8n from injecting `traceparent` headers into outbound HTTP requests, set:
+## Outbound trace headers
+
+{% hint style="info" %}
+**Feature availability**
+
+Sending the `baggage` header on outbound requests and the `OTEL_PROPAGATORS` environment variable are available from n8n 2.47.0.
+{% endhint %}
+
+**Send outbound trace headers** decides whether n8n adds any tracing header to outbound requests. It's on by default. Set it under **Settings > OpenTelemetry**, or with the `N8N_OTEL_TRACES_INJECT_OUTBOUND` environment variable. As with the other fields in **Settings > OpenTelemetry**, n8n disables the field when you set the environment variable.
+
+`OTEL_PROPAGATORS` names which headers n8n writes while the toggle is on:
+
+| `N8N_OTEL_TRACES_INJECT_OUTBOUND` | `OTEL_PROPAGATORS` | Headers n8n sends |
+| :-------------------------------- | :----------------- | :---------------- |
+| Off | Any value | None |
+| On | Not set | `traceparent`, `tracestate`, `baggage` |
+| On | `tracecontext` | `traceparent`, `tracestate` |
+| On | `baggage` | `baggage` |
+| On | `none` | None |
+
+n8n sends `tracestate` only when the trace has one, and `baggage` only when the execution has entries.
+
+`OTEL_PROPAGATORS` is a standard OpenTelemetry variable. It takes a comma-separated list of names and defaults to `tracecontext,baggage`. Case doesn't matter. n8n leaves out a name it doesn't support, such as `b3`, and logs a warning.
+
+It affects outbound headers only. It doesn't change what n8n reads from an inbound request.
+
+n8n reads `OTEL_PROPAGATORS` once at startup, so a change needs a restart. The **Send outbound trace headers** toggle applies without one.
+
+To stop n8n from sending any tracing header:
 
 ```bash
 export N8N_OTEL_TRACES_INJECT_OUTBOUND=false
 ```
+
+To keep trace context but drop the `baggage` header:
+
+```bash
+export OTEL_PROPAGATORS=tracecontext
+```
+
+### Forward caller baggage
+
+When a webhook request carries a [W3C `baggage` header](https://www.w3.org/TR/baggage/), n8n forwards those entries on the outbound requests that the execution makes. A downstream service can then put the same entries, such as a tenant ID, on its own telemetry.
+
+Forwarding needs OpenTelemetry turned on, **Send outbound trace headers** on, and `baggage` among the propagators.
+
+{% hint style="warning" %}
+**Caller baggage leaves your instance**
+
+n8n forwards the caller's entries to every host the execution calls, third-party APIs included. A sub-workflow or an error workflow sends the baggage of the run that started it. The entries come from the caller, so n8n can't tell whether they're safe to share. To keep trace context and drop the caller's entries, set `OTEL_PROPAGATORS=tracecontext`.
+{% endhint %}
+
+How n8n handles the entries:
+
+- n8n drops every entry whose key starts with `n8n.`. That prefix is reserved for n8n's own attributes, so a caller can't forge one.
+- n8n drops entries past the OpenTelemetry limits: 180 entries, 4,096 bytes for a single entry, and 8,192 bytes in total. A dropped entry never reaches the downstream service.
+- n8n saves the entries on the execution, so they survive a [queue mode](../configure-n8n/scaling/enable-queue-mode.md) worker and a resume after a Wait node.
+- n8n forwards the entries without recording them. A `tenant.id` entry goes out on the headers but never appears as a [span attribute](#span-attributes).
+- An `otel.configure` external hook can add entries of its own. Those win over the caller's when both set the same key.
 
 ## Start spans
 
@@ -98878,6 +99091,21 @@ Check that:
 - For node-level span attributes, `N8N_OTEL_TRACES_INCLUDE_NODE_SPANS` isn't set to `false`.
 - If you set `N8N_OTEL_TRACES_CUSTOM_ATTRIBUTE_PREFIXES`, search for the new key. n8n drops keys that match built-in attributes. Refer to [Change the attribute prefixes](#change-the-attribute-prefixes).
 
+### Outbound requests have no `baggage` header
+
+Check that:
+
+- OpenTelemetry is enabled in **Settings > OpenTelemetry**, or `N8N_OTEL_ENABLED` is set to `true`.
+- **Send outbound trace headers** is on, and `N8N_OTEL_TRACES_INJECT_OUTBOUND` isn't set to `false`.
+- `OTEL_PROPAGATORS` is unset or includes `baggage`.
+- You restarted n8n after changing `OTEL_PROPAGATORS`.
+- The outbound call comes from a node that uses n8n's HTTP helpers. A node that makes its own raw HTTP calls doesn't get the headers.
+- The webhook request that started the execution carried a `baggage` header.
+- The entries aren't all `n8n.`-prefixed. n8n drops those.
+- The caller's `baggage` header is within the OpenTelemetry limits. n8n drops entries past them.
+
+Refer to [Forward caller baggage](#forward-caller-baggage).
+
 ### A crashed execution has no span
 
 Enable OpenTelemetry on the main instance. In queue mode, the main instance detects the crash and emits the span, so enabling it on the workers alone produces no crash spans. Set the same variables on every instance type so worker spans keep their parent context.
@@ -98913,6 +99141,7 @@ If you deploy n8n on AWS using the [terraform-aws-n8n](https://github.com/n8n-io
 - [Update n8n](update-n8n.md)
 - [OpenTelemetry environment variables](../configure-n8n/basic-configuration/use-environment-variables/opentelemetry.md)
 - [W3C Trace Context specification](https://www.w3.org/TR/trace-context/)
+- [W3C Baggage specification](https://www.w3.org/TR/baggage/)
 - [OpenTelemetry Collector documentation](https://opentelemetry.io/docs/collector/)
 
 === https://docs.n8n.io/docs/deploy/host-n8n/keep-n8n-running/monitor-n8n/
@@ -103587,7 +103816,8 @@ n8n can export workflow and node execution traces over OTLP to an OpenTelemetry 
 | `N8N_OTEL_TRACES_EMIT_WORKFLOW_START_SPAN` | Boolean | `false` | Whether to send a 0 ms `workflow.execute.started` span when a workflow execution starts. Refer to [Start spans](../../../keep-n8n-running/trace-executions-with-opentelemetry.md#start-spans). | 2.44.0 |
 | `N8N_OTEL_TRACES_EMIT_NODE_START_SPAN` | Boolean | `false` | Whether to send a 0 ms `node.execute.started` span when a node execution starts. Needs `N8N_OTEL_TRACES_INCLUDE_NODE_SPANS` set to `true`. Refer to [Start spans](../../../keep-n8n-running/trace-executions-with-opentelemetry.md#start-spans). | 2.44.0 |
 | `N8N_OTEL_TRACES_PRODUCTION_ONLY` | Boolean | `true` | Whether to export traces for [production executions](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/understand-workflows/understand-executions/types-of-executions) only. Set to `false` to export traces for all workflow executions. | 2.25.2 |
-| `N8N_OTEL_TRACES_INJECT_OUTBOUND` | Boolean | `true` | Whether to inject the W3C `traceparent`/`tracesstate` headers into outbound HTTP requests made by nodes that use n8n's HTTP helpers. | 2.19.0 |
+| `N8N_OTEL_TRACES_INJECT_OUTBOUND` | Boolean | `true` | Whether n8n adds tracing headers to outbound HTTP requests made by nodes that use n8n's HTTP helpers. When `true`, n8n sends `traceparent`, `tracestate`, and `baggage` (from n8n 2.47.0). Use `OTEL_PROPAGATORS` to narrow the set. Refer to [Outbound trace headers](../../../keep-n8n-running/trace-executions-with-opentelemetry.md#outbound-trace-headers). | 2.19.0 |
+| `OTEL_PROPAGATORS` | String | `tracecontext,baggage` | Comma-separated list naming which headers n8n writes while `N8N_OTEL_TRACES_INJECT_OUTBOUND` is `true`. Valid names: `tracecontext` (sends `traceparent` and `tracestate`), `baggage`, and `none`. Set it to `tracecontext` to stop n8n forwarding the caller's `baggage` entries downstream. n8n reads it once at startup, so a change needs a restart. Refer to [Outbound trace headers](../../../keep-n8n-running/trace-executions-with-opentelemetry.md#outbound-trace-headers). | 2.47.0 |
 | `N8N_OTEL_STARTUP_CONNECTIVITY_TIMEOUT_MS` | Number | `2000` | Timeout (in milliseconds) for the startup connectivity check against the OTLP endpoint. n8n logs an error if the endpoint isn't reachable within this period. | 2.19.0 |
 | `N8N_AGENTS_TRACING_ENABLED` | Boolean | `true` | Whether agent runs emit OpenTelemetry spans. Inherits the endpoint, headers, sampling, and transport settings from `N8N_OTEL_*`. Spans have nowhere to go until you configure an OTel provider, so set this to `false` to run workflow tracing without agent spans. | 2.33.0 |
 | `N8N_AGENTS_TRACING_RECORD_INPUTS` | Boolean | `true` | Whether agent tracing records inputs, such as prompts and tool arguments. Set to `false` to exclude sensitive input data from traces. | 2.33.0 |
@@ -105048,7 +105278,9 @@ The quickest way: open the editor, go to the instance's AI settings, and add you
 2. Restart n8n.
 3. Open the editor and confirm n8n Assistant appears and responds.
 
-`N8N_INSTANCE_AI_MODEL` defaults to `anthropic/claude-opus-4-8`. Set it explicitly only if you want a different model (see [Choose a model provider](#choose-a-model-provider)).
+`N8N_INSTANCE_AI_MODEL` defaults to `anthropic/claude-opus-5-5` from n8n 2.48.0. Earlier versions default to `anthropic/claude-opus-4-8`. Set it explicitly only if you want a different model (see [Choose a model provider](#choose-a-model-provider)).
+
+If you connect through a gateway with `N8N_INSTANCE_AI_MODEL_URL` and don't set a model, make sure the gateway offers Claude Opus 5.5. If it doesn't, set `N8N_INSTANCE_AI_MODEL` to a model it offers, such as `anthropic/claude-opus-4-8`.
 
 Prefer to watch? This [video guide](https://go.n8n.io/RZZWq1) covers the setup end to end, from the one-line install to selecting a provider and model in the editor.
 
@@ -105114,7 +105346,7 @@ Daytona creates sandboxes on demand instead of you hosting the containers yourse
    ```bash
    # Enable the module and choose a model
    N8N_ENABLED_MODULES=instance-ai
-   N8N_INSTANCE_AI_MODEL=anthropic/claude-opus-4-8
+   N8N_INSTANCE_AI_MODEL=anthropic/claude-opus-5-5
    N8N_INSTANCE_AI_MODEL_API_KEY=sk-ant-xxx
 
    # Sandbox, required
@@ -105133,7 +105365,7 @@ Daytona creates sandboxes on demand instead of you hosting the containers yourse
    | Variable | Description |
    | --- | --- |
    | `N8N_ENABLED_MODULES` | Must include `instance-ai` to enable the module. |
-   | `N8N_INSTANCE_AI_MODEL` | Selects the LLM in `provider/model` format. Has a default (`anthropic/claude-opus-4-8`). Set it explicitly only if you want a different model. |
+   | `N8N_INSTANCE_AI_MODEL` | Selects the LLM in `provider/model` format. Has a default (`anthropic/claude-opus-5-5`). Set it explicitly only if you want a different model. |
    | `N8N_INSTANCE_AI_MODEL_API_KEY` | API key for the selected provider. |
    | `N8N_INSTANCE_AI_SANDBOX_ENABLED` | Set to `true`. n8n Assistant requires a sandbox. |
    | `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Set to `daytona`. |
@@ -105150,7 +105382,7 @@ Daytona creates sandboxes on demand instead of you hosting the containers yourse
        image: n8nio/n8n
        environment:
          N8N_ENABLED_MODULES: instance-ai
-         N8N_INSTANCE_AI_MODEL: anthropic/claude-opus-4-8
+         N8N_INSTANCE_AI_MODEL: anthropic/claude-opus-5-5
          N8N_INSTANCE_AI_MODEL_API_KEY: sk-ant-xxx
          N8N_INSTANCE_AI_SANDBOX_ENABLED: 'true'
          N8N_INSTANCE_AI_SANDBOX_PROVIDER: daytona
@@ -105188,13 +105420,13 @@ Supported providers are:
 * `openai`
 * `openrouter`
 
-For a hosted provider, start with `anthropic/claude-opus-4-8` or `openai/gpt-5.5`.
+For a hosted provider, start with `anthropic/claude-opus-5-5` or `openai/gpt-5.5`.
 
 Examples:
 
 ```bash
 # Anthropic
-N8N_INSTANCE_AI_MODEL=anthropic/claude-opus-4-8
+N8N_INSTANCE_AI_MODEL=anthropic/claude-opus-5-5
 
 # OpenAI
 N8N_INSTANCE_AI_MODEL=openai/gpt-5.5
@@ -108139,8 +108371,8 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.46.7
-Current `beta`: 2.47.3
+Current `stable`: 2.47.3
+Current `beta`: 2.48.0
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/server-setups-next-steps/
@@ -113621,6 +113853,12 @@ The following events are available. You can choose which events to stream in **S
 	* External secrets connection deleted
 	* External secrets connection tested
 	* External secrets connection reloaded
+	* Environments provider created
+	* Environments provider updated
+	* Environments provider deleted
+	* Environment created
+	* Environment updated
+	* Environment deleted
 	* Personal publishing restricted enabled
 	* Personal publishing restricted disabled
 	* Personal sharing restricted enabled
@@ -113707,6 +113945,21 @@ Every event carries `executionId`, `workflowId`, and `workflowName`.
 | `errorMessage` | The error message, as a string. |
 
 `n8n.workflow.cancelled` additionally carries `reason`, a string describing why the execution was cancelled.
+
+### Provider and environment events
+
+These six audit events record successful changes to providers and environments in the [Environments](../environments/README.md) feature. A provider stores the credentials n8n uses to connect to a Git host. An environment uses a provider and a repository to define where n8n sends workflows or gets them from.
+
+| Event name | Sent when |
+| --- | --- |
+| `n8n.audit.promotions.provider.created` | A user creates a provider. |
+| `n8n.audit.promotions.provider.updated` | A user updates a provider. |
+| `n8n.audit.promotions.provider.deleted` | A user deletes a provider. |
+| `n8n.audit.promotions.environment.created` | A user creates an environment. |
+| `n8n.audit.promotions.environment.updated` | A user updates an environment. |
+| `n8n.audit.promotions.environment.deleted` | A user deletes an environment. |
+
+To stream all six, subscribe your destination to `n8n.audit.promotions`. In **Settings** > **Log Streaming** > **Events**, they appear in the **Audit** group.
 
 ### MCP events
 
@@ -119903,7 +120156,7 @@ Every command supports `--help` for detailed usage.
 | `user` | `list`, `get` |
 | `config` | `set-url`, `set-api-key`, `show` |
 | `source-control` | `pull` |
-| `package (preview)` | `export`, `import` |
+| `package (preview)` | `export`, `import`, `import-selection` |
 | `skill` | `install` |
 | `audit` | (top-level) |
 | `login` / `logout` | (top-level) |
@@ -119993,8 +120246,8 @@ The `package` command is in Preview and may change in future releases.
 ```bash
 n8n-cli package export --workflow-id=<workflow-id> --output=export.n8np
 n8n-cli package export --project-id=<project-id> --output=project.n8np
-n8n-cli package import --file=export.n8np --workflow-conflict-policy=fail
-n8n-cli package import --file=export.n8np --project-id=<project-id> --workflow-conflict-policy=skip
+n8n-cli package import --file=export.n8np --conflict-policy=fail
+n8n-cli package import --file=export.n8np --project-id=<project-id> --conflict-policy=skip
 n8n-cli package import --file=export.n8np --project-id=<project-id> --data-table-schema-conflict-policy=overwrite-non-destructive
 ```
 
@@ -123425,9 +123678,9 @@ Preferences are part of agentic context management, which is in Preview and may 
 {% hint style="info" %}
 **Configuration**
 
-The preferences tools are on by default. On a self-hosted instance with telemetry turned off (`N8N_DIAGNOSTICS_ENABLED=false`), or one that can't reach n8n's feature flag service, they stay off. To turn them on, set `N8N_FEATURE_FLAG_OVERRIDES` to `{"111_context_preferences":"variant"}`, preserving any other entries in the JSON object, then restart n8n. The value must be the string `"variant"`, not `true`.
+From n8n 2.48.0, the preferences tools no longer depend on the `111_context_preferences` feature flag. n8n registers them on every instance, including self-hosted instances with telemetry turned off, and offers their OAuth scopes on the consent screen. A client still needs the matching scope to use each tool.
 
-With preferences off, n8n doesn't register these tools and doesn't offer their OAuth scopes on the consent screen.
+In earlier versions, the tools are on by default but stay off on a self-hosted instance with telemetry turned off (`N8N_DIAGNOSTICS_ENABLED=false`), or one that can't reach n8n's feature flag service. To turn them on in those versions, set `N8N_FEATURE_FLAG_OVERRIDES` to `{"111_context_preferences":"variant"}`, preserving any other entries in the JSON object, then restart n8n. The value must be the string `"variant"`, not `true`. With preferences off, n8n doesn't register these tools and doesn't offer their OAuth scopes on the consent screen.
 {% endhint %}
 
 [Preferences](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/agentic-context-management/preferences) are short instructions, such as "Name nodes in English", that the user wants every AI tool to apply when it works in n8n. These tools let an MCP client read the preferences that apply to the current user, and save, change, or remove them.
