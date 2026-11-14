@@ -801,7 +801,7 @@ For common questions or issues and suggested solutions, refer to [Common issues]
 
 | ID | Name | Parent space | Include snippet | Preview | Used in |
 |----|------|--------------|-----------------|---------|---------|
-| `KbKP88R2IFii1k97togq` | agent-search-endpoint | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/KbKP88R2IFii1k97togq/" %}` | {% if visitor.type === "agent" %} {% hint style="info" %} #### Searching these docs as an agent  Ask n8n's official docu | docs/build/agentic-context-management/README.md, docs/build/agentic-context-management/preferences.md |
+| `KbKP88R2IFii1k97togq` | agent-search-endpoint | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/KbKP88R2IFii1k97togq/" %}` | {% if visitor.type === "agent" %} {% hint style="info" %} #### Searching these docs as an agent  Ask n8n's official docu | docs/build/agentic-context-management/README.md, docs/build/agentic-context-management/preferences.md, docs/deploy/host-n8n/install-options/install-using-docker-compose.md |
 | `1MYzyKWyHTaQMU44vlTt` | ai-how-to | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/1MYzyKWyHTaQMU44vlTt/" %}` | {% hint style="info" %} **Feature availability**  AI assistance in the Code node is available to Cloud users. It isn't a | docs/build/code-in-n8n/get-coding-help-from-ai.md |
 | `6vuTxJwns2nA8U7V56ij` | ai-tools | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/6vuTxJwns2nA8U7V56ij/" %}` | {% hint style="info" %} **This node can be used as an AI tool**  This node can be used to enhance the capabilities of an | docs/integrations/builtin/app-nodes/n8n-nodes-base.actionnetwork.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.activecampaign.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.affinity.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.agilecrm.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.apitemplateio.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.asana.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.awslambda.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.awss3.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.awsses.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.awstextract.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.awstranscribe.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.baserow.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.bubble.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.clickup.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.coingecko.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.databricks.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.deepl.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.dhl.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.discord/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.dropbox.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.elasticsearch.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.erpnext.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.facebookgraphapi.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.filemaker.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.ghost.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.github.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gitlab.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gmail/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googleanalytics.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlebigquery.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlecalendar/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlechat.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlecloudfirestore.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlecloudrealtimedatabase.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlecontacts.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googledocs.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/file-folder-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/file-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/folder-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/shared-drive-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/document-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/sheet-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googleslides.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googletasks.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googletranslate.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gotify.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.grafana.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gsuiteadmin.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.hackernews.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.homeassistant.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.hubspot.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.jenkins.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.jira.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.kafka.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.line.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.linkedin.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mailcheck.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mailgun.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mattermost.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mautic.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.medium.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftexcel.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftonedrive.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftoutlook.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftsql.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftteams.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsofttodo.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mondaycom.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mongodb.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mqtt.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.mysql/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.nasa.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.nextcloud.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.nocodb.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.notion/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.odoo.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.openweathermap.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.oracledb.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.pipedrive.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.postgres/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.pushover.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.quickbooks.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.quickchart.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.rabbitmq.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.reddit.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.redis.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.rocketchat.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.s3.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.salesforce.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.sendgrid.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.supabase/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/callback-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/chat-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/file-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/message-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.todoist.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.trello.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.twilio.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.twitter.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.urlscanio.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.webflow.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.woocommerce.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.wordpress.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.youtube.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.zendesk.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.zohocrm.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.zoom.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.compression.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.crypto.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.graphql.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.jwt.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.ldap.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.sendemail.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.totp.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md |
 | `PlbR0ntmBBE0DgjKiavq` | app-becoming-unauthorized | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/PlbR0ntmBBE0DgjKiavq/" %}` | For Google Cloud apps with **Publishing status** set to **Testing** and **User type** set to **External**, consent and t | docs/integrations/builtin/app-nodes/n8n-nodes-base.googledrive/common-issues.md, docs/integrations/builtin/credentials/google/oauth-generic.md, docs/integrations/builtin/credentials/google/oauth-single-service.md |
@@ -6299,7 +6299,7 @@ The same as JavaScript’s <code>JSON.stringify()</code>.
 
 ## _`Object`_.**`compact()`** <a href="#objectcompact" id="objectcompact"></a>
 
-**Description:** Removes all fields that have empty values, i.e. are <code>null</code> or <code>""</code>
+**Description:** Removes all fields that have empty values (<code>null</code>, <code>undefined</code>, <code>"nil"</code>, <code>""</code>, empty objects, and empty arrays). Also compacts nested objects. Converts nested arrays to objects with index keys, at every level.
 
 **Syntax:** _`Object`_.compact()
 
@@ -6312,6 +6312,18 @@ The same as JavaScript’s <code>JSON.stringify()</code>.
   ```javascript
   // obj = {'x':null, 'y':2, 'z':''}
   obj.compact() //=> {'y':2}
+
+  // Nested objects are compacted too
+  // obj = {'name':'Nathan', 'address':{'city':'Berlin', 'zip':null}}
+  obj.compact() //=> {'name':'Nathan', 'address':{'city':'Berlin'}}
+
+  // Nested arrays become objects with index keys
+  // obj = {'tags':['new', 'vip']}
+  obj.compact() //=> {'tags':{'0':'new', '1':'vip'}}
+
+  // Arrays inside arrays become objects too
+  // obj = {'teams':[['Ana', 'Ben'], ['Cleo']]}
+  obj.compact() //=> {'teams':{'0':{'0':'Ana', '1':'Ben'}, '1':{'0':'Cleo'}}}
   ```
 
 ## _`Object`_.**`hasField()`** <a href="#objecthasfield" id="objecthasfield"></a>
@@ -11055,7 +11067,7 @@ n8n Assistant has Limited enterprise readiness. It partially supports the follow
 - **Queue mode and multi-main**
 - **Environments and source control**
 
-Other Enterprise capabilities either don't apply to n8n Assistant or it doesn't support them yet. See [Understand feature availability](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/understand-feature-availability#enterprise-capabilities) for the full list of Enterprise capabilities.
+Other Enterprise capabilities either don't apply to n8n Assistant or it doesn't support them yet. Refer to [Understand feature availability](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/understand-feature-availability#enterprise-capabilities) for the full list of Enterprise capabilities.
 {% endhint %}
 
 n8n Assistant can make mistakes. Always review generated workflows before using them in production.
@@ -13976,7 +13988,7 @@ Add files the agent can search and read from the **Knowledge** tab. Supported fi
 {% hint style="info" %}
 **Feature availability**
 
-Knowledge bases are available on n8n Cloud. On self-hosted, they need a Daytona sandbox. See [Self-hosted](#self-hosted).
+Knowledge bases are available on n8n Cloud. On self-hosted, they need a configured sandbox. See [Self-hosted](#self-hosted).
 {% endhint %}
 
 {% hint style="info" %}
@@ -18521,7 +18533,7 @@ A feature's availability and maturity can be limited in four ways:
 * **Preview status**: whether the feature is in Preview.
 * **Enterprise readiness**: whether the feature is Enterprise ready.
 
-[Plan/platform and version limits](#plan-platform-and-version-limits) share one documentation system. [Preview status](#preview-status) and [Enterprise readiness](#enterprise-readiness) work differently and are always documented separately. For what each one means, see [Understand feature availability](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/understand-feature-availability).
+[Plan/platform and version limits](#plan-platform-and-version-limits) share one documentation system. [Preview status](#preview-status) and [Enterprise readiness](#enterprise-readiness) work differently and are always documented separately. For what each one means, refer to [Understand feature availability](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/understand-feature-availability).
 
 ### Plan, platform, and version limits
 
@@ -18714,7 +18726,7 @@ The Example feature has Limited enterprise readiness. It supports the following 
 - **SSO:** Full
 - **External secrets:** Partial
 
-Other Enterprise capabilities either don't apply to the Example feature or it doesn't support them yet. See [Understand feature availability](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/understand-feature-availability#enterprise-capabilities) for the full list of Enterprise capabilities.
+Other Enterprise capabilities either don't apply to the Example feature or it doesn't support them yet. Refer to [Understand feature availability](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/understand-feature-availability#enterprise-capabilities) for the full list of Enterprise capabilities.
 {% endhint %}
 ```
 
@@ -51205,12 +51217,12 @@ Refer to the more detailed instructions below for each step.
 
 For API access, use the Users & Permissions Plugin in **Settings > Users & Permissions Plugin**.
 
-Refer to [Configuring Users & Permissions Plugin](https://docs.strapi.io/user-docs/settings/configuring-users-permissions-plugin-settings) for more information on the plugin. Refer to [Configuring end-user roles](https://docs.strapi.io/user-docs/users-roles-permissions/configuring-end-users-roles) for more information on roles.
+Refer to [Configuring Users & Permissions Plugin](https://docs.strapi.io/cms/features/users-permissions#admin-panel-configuration) for more information on the plugin. Refer to [Configuring end-user roles](https://docs.strapi.io/cms/features/users-permissions#roles) for more information on roles.
 
 For the n8n credential, the user must have a role that grants them API permissions on the collection type. For the role, you can either:
 
-* Update the default **Authenticated** role to include the permissions and assign the user to that role. Refer to [Configuring role's permissions](https://docs.strapi.io/user-docs/users-roles-permissions/configuring-end-users-roles#configuring-roles-permissions) for more information.
-* Create a new role to include the permissions and assign the user to that role. Refer to [Creating a new role](https://docs.strapi.io/user-docs/users-roles-permissions/configuring-end-users-roles#creating-a-new-role) for more information.
+* Update the default **Authenticated** role to include the permissions and assign the user to that role. Refer to [Editing a role](https://docs.strapi.io/cms/features/users-permissions#editing-a-role) for more information.
+* Create a new role to include the permissions and assign the user to that role. Refer to [Creating a new role](https://docs.strapi.io/cms/features/users-permissions#creating-a-new-role) for more information.
 
 For either option, once you open the role:
 
@@ -51238,14 +51250,14 @@ Now that you have an appropriate role, create an end-user account and assign the
     - **Password**: Enter in Strapi and use as the **Password** in the n8n credential.
     - **Role**: Select the role you set up in the previous step.
 
-Refer to [Managing end-user accounts](https://docs.strapi.io/user-docs/users-roles-permissions/managing-end-users) for more information.
+Refer to [Managing end-user accounts](https://docs.strapi.io/cms/features/users-permissions#usage) for more information.
 
 
 ## Using API token <a href="#using-api-token" id="using-api-token"></a>
 
 To configure this credential, you'll need:
 
-- An **API Token**: Create an API token from **Settings > Global Settings > API Tokens**. Refer to Strapi's [Creating a new API token documentation](https://docs.strapi.io/user-docs/settings/API-tokens#creating-a-new-api-token) for more details and information on regenerating API tokens.<br>
+- An **API Token**: Create an API token from **Settings > Global Settings > API Tokens**. Refer to Strapi's [Creating a new API token documentation](https://docs.strapi.io/cms/features/api-tokens#creating-a-new-api-token) for more details and information on regenerating API tokens.<br>
     
     <div data-gb-custom-block data-tag="hint" data-style="info" class="hint hint-info"><p><strong>API tokens permission</strong></p><p>If you don't see the <strong>API tokens</strong> option in <strong>Global settings</strong>, your account doesn't have the <strong>API tokens &gt; Read</strong> permission.</p></div>
     
@@ -62295,10 +62307,10 @@ Select the **Microsoft Graph API Base URL** that matches your tenant's cloud env
 
 <!-- vale off -->
 
-- **Global (https://graph.microsoft.com)**: standard Microsoft 365 tenants (default)
-- **US Government (https://graph.microsoft.us)**: Azure US Government tenants, including GCC High
-- **US Government DOD (https://dod-graph.microsoft.us)**: Azure US Government Department of Defense tenants
-- **China (https://microsoftgraph.chinacloudapi.cn)**: Microsoft 365 operated by 21Vianet in China
+- **Global (`https://graph.microsoft.com`)**: standard Microsoft 365 tenants (default)
+- **US Government (`https://graph.microsoft.us`)**: Azure US Government tenants, including GCC High
+- **US Government DOD (`https://dod-graph.microsoft.us`)**: Azure US Government Department of Defense tenants
+- **China (`https://microsoftgraph.chinacloudapi.cn`)**: Microsoft 365 operated by 21Vianet in China
 
 n8n derives the matching sign-in endpoint automatically, for example `login.microsoftonline.us` for the US Government clouds and `login.partner.microsoftonline.cn` for China, so you don't need to configure any token or authorization URLs. Complete the app registration in your cloud's own Entra admin center, and the nodes route all Microsoft Graph calls through the endpoint you selected.
 
@@ -65322,6 +65334,31 @@ This parameter is only available for these operations:
 
 [Browse Extract From File integration templates](https://n8n.io/integrations/extract-from-file) or [search all templates](https://n8n.io/workflows/)
 
+## Troubleshoot CSV import issues
+
+The CSV parser is strict. It reads the first row to learn how many columns the file has, then requires every following row to have exactly that many fields. Two of the most common failures are silent, so check the output rather than the workflow status.
+
+### "Invalid Record Length: expect 7, got 8 on line 12"
+
+The line in the message has more (or fewer) fields than the first row. In practice the extra field is almost always a delimiter inside a text value that wasn't quoted: an unquoted `Acme, Inc.` in a company column splits into two fields. The rows around it still parse, so the error names the first row that happened to contain one.
+
+Fix it in the export by quoting any field that can contain the delimiter, doubling any quote mark inside the value:
+
+```text
+company,email
+"Acme, Inc.",buyer@example.com
+```
+
+A value containing a line break needs the same treatment. If the source system can't quote properly, clean the file before the node runs. Normalizing rows in a [Code node](n8n-nodes-base.code/README.md) is more reliable than loosening the parse: a row that silently shifts by one column writes the wrong value into the wrong field.
+
+### Rows come out as a single column, with no error
+
+This is a delimiter mismatch: a semicolon- or tab-separated export parsed as comma-separated. Nothing fails. Each line becomes one field, so the output has a single key and the next node's expressions stop matching. Open the file in a text editor and confirm which character actually separates the values before changing anything in the workflow.
+
+### Rows merge together, or the data stops partway through
+
+An unbalanced quote mark: an odd number of `"` characters makes the parser treat everything after it as one long quoted value. As a result, several rows arrive as one item and the following rows look missing. The file usually got there through a manual edit or a hand-rolled export. Scan for a quote mark that has no matching closing quote. Check across line breaks too, because a field that legitimately spans several lines opens its quote on one line and closes it on another.
+
 [HTTP Request Node]: n8n-nodes-base.httprequest/README.md
 [Webhook Node]: n8n-nodes-base.webhook/README.md
 [base64]: https://datatracker.ietf.org/doc/html/rfc4648#section-4
@@ -66203,7 +66240,7 @@ You can use the Error Trigger node to create error workflows. When another linke
 
 Note the following:
 
-* If a workflow uses the Error Trigger node, you don't have to publish the workflow.
+* You have to publish the workflow that uses the **Error Trigger** node.
 * If a workflow contains the Error Trigger node, by default, the workflow uses itself as the error workflow.
 * You can't test error workflows when running workflows manually. The Error Trigger only runs when an automatic workflow errors.
 
@@ -89725,7 +89762,7 @@ Old-style release notes pages for [2.x](release-notes-2.x.md), [1.x](release-not
 For guidance on major version upgrades, see [v3.0 breaking changes](v30-breaking-changes.md), [v3.0 migration tool](v30-migration-tool.md), [v2.0 breaking changes](v20-breaking-changes.md), [v2.0 migration tool](v20-migration-tool.md), and [v1.0 migration guide](v10-migration-guide.md).
 {% endhint %}
 
-For what Preview, GA, deprecated, and removed mean, what Enterprise readiness means, and how n8n's version numbers work, see [Understand feature availability](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/understand-feature-availability).
+For what Preview, GA, deprecated, and removed mean, what Enterprise readiness means, and how n8n's version numbers work, refer to [Understand feature availability](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/understand-feature-availability).
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/iFLUKG9zJaouigaM7IOo/" %}
 
@@ -91806,6 +91843,7 @@ n8n 2.0 is a major release with breaking changes. Before you upgrade, read [n8n 
       * [Deploy to Google Kubernetes](host-n8n/install-options/use-a-cloud-provider/deploy-to-google-kubernetes.md)
       * [Deploy to OpenShift Local (CRC)](host-n8n/install-options/use-a-cloud-provider/deploy-to-openshift-local-crc.md)
       * [Use Docker Compose](host-n8n/install-options/use-a-cloud-provider/use-docker-compose.md)
+    * [Production requirements](host-n8n/install-options/production-requirements.md)
   * [Configure n8n](host-n8n/configure-n8n/README.md)
     * [Basic configuration](host-n8n/configure-n8n/basic-configuration.md)
       * [Use environment variables](host-n8n/configure-n8n/basic-configuration/use-environment-variables/README.md)
@@ -92160,6 +92198,12 @@ When your [Gateway credits](README.md) balance runs low, top it up from the n8n 
 
 Only the instance owner can top up, and topping up requires an active paid subscription. Free trials include Gateway credits, but not top-ups: if you use up your free credit during a trial, upgrade to a paid plan to add more.
 
+## Topping up Gateway credits after subscription cancellation
+
+Gateway credit top-ups are available only with an active paid n8n Cloud subscription on Starter or Pro plans. If you cancel your subscription renewal, you keep access to your instance and any remaining Gateway credits until the end of your current billing period. However, you can't purchase additional Gateway credits during this time, and the **Top up** option no longer appears on the Gateway credits page.
+
+To buy more Gateway credits after canceling your subscription renewal, resubscribe to a paid Starter or Pro plan in the [Cloud console](../use-the-cloud-console.md). After you resubscribe, you can select **Top up** again under **Gateway credits** → **Balance**.
+
 {% hint style="warning" %}
 **Gateway credits don't pay for n8n Assistant**
 
@@ -92269,7 +92313,7 @@ Manage your n8n Cloud trial, plan, and instance.
 
 ## In this section
 
-* [Try free then choose a plan](start-your-free-trial.md): start a free trial, then compare the Starter, Pro, and Enterprise plans.
+* [Try free then choose a plan](start-your-free-trial.md): start a free trial, then compare the Starter, Pro, and Enterprise plans. For Enterprise rollout guidance, see the [Enterprise Hub](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/enterprise-hub).
 * [Use the Cloud console](use-the-cloud-console.md): open the n8n Cloud console, where you manage your instance, plan, billing, and credits.
 * [Update your version](update-your-version.md): update your n8n version on Cloud.
 * [Configure Cloud](configure-cloud/README.md): set your timezone, find your IP addresses, and manage your data.
@@ -92696,7 +92740,7 @@ To test the [Enterprise plan](https://n8n.io/pricing/), contact the sales team. 
 - Log streaming
 - Version control using Git
 
-Select the **Contact** button on the [n8n website](https://n8n.io/pricing/).
+Select the **Contact** button on the [n8n website](https://n8n.io/pricing/). For guidance on rolling out Enterprise after you subscribe, see the [Enterprise Hub](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/enterprise-hub).
 
 ## Related resources
 
@@ -94161,6 +94205,7 @@ pnpm --filter n8n-containers services:clean
 * [One-line setup](one-line-setup.md)
 * [Install using Docker Compose](install-using-docker-compose.md)
 * [Install with npm](install-with-npm.md)
+* [Production requirements](production-requirements.md)
 * [Use a cloud provider](use-a-cloud-provider/README.md)
 
 === https://docs.n8n.io/docs/deploy/host-n8n/install-options/README/
@@ -94175,6 +94220,7 @@ Compare ways to install self-hosted n8n.
 * [Install with npm](install-with-npm.md): install n8n directly using Node Package Manager.
 * [Install with Docker](install-with-docker.md): install and run n8n using Docker.
 * [Use a cloud provider](use-a-cloud-provider/README.md): deploy self-hosted n8n to DigitalOcean, AWS, Azure, Google Cloud, and more.
+* [Production requirements](production-requirements.md): check database, operating system, runtime, storage, and software requirements for a production deployment.
 
 ## Related resources
 
@@ -94185,6 +94231,141 @@ Compare ways to install self-hosted n8n.
 * [Deploy as an OEM integration](../deploy-as-an-oem-integration/README.md)
 * [Deploy with the AI starter kit](../deploy-with-the-ai-starter-kit.md)
 * [Compare editions](../community-edition-features.md)
+
+=== https://docs.n8n.io/docs/deploy/host-n8n/install-options/production-requirements/
+
+# Production requirements
+
+Before you run a production n8n deployment that you manage yourself, confirm that your database, operating system, runtime, storage, and deployment tooling meet n8n's requirements.
+
+{% hint style="info" %}
+**Looking for a quickstart?** You don't need this page. [One-line setup](one-line-setup.md) only needs Docker and handles the database and storage for you. [Install using Docker Compose](install-using-docker-compose.md) starts with the built-in SQLite database, with PostgreSQL as an optional step. Use this page when you move to production, run your own PostgreSQL, use queue mode, or deploy to Kubernetes or bare metal.
+{% endhint %}
+
+## Database
+
+This section applies when you run n8n in production. [One-line setup](one-line-setup.md) and the [Docker Compose](install-using-docker-compose.md) guide start with n8n's built-in SQLite database, which suits testing and small setups.
+
+n8n needs a database to store workflows, credentials, and execution history.
+
+- **PostgreSQL:** n8n recommends PostgreSQL for production, on a [supported PostgreSQL version](../configure-n8n/choose-n8ns-database.md#supported-postgresql-versions).
+- **SQLite:** n8n doesn't support SQLite in queue mode, and doesn't recommend it for multi-user production use.
+- **Database user permissions:** the n8n database user must be able to connect to the database, use and create objects in the configured schema, and alter or drop n8n's tables during migrations. The simplest setup is to let the n8n user own the tables it creates. Refer to [Required permissions](../configure-n8n/choose-n8ns-database.md#required-permissions) for an example.
+
+Refer to [Choose n8n's database](../configure-n8n/choose-n8ns-database.md) for the environment variables that configure PostgreSQL.
+
+## Operating system and runtime
+
+- **Operating system:** n8n recommends a 64-bit Linux host for production.
+- **Node.js:** in n8n 2.x, you only need Node.js for [npm installations](install-with-npm.md). Docker and Kubernetes installations include the correct version. Refer to [Install with npm](install-with-npm.md) for the supported Node.js versions. From n8n 3.0, n8n no longer supports npm installations, so you need a Docker-based deployment. Refer to [v3.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v30-breaking-changes#docker-based-deployment-required-for-self-hosted-n8n).
+
+## Storage
+
+[One-line setup](one-line-setup.md) and the [Docker Compose](install-using-docker-compose.md) guide store n8n's data in a Docker volume, so you don't need to set up storage for them. If you adapt either setup, keep a volume for n8n's data. This section applies to production deployments and to deployments that [enable queue mode](../configure-n8n/scaling/enable-queue-mode.md), where you manage storage yourself.
+
+For those deployments, plan for the following:
+
+- **n8n data directory:** a persistent volume for the n8n data directory, which holds the encryption key and file logs, when enabled. It also holds local binary data in [filesystem mode](../configure-n8n/scaling/handle-binary-data.md#enable-filesystem-mode), the default in regular mode from n8n 2.0.
+- **PostgreSQL data:** if you run PostgreSQL yourself, a persistent volume for PostgreSQL data.
+- **Binary data in queue mode:** n8n stores binary data in the database by default unless you configure another storage mode. If your license includes the relevant [external storage](../configure-n8n/scaling/use-external-storage.md) option, you can use AWS S3 or Azure Blob Storage. If you use filesystem storage, all main instances, workers, and webhook processors that handle binary data must access the same shared volume at the same configured path. Database mode increases the size of your PostgreSQL database. If your license includes external storage, prefer it for queue mode. Refer to [Handle binary data](../configure-n8n/scaling/handle-binary-data.md) for details.
+
+## Redis
+
+This section applies only if you [enable queue mode](../configure-n8n/scaling/enable-queue-mode.md).
+
+In queue mode, Redis holds the queue state for pending executions between the main n8n instance and its workers. PostgreSQL holds your workflows and execution data. If Redis loses queued jobs, n8n doesn't rebuild them from PostgreSQL. It marks the affected executions as crashed instead. Configure Redis persistence and availability to match how much lost work you can tolerate. Provision a Redis instance that the main instance and every worker can reach. Refer to [Start Redis](../configure-n8n/scaling/enable-queue-mode.md#start-redis) for the connection settings.
+
+## Network
+
+This section applies to production deployments that you expose to users or to external services.
+
+### Ports
+
+| Port | Component | Purpose |
+| --- | --- | --- |
+| 5678 | n8n | HTTP API, editor UI, and webhooks. This is the default value of `N8N_PORT`. |
+| 5432 | PostgreSQL | Database connections. This is the PostgreSQL default. |
+| 6379 | Redis | Queue communication in queue mode. This is the Redis default. Use the port and TLS settings of your Redis service, since managed services often use a different port for TLS. |
+| 5679 | n8n task broker | Connections from external task runners. This is the default value of `N8N_RUNNERS_BROKER_PORT`. The broker listens on `127.0.0.1` by default. If runners can’t connect through loopback, set `N8N_RUNNERS_BROKER_LISTEN_ADDRESS` to a bind address they can reach. Keep the port private and restrict access to the runners. |
+
+### Firewall rules
+
+At a minimum, configure your firewall so that:
+
+- The main n8n instance and workers can reach PostgreSQL and, in queue mode, Redis.
+- Your load balancer or reverse proxy can reach the main n8n instance on port 5678.
+- n8n has outbound internet access to reach the external services your workflows use. This doesn't apply if you run n8n in an air-gapped environment where workflows only call internal services.
+- Users can reach the editor UI through your load balancer or reverse proxy, from their networks.
+- Services that call your webhooks can reach the webhook URLs, on the internet if those callers are external.
+- If you run more than one main instance, your load balancer uses sticky sessions. Refer to [Enable queue mode](../configure-n8n/scaling/enable-queue-mode.md#multi-main-setup).
+
+Don't expose the n8n process directly to the internet. Put a reverse proxy or load balancer in front of it.
+
+### DNS
+
+Create a DNS record that points a hostname, such as `n8n.example.com`, at your load balancer or reverse proxy. You use this hostname in the `N8N_HOST`, `N8N_EDITOR_BASE_URL`, and `N8N_WEBHOOK_URL` environment variables. `N8N_HOST` takes the hostname (`n8n.example.com`). `N8N_EDITOR_BASE_URL` and `N8N_WEBHOOK_URL` take full URLs (`https://n8n.example.com/`). `N8N_WEBHOOK_URL` is available from n8n 2.30.0; on earlier versions, use `WEBHOOK_URL`.
+
+Behind a reverse proxy, also set `N8N_PROXY_HOPS`, which controls whether n8n trusts forwarded headers for the client IP and protocol. Refer to [Configure webhook URLs with reverse proxy](../configure-n8n/basic-configuration/configuration-examples/configure-webhook-urls-with-reverse-proxy.md) for how n8n builds webhook URLs behind a proxy and how to set `N8N_PROXY_HOPS`.
+
+### TLS
+
+Provision a TLS certificate for your hostname. n8n recommends terminating TLS at a reverse proxy or load balancer, which can also renew certificates if you configure it to. Refer to [Set up SSL](../configure-n8n/security/set-up-ssl.md) for how to set up SSL for n8n. On Kubernetes, [cert-manager](https://cert-manager.io/docs/) can issue and renew certificates.
+
+## Software dependencies
+
+Choose the subsection that matches how you deploy n8n.
+
+### Docker
+
+- A supported version of [Docker Engine](https://docs.docker.com/engine/install/) or [Docker Desktop](https://docs.docker.com/desktop/).
+- The Docker Compose v2 plugin, for the Compose-based setups.
+
+Refer to [Install using Docker Compose](install-using-docker-compose.md) for installation steps.
+
+### Kubernetes
+
+- A Kubernetes version that the [official n8n Helm chart](https://github.com/n8n-io/n8n-hosting/tree/main/charts/n8n) supports. The chart declares its supported range in `Chart.yaml`.
+- [`kubectl`](https://kubernetes.io/docs/tasks/tools/) configured with access to your cluster.
+- [Helm](https://helm.sh/docs/intro/install/), for Helm-based deployments.
+- A supported Ingress controller, such as the AWS Load Balancer Controller.
+
+### Bare metal
+
+{% hint style="info" %}
+**Feature availability**
+
+Bare metal installations with npm are available in n8n 2.x. From n8n 3.0, n8n no longer supports npm installations, so you need a Docker-based deployment. Refer to [v3.0 breaking changes](https://app.gitbook.com/s/hhM8Cox90Piiv0u0EgHM/v30-breaking-changes#docker-based-deployment-required-for-self-hosted-n8n).
+{% endhint %}
+
+- A supported Node.js version. Refer to [Install with npm](install-with-npm.md).
+- npm, which comes with Node.js.
+- A process manager, such as PM2 or `systemd`.
+- A reverse proxy, such as NGINX or Caddy, for SSL termination.
+
+## Pre-deployment checklist
+
+Use this checklist for production deployments. Skip items that don't apply to your setup, such as Redis if you don't use queue mode, or external storage if you don't use it.
+
+- [ ] [License key](../configure-n8n/manage-your-license.md) obtained and ready to activate, if you use Business or Enterprise features.
+- [ ] [PostgreSQL](#database) provisioned and accessible, on a supported version.
+- [ ] [Redis](#redis) provisioned and accessible (queue mode only).
+- [ ] [External storage](#storage) bucket or container created, if you use external storage.
+- [ ] [DNS record](#dns) pointing to your load balancer.
+- [ ] [TLS certificate](#tls) provisioned, or cert-manager configured.
+- [ ] [Firewall rules](#firewall-rules) configured.
+- [ ] [Persistent volumes](#storage) available.
+- [ ] [Encryption key](../configure-n8n/basic-configuration/configuration-examples/set-a-custom-encryption-key.md) generated, stored securely, and set to the same value on every n8n instance. Run `openssl rand -hex 32` to generate one.
+- [ ] [Backup strategy](../keep-n8n-running/backup-and-restore.md) decided.
+
+## Related resources
+
+* [Install options](./)
+* [One-line setup](one-line-setup.md)
+* [Install using Docker Compose](install-using-docker-compose.md)
+* [Install with npm](install-with-npm.md)
+* [Use a cloud provider](use-a-cloud-provider/README.md)
+* [Choose n8n's database](../configure-n8n/choose-n8ns-database.md)
+* [Enable queue mode](../configure-n8n/scaling/enable-queue-mode.md)
 
 === https://docs.n8n.io/docs/deploy/host-n8n/install-options/install-with-npm/
 
@@ -94309,6 +94490,7 @@ If you're experiencing issues running n8n on Windows, verify your Node.js enviro
 * [One-line setup](one-line-setup.md)
 * [Install using Docker Compose](install-using-docker-compose.md)
 * [Install with Docker](install-with-docker.md)
+* [Production requirements](production-requirements.md)
 * [Use a cloud provider](use-a-cloud-provider/README.md)
 
 === https://docs.n8n.io/docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-google-cloud-run/
@@ -96389,6 +96571,7 @@ Configuration guides to help you get started on other platforms:
 * [Install using Docker Compose](../install-using-docker-compose.md)
 * [Install with npm](../install-with-npm.md)
 * [Install with Docker](../install-with-docker.md)
+* [Production requirements](../production-requirements.md)
 
 === https://docs.n8n.io/docs/deploy/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws-with-terraform/use-enterprise-features-on-aws/
 
@@ -97302,7 +97485,8 @@ sudo docker compose stop
 
 n8n Assistant needs a sandbox to run code in. You can add the same sandbox stack used in the [Docker Compose guide](../install-using-docker-compose.md) to this setup. A few things are worth knowing before you start:
 
-* This sandbox is suitable for local development and testing. The stack below uses n8n's own bundled sandbox (`n8n-sandbox`). Since a DigitalOcean droplet with a public domain is often a real deployment, consider Daytona instead if this is going to production.
+* This sandbox is for development and testing only. The stack below uses n8n's own bundled sandbox (`n8n-sandbox`), whose runner runs with `privileged: true` and gives weak isolation. Since a DigitalOcean droplet with a public domain is often a real deployment, don't use this stack for production. Run nothing else on the droplet. If you need a more isolated sandbox on a single Linux VM, [install Sysbox on the VM](https://github.com/n8n-io/n8n-sandbox-service/blob/main/docs/quickstart-linux.md) and follow its steps to run the runner with Sysbox instead of `privileged: true`. The Compose file in this guide doesn't include those changes. See [Set up n8n Assistant](../../configure-n8n/set-up-n8n-assistant.md) for other production options.
+
 * **Resize if needed.** The sandbox runner uses Docker-in-Docker, which needs more headroom than n8n alone. Make sure you provision at least 4 GB RAM / 2 vCPU.
 * **No networking changes required.** Caddy only ever proxies n8n itself; the sandbox services stay internal to the Compose network and don't need DNS, firewall, or Caddyfile changes.
 
@@ -97841,7 +98025,7 @@ sudo docker compose stop
 
 n8n Assistant needs a sandbox to run code in. You can add the same sandbox stack used in the [Docker Compose guide](../install-using-docker-compose.md) to this setup. A few things are worth knowing before you start:
 
-* This sandbox is suitable for local development and testing. The stack below uses n8n's own bundled sandbox (`n8n-sandbox`). Since a DigitalOcean droplet with a public domain is often a real deployment, consider Daytona instead if this is going to production.
+* This sandbox is for development and testing only. The stack below uses n8n's own bundled sandbox (`n8n-sandbox`), whose runner runs with `privileged: true` and gives weak isolation. Since a Hetzner server with a public domain is often a real deployment, don't use this stack for production. Run nothing else on the server. If you need a more isolated sandbox on a single Linux VM, [install Sysbox on the VM](https://github.com/n8n-io/n8n-sandbox-service/blob/main/docs/quickstart-linux.md) and follow its steps to run the runner with Sysbox instead of `privileged: true`. The Compose file in this guide doesn't include those changes. See [Set up n8n Assistant](../../configure-n8n/set-up-n8n-assistant.md) for other production options.
 * **Resize if needed.** The sandbox runner uses Docker-in-Docker, which needs more headroom than n8n alone. Make sure you provision at least 4 GB RAM / 2 vCPU.
 * **No networking changes required.** Caddy only ever proxies n8n itself; the sandbox services stay internal to the Compose network and don't need DNS, firewall, or Caddyfile changes.
 
@@ -98082,7 +98266,11 @@ Running the command sets up everything below automatically. There's nothing extr
 
 If you're setting n8n up for a team or a production environment, consider a more robust database like Postgres rather than the built-in default. See [Install using Docker Compose](./install-using-docker-compose.md) for that setup.
 
-The same goes for the sandbox: this setup uses n8n's own bundled sandbox, which is a good fit for trying things out, but for production, n8n currently recommends Daytona instead. See [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md) for how to configure it.
+{% hint style="warning" %}
+The bundled sandbox is for development and testing, not production. Its runner (`sandbox-runner-1`) runs with `privileged: true` and Docker-in-Docker, which gives weak isolation. If code escapes the sandbox, it reaches the host, so treat the runner as equivalent to root on the host.
+
+Run this setup on a dedicated machine or VM with nothing else on it, and never expose it to the internet. For production, see [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md). It describes the self-hosted option, which is the n8n sandbox service with Sysbox runners, ideally on Kubernetes. The managed option is Daytona, a third-party service that receives your workflow data.
+{% endhint %}
 
 ## Optional: Turn on n8n Assistant
 
@@ -98149,6 +98337,7 @@ The one-line setup command needs a terminal that understands shell scripts, whic
 * [Install using Docker Compose](install-using-docker-compose.md)
 * [Install with npm](install-with-npm.md)
 * [Install with Docker](install-with-docker.md)
+* [Production requirements](production-requirements.md)
 * [Use a cloud provider](use-a-cloud-provider/README.md)
 
 
@@ -98162,12 +98351,20 @@ The one-line setup command needs a terminal that understands shell scripts, whic
 
 This guide walks through building your own Docker Compose setup by hand, including the sandbox stack that powers n8n Assistant. Use it if you want full control over your configuration, or need to fold n8n into an existing Compose project.
 
+The sandbox in this setup is for development and testing, not production. For production sandbox options, see [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md).
+
+{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/KbKP88R2IFii1k97togq/" %}
+
 If you just want n8n (and n8n Assistant) running quickly without writing any files yourself, use the [one-line setup](one-line-setup.md) instead. It sets up everything below automatically.
 
 ## What you need before you start
 
 * Docker Engine and Docker Compose v2. Run `docker compose version` to check.
 * At least 4 GB of RAM and 2 vCPUs. The sandbox that runs AI-generated code (`sandbox-runner-1`) uses Docker-in-Docker, which needs more headroom than a typical container.
+
+{% hint style="warning" %}
+`sandbox-runner-1` runs with `privileged: true` and Docker-in-Docker. That's weak isolation: code that escapes the sandbox reaches the host. Run this setup on a dedicated host or VM with nothing else on it.
+{% endhint %}
 
 {% hint style="info" %}
 **Windows users:** Use WSL, with either Docker Desktop (WSL2 backend) or Docker Engine installed directly in your Linux distribution. Keep your project folder inside the WSL filesystem (for example, `~/n8n`), not under `/mnt/c/...`. Bind mounts across that boundary are slow and can cause permission issues.
@@ -98237,7 +98434,7 @@ This defines every service you're setting up: n8n itself, the sandbox stack that
 | **sandbox-runner-1** | Does the actual work; a privileged Docker-in-Docker container that creates and runs the sandboxes. |
 | **searxng**          | Bundled web search backend for n8n Assistant.                                                      |
 
-This bundles n8n's own sandbox (`n8n-sandbox`), which is a good fit for local development and testing. For a production instance, n8n currently recommends Daytona as the sandbox provider instead. See [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md) for how to configure a Daytona sandbox.
+This bundles n8n's own sandbox (`n8n-sandbox`), which is for development and testing only. Its runner is privileged, so it gives weak isolation. For a production instance, n8n recommends the n8n sandbox service with Sysbox runners, ideally on Kubernetes. If a third party can process your workflow data, Daytona is a managed alternative. See [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md) for how to configure each option.
 
 There's no database service defined here. n8n falls back to its built-in SQLite database. The `n8n-data` volume in `get-n8n-compose.yml` stores the database and n8n's encryption key, so your data survives restarts and container recreation. For a production instance, swap in Postgres. See [Use PostgreSQL instead of SQLite](install-using-docker-compose.md#optional-use-postgresql-instead-of-sqlite) below.
 
@@ -98367,6 +98564,8 @@ SQLite is fine for trying things out, but for a production instance that must ha
 ## Security checklist
 
 * `sandbox-runner-1` (`privileged: true`, Docker-in-Docker) is never exposed to the public internet. Treat it as equivalent to root on the host.
+* Nothing else runs on the same host or VM as the Compose stack. If code escapes the sandbox, it reaches everything on that host.
+* This setup isn't your production sandbox. For production, use the n8n sandbox service with Sysbox runners, ideally on Kubernetes. If a third party can process your workflow data, Daytona is a managed alternative. See [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md).
 * Only n8n's port is open on your cloud firewall.
 * `SANDBOX_API_KEYS`, the registration token, and the runner key are unique, not left as `change-me-...`, and rotated periodically.
 * `sandbox-api` and `sandbox-runner-1` do **not** use `env_file: .env`. Each only receives the specific variables it needs, explicitly, in its `environment` block. The model API key, Brave key, Postgres password, and n8n encryption key never reach the sandbox containers.
@@ -98395,7 +98594,7 @@ flowchart LR
     class certs oneshot
 ```
 
-n8n sends code execution requests to `sandbox-api`, which hands them to `sandbox-runner-1`, which creates and runs the actual sandbox containers. `sandbox-certs` runs once at startup to generate the TLS certificates the other two need and then exits; everything else waits on it.
+n8n sends code execution requests to `sandbox-api`, which hands them to `sandbox-runner-1`, which creates and runs the actual sandbox containers. `sandbox-runner-1` is the privileged component. In the production setup, Sysbox runners on Kubernetes replace it. `sandbox-certs` runs once at startup to generate the TLS certificates the other two need and then exits; everything else waits on it.
 
 ## Related resources
 
@@ -98403,7 +98602,9 @@ n8n sends code execution requests to `sandbox-api`, which hands them to `sandbox
 * [One-line setup](one-line-setup.md)
 * [Install with npm](install-with-npm.md)
 * [Install with Docker](install-with-docker.md)
+* [Production requirements](production-requirements.md)
 * [Use a cloud provider](use-a-cloud-provider/README.md)
+* [Set up n8n Assistant](../configure-n8n/set-up-n8n-assistant.md)
 
 === https://docs.n8n.io/docs/deploy/host-n8n/keep-n8n-running/set-up-logging/
 
@@ -99663,7 +99864,7 @@ curl -fsSL https://get.n8n.io | sh
 Requires Docker on Linux or macOS (or WSL on Windows). Sets up n8n locally in one step. See the [one-line setup guide](install-options/one-line-setup.md) for what it does, or keep reading to compare every installation method.
 {% endhint %}
 
-All self-hosted installations use the same core product. Without a license key, n8n runs as the free Community edition. Adding a Business or Enterprise license key enables those editions. See [Compare editions](community-edition-features.md) for the differences between the self-hosted editions.
+All self-hosted installations use the same core product. Without a license key, n8n runs as the free Community edition. Adding a Business or Enterprise license key enables those editions. See [Compare editions](community-edition-features.md) for the differences between the self-hosted editions. For Enterprise rollout guidance, see the [Enterprise Hub](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/enterprise-hub).
 
 ## In this section
 
@@ -101561,7 +101762,7 @@ When handling binary data, n8n keeps the data in memory by default. This can cau
 
 To avoid this, change the `N8N_DEFAULT_BINARY_DATA_MODE` [environment variable](../basic-configuration/use-environment-variables/binary-data.md) to `filesystem`. This causes n8n to save data to disk, instead of using memory.
 
-If you're using queue mode, switch this to `database`. n8n doesn't support `filesystem` mode with queue mode.
+In queue mode, n8n uses `database` by default. If you use `filesystem` in queue mode, all main instances, workers, and webhook processors that handle binary data must access the same shared volume at the same configured path.
 
 ## Binary data pruning <a href="#binary-data-pruning" id="binary-data-pruning"></a>
 
@@ -101889,7 +102090,7 @@ You can run n8n in different modes depending on your needs. The queue mode provi
 {% hint style="info" %}
 **Binary data storage**
 
-n8n doesn't support queue mode with binary data storage in filesystem. If your workflows need to persist binary data in queue mode, you can use [S3 external storage](use-external-storage.md).
+In queue mode, n8n stores binary data in the database by default unless you configure another storage mode. If your license includes the relevant [external storage](use-external-storage.md) option, you can use AWS S3 or Azure Blob Storage. If you use filesystem storage, all main instances, workers, and webhook processors that handle binary data must access the same shared volume at the same configured path. Refer to [Handle binary data](handle-binary-data.md) for details.
 {% endhint %}
 
 ## How it works <a href="#how-it-works" id="how-it-works"></a>
@@ -105367,7 +105568,7 @@ Every self-hosted n8n Assistant setup needs three things:
 * **A sandbox (required):** An isolated environment where n8n Assistant runs code.
 * **A search provider (optional):** Lets n8n Assistant look things up on the web.
 
-How you provide the sandbox is the main decision. n8n's own bundled sandbox (`n8n-sandbox`) is a good fit for local development and testing. It's what the [one-line setup command](../install-options/one-line-setup.md) and [Docker Compose guide](../install-options/install-using-docker-compose.md) set up automatically. For production, use Daytona instead.
+How you provide the sandbox is the main decision. For self-hosted production, n8n recommends running the n8n sandbox service (`n8n-sandbox`) with Sysbox runners, ideally on Kubernetes. If you can send workflow data to a third party, Daytona is a managed alternative. The bundled sandbox that the [one-line setup command](../install-options/one-line-setup.md) and [Docker Compose guide](../install-options/install-using-docker-compose.md) set up automatically is for development and testing only. Its privileged runner gives weak isolation.
 
 [Pick your setup](#pick-your-setup) below based on how you installed n8n and where you're running it.
 
@@ -105383,12 +105584,13 @@ Make sure you have:
 
 | Setup | When to use this | Sandbox hosted by | Best for |
 | --- | --- | --- | --- |
-| [1. Already running the sandbox](#setup-1-already-running-the-sandbox-recommended-for-local-development) | You installed with the one-line setup command or the Docker Compose guide. | You (already done) | Local development and testing |
-| [2. Self-host the sandbox manually](#setup-2-self-host-the-sandbox-manually-advanced) | You're running n8n some other way and want to self-host the sandbox rather than use Daytona. | You | Local development and testing |
-| [3. Daytona (managed sandbox)](#setup-3-daytona-managed-sandbox-recommended-for-production) | You're deploying to production, or don't want to run sandbox containers yourself. | Daytona | Production |
+| [1. n8n sandbox service on Kubernetes with Sysbox](#setup-1-n8n-sandbox-service-on-kubernetes-with-sysbox-recommended-for-self-hosted-production) | You're self-hosting in production and can't send workflow data to a third party. | You | Self-hosted production |
+| [2. Daytona (managed sandbox)](#setup-2-daytona-managed-sandbox) | You want the easiest setup with no sandbox infrastructure to run, and a third party can process your workflow data. | Daytona | Production, where a third-party service is acceptable |
+| [3. Bundled sandbox](#setup-3-bundled-sandbox-for-development-and-testing) | You installed with the one-line setup command or the Docker Compose guide, or you're running the bundled sandbox yourself. | You | Development and testing only |
 
-### Setup 1: Already running the sandbox (recommended for local development)
+### Setup 1: n8n sandbox service on Kubernetes with Sysbox (recommended for self-hosted production)
 
+The n8n sandbox service runs sandboxes in Sysbox nodes on a Kubernetes cluster you control. Workflow data stays in your infrastructure, and the runners don't need `privileged: true`. This is the setup n8n recommends for self-hosted production.
 If you installed n8n with the [one-line setup command](../install-options/one-line-setup.md) or built it by hand with the [Docker Compose guide](../install-options/install-using-docker-compose.md), the sandbox and search, using bundled SearXNG, are already running. All that's left is a model key.
 
 **What you need:** an LLM API key. Nothing else.
@@ -105422,19 +105624,28 @@ This means hosting two extra containers yourself: the sandbox API and a privileg
 
 **What you need:**
 
-* The n8n Sandbox Service running and reachable from n8n. See the [Docker Compose guide](../install-options/install-using-docker-compose.md) for the full stack (`sandbox-certs`, `sandbox-api`, `sandbox-runner-1`) and its secrets.
+* A Kubernetes cluster, version 1.32 or later.
+* A dedicated Linux node pool for the sandbox runners, with Sysbox installed on it. Use Ubuntu worker nodes.
+* At least four CPUs and 4 GB RAM per node in that pool.
+* The `br_netfilter` kernel module loaded on those nodes.
 * An LLM API key.
+
+Provider notes:
+
+* **GKE:** Use Standard clusters with Ubuntu node pools. Autopilot isn't supported.
+* **EKS:** Use Ubuntu worker nodes, not the default Amazon Linux.
+* **AKS:** The default worker nodes work. Use at least four vCPUs per node.
 
 **Steps:**
 
-1. Stand up the sandbox stack (Docker Compose guide linked above).
-2. Point n8n at it:
+1. Follow the [Kubernetes quickstart](https://github.com/n8n-io/n8n-sandbox-service/blob/main/docs/quickstart-k8s.md) in the n8n sandbox service repository to deploy the sandbox API and Sysbox runners.
+2. Point n8n at the sandbox API using the same variables as the bundled sandbox:
 
    ```bash
    N8N_INSTANCE_AI_SANDBOX_ENABLED=true
    N8N_INSTANCE_AI_SANDBOX_PROVIDER=n8n-sandbox
-   N8N_SANDBOX_SERVICE_URL=http://sandbox-api:8080
-   N8N_SANDBOX_SERVICE_API_KEY=my-sandbox-api-key
+   N8N_SANDBOX_SERVICE_URL=<your-sandbox-api-url>
+   N8N_SANDBOX_SERVICE_API_KEY=<your-sandbox-api-key>
    ```
 
    | Variable | Description |
@@ -105442,28 +105653,19 @@ This means hosting two extra containers yourself: the sandbox API and a privileg
    | `N8N_INSTANCE_AI_SANDBOX_ENABLED` | Set to `true`. |
    | `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Set to `n8n-sandbox`. |
    | `N8N_SANDBOX_SERVICE_URL` | URL of the sandbox API, reachable from n8n. |
-   | `N8N_SANDBOX_SERVICE_API_KEY` | Must match `SANDBOX_API_KEYS` on the API container. |
+   | `N8N_SANDBOX_SERVICE_API_KEY` | Must match a value in `SANDBOX_API_KEYS` on the sandbox API. |
 
 3. Add your model key (see [Choose a model provider](#choose-a-model-provider)) and restart n8n.
 
-**Verify:**
+{% hint style="warning" %}
+Some distributions, such as Talos and Bottlerocket, use an immutable root filesystem and can't run Sysbox. The quickstart describes a fallback that uses a privileged runner. That runner has the same weak isolation as the bundled sandbox in [setup 3](#setup-3-bundled-sandbox-for-development-and-testing): code that escapes the sandbox reaches the node. Use it only on a dedicated node pool with no other workloads, keep it private, and proceed only if your security team accepts that risk.
+{% endhint %}
 
-```bash
-curl http://<sandbox-api-host>:8080/healthz
-```
+### Setup 2: Daytona (managed sandbox)
 
-Expected response: `{"status":"ok"}`
+Daytona creates sandboxes on demand instead of you hosting the containers yourself. It's the easiest option to set up and needs no sandbox infrastructure.
 
-**Notes:**
-
-* Replace `my-sandbox-api-key` with your own secret, and set matching registration-token and runner-key secrets on the API and runner containers. See the [Docker Compose guide](../install-options/install-using-docker-compose.md) for the full set of variables and how they connect.
-* `N8N_SANDBOX_SERVICE_API_KEY` must match a value in `SANDBOX_API_KEYS` on the sandbox API container.
-* The runner pulls its sandbox image on first use. For air-gapped setups, preload that image into the runner's inner Docker.
-* Hostnames matter. The certificates are issued for `sandbox-api` and `sandbox-runner-<n>`, so keep those service names or regenerate certificates with matching SANs.
-
-### Setup 3: Daytona (managed sandbox, recommended for production)
-
-Daytona creates sandboxes on demand instead of you hosting the containers yourself. It's the sandbox provider n8n recommends for production use.
+Daytona is a third-party service. You need your own Daytona account, and workflow data that n8n Assistant sends to the sandbox goes to Daytona. It's a valid choice for production if that's acceptable to you. If it isn't, for example because of data sovereignty requirements or an air-gapped environment, use [setup 1](#setup-1-n8n-sandbox-service-on-kubernetes-with-sysbox-recommended-for-self-hosted-production).
 
 **What you need:** a Daytona account and API key, plus an LLM API key.
 
@@ -105533,6 +105735,82 @@ N8N_INSTANCE_AI_SANDBOX_AUTO_DELETE_MINUTES=10080
 {% hint style="info" %}
 By default, Daytona stops an idle sandbox after 15 minutes, archives a stopped sandbox after one hour, and deletes it after seven days. Change these settings with the variables above.
 {% endhint %}
+
+### Setup 3: Bundled sandbox (for development and testing)
+
+{% hint style="warning" %}
+The bundled sandbox runs `sandbox-runner-1` with `privileged: true` and Docker-in-Docker. That's weak isolation: code that escapes the sandbox reaches the host, so treat the runner as equivalent to root on the host. Use this setup for development and testing, not production. If you run it anyway, use a dedicated host or VM with nothing else running on it, and never expose it to the internet. A dedicated VM limits the damage of an escape but doesn't remove the risk.
+{% endhint %}
+
+#### Already running the sandbox
+
+If you installed n8n with the [one-line setup command](../install-options/one-line-setup.md) or built it by hand with the [Docker Compose guide](../install-options/install-using-docker-compose.md), the sandbox and search, using bundled SearXNG, are already running. All that's left is a model key.
+
+**What you need:** an LLM API key. Nothing else.
+
+**Steps:**
+
+The quickest way: open the editor, go to the instance's AI settings, and add your model key there. Prefer `.env`?  Use the steps below.
+
+1. Add your model key to `.env`:
+
+   ```bash
+   N8N_INSTANCE_AI_MODEL_API_KEY=sk-ant-xxx
+   ```
+
+2. Restart n8n.
+3. Open the editor and confirm n8n Assistant appears and responds.
+
+`N8N_INSTANCE_AI_MODEL` defaults to `anthropic/claude-opus-4-8`. Set it explicitly only if you want a different model (see [Choose a model provider](#choose-a-model-provider)).
+
+Prefer to watch? This [video guide](https://go.n8n.io/RZZWq1) covers the setup end to end, from the one-line install to selecting a provider and model in the editor.
+
+#### Self-host the sandbox manually
+
+Use this if you're configuring n8n outside of the one-line setup command or Docker Compose guide, and you want to run the bundled sandbox yourself for development or testing.
+
+This means hosting two extra containers yourself: the sandbox API and a privileged Docker-in-Docker runner, plus mutual TLS between them. For production, use [setup 1](#setup-1-n8n-sandbox-service-on-kubernetes-with-sysbox-recommended-for-self-hosted-production) or [setup 2](#setup-2-daytona-managed-sandbox) instead.
+
+**What you need:**
+
+* The n8n Sandbox Service running and reachable from n8n. See the [Docker Compose guide](../install-options/install-using-docker-compose.md) for the full stack (`sandbox-certs`, `sandbox-api`, `sandbox-runner-1`) and its secrets.
+* An LLM API key.
+
+**Steps:**
+
+1. Stand up the sandbox stack (Docker Compose guide linked above).
+2. Point n8n at it:
+
+   ```bash
+   N8N_INSTANCE_AI_SANDBOX_ENABLED=true
+   N8N_INSTANCE_AI_SANDBOX_PROVIDER=n8n-sandbox
+   N8N_SANDBOX_SERVICE_URL=http://sandbox-api:8080
+   N8N_SANDBOX_SERVICE_API_KEY=my-sandbox-api-key
+   ```
+
+   | Variable | Description |
+   | --- | --- |
+   | `N8N_INSTANCE_AI_SANDBOX_ENABLED` | Set to `true`. |
+   | `N8N_INSTANCE_AI_SANDBOX_PROVIDER` | Set to `n8n-sandbox`. |
+   | `N8N_SANDBOX_SERVICE_URL` | URL of the sandbox API, reachable from n8n. |
+   | `N8N_SANDBOX_SERVICE_API_KEY` | Must match `SANDBOX_API_KEYS` on the API container. |
+
+3. Add your model key (see [Choose a model provider](#choose-a-model-provider)) and restart n8n.
+
+**Verify:**
+
+```bash
+curl http://<sandbox-api-host>:8080/healthz
+```
+
+Expected response: `{"status":"ok"}`
+
+**Notes:**
+
+* Replace `my-sandbox-api-key` with your own secret, and set matching registration-token and runner-key secrets on the API and runner containers. See the [Docker Compose guide](../install-options/install-using-docker-compose.md) for the full set of variables and how they connect.
+* `N8N_SANDBOX_SERVICE_API_KEY` must match a value in `SANDBOX_API_KEYS` on the sandbox API container.
+* The runner pulls its sandbox image on first use. For air-gapped setups, preload that image into the runner's inner Docker.
+* Hostnames matter. The certificates are issued for `sandbox-api` and `sandbox-runner-<n>`, so keep those service names or regenerate certificates with matching SANs.
 
 ## Choose a model provider
 
@@ -105758,13 +106036,13 @@ If n8n Assistant doesn't appear or doesn't work, check for these issues.
 * The API key is valid for the selected provider.
 * `N8N_INSTANCE_AI_SANDBOX_ENABLED` is set to `true`.
 
-**Self-hosted sandbox (setup 2)**
+**n8n sandbox service (setups 1 and 3)**
 
 * `N8N_SANDBOX_SERVICE_API_KEY` matches `SANDBOX_API_KEYS` on the API container.
 * The sandbox health check returns `{"status":"ok"}`.
 * `N8N_SANDBOX_SERVICE_URL` is reachable from the n8n container.
 
-**Daytona (setup 3)**
+**Daytona (setup 2)**
 
 * `DAYTONA_API_URL` and `DAYTONA_API_KEY` are set.
 * Your Daytona account has capacity to create a new sandbox.
@@ -106446,7 +106724,7 @@ Once you have a license key, activate it by selecting the button in the license 
 
 ## Business and Enterprise plans <a href="#business-and-enterprise-editions" id="business-and-enterprise-editions"></a>
 
-The Business and Enterprise plans unlock the paid features that the Community edition doesn't include, such as SSO, environments, external secrets, and log streaming. The Enterprise plan adds the most advanced features for security, scaling, and governance.
+The Business and Enterprise plans unlock the paid features that the Community edition doesn't include, such as SSO, environments, external secrets, and log streaming. The Enterprise plan adds the most advanced features for security, scaling, and governance. For guidance on rolling out Enterprise across your organization, see the [Enterprise Hub](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/enterprise-hub).
 
 When you subscribe to a paid plan, you get a license key that unlocks the features for that plan. Add the key to your instance to activate it. For how to get and activate a key, see [Manage your license](configure-n8n/manage-your-license.md). For the features included in each plan, see the [pricing page](https://n8n.io/pricing/).
 
@@ -108501,8 +108779,8 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.47.5
-Current `beta`: 2.48.2
+Current `stable`: 2.47.7
+Current `beta`: 2.48.4
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/server-setups-next-steps/
@@ -110917,7 +111195,7 @@ Administer n8n by controlling access, securing credentials, managing changes, an
 This section helps you run n8n securely and reliably as usage grows.
 
 {% hint style="info" %}
-Enterprise teams often spend more time in this section. SSO, directory integration, change control, and centralized logging become more important at scale. Many features covered here, including user management basics, credential security, and operational monitoring, are also useful outside Enterprise.
+Enterprise teams often spend more time in this section. For a guided path through Enterprise setup, see the [Enterprise Hub](https://app.gitbook.com/s/CxSeOtVxqqhfxMSac0AV/enterprise-hub). SSO, directory integration, change control, and centralized logging become more important at scale. Many features covered here, including user management basics, credential security, and operational monitoring, are also useful outside Enterprise.
 {% endhint %}
 
 Before you plan an upgrade or check whether a feature applies to your instance, see [Understand feature availability](understand-feature-availability.md).
@@ -114230,6 +114508,9 @@ The following events are available. You can choose which events to stream in **S
 	* Personal sharing restricted disabled
 	* 2FA enforcement enabled
 	* 2FA enforcement disabled
+	* **Public API rate limit enabled**
+	* **Public API rate limit disabled**
+	* **Public API rate limit updated**
 	* Token exchange succeeded
 	* Token exchange failed
 	* Token exchange embed login
@@ -114325,6 +114606,32 @@ These six audit events record successful changes to providers and environments i
 | `n8n.audit.promotions.environment.deleted` | A user deletes an environment. |
 
 To stream all six, subscribe your destination to `n8n.audit.promotions`. In **Settings** > **Log Streaming** > **Events**, they appear in the **Audit** group.
+
+### Public API rate limit events
+
+{% hint style="info" %}
+**Feature availability**
+
+The enabled and disabled events are available from n8n 2.47.0. The updated event is available from n8n 2.49.0.
+{% endhint %}
+
+These audit events record when an instance owner or admin turns [API rate limits](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api/rate-limits) on or off, or changes a limit or a window. The changes can come from **Settings** > **Policies** or the n8n public API.
+
+| Event name | Sent when |
+| --- | --- |
+| `n8n.audit.public-api-rate-limit.enabled` | An instance owner or admin turns rate limiting on. Carries the acting user. |
+| `n8n.audit.public-api-rate-limit.disabled` | An instance owner or admin turns rate limiting off. Carries the acting user. |
+| `n8n.audit.public-api-rate-limit.updated` | An instance owner or admin changes at least one limit or window. Carries the acting user, and `before` and `after` with only the values that changed. |
+
+For example, a change of the read limit for all endpoints from 1,200 to 100 carries `"before": { "globalReadLimit": 1200 }` and `"after": { "globalReadLimit": 100 }`. A save that turns rate limiting on and changes a limit sends two events: `enabled` and `updated`.
+
+n8n doesn't send an event when:
+
+* An environment variable turns rate limiting on or sets a value.
+* A save changes nothing.
+* n8n rejects a request with a `429` response.
+
+To stream all three, subscribe your destination to `n8n.audit.public-api-rate-limit`. In **Settings** > **Log Streaming** > **Events**, they appear in the **Audit** group.
 
 ### MCP events
 
@@ -114580,7 +114887,7 @@ Use this guide to choose a deployment option:
 | Don't want to manage infrastructure | **n8n Cloud** | n8n handles hosting, updates, and scaling |
 | Need full control over deployment | **Self-hosted** | You control the environment and configuration |
 | Have customized use cases | **Self-hosted** | Full control over deployment and configuration |
-| Need enterprise features (SSO, environments, projects, etc.) | **Both options work** | Enterprise plans (paid) are available with both |
+| Need enterprise features (SSO, environments, projects, etc.) | **Both options work** | Enterprise plans (paid) are available with both. See the [Enterprise Hub](enterprise-hub.md) |
 | Have infrastructure and technical resources | **Self-hosted** | You can manage your own deployment |
 | Want to run n8n for free | **Self-hosted (Community edition)** | Free with almost the complete feature set |
 
@@ -115250,7 +115557,7 @@ These features help you secure, govern and scale n8n across your organization. T
 
 Your Enterprise journey begins with a dependable foundation. These guides help self-hosted teams prepare, secure, scale, and monitor their n8n instance. If you use n8n Cloud, n8n manages the infrastructure for you.
 
-<table data-view="cards"><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><i class="fa-clipboard-check">:clipboard-check:</i> <strong>Prepare</strong></td><td><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/understand-the-architecture">Understand the architecture</a></li></ul></td></tr><tr><td><i class="fa-download">:download:</i> <strong>Install</strong></td><td><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options">Install options</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws-with-terraform">Deploy with Terraform</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/use-a-cloud-provider">Use a cloud provider</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/choose-n8ns-database">Choose n8n's database</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/manage-your-license">Add your license key</a></li></ul></td></tr><tr><td><i class="fa-layer-group">:layer-group:</i> <strong>Set up scaling &#x26; queue mode</strong></td><td><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/enable-queue-mode">Enable queue mode</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/queue-mode">Queue mode environment variables</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/control-concurrency">Control concurrency</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/use-external-storage">Use external storage</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-task-runners">Set up task runners</a></li></ul></td></tr><tr><td><p><i class="fa-shield-halved">:shield-halved:</i> <strong>Secure your deployment</strong></p><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/set-up-ssl">Set up SSL</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/run-security-audits">Run security audits</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/configuration-examples/set-a-custom-encryption-key">Set a custom encryption key</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/rotate-encryption-keys">Rotate encryption key</a></li></ul></td><td></td></tr><tr><td><i class="fa-wave-pulse">:wave-pulse:</i> <strong>Set up monitoring and logging</strong></td><td><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/set-up-logging">Set up logging</a></li><li><a href="https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/observe-and-log/stream-logs-to-external-systems">Stream logs to external systems</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/monitor-n8n">Monitor your instance</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/configuration-examples/enable-prometheus-metrics">Enable Prometheus metrics</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/visualize-metrics-with-grafana">Visualize metrics with Grafana</a></li></ul></td></tr><tr><td><i class="fa-arrow-up-right-dots">:arrow-up-right-dots:</i> <strong>Back up and upgrade</strong></td><td><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/update-n8n">Update n8n</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/backup-and-restore">Back up your instance</a></li></ul></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><i class="fa-clipboard-check">:clipboard-check:</i> <strong>Prepare</strong></td><td><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/understand-the-architecture">Understand the architecture</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/production-requirements">Production requirements</a></li></ul></td></tr><tr><td><i class="fa-download">:download:</i> <strong>Install</strong></td><td><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options">Install options</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/use-a-cloud-provider/deploy-to-aws-with-terraform">Deploy with Terraform</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/install-options/use-a-cloud-provider">Use a cloud provider</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/choose-n8ns-database">Choose n8n's database</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/manage-your-license">Add your license key</a></li></ul></td></tr><tr><td><i class="fa-layer-group">:layer-group:</i> <strong>Set up scaling &#x26; queue mode</strong></td><td><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/enable-queue-mode">Enable queue mode</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/queue-mode">Queue mode environment variables</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/control-concurrency">Control concurrency</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/use-external-storage">Use external storage</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-task-runners">Set up task runners</a></li></ul></td></tr><tr><td><p><i class="fa-shield-halved">:shield-halved:</i> <strong>Secure your deployment</strong></p><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/set-up-ssl">Set up SSL</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/run-security-audits">Run security audits</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/configuration-examples/set-a-custom-encryption-key">Set a custom encryption key</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/security/rotate-encryption-keys">Rotate encryption key</a></li></ul></td><td></td></tr><tr><td><i class="fa-wave-pulse">:wave-pulse:</i> <strong>Set up monitoring and logging</strong></td><td><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/set-up-logging">Set up logging</a></li><li><a href="https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/observe-and-log/stream-logs-to-external-systems">Stream logs to external systems</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/monitor-n8n">Monitor your instance</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/configuration-examples/enable-prometheus-metrics">Enable Prometheus metrics</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/visualize-metrics-with-grafana">Visualize metrics with Grafana</a></li></ul></td></tr><tr><td><i class="fa-arrow-up-right-dots">:arrow-up-right-dots:</i> <strong>Back up and upgrade</strong></td><td><ul><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/update-n8n">Update n8n</a></li><li><a href="https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/keep-n8n-running/backup-and-restore">Back up your instance</a></li></ul></td></tr></tbody></table>
 
 ## Publish first workflow
 
@@ -120722,6 +121029,7 @@ See [n8n packages](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflo
 * [Connect](./)
 * [n8n API](n8n-api/README.md)
 * [Connect to n8n MCP server](connect-to-n8n-mcp-server.md)
+* [Workflow SDK](workflow-sdk/README.md)
 * [Connect to the n8n docs MCP server](connect-to-n8n-docs-mcp-server.md)
 * [Create nodes](create-nodes/README.md)
 
@@ -120960,7 +121268,7 @@ The n8n API isn't available during the free trial. Please upgrade to access this
 1. Go to **Settings** > **n8n API**.
 1. Select **Create an API key**.
 1. Choose a **Label** and set an **Expiration** time for the key.
-1. If you're on an Enterprise plan, choose the **Scopes** to give the key. Refer to [API Scopes](#api-scopes) for the full list of available scopes.
+1. If your instance is n8n 2.14.0 or a newer release, or you have an Enterprise plan on an earlier version, choose the **Scopes** to give the key. Refer to [API Scopes](#api-scopes) for the full list of available scopes.
 1. Copy **My API Key** and use this key to authenticate your calls.
 
 ## Call the API using your key <a href="#call-the-api-using-your-key" id="call-the-api-using-your-key"></a>
@@ -121003,9 +121311,9 @@ For the available operations and parameters, refer to the [n8n node](https://app
 
 ## API Scopes <a href="#api-scopes" id="api-scopes"></a>
 
-On [Enterprise instances](https://n8n.io/enterprise/), you can limit which resources and actions an API key can access with scopes. Choose the minimum scopes needed for the key's intended purpose.
+You can limit which resources and actions an API key can access with scopes. Scopes are available on all plans from n8n 2.14.0. On earlier versions, you need an Enterprise plan to use scopes. Choose the minimum scopes needed for the key's intended purpose.
 
-Non-Enterprise API keys have full access to all the account's resources and capabilities.
+On versions before 2.14.0, non-Enterprise API keys have full access to all the account's resources and capabilities.
 
 {% hint style="info" %}
 **API key scopes vs. project role scopes**
@@ -121290,6 +121598,8 @@ An instance owner or admin can turn on and change the limits in three ways:
 
 A change in the settings or with the API applies at once. You don't need to restart n8n.
 
+When you turn rate limiting on or off, or change a limit or a window, in the settings or with the API, n8n sends an audit event to each log streaming destination that subscribes to it. Refer to [Public API rate limit events](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/observe-and-log/stream-logs-to-external-systems#public-api-rate-limit-events).
+
 ### In the n8n settings
 
 1. Go to **Settings** > **Policies**.
@@ -121554,6 +121864,9 @@ To find the type, download your workflow as JSON and examine it. For example, fo
           spec: n8n
     ```
 * [n8n CLI](n8n-cli.md)
+* [Workflow SDK](workflow-sdk/README.md)
+  * [Quickstart](workflow-sdk/quickstart.md)
+  * [Build with AI](workflow-sdk/build-with-ai.md)
 * [Connect to n8n MCP server](connect-to-n8n-mcp-server.md)
   * [MCP client connection examples](connect-to-n8n-mcp-server/mcp-client-examples.md)
   * [MCP server tools reference](connect-to-n8n-mcp-server/mcp-server-tools-reference.md)
@@ -121647,7 +121960,7 @@ Start with [Connect to n8n MCP server](connect-to-n8n-mcp-server.md).
 {% endtab %}
 {% endtabs %}
 
-You can also connect an MCP client to [the n8n docs MCP server](connect-to-n8n-docs-mcp-server.md) so AI tools can search the docs, or [create your own node](create-nodes/README.md) to add a custom integration to n8n.
+You can also describe workflows as code with the [Workflow SDK](workflow-sdk/README.md). To let AI tools search the docs, connect an MCP client to [the n8n docs MCP server](connect-to-n8n-docs-mcp-server.md). To add a custom integration to n8n, [create your own node](create-nodes/README.md).
 
 === https://docs.n8n.io/docs/connect/connect-to-n8n-docs-mcp-server/
 
@@ -122980,7 +123293,7 @@ The response holds per-user data and n8n serves it uncached. Two users who read 
 `get_workflow_sdk_reference` is available from n8n 2.12.0.
 {% endhint %}
 
-Get the n8n Workflow SDK reference documentation including patterns, expression syntax, functions, rules, import syntax, guidelines, and design guidance.
+Get the n8n Workflow SDK reference documentation including patterns, expression syntax, functions, rules, import syntax, guidelines, and design guidance. For an introduction to the SDK and a worked example, refer to [Workflow SDK](../workflow-sdk/README.md).
 
 #### Parameters <a href="#parameters" id="parameters"></a>
 
@@ -123554,6 +123867,8 @@ When `versionId` is omitted, the response describes the current draft:
 | `isRunnable`            | `boolean`        | Whether the agent has everything it needs to run                                                                                                   |
 | `missing`               | `string[]`       | Config paths still needed before the agent is runnable                                                                                             |
 | `skills`                | `object`         | Map of skill ID to skill body (`name`, `description`, `instructions`, and optionally `allowedTools`, `references`)                                 |
+| `skillHashes`           | `object`         | Map of skill ID to a hash of the skill body. Pass a skill's hash as `baseSkillHash` to `skill.upsert` in `mutate_agent`.                           |
+| `outdatedSkillIds`      | `string[]`       | IDs of the skills that the agent pins to a saved version that has a newer version. Available from n8n 2.46.0.                                      |
 | `tasks`                 | `array`          | Scheduled tasks, each with `id`, `name`, `objective`, `cronExpression`, and `enabled`                                                              |
 | `customTools`           | `array`          | Custom tools, each with `id` and `descriptor` (`name`, `description`, `inputSchema`, `outputSchema`, and related metadata)                         |
 | `integrations`          | `array`          | Configured Slack, Telegram, or Linear integrations. Read-only here; manage with `update_agent_integration`.                                        |
@@ -123690,8 +124005,8 @@ Apply one config, skill, task, or custom-tool mutation to an agent draft. Return
 | ------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `config.replace`    | `config: object`                                       | Replace the full editable agent configuration. Can't include `integrations`.                                                                                                    |
 | `config.patch`      | `patch: array` (min 1)                                 | Apply an array of RFC 6902 JSON Patch operations (`add`, `remove`, `replace`, `move`, `copy`, `test`). Paths under `/integrations` are rejected.                                |
-| `skill.upsert`      | `skill: object`, `skillId?: string`                    | Omit `skillId` to create and attach a new skill; pass it to replace an existing skill body                                                                                      |
-| `skill.delete`      | `skillId: string`                                      | Delete a skill and remove its config reference                                                                                                                                  |
+| `skill.upsert`      | `skill: object`, `skillId?: string`, `baseSkillHash?: string` | Omit `skillId` to create a skill in the agent's project and attach it. Pass `skillId` to save the next version of an attached skill. Pass `baseSkillHash` from the `skillHashes` field of `get_agent` to reject the save if the skill changed since you read it. Skills ignore `allowedTools`. |
+| `skill.delete`      | `skillId: string`                                      | Detach the skill from the agent. The skill stays in the skills hub, available to other agents.                                                                                  |
 | `task.upsert`       | `task: object`, `taskId?: string`, `enabled?: boolean` | Omit `taskId` to create a new scheduled task; pass it to replace an existing one. `task` has `name`, `objective`, and `cronExpression` (a standard five-field cron expression). |
 | `task.delete`       | `taskId: string`                                       | Delete a task and remove its config reference                                                                                                                                   |
 | `customTool.upsert` | `code: string`                                         | Compile, validate, store, and attach a custom tool from source code                                                                                                             |
@@ -123724,6 +124039,8 @@ On a stale configuration:
 * Integrations (Slack, Telegram, Linear) can't be changed through `config.replace` or `config.patch`; use [update\_agent\_integration](mcp-server-tools-reference.md#updateagentintegration).
 * Custom tool code may only import `@n8n/agents` and `zod`. Its default export must be a `Tool` builder chain with `description`, `input` (a Zod schema), and `handler`; `output` is optional.
 * Fetch [get\_agent\_builder\_reference](mcp-server-tools-reference.md#getagentbuilderreference) for the full configuration schema and worked examples before calling `config.replace` or `config.patch`.
+* From n8n 2.46.0, agents keep their skills in the [skills hub](mcp-server-tools-reference.md#skills). Agents can share a skill, so a new version from `skill.upsert` applies to every agent that uses the latest version of that skill. In earlier versions, `skill.upsert` with a `skillId` replaces the skill body, and `skill.delete` deletes the skill.
+* A skill ref with `versionId` in the agent config pins that saved version of the skill. `get_agent` lists pinned skills that have a newer version in `outdatedSkillIds`. To use the latest version, remove `versionId` from the ref with `config.patch`. Don't delete and add the skill again.
 
 ***
 
@@ -123744,6 +124061,7 @@ Validate an agent draft, its sidecar references, and user-accessible credentials
 | `valid`   | `boolean`  | Whether the agent is valid and runnable                |
 | `errors`  | `string[]` | Configuration schema errors                            |
 | `missing` | `string[]` | Config paths still needed before the agent is runnable |
+| `warnings` | `string[]` | Problems that don't change `valid`, for example two skills with names that are hard to tell apart. Present only when there are warnings. Available from n8n 2.46.0. |
 | `url`     | `string`   | The URL to open the agent in the n8n editor            |
 
 #### Notes <a href="#notes" id="notes"></a>
@@ -124122,6 +124440,209 @@ For MCP clients that support resources, n8n also exposes the agent builder refer
 | URI       | `n8n://agents/reference`                                                                                                                                 |
 | MIME type | `text/markdown`                                                                                                                                          |
 | Content   | The same build-sequence guide, `mutate_agent` operation catalog, and canonical agent configuration JSON Schema returned by `get_agent_builder_reference` |
+
+***
+
+## Skills
+
+{% hint style="info" %}
+**Feature availability**
+
+Skills tools are available from n8n 2.46.0, when the agents module is enabled on the instance. Without the agents module, n8n doesn't register these tools.
+{% endhint %}
+
+A skill is a set of reusable instructions, with optional reference files, that agents can attach. n8n keeps skills in the skills hub. These tools let an MCP client search, read, create, update, and delete skills in the skills hub. To attach a skill to an agent or detach it, use [mutate\_agent](mcp-server-tools-reference.md#mutateagent).
+
+Two OAuth scopes cover these tools:
+
+| OAuth scope   | Consent screen label                 | Tools                                                                          |
+| ------------- | ------------------------------------ | ------------------------------------------------------------------------------ |
+| `skill:read`  | **List and read skills**             | `search_n8n_skills`, `get_skill`                                               |
+| `skill:write` | **Create, update and delete skills** | `create_skill`, `update_skill`, `delete_skill`, `search_n8n_skills`, `get_skill` |
+
+Each skill has one of two scopes:
+
+| Scope      | Who can use the skill                                    |
+| ---------- | -------------------------------------------------------- |
+| `project`  | Agents in one project                                    |
+| `instance` | Agents in every project on the instance                  |
+
+A skill body has these fields and limits:
+
+| Field          | Type     | Required | Description                                                                                                                                                                  |
+| -------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`         | `string` | Yes      | Up to 128 characters. Must be unique in the skill's scope.                                                                                                                  |
+| `description`  | `string` | Yes      | Up to 1,024 characters                                                                                                                                                       |
+| `instructions` | `string` | Yes      | Up to 65,536 characters. Can't be only white space.                                                                                                                         |
+| `references`   | `array`  | No       | Up to 20 reference files, each with `path` and `content`. `path` must be a Markdown file under `references/`, for example `references/api.md`. Each `content` holds up to 65,536 characters, and all references together hold up to 262,144 characters. |
+
+When a skills tool fails with an error that its own section doesn't list, the response has `ok: false`, `code: "skill_tool_error"`, and the error message in `error`.
+
+### search\_n8n\_skills
+
+Search the skills the current user can access.
+
+#### Parameters
+
+| Name                  | Type                        | Required | Default | Description                                                                         |
+| --------------------- | --------------------------- | -------- | ------- | ----------------------------------------------------------------------------------- |
+| `query`               | `string`                    | No       |         | Filter by skill name or description (max 200 characters)                            |
+| `scope`               | `"project" \| "instance"`   | No       |         | Only return skills with this scope                                                  |
+| `projectId`           | `string`                    | No       |         | Only return skills of this project                                                  |
+| `attachableToAgentId` | `string`                    | No       |         | Only return skills this agent can attach. Don't combine it with `scope` or `projectId`. |
+| `limit`               | `integer`                   | No       | `50`    | Limit the number of results (max 100)                                               |
+| `skip`                | `integer`                   | No       | `0`     | Number of skills to skip, to read the next page                                     |
+
+#### Output
+
+| Field                   | Type             | Description                                                    |
+| ----------------------- | ---------------- | -------------------------------------------------------------- |
+| `count`                 | `integer`        | Total number of skills that match the filters                  |
+| `skills`                | `array`          | The skills on this page                                        |
+| `skills[].id`           | `string`         | The skill ID                                                   |
+| `skills[].name`         | `string`         | The skill name                                                 |
+| `skills[].description`  | `string`         | The skill description                                          |
+| `skills[].scope`        | `string`         | `"project"` or `"instance"`                                    |
+| `skills[].projectId`    | `string \| null` | The project of a project skill                                 |
+| `skills[].projectName`  | `string \| null` | The name of that project                                       |
+| `skills[].latestVersion`| `number`         | The number of the latest saved version                         |
+| `skills[].availableToAssistant` | `boolean` | Whether n8n Assistant can use the skill. Present only when n8n Assistant can use skills on the instance. |
+| `skills[].usedByAgents` | `number`         | Number of agents that use the skill                            |
+| `skills[].canEdit`      | `boolean`        | Whether the current user can update the skill                  |
+| `skills[].canDelete`    | `boolean`        | Whether the current user can delete the skill                  |
+| `skills[].updatedAt`    | `string`         | ISO timestamp when the skill was last updated                  |
+
+#### Notes
+
+* Use `attachableToAgentId` to find skills to attach to an agent. An agent can attach the skills of its own project and instance skills.
+
+***
+
+### get\_skill
+
+Read a skill with its instructions, references, `skillHash`, and the agents that use it.
+
+#### Parameters
+
+| Name      | Type     | Required | Description                                  |
+| --------- | -------- | -------- | -------------------------------------------- |
+| `skillId` | `string` | Yes      | The skill ID, from `search_n8n_skills`       |
+
+#### Output
+
+The response has every `skills[]` field from `search_n8n_skills`, without the `skills[]` prefix, and these fields:
+
+| Field                | Type      | Description                                                                                                         |
+| -------------------- | --------- | ------------------------------------------------------------------------------------------------------------------- |
+| `skill`              | `object`  | The body of the latest version: `name`, `description`, `instructions`, and optionally `references`                  |
+| `skillHash`          | `string`  | Hash of the latest version. Pass it as `baseSkillHash` to `update_skill`.                                           |
+| `usedBy`             | `object`  | The agents that use the skill, limited to the agents you can read                                                   |
+| `usedBy.drafts`      | `array`   | Agents whose draft uses the skill, each with `agentId`, `agentName`, `projectId`, `version`, and `pinned`           |
+| `usedBy.pins`        | `array`   | Agents whose published version pins the skill, each with `agentId`, `agentName`, `projectId`, and `version`         |
+| `usedBy.hiddenAgents`| `number`  | Number of agents that use the skill in projects you can't read                                                      |
+
+***
+
+### create\_skill
+
+Create a skill in the skills hub.
+
+#### Parameters
+
+| Name        | Type                      | Required | Description                                                                                         |
+| ----------- | ------------------------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `scope`     | `"project" \| "instance"` | Yes      | `"project"` lets the agents in one project use the skill. `"instance"` lets agents in every project use it. |
+| `projectId` | `string`                  | No       | The project to create the skill in. Required when `scope` is `"project"`.                           |
+| `skill`     | `object`                  | Yes      | The skill body, with `name`, `description`, `instructions`, and optionally `references`. Can't include `allowedTools`. |
+| `availableToAssistant` | `boolean`      | No       | Let n8n Assistant use the skill. Defaults to `false`. Available only when n8n Assistant can use skills on the instance. |
+
+#### Output
+
+On success, the response has the same fields as `get_skill`.
+
+When another skill in the same scope has the name:
+
+| Field     | Type      | Description                                      |
+| --------- | --------- | ------------------------------------------------ |
+| `ok`      | `boolean` | `false`                                          |
+| `code`    | `string`  | `"skill_name_taken"`                             |
+| `message` | `string`  | Tells you to choose a different name and retry   |
+
+#### Notes
+
+* Creating a skill doesn't attach it to an agent. To attach it, add a skill ref to the agent config with `mutate_agent`.
+
+***
+
+### update\_skill
+
+Update a skill. Pass only the fields to change. A change to the content saves the next version of the skill.
+
+#### Parameters
+
+| Name            | Type                      | Required | Description                                                                                                  |
+| --------------- | ------------------------- | -------- | ------------------------------------------------------------------------------------------------------------ |
+| `skillId`       | `string`                  | Yes      | The skill to update                                                                                          |
+| `baseSkillHash` | `string`                  | Yes      | The `skillHash` from `get_skill`. n8n refuses the update if the skill changed since you read it.             |
+| `name`          | `string`                  | No       | The new name                                                                                                 |
+| `description`   | `string`                  | No       | The new description                                                                                          |
+| `instructions`  | `string`                  | No       | The new instructions                                                                                         |
+| `references`    | `array`                   | No       | The new reference files. Replaces all current reference files.                                               |
+| `scope`         | `"project" \| "instance"` | No       | Move the skill to this scope. n8n refuses the move if an agent that uses the skill can't use it in the new scope. |
+| `projectId`     | `string`                  | No       | The project to move the skill to. Required when `scope` is `"project"`.                                      |
+| `availableToAssistant` | `boolean`          | No       | Let n8n Assistant use the skill, or stop it. A change to only this setting doesn't save a new version. Available only when n8n Assistant can use skills on the instance. |
+
+#### Output
+
+On success:
+
+| Field       | Type      | Description                                                                                    |
+| ----------- | --------- | ---------------------------------------------------------------------------------------------- |
+| `id`        | `string`  | The skill ID                                                                                   |
+| `versionId` | `string`  | The ID of the latest version                                                                   |
+| `version`   | `number`  | The number of the latest version                                                               |
+| `created`   | `boolean` | `false` when the content matched the latest version, so n8n saved no new version               |
+| `skillHash` | `string`  | Hash of the latest version. Pass it as `baseSkillHash` to the next update.                     |
+
+When the skill changed since you read it:
+
+| Field       | Type      | Description                                                              |
+| ----------- | --------- | ------------------------------------------------------------------------ |
+| `ok`        | `boolean` | `false`                                                                  |
+| `skillId`   | `string`  | The skill ID                                                             |
+| `code`      | `string`  | `"stale_skill"`                                                          |
+| `skillHash` | `string`  | The current hash of the skill                                            |
+| `message`   | `string`  | `"The skill changed since you read it. Call get_skill before retrying."` |
+
+When another skill in the same scope has the new name, the response has `ok: false`, `skillId`, `code: "skill_name_taken"`, and `message`.
+
+#### Notes
+
+* Agents that use the latest version of the skill run the new version. Agents that pin an older version keep it until you remove the pin. See [mutate\_agent](mcp-server-tools-reference.md#mutateagent).
+
+***
+
+### delete\_skill
+
+Permanently delete a skill from the skills hub.
+
+#### Parameters
+
+| Name      | Type     | Required | Description          |
+| --------- | -------- | -------- | -------------------- |
+| `skillId` | `string` | Yes      | The skill to delete  |
+
+#### Output
+
+| Field     | Type      | Description          |
+| --------- | --------- | -------------------- |
+| `deleted` | `boolean` | `true`               |
+| `skillId` | `string`  | The deleted skill ID |
+
+#### Notes
+
+* n8n refuses to delete a skill while an agent uses it, in its draft or in a published version. The error names the agents you can read. To detach the skill from an agent draft, use `skill.delete` in `mutate_agent`.
+* You can't restore a deleted skill.
 
 ***
 
@@ -124539,6 +125060,379 @@ Insert rows into an existing data table. Each row is an object mapping column na
 
 * [Connect to n8n MCP server](../connect-to-n8n-mcp-server.md)
 * [MCP client connection examples](mcp-client-examples.md)
+
+=== https://docs.n8n.io/docs/connect/workflow-sdk/README/
+
+# Workflow SDK
+
+The Workflow SDK lets you describe an n8n workflow as code. You declare triggers and nodes, connect them with `.add()` and `.to()`, and export the result. The SDK turns that code into the same workflow JSON the editor uses, and validates it.
+
+SDK code is a restricted subset of TypeScript. n8n reads it with an interpreter, and the code never runs.
+
+{% hint style="info" %}
+**Feature availability**
+
+The Workflow SDK builder tools on the n8n MCP server are available from n8n 2.12.0. The SDK is the `@n8n/workflow-sdk` package on npm. You don't need to install it to use the MCP builder tools.
+{% endhint %}
+
+## Who uses the Workflow SDK
+
+Three parts of n8n read Workflow SDK code:
+
+* The [n8n MCP server](../connect-to-n8n-mcp-server.md) builder tools. `validate_workflow` checks the code, `create_workflow_from_code` saves it as a workflow, and `update_workflow` changes an existing workflow. Refer to the [MCP server tools reference](../connect-to-n8n-mcp-server/mcp-server-tools-reference.md#workflow-builder).
+* n8n AI, which writes Workflow SDK code when it builds a workflow for you.
+* AI coding agents such as Claude Code or Cursor, when they connect to the n8n MCP server.
+
+## Turn code into a workflow
+
+There are two ways to turn SDK code into a workflow on your instance:
+
+* **Through the n8n MCP server.** Send the code to `validate_workflow`, then to `create_workflow_from_code`. The instance parses the code, so you don't install anything. This needs n8n 2.12.0 or later, and an owner or admin must first [enable MCP access](../connect-to-n8n-mcp-server.md#enabling-mcp-access). The [Quickstart](quickstart.md) walks through this path.
+* **Locally, with the package.** Install `@n8n/workflow-sdk` from npm. Convert the code to workflow JSON with `parseWorkflowCodeToBuilder`, then check it with `validateWorkflowBuilder`. Then create the workflow from that JSON with the [n8n API](../n8n-api/README.md) or the [n8n CLI](../n8n-cli.md). The parser doesn't accept `import` lines, so remove them before you parse. Refer to [Convert code to workflow JSON](https://github.com/n8n-io/n8n/blob/master/packages/@n8n/workflow-sdk/README.md#convert-code-to-workflow-json) in the SDK README.
+
+The n8n API and the n8n CLI work with workflow JSON. They don't read SDK code.
+
+## What the code looks like
+
+A workflow is a chain of calls. This example runs a manual trigger, fetches a GitHub repository, and keeps its star count:
+
+```typescript
+import { workflow, node, trigger, expr } from '@n8n/workflow-sdk';
+
+const start = trigger({
+  type: 'n8n-nodes-base.manualTrigger',
+  version: 1,
+  config: { name: 'Start' }
+});
+
+const fetchRepo = node({
+  type: 'n8n-nodes-base.httpRequest',
+  version: 4.3,
+  config: {
+    name: 'Fetch repository',
+    parameters: { method: 'GET', url: 'https://api.github.com/repos/n8n-io/n8n' }
+  }
+});
+
+const keepStars = node({
+  type: 'n8n-nodes-base.set',
+  version: 3.4,
+  config: {
+    name: 'Keep stars',
+    parameters: {
+      mode: 'manual',
+      includeOtherFields: false,
+      assignments: {
+        assignments: [
+          { id: 'stars', name: 'stars', value: expr('{{ $json.stargazers_count }}'), type: 'number' }
+        ]
+      }
+    }
+  }
+});
+
+export default workflow('github-stars', 'GitHub stars')
+  .add(start)
+  .to(fetchRepo)
+  .to(keepStars);
+```
+
+Every file exports one workflow with `export default workflow(...)`. Node types and parameter names are the same as in workflow JSON. Expressions use `expr()` around the `{{ }}` syntax you know from the editor.
+
+## SDK reference
+
+The SDK reference lives with the SDK code:
+
+* The [SDK README](https://github.com/n8n-io/n8n/blob/master/packages/@n8n/workflow-sdk/README.md) covers installing the package, a working example, and converting code to workflow JSON.
+* For the full reference, call `get_workflow_sdk_reference` on the [n8n MCP server](../connect-to-n8n-mcp-server/mcp-server-tools-reference.md#workflow-builder). It returns the builder functions, language rules, patterns, and expressions for the SDK version your instance runs.
+
+## In this section
+
+* [Quickstart](quickstart.md): write your first workflow file, check it, and create it on your instance.
+* [Build with AI](build-with-ai.md): everything an AI coding agent needs to write Workflow SDK code for your instance.
+
+## Which package is this
+
+`@n8n/workflow-sdk` describes workflows. It isn't the n8n public API client, it isn't the `@n8n/cli` command-line tool, and it isn't the framework for building [custom nodes](../create-nodes/README.md). For the MCP path you don't need to install it, because the n8n instance parses the code. Install it to convert code locally, or to get TypeScript types in your editor.
+
+The Workflow SDK works with n8n Cloud and self-hosted instances.
+
+## Related resources
+
+* [Connect](../)
+* [n8n API](../n8n-api/README.md)
+* [n8n CLI](../n8n-cli.md)
+* [Connect to n8n MCP server](../connect-to-n8n-mcp-server.md)
+* [Connect to the n8n docs MCP server](../connect-to-n8n-docs-mcp-server.md)
+* [Create nodes](../create-nodes/README.md)
+* [MCP server tools reference](../connect-to-n8n-mcp-server/mcp-server-tools-reference.md#workflow-builder)
+
+=== https://docs.n8n.io/docs/connect/workflow-sdk/build-with-ai/
+
+# Build with AI
+
+This page lists what an AI coding agent needs to write [Workflow SDK](README.md) code for your n8n instance, and the order in which to use it. Point your agent here, or paste the table into its instructions.
+
+## What to connect
+
+| Resource | Where | Use it for |
+| --- | --- | --- |
+| n8n MCP server | Your instance, see [Connect to n8n MCP server](../connect-to-n8n-mcp-server.md) | The builder tools below, plus workflow, execution, and credential management on your instance |
+| GitBook docs MCP server | `https://docs.n8n.io/~gitbook/mcp` | Searching and reading the n8n docs, see [Connect to the n8n docs MCP server](../connect-to-n8n-docs-mcp-server.md) |
+| Kapa.ai docs MCP server | `https://n8n.mcp.kapa.ai` | Questions the docs alone don't answer: forum threads and blog posts |
+| Docs as Markdown | Append `.md` to any docs URL, or fetch `https://docs.n8n.io/llms.txt` for the index | Reading a page without HTML |
+| n8n CLI skill | `n8n-cli skill install --global`, see [n8n CLI](../n8n-cli.md) | Managing workflows from the terminal with JSON, without an MCP server |
+
+The SDK itself ships inside n8n as the `@n8n/workflow-sdk` package. Your agent doesn't install it.
+
+## The builder tools
+
+These tools on the n8n MCP server read and write Workflow SDK code. Parameters and output are in the [MCP server tools reference](../connect-to-n8n-mcp-server/mcp-server-tools-reference.md#workflow-builder). The tools are available from n8n 2.12.0 unless the table says otherwise.
+
+| Tool | What it returns |
+| --- | --- |
+| `get_workflow_sdk_reference` | The SDK reference: import statement, patterns, expressions, functions, rules, guidelines, and design guidance. Call it first. |
+| `get_workflow_best_practices` | A guide for one workflow technique, such as `chatbot` or `data_extraction`. Pass `list` to see the techniques. Available from n8n 2.26.0. |
+| `search_nodes` | Node ids and the resource or operation values a node needs, from a service name or a task. |
+| `get_node_types` | TypeScript type definitions for the nodes you plan to use, with their parameters. |
+| `explore_node_resources` | Live options for a node, such as the channels a Slack credential can see. Available from n8n 2.27.0. |
+| `validate_node_config` | Checks one node configuration against its schema. Available from n8n 2.25.1. |
+| `validate_workflow` | Checks a whole file. Returns errors and a hint when the code is invalid. |
+| `create_workflow_from_code` | Saves validated code as a new workflow and returns its URL. |
+| `update_workflow` | Applies an ordered batch of partial changes to an existing workflow, such as `addNode`, `updateNodeParameters`, or `addConnection`. It doesn't take a new file. |
+
+## The order that works
+
+Agents that skip the reference guess the syntax and loop on validation errors. Give your agent this sequence:
+
+1. Call `get_workflow_sdk_reference`. Read the `patterns` section for the shape that matches the task.
+2. Call `get_workflow_best_practices` for the technique, when one applies and the instance runs n8n 2.26.0 or later.
+3. Call `search_nodes`, then `get_node_types`, for every node the workflow needs.
+4. Write the file. Declare the nodes first, compose the workflow last, one `export default`.
+5. Call `validate_workflow`. Fix what the `hint` says. Repeat until `valid` is `true`.
+6. Call `create_workflow_from_code`. For an existing workflow, call `update_workflow` with an `operations` array.
+7. Run the workflow once and read the execution with `get_workflow_execution` before reporting success.
+
+{% hint style="warning" %}
+`create_workflow_from_code` saves the workflow but doesn't publish it. Publish the workflow in the editor, or call `publish_workflow`, before a trigger can fire.
+{% endhint %}
+
+## A prompt to start from
+
+Paste this into your agent and change the last sentence:
+
+```text
+You build n8n workflows as Workflow SDK code through the n8n MCP server.
+Before writing code, call get_workflow_sdk_reference and read the patterns section.
+For each node, call search_nodes and get_node_types to get the exact type id, version, and parameter names.
+Write one file with export default workflow(...). Call validate_workflow and fix every error until valid is true.
+Then call create_workflow_from_code and return the workflow URL.
+Task: build a workflow that ...
+```
+
+## Related resources
+
+* [Workflow SDK](./)
+* [Quickstart](quickstart.md)
+* [MCP client connection examples](../connect-to-n8n-mcp-server/mcp-client-examples.md)
+* [Connect to the n8n docs MCP server](../connect-to-n8n-docs-mcp-server.md)
+
+=== https://docs.n8n.io/docs/connect/workflow-sdk/quickstart/
+
+# Create your first workflow from code
+
+In this tutorial you write a workflow file with the [Workflow SDK](README.md), check it with `validate_workflow`, and save it to your instance with `create_workflow_from_code`.
+
+{% hint style="info" %}
+**Prompt for coding agents**
+
+Connect to the n8n MCP server, call `get_workflow_sdk_reference`, then write a Workflow SDK file for the workflow described below. Call `validate_workflow` with the full code, fix every error the `hint` points to, then call `create_workflow_from_code` and return the workflow URL.
+{% endhint %}
+
+## What you will need
+
+* An n8n instance with [MCP access enabled](../connect-to-n8n-mcp-server.md#enabling-mcp-access) and an MCP client connected to it. The [client connection examples](../connect-to-n8n-mcp-server/mcp-client-examples.md) cover Claude Code, Claude Desktop, and Cursor.
+* No local install. The instance parses the code.
+
+## What you will learn
+
+* The shape of a Workflow SDK file.
+* How to check code before you create a workflow.
+* How to add a branch.
+
+{% stepper %}
+{% step %}
+
+## Write the workflow file
+
+Create `github-stars.ts` with this content. It has a manual trigger, one HTTP Request node, and one Edit Fields (Set) node:
+
+```typescript
+import { workflow, node, trigger, expr } from '@n8n/workflow-sdk';
+
+const start = trigger({
+  type: 'n8n-nodes-base.manualTrigger',
+  version: 1,
+  config: { name: 'Start' }
+});
+
+const fetchRepo = node({
+  type: 'n8n-nodes-base.httpRequest',
+  version: 4.3,
+  config: {
+    name: 'Fetch repository',
+    parameters: { method: 'GET', url: 'https://api.github.com/repos/n8n-io/n8n' }
+  }
+});
+
+const keepStars = node({
+  type: 'n8n-nodes-base.set',
+  version: 3.4,
+  config: {
+    name: 'Keep stars',
+    parameters: {
+      mode: 'manual',
+      includeOtherFields: false,
+      assignments: {
+        assignments: [
+          { id: 'stars', name: 'stars', value: expr('{{ $json.stargazers_count }}'), type: 'number' }
+        ]
+      }
+    }
+  }
+});
+
+export default workflow('github-stars', 'GitHub stars')
+  .add(start)
+  .to(fetchRepo)
+  .to(keepStars);
+```
+
+Three rules to keep in mind:
+
+* Declare every node first, then compose the workflow at the end.
+* Use the node type id and the `version` the editor uses. `search_nodes` and `get_node_types` on the MCP server return them.
+* Wrap expressions in `expr()`. The text inside is the same as in the editor.
+{% endstep %}
+
+{% step %}
+
+## Check the code
+
+Ask your MCP client to call `validate_workflow` with the full file as the `code` parameter. A valid file returns:
+
+```json
+{ "valid": true, "nodeCount": 3 }
+```
+
+If `valid` is `false`, the response has an `errors` list and often a `hint`. Fix what the hint says and run the tool again. Common causes are a missing `export default`, a wrong node `version`, or a parameter that the node doesn't have.
+{% endstep %}
+
+{% step %}
+
+## Create the workflow
+
+Call `create_workflow_from_code` with the same `code`. The response has the `workflowId` and a `url`. Open the URL, run the workflow once from the editor, and check that the Keep stars node outputs a `stars` field.
+
+The tool assigns credentials it finds on the instance to nodes that need them. It skips HTTP Request nodes, so set a credential on that node by hand if the API you call needs one.
+{% endstep %}
+
+{% step %}
+
+## Add a branch
+
+Replace the Keep stars node with an If node that routes popular repositories one way and the rest another way. Add one Edit Fields node per branch. Every If condition needs `options`, `conditions`, and `combinator`. The complete file:
+
+```typescript
+import { workflow, node, trigger, ifElse, expr } from '@n8n/workflow-sdk';
+
+const start = trigger({
+  type: 'n8n-nodes-base.manualTrigger',
+  version: 1,
+  config: { name: 'Start' }
+});
+
+const fetchRepo = node({
+  type: 'n8n-nodes-base.httpRequest',
+  version: 4.3,
+  config: {
+    name: 'Fetch repository',
+    parameters: { method: 'GET', url: 'https://api.github.com/repos/n8n-io/n8n' }
+  }
+});
+
+const isPopular = ifElse({
+  version: 2.2,
+  config: {
+    name: 'Is popular?',
+    parameters: {
+      conditions: {
+        options: { caseSensitive: true, leftValue: '', typeValidation: 'strict' },
+        conditions: [
+          { leftValue: expr('{{ $json.stargazers_count }}'), operator: { type: 'number', operation: 'gt' }, rightValue: 100000 }
+        ],
+        combinator: 'and'
+      }
+    }
+  }
+});
+
+const markPopular = node({
+  type: 'n8n-nodes-base.set',
+  version: 3.4,
+  config: {
+    name: 'Mark popular',
+    parameters: {
+      mode: 'manual',
+      includeOtherFields: false,
+      assignments: {
+        assignments: [
+          { id: 'popular', name: 'popular', value: true, type: 'boolean' },
+          { id: 'stars', name: 'stars', value: expr('{{ $json.stargazers_count }}'), type: 'number' }
+        ]
+      }
+    }
+  }
+});
+
+const markNotPopular = node({
+  type: 'n8n-nodes-base.set',
+  version: 3.4,
+  config: {
+    name: 'Mark not popular',
+    parameters: {
+      mode: 'manual',
+      includeOtherFields: false,
+      assignments: {
+        assignments: [
+          { id: 'popular', name: 'popular', value: false, type: 'boolean' },
+          { id: 'stars', name: 'stars', value: expr('{{ $json.stargazers_count }}'), type: 'number' }
+        ]
+      }
+    }
+  }
+});
+
+export default workflow('github-stars', 'GitHub stars')
+  .add(start)
+  .to(fetchRepo)
+  .to(isPopular
+    .onTrue(markPopular)
+    .onFalse(markNotPopular));
+```
+
+Each branch is a complete path: chain more nodes inside `.onTrue()` or `.onFalse()` with `.to()`.
+
+To change the workflow you created, don't create a second one. Call `update_workflow` with the workflow ID and an `operations` array of partial changes, such as `addNode` or `updateNodeParameters`. The [tool reference](../connect-to-n8n-mcp-server/mcp-server-tools-reference.md#workflow-builder) lists the operations.
+{% endstep %}
+{% endstepper %}
+
+## Next steps
+
+* Read the full reference your instance serves: call `get_workflow_sdk_reference` on the [n8n MCP server](../connect-to-n8n-mcp-server/mcp-server-tools-reference.md#workflow-builder). The `patterns` section has complete examples for loops, parallel branches, multiple triggers, and AI agents.
+* Call `get_workflow_best_practices` with `technique: "list"` to see the use cases with a guide, such as chatbots, scheduling, and data extraction.
+* To convert code to workflow JSON without the MCP server, refer to the [SDK README](https://github.com/n8n-io/n8n/blob/master/packages/@n8n/workflow-sdk/README.md#convert-code-to-workflow-json).
+* Set up your coding agent with [Build with AI](build-with-ai.md).
 
 === https://docs.n8n.io/styles/from-write-good/README/
 Based on [write-good](https://github.com/btford/write-good).
