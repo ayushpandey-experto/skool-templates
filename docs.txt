@@ -1913,6 +1913,8 @@ There's an important difference between chains in n8n and in other tools such as
 
 # RAG in n8n <a href="#rag-in-n8n" id="rag-in-n8n"></a>
 
+RAG (Retrieval-Augmented Generation) in n8n grounds AI answers in your own data: you insert documents into a vector store, then query it from an AI agent or directly.
+
 ## What is RAG <a href="#what-is-rag" id="what-is-rag"></a>
 
 [Retrieval-Augmented Generation (RAG)](#user-content-fn-1)[^1] is a technique that improves AI responses by combining language models with external data sources. Instead of relying solely on the model's internal training data, RAG systems retrieve relevant documents to ground[^2] responses in up-to-date, domain-specific, or proprietary knowledge. RAG workflows typically rely on vector stores to manage and search this external data efficiently.
@@ -2010,6 +2012,8 @@ Another good approach is to add more context to it (for example, about the docum
 === https://docs.n8n.io/docs/build/integrate-ai/understand-ai-components/agents-vs-chains/
 
 # Agents vs chains
+
+An n8n AI agent decides which tools to call and can use memory, while a chain runs a sequence of LLM calls without tools or memory.
 
 In this workflow you can choose whether your chat query goes to an agent[^1] or chain[^2]. It shows some of the ways that agents are more powerful than chains.
 
@@ -2669,6 +2673,8 @@ This workflow uses:
 
 # Set a human fallback for AI workflows
 
+This example adds a human fallback to an AI agent: when the agent can't answer, it calls a second workflow that asks a person for help in Slack.
+
 This is a workflow that tries to answer user queries using the standard GPT-4 model. If it can't answer, it sends a message to Slack to ask for human help. It prompts the user to supply an email address.
 
 This workflow uses the [Chat Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-langchain.chattrigger) to provide the chat interface, and the [Call n8n Workflow Tool](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow) to call a second workflow that handles checking for email addresses and sending the Slack message.
@@ -2865,6 +2871,8 @@ You can see the `$fromAI()` function in action in the following templates[^3]:
 === https://docs.n8n.io/docs/build/integrate-ai/ai-examples/human-in-the-loop-for-tools/
 
 # Human-in-the-loop for AI tool calls <a href="#human-in-the-loop-for-ai-tool-calls" id="human-in-the-loop-for-ai-tool-calls"></a>
+
+You can make an AI agent wait for human approval, in Slack, n8n Chat, or another channel, before it runs a specific tool.
 
 You can require human approval before an AI Agent executes a specific tool. When a tool requires human review, the workflow pauses and waits for a person to take one of the following actions:
 
@@ -11360,6 +11368,8 @@ To share your own workflow in the template library, follow [Create workflow temp
 
 # Workflow sharing <a href="#workflow-sharing" id="workflow-sharing"></a>
 
+Workflow sharing gives other users of your instance editor access to a workflow with least privilege: editors can't share or delete it, or edit nodes using unshared credentials.
+
 {% hint style="info" %}
 **Feature availability**
 
@@ -14404,6 +14414,8 @@ Check that the preference's scope covers the project you're working in. In n8n A
 
 # Splitting workflows with conditional nodes <a href="#splitting-workflows-with-conditional-nodes" id="splitting-workflows-with-conditional-nodes"></a>
 
+You add conditional logic to an n8n workflow with the **IF** or **Switch** node, which splits one branch into several, for example by whether an issue is urgent.
+
 Splitting uses the [IF](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.if) or [Switch](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.switch) nodes. It turns a single-branch workflow into a multi-branch workflow. This is a key piece of n8n's [flow logic](./).
 
 Compare these workflows:
@@ -14761,6 +14773,8 @@ You can change the execution order in your [workflow settings](../manage-workflo
 === https://docs.n8n.io/docs/build/flow-logic/break-workflows-into-smaller-parts/
 
 # Sub-workflows <a href="#sub-workflows" id="sub-workflows"></a>
+
+You can reuse logic across n8n workflows by calling one workflow from another as a sub-workflow, with the **Execute Workflow** and **Execute Sub-workflow Trigger** nodes.
 
 You can call one workflow from another workflow. This allows you to build modular, microservice-like workflows, as part of your workflow's [flow logic](./). It can also help if your workflow grows large enough to encounter [memory issues](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/scaling/fix-memory-issues). Creating sub-workflows uses the [Execute Workflow](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflow) and [Execute Sub-workflow Trigger](https://app.gitbook.com/s/BKcbOzIWja8NfqKDcqHc/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger) nodes.
 
@@ -20815,9 +20829,9 @@ View [example workflows and related content](https://n8n.io/integrations/flow-tr
 
 # Venafi TLS Protect Cloud Trigger node <a href="#venafi-tls-protect-cloud-trigger-node" id="venafi-tls-protect-cloud-trigger-node"></a>
 
-[Venafi](https://www.venafi.com/) is a cybersecurity company providing services for machine identity management. They offer solutions to manage and protect identities for a wide range of machine types, delivering global visibility, lifecycle automation, and actionable intelligence.
+Venafi is a cybersecurity company providing services for machine identity management. They offer solutions to manage and protect identities for a wide range of machine types, delivering global visibility, lifecycle automation, and actionable intelligence.
 
-Use the n8n Venafi TLS Protect Cloud Trigger node to start a workflow in n8n in response to events in the [cloud-based Venafi TLS Protect](https://vaas.venafi.com/) service.
+Use the n8n Venafi TLS Protect Cloud Trigger node to start a workflow in n8n in response to events in the cloud-based Venafi TLS Protect service. Palo Alto Networks now offers this service as [Next-Generation Trust Security](https://www.paloaltonetworks.com/network-security/next-gen-trust-security/certificate-manager).
 
 {% hint style="info" %}
 **Credentials**
@@ -50267,7 +50281,7 @@ You can use these credentials to authenticate the following nodes:
 
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
 
-Create a Venafi [TLS Protect Cloud](https://venafi.com/tls-protect/) account.
+Create a Venafi TLS Protect Cloud account. Palo Alto Networks now offers this service as [Next-Generation Trust Security](https://www.paloaltonetworks.com/network-security/next-gen-trust-security/certificate-manager).
 
 ## Supported authentication methods <a href="#supported-authentication-methods" id="supported-authentication-methods"></a>
 
@@ -56094,7 +56108,7 @@ To create credentials for WhatsApp, you need the following Meta assets:
 
 </details>
 
-* A Meta [business app](https://developers.facebook.com/docs/development/create-an-app/) configured with WhatsApp: Once you have a developer account, you will create a Meta business app.
+* A Meta [business app](https://developers.facebook.com/documentation/development/create-an-app) configured with WhatsApp: Once you have a developer account, you'll create a Meta business app.
 
 <details>
 
@@ -56102,7 +56116,7 @@ To create credentials for WhatsApp, you need the following Meta assets:
 
 1. Visit the [Meta for Developers Apps dashboard](https://developers.facebook.com/apps/)
 2. Select **Create app**.
-3. In **Add products to your app**, select **Set up** in the WhatsApp tile. Refer to [Add the WhatsApp Product](https://developers.facebook.com/docs/whatsapp/solution-providers/get-started-for-tech-providers#step-3--add-the-whatsapp-product) for more detail.
+3. In **Add products to your app**, select **Set up** in the WhatsApp tile. Refer to Meta's [WhatsApp Cloud API get started guide](https://developers.facebook.com/documentation/business-messaging/whatsapp/get-started) for more detail.
 4. This opens the WhatsApp **Quickstart** page. Select your business portfolio.
 5. Select **Continue**.
 6. In the left-side menu, go to **App settings** > **Basic**.
@@ -56118,9 +56132,9 @@ To create credentials for WhatsApp, you need the following Meta assets:
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [WhatsApp's API documentation](https://developers.facebook.com/docs/whatsapp/#platform-apis) for more information about the service.
+Refer to [WhatsApp's API documentation](https://developers.facebook.com/documentation/business-messaging/whatsapp/overview) for more information about the service.
 
-Meta classifies users who create WhatsApp business apps as Tech Providers. Refer to Meta's [Get Started for Tech Providers](https://developers.facebook.com/docs/whatsapp/solution-providers/get-started-for-tech-providers) for more information.
+Meta classifies users who create WhatsApp business apps as Tech Providers. Refer to Meta's [Become a Tech Provider](https://developers.facebook.com/documentation/business-messaging/whatsapp/solution-providers/get-started-for-tech-providers) for more information.
 
 ## Using API key <a href="#using-api-key" id="using-api-key"></a>
 
@@ -56140,9 +56154,9 @@ To generate an access token, follow these steps:
 5. Copy the **Access token** and add it to n8n as the **Access Token**.
 6. Copy the **WhatsApp Business Account ID** and add it to n8n as the **Business Account ID**.
 
-Refer to [Test Business Messaging on WhatsApp](https://developers.facebook.com/docs/whatsapp/solution-providers/become-a-tech-provider-legacy-flow#step-4--test-business-messaging-on-whatsapp) for more information on the above steps.
+Refer to Meta's [WhatsApp Cloud API get started guide](https://developers.facebook.com/documentation/business-messaging/whatsapp/get-started) for more information on generating an access token and finding your WhatsApp Business Account ID.
 
-Fully verifying and launching your app will take further configuration. Refer to Meta's [Get Started for Tech Providers](https://developers.facebook.com/docs/whatsapp/solution-providers/become-a-tech-provider-legacy-flow#step-5--scale-your-solution) Steps 5 and beyond for more information. Refer to [App Review](https://developers.facebook.com/docs/resp-plat-initiatives/app-review) for more information on the Meta App Review process.
+Fully verifying and launching your app takes further configuration, including business verification and App Review. Refer to Meta's [Become a Tech Provider](https://developers.facebook.com/documentation/business-messaging/whatsapp/solution-providers/get-started-for-tech-providers) for more information. Refer to [App Review](https://developers.facebook.com/documentation/resp-plat-initiatives/individual-processes/app-review) for more information on the Meta App Review process.
 
 ## Using OAuth2 <a href="#using-oauth2" id="using-oauth2"></a>
 
@@ -56161,7 +56175,7 @@ To retrieve these items, follow these steps:
 4. Copy the **App ID** and enter it as the **Client ID** within the n8n credential.
 5. Copy the **App Secret** and enter it as the **Client Secret** within the n8n credential.
 
-Fully verifying and launching your app will take further configuration. Refer to Meta's [Get Started for Tech Providers](https://developers.facebook.com/docs/whatsapp/solution-providers/become-a-tech-provider-legacy-flow#step-5--scale-your-solution) Steps 5 and beyond for more information. Refer to [App Review](https://developers.facebook.com/docs/resp-plat-initiatives/app-review) for more information on the Meta App Review process.
+Fully verifying and launching your app takes further configuration, including business verification and App Review. Refer to Meta's [Become a Tech Provider](https://developers.facebook.com/documentation/business-messaging/whatsapp/solution-providers/get-started-for-tech-providers) for more information. Refer to [App Review](https://developers.facebook.com/documentation/resp-plat-initiatives/individual-processes/app-review) for more information on the Meta App Review process.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/zendesk/
 
@@ -57944,7 +57958,7 @@ You can use these credentials to authenticate the following nodes:
 
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
 
-- Create a Venafi [TLS Protect Datacenter](https://venafi.com/) account.
+- Create a Venafi [TLS Protect Datacenter](https://www.paloaltonetworks.com/network-security/next-gen-trust-security/certificate-manager) account.
 - Set the expiration and refresh time for tokens. Refer to [Setting up token authentication](https://docs.venafi.com/Docs/current/TopNav/Content/SDK/AuthSDK/t-SDKa-Setup-OAuth.php) for more information.
 - Create an [API integration](https://docs.venafi.com/Docs/current/TopNav/Content/API-ApplicationIntegration/c-APIAppIntegrations-about.php) in **API > Integrations**. Refer to [Integrating other systems with Venafi products](https://docs.venafi.com/Docs/current/TopNav/Content/API-ApplicationIntegration/t-APIAppIntegrations-creating.php) for detailed instructions.
     - Take note of the Client ID for your integration.
@@ -58388,7 +58402,7 @@ Create a [Twake](https://twake.app/) account.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
-Refer to [Twake's documentation](https://doc.twake.app/developers-api/api-reference) for more information about the service.
+Refer to [Twake's documentation](https://help.twake.app/en/latest/) for more information about the service.
 
 ## Using Cloud API key <a href="#using-cloud-api-key" id="using-cloud-api-key"></a>
 
@@ -58404,15 +58418,13 @@ To configure this credential, you'll need:
 - A **Public ID**: Generated when you create an app.
 - A **Private API Key**: Generated when you create an app.
 
-To generate your **Public ID** and **Private API Key**, [create a Twake application](https://doc.twake.app/developers-api/get-started/create-your-first-application): 
+To generate your **Public ID** and **Private API Key**, create a Twake application:
 
 1. Go to **Workspace Settings > Applications and connectors > Access your applications and connectors > Create an application**.
 2. Enter appropriate details.
 3. Once you've created your app, view its **API Details**.
 4. Copy the **Public identifier** and add it as the n8n **Public ID**.
 5. Copy the **Private key** and add it as the n8n **Private API Key**.
-
-Refer to [API settings](https://doc.twake.app/developers-api/get-started/create-your-first-application#id-3.-api-settings) for more information.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/nvidia/
 
@@ -58558,6 +58570,77 @@ To configure this credential, you'll need:
 
 Jenkins rebuilt their API token setup in 2018. If you're working with an older Jenkins instance, be sure you're using a non-legacy API token. Refer to [Security Hardening: New API token system in Jenkins 2.129+](https://www.jenkins.io/blog/2018/07/02/new-api-token-system/) for more information.
 
+
+=== https://docs.n8n.io/docs/integrations/builtin/credentials/microsoftworkiq/
+
+# Microsoft Work IQ credentials
+
+You can use these credentials to connect an AI agent to the **Work IQ MCP** server in n8n's [MCP servers](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/integrate-ai/mcp-servers) registry. [Work IQ MCP](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/mcp/overview) gives agents access to Microsoft 365 mail, calendar, Teams, files, and Copilot through one MCP endpoint.
+
+## Prerequisites
+
+* A Microsoft 365 work or school account. Personal Microsoft accounts can't use Work IQ.
+* A Microsoft administrator has [enabled Work IQ in your organization](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/enable-work-iq).
+* A Microsoft Entra app registration with the Work IQ permissions you need, and admin consent for each of them. Refer to [Set up the app registration](#set-up-the-app-registration).
+
+## Supported authentication methods
+
+* OAuth2
+
+## Related resources
+
+Refer to Microsoft's [Work IQ MCP overview](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/mcp/overview) and [Work IQ API permissions reference](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/permissions) for more information about the service.
+
+## Using OAuth2
+
+To configure this credential, you'll need:
+
+* A **Tenant ID**
+* A **Client ID**
+* A **Client Secret**, or a certificate
+* An **Access Level**
+
+### Set up the app registration
+
+1. Open the [Microsoft Application Registration Portal](https://aka.ms/appregistrations) and select **New registration**.
+2. Enter a **Name** for your app.
+3. In **Supported account types**, select **Accounts in any organizational directory** for a multi-tenant app, or **Accounts in this organizational directory only** for a single-tenant app. Don't include personal Microsoft accounts: they can't use Work IQ.
+4. In **Redirect URI**, select **Web** and paste the **OAuth Redirect URL** from your n8n credential.
+5. Select **Register**.
+6. Copy the **Application (client) ID** and enter it in n8n as the **Client ID**.
+7. Go to **API permissions** > **Add a permission** > **APIs my organization uses**, search for **Work IQ**, and select **Delegated permissions**.
+8. Select the permissions for the access level you want. Refer to [Access level](#access-level).
+9. Select **Add permissions**.
+10. Select **Grant admin consent** for your tenant. Each Work IQ permission needs admin consent.
+11. Create a client secret and enter it in n8n as the **Client Secret**. Refer to [Generate a client secret](microsoft.md#generate-a-client-secret). To use a certificate instead, refer to [Authenticate with a certificate](microsoft.md#authenticate-with-a-certificate).
+
+If **Work IQ** doesn't appear in **APIs my organization uses**, the Work IQ service principal may not exist in your tenant yet. Refer to [Enable Work IQ](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/enable-work-iq).
+
+### Tenant ID
+
+Enter your Microsoft Entra tenant ID (a GUID) or a verified domain, such as `contoso.onmicrosoft.com`. Find it in the [Microsoft Entra admin center](https://entra.microsoft.com/) under **Overview**.
+
+Keep the default, `organizations`, for a multi-tenant app registration. Use your tenant ID or domain for a single-tenant app registration.
+
+### Access level
+
+The **Access Level** decides which Work IQ permissions n8n requests when you sign in:
+
+| Access Level | Permissions requested | What the agent can do |
+| --- | --- | --- |
+| **Agent Only** (default) | `WorkIQAgent.Ask` | Ask Work IQ agents questions. |
+| **Agent Plus Direct Read** | `WorkIQAgent.Ask` and `WorkIQ.Read` | Also read Microsoft 365 data directly. |
+| **Agent Plus Direct Changes** | `WorkIQAgent.Ask` and `WorkIQ.Act` | Also read and change Microsoft 365 data directly. |
+
+n8n also requests `offline_access`, so the credential can refresh its token.
+
+The app registration needs admin consent for every permission the access level requests. If one is missing, sign-in fails with the error `AADSTS65001`. To fix it, add the missing permission to the app registration and grant admin consent, or choose a lower access level.
+
+{% hint style="warning" %}
+**Asking a Work IQ agent isn't read-only**
+
+Microsoft documents `WorkIQAgent.Ask`, which every access level requests, as including read and write access to the Microsoft 365 resources a Work IQ agent can reach.
+{% endhint %}
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/facebookapp/
 
@@ -64645,6 +64728,8 @@ For example, follow the steps in [Using predefined credential types](#using-pred
 
 # Handle rate limits
 
+When a node hits an API rate limit, it errors: turn on **Retry On Fail** for short waits, or batch requests with pauses using **Loop Over Items** and **Wait**. **Retry On Fail** allows at most five tries, up to 5 seconds apart.
+
 API[^1] rate limits are restrictions on request frequency. For example, an API may limit the number of requests you can make per minute, or per day.
 
 APIs can also limits how much data you can send in one request, or how much data the API sends in a single response.
@@ -66231,6 +66316,8 @@ Choose whether to include binary data from the input in the new output (turned o
 
 # Error Trigger node <a href="#error-trigger-node" id="error-trigger-node"></a>
 
+When an automatic workflow run fails, the **Error Trigger** node starts the error workflow selected in that workflow's settings and passes it details about the failure.
+
 You can use the Error Trigger node to create error workflows. When another linked workflow fails, this node gets details about the failed workflow and the errors, and runs the error workflow.
 
 ## Usage <a href="#usage" id="usage"></a>
@@ -66376,7 +66463,7 @@ You can also configure this operation with these **Options**:
 
 Configure the node for this operation with the **Put Output File in Field** parameter. Enter the name of the field in the output data to contain the file.
 
-#### Convert to RFT options <a href="#convert-to-rft-options" id="convert-to-rft-options"></a>
+#### Convert to RTF options <a href="#convert-to-rft-options" id="convert-to-rft-options"></a>
 
 You can also configure this operation with these **Options**:
 
@@ -68123,6 +68210,8 @@ You can further configure this operation with the **File Name** option. Use this
 === https://docs.n8n.io/docs/integrations/builtin/core-nodes/n8n-nodes-langchain.guardrails/
 
 # Guardrails node <a href="#guardrails-node" id="guardrails-node"></a>
+
+The **Guardrails** node checks text going into or coming out of an AI model against safety, security, and content policies, and can replace PII and secret keys with placeholders.
 
 Use the Guardrails node to enforce safety, security, and content policies on text. You can use it to validate user input _before_ sending it to an AI model, or to check the _output_ from an AI model before using it in your workflow.
 
@@ -73388,6 +73477,7 @@ You get this output:
     * [Microsoft Entra Service Principal credentials](builtin/credentials/microsoftentraserviceprincipal.md)
     * [Provision a SharePoint app registration with the Azure CLI](builtin/credentials/microsoftentraserviceprincipal-sharepoint.md)
     * [Microsoft SQL credentials](builtin/credentials/microsoftsql.md)
+    * [Microsoft Work IQ credentials](builtin/credentials/microsoftworkiq.md)
     * [Microsoft Agent 365 credentials](builtin/credentials/microsoftagent365.md)
     * [Milvus credentials](builtin/credentials/milvus.md)
     * [Mindee credentials](builtin/credentials/mindee.md)
@@ -91900,6 +91990,7 @@ n8n 2.0 is a major release with breaking changes. Before you upgrade, read [n8n 
     * [Set up n8n Assistant](host-n8n/configure-n8n/set-up-n8n-assistant.md)
     * [Deploy n8n in canvas-only mode](host-n8n/configure-n8n/deploy-n8n-in-canvas-only-mode.md)
     * [Manage your license](host-n8n/configure-n8n/manage-your-license.md)
+    * [Report usage from air-gapped instances](host-n8n/configure-n8n/report-usage-from-air-gapped-instances.md)
     * [Security](host-n8n/configure-n8n/security.md)
       * [Manage security policies](host-n8n/configure-n8n/security/manage-security-policies.md)
       * [Set up SSL](host-n8n/configure-n8n/security/set-up-ssl.md)
@@ -93379,6 +93470,8 @@ For each new user, or for any existing user as may be needed, call the webhook d
 === https://docs.n8n.io/docs/deploy/host-n8n/deploy-as-an-oem-integration/README/
 
 # OEM deployment <a href="#oem-deployment" id="oem-deployment"></a>
+
+OEM deployment lets you embed n8n's interface in your own product, so your users build and run workflows without leaving it. It requires a separate OEM agreement and n8n branding.
 
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/6kdIvlPPl0XWVn5z8UJh/" %}
 
@@ -101004,7 +101097,7 @@ n8n collects anonymous telemetry data from self-hosted n8n installations. You ca
 
 ## Collected data <a href="#collected-data" id="collected-data"></a>
 
-Refer to [Privacy | Data collection in self-hosted n8n](https://app.gitbook.com/s/ukPPOMQ6NId4gpAIkPXa/#data-collection-in-self-hosted-n8n) for details on the data n8n collects.
+Refer to [Privacy | Telemetry](https://app.gitbook.com/s/ukPPOMQ6NId4gpAIkPXa/#telemetry) for details on the data n8n collects.
 
 ## How collection works <a href="#how-collection-works" id="how-collection-works"></a>
 
@@ -101276,6 +101369,107 @@ For more information, see [Manage instance settings using environment variables]
 ## Related resources
 
 * [Configure n8n](./)
+
+=== https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/report-usage-from-air-gapped-instances/
+
+# Report usage from air-gapped instances
+
+To report usage from n8n instances that can't reach the internet, you run the n8n-airgap-monitoring service inside your network, point every n8n instance at it and share the resulting usage report with n8n once per month.
+
+{% hint style="info" %}
+**Feature availability**
+
+Air-gapped usage reporting is available on:
+
+- **Self-hosted:** Enterprise
+
+It isn't available on n8n Cloud.
+
+Air-gapped usage reporting is available from n8n 2.42.0, and from the patch releases n8n 2.40.6 and 2.41.2.
+
+Air-gapped licenses cost more than standard licenses.
+{% endhint %}
+
+This page gives an overview and the n8n configuration. The [n8n-airgap-monitoring user guide](https://github.com/n8n-io/n8n-airgap-monitoring/blob/main/docs/USER_GUIDE.md) on GitHub covers deploying the service, the report format, troubleshooting, and the full reference.
+
+## Check whether you need an air-gapped license
+
+Most self-hosted n8n instances don't need to be air-gapped. With a standard license key, a self-hosted instance only contacts the n8n license server to activate and renew its license. On renewal, it sends:
+
+| Field | Description |
+| --- | --- |
+| `consumerId` | Part of the license that n8n issued. |
+| `renewalToken` | The renewal secret that n8n issued inside the license. |
+| `tenantId` | The license tenant number, `1` by default. |
+| `deviceFingerprint` | The instance ID: a SHA-256 hash derived from the instance's encryption key, or an ID you set. The hash is one-way and contains no hardware or user data. |
+| `productIdentifier` | The n8n version, for example `n8n-2.46.0`. |
+| Usage counts | Numbers only: `activeWorkflows`, `totalWorkflows`, `enabledUsers`, `totalUsers`, `totalCredentials`, `productionExecutions`, `productionRootExecutions`, `manualExecutions`, `activeWorkflowTriggers`, and `evaluations`. |
+
+The license server receives no workflows, execution data, credentials, or personal data.
+
+If your instances can't send this data, or can't reach the internet at all, you need an air-gapped license, and the rest of this page applies. Otherwise, a standard license key is simpler to run. See [Manage your license](manage-your-license.md).
+
+## How air-gapped usage reporting works
+
+Air-gapped usage reporting has three parts:
+
+- **The n8n-airgap-monitoring service.** A small service that you host in your own network. It runs as one container with one volume and stores the reports it receives.
+- **The `instance-reporting` module.** An opt-in module in n8n. Once you enable it, an n8n instance sends one usage report a day to the monitoring service.
+- **The usage report.** A JSON payload you can share with n8n directly from your n8n-airgap-monitoring instance using your browser's internet connection (n8n-airgap-monitoring makes no outbound network requests itself). It lists every reporting instance and its billable execution counts.
+
+No data leaves your network unless you send the report to n8n yourself. The report contains execution counts, instance IDs, n8n versions, and the labels you choose. It doesn't contain workflows, execution data, or credentials.
+
+## Before you begin
+
+You need:
+
+- n8n instances on n8n 2.42.0 or above, or on patch release 2.40.6 or 2.41.2 or later in those release lines. Each instance needs an Enterprise license certificate set in `N8N_LICENSE_CERT`.
+- The `insights` module enabled on every instance. It's enabled by default.
+- A place to run one container with a persistent volume, such as Docker or Kubernetes.
+- A private network path from every n8n instance to the monitoring service.
+
+## Set up air-gapped usage reporting
+
+1. **Deploy the monitoring service.** Run the `ghcr.io/n8n-io/n8n-airgap-monitoring` image with a read token you generate and a persistent volume. Follow [Self-host n8n-airgap-monitoring](https://github.com/n8n-io/n8n-airgap-monitoring/blob/main/docs/USER_GUIDE.md#1-self-host-n8n-airgap-monitoring) in the user guide, or use the [Helm chart](https://github.com/n8n-io/n8n-airgap-monitoring/blob/main/docs/charts/airgap-monitoring/README.md) on Kubernetes.
+1. **Enable reporting on every n8n instance.** Set the environment variables in [Enable reporting on every n8n instance](#enable-reporting-on-every-n8n-instance).
+1. **Share the usage report with n8n once per month.** Your n8n-airgap-monitoring service offers a web page that submits the collected data to n8n from a computer with internet access.
+
+## Keep the monitoring service off the public internet
+
+{% hint style="danger" %}
+Only your own n8n instances must be able to reach the monitoring service's write endpoint. Never expose it to the public internet.
+{% endhint %}
+
+The monitoring service accepts reports from any licensed n8n instance, so it can't tell your instances apart from anyone else's. Restrict access at the network level, for example with a private network or firewall rules. If you can't, [authenticate instances with a write token](https://github.com/n8n-io/n8n-airgap-monitoring/blob/main/docs/USER_GUIDE.md#alternative-authenticate-instances-with-a-write-token) instead. See [Network exposure](https://github.com/n8n-io/n8n-airgap-monitoring/blob/main/docs/USER_GUIDE.md#network-exposure) in the user guide for the options.
+
+## Enable reporting on every n8n instance
+
+{% hint style="warning" %}
+Enable reporting on every n8n instance you run. An instance without these settings doesn't report, and n8n can't see its usage.
+{% endhint %}
+
+On each n8n instance, set these environment variables and restart the instance:
+
+```bash
+N8N_ENABLED_MODULES=instance-reporting
+N8N_INSTANCE_REPORTING_BASE_URL=https://<monitoring-service-host>
+N8N_INSTANCE_REPORTING_LABEL=<optional-label>
+```
+
+- `N8N_INSTANCE_REPORTING_BASE_URL` is the origin of the monitoring service only, without a path.
+- `N8N_INSTANCE_REPORTING_LABEL` is an optional name that helps you tell instances apart in the report.
+- If `N8N_ENABLED_MODULES` already lists other modules, add `instance-reporting` to the comma-separated list rather than replacing it.
+- In [queue mode](scaling/enable-queue-mode.md) with multiple main instances, set the variables on every main instance.
+
+Each instance then reports once a day. To check that every instance is reporting, see [Monitoring the health of n8n-airgap-monitoring](https://github.com/n8n-io/n8n-airgap-monitoring/blob/main/docs/USER_GUIDE.md#monitoring-the-health-of-n8n-airgap-monitoring) in the user guide.
+
+## Related resources
+
+* [Configure n8n](./)
+* [Manage your license](manage-your-license.md)
+* [n8n-airgap-monitoring user guide](https://github.com/n8n-io/n8n-airgap-monitoring/blob/main/docs/USER_GUIDE.md)
+* [n8n-airgap-monitoring Helm chart](https://github.com/n8n-io/n8n-airgap-monitoring/blob/main/docs/charts/airgap-monitoring/README.md)
+* [n8n-airgap-monitoring on GitHub](https://github.com/n8n-io/n8n-airgap-monitoring)
 
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/durable-scheduler/
 
@@ -101735,6 +101929,7 @@ Configure a self-hosted n8n instance, including database, security, scaling, and
 * [Set up n8n Assistant](set-up-n8n-assistant.md): configure AI-assisted building for self-hosted n8n.
 * [Deploy n8n in canvas-only mode](deploy-n8n-in-canvas-only-mode.md): restrict an instance to the workflow canvas.
 * [Manage your license](manage-your-license.md): activate, renew, and manage your n8n license.
+* [Report usage from air-gapped instances](report-usage-from-air-gapped-instances.md): collect daily usage reports from instances that can't reach the internet.
 * [Security](security.md): audit, harden, and restrict a self-hosted instance.
 * [Scaling](scaling.md): configure n8n for a large number of users, workflows, or executions.
 
@@ -102084,6 +102279,8 @@ Setup:
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/scaling/enable-queue-mode/
 
 # Queue mode <a href="#queue-mode" id="queue-mode"></a>
+
+Queue mode lets you run n8n at scale: a main instance receives triggers and webhooks, Redis queues the executions, and you scale by adding or removing workers.
 
 You can run n8n in different modes depending on your needs. The queue mode provides the best scalability.
 
@@ -103887,9 +104084,9 @@ To learn more about proxy environment variables, check the [environment variable
 | `N8N_PROTOCOL`                         | Enum string: `http`, `https` | `http`                                                           | The protocol used to reach n8n.                                                                                                                                                                                                                                                                                                          |
 | `N8N_SSL_KEY`                          | String                       | -                                                                | The SSL key for HTTPS protocol.                                                                                                                                                                                                                                                                                                          |
 | `N8N_SSL_CERT`                         | String                       | -                                                                | The SSL certificate for HTTPS protocol.                                                                                                                                                                                                                                                                                                  |
-| `N8N_PERSONALIZATION_ENABLED`          | Boolean                      | `true`                                                           | Whether to ask users personalisation questions and then customise n8n accordingly.                                                                                                                                                                                                                                                       |
+| `N8N_PERSONALIZATION_ENABLED`          | Boolean                      | `true`                                                           | Whether to ask users personalization questions and then customize n8n accordingly.                                                                                                                                                                                                                                                       |
 | `N8N_VERSION_NOTIFICATIONS_ENABLED`    | Boolean                      | `true`                                                           | When enabled, n8n sends notifications of new versions and security updates.                                                                                                                                                                                                                                                              |
-| `N8N_VERSION_NOTIFICATIONS_ENDPOINT`   | String                       | `https://api.n8n.io/versions/`                                   | The endpoint to retrieve where version information.                                                                                                                                                                                                                                                                                      |
+| `N8N_VERSION_NOTIFICATIONS_ENDPOINT`   | String                       | `https://api.n8n.io/versions/`                                   | The endpoint to retrieve version information from.                                                                                                                                                                                                                                                                                       |
 | `N8N_VERSION_NOTIFICATIONS_INFO_URL`   | String                       | `https://docs.n8n.io/getting-started/installation/updating.html` | The URL displayed in the New Versions panel for more information.                                                                                                                                                                                                                                                                        |
 | `N8N_DIAGNOSTICS_ENABLED`              | Boolean                      | `true`                                                           | Whether to share selected, anonymous [telemetry](https://app.gitbook.com/s/ukPPOMQ6NId4gpAIkPXa/) with n8n. Note that if you set this to `false`, you can't enable Ask AI in the Code node.                                                                                                                                              |
 | `N8N_DIAGNOSTICS_CONFIG_FRONTEND`      | String                       | `1zPn9bgWPzlQc0p8Gj1uiK6DOTn;https://telemetry.n8n.io`           | Telemetry configuration for the frontend.                                                                                                                                                                                                                                                                                                |
@@ -105528,11 +105725,14 @@ N8N_LICENSE_CERT=<base64-encoded-license-string>
 
 Set either `N8N_LICENSE_CERT` or `N8N_LICENSE_ACTIVATION_KEY`, never both.
 
+To report usage from air-gapped instances, see [Report usage from air-gapped instances](report-usage-from-air-gapped-instances.md).
+
 
 
 ## Related resources
 
 * [Configure n8n](./)
+* [Report usage from air-gapped instances](report-usage-from-air-gapped-instances.md)
 
 === https://docs.n8n.io/docs/deploy/host-n8n/configure-n8n/set-up-n8n-assistant/
 
@@ -108779,8 +108979,8 @@ However, as long as your sub-workflow does the heavy lifting for each batch and 
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.47.7
-Current `beta`: 2.48.4
+Current `stable`: 2.48.4
+Current `beta`: 2.49.0
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/server-setups-next-steps/
@@ -112766,6 +112966,8 @@ Only assign these permissions to fully trusted users, and avoid combining them u
 
 # Role-based access control (RBAC) <a href="#role-based-access-control-rbac" id="role-based-access-control-rbac"></a>
 
+RBAC in n8n controls what each user can do at two levels: instance roles across the instance, and project roles inside each project, where you group workflows and credentials.
+
 {% hint style="info" %}
 **Feature availability**
 
@@ -113234,6 +113436,8 @@ Only the owner and people they share the credential with directly can run or pub
 === https://docs.n8n.io/docs/administer/use-source-control-and-environments/work-with-environments/
 
 # Environments in n8n <a href="#environments-in-n8n" id="environments-in-n8n"></a>
+
+Environments in n8n let you change and test workflows in a development instance without breaking production: each environment is an n8n instance linked to a Git branch.
 
 n8n has built its environments feature on top of Git, a version control software. This document helps you understand:
 
@@ -125870,6 +126074,29 @@ Reusable body.
 === https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/reusable-content/.gitbook/includes/frontmatter-named/
 
 ## Frontmatter block heading <a href="#frontmatter-block-heading" id="frontmatter-block-heading"></a>
+
+=== https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/gitbook-ids/
+# GitBook ids
+
+{% stepper %}
+{% step %}
+#### Publish first workflow
+{% endstep %}
+{% endstepper %}
+
+## Publish first workflow
+
+## Publish first workflow
+
+## Long repeated heading about sandbox setup options about sandbox setup options about sandbox setup options for production
+
+## Long repeated heading about sandbox setup options about sandbox setup options about sandbox setup options for production
+
+## Edge case heading with exactly ninety nine characters in its generated slug for the suffix tests ab
+
+## Edge case heading with exactly ninety nine characters in its generated slug for the suffix tests ab
+
+### Return expected sub-workflow data when the sub-workflow resumes from waiting (waiting for webhook, forms, HITL, etc.) <a href="#return-expected-sub-workflow-data-when-the-sub-workflow-resumes-from-waiting-waiting-for-webhook-forms-hitl-etc" id="return-expected-sub-workflow-data-when-the-sub-workflow-resumes-from-waiting-waiting-for-webhook-forms-hitl-etc"></a>
 
 === https://docs.n8n.io/.github/scripts/tests/fixtures/links/docs/spacea/(node-name).all/
 # (node-name).all
