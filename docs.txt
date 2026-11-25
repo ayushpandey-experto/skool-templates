@@ -8729,6 +8729,7 @@ The enforcement scope controls which executions n8n redacts across the instance:
 
 * **Enforcement applies when execution data is read.** n8n redacts data covered by the enforcement scope whenever anyone views an execution, including executions from workflows that don't have redaction enabled in their own settings.
 * **Workflow settings can't be weaker than the enforced scope.** The workflow settings UI locks the affected redaction toggles, and the [public API](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/n8n-api) rejects attempts to create or update a workflow with a redaction policy below the floor. Workflows can still opt into stricter redaction than the floor.
+* **Enforcement applies to everyone who opens a covered execution.** n8n hides execution data by default from workflow owners, instance owners and admins, and users with the `execution:reveal` scope too. The scope controls whether you can [reveal the data](#reveal-redacted-data), not what you see when you open the execution.
 * **New workflows start at the floor.** When you create a workflow while enforcement is active, its redaction policy defaults to the enforced scope. If you create a workflow through the public API without specifying a redaction policy, n8n sets it to the floor.
 * **Existing workflow settings stay as they are.** Enabling enforcement doesn't change the stored settings of existing workflows. Their execution data is still redacted at the enforced scope, and if you later disable enforcement, each workflow returns to its own settings.
 
@@ -8754,7 +8755,33 @@ When n8n redacts execution data, it also redacts error details to prevent sensit
 
 ## Reveal redacted data <a href="#reveal-redacted-data" id="reveal-redacted-data"></a>
 
-Users with the **Reveal execution data** (`execution:reveal`) scope can temporarily view redacted execution data for a specific execution. Instance owners and admins have this scope by default.
+Users with the **Reveal execution data** (`execution:reveal`) scope can temporarily view redacted execution data for a specific execution.
+
+### Who can reveal data <a href="#who-can-reveal-data" id="who-can-reveal-data"></a>
+
+To reveal redacted data, you need all of the following:
+
+* Access to the execution.
+* The `execution:reveal` scope, through a custom project role that includes the scope, or one of these built-in roles:
+
+  | Level    | Roles that include the scope               | Roles that don't                  |
+  | -------- | ------------------------------------------ | --------------------------------- |
+  | Instance | Owner, Admin                               | Member                            |
+  | Project  | Project Admin, Personal Project Owner      | Project Editor, Project Viewer    |
+
+  Instance owners and admins have the scope across the instance. Project admins and personal project owners have it for workflows their project owns. Creating a workflow doesn't grant the scope. For example, an instance member can reveal data in workflows in their own personal project, but not in a team project where they have the Editor role, even for a workflow they created.
+* Access to the credentials the workflow uses. Refer to [Credential restrictions](#credential-restrictions).
+
+If the effective redaction policy doesn't redact an execution, you don't need the scope to view it, but the credential checks still apply.
+
+### Credential restrictions <a href="#credential-restrictions" id="credential-restrictions"></a>
+
+n8n checks your current access to the workflow's credentials, separately from your role:
+
+* If you can't use one of the credentials, n8n redacts the execution and denies reveal, even when redaction is off for the workflow. n8n checks every credential on the workflow's enabled nodes, including nodes that didn't run, and credentials used by sub-workflows. A deleted credential counts as one you can't use.
+* Instance owners and admins don't bypass this check. n8n checks access through credential ownership or sharing, so a credential that sits only in another user's personal project can still block reveal.
+
+### Reveal steps <a href="#reveal-steps" id="reveal-steps"></a>
 
 To reveal data:
 
@@ -8771,7 +8798,7 @@ The execution data becomes visible for that execution in the current session.
 {% hint style="info" %}
 **Executions using dynamic credentials**
 
-n8n denies reveal requests for executions that used dynamic credentials, regardless of the user's permissions or the redaction policy in effect. This prevents exposing credentials that the execution resolved at runtime.
+For executions that used dynamic credentials, only the user the execution ran as can reveal the data. That user doesn't need the `execution:reveal` scope, but they still need access to the execution and must pass the credential checks. n8n denies reveal to everyone else, including instance owners and admins, and also when it can't identify the user the execution ran as. Redaction still applies by default to covered executions.
 {% endhint %}
 
 ## Audit logging <a href="#audit-logging" id="audit-logging"></a>
@@ -8795,7 +8822,7 @@ Execution data redaction introduces the following permission scopes that you can
 | `workflow:enableRedaction`  | Allows turning redaction on in workflow settings. Displayed as **Enable data redaction** in the role configuration UI.   |
 | `workflow:disableRedaction` | Allows turning redaction off in workflow settings. Displayed as **Disable data redaction** in the role configuration UI. |
 
-By default, instance owners, admins, and project admins have the permissions to enable or disable redaction and to reveal redacted data. You can create custom roles to give more users, such as workflow builders, one or both scopes independently.
+By default, instance owners, admins, and project admins have the permissions to enable or disable redaction. Refer to [Who can reveal data](#who-can-reveal-data) for the roles that can reveal redacted data. You can create custom roles to give more users, such as workflow builders, one or both scopes independently.
 
 ## What redaction doesn't cover <a href="#what-redaction-doesnt-cover" id="what-redaction-doesnt-cover"></a>
 
@@ -20592,8 +20619,8 @@ docker compose up -d
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.49.5
-Current `beta`: 2.50.0
+Current `stable`: 2.49.6
+Current `beta`: 2.50.1
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/tunnel/
@@ -28599,7 +28626,7 @@ The codex filename must match the node base filename. For example, given a node 
 
 | Parameter | Description |
 | -------- | ----------- |
-| `node`    | Identifies the node. Community nodes use the package name, in the format `n8n-nodes-<your-node-name>`. For example, `n8n-nodes-github-issues`. n8n's built-in nodes use the `n8n-nodes-base.` prefix, for example `n8n-nodes-base.openweatherapi`. | 
+| `node`    | Identifies the node, in the format `<package-name>.<node-name>`. `<package-name>` is the `name` in your `package.json`, which starts with `n8n-nodes-` or `@<scope>/n8n-nodes-`. `<node-name>` is the `name` in your main node file. A package can contain more than one node, for example an action node and its trigger. The `<node-name>` part tells them apart, so each node's codex file has a different value, such as `n8n-nodes-github-issues.githubIssues` and `n8n-nodes-github-issues.githubIssuesTrigger`. n8n's built-in nodes use the same format, for example `n8n-nodes-base.github` and `n8n-nodes-base.githubTrigger`. | 
 | `nodeVersion` | The node version. This should have the same value as the `version` parameter in your main node file. For example, `"1.0"`. |
 | `codexVersion` | The codex file version. The current version is `"1.0"`. |
 | `categories` | The settings in the `categories` array determine which category n8n adds your node to in the GUI. See [Node categories](#node-categories) for more information. |
@@ -31229,7 +31256,7 @@ Add the following code to the JSON file:
 
 ```json
 {
-	"node": "n8n-nodes-nasapics",
+	"node": "n8n-nodes-nasapics.nasaPics",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": [
@@ -31729,7 +31756,7 @@ Add the following code to the JSON file:
 
 ```json
 {
-	"node": "n8n-nodes-friendgrid",
+	"node": "n8n-nodes-friendgrid.friendGrid",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": [
@@ -36978,6 +37005,30 @@ Which project roles you can assign also depends on your plan or edition. Refer t
 {% endhint %}
 
 n8n assigns [roles](../set-permissions-and-roles-rbac/understand-project-roles.md) to users in each project. A single user can have different roles in different projects, which gives them different levels of access.
+
+### What projects isolate and what they don't
+
+Projects control who can see and change the workflows, credentials, and data tables in them. They don't isolate infrastructure. Every project on an instance runs on the same n8n deployment and database.
+
+#### Executions in projects
+
+You can see a workflow's executions when your project role, a share on the workflow, or your instance role gives you permission to read executions. Membership in one project doesn't by itself show you the executions of another project.
+
+[Instance owners and instance admins](../set-permissions-and-roles-rbac/understand-instance-roles.md) can view saved executions across all projects. The Project Admin role by itself gives no access outside its project.
+
+Team project workflows use project roles in the editor. Where workflow sharing is available, a direct share of a workflow in a personal space can give access to the executions of that workflow. It doesn't give access to the rest of the project.
+
+A workflow can call a sub-workflow in another project if the caller policy of the sub-workflow allows it. If **Wait for Sub-Workflow Completion** is on (the default), a successful call returns the output of the sub-workflow. It doesn't give the caller access to the execution history of the sub-workflow.
+
+#### Data tables in projects
+
+Each [data table](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/data-tables) belongs to one project. Unlike workflows and credentials, you can't share a data table on its own. You can list data tables and read their rows in each project where you have the corresponding permissions. Instance owners and instance admins see the data tables in every project.
+
+The **Data Table node** only uses data tables from the project that owns the workflow. It rejects a table ID from another project, even if the person who runs the workflow has access to that project. For more on how data tables work, refer to [Data tables](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/work-with-data/data-tables).
+
+#### Variables in projects
+
+Global variables are visible to every workflow. Project variables are visible only to workflows that the project owns. If a global variable and a project variable use the same key, `$vars` uses the project value. `$vars` never reads the variables of another project.
 
 ## Personal and team projects <a href="#personal-and-team-projects" id="personal-and-team-projects"></a>
 
@@ -64012,10 +64063,47 @@ On this page, you'll find the node parameters for the Text Classifier node, and 
 * **When No Clear Match**: Define what happens if the model can't find a good match for an item. There are two options:
 	- **Discard Item** (the default): If the node doesn't detect any of the categories, it drops the item.
 	- **Output on Extra, 'Other' Branch**: Creates a separate output branch called **Other**. When the node doesn't detect any of the categories, it outputs items in this branch.
+* **Include Confidence Scores**: Add the model's score for each category to the output. The option is off by default, and the output doesn't change while it's off. The node reports the scores in a `classification` object, described in [Confidence scores](#confidence-scores).
 * **System Prompt Template**: Use this option to change the system prompt that's used for the classification. It uses the `{categories}` placeholder for the categories.
 
 * **Enable Auto-Fixing**: When enabled, the node automatically fixes model outputs to ensure they match the expected format. Do this by sending the schema parsing error to the LLM and asking it to fix it.
 
+
+## Confidence scores
+
+{% hint style="info" %}
+**Feature availability**
+
+The Text Classifier node's **Include Confidence Scores** option is available from n8n 2.45.0. Every version of the node has the option, so a node you already built gets it when you upgrade n8n.
+{% endhint %}
+
+Turn on **Include Confidence Scores** to see how strongly the model matched each item. Each routed item keeps its own fields and gains a `classification` object:
+
+* `category`: the category branch the item went to.
+* `confidence`: the model's score for that category, from 0.0 to 1.0. The node leaves the field out when the model gives no score it can read as a number.
+* `scores`: the model's score for each category you defined, including the ones the item didn't match. The node leaves out a category it can't read, and leaves out `scores` itself when no category has a score.
+
+```json
+{
+	"text": "My invoice is wrong and I need it fixed today",
+	"classification": {
+		"category": "Billing",
+		"confidence": 0.92,
+		"scores": {
+			"Billing": 0.92,
+			"Urgent": 0.61
+		}
+	}
+}
+```
+
+When an item matches more than one category, each copy carries the confidence for its own branch. If you set **When No Clear Match** to **Output on Extra, 'Other' Branch**, items on that branch get a `category` of `Other`. There, `confidence` runs the other way: 1.0 means no category fit the item, and 0.0 means one of them did. The `scores` map covers the categories you defined, so it has no entry for **Other**.
+
+The scores are estimates from the model, not measured probabilities. They can change between runs and between models. To find weak classifications, compare the categories in `scores` against each other, which is steadier than a fixed cutoff. If you do filter on a fixed value, check that the field exists first. Set the value from your own data, and check it again after you change the model.
+
+The option also adds the scores to the format the model must return, so each item costs more tokens and the model's answers can change. Test your workflow again after you turn the option on.
+
+The node writes `classification` over a field of the same name on the incoming item. If you name one of your categories `confidence`, the node stops with the error `The category name "confidence" is reserved when confidence scores are on`. Rename the category, or turn off **Include Confidence Scores**.
 
 ## Related resources <a href="#related-resources" id="related-resources"></a>
 
@@ -77575,13 +77663,15 @@ To configure this credential, you'll need:
 - The **Database**: Enter the database name, for example `qdb`.
 - A **User**: Enter the username for the user account as configured in `pg.user` or `pg.readonly.user` property in `server.conf`. Default value is `admin`.
 - A **Password**: Enter the password for the user account as configured in `pg.password` or `pg.readonly.password` property in `server.conf`. Default value is `quest`.
-- **SSL**: Select whether the connection should use SSL, which sets the `sslmode` parameter. Options include:
-    - **Allow**
-    - **Disable**
-    - **Require**
+- **SSL**: Select whether the connection should use SSL. Options include:
+    - **Allow**: Connect over SSL.
+    - **Disable**: Connect without SSL.
+    - **Require**: Connect over SSL.
+- A **CA Certificate**: Optional. Enter the PEM-encoded certificate authority that signed the server's certificate. Use this when your QuestDB presents a certificate that a public certificate authority didn't sign. This replaces the certificate authorities that n8n trusts by default rather than adding to them, so include every authority in the server's chain. This field appears when **SSL** is **Allow** or **Require**.
+- **Ignore SSL Issues (Insecure)**: Optional. If turned on, n8n keeps the connection encrypted but doesn't check the server's certificate. You can't use this together with a **CA Certificate**, because skipping the check would ignore the certificate authority you supplied. This field appears when **SSL** is **Allow** or **Require**.
 - The **Port**: Enter the port number to use for the connection. Default is `8812`.
 
-Refer to [List of supported connection properties](https://questdb.io/docs/reference/api/postgres/#list-of-supported-connection-properties) for more information.
+QuestDB supports SSL on its PostgreSQL endpoint in QuestDB Enterprise and QuestDB Cloud only. Refer to [TLS](https://questdb.io/docs/operations/tls/) and the [List of supported connection properties](https://questdb.io/docs/reference/api/postgres/#list-of-supported-connection-properties) for more information.
 
 === https://docs.n8n.io/docs/integrations/builtin/credentials/microsoftentra/
 
@@ -94441,6 +94531,27 @@ Available channels:
 
 Open the **Channels** section on the agent and follow the setup for the channel you want. Each channel has its own connection and permission model.
 
+### Share an agent with other users
+
+You can let someone use your agent, edit it with you, or import their own copy. The steps depend on where you built the agent. Some of these steps need direct workflow sharing or team projects, which aren't available on every plan. Refer to [Organize work in projects](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/organize-work-in-projects) for team project availability.
+
+| You built the agent in | To let someone use it | To edit it together | To give someone a copy on another instance |
+| --- | --- | --- | --- |
+| An **AI Agent** node in a workflow | Publish the workflow with a Chat Trigger in **Hosted Chat** mode and send them the chat URL. To require sign-in, choose **n8n User Auth**. | [Share the workflow](../manage-workflows/share-with-others.md), or add them as an editor to the team project that contains it. | [Export the workflow as JSON](../manage-workflows/export-and-import.md) and have them import it. |
+| The standalone **Agents** tab | Publish the agent to a channel, such as Slack or n8n Chat. n8n Chat makes the agent available to everyone in the project. | Give them an editing role in the team project that owns the agent. | Export the agent as JSON and have them import it. |
+
+When you export an agent or workflow, stored credential secrets don't transfer. The person who imports it needs to reconnect credentials on their instance.
+
+#### What you can't do with a standalone agent
+
+Standalone agents don't share the way workflows do. Compared with workflow sharing:
+
+* **You can't add individual users to an agent.** For a workflow in your **Personal** space, you select **Share** and pick users. For an agent, access comes from the project that owns it, so you give people a role in that team project.
+* **You can't publish an agent from your personal project.** Your personal project doesn't include the permission to publish agents, so others can't use it from there. To share it, export the agent as JSON, create a new agent in a team project, and select **Import JSON** on it. **Duplicate** copies the agent into the same project, and moving an agent only changes its folder, so neither reaches a team project.
+* **You can't give people a chat URL for the agent.** Hosted Chat URLs come from the Chat Trigger in a workflow. People reach a standalone agent through n8n Chat, through the other channels you connect to it, or through the chat in the Agent Builder if they have access to the project.
+* **You can't share an agent with read-only or run-only access directly.** Workflow sharing gives editors view, run, and update permissions. For an agent, access comes from the project role. Give someone the Viewer role for read-only access: they can view the agent and chat with it, but can't change it. Give someone the Chat user role for run-only access: they can chat with the agent in n8n Chat but can't view its configuration. To let people edit the agent, give them an editing role in the project.
+* **You can't move credentials with the agent.** Export and import carry the agent's configuration but not credential secrets.
+
 ### Manage agents through MCP
 
 You can also build and manage agents from an MCP client, such as Claude Desktop or Claude Code, using n8n's [instance-level MCP server](https://app.gitbook.com/s/r7wKI4I1BgdBCuq5Cvcx/connect-to-n8n-mcp-server). This approach exposes tools to search, create, and configure agents alongside the workflow tools the MCP server already provides.
@@ -101863,6 +101974,7 @@ From the **Data tables** tab, you can:
 - When your data tables approach 80% of your storage limit, n8n displays a warning. A final warning appears when you reach the storage limit. Exceeding this limit will disable manual additions to tables and cause workflow execution errors during attempts to insert or update data.
 - By default, data tables created within a project are accessible to all team members in that project.
 - Admins and Owner can see all Users' data tables.
+- Each data table belongs to one project. Unlike workflows and credentials, you can't share a data table on its own. The Data Table node only uses data tables from the same project as the workflow. It rejects a table from another project, even if you have access to that project. For more on what projects separate, refer to [Organize work in projects](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/organize-work-in-projects#what-projects-isolate-and-what-they-dont).
 - Direct programmatic access to data tables from a Code node isn't supported. You can't access data table values via built-in methods or variables.
 
 ## Data tables versus variables <a href="#data-tables-versus-variables" id="data-tables-versus-variables"></a>
@@ -128913,9 +129025,9 @@ For common questions or issues and suggested solutions, refer to [Common issues]
 | `sYWM3IB0LEL4RkPx8ndF` | hitl-tools | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/sYWM3IB0LEL4RkPx8ndF/" %}` | {% hint style="info" %} **Human-in-the-loop for AI tool calls**  This node can be used as a human review step for AI Age | docs/integrations/builtin/app-nodes/n8n-nodes-base.discord/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.gmail/message-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.googlechat.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftoutlook.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.microsoftteams.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.slack/README.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.telegram/message-operations.md, docs/integrations/builtin/app-nodes/n8n-nodes-base.whatsapp/README.md, docs/integrations/builtin/core-nodes/n8n-nodes-langchain.chat.md |
 | `3EMfTKLe60rEZQ4dBdBw` | how-to-pin-data | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3EMfTKLe60rEZQ4dBdBw/" %}` | To pin data in a node:  1. Run the node to load data. 2. In the **OUTPUT** view, select **Pin data** <img src="../../ass | docs/build/work-with-data/pin-and-mock-data.md |
 | `o5sVhTw0cyO5aAAkAVDj` | if-merge-branch-execution | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/o5sVhTw0cyO5aAAkAVDj/" %}` | {% hint style="info" %} **0.236.0 and below**  n8n removed this execution behavior in n8n 1.0. This section applies to w | docs/integrations/builtin/core-nodes/n8n-nodes-base.if.md, docs/integrations/builtin/core-nodes/n8n-nodes-base.merge.md |
-| `c0111xcskz1G8PKOQogB` | in-app-setup | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/c0111xcskz1G8PKOQogB/" %}` | When you set up user management for the first time, you create an owner account.  1. Open n8n. The app displays a signup | docs/administer/manage-users-and-access/set-up-for-cloud.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
+| `c0111xcskz1G8PKOQogB` | in-app-setup | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/c0111xcskz1G8PKOQogB/" %}` | When you set up user management for the first time, you create an owner account.  1. Open n8n. The app displays a signup | docs/administer/manage-users-and-access/manage-users/set-up-user-management.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
 | `75cM0VtFejV1gnDTFOSV` | instance-owner | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/75cM0VtFejV1gnDTFOSV/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_INSTANCE_OWNER | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/user-management-and-2fa.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
-| `8qoOEjsLz4RnydVBogNy` | invite-users | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/8qoOEjsLz4RnydVBogNy/" %}` | You can now invite other people to your n8n instance.  1. Sign in to your n8n instance with your owner account. On n8n C | docs/administer/manage-users-and-access/set-up-for-cloud.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
+| `8qoOEjsLz4RnydVBogNy` | invite-users | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/8qoOEjsLz4RnydVBogNy/" %}` | 1. Sign in to your n8n instance with an account that has the **Owner** or **Admin** instance role, or a custom instance  | docs/administer/manage-users-and-access/manage-users/add-and-remove-users.md, docs/administer/manage-users-and-access/manage-users/set-up-user-management.md, docs/deploy/host-n8n/configure-n8n/user-management.md |
 | `XqCm6UXa2H3VaFURpo9h` | item-linking-code-node | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/XqCm6UXa2H3VaFURpo9h/" %}` | When referencing a previous node you need to know which item to use. This is solved by item linking. Most nodes automati | docs/build/work-with-data/reference-data/link-data-items/preserving-linking-in-the-code-node.md |
 | `kXGDlwgR3wBuMfOWaSGE` | item-linking-node-creators | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/kXGDlwgR3wBuMfOWaSGE/" %}` | {% hint style="info" %} **Programmatic-style nodes only**  This guidance applies to programmatic-style nodes. If you're  | docs/build/work-with-data/reference-data/link-data-items/item-linking-for-node-creators.md, docs/connect/create-nodes/build-your-node/reference/item-linking.md |
 | `7MPhMVJM8wcmiOf5zn2m` | langchain-doc-loaders-link | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/7MPhMVJM8wcmiOf5zn2m/" %}` | Refer to [LangChain's documentation on document loaders](https://docs.langchain.com/oss/javascript/integrations/document | docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentgithubloader.md |
