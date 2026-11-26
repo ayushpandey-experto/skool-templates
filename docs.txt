@@ -3522,7 +3522,7 @@ They aren't available on n8n Cloud Enterprise or self-hosted n8n. Free trials in
 
 ## How Assistant credits work
 
-n8n Assistant uses credits based on the tokens that the underlying AI model processes for each message. Longer conversations, larger workflows, and debugging sessions use more credits than short, focused requests. A message you stop partway through, or one that ends in an error, still uses credits for the work n8n Assistant did before it stopped.
+The n8n Assistant uses credits based on the tokens that the underlying AI model processes for each message or [self-healing investigation](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/self-healing-workflows). Longer conversations, larger workflows, and debugging sessions use more credits than short, focused requests. A message you stop partway through, or one that ends in an error, still uses credits for the work n8n Assistant did before it stopped.
 
 Your Assistant credit balance has two parts:
 
@@ -3533,7 +3533,7 @@ n8n Assistant always uses your included credits first. When they run out, it dra
 
 This is the main difference from [Gateway credits](../gateway-credits/README.md), which are a single prepaid balance: with Gateway credits, you only have what you've bought. With Assistant credits, your plan tops you up every month, and extra credits are optional.
 
-Running a workflow doesn't use Assistant credits, even if n8n Assistant built it. Only your conversations with n8n Assistant do.
+Running a workflow doesn't use Assistant credits, even if the n8n Assistant built it. Self-healing investigations of failed workflows use Assistant credits, even when the Assistant can't produce a fix.
 
 ## Included monthly allowance
 
@@ -3583,7 +3583,7 @@ To start using n8n Assistant again:
 - On a paid plan, the instance owner can [buy extra credits](top-up-assistant-credits.md), or you can wait for your included credits to reset on the first day of the next month.
 - On a free trial, upgrade to a paid plan.
 
-Your workflows aren't affected. Workflows keep running when your Assistant credits run out, because running a workflow doesn't use Assistant credits.
+Workflow executions continue when your Assistant credits run out. New self-healing investigations require available Assistant credits.
 
 ## Credit expiry and forfeiture
 
@@ -3602,7 +3602,7 @@ Assistant credits and Gateway credits are separate balances that pay for differe
 
 | | Assistant credits | Gateway credits |
 |---|---|---|
-| What they pay for | Your conversations with n8n Assistant, including when it builds a workflow or agent for you | AI models and tool services used by nodes in your workflows |
+| What they pay for | Your conversations with the n8n Assistant, including when it builds a workflow or agent for you, and self-healing investigations | AI models and tool services used by nodes in your workflows |
 | What they don't pay for | AI model calls that your workflows or agents make when they run | n8n Assistant |
 | What your plan includes | A monthly allowance that resets on the first day of every month | A small one-time amount of free credit at sign-up |
 | Buying more | Extra credits, used only after your included credits run out | Top-ups that add to your balance |
@@ -3640,7 +3640,7 @@ Only the instance owner can top up, and topping up requires an active paid subsc
 {% hint style="warning" %}
 **Assistant credits only pay for n8n Assistant**
 
-Extra Assistant credits only pay for your conversations with n8n Assistant. They don't pay for AI model calls that your workflows or agents make when they run. For those, [top up Gateway credits](../gateway-credits/top-up-gateway-credits.md) instead, or use your own provider credentials. Top-ups are final, so check which balance you're topping up before you pay.
+Extra Assistant credits pay for your conversations with the n8n Assistant and [self-healing investigations](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/self-healing-workflows). They don't pay for AI model calls that your workflows or agents make when they run. For those, [top up Gateway credits](../gateway-credits/top-up-gateway-credits.md) instead, or use your own provider credentials. Top-ups are final, so check which balance you're topping up before you pay.
 {% endhint %}
 
 ## Top up manually
@@ -7355,11 +7355,17 @@ Enable credential overwrites using the following environment variables. Refer to
 {% hint style="info" %}
 **Feature availability**
 
-Single sign-on is available on:
+Single sign-on (SAML) is available on:
 
 - **Self-hosted:** Business, Enterprise
 
-n8n Cloud Enterprise also supports single sign-on, but not through the environment variables on this page.
+Single sign-on (OIDC) is available on:
+
+- **Self-hosted:** Enterprise
+
+n8n Cloud Enterprise also supports SAML and OIDC single sign-on, but not through the environment variables on this page.
+
+You need to be an instance owner or admin to enable and configure SAML or OIDC.
 {% endhint %}
 
 Refer to [Set up SSO](../../security/configure-sso.md) for in-app setup steps and identity provider guides. See [Manage instance settings using environment variables](../../manage-settings-using-environment-variables.md) for how the activation pattern works.
@@ -8604,10 +8610,15 @@ There's no automated tool to convert data encrypted in the new format back to th
 {% hint style="info" %}
 **Feature availability**
 
-Single sign-on is available on:
+Single sign-on (SAML) is available on:
 
 - **n8n Cloud:** Enterprise
 - **Self-hosted:** Business, Enterprise
+
+Single sign-on (OIDC) is available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
 
 You need to be an instance owner or admin to enable and configure SAML or OIDC.
 {% endhint %}
@@ -8617,6 +8628,8 @@ n8n supports the SAML and OIDC authentication protocols for single sign-on (SSO)
 * [Set up SAML](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/verify-user-identity/use-saml/set-up-saml): a general guide to setting up SAML in n8n, and links to resources for common identity providers (IdPs).
 * [Set up OIDC](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/verify-user-identity/use-oidc/set-up-oidc): a general guide to setting up OpenID Connect (OIDC) SSO in n8n.
 
+n8n also supports signing in with your organization's directory credentials. Refer to [LDAP](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/verify-user-identity/connect-ldap) to set this up.
+
 ## Configure SSO with environment variables <a href="#configure-sso-with-environment-variables" id="configure-sso-with-environment-variables"></a>
 
 {% hint style="info" %}
@@ -8625,7 +8638,7 @@ n8n supports the SAML and OIDC authentication protocols for single sign-on (SSO)
 Configuring SSO with environment variables is available from n8n 2.18.0.
 {% endhint %}
 
-You can also configure SSO from environment variables instead of through the UI. See [SSO environment variables](../basic-configuration/use-environment-variables/sso.md) for the full list of variables, and [Manage instance settings using environment variables](../manage-settings-using-environment-variables.md) for how the activation pattern works.
+You can also configure SSO (SAML and OIDC) from environment variables instead of through the UI. See [SSO environment variables](../basic-configuration/use-environment-variables/sso.md) for the full list of variables, and [Manage instance settings using environment variables](../manage-settings-using-environment-variables.md) for how the activation pattern works.
 
 ## Related resources
 
@@ -10009,7 +10022,15 @@ n8n license:info
 
 ## User management <a href="#user-management" id="user-management"></a>
 
-You can reset user management using the n8n CLI. This returns user management to its pre-setup state. It removes all user accounts.
+You can reset user management using the n8n CLI. This returns user management to its pre-setup state, so the instance owner setup screen runs again.
+
+The command:
+
+- Deletes all user accounts except the instance owner, including pending invites. Service accounts are kept.
+- Clears the owner's email, name, and password. The owner's MFA settings and API keys are kept.
+- Keeps all workflows and credentials, and moves ownership of workflows and project credentials to the owner's personal project. Instance credentials stay instance-owned.
+
+The command isn't transactional. If it fails partway, the ownership changes it already made stay in place. It fails if any other user has a linked SAML, OIDC, or LDAP identity. For LDAP, first run `n8n ldap:reset`, which deletes all LDAP users (see [Disable LDAP](#disable-ldap)). There's no CLI command to remove SAML or OIDC users. Restart n8n after the command finishes.
 
 Use this if you forget your password, and don't have SMTP set up to do password resets by email.
 
@@ -10868,7 +10889,7 @@ The Community edition includes almost the complete feature set of n8n. It doesn'
 * [Log streaming](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/observe-and-log/stream-logs-to-external-systems) ([Logging](keep-n8n-running/set-up-logging.md) _is_ included)
 * [Multi-main mode](configure-n8n/scaling/enable-queue-mode.md#multi-main-setup) ([Queue mode](configure-n8n/scaling/enable-queue-mode.md) _is_ included)
 * [Team projects](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/organize-work-in-projects)
-* SSO ([SAML](configure-n8n/security/configure-sso.md), [LDAP](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/verify-user-identity/connect-ldap))
+* SSO ([SAML](configure-n8n/security/configure-sso.md), [OIDC](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/verify-user-identity/use-oidc), [LDAP](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/verify-user-identity/connect-ldap))
 * Sharing ([workflows](https://app.gitbook.com/s/rPN1zU5jaYNvwH7RzxqA/manage-workflows/share-with-others), [credentials](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-credentials/share-credentials-securely)) (Only the instance owner and the user who creates them can access workflows and credentials)
 * [Version control using Git](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/use-source-control-and-environments)
 
@@ -20460,8 +20481,12 @@ Use this instead of web search for anything about n8n, including building workfl
 {% hint style="info" %}
 **Feature availability**
 
-* Available on Enterprise plans.
-* You need to be an instance owner or admin to enable and configure OIDC.
+OIDC is available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Enterprise
+
+You need to be an instance owner or admin to enable and configure OIDC.
 {% endhint %}
 
 
@@ -20469,8 +20494,12 @@ Use this instead of web search for anything about n8n, including building workfl
 {% hint style="info" %}
 **Feature availability**
 
-* Available on Business and Enterprise plans.
-* You need to be an instance owner or admin to enable and configure SAML.
+SAML is available on:
+
+- **n8n Cloud:** Enterprise
+- **Self-hosted:** Business, Enterprise
+
+You need to be an instance owner or admin to enable and configure SAML.
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/user-management/in-app-setup/
@@ -35906,6 +35935,8 @@ Self-hosted instances need extra configuration before you can invite users. Foll
 
 # Set up OIDC <a href="#set-up-oidc" id="set-up-oidc"></a>
 
+Set up OpenID Connect (OIDC) single sign-on (SSO) in n8n with your identity provider.
+
 {% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3sB2Mxc1yXYEg1FeAYjK/" %}
 
 {% hint style="info" %}
@@ -36160,10 +36191,9 @@ https://cognito-idp.{region}.amazonaws.com/{user-pool-id}/.well-known/openid-con
 
 # OpenID Connect (OIDC) <a href="#openid-connect-oidc" id="openid-connect-oidc"></a>
 
-{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3sB2Mxc1yXYEg1FeAYjK/" %}
-
-
 This section covers how to enable and manage OpenID Connect (OIDC) for single sign-on (SSO). You can learn more about how OIDC works by visiting [what is OpenID Connect](https://openid.net/developers/how-connect-works/) by the OpenID Foundation.
+
+{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3sB2Mxc1yXYEg1FeAYjK/" %}
 
 ## In this section
 
@@ -36181,6 +36211,10 @@ This section covers how to enable and manage OpenID Connect (OIDC) for single si
 === https://docs.n8n.io/docs/administer/manage-users-and-access/verify-user-identity/use-oidc/troubleshoot-oidc/
 
 # Troubleshooting OIDC SSO <a href="#troubleshooting-oidc-sso" id="troubleshooting-oidc-sso"></a>
+
+Troubleshooting OIDC SSO helps you find and fix problems when single sign-on (SSO) with OpenID Connect (OIDC) doesn't work in n8n.
+
+{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3sB2Mxc1yXYEg1FeAYjK/" %}
 
 ## Known issues <a href="#known-issues" id="known-issues"></a>
 
@@ -36245,9 +36279,9 @@ Self-hosted users can configure their n8n instance to disable 2FA for all users 
 
 # Manage users with SAML <a href="#manage-users-with-saml" id="manage-users-with-saml"></a>
 
-{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}
+When SAML is enabled, you can exempt individual users from SAML sign-in and remove users you've deleted from your IdP.
 
-There are some user management tasks that are affected by SAML.
+{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}
 
 ## Exempt users from SAML <a href="#exempt-users-from-saml" id="exempt-users-from-saml"></a>
 
@@ -36472,6 +36506,8 @@ Documentation links for common IdPs.
 
 Set up SAML SSO in n8n with Okta.
 
+{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}
+
 {% hint style="info" %}
 **Workforce Identity and Customer Identity**
 
@@ -36585,6 +36621,8 @@ Now when you go to **Directory** > **Groups** and edit the assigned n8n applicat
 # Azure AD SAML setup <a href="#azure-ad-saml-setup" id="azure-ad-saml-setup"></a>
 
 This document provides instructions for configuring Azure AD to send role information to n8n via SAML attributes. This enables automatic role assignment based on Azure AD group membership.
+
+{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}
 
 ## Prerequisites <a href="#prerequisites" id="prerequisites"></a>
 
@@ -36706,9 +36744,9 @@ When migrating from group-based claims to App Roles, adjust your role definition
 
 # Security Assertion Markup Language (SAML) <a href="#security-assertion-markup-language-saml" id="security-assertion-markup-language-saml"></a>
 
-{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}
-
 This section tells you how to enable SAML SSO (single sign-on) in n8n. It assumes you're familiar with SAML. If you're not, [SAML Explained in Plain English](https://www.onelogin.com/learn/saml) can help you understand how SAML works, and its benefits.
+
+{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}
 
 ## In this section
 
@@ -36729,6 +36767,10 @@ This section tells you how to enable SAML SSO (single sign-on) in n8n. It assume
 === https://docs.n8n.io/docs/administer/manage-users-and-access/verify-user-identity/use-saml/troubleshoot-saml/
 
 # Troubleshooting SAML SSO <a href="#troubleshooting-saml-sso" id="troubleshooting-saml-sso"></a>
+
+Troubleshooting SAML SSO helps you find and fix problems when single sign-on (SSO) with SAML doesn't work in n8n.
+
+{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}
 
 If you get an error when testing your SAML setup, check the following:
 
@@ -36758,6 +36800,26 @@ n8n emits an `n8n.audit.user.login.emailConflict` audit event when a SAML login 
 Confirm who's signing in to your n8n instance, from two-factor auth to directory-backed single sign-on.
 
 In n8n, go to **Settings** > **Authentication** to see the sign-in methods for your instance. The page lists single sign-on (SSO) and LDAP, marks the active method, and shows whether two-factor auth is enforced.
+
+* [Use OIDC](use-oidc/README.md)
+* [Use SAML](use-saml/README.md)
+* [Connect LDAP](connect-ldap.md)
+
+## Use one sign-in method at a time
+
+An n8n instance can use only one of SAML, OIDC, or LDAP at a time, with one identity provider (IdP). To use several IdPs, use an identity broker that federates them, such as Okta, and connect n8n to the broker with SAML or OIDC.
+
+## Switch an instance with existing users to SSO
+
+When you enable SAML or OIDC on an instance that already has users, n8n keeps their accounts and data. Password login is disabled, except for the instance owner and users with **Allow Manual Login**. The first time a user signs in through your IdP, n8n links their account by email address, so make sure their n8n and IdP emails match. By default, if they don't, n8n creates a new account and leaves the old one unused.
+
+## Change your name or email address with SSO
+
+Users who sign in with SAML or OIDC can't change their name or email address in n8n, and signing in again through your IdP doesn't update them. Contact your instance owner or admin to change them.
+
+## Change another user's name or email address
+
+Instance owners and admins can't edit another SSO user's name or email in n8n. To change one user's details, update them in your IdP, then delete the user in n8n and transfer their workflows and credentials, as described in [Add and remove users](../manage-users/add-and-remove-users.md). When the user signs in again through your IdP, n8n creates their account with the new details. The new account doesn't keep the user's API keys or MFA setup, and this doesn't work for the instance owner.
 
 ## In this section
 
@@ -73632,6 +73694,9 @@ The Kafka node and Kafka Trigger use a Schema Registry to encode and decode Avro
 
 - None
 - Basic Auth (username and password), such as a Confluent Cloud Schema Registry API key and secret
+- OAuth2 Client Credentials (a bearer token minted from your identity provider), supported by Confluent Platform 7.7 and later
+
+You can combine any of these methods with TLS: a custom certificate authority, a client certificate for mutual TLS, or both. n8n applies the TLS fields to an `https` registry URL only.
 
 ## Related resources
 
@@ -73647,7 +73712,20 @@ To configure this credential, you'll need the URL of your Schema Registry and, i
     - **Basic Auth**: use this for a Schema Registry that requires HTTP Basic Auth, such as Confluent Cloud. Then add:
         1. The **Username**. For Confluent Cloud, this is the Schema Registry API key.
         2. The **Password**. For Confluent Cloud, this is the Schema Registry API secret.
-3. Select **Save**. n8n tests the credential by calling the registry's `/subjects` endpoint.
+    - **OAuth2 Client Credentials** (available from n8n 2.51.0): use this for a Schema Registry behind an identity provider. Then add:
+        1. The **Token URL** of the token endpoint that issues the bearer token.
+        2. The **Client ID** and **Client Secret** of the application you registered with that provider.
+        3. The **Client Authentication** method. **Authorization Header** sends the client ID and secret as HTTP Basic, which Okta and PingFederate expect by default. Choose **Request Body** if your provider requires the pair as form fields instead.
+        4. The **Scope**, if your provider requires one. Separate several scopes with spaces. Leave it empty to request none.
+3. If your registry uses `https` and presents a certificate that a public certificate authority didn't sign, enter the PEM-encoded **CA Certificate** that signed it. This replaces the certificate authorities that n8n trusts by default rather than adding to them, so include every certificate authority in the registry's chain.
+4. If your registry requires mutual TLS (mTLS), enter the **Client Certificate** and the **Client Private Key**, both PEM-encoded. Enter both or neither.
+5. Select **Save**. n8n tests the credential by calling the registry's `/subjects` endpoint.
+
+The credential test doesn't use the **CA Certificate**, **Client Certificate**, or **Client Private Key** fields. A registry that needs any of them fails the test, even when the credential is correct. The error usually names a certificate or a TLS handshake. A registry that requires a client certificate can also close the connection. Every other error, such as a wrong URL or a wrong password, is a real failure. To confirm the credential works, run a Kafka node that uses it.
+
+The registry URL must use `https` when you set the **CA Certificate**, the **Client Certificate**, or the **Client Private Key**. n8n refuses to connect to an `http` URL while one of them is set.
+
+n8n gets a token when it first needs one and renews it before it expires, so a Kafka Trigger that stays active keeps working. The token URL is usually on a different host from the registry. If you set **Allowed HTTP Request Domains** to **Specific Domains** on this credential, add the token URL's host to **Allowed Domains**.
 
 To use the credential, open your Kafka or Kafka Trigger node, enable **Use Schema Registry**, and select this credential.
 
@@ -96277,20 +96355,27 @@ In every other case, it returns <code>undefined</code>. A string that contains a
 
 ## _`String`_.**`extractUrlPath()`** <a href="#stringextracturlpath" id="stringextracturlpath"></a>
 
-**Description:** Returns the part of a URL after the domain, or <code>undefined</code> if no URL found. 
+**Description:** Returns the path of a URL, excluding the query string and the fragment. The URL must include a scheme, such as <code>https:</code>. Returns <code>undefined</code> if it can't read the string as a URL.
 
 If the string also contains other content, try using <code>extractUrl()</code> first.
 
+The path that <code>extractUrlPath()</code> returns follows these rules:
+
+* An <code>http</code> or <code>https</code> URL with no path returns <code>/</code>.
+* Paths resolve <code>.</code> and <code>..</code> segments: <code>/v1/../v2</code> becomes <code>/v2</code>.
+* Spaces and non-ASCII characters use <code>%XX</code> encoding. Existing encoded characters stay unchanged.
+* Host names with non-ASCII characters and <code>file:</code> URLs can give different results across [expression engines](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/basic-configuration/use-environment-variables/expression-engine). This can cause differences between editor previews and workflow runs.
+
 **Syntax:** _`String`_.extractUrlPath()
 
-**Returns:** String
+**Returns:** String or <code>undefined</code>
 
 **Source:**  Custom n8n functionality
 
 **Examples:**
 
   ```javascript
-  "http://n8n.io/workflows".extractUrlPath() //=> '/workflows'
+  "https://n8n.io/workflows?sort=new#top".extractUrlPath() //=> '/workflows'
   ```
 
   ```javascript
@@ -100334,7 +100419,7 @@ If the string also contains other content, try using <code>extractEmail()</code>
 
 * [_`String`_.**`extractUrlPath()`**](string.md#stringextracturlpath)
 
-    Returns the part of a URL after the domain, or <code>undefined</code> if no URL found. 
+    Returns the path of a URL, excluding the query string and the fragment. Returns <code>undefined</code> if it can't read the string as a URL.
 
 If the string also contains other content, try using <code>extractUrl()</code> first.
 
@@ -103095,6 +103180,97 @@ n8n automatically removes a favorite when someone deletes the underlying item. I
 * [Data tables](../work-with-data/data-tables.md)
 * [Organize work in projects](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/manage-users-and-access/organize-work-in-projects)
 
+=== https://docs.n8n.io/docs/build/manage-workflows/self-healing-workflows/
+
+# Self-healing workflows
+
+Self-healing lets the [n8n Assistant](../ways-of-building-workflows/n8n-assistant.md) investigate failed production workflows. It prepares fixes for you to review in your **Inbox**.
+
+The Assistant reads the failed execution, investigates the cause, and proposes changes. You decide what to publish.
+
+{% hint style="info" %}
+**Feature availability**
+
+<!-- vale from-microsoft.Contractions = NO -->
+<!-- vale from-write-good.TooWordy = NO -->
+Self-healing requires the n8n Assistant. It is available on:
+<!-- vale from-microsoft.Contractions = YES -->
+<!-- vale from-write-good.TooWordy = YES -->
+
+* **n8n Cloud:** Starter and Pro.
+* **Self-hosted:** Community, Registered Community, and Business.
+
+It isn't available on Enterprise plans.
+
+Self-healing workflows started rolling out gradually on n8n Cloud from n8n 2.49.5.
+{% endhint %}
+
+{% hint style="info" %}
+**Preview status**
+
+Self-healing workflows are in [Preview](https://app.gitbook.com/s/wMJrGrimpx3PxCJpUswm/understand-feature-availability#feature-maturity-preview-ga-deprecated-and-removed) and may change. Avoid relying on self-healing for production recovery.
+{% endhint %}
+
+Each investigation uses [Assistant credits](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/use-n8n-cloud/assistant-credits) on n8n Cloud, or tokens from your AI provider on self-hosted instances. Usage applies even when the Assistant can't produce a fix.
+
+## Before you start
+
+* [Publish your workflow](../understand-workflows/save-and-publish-workflows.md). Self-healing skips failures while you have saved changes that you haven't published.
+* In [workflow settings](configure-workflow-settings.md), check that **Save failed production executions** is **Save** or **Default - Save**.
+* For team projects, you need permission to manage project settings. Reviewers need edit access to the workflows they review. Publishing also requires publish permission.
+
+On self-hosted instances, [set up the n8n Assistant](https://app.gitbook.com/s/jm0ZYRpZIPWge2ZSiDYO/host-n8n/configure-n8n/set-up-n8n-assistant), then set `N8N_INSTANCE_AI_WORKFLOW_SUGGESTIONS_ENABLED=true` and restart n8n.
+
+On self-hosted instances, `EXECUTIONS_DATA_SAVE_ON_ERROR` defaults to `all`, which saves failed production executions. A workflow's **Save failed production executions** setting can override this default.
+
+## Enable self-healing
+
+1. Open your project. For a personal project, select **Self-healing**. For a team project, open **Settings** > **Self-healing**.
+2. Select **Add configuration**.
+3. Under **Workflows**, choose **All** or **Select manually**. If you choose **Select manually**, add at least one workflow.
+4. Keep **Include sub-workflows** enabled if fixes can also change called sub-workflows in the same project.
+5. For a team project, select **Reviewers**. In a personal project, you review the results yourself.
+6. Select **Create configuration**.
+
+The configuration starts active. The Assistant investigates new production failures using the access of the person who enabled it. Manual tests and retries don't trigger investigations.
+
+## Review a result
+
+Open **Inbox** from the left menu. A result can include changes to several workflows in the same project.
+
+* For **Fix ready**, read **Report** and inspect **Changes**. Open **Review** to choose your next action.
+* For **Needs attention**, read the report to see what needs your help. Use **Continue in…** to continue with the Assistant or editor.
+* For **Could not fix**, find the report under **Closed**. It explains why the Assistant couldn't produce a fix.
+
+For **Fix ready**, select **Apply and publish** to save and publish the proposed changes. Select **Discard and close** to reject them.
+
+**Continue with Assistant** and **Continue with Editor** save any proposed changes as unpublished changes and close the review. Test and edit the workflow before publishing it yourself.
+
+Review every affected workflow before publishing. A change to a shared sub-workflow can affect other workflows that call it. Verification can use simulations, so **Fix ready** doesn't guarantee that the next production execution will succeed. During a self-healing investigation, the Assistant can't create credentials or edit data tables.
+
+## Pause self-healing
+
+Turn off the configuration's **Active** switch to stop new investigations and cancel those in progress. Existing results remain available. Deleting the configuration also deletes its investigation history and results.
+
+## If an investigation doesn't start
+
+Check that the configuration is active, the workflow is fully published, and n8n saves failed executions. An investigation or open review already in progress blocks another investigation for that workflow.
+
+After **Could not fix**, self-healing waits 24 hours before investigating another failure of the same published version. Publishing a different version ends this wait. A new production failure must occur before another investigation starts.
+
+## Related resources
+
+* [Manage workflows](./)
+* [Configure workflow settings](configure-workflow-settings.md)
+* [Tag workflows](tag-workflows.md)
+* [Favorite items](favorite-items.md)
+* [View change history](view-change-history.md)
+* [Review workflows](workflow-reviews.md)
+* [Export and import](export-and-import.md)
+* [n8n packages](n8n-packages/README.md)
+* [Share with others](share-with-others.md)
+* [Handle workflow errors](../flow-logic/handle-errors-gracefully.md)
+
 === https://docs.n8n.io/docs/build/manage-workflows/README/
 # Manage workflows <a href="#manage-workflows" id="manage-workflows"></a>
 
@@ -103107,6 +103283,7 @@ Configure, tag, share, and maintain your workflows as they grow.
 * [Favorite items](favorite-items.md): pin workflows, folders, projects, and data tables for quick access.
 * [View change history](view-change-history.md): view and restore previous versions of your workflow.
 * [Review workflows](workflow-reviews.md): submit a workflow version for review before publishing.
+* [Self-healing workflows](self-healing-workflows.md): investigate failed executions and review suggested fixes.
 * [Export and import](export-and-import.md): move workflows in and out of n8n.
 * [n8n packages](n8n-packages/README.md): bundle workflows and their structure into a portable file to move between instances.
 * [Share with others](share-with-others.md): share workflows between users.
@@ -110030,6 +110207,7 @@ To manage these settings, go to **Settings > Chat** and edit the providers.
   * [Favorite items](manage-workflows/favorite-items.md)
   * [View change history](manage-workflows/view-change-history.md)
   * [Review workflows](manage-workflows/workflow-reviews.md)
+  * [Self-healing workflows](manage-workflows/self-healing-workflows.md)
   * [Export and import](manage-workflows/export-and-import.md)
   * [n8n packages](manage-workflows/n8n-packages/README.md)
     * [Package format](manage-workflows/n8n-packages/package-format.md)
@@ -129069,9 +129247,9 @@ For common questions or issues and suggested solutions, refer to [Common issues]
 | `OlpV1rtc5ZIqBmvX4lBQ` | sharing-credentials | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/OlpV1rtc5ZIqBmvX4lBQ/" %}` | {% hint style="warning" %} **Sharing credentials**  Exported workflow JSON files include [credential](https://app.gitboo | docs/build/manage-workflows/export-and-import.md |
 | `TJ7IUBpRrfLoXyEn4T4d` | sso-activation | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/TJ7IUBpRrfLoXyEn4T4d/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_SSO_MANAGED_BY | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md |
 | `SBpz79jvy94Y5dKIvxqR` | sso-oidc | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/SBpz79jvy94Y5dKIvxqR/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_SSO_OIDC_LOGIN | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md |
-| `3sB2Mxc1yXYEg1FeAYjK` | sso-oidc-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3sB2Mxc1yXYEg1FeAYjK/" %}` | {% hint style="info" %} **Feature availability**  * Available on Enterprise plans. * You need to be an instance owner or | docs/administer/manage-users-and-access/verify-user-identity/use-oidc/README.md, docs/administer/manage-users-and-access/verify-user-identity/use-oidc/set-up-oidc.md |
+| `3sB2Mxc1yXYEg1FeAYjK` | sso-oidc-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/3sB2Mxc1yXYEg1FeAYjK/" %}` | {% hint style="info" %} **Feature availability**  OIDC is available on:  - **n8n Cloud:** Enterprise - **Self-hosted:**  | docs/administer/manage-users-and-access/verify-user-identity/use-oidc/README.md, docs/administer/manage-users-and-access/verify-user-identity/use-oidc/set-up-oidc.md, docs/administer/manage-users-and-access/verify-user-identity/use-oidc/troubleshoot-oidc.md |
 | `NnYMdwgkElS7TK37owd0` | sso-saml | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/NnYMdwgkElS7TK37owd0/" %}` | \| Variable \| Type \| Default \| Description \| \| :------- \| :--- \| :------ \| :---------- \| \| `N8N_SSO_SAML_LOGIN | docs/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/sso.md, docs/deploy/host-n8n/configure-n8n/manage-settings-using-environment-variables.md |
-| `9DXSTQsxYGisAV8xk6p4` | sso-saml-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}` | {% hint style="info" %} **Feature availability**  * Available on Business and Enterprise plans. * You need to be an inst | docs/administer/manage-users-and-access/verify-user-identity/use-saml/README.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/manage-users-with-saml.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/set-up-saml.md |
+| `9DXSTQsxYGisAV8xk6p4` | sso-saml-availability | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/9DXSTQsxYGisAV8xk6p4/" %}` | {% hint style="info" %} **Feature availability**  SAML is available on:  - **n8n Cloud:** Enterprise - **Self-hosted:**  | docs/administer/manage-users-and-access/verify-user-identity/use-saml/README.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/manage-users-with-saml.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/set-up-azure-ad-saml.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/set-up-okta-workforce-identity-saml.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/set-up-saml.md, docs/administer/manage-users-and-access/verify-user-identity/use-saml/troubleshoot-saml.md |
 | `X6JM1Mgg5iwvZLDpGEB0` | sub-node-expression-resolution | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/X6JM1Mgg5iwvZLDpGEB0/" %}` | {% hint style="info" %} **Parameter resolution in sub-nodes**  Sub-nodes behave differently to other nodes when processi | docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreazureaisearch.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoredatabricks/README.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreinmemory.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremilvus.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoremongodbatlas.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreoracledb.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepgvector.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorepinecone.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreqdrant.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreredis.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoresupabase.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoreweaviate.md, docs/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstorezep.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentdefaultdataloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.documentgithubloader.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsawsbedrock.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsazureopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingscohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsdatabricks.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglegemini.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglepalm.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsgooglevertex.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingshuggingfaceinference.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingslemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsmistralcloud.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsollama.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.embeddingsoracledb.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatalibabacloud.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatanthropic.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatawsbedrock.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatazureopenai.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatcohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatdatabricks.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatdeepseek.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglegemini.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgooglevertex.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatgroq.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatlemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatminimax.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatmistralcloud.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatmoonshot.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatnvidia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatollama/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenai/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatopenrouter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatvercel.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmchatxaigrok.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmcohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmlemonade.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmollama/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmopenhuggingfaceinference.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorybufferwindow/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorylakebasechat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymanager.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymongochat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorymotorhead.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memorypostgreschat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryredischat.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryxata.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.memoryzep.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.modelselector.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserautofixing.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparseritemlist.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.outputparserstructured/README.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.rerankercohere.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievercontextualcompression.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievermultiquery.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrievervectorstore.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.retrieverworkflow.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplittercharactertextsplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplitterrecursivecharactertextsplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.textsplittertokensplitter.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolaiagent.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcalculator.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolcode.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolsearxng.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolserpapi.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolthink.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolvectorstore.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwikipedia.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolwolframalpha.md, docs/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow.md |
 | `E552YKHiixJuJvzEdrBI` | submit-community-node | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/E552YKHiixJuJvzEdrBI/" %}` | Community nodes are npm packages, hosted in the npm registry.  When building a node to submit to the community node repo | docs/connect/create-nodes/deploy-your-node/submit-community-nodes.md, docs/integrations/community-nodes/building-community-nodes.md |
 | `mr8LBJxxxIAFYHNPNKU2` | submit-templates | `GixZThfitWP21x2gQFpD` | `{% include "https://app.gitbook.com/s/GixZThfitWP21x2gQFpD/~/reusable/mr8LBJxxxIAFYHNPNKU2/" %}` | You can submit your workflows to n8n's template library.  n8n is working on a creator program, and developing a marketpl | docs/deploy/host-n8n/configure-n8n/basic-configuration/configuration-examples/configure-a-custom-workflow-templates-library.md |
