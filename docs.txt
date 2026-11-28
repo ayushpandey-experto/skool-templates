@@ -5525,17 +5525,18 @@ Each system task has its own cadence, either a fixed interval or a cron schedule
 
 ### Run system tasks on the durable scheduler
 
-To move system tasks to the durable scheduler, set these environment variables on every main instance and restart n8n:
+From n8n 2.51.0, system tasks that support durable mode run on the durable scheduler by default. To opt out, set `N8N_SCHEDULER_SYSTEM_TASKS_ENABLED=false` on every main instance and restart n8n. From n8n 2.45.0 to 2.50.x, set it to `true` to opt in.
 
 ```bash
-export N8N_SCHEDULER_ENABLED=true
-export N8N_SCHEDULER_SYSTEM_TASKS_ENABLED=true
+export N8N_SCHEDULER_SYSTEM_TASKS_ENABLED=false
 ```
 
-Give every main instance the same values for both variables. Only tasks that support durable mode move over. The rest keep their timer mode.
+Give every main instance the same values for `N8N_SCHEDULER_SYSTEM_TASKS_ENABLED` and `N8N_SCHEDULER_ENABLED`. Only tasks that support durable mode move over. The rest keep their timer mode.
 
 {% hint style="warning" %}
 Run the same n8n version on every main instance. During a rolling deploy, an older main instance can run a task from its leader timer while newer ones run it on the durable scheduler, so the task can run twice.
+
+If you roll back from n8n 2.51.0 or later to a version from 2.41.0 to 2.50.x, set `N8N_SCHEDULER_ENABLED=true` and `N8N_SCHEDULER_SYSTEM_TASKS_ENABLED=true` on that version. Otherwise that version skips each system task that it can run on the durable scheduler, and those tasks stop running.
 {% endhint %}
 
 A durable system task is also a scheduler task. The [durable scheduler metrics](durable-scheduler.md#observability) report it with the `task_type` label `system:<task-name>`, for example `system:insights-compaction`. The metrics on this page cover all three modes under the same names.
@@ -7638,7 +7639,7 @@ The durable scheduler is available from n8n 2.36.0. Earlier versions back to n8n
 | :------- | :--- | :------ | :---------- |
 | `N8N_SCHEDULER_ENABLED` | Boolean | `true` | Whether to use the durable scheduler. Defaults to `true` from n8n 2.45.0 (`false` in earlier versions). Set to `false` to use the in-memory scheduler. Requires `N8N_USE_WORKFLOW_PUBLICATION_SERVICE`, also on by default, to take over Schedule Trigger nodes. Deprecated from n8n 2.45.0: a future version will remove this variable and the in-memory scheduler. |
 | `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED` | Boolean | `false` | Whether the durable scheduler also takes over polling triggers (trigger nodes with a Poll Times parameter). Requires `N8N_SCHEDULER_ENABLED` and `N8N_USE_WORKFLOW_PUBLICATION_SERVICE`. Available from n8n 2.33.0. |
-| `N8N_SCHEDULER_SYSTEM_TASKS_ENABLED` | Boolean | `false` | Whether the durable scheduler runs n8n's internal maintenance jobs instead of the leader main's in-process timers. Requires `N8N_SCHEDULER_ENABLED`. Give every main the same value for both variables, and run the same n8n version on every main. A main with either flag off removes the durable schedules for these jobs at startup. Use it from n8n 2.45.0, the first version that runs every system task on the durable scheduler. See [System tasks](../../system-tasks.md#run-system-tasks-on-the-durable-scheduler). |
+| `N8N_SCHEDULER_SYSTEM_TASKS_ENABLED` | Boolean | `true` | Whether the durable scheduler runs n8n's internal maintenance jobs instead of the leader main's in-process timers. Defaults to `true` from n8n 2.51.0 (`false` in earlier versions). Set to `false` to run them on in-process timers. Requires `N8N_SCHEDULER_ENABLED`. Give every main the same value for both variables, and run the same n8n version on every main. A main with either flag off removes the durable schedules for these jobs at startup, unless a newer n8n version created them. If you roll back from n8n 2.51.0 or later to a version from 2.41.0 to 2.50.x, set `N8N_SCHEDULER_ENABLED=true` and this variable to `true` on that version. Otherwise that version skips each system task that it can run on the durable scheduler, and those tasks stop running. Use it from n8n 2.45.0, the first version that runs every system task on the durable scheduler. See [System tasks](../../system-tasks.md#run-system-tasks-on-the-durable-scheduler). |
 
 n8n 2.45.0 removes `N8N_ENV_FEAT_SKIP_DURABLE_SCHEDULER` and the **Skip Durable Scheduler** node setting. To use the in-memory scheduler for all Schedule Trigger nodes, set `N8N_SCHEDULER_ENABLED=false` and restart n8n. See [Use the in-memory scheduler](../../durable-scheduler.md#use-the-in-memory-scheduler).
 
@@ -10259,7 +10260,7 @@ n8n 2.45.0 also removes the **Skip Durable Scheduler** node setting and `N8N_ENV
 
 Poll triggers (trigger nodes with a **Poll Times** parameter, such as Google Sheets Trigger or Airtable Trigger) stay on the in-memory scheduler unless you also opt them in with [`N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`](basic-configuration/use-environment-variables/scheduler.md#enable-vars), available from n8n 2.33.0. Poll trigger support isn't 100% stable yet, so keep it off in production unless you're prepared to keep a close watch on your polling workflows. For how polls behave under the durable scheduler, and for the [durable poll cursors](#durable-poll-cursors) that n8n recommends turning on together with `N8N_SCHEDULER_POLL_TRIGGERS_ENABLED`, see [Poll triggers](#poll-triggers).
 
-n8n's internal maintenance jobs also stay on in-process timers unless you opt them in with [`N8N_SCHEDULER_SYSTEM_TASKS_ENABLED`](basic-configuration/use-environment-variables/scheduler.md#enable-vars), from n8n 2.45.0. See [Run system tasks on the durable scheduler](system-tasks.md#run-system-tasks-on-the-durable-scheduler).
+n8n's internal maintenance jobs that support durable mode also run on the durable scheduler from n8n 2.51.0, and the rest keep their timer mode. In earlier versions, from n8n 2.45.0, they stay on in-process timers unless you set [`N8N_SCHEDULER_SYSTEM_TASKS_ENABLED`](basic-configuration/use-environment-variables/scheduler.md#enable-vars) to `true`. To opt out, set it to `false`. See [Run system tasks on the durable scheduler](system-tasks.md#run-system-tasks-on-the-durable-scheduler).
 
 ## How the durable scheduler works <a href="#how-it-works" id="how-it-works"></a>
 
@@ -20648,8 +20649,8 @@ docker compose up -d
 
 n8n releases a new minor version most weeks. The `stable` version is for production use. `beta` is the most recent release. The `beta` version may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).
 
-Current `stable`: 2.49.7
-Current `beta`: 2.50.2
+Current `stable`: 2.49.8
+Current `beta`: 2.50.3
 {% endhint %}
 
 === https://docs.n8n.io/docs/reusable-content/.gitbook/includes/self-hosting/installation/tunnel/
